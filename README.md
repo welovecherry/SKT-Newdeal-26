@@ -9,7 +9,7 @@ AI·자동화 기초 과목의 **아침 과제와 실습 노트북**입니다.
 |---|---|---|---|
 | 9/22 (월) | — | [변수 · 자료형 · 리스트 · 딕셔너리](https://colab.research.google.com/github/welovecherry/SKT-Newdeal-26/blob/main/260922_variables_and_lists.ipynb) | — |
 | 9/23 (수) | — | [조건문 · 반복문 · 집합 · Counter](https://colab.research.google.com/github/welovecherry/SKT-Newdeal-26/blob/main/260923_am_conditions_loops_counting.ipynb) · [도전 문제](https://colab.research.google.com/github/welovecherry/SKT-Newdeal-26/blob/main/260923_extra_challenges.ipynb) | [함수 · 모듈 · 파일 · CSV](https://colab.research.google.com/github/welovecherry/SKT-Newdeal-26/blob/main/260923_pm_functions_files_csv.ipynb) |
-| 9/28 (월) | [깃배시 — 폴더 확인](0928_mon/00_morning30.md) | [예외처리 · 로깅](https://colab.research.google.com/github/welovecherry/SKT-Newdeal-26/blob/main/0928_mon/01_am_exceptions_logging.ipynb) | 준비 중 |
+| 9/28 (월) | [깃배시 — 폴더 확인](0928_mon/00_morning30.md) | [예외처리 · 로깅](https://colab.research.google.com/github/welovecherry/SKT-Newdeal-26/blob/main/0928_mon/01_0928_am_exceptions_logging.ipynb) | 준비 중 |
 | 9/29 (화) | 준비 중 | 준비 중 | 준비 중 |
 | 9/30 (수) | 준비 중 | 준비 중 | *(다른 강사 수업)* |
 
@@ -31,7 +31,7 @@ AI·자동화 기초 과목의 **아침 과제와 실습 노트북**입니다.
 ```
 0928_mon/                          MMDD_요일세글자
   00_morning30.md                  아침 30분 과제 문서
-  01_am_exceptions_logging.ipynb   번호_am|pm_영문주제
+  01_0928_am_exceptions_logging.ipynb   번호_am|pm_영문주제
   02_pm_nested_json.ipynb
 ```
 
