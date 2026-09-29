@@ -10,19 +10,7 @@
 
 ---
 
-## 1. 왜 이걸 하는지 찾아봅니다
-
-먼저 **왜 필요한지**를 직접 찾아보고 한두 줄로 적습니다.
-
-| 질문 | 검색어 예시 |
-|---|---|
-| 개발자와 보안 담당자는 왜 GitHub에 코드를 올릴까요? | 깃허브란, github 왜 쓰나, 포트폴리오 깃허브 |
-
-이 질문은 9/28 아침에도 한 번 나왔습니다. **그때 적은 답과 지금 답이 달라졌는지** 보세요.
-
----
-
-## 2. 이 말들이 무슨 뜻인지 찾아봅니다
+## 1. 이 말들이 무슨 뜻인지 찾아봅니다
 
 검색해서 읽고 자기 말로 한 줄씩 적습니다.
 
@@ -34,7 +22,7 @@
 
 ---
 
-## 3. GitHub에 가입합니다
+## 2. GitHub에 가입합니다
 
 9/28 오후에 숙제로 낸 것입니다. 이미 했으면 건너뜁니다.
 
@@ -42,13 +30,14 @@ GitHub에서 가입합니다. **아이디를 정할 때 한 가지만 생각하�
 
 ---
 
-## 4. 리포지토리를 만듭니다
+## 3. GitHub 웹 화면에서 리포지토리를 만듭니다
 
-| 항목 | 설정 |
-|---|---|
-| 이름 | security-agent-toolkit |
-| 공개 여부 | **Public** (공개). 나중에 남에게 보여 줄 것입니다 |
-| README | 추가에 체크합니다 |
+1. GitHub에 로그인합니다.
+2. 오른쪽 위의 **＋** 버튼을 누르고 **New repository**를 선택합니다.
+3. **Repository name**에 security-agent-toolkit을 입력합니다.
+4. 공개 여부에서 **Public**을 선택합니다.
+5. **Add a README file**에 체크합니다.
+6. **Create repository**를 누릅니다.
 
 만들고 나면 주소가 이런 모양입니다.
 
@@ -56,11 +45,11 @@ https://github.com/<내 아이디>/security-agent-toolkit
 
 ---
 
-## 5. 배운 내용에 맞는 폴더를 만듭니다
+## 4. 배운 내용에 맞는 폴더를 만듭니다
 
 지금까지 배운 1과목 자료를 담을 agent_core/와 학습 기록을 담을 docs/를 만듭니다. 아직 배우지 않은 과목 폴더는 만들지 않습니다.
 
-GitHub 웹 화면에서 Add file › Create new file을 누르고 파일 이름 칸에 다음 경로를 입력합니다.
+GitHub 웹 화면에서 **Add file → Create new file**을 누르고 파일 이름 칸에 다음 경로를 입력합니다.
 
 - agent_core/README.md
 - docs/2026-09-30.md
@@ -69,7 +58,7 @@ GitHub 웹 화면에서 Add file › Create new file을 누르고 파일 이름 
 
 ---
 
-## 6. 9/29까지의 실습 노트북을 올립니다
+## 5. 9/29까지의 실습 노트북을 올립니다
 
 Run of Show에서 안내한 다음 노트북을 VS Code에서 준비합니다.
 
@@ -81,34 +70,34 @@ Run of Show에서 안내한 다음 노트북을 VS Code에서 준비합니다.
 - 01_0929_am_regex_detection_rules.ipynb
 - 02_0929_pm_rules_api.ipynb
 
-GitHub 웹 화면에서 agent_core/ 폴더를 열고 Add file › Upload files를 눌러 위 노트북 파일들을 올린 뒤 Commit changes를 누릅니다.
+GitHub 웹 화면에서 agent_core/ 폴더를 열고 **Add file → Upload files**를 누릅니다. 위 노트북 파일들을 끌어다 놓고 **Commit changes**를 누릅니다.
 
 .env 파일이나 API 키가 들어 있는 파일은 올리지 않습니다.
 
 ---
 
-## 7. 오늘 공부한 것을 기록합니다
+## 6. 오늘 공부한 것을 기록합니다
 
 docs/2026-09-30.md에 오늘 한 일을 적고 커밋합니다.
 
-# 2026-09-30 (수)
+    # 2026-09-30 (수)
 
-## 내 리포지토리 주소
-https://github.com/          /security-agent-toolkit
+    ## 내 리포지토리 주소
+    https://github.com/          /security-agent-toolkit
 
-## 오늘 만든 폴더
+    ## 오늘 만든 폴더
 
-## 올린 노트북
+    ## 올린 노트북
 
-## 찾아보고 알게 된 것
+    ## 찾아보고 알게 된 것
 
-## 막힌 것
+    ## 막힌 것
 
-## 다음에 확인할 것
+    ## 다음에 확인할 것
 
 ---
 
-## 8. 확인합니다
+## 7. 확인합니다
 
 - [ ] 내 리포지토리 주소가 github.com/<내 아이디>/security-agent-toolkit입니다
 - [ ] agent_core/와 docs/ 폴더가 보입니다
