@@ -37,12 +37,21 @@
 
 ---
 
-## 3. 오늘 쓸 로그 파일을 만듭니다
+## 3. 새 과목 폴더와 오늘 쓸 로그 파일을 만듭니다
 
-어제 기록 파일을 저장한 것과 **같은 방법**입니다. 메모장으로 만듭니다.
+오늘부터 2과목 「네트워크·ZT 운영」입니다. 과목마다 폴더를 하나씩 씁니다. 지금까지는 `agent_core`, 오늘부터는 **`network_zt`** 입니다.
 
-1. 메모장을 엽니다.
-2. 아래 여덟 줄을 그대로 복사해 붙여 넣습니다.
+**① `network_zt` 폴더를 만듭니다**
+
+1. VS Code 에서 `security-agent-toolkit` 폴더를 엽니다.
+2. 왼쪽 파일 목록의 **빈 곳을 오른쪽 클릭**하고 **New Folder**(새 폴더)를 누릅니다.
+3. 이름을 `network_zt` 로 적습니다. `agent_core` · `docs` 와 **같은 높이**에 있어야 합니다.
+
+**② 그 안에 `sample.log` 를 만듭니다**
+
+1. `network_zt` 폴더를 오른쪽 클릭하고 **New File**(새 파일)을 누릅니다.
+2. 이름을 `sample.log` 로 적습니다.
+3. 아래 여덟 줄을 그대로 복사해 붙여 넣습니다.
 
 ```
 2026-10-12 09:02:11 INFO accepted login for kim.cs
@@ -55,25 +64,17 @@
 2026-10-12 23:40:07 warn failed login for guest
 ```
 
-3. **파일 › 다른 이름으로 저장** 을 누릅니다.
-4. 저장 위치를 `C:\Users\<내 계정>\security-agent-toolkit\logs` 로 합니다.
-   그런 폴더가 없으면 저장 창에서 **새 폴더**로 `logs` 를 만듭니다.
-5. 파일 이름을 `sample.log` 로 적고, 파일 형식을 **모든 파일**로 바꿔 저장합니다.
+**③ 터미널을 그 폴더에서 엽니다**
 
-터미널에서 그 폴더로 가서 파일이 있는지 봅니다.
+`network_zt` 폴더를 오른쪽 클릭하고 **Open in Integrated Terminal**(통합 터미널에서 열기)을 누릅니다.
 
 ```
-$ cd ~/security-agent-toolkit/logs
+$ pwd
 $ ls
-sample.log
 ```
 
-`security-agent-toolkit` 폴더가 없으면 먼저 만듭니다.
-
-```
-$ cd ~
-$ mkdir -p security-agent-toolkit/logs
-```
+- `pwd` 의 결과가 `…/security-agent-toolkit/network_zt` 로 끝나면 됩니다. 앞부분은 사람마다 다릅니다.
+- `ls` 의 목록에 `sample.log` 가 보이면 됩니다.
 
 ---
 
@@ -101,8 +102,7 @@ $ mkdir -p security-agent-toolkit/logs
 
 ## 5. 오늘 공부한 것을 파일로 남깁니다
 
-3번과 같은 방법으로 `C:\Users\<내 계정>\security-agent-toolkit\docs` 에
-`2026-10-12.md` 로 저장합니다. `docs` 폴더가 없으면 만듭니다.
+VS Code 왼쪽 파일 목록에서 `docs` 폴더를 오른쪽 클릭하고 **New File** 로 `2026-10-12.md` 를 만듭니다.
 
 ```markdown
 # 2026-10-12 (월)
@@ -125,7 +125,7 @@ grep 은
 
 ## 6. 확인합니다
 
-- [ ] `logs/sample.log` 가 있고 `cat` 으로 여덟 줄이 보인다
+- [ ] `network_zt/sample.log` 가 있고 `cat` 으로 여덟 줄이 보인다
 - [ ] `WARN` 으로 고른 줄이 **네 줄**, 대소문자를 무시하면 **다섯 줄**이다
 - [ ] `docs/2026-10-12.md` 에 오늘 찾은 옵션 네 개가 적혀 있다
 
