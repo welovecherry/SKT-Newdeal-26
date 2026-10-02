@@ -92,7 +92,7 @@ VS Code 는 입력하는 중에 코드를 추천하거나 대신 채워 줍니�
 1. 단톡방에서 받은 `261002_am_webhook_cli.ipynb` 를 `security-agent-toolkit` 의 **`agent_core` 폴더**에 넣습니다.
 2. VS Code 에서 `security-agent-toolkit` 폴더를 열고, 왼쪽 목록에서 그 노트북을 누릅니다.
 3. 맨 위 **「아침 과제 확인 셀」**의 왼쪽 ▶ 를 누릅니다.
-4. 위쪽에 **Select Kernel**(커널 선택)이 나오면 **Python Environments…** 를 누르고, 목록의 **Python** 을 고릅니다.
+4. 위쪽에 **Select Kernel**(커널 선택)이 나오면 **Python Environments…** 를 누르고, **각자 만든 가상환경**(이름에 `.venv` 처럼 가상환경 이름이 붙은 항목)을 고릅니다.
 5. 셀 아래에 `준비 완료` 가 나오면 끝입니다.
 
 `ModuleNotFoundError` 가 나오면 3번의 설치가 다른 파이썬에 된 것입니다. 강사를 부릅니다.
