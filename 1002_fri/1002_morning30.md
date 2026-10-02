@@ -82,7 +82,7 @@ VS Code 는 입력하는 중에 코드를 추천하거나 대신 채워 줍니�
 | `suggest on trigger` | **Editor: Suggest On Trigger Characters** 체크 해제 | `.` 을 입력했을 때 뜨는 추천 목록 |
 | `inline suggest` | **Editor › Inline Suggest: Enabled** 체크 해제 | 회색 글씨로 미리 채워지는 코드 |
 
-- 화면 오른쪽 아래에 **Copilot 아이콘**이 있으면 누르고 **Disable Completions** 를 고릅니다. 없으면 넘어갑니다.
+- **Copilot(AI 가 코드를 대신 써 주는 기능)도 끕니다.** 같은 설정 검색창에 `disable ai` 를 입력하고 **Chat: Disable AI Features** 에 체크합니다. 오른쪽 아래의 Copilot 아이콘이 사라지면 꺼진 것입니다.
 - 추천 목록이 필요할 때는 `Ctrl+Space` 를 누르면 그때만 나옵니다.
 
 ---
