@@ -46,22 +46,14 @@
 
 `PS C:\Users\이름>` 으로 시작하면 아직 PowerShell 입니다. `Ctrl+Shift+P` → `Select Default Profile` → **Git Bash** 를 고르고 터미널을 다시 엽니다.
 
----|---|
-   | `PS C:\Users\이름>` | PowerShell 입니다. **아래 3~6 을 합니다** |
-   | `이름@PC이름 MINGW64 ~` | 이미 Git Bash 입니다. 바로 「4. 키를 발급받습니다」로 넘어갑니다 |
+### 터미널을 오른쪽으로 옮깁니다
 
-3. `Ctrl+Shift+P` 를 누르고 검색창에 `Select Default Profile` 을 칩니다.
-4. **Terminal: Select Default Profile** 을 누르고, 목록에서 **Git Bash** 를 고릅니다.
-5. 열려 있던 터미널 창을 닫고(휴지통 모양), **Terminal › New Terminal**(터미널 › 새 터미널) 로 다시 엽니다.
-6. 첫 줄에 `MINGW64` 가 보이는지 확인하고, 아래를 쳐 봅니다.
+터미널이 아래에 있으면 노트북이 좁게 보입니다. 오른쪽으로 옮기면 노트북과 터미널을 나란히 볼 수 있습니다.
 
-```
-$ ls -a
-```
+1. 터미널 창 맨 위 줄(**TERMINAL** 글자가 있는 줄)의 **빈 곳을 오른쪽 클릭**합니다.
+2. **Panel Position › Right**(패널 위치 › 오른쪽) 를 누릅니다.
 
-오류 없이 목록이 나오면 됩니다. 한 번 바꾸면 다음부터는 계속 Git Bash 로 열립니다.
-
-목록에 Git Bash 가 없으면 강사를 부릅니다.
+위 메뉴 **View › Appearance › Panel Position › Right** 로도 같습니다. 다시 아래로 내리려면 같은 메뉴에서 **Bottom** 을 고릅니다. 한 번 옮기면 다음에도 오른쪽에 열립니다.
 
 ---
 
@@ -200,6 +192,7 @@ API 키는
 ## 9. 확인합니다
 
 - [ ] VS Code 터미널 첫 줄에 `MINGW64` 가 보인다
+- [ ] 터미널을 오른쪽으로 옮겼다
 - [ ] 개인 gmail 계정으로 키를 발급받았다
 - [ ] `security-agent-toolkit/.env` 에 `GEMINI_API_KEY=` 한 줄이 있다
 - [ ] ⚠ `security-agent-toolkit/.gitignore` 에 `.env` 한 줄이 있다
