@@ -113,11 +113,13 @@ VS Code 는 입력하는 중에 코드를 추천하거나 대신 채워 줍니�
 
 ## ⭐ 다 한 사람만 합니다
 
-터미널에서 오늘 노트북이 있는 폴더로 이동해 봅니다.
+터미널을 오늘 노트북이 있는 폴더에서 열어 봅니다. VS Code 왼쪽 파일 목록에서 `agent_core` 폴더를 오른쪽 클릭하고 **Open in Integrated Terminal** 을 누릅니다.
 
 ```
-$ cd ~/security-agent-toolkit/agent_core
+$ pwd
 $ ls
 ```
+
+`pwd` 의 결과가 `…/security-agent-toolkit/agent_core` 로 끝나는지 봅니다.
 
 목록에 `261002_am_webhook_cli.ipynb` 가 보이면 됩니다. 3교시에 이 폴더에서 명령어를 입력합니다.
