@@ -2,11 +2,13 @@
 
 10월 7일 (수) · 아침 과제
 
-**오늘 하는 일:** `cd ..` 로 폴더를 오르내리는 법을 익히고, 깃허브의 `security-agent-toolkit` 저장소를 **내 PC 로 내려받아(clone)** 그 폴더에서 작업하도록 바꿉니다.
+**오늘 하는 일:** 깃허브의 `security-agent-toolkit` 저장소를 **내 PC 로 내려받아(clone)**, 앞으로 그 폴더에서 작업하도록 바꿉니다.
 
-지금까지는 PC 의 폴더와 깃허브 저장소가 **따로** 있었습니다. 그래서 파일을 웹 화면에서 하나씩 올렸습니다. 오늘부터는 **깃허브와 연결된 폴더**에서 작업합니다. 명령어로 올리는 것은 다음 시간에 합니다.
+지금까지는 PC 의 폴더와 깃허브 저장소가 **따로** 있었습니다. 그래서 파일을 웹 화면에서 하나씩 올렸습니다. 오늘부터는 **깃허브와 연결된 폴더**에서 작업합니다.
 
-**오늘 못 끝냈으면 오후 5시 이후에 마무리합니다.** 단, **7번(가상환경)은 2교시 전에** 끝내야 오늘 노트북을 실행할 수 있습니다.
+오늘 새로 쓰는 명령은 **세 개**입니다 — `cd ..` · `git clone` · `git status`. 폴더 이름 바꾸기와 파일 복사는 오늘은 **마우스로** 하고, 내일 명령어로 다시 배웁니다.
+
+**오늘 못 끝냈으면 오후 5시 이후에 마무리합니다.** 단, **6번(가상환경)은 2교시 전에** 끝내야 오늘 노트북을 실행할 수 있습니다.
 
 막히면 혼자 오래 붙잡지 말고 강사를 부릅니다.
 
@@ -25,8 +27,6 @@
 ---
 
 ## 2. 이 말들이 무슨 뜻인지 찾아봅니다
-
-검색해서 읽고 자기 말로 한 줄씩 적습니다.
 
 | 찾아볼 말 | 무엇을 알아 오면 되나 (힌트) |
 |---|---|
@@ -61,54 +61,20 @@ $ pwd
 
 ---
 
-## 4. 내 이름과 이메일을 git 에 알려 줍니다
+## 4. 지금 쓰던 폴더를 보관용으로 이름을 바꿉니다 (마우스로)
 
-git 은 파일을 올릴 때마다 **누가 올렸는지**를 함께 남깁니다. 그래서 이름과 이메일을 한 번 적어 둡니다. 이 PC 에서 **한 번만** 하면 됩니다.
+지금 폴더는 **지우지 않습니다.** 이름만 바꿔서 보관합니다. 5번에서 같은 이름의 새 폴더를 받기 때문입니다.
 
-```
-$ git config --global user.name "내 이름"
-$ git config --global user.email "깃허브에 가입한 이메일"
-```
+1. VS Code 왼쪽 파일 목록에서 아무 파일이나 오른쪽 클릭하고 **Reveal in File Explorer**(파일 탐색기에서 표시)를 누릅니다. 윈도우 파일 탐색기가 열립니다.
+2. 파일 탐색기에서 **한 칸 위 폴더**로 올라가 `security-agent-toolkit` 폴더가 보이게 합니다.
+3. VS Code 를 **완전히 닫습니다.** 폴더가 열려 있으면 이름을 바꿀 수 없습니다.
+4. 파일 탐색기에서 `security-agent-toolkit` 폴더를 오른쪽 클릭 › **이름 바꾸기**를 누르고, 끝에 `_old` 를 붙여 `security-agent-toolkit_old` 로 바꿉니다.
 
-- 따옴표 안을 자기 것으로 바꿉니다. 따옴표는 그대로 둡니다.
-- 확인합니다. 방금 적은 이름과 이메일이 나오면 됩니다.
-
-```
-$ git config --global user.name
-$ git config --global user.email
-```
+「다른 프로그램에서 사용 중」이라고 나오면 그 폴더를 연 창(VS Code · 터미널)이 남아 있는 것입니다. 모두 닫고 다시 합니다.
 
 ---
 
-## 5. 지금 쓰던 폴더를 보관용으로 이름을 바꿉니다
-
-지금 폴더는 **지우지 않습니다.** 이름만 바꿔서 보관합니다. 6번에서 같은 이름의 새 폴더를 받기 때문입니다.
-
-1. VS Code 에서 **File › Close Folder**(파일 › 폴더 닫기)를 누릅니다. 폴더가 열려 있으면 이름을 바꿀 수 없습니다.
-2. **Terminal › New Terminal** 로 터미널을 엽니다.
-3. 3번에서 적어 둔 곳으로 이동합니다. `cd` 뒤에 적어 둔 경로를 그대로 붙입니다.
-
-```
-$ cd /c/Users/이름/Documents
-$ ls
-```
-
-목록에 `security-agent-toolkit` 이 보이면 됩니다.
-
-4. 이름을 바꿉니다.
-
-```
-$ mv security-agent-toolkit security-agent-toolkit_old
-$ ls
-```
-
-목록에 `security-agent-toolkit_old` 가 보이면 됩니다.
-
-`Device or resource busy` 또는 `Permission denied` 가 나오면 그 폴더를 쓰는 창이 남아 있는 것입니다. VS Code 를 **완전히 닫고** 다시 연 뒤 2번부터 다시 합니다.
-
----
-
-## 6. 깃허브 저장소를 내려받습니다 (clone)
+## 5. 깃허브 저장소를 내려받습니다 (clone)
 
 1. 브라우저에서 내 저장소 `security-agent-toolkit` 을 엽니다.
 2. 초록색 **Code** 버튼을 누르고, **HTTPS** 탭의 주소 옆 복사 버튼을 누릅니다. 주소는 이런 모양입니다.
@@ -117,7 +83,17 @@ $ ls
 https://github.com/내아이디/security-agent-toolkit.git
 ```
 
-3. 터미널에 `git clone` 뒤에 복사한 주소를 붙여 넣습니다. 터미널에 붙여 넣기는 **마우스 오른쪽 클릭** 또는 `Ctrl+Shift+V` 입니다.
+3. VS Code 를 다시 열고(폴더는 열지 않습니다) **Terminal › New Terminal** 로 터미널을 엽니다.
+4. 3번에서 적어 둔 곳으로 이동합니다. `cd` 뒤에 적어 둔 경로를 그대로 붙입니다.
+
+```
+$ cd /c/Users/이름/Documents
+$ ls
+```
+
+목록에 `security-agent-toolkit_old` 가 보이면 됩니다.
+
+5. `git clone` 뒤에 복사한 주소를 붙여 넣습니다. 터미널에 붙여 넣기는 **마우스 오른쪽 클릭** 또는 `Ctrl+Shift+V` 입니다.
 
 ```
 $ git clone https://github.com/내아이디/security-agent-toolkit.git
@@ -126,40 +102,25 @@ $ ls
 
 목록에 `security-agent-toolkit` 과 `security-agent-toolkit_old` 가 **둘 다** 보이면 됩니다.
 
-4. 새 폴더로 들어가 안을 봅니다.
-
-```
-$ cd security-agent-toolkit
-$ ls -a
-```
-
-`.git` 이라는 폴더가 보이면 **깃허브와 연결된 폴더**입니다. 웹에서 올린 파일들도 보입니다.
+6. VS Code 에서 **File › Open Folder** 로 **새** `security-agent-toolkit` 폴더를 엽니다. `_old` 가 아닙니다.
 
 ---
 
-## 7. 필요한 파일을 옮기고, 가상환경을 다시 만듭니다
+## 6. 필요한 파일을 옮기고, 가상환경을 다시 만듭니다
 
-### ① 키 파일과 `.gitignore` 를 옮깁니다
+### ① 파일을 옮깁니다 (마우스로)
 
 `.env` 는 깃허브에 올리지 않았으므로 새 폴더에 없습니다. 보관 폴더에서 복사해 옵니다.
 
-```
-$ cp ../security-agent-toolkit_old/.env .
-$ cp ../security-agent-toolkit_old/.gitignore .
-$ ls -a
-```
+1. 파일 탐색기에서 `security-agent-toolkit_old` 를 엽니다.
+2. `.env` 와 `.gitignore` 를 골라 **복사(Ctrl+C)** 하고, 새 `security-agent-toolkit` 폴더에 **붙여넣기(Ctrl+V)** 합니다.
+3. `_old` 의 `agent_core` 와 `docs` 에만 있는 파일(웹에 아직 올리지 않은 파일)도 같은 방법으로 새 폴더의 같은 자리에 붙여 넣습니다. 같은 이름의 파일이 있다고 물으면 **덮어쓰기**를 고릅니다.
 
-| 명령 | 뜻 |
-|---|---|
-| `cp 원래파일 옮길곳` | 파일을 복사합니다 |
-| 맨 끝의 `.` | 「지금 이 폴더」입니다 |
-
-`.gitignore` 가 없다고 나오면 10/6 아침 과제의 6번을 새 폴더에서 다시 합니다.
+`.gitignore` 가 없으면 10/6 아침 과제의 6번을 새 폴더에서 다시 합니다.
 
 ### ② `.gitignore` 에 한 줄을 더합니다
 
-1. VS Code 에서 **File › Open Folder** 로 **새** `security-agent-toolkit` 폴더를 엽니다. `_old` 가 아닙니다.
-2. 왼쪽 목록에서 `.gitignore` 를 열고, 맨 아래에 한 줄을 더해 두 줄로 만듭니다.
+VS Code 왼쪽 목록에서 `.gitignore` 를 열고, 맨 아래에 한 줄을 더해 두 줄로 만듭니다.
 
 ```
 .env
@@ -183,33 +144,22 @@ $ ls -a
 
 5. 설치가 끝나면 그 셀을 지웁니다.
 
-### ④ 아직 웹에 올리지 않은 파일을 옮깁니다
-
-보관 폴더의 `agent_core` 에만 있는 파일이 있으면 새 폴더의 `agent_core` 로 복사합니다. 터미널이 새 `security-agent-toolkit` 폴더에 있어야 합니다.
-
-```
-$ cp -r ../security-agent-toolkit_old/agent_core/* agent_core/
-$ ls agent_core
-```
-
-`-r` 은 폴더 안의 것까지 모두 복사한다는 뜻입니다. `docs` 폴더도 같은 방법으로 옮깁니다.
-
 ---
 
-## 8. 연결된 폴더인지 확인합니다
+## 7. 연결된 폴더인지 확인합니다
 
-터미널이 새 `security-agent-toolkit` 폴더에 있는지 `pwd` 로 본 뒤 입력합니다.
+VS Code 왼쪽 목록의 빈 곳을 오른쪽 클릭 › **Open in Integrated Terminal** 로 터미널을 엽니다. `pwd` 로 새 `security-agent-toolkit` 폴더인지 본 뒤 입력합니다.
 
 ```
 $ git status
 ```
 
-- 목록에 **`.env` 와 `.venv` 가 없어야** 합니다. 있으면 7번 ②의 `.gitignore` 를 다시 확인합니다.
-- 4번에서 옮긴 파일들은 빨간 글씨로 보입니다. 「아직 깃허브에 올리지 않은 파일」이라는 뜻입니다. 올리는 것은 다음 시간에 합니다.
+- 목록에 **`.env` 와 `.venv` 가 없어야** 합니다. 있으면 6번 ②의 `.gitignore` 를 다시 확인합니다.
+- 6번 ①에서 옮긴 파일들은 빨간 글씨로 보입니다. 「아직 깃허브에 올리지 않은 파일」이라는 뜻입니다. 명령어로 올리는 것은 다음 주에 합니다.
 
 ---
 
-## 9. 오늘 한 것을 파일로 남깁니다
+## 8. 오늘 한 것을 파일로 남깁니다
 
 새 폴더의 `docs` 에 `2026-10-07.md` 를 만들고 아래를 채웁니다. VS Code 왼쪽 목록에서 `docs` 를 오른쪽 클릭 › **New File** 로 만듭니다.
 
@@ -217,7 +167,7 @@ $ git status
 # 2026-10-07 (수)
 
 ## 오늘 새로 쓴 명령
-cd .., cd ../.., git config, mv, git clone, cp, git status
+cd .., cd ../.., git clone, git status
 
 ## 찾아보고 알게 된 것
 저장소와 내 폴더는
@@ -229,12 +179,11 @@ cd .., cd ../.., git config, mv, git clone, cp, git status
 
 ---
 
-## 10. 확인합니다
+## 9. 확인합니다
 
 - [ ] `cd ..` 와 `cd ../..` 로 위 폴더로 올라가 봤다
-- [ ] `git config --global user.name` 과 `user.email` 이 내 것으로 나온다
 - [ ] 예전 폴더는 `security-agent-toolkit_old` 로 남아 있다
-- [ ] 새 `security-agent-toolkit` 폴더 안에 `.git` 이 있다
+- [ ] 새 `security-agent-toolkit` 폴더를 VS Code 로 열었다
 - [ ] 새 폴더에 `.env` 가 있고, `.gitignore` 에 `.env` 와 `.venv` 두 줄이 있다
 - [ ] 새 폴더의 가상환경을 커널로 골라 `%pip install` 을 마쳤다
 - [ ] `git status` 목록에 `.env` 와 `.venv` 가 없다
@@ -248,7 +197,9 @@ cd .., cd ../.., git config, mv, git clone, cp, git status
 새 폴더에서 아래를 입력해 봅니다.
 
 ```
+$ ls -a
 $ git log --oneline
 ```
 
-9/30 부터 웹에서 올린 기록이 한 줄씩 보입니다. 맨 위가 가장 최근입니다. 웹에서 올린 것도 git 기록으로 남아 있었다는 뜻입니다.
+- `ls -a` 에 `.git` 폴더가 보이면 **깃허브와 연결된 폴더**입니다.
+- `git log --oneline` 은 9/30 부터 웹에서 올린 기록을 한 줄씩 보여 줍니다. 맨 위가 가장 최근입니다.
