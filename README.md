@@ -15,7 +15,7 @@
 | 9/30 (수) | [3 · requests 준비 · 깃허브에 노트북 올리기](0930_wed/0930_morning30.md) | [requests · API 클라이언트](https://colab.research.google.com/github/welovecherry/SKT-Newdeal-26/blob/main/0930_wed/01_0930_am_requests_api_client.ipynb) | *(다른 강사 수업)* |
 | 10/2 (금) | [4 · VS Code 에서 수업 실행 준비](1002_fri/1002_morning30.md) | [웹훅 · CLI](1002_fri/261002_am_webhook_cli.ipynb) | [트리거 · 스케줄러](1002_fri/261002_pm_trigger_scheduler.ipynb) · [복습](1002_fri/261002_review.ipynb) |
 | 10/6 (화) | [5 · Gemini API 키 발급 · 보관](1006_tue/1006_morning30.md) | [LLM 호출 · 프롬프트](1006_tue/261006_am_llm_prompt.ipynb) | [AI 에이전트 · 도구 호출](1006_tue/261006_pm_agent_tools.ipynb) |
-| 10/7 (수) | [6 · 내 폴더를 깃허브 저장소와 연결하기](1007_wed/1007_morning30.md) | [보고서 형식 · 묶음 요약 · 위험도 정렬](1007_wed/261007_am_report_summary.ipynb) | 준비 중 |
+| 10/7 (수) | [6 · 내 폴더를 깃허브 저장소와 연결하기](1007_wed/1007_morning30.md) | [보고서 형식 · 묶음 요약 · 위험도 정렬](1007_wed/261007_am_report_summary.ipynb) | [총평 · 보고서 틀 · 조건부 경고](1007_wed/261007_pm_report_generator.ipynb) |
 | 10/8 (목) | [7 · 명령어로 깃허브에 올리기](1008_thu/1008_morning30.md) | 준비 중 | 준비 중 |
 
 ### 2과목 · 네트워크·ZT 운영 — 폴더 `network_zt`
