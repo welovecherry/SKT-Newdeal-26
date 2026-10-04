@@ -1,0 +1,50 @@
+# 2과목 실습 명령을 Windows 에서 실측한다 (win-check 브랜치에서만 돈다)
+name: win-check
+on:
+  push:
+    branches: [win-check]
+jobs:
+  windows:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: "A2 Git Bash — ipconfig /all vs //all"
+        shell: bash
+        run: |
+          echo "### ipconfig /all"; ipconfig /all 2>&1 | head -15 || true
+          echo "### ipconfig //all"; ipconfig //all 2>&1 | head -25 || true
+      - name: "Git Bash — ping · arp · netstat · grep · findstr"
+        shell: bash
+        run: |
+          echo "### ping -n 2 8.8.8.8"; ping -n 2 8.8.8.8 2>&1 || true
+          echo "### ping abc.nowhere-not-exist"; ping -n 1 abc.nowhere-not-exist 2>&1 || true
+          echo "### ping -n 1 192.0.2.1"; ping -n 1 -w 1000 192.0.2.1 2>&1 || true
+          echo "### arp -a"; arp -a 2>&1 | head -8 || true
+          echo "### netstat -n | head"; netstat -n 2>&1 | head -8 || true
+          echo "### netstat -an | grep LISTENING"; netstat -an | grep LISTENING | head -5 || true
+          echo "### netstat -an | findstr LISTENING"; netstat -an | findstr LISTENING | head -5 || true
+          echo "### netstat -ano | head"; netstat -ano 2>&1 | head -8 || true
+          echo "### nslookup google.com"; nslookup google.com 2>&1 || true
+          echo "### nslookup google.com 8.8.8.8"; nslookup google.com 8.8.8.8 2>&1 || true
+          echo "### dig"; dig google.com 2>&1 | head -3 || true
+          echo "### tracert -h 3"; tracert -h 3 -w 500 8.8.8.8 2>&1 || true
+      - name: "PowerShell 5.1 — the same commands"
+        shell: powershell
+        run: |
+          "### ipconfig /all"; ipconfig /all | Select-Object -First 25
+          "### ping -n 2 8.8.8.8"; ping -n 2 8.8.8.8
+          "### netstat -an | findstr LISTENING"; netstat -an | findstr LISTENING | Select-Object -First 5
+          "### netstat -ano"; netstat -ano | Select-Object -First 8
+          "### nslookup google.com 8.8.8.8"; nslookup google.com 8.8.8.8
+          "### chcp"; chcp
+          exit 0
+      - name: "Python ⭐ files (Git Bash · PowerShell)"
+        shell: bash
+        run: |
+          cd wincheck
+          for f in ping_check.py addr_kind.py port_name.py; do echo "### $f"; python $f; done
+      - name: "Python ⭐ files in PowerShell"
+        shell: powershell
+        run: |
+          cd wincheck
+          python ping_check.py; python addr_kind.py; python port_name.py
