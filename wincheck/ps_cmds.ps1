@@ -1,4 +1,3 @@
-"### curl.exe http (PowerShell)"; curl.exe -s "http://example.com/?q=network_day1" | Select-String "<title>"
-"### curl alias in PowerShell 5.1"; (Get-Command curl).CommandType; (Get-Command curl).Definition
-"### netstat -n | findstr 443"; netstat -n | findstr 443 | Select-Object -First 3
+"### authoritative NS lookup"; $ns=(nslookup -type=ns example.com 2>$null | Select-String "nameserver" | Select-Object -First 1).ToString().Split("=")[-1].Trim(); $ns; nslookup example.com $ns
+"### Resolve-DnsName"; Resolve-DnsName example.com | Format-Table -AutoSize | Out-String -Width 200
 exit 0

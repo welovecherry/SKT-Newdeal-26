@@ -1,5 +1,8 @@
-echo "### curl.exe http (Git Bash)"; curl.exe -s "http://example.com/?q=network_day1" | grep -i "<title>" || true
-echo "### curl http (Git Bash)"; curl -s "http://example.com/?q=network_day1" | grep -i "<title>" || true
-echo "### curl.exe https"; curl.exe -s "https://example.com/?q=network_day1" | grep -i "<title>" || true
-echo "### netstat -n | findstr 443"; netstat -n | findstr 443 | head -3 || true
-echo "### which curl.exe"; which curl.exe; which curl
+echo "### nslookup example.com"; nslookup example.com 2>&1
+echo "### nslookup -type=ns example.com"; nslookup -type=ns example.com 2>&1
+echo "### nslookup -type=mx google.com"; nslookup -type=mx google.com 2>&1
+echo "### nslookup -type=cname www.naver.com"; nslookup -type=cname www.naver.com 2>&1
+echo "### nslookup www.naver.com"; nslookup www.naver.com 2>&1
+echo "### nslookup nowhere"; nslookup abc.nowhere-not-exist.com 2>&1
+echo "### ipconfig //displaydns | head"; ipconfig //displaydns 2>&1 | head -30
+echo "### ipconfig //flushdns"; ipconfig //flushdns 2>&1
