@@ -615,7 +615,7 @@ for name, rcode in LOG:
 
 ```powershell
 nslookup e6030.a.akamaiedge.net
-nslookup qzkx7wp2v.example.com
+nslookup qzkx7wp2v.invalid
 ```
 
 | | |
@@ -624,7 +624,7 @@ nslookup qzkx7wp2v.example.com
 
 **💡 힌트**
 
-1. 겉모습만으로는 둘 다 무작위처럼 보입니다. **실제로 물어보는 것**이 가장 확실한 근거입니다.
+1. 겉모습만으로는 둘 다 무작위처럼 보입니다. **실제로 물어보는 것**이 가장 확실한 근거입니다. `.invalid` 는 「절대 존재하지 않는 이름」으로 정해 둔 TLD 라 시험용으로 씁니다(`example.com` 은 아무 하위 이름에도 답하도록 돼 있어 쓰지 않습니다 — 실측).
 2. 실무에서는 여기에 「언제 처음 등록됐나」, 「위협 정보 사이트에 올라 있나」를 더 봅니다.
 3. 의심 도메인에 **브라우저로 접속하지 않습니다.** `nslookup` 은 이름만 묻고 접속하지 않습니다.
 
@@ -1058,7 +1058,7 @@ for name, rcode in LOG:
 
 ```powershell
 nslookup e6030.a.akamaiedge.net
-nslookup qzkx7wp2v.example.com
+nslookup qzkx7wp2v.invalid
 ```
 
 첫째는 `Address` 에 IP 가 나오고, 둘째는 `Non-existent domain` 입니다.
