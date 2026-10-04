@@ -40,11 +40,15 @@ jobs:
           exit 0
       - name: "Python ⭐ files (Git Bash · PowerShell)"
         shell: bash
+        env:
+          PYTHONUTF8: "1"
         run: |
           cd wincheck
           for f in ping_check.py addr_kind.py port_name.py; do echo "### $f"; python $f; done
       - name: "Python ⭐ files in PowerShell"
         shell: powershell
+        env:
+          PYTHONUTF8: "1"
         run: |
           cd wincheck
           python ping_check.py; python addr_kind.py; python port_name.py
