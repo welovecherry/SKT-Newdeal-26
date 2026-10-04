@@ -18,7 +18,7 @@
 | 10/7 (수) | [6 · 내 폴더를 깃허브 저장소와 연결하기](1007_wed/1007_morning30.md) | [보고서 형식 · 묶음 요약 · 위험도 정렬](1007_wed/261007_am_report_summary.ipynb) | [총평 · 보고서 틀 · 조건부 경고](1007_wed/261007_pm_report_generator.ipynb) |
 | 10/8 (목) | [7 · 명령어로 깃허브에 올리기](1008_thu/1008_morning30.md) | [설정 분리 · 알림 연동 · 하나로 잇기](1008_thu/261008_am_config_pipeline.ipynb) | [코드 리뷰 · 테스트 · 디버깅 · 회고](1008_thu/261008_pm_review_debug_retro.ipynb) |
 
-### 2과목 · 네트워크·ZT 운영 — 폴더 `network_zt`
+### 2과목 · 네트워크·ZT(제로 트러스트) 운영 — 폴더 `network_zt`
 
 | 날짜 | 아침 과제 | 오전 | 오후 |
 |---|---|---|---|
