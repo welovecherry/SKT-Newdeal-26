@@ -18,19 +18,3 @@ jobs:
         run: |
           $ErrorActionPreference = "Continue"
           ./wincheck/ps_cmds.ps1
-      - name: "Python answers (Git Bash)"
-        shell: bash
-        env:
-          PYTHONUTF8: "1"
-        run: |
-          cd wincheck
-          for f in *.py; do echo "### $f"; python "$f" || echo "!!FAILED $f"; done
-      - name: "DGA files in student order (PowerShell)"
-        shell: powershell
-        env:
-          PYTHONUTF8: "1"
-        run: |
-          cd wincheck/dga
-          foreach ($f in "label.py","features.py","typosquat.py","nx_count.py","long_label.py") { "### $f"; python $f }
-          Copy-Item score_v1.py dga_score.py; "### dga_score v1"; python dga_score.py; python judge.py; python evaluate.py
-          Copy-Item score_v2.py dga_score.py -Force; "### dga_score v2 (6-5)"; python evaluate.py; python threshold.py; python report_table3.py
