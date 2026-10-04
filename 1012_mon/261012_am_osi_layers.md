@@ -22,7 +22,7 @@
 
 ### 0.2 오늘은 PowerShell(파워셸) 터미널을 씁니다 ⚠
 
-지금까지 쓴 Git Bash(깃 배시) 는 리눅스식 터미널이라 `ipconfig /all` 같은 **Windows 명령의 `/` 옵션이 깨질 수 있습니다.** 오늘 명령은 Windows 의 기본 터미널인 **PowerShell** 에서 입력합니다.
+지금까지 쓴 Git Bash(깃 배시) 는 리눅스식 터미널이라 `ipconfig /all` 같은 **Windows 명령의 `/` 옵션이 깨집니다**(Windows 에서 실측 — `Error: unrecognized or incomplete command line`). 오늘 명령은 Windows 의 기본 터미널인 **PowerShell** 에서 입력합니다.
 
 1. VS Code 에서 `security-agent-toolkit` 폴더를 엽니다.
 2. 아래쪽 터미널 패널 오른쪽 위의 **`+` 옆 작은 화살표(˅)** 를 누릅니다.
@@ -326,7 +326,7 @@ for r in results:                                 # 결과를 하나씩 꺼낸�
 
 1. `/all` 은 「자세히 전부」 보여 달라는 옵션입니다.
 2. 줄이 많습니다. 3-2 에서 고른 장치 이름 아래를 봅니다.
-3. Git Bash 에서 입력하면 `/all` 이 깨질 수 있습니다. **PowerShell** 인지 확인합니다(0.2).
+3. Git Bash 에서 입력하면 `/all` 이 깨져 사용법 안내만 나옵니다. **PowerShell** 인지 확인합니다(0.2). Git Bash 에서 꼭 하려면 슬래시를 두 번 써서 `ipconfig //all` 로 입력합니다.
 
 ### ✍️ 문제 3-4 · 게이트웨이까지 `ping`
 
