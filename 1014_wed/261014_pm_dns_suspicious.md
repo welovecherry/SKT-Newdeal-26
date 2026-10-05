@@ -620,7 +620,7 @@ nslookup qzkx7wp2v.invalid
 
 | | |
 |---|---|
-| 🎯 나와야 하는 결과 | 첫째는 IP 가 나온다(있는 이름). 둘째는 `Non-existent domain`(없는 이름) |
+| 🎯 나와야 하는 결과 | 첫째는 IP 가 나온다(있는 이름). 둘째는 `Non-existent domain`(없는 이름) (나오는 IP 는 실행할 때마다 다를 수 있습니다) |
 
 **💡 힌트**
 
