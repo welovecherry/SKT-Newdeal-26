@@ -6,7 +6,7 @@
 
 지금까지는 PC 의 폴더와 깃허브 저장소가 **따로** 있었습니다. 그래서 파일을 웹 화면에서 하나씩 올렸습니다. 오늘부터는 **깃허브와 연결된 폴더**에서 작업합니다.
 
-오늘은 **명령 여섯 줄을 위에서부터 한 줄씩 붙여 넣습니다.** 뜻은 표로 봅니다. 외울 필요는 없습니다.
+오늘은 **명령 여섯 개를 하나씩 복사해 붙여 넣습니다.** 명령마다 뜻과 옵션을 표로 설명합니다. 외울 필요는 없습니다.
 
 **지금 쓰는 폴더는 그대로 씁니다.** `.env` · 가상환경 · 아직 올리지 않은 파일을 **옮기거나 다시 만들 일이 없습니다.**
 
@@ -46,7 +46,7 @@
 3. 아래를 입력합니다.
 
 ```
-$ pwd
+pwd
 ```
 
 - 결과가 `…/security-agent-toolkit` 으로 **끝나야** 합니다. 이 자리에서 끝까지 합니다.
@@ -56,40 +56,124 @@ $ pwd
 
 ---
 
-## 4. 저장소 주소를 복사합니다
+## 4. 내 저장소 주소를 복사합니다
 
-1. 브라우저에서 내 저장소 `security-agent-toolkit` 을 엽니다.
-2. 초록색 **Code** 버튼을 누르고, **HTTPS** 탭의 주소 옆 복사 버튼을 누릅니다. 주소는 `https://github.com/내아이디/security-agent-toolkit.git` 모양입니다.
+이 주소에는 **각자의 깃허브 아이디**가 들어 있습니다. 사람마다 다릅니다.
+
+1. 브라우저에서 깃허브에 로그인하고, 내 저장소 `security-agent-toolkit` 을 엽니다.
+2. 초록색 **Code** 버튼을 누르고, **HTTPS** 탭의 주소 옆 **복사 버튼**(네모 두 개 그림)을 누릅니다.
+3. 복사된 주소는 이런 모양입니다.
+
+| 주소의 부분 | 뜻 |
+|---|---|
+| `https://github.com/` | 깃허브 주소 — 모두 같음 |
+| `내아이디` | **내 깃허브 아이디** — 사람마다 다름. 깃허브 오른쪽 위 프로필 사진을 누르면 보이는 이름입니다 |
+| `/security-agent-toolkit.git` | 저장소 이름 — 모두 같음 |
+
+예를 들어 깃허브 아이디가 `kim-minsu` 인 사람의 주소는 `https://github.com/kim-minsu/security-agent-toolkit.git` 입니다.
+
+⚠ 아래 5번에 적힌 `내아이디` 를 그대로 입력하면 안 됩니다. **2번에서 복사한 내 주소**를 씁니다.
 
 ---
 
-## 5. 명령 여섯 줄로 연결합니다
+## 5. 명령 여섯 개로 연결합니다
 
-3번의 터미널에서 **한 줄씩** 붙여 넣고 Enter 를 누릅니다. 둘째 줄의 주소는 4번에서 복사한 내 주소로 바꿉니다. 터미널에 붙여 넣기는 **마우스 오른쪽 클릭** 또는 `Ctrl+Shift+V` 입니다.
+3번의 터미널(`pwd` 가 `security-agent-toolkit` 으로 끝나는 곳)에서 아래 명령을 **하나씩** 입력합니다.
+
+- 회색 상자에 마우스를 올리면 **오른쪽 위에 복사 버튼**이 나옵니다. 누르면 그 상자의 명령이 복사됩니다.
+- 터미널에 붙여 넣기는 **마우스 오른쪽 클릭** 또는 `Ctrl+Shift+V` 입니다. 붙여 넣은 뒤 **Enter** 를 누릅니다.
+- 한 명령의 「나와야 하는 것」을 확인한 뒤 다음 명령으로 갑니다.
+
+### 5-1. 이 폴더를 git 폴더로 만듭니다
 
 ```
-$ git init -b main
-$ git remote add origin https://github.com/내아이디/security-agent-toolkit.git
-$ git fetch origin
-$ git reset origin/main
-$ git branch -u origin/main
-$ git status
+git init -b main
 ```
 
-| 줄 | 하는 일 | 내 파일은 |
-|---|---|---|
-| `git init -b main` | 이 폴더를 git 이 기록하는 폴더로 만듭니다. 숨김 폴더 `.git` 이 생깁니다 | 그대로 |
-| `git remote add origin 주소` | 연결할 깃허브 저장소의 주소를 `origin` 이라는 이름으로 등록합니다 | 그대로 |
-| `git fetch origin` | 깃허브 저장소의 기록(9/30 부터 웹으로 올린 것)을 받아 옵니다 | 그대로 |
-| `git reset origin/main` | 내 폴더를 그 기록에 이어 붙입니다 | **그대로** |
-| `git branch -u origin/main` | 내일 `git push` 한 단어로 올릴 수 있게 짝을 정해 둡니다 | 그대로 |
-| `git status` | 연결됐는지 확인합니다(7번) | 그대로 |
+| 쓴 것 | 뜻 |
+|---|---|
+| `git` | 버전 관리 프로그램 git 에게 시키는 명령이라는 표시 |
+| `init` | initialize(이니셜라이즈 · 처음 준비하기)의 줄임말. 지금 폴더를 git 이 기록하는 폴더로 만든다. 숨김 폴더 `.git` 이 생긴다 |
+| `-b main` | `-b` 는 branch(브랜치 · 기록의 줄기). 첫 줄기 이름을 `main` 으로 정한다. 깃허브 저장소의 줄기 이름도 `main` 이라 맞춘다 |
 
-⚠ 넷째 줄 `git reset origin/main` 은 **적힌 그대로** 입력합니다. 뒤에 다른 말(특히 `--hard`)을 붙이면 내 파일이 깃허브에 있는 옛 파일로 덮어써집니다.
+🎯 나와야 하는 것: `Initialized empty Git repository in …/security-agent-toolkit/.git/`
 
-- `error: remote origin already exists` 가 나오면 둘째 줄을 이미 한 것입니다. 셋째 줄부터 이어서 합니다.
-- `fatal: repository not found` 가 나오면 주소가 틀린 것입니다. 4번에서 주소를 다시 복사합니다.
-- 창이 열리며 깃허브 로그인을 물으면 내 계정으로 로그인합니다.
+### 5-2. 깃허브 저장소 주소를 등록합니다
+
+아래 상자를 복사한 뒤, 터미널에 붙여 넣고 **Enter 를 누르기 전에** `내아이디` 를 지우고 내 아이디로 바꿉니다. 더 쉬운 방법은 `git remote add origin ` 까지만 직접 치고, 그 뒤에 **4번에서 복사한 내 주소**를 붙여 넣는 것입니다.
+
+```
+git remote add origin https://github.com/내아이디/security-agent-toolkit.git
+```
+
+| 쓴 것 | 뜻 |
+|---|---|
+| `remote` | 리모트 · 멀리 있는 저장소, 곧 깃허브 저장소를 다루는 명령 |
+| `add` | 하나를 새로 등록한다 |
+| `origin` | 오리진 · 등록할 이름. 깃허브 저장소를 앞으로 이 짧은 이름으로 부른다. 관례상 모두 `origin` 을 쓴다 |
+| `https://github.com/내아이디/…` | 등록할 주소. **`내아이디` 자리에 각자의 깃허브 아이디**가 들어간다 |
+
+🎯 나와야 하는 것: **아무것도 나오지 않습니다.** 다음 줄이 바로 나오면 성공입니다.
+
+- `error: remote origin already exists` 가 나오면 이미 등록한 것입니다. 5-3 으로 갑니다.
+- 아이디를 잘못 넣었으면 `git remote remove origin` 을 입력해 지운 뒤 5-2 를 다시 합니다.
+
+### 5-3. 깃허브의 기록을 받아 옵니다
+
+```
+git fetch origin
+```
+
+| 쓴 것 | 뜻 |
+|---|---|
+| `fetch` | 페치 · 가져오기. 깃허브 저장소의 기록(9/30 부터 웹으로 올린 것)을 내 PC 로 받아 온다. **내 파일은 바꾸지 않는다** |
+| `origin` | 5-2 에서 등록한 깃허브 저장소 |
+
+🎯 나와야 하는 것: 마지막 줄에 `* [new branch]      main       -> origin/main`
+
+- 깃허브 로그인 창이 뜨면 내 계정으로 로그인합니다.
+- `fatal: repository not found` 가 나오면 5-2 의 주소(아이디)가 틀린 것입니다. `git remote remove origin` 으로 지우고 5-2 부터 다시 합니다.
+
+### 5-4. 내 폴더를 그 기록에 이어 붙입니다
+
+```
+git reset origin/main
+```
+
+| 쓴 것 | 뜻 |
+|---|---|
+| `reset` | 리셋 · 지금 폴더의 기록 위치를 옮긴다. 옵션 없이 쓰면 **기록 위치만 옮기고 내 파일은 그대로** 둔다 |
+| `origin/main` | 5-3 에서 받아 온 깃허브의 `main` 줄기. 내 폴더의 기록을 여기에 맞춘다 |
+
+⚠ **상자에 적힌 그대로** 입력합니다. 뒤에 `--hard` 같은 말을 붙이면 내 파일이 깃허브에 있는 옛 파일로 덮어써집니다.
+
+🎯 나와야 하는 것: 아무것도 안 나오거나, `Unstaged changes after reset:` 아래에 파일 이름 몇 줄. 둘 다 정상입니다.
+
+### 5-5. 내일 올릴 곳을 정해 둡니다
+
+```
+git branch -u origin/main
+```
+
+| 쓴 것 | 뜻 |
+|---|---|
+| `branch` | 기록의 줄기(브랜치)를 다루는 명령 |
+| `-u` | upstream(업스트림 · 짝이 되는 원격 줄기)을 정하는 옵션 |
+| `origin/main` | 짝으로 정할 깃허브의 `main` 줄기. 내일 `git push` 한 단어만 써도 여기로 올라간다 |
+
+🎯 나와야 하는 것: `branch 'main' set up to track 'origin/main'.`
+
+### 5-6. 연결됐는지 확인합니다
+
+```
+git status
+```
+
+| 쓴 것 | 뜻 |
+|---|---|
+| `status` | 스테이터스 · 지금 폴더가 깃허브와 비교해 어떤 상태인지 보여 준다. 아무것도 바꾸지 않는다 |
+
+🎯 나와야 하는 것: 첫 두 줄이 `On branch main` 과 `Your branch is up to date with 'origin/main'.` — 나머지 줄은 7번에서 봅니다.
 
 ---
 
@@ -113,7 +197,7 @@ VS Code 왼쪽 목록에서 `.gitignore` 를 열고, 맨 아래에 한 줄을 �
 같은 터미널에서 다시 입력합니다.
 
 ```
-$ git status
+git status
 ```
 
 | 보이는 것 | 뜻 |
@@ -150,7 +234,7 @@ git init, git remote add, git fetch, git reset, git branch -u, git status
 ## 9. 확인합니다
 
 - [ ] `pwd` 의 결과가 `security-agent-toolkit` 으로 끝나는 곳에서 명령을 입력했다
-- [ ] 여섯 줄을 순서대로 입력했고, `git reset` 뒤에 아무것도 붙이지 않았다
+- [ ] 5-1 ~ 5-6 을 순서대로 입력했고, 5-2 의 주소에 **내 아이디**를 넣었고, `git reset` 뒤에 아무것도 붙이지 않았다
 - [ ] `.gitignore` 에 `.env` 와 `.venv` 두 줄이 있다
 - [ ] `git status` 에 `On branch main` 이 나오고, 목록에 `.env` 와 `.venv` 가 없다
 - [ ] 노트북을 열면 **어제와 같은 가상환경**이 커널로 골라져 있다
@@ -162,8 +246,8 @@ git init, git remote add, git fetch, git reset, git branch -u, git status
 `security-agent-toolkit` 폴더에서 아래를 입력해 봅니다.
 
 ```
-$ ls -a
-$ git log --oneline
+ls -a
+git log --oneline
 ```
 
 - `ls -a` 는 숨김 파일까지 보여 줍니다. `.git` 폴더가 보이면 **깃허브와 연결된 폴더**입니다.
