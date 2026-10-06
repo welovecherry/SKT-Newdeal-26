@@ -6,7 +6,7 @@
 
 지금까지는 PC 의 폴더와 깃허브 저장소가 **따로** 있었습니다. 그래서 파일을 웹 화면에서 하나씩 올렸습니다. 오늘부터는 **깃허브와 연결된 폴더**에서 작업합니다.
 
-오늘 새로 쓰는 명령은 **세 개**입니다 — `cd ..` · `git clone` · `git status`. 숨김 폴더 하나를 옮기는 일은 **마우스로** 합니다.
+오늘 새로 쓰는 명령은 **세 개**입니다 — `cd ..` · `git clone` · `git status`. 숨김 폴더 하나를 옮기는 `mv` 는 **따라 치기만** 합니다.
 
 **지금 쓰는 폴더는 그대로 씁니다.** 깃허브에서 「연결 정보」만 받아 와 지금 폴더에 넣습니다. 그래서 `.env` · 가상환경 · 아직 올리지 않은 파일을 **옮기거나 다시 만들 일이 없습니다.**
 
@@ -99,20 +99,23 @@ $ ls
 
 ---
 
-## 5. `.git` 폴더 하나만 지금 폴더로 옮깁니다 (마우스로)
+## 5. `.git` 폴더 하나만 지금 폴더로 옮깁니다
 
 `.git` 은 「이 폴더가 깃허브의 어느 저장소와 연결돼 있는지」를 담은 **숨김 폴더**입니다. 이것만 옮기면 지금 폴더가 깃허브와 연결됩니다.
 
-1. VS Code 왼쪽 목록에서 아무 파일이나 오른쪽 클릭하고 **Reveal in File Explorer**(파일 탐색기에서 표시)를 누릅니다.
-2. 파일 탐색기에서 **한 칸 위 폴더**로 올라갑니다. `security-agent-toolkit` 과 `temp_clone` 이 함께 보이면 맞습니다.
-3. **숨긴 항목을 보이게 합니다.** 파일 탐색기 위쪽 **보기** › **표시** › **숨긴 항목**을 켭니다. (Windows 10 은 **보기** 탭의 **숨긴 항목** 체크)
-4. `temp_clone` 폴더를 엽니다. 맨 위에 흐린 색 **`.git`** 폴더가 보입니다.
-5. `.git` 을 오른쪽 클릭 › **잘라내기**(Ctrl+X) 합니다.
-6. 뒤로 가서 **`security-agent-toolkit`** 폴더를 열고 빈 곳에 **붙여넣기**(Ctrl+V) 합니다.
-7. 다시 뒤로 가서, 이제 빈 껍데기인 **`temp_clone` 폴더를 삭제**합니다.
+4번의 터미널(`security-agent-toolkit` 이 보이는 자리)에서 아래 한 줄을 **그대로** 입력합니다.
 
-- 붙여 넣을 때 「같은 이름의 폴더가 이미 있다」고 나오면 **멈추고 강사를 부릅니다.** 덮어쓰지 않습니다.
+```
+$ mv temp_clone/.git security-agent-toolkit/
+$ ls -a security-agent-toolkit
+```
+
+- `mv` 는 「옮기기」 명령입니다. 10/14 에 자세히 배웁니다. 오늘은 따라 치기만 합니다.
+- `ls -a` 는 숨김 파일까지 보여 줍니다. 목록에 **`.git`** 이 보이면 됩니다.
+- `temp_clone` 폴더는 이제 필요 없습니다. VS Code 를 닫은 뒤 파일 탐색기에서 지우거나, 그냥 두어도 됩니다.
 - `.env` · 가상환경 · `agent_core` · `docs` 는 **그대로** 둡니다. 옮기거나 다시 만들지 않습니다.
+
+`mv: cannot move … Directory not empty` 가 나오면 `security-agent-toolkit` 안에 이미 `.git` 이 있는 것입니다. **멈추고 강사를 부릅니다.**
 
 ---
 
@@ -147,7 +150,7 @@ $ git status
 | `modified:` 로 보이는 노트북 | 웹으로 올린 파일이 「바뀜」으로 보일 수 있습니다. 윈도우의 줄바꿈 표시 차이라 내용은 그대로입니다. 괜찮습니다 |
 
 - 목록에 **`.env` 와 `.venv` 가 없어야** 합니다. 있으면 6번의 `.gitignore` 를 다시 확인합니다.
-- `fatal: not a git repository` 가 나오면 `.git` 이 `security-agent-toolkit` 에 들어가지 않은 것입니다. 5번을 다시 봅니다.
+- `fatal: not a git repository` 가 나오면 `.git` 이 `security-agent-toolkit` 에 들어가지 않은 것입니다. 5번의 `mv` 를 다시 확인합니다.
 
 ---
 
@@ -159,7 +162,7 @@ $ git status
 # 2026-10-07 (수)
 
 ## 오늘 새로 쓴 명령
-cd .., cd ../.., git clone, git status
+cd .., cd ../.., git clone, mv(따라 치기), ls -a, git status
 
 ## 찾아보고 알게 된 것
 저장소와 내 폴더는
@@ -174,7 +177,7 @@ cd .., cd ../.., git clone, git status
 ## 9. 확인합니다
 
 - [ ] `cd ..` 와 `cd ../..` 로 위 폴더로 올라가 봤다
-- [ ] `security-agent-toolkit` 안에 숨김 폴더 `.git` 이 있고, `temp_clone` 은 지웠다
+- [ ] `ls -a security-agent-toolkit` 에 숨김 폴더 `.git` 이 보인다
 - [ ] `.gitignore` 에 `.env` 와 `.venv` 두 줄이 있다
 - [ ] `git status` 에 `On branch main` 이 나오고, 목록에 `.env` 와 `.venv` 가 없다
 - [ ] 노트북을 열면 **어제와 같은 가상환경**이 커널로 골라져 있다
