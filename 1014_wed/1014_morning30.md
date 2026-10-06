@@ -27,10 +27,10 @@
 3. 한 칸 위로 올라가 연습용 폴더를 만들고 들어갑니다. **Tab** 키를 써 봅니다 — `cd mvcp` 까지 치고 Tab 을 누르면 나머지가 채워집니다.
 
 ```
-$ cd ..
-$ mkdir mvcp_practice
-$ cd mvcp_practice
-$ pwd
+cd ..
+mkdir mvcp_practice
+cd mvcp_practice
+pwd
 ```
 
 결과가 `…/mvcp_practice` 로 끝나면 됩니다. `security-agent-toolkit` 과 나란히 있는 폴더입니다.
@@ -38,8 +38,8 @@ $ pwd
 연습용 파일을 하나 만듭니다.
 
 ```
-$ echo "2026-10-14 09:12:00 WARN failed login for admin" > a.log
-$ ls
+echo "2026-10-14 09:12:00 WARN failed login for admin" > a.log
+ls
 ```
 
 ---
@@ -87,13 +87,13 @@ cp, mv, Tab 자동 완성
 ## 다음에 확인할 것
 ```
 
-10/8 에 배운 순서로 올립니다. 터미널을 저장소 폴더로 돌아가서 합니다(`cd ../..` 후 `cd security-agent-toolkit`).
+10/12 에 배운 순서로 올립니다 — 먼저 `git status` 로 보고, `git add .` 로 고릅니다. 터미널을 저장소 폴더로 돌아가서 합니다(`cd ../..` 후 `cd security-agent-toolkit`).
 
 ```
-$ git status
-$ git add docs
-$ git commit -m "Add 10/13 study note"
-$ git push
+git status
+git add .
+git commit -m "Add 10/14 study note"
+git push
 ```
 
 ---
@@ -113,14 +113,14 @@ $ git push
 2. 4번과 같은 순서로 올립니다. 메시지만 다릅니다.
 
 ```
-$ git status
-$ git add docs
-$ git commit -m "Edit 10/13 study note"
-$ git push
+git status
+git add .
+git commit -m "Edit 10/14 study note"
+git push
 ```
 
 3. 브라우저에서 내 `security-agent-toolkit` 저장소를 열고, 파일 목록 오른쪽 위의 **Commits**(시계 모양)를 누릅니다.
-4. 맨 위의 `Edit 10/13 study note` 를 누릅니다. 바뀐 줄이 색으로 보입니다.
+4. 맨 위의 `Edit 10/14 study note` 를 누릅니다. 바뀐 줄이 색으로 보입니다.
 
 | 보이는 것 | 뜻 | 오늘 바꾼 곳 |
 |---|---|---|
