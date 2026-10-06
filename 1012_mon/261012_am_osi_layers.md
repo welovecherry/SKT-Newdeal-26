@@ -7,7 +7,7 @@
 | 교시 | 무엇 | 쓰는 명령 |
 |---|---|---|
 | 2교시 | 첫 관찰 — 내 PC 에서 서버까지 닿나 | `ping`(핑) |
-| 3교시 | OSI 7계층 ① 아래 세 층 — MAC(맥) 주소와 IP(아이피) 주소 | `ipconfig /all`(아이피컨피그) · `arp -a`(에이알피) |
+| 3교시 | OSI 7계층 ① 아래 세 층 — MAC(맥) 주소와 IP(아이피) 주소 | `ipconfig //all`(아이피컨피그) · `arp -a`(에이알피) [수정] |
 | 4교시 | OSI 7계층 ② 위 네 층 — 포트 번호와 지금의 연결 | `netstat`(넷스탯 · network statistics) |
 
 **오전에 남기는 것:** `network_zt/day01_packet_analysis.md` 의 **「1. 내 PC 와 네트워크」** 표. 오후에 Wireshark(와이어샤크 · 오가는 패킷을 붙잡아 보여 주는 프로그램)로 이어 씁니다.
@@ -20,16 +20,22 @@
 
 이 문서는 노트북이 아니라 **읽으면서 따라 하는 실습 안내**입니다. 명령은 VS Code 터미널에 직접 입력합니다. 오늘 오전에는 노트북을 쓰지 않습니다.
 
-### 0.2 오늘은 PowerShell(파워셸) 터미널을 씁니다 ⚠
+### 0.2 터미널은 지금까지처럼 Git Bash 를 씁니다 [수정]
 
-지금까지 쓴 Git Bash(깃 배시) 는 리눅스식 터미널이라 `ipconfig /all` 같은 **Windows 명령의 `/` 옵션이 깨집니다**(Windows 에서 실측 — `Error: unrecognized or incomplete command line`). 오늘 명령은 Windows 의 기본 터미널인 **PowerShell** 에서 입력합니다.
+오늘 쓰는 `ipconfig` · `ping` · `arp` · `netstat` 은 Windows 명령입니다. Git Bash(깃 배시)에서도 그대로 됩니다. 딱 하나만 다릅니다. [수정]
+
+| Windows 설명서에 적힌 모양 | Git Bash 에서 입력하는 모양 | 왜 |
+|---|---|---|
+| `ipconfig /all` | `ipconfig //all` | Git Bash 는 `/` 하나로 시작하는 말을 폴더 경로로 바꿔 버립니다. 슬래시를 **두 번** 쓰면 그대로 넘어갑니다 |
+| `ping -n 4 8.8.8.8` | 그대로 | `-` 로 시작하는 옵션은 바뀌지 않습니다 |
+
+⚠ 결과를 `| head` 처럼 다른 명령에 넘기면 한글이 `□□` 로 깨집니다. 명령은 이 문서에 적힌 그대로 입력합니다. [수정]
 
 1. VS Code 에서 `security-agent-toolkit` 폴더를 엽니다.
-2. 아래쪽 터미널 패널 오른쪽 위의 **`+` 옆 작은 화살표(˅)** 를 누릅니다.
-3. 목록에서 **PowerShell** 을 누릅니다. 새 터미널 줄 앞에 `PS C:\…>` 가 보이면 됩니다.
-4. 아래를 입력해 `network_zt` 폴더로 들어갑니다(아침 과제에서 만든 폴더).
+2. 아래쪽 터미널이 Git Bash 인지 봅니다. 줄 앞에 `$` 가 보이면 됩니다. [수정]
+3. 아래를 입력해 `network_zt` 폴더로 들어갑니다(아침 과제에서 만든 폴더). [수정]
 
-```powershell
+```bash
 cd network_zt
 ```
 
@@ -45,7 +51,7 @@ cd network_zt
 ### 0.4 오늘의 보고서 파일을 만듭니다
 
 1. 왼쪽 목록의 `network_zt` 폴더를 오른쪽 클릭 › **New File** › 이름 `day01_packet_analysis.md`
-2. 아래를 붙여 넣습니다. 빈칸은 오전 문제를 풀면서 채웁니다.
+2. 아래를 붙여 넣습니다. 빈칸은 오전 문제를 풀면서 채웁니다. [수정]
 
 ```markdown
 # Day 1 패킷 분석 보고서 (이름 · 2026-10-12)
@@ -55,7 +61,7 @@ cd network_zt
 | 항목 | 내 값 | 찾은 명령 |
 |---|---|---|
 | IPv4 주소 |  | ipconfig |
-| MAC 주소(물리적 주소) |  | ipconfig /all |
+| MAC 주소(물리적 주소) |  | ipconfig //all |
 | 기본 게이트웨이 |  | ipconfig |
 | 게이트웨이까지 왕복 평균 |  ms | ping |
 | 8.8.8.8 까지 왕복 평균 |  ms | ping |
@@ -99,7 +105,7 @@ Ping 8.8.8.8 32바이트 데이터 사용:
 
 #### 🐍 문법 상자 · `ping` 의 옵션
 
-```powershell
+```bash
 ping 8.8.8.8          # 4번 보내고 끝난다
 ping -n 10 8.8.8.8    # 10번 보낸다
 ping -t 8.8.8.8       # 멈출 때까지 계속 보낸다 — Ctrl + C 로 멈춘다
@@ -168,7 +174,7 @@ ping -t 8.8.8.8       # 멈출 때까지 계속 보낸다 — Ctrl + C 로 멈�
 
 아래 두 명령을 차례로 입력하고, **실패 문구가 어떻게 다른지** 한 줄씩 적으시오.
 
-```powershell
+```bash
 ping abc.nowhere-not-exist
 ping 192.0.2.1
 ```
@@ -263,7 +269,7 @@ for r in results:                                 # 결과를 하나씩 꺼낸�
 | 5 | 세션 (Session) | 대화의 시작과 끝을 관리 | — | — |
 | 4 | 전송 (Transport) | 어느 프로그램에 줄지 — TCP(티시피) · UDP(유디피) | **포트 번호** | `netstat` (4교시) |
 | 3 | 네트워크 (Network) | 멀리 있는 상대까지 길 찾기 | **IP 주소** | `ipconfig` · `ping` |
-| 2 | 데이터링크 (Data Link) | 같은 망 안에서 옆 장비로 배달 | **MAC 주소** | `ipconfig /all` · `arp -a` |
+| 2 | 데이터링크 (Data Link) | 같은 망 안에서 옆 장비로 배달 | **MAC 주소** | `ipconfig //all` · `arp -a` [수정] |
 | 1 | 물리 (Physical) | 전기 · 빛 · 전파 신호 | — | 랜선 · Wi-Fi |
 
 실무에서는 5 · 6 · 7층을 묶어 「응용 계층」으로 부르는 **TCP/IP 4계층**도 많이 씁니다.
@@ -281,7 +287,7 @@ for r in results:                                 # 결과를 하나씩 꺼낸�
 
 ### ✍️ 문제 3-1 · 무엇이 보일까요
 
-아래는 `ipconfig /all` 결과의 일부입니다. ① MAC 주소 ② IP 주소 ③ 기본 게이트웨이가 각각 몇째 줄인지 적어 보세요.
+아래는 `ipconfig //all` 결과의 일부입니다. ① MAC 주소 ② IP 주소 ③ 기본 게이트웨이가 각각 몇째 줄인지 적어 보세요. [수정]
 
 ```
 이더넷 어댑터 이더넷:
@@ -316,7 +322,7 @@ for r in results:                                 # 결과를 하나씩 꺼낸�
 
 ### ✍️ 문제 3-3 · 내 MAC 주소 찾기
 
-`ipconfig /all` 을 입력하고, 3-2 와 **같은 장치**의 물리적 주소를 보고서 표에 적으시오.
+`ipconfig //all` 을 입력하고, 3-2 와 **같은 장치**의 물리적 주소를 보고서 표에 적으시오. [수정]
 
 | | |
 |---|---|
@@ -324,9 +330,9 @@ for r in results:                                 # 결과를 하나씩 꺼낸�
 
 **💡 힌트**
 
-1. `/all` 은 「자세히 전부」 보여 달라는 옵션입니다.
+1. `//all` 은 「자세히 전부」 보여 달라는 옵션입니다. Git Bash 에서는 슬래시를 두 번 씁니다(0.2). [수정]
 2. 줄이 많습니다. 3-2 에서 고른 장치 이름 아래를 봅니다.
-3. Git Bash 에서 입력하면 `/all` 이 깨져 사용법 안내만 나옵니다. **PowerShell** 인지 확인합니다(0.2). Git Bash 에서 꼭 하려면 슬래시를 두 번 써서 `ipconfig //all` 로 입력합니다.
+3. 사용법 안내만 나오면 슬래시를 하나만 쓴 것입니다. `ipconfig //all` 로 다시 입력합니다. [수정]
 
 ### ✍️ 문제 3-4 · 게이트웨이까지 `ping`
 
@@ -398,7 +404,7 @@ for a in ["192.168.0.15", "a8-5e-45-01-2b-3c", "ff-ff-ff-ff-ff-ff", "192.168.0"]
 | 층 | 주소 | 보는 명령 |
 |---|---|---|
 | 3 네트워크 | IP 주소 — `192.168.0.15` | `ipconfig` |
-| 2 데이터링크 | MAC 주소 — `A4-B1-C2-D3-E4-F5` | `ipconfig /all` |
+| 2 데이터링크 | MAC 주소 — `A4-B1-C2-D3-E4-F5` | `ipconfig //all` [수정] |
 | 2 ↔ 3 잇기 | IP → MAC 명단 | `arp -a` |
 
 ---
@@ -434,7 +440,7 @@ for a in ["192.168.0.15", "a8-5e-45-01-2b-3c", "ff-ff-ff-ff-ff-ff", "192.168.0"]
 | `netstat -n` | 지금의 연결을 숫자 주소로 보여 준다 |
 | `-a` | 연결뿐 아니라 **듣고 있는(LISTENING · 리스닝) 문**까지 전부 |
 | `-o` | 그 연결을 가진 프로그램의 **PID** 를 붙인다 |
-| `\| findstr 글자` | 앞 명령의 결과에서 그 글자가 든 줄만 남긴다. `\|` 는 파이프(pipe) — 앞 결과를 뒤 명령에 넘긴다. `findstr`(파인드스트링 · find string) |
+| `\| grep 글자` | 앞 명령의 결과에서 그 글자가 든 줄만 남긴다. `\|` 는 파이프(pipe) — 앞 결과를 뒤 명령에 넘긴다. `grep`(그렙) [수정] |
 
 ⚠ `192.168.0.15:51234` 처럼 **내 쪽 포트가 큰 숫자**인 것은 PC 가 그때그때 고른 임시 번호입니다. 서비스를 알려 주는 것은 **상대 쪽 포트**(`:443`)입니다.
 
@@ -558,7 +564,7 @@ for port in seen:                                 # 포트를 하나씩 꺼낸�
 |---|---|
 | 지금의 연결 | `netstat -n` |
 | 그 연결의 프로그램 | `netstat -ano` → 작업 관리자 › 세부 정보 › PID |
-| 열어 둔 문 | `netstat -an \| findstr LISTENING` |
+| 열어 둔 문 | `netstat -an \| grep LISTENING` [수정] |
 | 층 좁히기 | 숫자 주소 `ping` → 이름 `ping` → 서비스 |
 
 ---
@@ -584,9 +590,9 @@ for port in seen:                                 # 포트를 하나씩 꺼낸�
 
 ### 정답 2-2
 
-💻 **터미널(PowerShell)에 입력합니다.**
+💻 **터미널에 입력합니다.** [수정]
 
-```powershell
+```bash
 ping 8.8.8.8
 ```
 
@@ -594,9 +600,9 @@ ping 8.8.8.8
 
 ### 정답 2-3
 
-💻 **터미널(PowerShell)에 입력합니다.**
+💻 **터미널에 입력합니다.** [수정]
 
-```powershell
+```bash
 ping google.com
 ```
 
@@ -604,9 +610,9 @@ ping google.com
 
 ### 정답 2-4
 
-💻 **터미널(PowerShell)에 입력합니다.**
+💻 **터미널에 입력합니다.** [수정]
 
-```powershell
+```bash
 ping abc.nowhere-not-exist
 ping 192.0.2.1
 ```
@@ -616,9 +622,9 @@ ping 192.0.2.1
 
 ### 정답 2-5
 
-💻 **터미널(PowerShell)에 입력합니다.**
+💻 **터미널에 입력합니다.** [수정]
 
-```powershell
+```bash
 ping -n 10 8.8.8.8
 ```
 
@@ -649,15 +655,15 @@ for r in results:                                 # 결과를 하나씩 꺼낸�
 
 💻 **터미널에 입력합니다.**
 
-```powershell
+```bash
 python ping_check.py
 ```
 
 ### 정답 3-2
 
-💻 **터미널(PowerShell)에 입력합니다.**
+💻 **터미널에 입력합니다.** [수정]
 
-```powershell
+```bash
 ipconfig
 ```
 
@@ -665,19 +671,19 @@ ipconfig
 
 ### 정답 3-3
 
-💻 **터미널(PowerShell)에 입력합니다.**
+💻 **터미널에 입력합니다.** [수정]
 
-```powershell
-ipconfig /all
+```bash
+ipconfig //all
 ```
 
 3-2 와 같은 장치 이름 아래의 `물리적 주소` 를 적습니다.
 
 ### 정답 3-4
 
-💻 **터미널(PowerShell)에 입력합니다.** 주소 자리에는 3-2 에서 찾은 내 기본 게이트웨이를 씁니다.
+💻 **터미널에 입력합니다.** 주소 자리에는 3-2 에서 찾은 내 기본 게이트웨이를 씁니다. [수정]
 
-```powershell
+```bash
 ping 192.168.0.1
 ```
 
@@ -685,9 +691,9 @@ ping 192.168.0.1
 
 ### 정답 3-5
 
-💻 **터미널(PowerShell)에 입력합니다.**
+💻 **터미널에 입력합니다.** [수정]
 
-```powershell
+```bash
 arp -a
 ```
 
@@ -713,15 +719,15 @@ for a in ["192.168.0.15", "a8-5e-45-01-2b-3c", "ff-ff-ff-ff-ff-ff", "192.168.0"]
 
 💻 **터미널에 입력합니다.**
 
-```powershell
+```bash
 python addr_kind.py
 ```
 
 ### 정답 4-2
 
-💻 **터미널(PowerShell)에 입력합니다.**
+💻 **터미널에 입력합니다.** [수정]
 
-```powershell
+```bash
 netstat -n
 ```
 
@@ -729,9 +735,9 @@ netstat -n
 
 ### 정답 4-3
 
-💻 **터미널(PowerShell)에 입력합니다.**
+💻 **터미널에 입력합니다.** [수정]
 
-```powershell
+```bash
 netstat -ano
 ```
 
@@ -739,10 +745,10 @@ netstat -ano
 
 ### 정답 4-4
 
-💻 **터미널(PowerShell)에 입력합니다.**
+💻 **터미널에 입력합니다.** [수정]
 
-```powershell
-netstat -an | findstr LISTENING
+```bash
+netstat -an | grep LISTENING
 ```
 
 `0.0.0.0:135` · `0.0.0.0:445` 처럼 4.1 표에 있는 포트를 적습니다.
@@ -770,6 +776,6 @@ for port in seen:                                 # 포트를 하나씩 꺼낸�
 
 💻 **터미널에 입력합니다.**
 
-```powershell
+```bash
 python port_name.py
 ```

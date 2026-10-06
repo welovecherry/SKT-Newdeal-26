@@ -613,7 +613,7 @@ for name, rcode in LOG:
 
 규칙이 「정상」이라고 한 CDN 이름과, 지어낸 무작위 이름을 각각 물어 **있는 이름인지** 확인하시오.
 
-```powershell
+```bash
 nslookup e6030.a.akamaiedge.net
 nslookup qzkx7wp2v.invalid
 ```
@@ -1056,7 +1056,7 @@ for name, rcode in LOG:
 
 💻 **터미널에 입력합니다.**
 
-```powershell
+```bash
 nslookup e6030.a.akamaiedge.net
 nslookup qzkx7wp2v.invalid
 ```

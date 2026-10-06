@@ -6,7 +6,7 @@
 |---|---|---|
 | 5교시 | TCP 와 UDP · 연결을 맺는 세 번의 신호(3-way handshake) · 끝내는 네 번 | 파이썬 · `netstat` |
 | 6교시 | Wireshark 실행 · 첫 캡처 · 화면 읽기 · 필터 | Wireshark (아침 과제 8 에서 설치) |
-| 7교시 | 내 연결을 직접 잡아 보고서로 남기기 | Wireshark · `curl.exe` · 파이썬 |
+| 7교시 | 내 연결을 직접 잡아 보고서로 남기기 | Wireshark · `curl` · 파이썬 [수정] |
 
 **오늘 남기는 것:** `network_zt/day01_packet_analysis.md` 완성본(오전의 1번 표 + 오후의 캡처 사진 · 표) — 강의계획서의 1일 차 산출물입니다.
 
@@ -14,7 +14,7 @@
 
 ## 시작하기
 
-1. 오전과 같은 터미널(PowerShell · 파워셸)을 씁니다. 줄 앞이 `PS C:\…>` 인지 봅니다. 아니면 오전 문서 0.2 대로 엽니다.
+1. 오전과 같은 터미널(Git Bash)을 씁니다. 줄 앞에 `$` 가 보이면 됩니다. [수정]
 2. `network_zt` 폴더에서 시작합니다 — `cd network_zt`(이미 들어와 있으면 생략).
 3. 이 문서의 화면 예시는 **모양을 보여 주는 예시**입니다. 주소 · 숫자는 내 화면의 값을 읽습니다.
 4. 문제 앞의 **🐍 문법 상자**를 먼저 읽고, 막히면 **💡 힌트** → 맨 아래 **「정답」** 순서로 봅니다. ⭐도전은 선택입니다.
@@ -214,7 +214,7 @@ for state in count:                               # 센 상태를 하나씩
 **💡 힌트**
 
 1. 5.3 표의 네 값 가운데 무엇이 달라야 두 연결을 구별할 수 있을까요?
-2. 줄이 너무 많으면 `netstat -n | findstr 443` 으로 443 줄만 봅니다.
+2. 줄이 너무 많으면 `netstat -n | grep 443` 으로 443 줄만 봅니다. [수정]
 3. 같은 줄이 안 보이면 탭을 하나 더 열고 다시 입력합니다.
 
 ### ⭐ 도전 5-6 · 미니 패킷 필터 (`packet_filter.py`, 선택)
@@ -437,7 +437,7 @@ tcp.port == 443
 
 ⚠ 두 칸의 문법이 다릅니다. 캡처 필터 칸에 `tcp.port == 80` 을 치면 빨간색이 됩니다.
 
-**왜 80번인가:** 80 은 암호화하지 않는 HTTP 입니다. 내용이 그대로 보여서 「잡은 것이 맞는지」 확인하기 좋습니다. 브라우저는 `http` 를 `https`(443, 암호화)로 바꿔 버리므로, 요청은 터미널의 **`curl.exe`**(컬 · 터미널에서 웹 요청을 보내는 도구)로 보냅니다.
+**왜 80번인가:** 80 은 암호화하지 않는 HTTP 입니다. 내용이 그대로 보여서 「잡은 것이 맞는지」 확인하기 좋습니다. 브라우저는 `http` 를 `https`(443, 암호화)로 바꿔 버리므로, 요청은 터미널의 **`curl`**(컬 · 터미널에서 웹 요청을 보내는 도구)로 보냅니다. [수정]
 
 #### 🐍 문법 상자 · f-string(에프 스트링)으로 마크다운(Markdown · `#` · `|` 로 모양을 내는 글 형식) 표 한 줄 만들기
 
@@ -475,10 +475,10 @@ for p in packets:
 
 ### ✍️ 문제 7-2 · 내 HTTP 연결 하나만 잡기
 
-캡처 필터 `tcp port 80` 으로 캡처를 시작하고, 터미널에서 아래 명령을 입력한 뒤 **3초쯤 기다렸다가** 멈추시오.
+캡처 필터 `tcp port 80` 으로 캡처를 시작하고, 터미널에서 아래 명령을 입력한 뒤 **3초쯤 기다렸다가** 멈추시오. [수정]
 
-```powershell
-curl.exe "http://example.com/?q=network_day1"
+```bash
+curl "http://example.com/?q=network_day1"
 ```
 
 그다음 표시 필터 `tcp.flags.syn == 1` 을 걸어 3-way 의 앞 두 줄을 찾고, 필터를 지운 뒤 세 번째 `[ACK]` 줄까지 찾아 **세 줄을 한 화면에 잘라** `handshake.png` 로 저장하시오.
@@ -490,7 +490,7 @@ curl.exe "http://example.com/?q=network_day1"
 **💡 힌트**
 
 1. 캡처 › 옵션(`Ctrl + K`) › 내 통로 선택 › 아래쪽 캡처 필터 칸에 `tcp port 80` › **시작(Start)**.
-2. 캡처가 **돌아가는 동안** `curl.exe` 를 입력해야 잡힙니다. PowerShell 에서는 `curl` 이 아니라 **`curl.exe`** 로 씁니다(`curl` 은 다른 명령으로 바뀝니다).
+2. 캡처가 **돌아가는 동안** `curl` 을 입력해야 잡힙니다. [수정]
 3. 화면 자르기는 `Win + Shift + S`(윈도우 키 + Shift + S · 캡처 도구) → 잘라서 `network_zt` 폴더에 붙여 저장합니다(그림판에 붙여 저장해도 됩니다).
 
 ### ✍️ 문제 7-3 · 내용과 작별 찾기
@@ -508,7 +508,7 @@ curl.exe "http://example.com/?q=network_day1"
 
 1. 암호화하지 않은 HTTP 라서 **내가 보낸 글자가 패킷에 그대로** 보입니다. 이것이 HTTPS 를 써야 하는 이유입니다.
 2. FIN 이 2줄인 것은 5.2 그림의 「나는 다 보냈다」 · 「나도 다 보냈다」 두 번입니다.
-3. 줄이 안 보이면 `curl.exe` 를 캡처 중에 다시 입력합니다.
+3. 줄이 안 보이면 `curl` 을 캡처 중에 다시 입력합니다. [수정]
 
 ### ✍️ 문제 7-4 · 보고서 표를 코드로 찍기 (`report_table.py`)
 
@@ -592,10 +592,10 @@ for h in headers:                                 # 헤더 값을 하나씩
 
 ### ⭐ 도전 7-6 · 암호화된 연결은 무엇이 다른가 (선택)
 
-캡처 필터를 **`tcp port 443`** 으로 바꿔 같은 방법으로 아래를 잡고, 7-3 의 HTTP 화면과 **무엇이 다른지** 보고서 맨 아래에 한 문장으로 적으시오.
+캡처 필터를 **`tcp port 443`** 으로 바꿔 같은 방법으로 아래를 잡고, 7-3 의 HTTP 화면과 **무엇이 다른지** 보고서 맨 아래에 한 문장으로 적으시오. [수정]
 
-```powershell
-curl.exe "https://example.com/?q=network_day1"
+```bash
+curl "https://example.com/?q=network_day1"
 ```
 
 | | |
@@ -672,7 +672,7 @@ for state in count:                               # 센 상태를 하나씩
 
 💻 **터미널에 입력합니다.**
 
-```powershell
+```bash
 python state_count.py
 ```
 
@@ -680,7 +680,7 @@ python state_count.py
 
 💻 **터미널에 입력합니다.**
 
-```powershell
+```bash
 netstat -n
 ```
 
@@ -713,7 +713,7 @@ for p in packets:
 
 💻 **터미널에 입력합니다.**
 
-```powershell
+```bash
 python packet_filter.py
 ```
 
@@ -745,10 +745,10 @@ tcp.port == 443
 
 ### 정답 7-2
 
-캡처 › 옵션(`Ctrl + K`) › 통로 선택 › 캡처 필터 `tcp port 80` › 시작. 💻 **터미널에 입력합니다.**
+캡처 › 옵션(`Ctrl + K`) › 통로 선택 › 캡처 필터 `tcp port 80` › 시작. 💻 **터미널에 입력합니다.** [수정]
 
-```powershell
-curl.exe "http://example.com/?q=network_day1"
+```bash
+curl "http://example.com/?q=network_day1"
 ```
 
 3초 뒤 정지 → 표시 필터 `tcp.flags.syn == 1` 로 `[SYN]` · `[SYN, ACK]` 확인 → 필터를 지우고 바로 다음 `[ACK]` 까지 세 줄을 `Win + Shift + S` 로 잘라 `handshake.png` 로 저장.
@@ -791,7 +791,7 @@ for h in headers:                                 # 헤더 값을 하나씩
 
 💻 **터미널에 입력합니다.**
 
-```powershell
+```bash
 python report_table.py
 ```
 
@@ -808,4 +808,4 @@ git push
 
 ### 정답 ⭐7-6
 
-캡처 필터 `tcp port 443` 으로 다시 잡고 💻 `curl.exe "https://example.com/?q=network_day1"`. 표시 필터 `tls` 로 보면 `Client Hello` · `Application Data` 만 보이고 검색어는 보이지 않습니다. 보고서에는 예: 「HTTP 는 내용이 그대로 보였지만 HTTPS 는 3-way 뒤의 내용이 암호화돼 검색어가 보이지 않았다」.
+캡처 필터 `tcp port 443` 으로 다시 잡고 💻 `curl "https://example.com/?q=network_day1"`. 표시 필터 `tls` 로 보면 `Client Hello` · `Application Data` 만 보이고 검색어는 보이지 않습니다. 보고서에는 예: 「HTTP 는 내용이 그대로 보였지만 HTTPS 는 3-way 뒤의 내용이 암호화돼 검색어가 보이지 않았다」. [수정]

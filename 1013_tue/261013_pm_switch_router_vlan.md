@@ -168,7 +168,7 @@ print("표:", mac_table)
 
 아래 두 명령을 차례로 입력하고, `arp -a` 에 **기본 게이트웨이의 MAC 은 있지만 `8.8.8.8` 은 없는 것**을 확인하시오.
 
-```powershell
+```bash
 ping -n 1 8.8.8.8
 arp -a
 ```
@@ -328,7 +328,7 @@ print(out)
 
 아래를 입력하고 **`0.0.0.0` 으로 시작하는 줄**(기본 경로)의 **게이트웨이** 칸을 찾아, `ipconfig` 의 기본 게이트웨이와 같은지 확인하시오.
 
-```powershell
+```bash
 route print -4
 ```
 
@@ -346,7 +346,7 @@ route print -4
 
 아래를 입력하고 **첫 줄(1번)의 주소**가 내 기본 게이트웨이인지 확인하시오. 다섯 칸까지만 봅니다.
 
-```powershell
+```bash
 tracert -d -h 5 8.8.8.8
 ```
 
@@ -748,7 +748,7 @@ print("표:", mac_table)
 
 💻 **터미널에 입력합니다.**
 
-```powershell
+```bash
 ping -n 1 8.8.8.8
 arp -a
 ```
@@ -807,7 +807,7 @@ for src, dst, has_router in checks:               # 검사를 하나씩
 
 💻 **터미널에 입력합니다.**
 
-```powershell
+```bash
 route print -4
 ```
 
@@ -817,7 +817,7 @@ route print -4
 
 💻 **터미널에 입력합니다.**
 
-```powershell
+```bash
 tracert -d -h 5 8.8.8.8
 ```
 
