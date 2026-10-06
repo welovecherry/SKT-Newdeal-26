@@ -22,9 +22,10 @@
 
 | 날짜 | 아침 과제 | 오전 | 오후 |
 |---|---|---|---|
-| 10/12 (월) | [8 · 로그에서 필요한 줄만 골라내기](1012_mon/1012_morning30.md) | [네트워크 첫 관찰 · OSI 7계층](1012_mon/261012_am_osi_layers.md) | [TCP · 3-way handshake · Wireshark 첫 캡처](1012_mon/261012_pm_tcp_wireshark.md) |
-| 10/13 (화) | [9 · 파일 옮기고 복사하기 — `mv` · `cp`](1013_tue/1013_morning30.md) | [IP 주소 · 사설 주소 · 서브넷 · 서브네팅](1013_tue/261013_am_ip_subnet.md) | [스위치 · 라우터 · VLAN · 라우팅 표](1013_tue/261013_pm_switch_router_vlan.md) |
-| 10/14 (수) | [10 · VS Code 를 내 것으로 꾸미기](1014_wed/1014_morning30.md) | [DNS — 이름 · 계층 · 레코드 · 캐시](1014_wed/261014_am_dns.md) | [DNS 로 보는 공격 · 의심 도메인 판별](1014_wed/261014_pm_dns_suspicious.md) |
+| 10/12 (월) | [8 · Wireshark 설치하고 새 과목 폴더 만들기](1012_mon/1012_morning30.md) | [네트워크 첫 관찰 · OSI 7계층](1012_mon/261012_am_osi_layers.md) | [TCP · 3-way handshake · Wireshark 첫 캡처](1012_mon/261012_pm_tcp_wireshark.md) |
+| 10/13 (화) | [9 · 로그에서 필요한 줄만 골라내기](1013_tue/1013_morning30.md) | [IP 주소 · 사설 주소 · 서브넷 · 서브네팅](1013_tue/261013_am_ip_subnet.md) | [스위치 · 라우터 · VLAN · 라우팅 표](1013_tue/261013_pm_switch_router_vlan.md) |
+| 10/14 (수) | [10 · 파일 옮기고 복사하기 — `mv` · `cp`](1014_wed/1014_morning30.md) | [DNS — 이름 · 계층 · 레코드 · 캐시](1014_wed/261014_am_dns.md) | [DNS 로 보는 공격 · 의심 도메인 판별](1014_wed/261014_pm_dns_suspicious.md) |
+| 10/15 (목) | [11 · VS Code 를 내 것으로 꾸미기](1015_thu/1015_morning30.md) | — | — |
 
 9/30 까지는 Colab 으로, **10/2 부터는 VS Code** 로 노트북을 엽니다.
 

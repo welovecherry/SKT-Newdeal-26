@@ -5,7 +5,7 @@
 | 교시 | 무엇 | 쓰는 것 |
 |---|---|---|
 | 5교시 | TCP 와 UDP · 연결을 맺는 세 번의 신호(3-way handshake) · 끝내는 네 번 | 파이썬 · `netstat` |
-| 6교시 | Wireshark 설치 · 첫 캡처 · 화면 읽기 · 필터 | Wireshark |
+| 6교시 | Wireshark 실행 · 첫 캡처 · 화면 읽기 · 필터 | Wireshark (아침 과제 8 에서 설치) |
 | 7교시 | 내 연결을 직접 잡아 보고서로 남기기 | Wireshark · `curl.exe` · 파이썬 |
 
 **오늘 남기는 것:** `network_zt/day01_packet_analysis.md` 완성본(오전의 1번 표 + 오후의 캡처 사진 · 표) — 강의계획서의 1일 차 산출물입니다.
@@ -265,7 +265,7 @@ for p in packets:
 
 ---
 
-# 6교시 (15:00–15:50) · Wireshark 설치 · 첫 캡처 · 필터
+# 6교시 (15:00–15:50) · Wireshark 실행 · 첫 캡처 · 필터
 
 ### 왜 필요한가
 
@@ -319,13 +319,12 @@ tcp.port == 443
 
 </details>
 
-### ✍️ 문제 6-2 · Wireshark 설치하기
+### ✍️ 문제 6-2 · Wireshark 실행하기
 
-Wireshark 를 설치하고 실행해, 첫 화면에서 **인터페이스 목록**이 보이는지 확인하시오.
+아침 과제 8 에서 설치한 Wireshark 를 실행해, 첫 화면에서 **인터페이스 목록**이 보이는지 확인하시오.
 
-1. 브라우저에서 `www.wireshark.org` › **Download** › **Windows x64 Installer** 를 받아 실행합니다.
-2. 설치 옵션은 기본값으로 **다음**만 누릅니다. **Npcap**(엔피캡 · 패킷을 실제로 붙잡는 부품) 설치 체크는 **꼭 켠 채로** 둡니다.
-3. 설치가 끝나면 Wireshark 를 실행합니다.
+1. 시작 메뉴에서 **Wireshark** 를 엽니다.
+2. 아침에 설치를 못 끝냈으면 [아침 과제 8](1012_morning30.md) 의 3번을 지금 합니다 — **Windows x64 Installer**, 설치 중 **Install Npcap**(엔피캡 · 패킷을 실제로 붙잡는 부품) 체크는 **꼭 켠 채로**.
 
 | | |
 |---|---|
@@ -720,7 +719,7 @@ python packet_filter.py
 
 ### 정답 6-2
 
-`www.wireshark.org` › Download › Windows x64 Installer → 기본값으로 설치(Npcap 체크 유지) → 실행. 첫 화면 가운데에 통로 이름 목록이 보이면 됩니다.
+시작 메뉴에서 Wireshark 를 실행합니다(설치는 아침 과제 8). 첫 화면 가운데에 통로 이름 목록이 보이면 됩니다.
 
 ### 정답 6-3
 
