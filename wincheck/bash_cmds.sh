@@ -23,3 +23,5 @@ cd stk
 echo "== status (system default autocrlf)"; git status --short
 echo "== status autocrlf=true"; git -c core.autocrlf=true status --short
 echo "== status after adding .venv to .gitignore"; printf '.env\r\n.venv\r\n' > .gitignore; git status --short
+echo "== diff of nb.ipynb"; git diff --stat; git diff agent_core/nb.ipynb | head -20
+echo "== after git reset"; git reset -q; git status --short
