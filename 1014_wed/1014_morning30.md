@@ -4,7 +4,7 @@
 
 **오늘 하는 일:** 10/7 에 마우스로 한 일 — 폴더 이름 바꾸기 · 파일 복사 — 을 **명령어로** 다시 해 봅니다. 마지막에는 파일을 고쳐 올리고, 고친 곳이 깃허브에서 어떻게 보이는지 확인합니다.
 
-오늘 새로 쓰는 명령은 `mv` · `cp` 두 개입니다. 연습은 **보관용 폴더 `security-agent-toolkit_old`** 안에서 합니다. 저장소 폴더가 아니라서 실수해도 괜찮습니다.
+오늘 새로 쓰는 명령은 `mv` · `cp` 두 개입니다. 연습은 저장소 **바깥**에 만든 연습용 폴더 `mvcp_practice` 안에서 합니다. 저장소 폴더가 아니라서 실수해도 괜찮습니다.
 
 **오늘 못 끝냈으면 오후 5시 이후에 마무리합니다.**
 
@@ -24,17 +24,16 @@
 
 1. VS Code 에서 저장소 폴더 `security-agent-toolkit` 을 엽니다.
 2. 왼쪽 목록의 빈 곳을 오른쪽 클릭 › **Open in Integrated Terminal** 을 누릅니다.
-3. 한 칸 위로 올라가 보관용 폴더로 들어갑니다. **Tab** 키를 써 봅니다 — `security-agent-toolkit_` 까지 치고 Tab 을 누르면 나머지가 채워집니다.
+3. 한 칸 위로 올라가 연습용 폴더를 만들고 들어갑니다. **Tab** 키를 써 봅니다 — `cd mvcp` 까지 치고 Tab 을 누르면 나머지가 채워집니다.
 
 ```
 $ cd ..
-$ cd security-agent-toolkit_old
-$ mkdir practice
-$ cd practice
+$ mkdir mvcp_practice
+$ cd mvcp_practice
 $ pwd
 ```
 
-결과가 `…/security-agent-toolkit_old/practice` 로 끝나면 됩니다.
+결과가 `…/mvcp_practice` 로 끝나면 됩니다. `security-agent-toolkit` 과 나란히 있는 폴더입니다.
 
 연습용 파일을 하나 만듭니다.
 

@@ -35,7 +35,7 @@
 
 ## 3. 터미널을 저장소 폴더에서 엽니다
 
-1. VS Code 에서 어제 clone 한 **새** `security-agent-toolkit` 폴더를 엽니다. `_old` 가 아닙니다.
+1. VS Code 에서 어제 깃허브와 연결한 `security-agent-toolkit` 폴더를 엽니다.
 2. 왼쪽 목록의 빈 곳을 오른쪽 클릭 › **Open in Integrated Terminal** 을 누릅니다.
 3. 위치를 확인합니다.
 
