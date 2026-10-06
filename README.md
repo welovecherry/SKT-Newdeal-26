@@ -8,11 +8,11 @@
 
 | 날짜 | 아침 과제 | 오전 | 오후 |
 |---|---|---|---|
-| 9/22 (월) | — | [변수 · 자료형 · 리스트 · 딕셔너리](https://colab.research.google.com/github/welovecherry/SKT-Newdeal-26/blob/main/260922_variables_and_lists.ipynb) | — |
-| 9/23 (수) | — | [조건문 · 반복문 · 집합 · Counter](https://colab.research.google.com/github/welovecherry/SKT-Newdeal-26/blob/main/260923_am_conditions_loops_counting.ipynb) · [도전 문제](https://colab.research.google.com/github/welovecherry/SKT-Newdeal-26/blob/main/260923_extra_challenges.ipynb) | [함수 · 모듈 · 파일 · CSV](https://colab.research.google.com/github/welovecherry/SKT-Newdeal-26/blob/main/260923_pm_functions_files_csv.ipynb) |
-| 9/28 (월) | [1 · 깃배시 설치와 폴더 확인](0928_mon/0928_morning30.md) | [예외처리 · 로깅](https://colab.research.google.com/github/welovecherry/SKT-Newdeal-26/blob/main/0928_mon/01_0928_am_exceptions_logging.ipynb) | [중첩 자료 · JSON](https://colab.research.google.com/github/welovecherry/SKT-Newdeal-26/blob/main/0928_mon/02_0928_pm_nested_json.ipynb) |
-| 9/29 (화) | [2 · 폴더 만들기와 경로 이동](0929_tue/0929_morning30.md) | [정규표현식 · 탐지 룰](https://colab.research.google.com/github/welovecherry/SKT-Newdeal-26/blob/main/0929_tue/01_0929_am_regex_detection_rules.ipynb) | [탐지 룰 · API](https://colab.research.google.com/github/welovecherry/SKT-Newdeal-26/blob/main/0929_tue/02_0929_pm_rules_api.ipynb) |
-| 9/30 (수) | [3 · requests 준비 · 깃허브에 노트북 올리기](0930_wed/0930_morning30.md) | [requests · API 클라이언트](https://colab.research.google.com/github/welovecherry/SKT-Newdeal-26/blob/main/0930_wed/01_0930_am_requests_api_client.ipynb) | *(다른 강사 수업)* |
+| 9/22 (화) | — | [변수 · 자료형 · 리스트 · 딕셔너리](0922_tue/260922_variables_and_lists.ipynb) | — |
+| 9/23 (수) | — | [조건문 · 반복문 · 집합 · Counter](0923_wed/260923_am_conditions_loops_counting.ipynb) · [도전 문제](0923_wed/260923_extra_challenges.ipynb) | [함수 · 모듈 · 파일 · CSV](0923_wed/260923_pm_functions_files_csv.ipynb) |
+| 9/28 (월) | [1 · 깃배시 설치와 폴더 확인](0928_mon/0928_morning30.md) | [예외처리 · 로깅](0928_mon/01_0928_am_exceptions_logging.ipynb) | [중첩 자료 · JSON](0928_mon/02_0928_pm_nested_json.ipynb) |
+| 9/29 (화) | [2 · 폴더 만들기와 경로 이동](0929_tue/0929_morning30.md) | [정규표현식 · 탐지 룰](0929_tue/01_0929_am_regex_detection_rules.ipynb) | [탐지 룰 · API](0929_tue/02_0929_pm_rules_api.ipynb) |
+| 9/30 (수) | [3 · requests 준비 · 깃허브에 노트북 올리기](0930_wed/0930_morning30.md) | [requests · API 클라이언트](0930_wed/01_0930_am_requests_api_client.ipynb) | *(다른 강사 수업)* |
 | 10/2 (금) | [4 · VS Code 에서 수업 실행 준비](1002_fri/1002_morning30.md) | [웹훅 · CLI](1002_fri/261002_am_webhook_cli.ipynb) | [트리거 · 스케줄러](1002_fri/261002_pm_trigger_scheduler.ipynb) · [복습](1002_fri/261002_review.ipynb) |
 | 10/6 (화) | [5 · Gemini API 키 발급 · 보관](1006_tue/1006_morning30.md) | [LLM 호출 · 프롬프트](1006_tue/261006_am_llm_prompt.ipynb) | [AI 에이전트 · 도구 호출](1006_tue/261006_pm_agent_tools.ipynb) |
 | 10/7 (수) | [6 · 내 폴더를 깃허브 저장소와 연결하기](1007_wed/1007_morning30.md) | [보고서 형식 · 묶음 요약 · 위험도 정렬](1007_wed/261007_am_report_summary.ipynb) | [총평 · 보고서 틀 · 조건부 경고](1007_wed/261007_pm_report_generator.ipynb) |
