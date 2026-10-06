@@ -2,13 +2,13 @@
 
 10월 7일 (수) · 아침 과제
 
-**오늘 하는 일:** 지금 쓰는 `security-agent-toolkit` 폴더를 **깃허브 저장소와 연결**합니다. 깃허브에서 저장소를 내려받아(clone) 그 안의 연결 정보만 지금 폴더로 옮깁니다.
+**오늘 하는 일:** 지금 쓰는 `security-agent-toolkit` 폴더를 **그 자리에서 그대로** 깃허브 저장소와 연결합니다. 내려받기(clone)도, 폴더 옮기기도 하지 않습니다.
 
 지금까지는 PC 의 폴더와 깃허브 저장소가 **따로** 있었습니다. 그래서 파일을 웹 화면에서 하나씩 올렸습니다. 오늘부터는 **깃허브와 연결된 폴더**에서 작업합니다.
 
-오늘 새로 쓰는 명령은 **세 개**입니다 — `cd ..` · `git clone` · `git status`. 숨김 폴더 하나를 옮기는 `mv` 는 **따라 치기만** 합니다.
+오늘은 **명령 여섯 줄을 위에서부터 한 줄씩 붙여 넣습니다.** 뜻은 표로 봅니다. 외울 필요는 없습니다.
 
-**지금 쓰는 폴더는 그대로 씁니다.** 깃허브에서 「연결 정보」만 받아 와 지금 폴더에 넣습니다. 그래서 `.env` · 가상환경 · 아직 올리지 않은 파일을 **옮기거나 다시 만들 일이 없습니다.**
+**지금 쓰는 폴더는 그대로 씁니다.** `.env` · 가상환경 · 아직 올리지 않은 파일을 **옮기거나 다시 만들 일이 없습니다.**
 
 **아침에는 3번부터 시작합니다.** 1 · 2번 「찾아보기」는 오후 5시 이후 기록 파일(8번)을 쓸 때 합니다. 아침 시간은 **7번까지 2교시 전에** 끝내는 데 씁니다.
 
@@ -22,7 +22,7 @@
 
 | 질문 | 검색어 예시 |
 |---|---|
-| 개발자는 왜 파일을 웹에서 하나씩 올리지 않고 `git` 으로 올릴까요? | `git 이란`, `git 쓰는 이유`, `git clone 이란` |
+| 개발자는 왜 파일을 웹에서 하나씩 올리지 않고 `git` 으로 올릴까요? | `git 이란`, `git 쓰는 이유` |
 
 정답을 맞히는 과제가 아닙니다. **찾은 내용을 자기 말로 적는 것**이 과제입니다.
 
@@ -33,89 +33,63 @@
 | 찾아볼 말 | 무엇을 알아 오면 되나 (힌트) |
 |---|---|
 | 저장소 (repository) | 깃허브에 있는 저장소와 내 PC 의 폴더는 어떤 관계인가 |
-| clone (클론) | 무엇을 어디로 가져오는 명령인가 |
+| 원격 저장소 (remote) | 내 PC 에서 보면 깃허브 저장소를 무엇이라고 부르는가 |
 
 오른쪽은 **힌트일 뿐입니다.** 뜻은 직접 찾아서 자기 말로 적습니다.
 
 ---
 
-## 3. `cd ..` 로 위 폴더로 올라가 봅니다
+## 3. `security-agent-toolkit` 폴더에서 터미널을 엽니다
 
 1. VS Code 에서 지금 쓰는 `security-agent-toolkit` 폴더를 엽니다.
-2. 왼쪽 파일 목록에서 **`agent_core` 폴더를 오른쪽 클릭**하고 **Open in Integrated Terminal**(통합 터미널에서 열기)을 누릅니다.
-3. 아래를 한 줄씩 입력하고, `pwd` 의 결과가 어떻게 바뀌는지 봅니다.
+2. 왼쪽 파일 목록의 **빈 곳**(파일이 없는 아래쪽)을 오른쪽 클릭하고 **Open in Integrated Terminal**(통합 터미널에서 열기)을 누릅니다.
+3. 아래를 입력합니다.
 
 ```
 $ pwd
-$ cd ..
-$ pwd
-$ cd agent_core
-$ cd ../..
-$ pwd
 ```
 
-| 명령 | 뜻 |
-|---|---|
-| `cd ..` | 한 칸 위 폴더로 갑니다 |
-| `cd ../..` | 두 칸 위 폴더로 갑니다 |
+- 결과가 `…/security-agent-toolkit` 으로 **끝나야** 합니다. 이 자리에서 끝까지 합니다.
+- `…/agent_core` 로 끝나면 `cd ..` 를 한 번 입력합니다. `cd ..` 는 한 칸 위 폴더로 가는 명령입니다.
 
-마지막 `pwd` 의 결과는 **`security-agent-toolkit` 폴더가 들어 있는 곳**입니다. 사람마다 다릅니다. 4번에서 이 자리로 다시 옵니다.
+⚠ `agent_core` 가 아니라 **`security-agent-toolkit`** 에서 합니다. 깃허브 저장소는 `agent_core` · `docs` · `.gitignore` 를 모두 담은 폴더이기 때문입니다.
 
 ---
 
-## 4. 깃허브 저장소를 임시 이름으로 내려받습니다 (clone)
-
-**① 저장소 주소를 복사합니다**
+## 4. 저장소 주소를 복사합니다
 
 1. 브라우저에서 내 저장소 `security-agent-toolkit` 을 엽니다.
 2. 초록색 **Code** 버튼을 누르고, **HTTPS** 탭의 주소 옆 복사 버튼을 누릅니다. 주소는 `https://github.com/내아이디/security-agent-toolkit.git` 모양입니다.
 
-**② `security-agent-toolkit` 이 들어 있는 자리로 갑니다**
-
-경로를 직접 칠 필요가 없습니다. **지금 폴더에서 한 칸 위로 올라가면 그 자리**입니다.
-
-1. VS Code 왼쪽 파일 목록의 **빈 곳**(파일이 없는 아래쪽)을 오른쪽 클릭하고 **Open in Integrated Terminal** 을 누릅니다.
-2. 아래를 입력합니다.
-
-```
-$ pwd
-$ cd ..
-$ ls
-```
-
-- 첫 `pwd` 의 결과가 `…/security-agent-toolkit` 으로 끝나야 합니다. `…/agent_core` 로 끝나면 `cd ..` 를 한 번 더 합니다.
-- `ls` 목록에 **`security-agent-toolkit`** 이 보이면 맞는 자리입니다.
-
-**③ 임시 이름으로 내려받습니다**
-
-`git clone` 뒤에 복사한 주소를 붙여 넣고, 한 칸 띄운 뒤 **`temp_clone`** 을 적습니다. 터미널에 붙여 넣기는 **마우스 오른쪽 클릭** 또는 `Ctrl+Shift+V` 입니다.
-
-```
-$ git clone https://github.com/내아이디/security-agent-toolkit.git temp_clone
-$ ls
-```
-
-목록에 `security-agent-toolkit` 과 **`temp_clone`** 이 **둘 다** 보이면 됩니다. `temp_clone` 은 깃허브에 있는 그대로의 복사본입니다. 여기서 필요한 것은 그 안의 **`.git` 폴더 하나**뿐입니다.
-
 ---
 
-## 5. `.git` 폴더 하나만 지금 폴더로 옮깁니다
+## 5. 명령 여섯 줄로 연결합니다
 
-`.git` 은 「이 폴더가 깃허브의 어느 저장소와 연결돼 있는지」를 담은 **숨김 폴더**입니다. 이것만 옮기면 지금 폴더가 깃허브와 연결됩니다.
-
-4번의 터미널(`security-agent-toolkit` 이 보이는 자리)에서 아래 한 줄을 **그대로** 입력합니다.
+3번의 터미널에서 **한 줄씩** 붙여 넣고 Enter 를 누릅니다. 둘째 줄의 주소는 4번에서 복사한 내 주소로 바꿉니다. 터미널에 붙여 넣기는 **마우스 오른쪽 클릭** 또는 `Ctrl+Shift+V` 입니다.
 
 ```
-$ mv temp_clone/.git security-agent-toolkit/
-$ ls -a security-agent-toolkit
+$ git init -b main
+$ git remote add origin https://github.com/내아이디/security-agent-toolkit.git
+$ git fetch origin
+$ git reset origin/main
+$ git branch -u origin/main
+$ git status
 ```
 
-- `mv` 는 「옮기기」 명령입니다. 10/14 에 자세히 배웁니다. 오늘은 따라 치기만 합니다.
-- `ls -a` 는 숨김 파일까지 보여 줍니다. 목록에 **`.git`** 이 보이면 됩니다.
-- `temp_clone` 폴더는 이제 필요 없습니다. VS Code 를 닫은 뒤 파일 탐색기에서 지우거나, 그냥 두어도 됩니다.
-- `.env` · 가상환경 · `agent_core` · `docs` 는 **그대로** 둡니다. 옮기거나 다시 만들지 않습니다.
+| 줄 | 하는 일 | 내 파일은 |
+|---|---|---|
+| `git init -b main` | 이 폴더를 git 이 기록하는 폴더로 만듭니다. 숨김 폴더 `.git` 이 생깁니다 | 그대로 |
+| `git remote add origin 주소` | 연결할 깃허브 저장소의 주소를 `origin` 이라는 이름으로 등록합니다 | 그대로 |
+| `git fetch origin` | 깃허브 저장소의 기록(9/30 부터 웹으로 올린 것)을 받아 옵니다 | 그대로 |
+| `git reset origin/main` | 내 폴더를 그 기록에 이어 붙입니다 | **그대로** |
+| `git branch -u origin/main` | 내일 `git push` 한 단어로 올릴 수 있게 짝을 정해 둡니다 | 그대로 |
+| `git status` | 연결됐는지 확인합니다(7번) | 그대로 |
 
-`mv: cannot move … Directory not empty` 가 나오면 `security-agent-toolkit` 안에 이미 `.git` 이 있는 것입니다. **멈추고 강사를 부릅니다.**
+⚠ 넷째 줄 `git reset origin/main` 은 **적힌 그대로** 입력합니다. 뒤에 다른 말(특히 `--hard`)을 붙이면 내 파일이 깃허브에 있는 옛 파일로 덮어써집니다.
+
+- `error: remote origin already exists` 가 나오면 둘째 줄을 이미 한 것입니다. 셋째 줄부터 이어서 합니다.
+- `fatal: repository not found` 가 나오면 주소가 틀린 것입니다. 4번에서 주소를 다시 복사합니다.
+- 창이 열리며 깃허브 로그인을 물으면 내 계정으로 로그인합니다.
 
 ---
 
@@ -136,21 +110,20 @@ VS Code 왼쪽 목록에서 `.gitignore` 를 열고, 맨 아래에 한 줄을 �
 
 ## 7. 연결된 폴더인지 확인합니다
 
-4번에서 연 터미널에서 `security-agent-toolkit` 폴더로 들어가 입력합니다.
+같은 터미널에서 다시 입력합니다.
 
 ```
-$ cd security-agent-toolkit
 $ git status
 ```
 
 | 보이는 것 | 뜻 |
 |---|---|
-| `On branch main` | 깃허브 저장소와 연결됐습니다 ✅ |
+| `On branch main` · `Your branch is up to date with 'origin/main'` | 깃허브 저장소와 연결됐습니다 ✅ |
 | 빨간 글씨 파일 (`Untracked files`) | 아직 깃허브에 올리지 않은 파일입니다. 명령어로 올리는 것은 내일 합니다 |
 | `modified:` 로 보이는 노트북 | 웹으로 올린 파일이 「바뀜」으로 보일 수 있습니다. 윈도우의 줄바꿈 표시 차이라 내용은 그대로입니다. 괜찮습니다 |
 
 - 목록에 **`.env` 와 `.venv` 가 없어야** 합니다. 있으면 6번의 `.gitignore` 를 다시 확인합니다.
-- `fatal: not a git repository` 가 나오면 `.git` 이 `security-agent-toolkit` 에 들어가지 않은 것입니다. 5번의 `mv` 를 다시 확인합니다.
+- `fatal: not a git repository` 가 나오면 `security-agent-toolkit` 이 아닌 곳에서 입력한 것입니다. 3번의 `pwd` 를 다시 확인합니다.
 
 ---
 
@@ -162,7 +135,7 @@ $ git status
 # 2026-10-07 (수)
 
 ## 오늘 새로 쓴 명령
-cd .., cd ../.., git clone, mv(따라 치기), ls -a, git status
+git init, git remote add, git fetch, git reset, git branch -u, git status
 
 ## 찾아보고 알게 된 것
 저장소와 내 폴더는
@@ -176,8 +149,8 @@ cd .., cd ../.., git clone, mv(따라 치기), ls -a, git status
 
 ## 9. 확인합니다
 
-- [ ] `cd ..` 와 `cd ../..` 로 위 폴더로 올라가 봤다
-- [ ] `ls -a security-agent-toolkit` 에 숨김 폴더 `.git` 이 보인다
+- [ ] `pwd` 의 결과가 `security-agent-toolkit` 으로 끝나는 곳에서 명령을 입력했다
+- [ ] 여섯 줄을 순서대로 입력했고, `git reset` 뒤에 아무것도 붙이지 않았다
 - [ ] `.gitignore` 에 `.env` 와 `.venv` 두 줄이 있다
 - [ ] `git status` 에 `On branch main` 이 나오고, 목록에 `.env` 와 `.venv` 가 없다
 - [ ] 노트북을 열면 **어제와 같은 가상환경**이 커널로 골라져 있다
@@ -193,5 +166,5 @@ $ ls -a
 $ git log --oneline
 ```
 
-- `ls -a` 에 `.git` 폴더가 보이면 **깃허브와 연결된 폴더**입니다.
+- `ls -a` 는 숨김 파일까지 보여 줍니다. `.git` 폴더가 보이면 **깃허브와 연결된 폴더**입니다.
 - `git log --oneline` 은 9/30 부터 웹에서 올린 기록을 한 줄씩 보여 줍니다. 맨 위가 가장 최근입니다.
