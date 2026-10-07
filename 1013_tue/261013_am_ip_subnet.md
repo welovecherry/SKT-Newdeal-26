@@ -481,11 +481,13 @@ print(mask.count("0"))
 
 ### ✍️ 문제 3-2 · 내 서브넷 마스크를 CIDR 로
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — 터미널에서 명령 실행 → 보고서에 적기
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — 터미널에서 명령 실행 → 화면을 사진으로 저장 → 보고서에 적기
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day02_subnet_design.md` 의 **1절**
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day02_subnet_design.md` 의 **1절** · 사진은 `## 실습 기록`
 
 `ipconfig` 로 내 **서브넷 마스크**를 찾고, 3.1 표를 보고 **CIDR** 로 바꿔 보고서 1절에 적으시오.
+
+**사진 남기기** — 결과 화면에서 `IPv4 주소` · `서브넷 마스크` · `기본 게이트웨이` 세 줄이 보이게 잘라 `ipconfig_mask.png` 로 `network_zt` 폴더에 저장하고, `## 실습 기록` 에 `- 3-2: ![내 망](ipconfig_mask.png)` 한 줄을 넣으시오. 자르고 저장하는 법은 10/12 오후 7-2 와 같습니다(`Win + Shift + S`).
 
 | | |
 |---|---|

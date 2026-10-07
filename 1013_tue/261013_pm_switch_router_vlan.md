@@ -454,13 +454,17 @@ route print -4
 
 ### ✍️ 문제 6-3 · 거쳐 가는 길 보기
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — 터미널에서 명령 실행
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — 터미널에서 명령 실행 → 화면을 사진으로 저장 → 보고서에 넣기
+
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day02_subnet_design.md` 의 `## 실습 기록` 에 사진 한 줄
 
 아래를 입력하고 **첫 줄(1번)의 주소**가 내 기본 게이트웨이인지 확인하시오. 다섯 칸까지만 봅니다.
 
 ```bash
 tracert -d -h 5 8.8.8.8
 ```
+
+**사진 남기기** — 결과 화면에서 1번 줄부터 마지막 줄까지 보이게 잘라 `tracert.png` 로 `network_zt` 폴더에 저장하고, `## 실습 기록` 에 `- 6-3: ![거쳐 가는 길](tracert.png)` 한 줄을 넣으시오. 자르고 저장하는 법은 10/12 오후 7-2 와 같습니다(`Win + Shift + S`).
 
 | | |
 |---|---|
@@ -861,7 +865,7 @@ python next_block.py
 
 | | |
 |---|---|
-| 🎯 나와야 하는 결과 | 깃허브의 `network_zt/day02_subnet_design.md` 에 1~5절이 모두 보인다 |
+| 🎯 나와야 하는 결과 | 깃허브의 `network_zt/day02_subnet_design.md` 에 1~5절과 사진 두 장(`ipconfig_mask.png` · `tracert.png`)이 모두 보인다 |
 
 **💡 힌트**
 
@@ -1327,7 +1331,7 @@ git commit -m "Add day 2 subnet design"
 git push
 ```
 
-**결과** — 깃허브의 `network_zt/day02_subnet_design.md` 에 1~5절이 모두 보입니다.
+**결과** — 깃허브의 `network_zt/day02_subnet_design.md` 에 1~5절과 사진 두 장(`ipconfig_mask.png` · `tracert.png`)이 모두 보입니다.
 
 **왜** — `commit` 은 내 PC 에만 기록하고, `push` 까지 해야 깃허브에 올라갑니다.
 

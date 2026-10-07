@@ -842,7 +842,9 @@ python report_table3.py
 
 ### ✍️ 문제 7-3 · 판정을 `nslookup` 으로 확인하기
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — 터미널에서 명령 실행
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — 터미널에서 명령 실행 → 화면을 사진으로 저장 → 보고서에 넣기
+
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day03_dns_analysis.md` 의 `## 실습 기록` 에 사진 한 줄
 
 규칙이 「정상」이라고 한 CDN 이름과, 지어낸 무작위 이름을 각각 물어 **있는 이름인지** 확인하시오.
 
@@ -850,6 +852,8 @@ python report_table3.py
 nslookup e6030.a.akamaiedge.net
 nslookup qzkx7wp2v.invalid
 ```
+
+**사진 남기기** — 결과 화면에서 두 명령의 결과(IP 가 나온 것 · `Non-existent domain`)가 함께 보이게 잘라 `nslookup_check.png` 로 `network_zt` 폴더에 저장하고, `## 실습 기록` 에 `- 7-3: ![있는 이름 · 없는 이름](nslookup_check.png)` 한 줄을 넣으시오. 자르고 저장하는 법은 10/12 오후 7-2 와 같습니다(`Win + Shift + S`).
 
 | | |
 |---|---|
@@ -921,7 +925,7 @@ nslookup qzkx7wp2v.invalid
 
 | | |
 |---|---|
-| 🎯 나와야 하는 결과 | 깃허브의 `network_zt/day03_dns_analysis.md` 에 1~5절이 모두 보인다 |
+| 🎯 나와야 하는 결과 | 깃허브의 `network_zt/day03_dns_analysis.md` 에 1~5절과 사진 두 장(`nslookup_example.png` · `nslookup_check.png`)이 모두 보인다 |
 
 **💡 힌트**
 
@@ -1468,7 +1472,7 @@ git commit -m "Add day 3 DNS analysis"
 git push
 ```
 
-**결과** — 깃허브의 `network_zt/day03_dns_analysis.md` 에 1~5절이 모두 보입니다.
+**결과** — 깃허브의 `network_zt/day03_dns_analysis.md` 에 1~5절과 사진 두 장(`nslookup_example.png` · `nslookup_check.png`)이 모두 보입니다.
 
 **왜** — `git add network_zt` 가 과목 폴더의 바뀐 파일을 담고, `commit` 이 기록하고, `push` 가 깃허브로 올립니다. 그래서 `security-agent-toolkit` 폴더에서 실행합니다.
 
