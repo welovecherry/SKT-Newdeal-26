@@ -32,7 +32,7 @@
 
 ### 오늘 시작할 때
 
-0. 오늘 적는 것은 모두 **오전에 만든 `day01_packet_analysis.md` 하나에** 이어서 적습니다 — 문제 답은 `## 실습 기록`, 찾아 쓰기는 `## 찾아본 것`, 새 절은 `## 실습 기록` **위에** 붙입니다. 문제마다 「**적는 곳**」 줄을 봅니다.
+0. 오늘 적는 것은 모두 **오전에 만든 `day01_packet_analysis.md` 하나에** 적습니다. 2~5절은 오전에 붙여 넣은 틀에 이미 있습니다 — **빈칸만 채웁니다.** 문제 답은 `## 실습 기록`, 찾아 쓰기는 `## 찾아본 것`. 문제마다 「**적는 곳**」 줄을 봅니다.
 1. 오전과 같은 터미널(Git Bash)을 씁니다. 줄 앞에 `$` 가 보이면 됩니다.
 2. `network_zt` 폴더에서 시작합니다 — `cd network_zt`(이미 들어와 있으면 생략).
 3. 이 문서의 화면 예시는 **모양을 보여 주는 예시**입니다. 주소 · 숫자는 내 화면의 값을 읽습니다.
@@ -148,7 +148,7 @@ print(packet["dst_port"])
 
 <mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — 명령 없이 생각해서 답하기 → 보고서에 적기
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day01_packet_analysis.md` 의 `## 실습 기록` 에 `- 5-2: …` 한 줄
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day01_packet_analysis.md` 의 `## 실습 기록` 의 `- 5-2:` 줄
 
 아래 다섯 가지가 TCP 인지 UDP 인지(또는 둘 다 아닌지) 적으시오. 명령은 입력하지 않습니다.
 
@@ -196,7 +196,7 @@ print(packet["dst_port"])
 
 <mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — 명령 없이 생각해서 답하기 → 보고서에 적기
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day01_packet_analysis.md` 의 `## 실습 기록` 에 `- 5-3: …` 한 줄
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day01_packet_analysis.md` 의 `## 실습 기록` 의 `- 5-3:` 줄
 
 뒤섞인 세 패킷의 **올바른 순서**와 **방향**(내 PC → 서버 / 서버 → 내 PC)을 적으시오.
 
@@ -332,7 +332,7 @@ python state_count.py
 
 <mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — 브라우저에서 같은 사이트를 탭 두 개로 열기 → 터미널에서 명령 실행 → 보고서에 적기
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day01_packet_analysis.md` 의 `## 실습 기록` 에 `- 5-5: …` 한 줄
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day01_packet_analysis.md` 의 `## 실습 기록` 의 `- 5-5:` 줄
 
 브라우저로 같은 사이트를 **탭 두 개**로 연 뒤 `netstat -n` 을 입력하고, 외부 주소가 **같은** 연결 두 줄을 찾아 **무엇이 다른지** 적으시오.
 
@@ -554,7 +554,7 @@ tcp.port == 443
 
 <mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — Wireshark 화면에서 → 보고서에 적기
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day01_packet_analysis.md` 의 `## 실습 기록` 에 `- 6-3: …` 한 줄
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day01_packet_analysis.md` 의 `## 실습 기록` 의 `- 6-3:` 줄
 
 **그래프가 움직이는 통로**를 더블클릭해 캡처를 시작하고, 브라우저로 사이트 하나를 연 뒤 멈추시오. 상태 줄의 **패킷 수**와 Protocol 열에 보이는 **이름 세 개**를 적으시오.
 
@@ -626,7 +626,7 @@ tcp.port == 443
 
 <mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — Wireshark 화면에서 → 보고서에 적기
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day01_packet_analysis.md` 의 `## 실습 기록` 에 `- 6-5: …` 한 줄
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day01_packet_analysis.md` 의 `## 실습 기록` 의 `- 6-5:` 줄
 
 필터 칸에 아래를 **하나씩** 걸고(Enter), 상태 줄의 **표시됨** 숫자를 적으시오. 다음 것을 걸기 전에 칸 오른쪽 **X** 로 지웁니다.
 
@@ -827,7 +827,7 @@ curl "http://example.com/?q=network_day1"
 
 <mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — Wireshark 화면에서 → 보고서에 적기
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day01_packet_analysis.md` 의 `## 실습 기록` 에 `- 7-3: …` 한 줄
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day01_packet_analysis.md` 의 `## 실습 기록` 의 `- 7-3:` 줄
 
 7-2 의 캡처에서 아래 둘을 찾으시오.
 
@@ -917,7 +917,7 @@ python report_table.py
 
 1. 7-1 과 같은 모양입니다.
 2. 바깥은 큰따옴표, 안쪽 키는 작은따옴표입니다.
-3. 출력을 그대로 복사해 보고서에 붙입니다(7-5).
+3. 출력을 그대로 복사해 보고서 2 · 3절의 「(report_table.py 의 … 표를 붙입니다)」 자리에 붙입니다.
 
 #### <mark style="display:block; background:#fff59d; color:#1a1a1a; padding:4px 12px; border-radius:4px; text-decoration:underline">정답 7-4</mark>
 
@@ -945,28 +945,7 @@ python report_table.py
 
 <mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — 보고서 파일 마무리 → 깃허브에 올리기(웹 화면 또는 `git push`)
 
-`day01_packet_analysis.md` 의 오전 표 **아래에** 아래를 이어 붙이고, 괄호를 내 값으로 채운 뒤 깃허브에 올리시오.
-
-```markdown
-## 2. 연결이 열리는 순간 — 3-way handshake
-![3-way handshake](handshake.png)
-
-(report_table.py 의 첫 번째 표를 붙입니다)
-
-세 줄이 뜻하는 것: (한두 문장)
-
-## 3. 헤더에서 읽은 값
-(report_table.py 의 두 번째 표를 붙입니다)
-
-## 4. 내용과 작별
-![HTTP 요청](http_request.png)
-- 패킷에 보인 검색어: (예: network_day1)
-- FIN 줄 수: (○줄) — 뜻: (한 문장)
-
-## 5. 쓴 필터
-- 캡처 필터: tcp port 80
-- 표시 필터: tcp.flags.syn == 1 · http · tcp.flags.fin == 1
-```
+`day01_packet_analysis.md` 의 **2~5절 빈칸**을 채우고 깃허브에 올리시오. 절 제목과 사진 줄은 오전에 붙여 넣은 틀에 이미 있습니다.
 
 | | |
 |---|---|
@@ -974,13 +953,13 @@ python report_table.py
 
 **💡 힌트**
 
-1. 사진은 `![설명](파일이름)` 한 줄로 넣습니다. 같은 폴더면 파일 이름만 씁니다.
+1. 사진 줄 `![설명](파일이름)` 은 틀에 이미 있습니다. 사진이 안 보이면 파일 이름과 저장한 폴더(`network_zt`)를 봅니다.
 2. 올리기는 10/8 에 배운 순서입니다 — `security-agent-toolkit` 폴더에서 `git add network_zt` → `git commit -m "…"` → `git push`.
 3. `git status` 에 `.env` 가 보이면 멈춥니다.
 
 #### <mark style="display:block; background:#fff59d; color:#1a1a1a; padding:4px 12px; border-radius:4px; text-decoration:underline">정답 7-5</mark>
 
-보고서에 2~5절을 붙여 채운 뒤, **터미널(`security-agent-toolkit` 폴더)에 입력합니다.**
+보고서 2~5절의 빈칸을 채운 뒤, **터미널(`security-agent-toolkit` 폴더)에 입력합니다.**
 
 ```bash
 git status
@@ -1005,7 +984,7 @@ git push
 
 <mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — 터미널에서 명령 실행 → 보고서에 적기
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day01_packet_analysis.md` 의 `## 실습 기록` 에 `- 7-6: …` 한 줄
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day01_packet_analysis.md` 의 `## 실습 기록` 의 `- 7-6:` 줄
 
 터미널에 아래를 입력하고, **첫 줄의 상태 코드**와 **`Server:` 줄의 값**을 보고서 맨 아래에 적으시오.
 
@@ -1047,7 +1026,7 @@ curl -I http://example.com
 
 <mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — Wireshark 에서 캡처 시작 → 터미널에서 `curl` 실행 → 다른 점을 보고서에 적기
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day01_packet_analysis.md` 의 `## 실습 기록` 에 `- 7-7: …` 한 줄
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day01_packet_analysis.md` 의 `## 실습 기록` 의 `- 7-7:` 줄
 
 캡처 필터를 **`tcp port 443`** 으로 바꿔 같은 방법으로 아래를 잡고, 7-3 의 HTTP 화면과 **무엇이 다른지** 보고서 맨 아래에 한 문장으로 적으시오.
 
@@ -1095,7 +1074,7 @@ curl "https://example.com/?q=network_day1"
 
 | 확인 | 문제 |
 |---|---|
-| `day01_packet_analysis.md` 에 1~5번 절이 다 있다 | 오전 · 7-5 |
+| `day01_packet_analysis.md` 의 1~5번 절이 다 찼다 | 오전 · 7-5 |
 | 사진 두 장(`handshake.png` · `http_request.png`)이 보고서에 나온다 | 7-2 · 7-3 |
 | 3-way 세 단계를 내 말로 설명할 수 있다 | 5-3 · 7-2 |
 | 깃허브에 올렸다 | 7-5 |

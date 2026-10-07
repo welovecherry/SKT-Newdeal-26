@@ -58,12 +58,13 @@ cd network_zt
 ### 0.4 오늘의 보고서 파일을 만듭니다
 
 1. 왼쪽 목록의 `network_zt` 폴더를 오른쪽 클릭 › **New File** › 이름 `day01_packet_analysis.md`
-2. 아래를 붙여 넣습니다. 빈칸은 오전 문제를 풀면서 채웁니다.
+2. 아래 **틀 전체**를 붙여 넣습니다. 오늘 쓸 절이 처음부터 다 들어 있습니다 — 오전 · 오후 문제를 풀면서 빈칸만 채웁니다. 사진 두 줄은 오후에 사진을 저장하면 보입니다.
 
 ```markdown
 # Day 1 패킷 분석 보고서 (이름 · 2026-10-12)
 
 ## 1. 내 PC 와 네트워크
+(오전 2-2 · 3-2 · 3-3 · 3-4 에서 채웁니다)
 
 | 항목 | 내 값 | 찾은 명령 |
 |---|---|---|
@@ -74,14 +75,68 @@ cd network_zt
 | 8.8.8.8 까지 왕복 평균 |  ms | ping |
 | 8.8.8.8 의 TTL |  | ping |
 
+## 2. 연결이 열리는 순간 — 3-way handshake
+(오후 7-2 · 7-4 에서 채웁니다)
+
+![3-way handshake](handshake.png)
+
+(report_table.py 의 첫 번째 표를 붙입니다)
+
+세 줄이 뜻하는 것: 
+
+## 3. 헤더에서 읽은 값
+(오후 7-4 에서 채웁니다)
+
+(report_table.py 의 두 번째 표를 붙입니다)
+
+## 4. 내용과 작별
+(오후 7-3 에서 채웁니다)
+
+![HTTP 요청](http_request.png)
+
+- 패킷에 보인 검색어: 
+- FIN 줄 수:  줄 — 뜻: 
+
+## 5. 쓴 필터
+(오후 7-2 · 7-3 에서 쓴 것)
+
+- 캡처 필터: tcp port 80
+- 표시 필터: tcp.flags.syn == 1 · http · tcp.flags.fin == 1
+
 ## 실습 기록
-(문제마다 한 줄씩 — 예: `- 2-4: 첫째는 …, 둘째는 …`)
+(「적는 곳」이 실습 기록인 문제 — 줄 뒤에 이어 씁니다)
+
+- 2-4: 
+- 2-5: 
+- 3-5: 
+- 4-2: 
+- 4-4: 
+- 4-5: 
+- 5-2: 
+- 5-3: 
+- 5-5: 
+- 6-3: 
+- 6-5: 
+- 7-3: 
+- 7-6: 
+- ⭐7-7(선택): 
+
+## 찾아본 것
+(**[찾아 쓰기]** 칸을 내 말로 한 줄씩)
+
+- TTL: 
+- 손실: 
+- 평균: 
+- 포트 22 · 3389 · 135 · 445: 
+- ACK · FIN · RST: 
+```
+째는 …, 둘째는 …`)
 
 ## 찾아본 것
 (**[찾아 쓰기]** 칸을 내 말로 — 예: `- TTL: …`)
 
 ```
-⚠ <mark style="background:#ffcdd2; color:#1a1a1a; padding:0 4px; border-radius:3px">오늘 적는 것은 모두 이 파일(`day01_packet_analysis.md`) 하나에</mark> 적습니다. 문제마다 「<mark style="background:#ffcdd2; color:#1a1a1a; padding:0 4px; border-radius:3px">적는 곳</mark>」 줄이 이 파일의 어느 절인지 알려 줍니다. 오후에 더하는 절은 늘 `## 실습 기록` <mark style="background:#ffcdd2; color:#1a1a1a; padding:0 4px; border-radius:3px">위에</mark> 붙입니다.
+⚠ <mark style="background:#ffcdd2; color:#1a1a1a; padding:0 4px; border-radius:3px">오늘 적는 것은 모두 이 파일(`day01_packet_analysis.md`) 하나에</mark> 적습니다. 문제마다 「<mark style="background:#ffcdd2; color:#1a1a1a; padding:0 4px; border-radius:3px">적는 곳</mark>」 줄이 이 파일의 어느 절인지 알려 줍니다. 절은 틀에 다 있으니 <mark style="background:#ffcdd2; color:#1a1a1a; padding:0 4px; border-radius:3px">새로 붙이지 않고 빈칸만</mark> 채웁니다.
 
 
 ---
@@ -252,7 +307,7 @@ ping google.com
 
 <mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — 터미널에서 명령 실행 → 보고서에 적기
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day01_packet_analysis.md` 의 `## 실습 기록` 에 `- 2-4: …` 한 줄
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day01_packet_analysis.md` 의 `## 실습 기록` 의 `- 2-4:` 줄
 
 아래 두 명령을 터미널에 차례로 입력하고, **실패 문구가 어떻게 다른지** 한 줄씩 적으시오.
 
@@ -296,7 +351,7 @@ ping 192.0.2.1
 
 <mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — 터미널에서 명령 실행 → 보고서에 적기
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day01_packet_analysis.md` 의 `## 실습 기록` 에 `- 2-5: …` 한 줄
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day01_packet_analysis.md` 의 `## 실습 기록` 의 `- 2-5:` 줄
 
 터미널에서 `8.8.8.8` 에 **열 번** `ping` 을 보내고, 받은 개수와 손실 % 를 적으시오.
 
@@ -599,7 +654,7 @@ ping 192.168.0.1
 
 <mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — 터미널에서 명령 실행 → 보고서에 적기
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day01_packet_analysis.md` 의 `## 실습 기록` 에 `- 3-5: …` 한 줄
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day01_packet_analysis.md` 의 `## 실습 기록` 의 `- 3-5:` 줄
 
 `arp -a` 를 입력하고, **기본 게이트웨이 IP 의 MAC 주소**와 그 줄의 **유형**을 적으시오.
 
@@ -787,7 +842,7 @@ print(PORTS.get(3389, "모름"))
 
 <mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — 터미널에서 명령 실행 → 보고서에 적기
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day01_packet_analysis.md` 의 `## 실습 기록` 에 `- 4-2: …` 한 줄
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day01_packet_analysis.md` 의 `## 실습 기록` 의 `- 4-2:` 줄
 
 `netstat -n` 을 입력하고, `ESTABLISHED`(이스태블리시드 · 연결된 상태) 줄 하나를 골라 **외부 주소의 포트**와 그 포트의 **서비스 이름**(4.1 표)을 적으시오.
 
@@ -870,7 +925,7 @@ tasklist | grep 1234
 
 <mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — 터미널에서 명령 실행 → 보고서에 적기
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day01_packet_analysis.md` 의 `## 실습 기록` 에 `- 4-4: …` 한 줄
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day01_packet_analysis.md` 의 `## 실습 기록` 의 `- 4-4:` 줄
 
 내 PC 가 **듣고 있는(LISTENING) 포트**만 골라 보고, 그중 **4.1 표에 있는 포트**를 적으시오.
 
@@ -908,7 +963,7 @@ netstat -an | grep LISTENING
 
 <mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — 명령 없이 생각해서 답하기 → 보고서에 적기
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day01_packet_analysis.md` 의 `## 실습 기록` 에 `- 4-5: …` 한 줄
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day01_packet_analysis.md` 의 `## 실습 기록` 의 `- 4-5:` 줄
 
 아래 세 증상이 **몇 층 문제일 가능성이 큰지** 3.1 표를 보며 한 줄씩 적으시오. 명령은 입력하지 않습니다.
 
