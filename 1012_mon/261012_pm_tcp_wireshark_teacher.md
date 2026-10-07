@@ -40,7 +40,7 @@
 
 ---
 
-# 5교시 (14:00–14:50) · TCP 와 UDP · 3-way handshake
+# <mark style="display:block; background:#c8e6c9; color:#1a1a1a; padding:6px 12px; border-radius:4px">5교시 (14:00–14:50) · TCP 와 UDP · 3-way handshake</mark>
 
 ### 왜 필요한가
 
@@ -111,13 +111,13 @@ print(flags == "SYN")       # False — 리스트와 글자는 같을 수 없다
 | `"SYN" in flags` | 리스트 **안에** 그 값이 있나 | `True` |
 | `flags == "SYN"` | 리스트 **전체가** 그 글자와 같은가 | 늘 `False` |
 
-⚠ `==` 로 잘못 쓰면 **에러 없이** `False` 만 나옵니다. 탐지 규칙이 조용히 아무것도 못 잡습니다.
+⚠ `==` 로 잘못 쓰면 <b style="color:#e53935">에러 없이</b> `False` 만 나옵니다. 탐지 규칙이 조용히 아무것도 못 잡습니다.
 
 ---
 
 ### ✍️ 문제 5-1 · 무엇이 보일까요
 
-**어디서** — 실행하지 않고 머리로 예상합니다
+<b style="color:#1e88e5">어디서</b> — 실행하지 않고 머리로 예상합니다
 
 아래 코드를 실행하면 무엇이 보일지 적어 보세요.
 
@@ -146,9 +146,9 @@ print(packet["dst_port"])
 
 ### ✍️ 문제 5-2 · TCP 일까 UDP 일까
 
-**어디서** — 명령 없이 생각해서 답하기 → 보고서에 적기
+<b style="color:#1e88e5">어디서</b> — 명령 없이 생각해서 답하기 → 보고서에 적기
 
-**적는 곳** — `day01_packet_analysis.md` 의 `## 실습 기록` 에 `- 5-2: …` 한 줄
+<b style="color:#1e88e5">적는 곳</b> — `day01_packet_analysis.md` 의 `## 실습 기록` 에 `- 5-2: …` 한 줄
 
 아래 다섯 가지가 TCP 인지 UDP 인지(또는 둘 다 아닌지) 적으시오. 명령은 입력하지 않습니다.
 
@@ -162,7 +162,7 @@ print(packet["dst_port"])
 
 | | |
 |---|---|
-| 🎯 나와야 하는 결과 | ① TCP ② UDP ③ TCP ④ UDP ⑤ 둘 다 아님(ICMP) |
+| 🎯 <b style="color:#43a047">나와야 하는 결과</b> | ① TCP ② UDP ③ TCP ④ UDP ⑤ 둘 다 아님(ICMP) |
 
 **💡 힌트**
 
@@ -194,9 +194,9 @@ print(packet["dst_port"])
 
 ### ✍️ 문제 5-3 · 세 번의 순서 맞히기
 
-**어디서** — 명령 없이 생각해서 답하기 → 보고서에 적기
+<b style="color:#1e88e5">어디서</b> — 명령 없이 생각해서 답하기 → 보고서에 적기
 
-**적는 곳** — `day01_packet_analysis.md` 의 `## 실습 기록` 에 `- 5-3: …` 한 줄
+<b style="color:#1e88e5">적는 곳</b> — `day01_packet_analysis.md` 의 `## 실습 기록` 에 `- 5-3: …` 한 줄
 
 뒤섞인 세 패킷의 **올바른 순서**와 **방향**(내 PC → 서버 / 서버 → 내 PC)을 적으시오.
 
@@ -208,7 +208,7 @@ print(packet["dst_port"])
 
 | | |
 |---|---|
-| 🎯 나와야 하는 결과 | (나) 내 PC → 서버 · (다) 서버 → 내 PC · (가) 내 PC → 서버 |
+| 🎯 <b style="color:#43a047">나와야 하는 결과</b> | (나) 내 PC → 서버 · (다) 서버 → 내 PC · (가) 내 PC → 서버 |
 
 **💡 힌트**
 
@@ -232,7 +232,7 @@ print(packet["dst_port"])
 
 ### ✍️ 문제 5-4 · 연결 상태를 세기 (`state_count.py`)
 
-**어디서** — VS Code 에서 `state_count.py` 만들기 → 터미널에서 `python state_count.py` 실행
+<b style="color:#1e88e5">어디서</b> — VS Code 에서 `state_count.py` 만들기 → 터미널에서 `python state_count.py` 실행
 
 `netstat` 결과를 옮겨 온 리스트에서 **상태마다 몇 개인지** 세시오. `network_zt` 에 `state_count.py` 를 만들어 붙여 넣고, 번호 주석 아래를 채운 뒤 `python state_count.py` 를 입력합니다.
 
@@ -286,7 +286,7 @@ python state_count.py
 
 | | |
 |---|---|
-| 🎯 나와야 하는 결과 | `ESTABLISHED 2` · `TIME_WAIT 2` · `SYN_SENT 1` |
+| 🎯 <b style="color:#43a047">나와야 하는 결과</b> | `ESTABLISHED 2` · `TIME_WAIT 2` · `SYN_SENT 1` |
 
 **💡 힌트**
 
@@ -334,15 +334,15 @@ python state_count.py
 
 ### ✍️ 문제 5-5 · 같은 서버로 간 두 연결은 무엇이 다른가
 
-**어디서** — 브라우저에서 같은 사이트를 탭 두 개로 열기 → 터미널에서 명령 실행 → 보고서에 적기
+<b style="color:#1e88e5">어디서</b> — 브라우저에서 같은 사이트를 탭 두 개로 열기 → 터미널에서 명령 실행 → 보고서에 적기
 
-**적는 곳** — `day01_packet_analysis.md` 의 `## 실습 기록` 에 `- 5-5: …` 한 줄
+<b style="color:#1e88e5">적는 곳</b> — `day01_packet_analysis.md` 의 `## 실습 기록` 에 `- 5-5: …` 한 줄
 
 브라우저로 같은 사이트를 **탭 두 개**로 연 뒤 `netstat -n` 을 입력하고, 외부 주소가 **같은** 연결 두 줄을 찾아 **무엇이 다른지** 적으시오.
 
 | | |
 |---|---|
-| 🎯 나와야 하는 결과 | 외부 주소(목적지 IP · 포트)는 같고 **로컬 주소 끝의 포트**(임시 포트)만 다르다 — 예: `192.168.0.15:51234` 와 `192.168.0.15:51240` |
+| 🎯 <b style="color:#43a047">나와야 하는 결과</b> | 외부 주소(목적지 IP · 포트)는 같고 **로컬 주소 끝의 포트**(임시 포트)만 다르다 — 예: `192.168.0.15:51234` 와 `192.168.0.15:51240` |
 
 **💡 힌트**
 
@@ -372,7 +372,7 @@ netstat -n
 
 ### ⭐ 도전 5-6 · 미니 패킷 필터 (`packet_filter.py`, 선택)
 
-**어디서** — VS Code 에서 `packet_filter.py` 만들기 → 터미널에서 `python packet_filter.py` 실행
+<b style="color:#1e88e5">어디서</b> — VS Code 에서 `packet_filter.py` 만들기 → 터미널에서 `python packet_filter.py` 실행
 
 캡처한 패킷 다섯 건에서 **SYN 이 든 것**만, 그리고 **서버 `203.0.113.10` 과 주고받은 것**만 골라 출력하시오. 6교시 Wireshark 필터가 하는 일을 직접 만들어 봅니다.
 
@@ -413,7 +413,7 @@ python packet_filter.py
 
 | | |
 |---|---|
-| 🎯 나와야 하는 결과 | `[SYN 필터]` 아래 12 · 13 두 줄, `[서버 대화 필터]` 아래 12 · 13 · 14 · 16 네 줄 |
+| 🎯 <b style="color:#43a047">나와야 하는 결과</b> | `[SYN 필터]` 아래 12 · 13 두 줄, `[서버 대화 필터]` 아래 12 · 13 · 14 · 16 네 줄 |
 
 **💡 힌트**
 
@@ -473,7 +473,7 @@ python packet_filter.py
 
 ---
 
-# 6교시 (15:00–15:50) · Wireshark 실행 · 첫 캡처 · 필터
+# <mark style="display:block; background:#c8e6c9; color:#1a1a1a; padding:6px 12px; border-radius:4px">6교시 (15:00–15:50) · Wireshark 실행 · 첫 캡처 · 필터</mark>
 
 ### 왜 필요한가
 
@@ -507,13 +507,13 @@ python packet_filter.py
 | 빨강 | 문법이 틀렸다(오타) |
 | 노랑 | 문법은 맞지만 생각과 다르게 걸릴 수 있다 |
 
-⚠ `ip.src`(출발지) · `ip.dst`(목적지) · `ip.addr`(둘 중 하나라도)는 다릅니다. **대화 전체**를 보려면 `ip.addr` 입니다.
+⚠ `ip.src`(출발지) · `ip.dst`(목적지) · `ip.addr`(둘 중 하나라도)는 다릅니다. <b style="color:#e53935">대화 전체</b>를 보려면 `ip.addr` 입니다.
 
 ---
 
 ### ✍️ 문제 6-1 · 무엇이 보일까요
 
-**어디서** — 실행하지 않고 머리로 예상합니다
+<b style="color:#1e88e5">어디서</b> — 실행하지 않고 머리로 예상합니다
 
 Wireshark 필터 칸에 아래 세 가지를 차례로 친다면, 칸이 각각 **무슨 색**이 될지 적어 보세요.
 
@@ -541,7 +541,7 @@ tcp.port == 443
 
 ### ✍️ 문제 6-2 · Wireshark 실행하기
 
-**어디서** — Wireshark 화면에서
+<b style="color:#1e88e5">어디서</b> — Wireshark 화면에서
 
 아침 과제 8 에서 설치한 Wireshark 를 실행해, 첫 화면에서 **인터페이스 목록**이 보이는지 확인하시오.
 
@@ -550,7 +550,7 @@ tcp.port == 443
 
 | | |
 |---|---|
-| 🎯 나와야 하는 결과 | 창 가운데 `Welcome to Wireshark` 아래에 **이더넷 · Wi-Fi 같은 통로 이름 목록**. 오른쪽에 작은 그래프가 붙어 있다 (통로 이름과 개수는 PC 마다 다릅니다) |
+| 🎯 <b style="color:#43a047">나와야 하는 결과</b> | 창 가운데 `Welcome to Wireshark` 아래에 **이더넷 · Wi-Fi 같은 통로 이름 목록**. 오른쪽에 작은 그래프가 붙어 있다 (통로 이름과 개수는 PC 마다 다릅니다) |
 
 **💡 힌트**
 
@@ -576,15 +576,15 @@ tcp.port == 443
 
 ### ✍️ 문제 6-3 · 첫 캡처
 
-**어디서** — Wireshark 화면에서 → 보고서에 적기
+<b style="color:#1e88e5">어디서</b> — Wireshark 화면에서 → 보고서에 적기
 
-**적는 곳** — `day01_packet_analysis.md` 의 `## 실습 기록` 에 `- 6-3: …` 한 줄
+<b style="color:#1e88e5">적는 곳</b> — `day01_packet_analysis.md` 의 `## 실습 기록` 에 `- 6-3: …` 한 줄
 
 **그래프가 움직이는 통로**를 더블클릭해 캡처를 시작하고, 브라우저로 사이트 하나를 연 뒤 멈추시오. 상태 줄의 **패킷 수**와 Protocol 열에 보이는 **이름 세 개**를 적으시오.
 
 | | |
 |---|---|
-| 🎯 나와야 하는 결과 | `패킷: ○○○` (0 이 아님)과 `TCP` · `UDP` · `DNS` · `TLSv1.3`(티엘에스 · HTTPS 의 암호화 방식) 같은 이름 (패킷 수와 보이는 이름은 실행할 때마다 다릅니다) |
+| 🎯 <b style="color:#43a047">나와야 하는 결과</b> | `패킷: ○○○` (0 이 아님)과 `TCP` · `UDP` · `DNS` · `TLSv1.3`(티엘에스 · HTTPS 의 암호화 방식) 같은 이름 (패킷 수와 보이는 이름은 실행할 때마다 다릅니다) |
 
 **💡 힌트**
 
@@ -610,7 +610,7 @@ tcp.port == 443
 
 ### ✍️ 문제 6-4 · 패킷 하나를 층별로 펼치기
 
-**어디서** — Wireshark 화면에서
+<b style="color:#1e88e5">어디서</b> — Wireshark 화면에서
 
 위 칸에서 Protocol 이 `TCP` 인 줄 하나를 누르고, 가운데 칸의 세 줄을 펼쳐 아래 표를 채우시오.
 
@@ -622,7 +622,7 @@ tcp.port == 443
 
 | | |
 |---|---|
-| 🎯 나와야 하는 결과 | 세 줄이 **2층 → 3층 → 4층** 순서로 쌓여 있고, 표의 칸이 모두 찬다. Time to Live 는 오전 `ping` 의 TTL 과 같은 것 (칸의 값은 PC · 실행할 때마다 다릅니다) |
+| 🎯 <b style="color:#43a047">나와야 하는 결과</b> | 세 줄이 **2층 → 3층 → 4층** 순서로 쌓여 있고, 표의 칸이 모두 찬다. Time to Live 는 오전 `ping` 의 TTL 과 같은 것 (칸의 값은 PC · 실행할 때마다 다릅니다) |
 
 **💡 힌트**
 
@@ -648,9 +648,9 @@ tcp.port == 443
 
 ### ✍️ 문제 6-5 · 필터 세 개 걸어 보기
 
-**어디서** — Wireshark 화면에서 → 보고서에 적기
+<b style="color:#1e88e5">어디서</b> — Wireshark 화면에서 → 보고서에 적기
 
-**적는 곳** — `day01_packet_analysis.md` 의 `## 실습 기록` 에 `- 6-5: …` 한 줄
+<b style="color:#1e88e5">적는 곳</b> — `day01_packet_analysis.md` 의 `## 실습 기록` 에 `- 6-5: …` 한 줄
 
 필터 칸에 아래를 **하나씩** 걸고(Enter), 상태 줄의 **표시됨** 숫자를 적으시오. 다음 것을 걸기 전에 칸 오른쪽 **X** 로 지웁니다.
 
@@ -662,7 +662,7 @@ tcp.port == 443
 
 | | |
 |---|---|
-| 🎯 나와야 하는 결과 | 셋 다 `표시됨` 이 `패킷` 보다 작다. `dns` 에서는 Info 열에 방금 연 사이트 이름이 보인다 (숫자는 실행할 때마다 다릅니다) |
+| 🎯 <b style="color:#43a047">나와야 하는 결과</b> | 셋 다 `표시됨` 이 `패킷` 보다 작다. `dns` 에서는 Info 열에 방금 연 사이트 이름이 보인다 (숫자는 실행할 때마다 다릅니다) |
 
 **💡 힌트**
 
@@ -694,7 +694,7 @@ tcp.port == 443
 
 ### ⭐ 도전 6-6 · 화면에서 찍어 필터 만들기 (선택)
 
-**어디서** — Wireshark 화면에서
+<b style="color:#1e88e5">어디서</b> — Wireshark 화면에서
 
 필드 이름을 외우지 않고 필터를 만드시오.
 
@@ -704,7 +704,7 @@ tcp.port == 443
 
 | | |
 |---|---|
-| 🎯 나와야 하는 결과 | `ip.dst` 일 때는 나가는 줄만, `ip.addr` 로 고치면 **오고 간 줄이 모두** 남는다 |
+| 🎯 <b style="color:#43a047">나와야 하는 결과</b> | `ip.dst` 일 때는 나가는 줄만, `ip.addr` 로 고치면 **오고 간 줄이 모두** 남는다 |
 
 **💡 힌트**
 
@@ -737,7 +737,7 @@ tcp.port == 443
 
 ---
 
-# 7교시 (16:00–16:50) · 내 연결을 잡아 보고서로 남기기
+# <mark style="display:block; background:#c8e6c9; color:#1a1a1a; padding:6px 12px; border-radius:4px">7교시 (16:00–16:50) · 내 연결을 잡아 보고서로 남기기</mark>
 
 ### 왜 필요한가
 
@@ -771,13 +771,13 @@ print(f"| {i} | {p['src']} | {p['dst']} | {p['info']} |")
 | `\|` 로 칸을 나눈 한 줄 | 마크다운 표의 한 줄 (1과목 10/7) |
 | `{p['src']}` | f-string 안에서 사전 값 꺼내기 — 바깥 큰따옴표, 안쪽 작은따옴표 |
 
-⚠ 손으로 옮겨 적으면 숫자 하나가 틀리기 쉽습니다. 값만 적어 두고 **표 모양은 코드가 찍게** 합니다.
+⚠ 손으로 옮겨 적으면 숫자 하나가 틀리기 쉽습니다. 값만 적어 두고 <b style="color:#e53935">표 모양은 코드가 찍게</b> 합니다.
 
 ---
 
 ### ✍️ 문제 7-1 · 무엇이 보일까요
 
-**어디서** — 실행하지 않고 머리로 예상합니다
+<b style="color:#1e88e5">어디서</b> — 실행하지 않고 머리로 예상합니다
 
 아래 코드를 실행하면 무엇이 보일지 적어 보세요.
 
@@ -805,7 +805,7 @@ for p in packets:
 
 ### ✍️ 문제 7-2 · 내 HTTP 연결 하나만 잡기
 
-**어디서** — Wireshark 에서 캡처 시작 → 터미널에서 `curl` 실행 → Wireshark 화면을 사진으로 저장
+<b style="color:#1e88e5">어디서</b> — Wireshark 에서 캡처 시작 → 터미널에서 `curl` 실행 → Wireshark 화면을 사진으로 저장
 
 캡처 필터 `tcp port 80` 으로 캡처를 시작하고, 터미널에서 아래 명령을 입력한 뒤 **3초쯤 기다렸다가** 멈추시오.
 
@@ -817,7 +817,7 @@ curl "http://example.com/?q=network_day1"
 
 | | |
 |---|---|
-| 🎯 나와야 하는 결과 | Info 열에 `[SYN]` → `[SYN, ACK]` → `[ACK]` 가 차례로. 터미널에는 `<title>Example Domain</title>` 이 든 HTML(에이치티엠엘 · 웹 페이지의 글) (줄 번호와 주소는 실행할 때마다 다릅니다) |
+| 🎯 <b style="color:#43a047">나와야 하는 결과</b> | Info 열에 `[SYN]` → `[SYN, ACK]` → `[ACK]` 가 차례로. 터미널에는 `<title>Example Domain</title>` 이 든 HTML(에이치티엠엘 · 웹 페이지의 글) (줄 번호와 주소는 실행할 때마다 다릅니다) |
 
 **💡 힌트**
 
@@ -849,9 +849,9 @@ curl "http://example.com/?q=network_day1"
 
 ### ✍️ 문제 7-3 · 내용과 작별 찾기
 
-**어디서** — Wireshark 화면에서 → 보고서에 적기
+<b style="color:#1e88e5">어디서</b> — Wireshark 화면에서 → 보고서에 적기
 
-**적는 곳** — `day01_packet_analysis.md` 의 `## 실습 기록` 에 `- 7-3: …` 한 줄
+<b style="color:#1e88e5">적는 곳</b> — `day01_packet_analysis.md` 의 `## 실습 기록` 에 `- 7-3: …` 한 줄
 
 7-2 의 캡처에서 아래 둘을 찾으시오.
 
@@ -860,7 +860,7 @@ curl "http://example.com/?q=network_day1"
 
 | | |
 |---|---|
-| 🎯 나와야 하는 결과 | ① Info 에 `GET /?q=network_day1 HTTP/1.1` — 검색어가 그대로 보인다 ② FIN 줄 2줄(양쪽이 하나씩) (FIN 대신 RST 가 보이는 등 끝맺는 줄은 실행할 때마다 조금 다를 수 있습니다) |
+| 🎯 <b style="color:#43a047">나와야 하는 결과</b> | ① Info 에 `GET /?q=network_day1 HTTP/1.1` — 검색어가 그대로 보인다 ② FIN 줄 2줄(양쪽이 하나씩) (FIN 대신 RST 가 보이는 등 끝맺는 줄은 실행할 때마다 조금 다를 수 있습니다) |
 
 **💡 힌트**
 
@@ -886,7 +886,7 @@ curl "http://example.com/?q=network_day1"
 
 ### ✍️ 문제 7-4 · 보고서 표를 코드로 찍기 (`report_table.py`)
 
-**어디서** — VS Code 에서 `report_table.py` 만들기 → 터미널에서 `python report_table.py` 실행
+<b style="color:#1e88e5">어디서</b> — VS Code 에서 `report_table.py` 만들기 → 터미널에서 `python report_table.py` 실행
 
 7-2 에서 찾은 세 줄과 6-4 에서 읽은 헤더 값을 **마크다운 표 두 개**로 출력하시오. `network_zt` 에 `report_table.py` 를 만들어 붙여 넣고, **데이터의 값을 내 화면 값으로 바꾼 뒤** 번호 주석 아래를 채웁니다. `python report_table.py`
 
@@ -935,7 +935,7 @@ python report_table.py
 
 | | |
 |---|---|
-| 🎯 나와야 하는 결과 | `\| 1 \| 192.168.0.15 \| 203.0.113.10 \| [SYN] \|` 로 시작하는 표 하나와 `\| 출발지 IP \| … \| IP 헤더 (3층) \|` 로 시작하는 표 하나 — 값은 내 화면의 값 |
+| 🎯 <b style="color:#43a047">나와야 하는 결과</b> | `\| 1 \| 192.168.0.15 \| 203.0.113.10 \| [SYN] \|` 로 시작하는 표 하나와 `\| 출발지 IP \| … \| IP 헤더 (3층) \|` 로 시작하는 표 하나 — 값은 내 화면의 값 |
 
 **💡 힌트**
 
@@ -995,7 +995,7 @@ python report_table.py
 
 ### ✍️ 문제 7-5 · 보고서 완성하고 올리기
 
-**어디서** — 보고서 파일 마무리 → 깃허브에 올리기(웹 화면 또는 `git push`)
+<b style="color:#1e88e5">어디서</b> — 보고서 파일 마무리 → 깃허브에 올리기(웹 화면 또는 `git push`)
 
 `day01_packet_analysis.md` 의 오전 표 **아래에** 아래를 이어 붙이고, 괄호를 내 값으로 채운 뒤 깃허브에 올리시오.
 
@@ -1022,7 +1022,7 @@ python report_table.py
 
 | | |
 |---|---|
-| 🎯 나와야 하는 결과 | 깃허브의 내 저장소 `network_zt` 폴더에 `day01_packet_analysis.md` · `handshake.png` · `http_request.png` 가 보이고, 보고서에 사진 두 장이 나온다 |
+| 🎯 <b style="color:#43a047">나와야 하는 결과</b> | 깃허브의 내 저장소 `network_zt` 폴더에 `day01_packet_analysis.md` · `handshake.png` · `http_request.png` 가 보이고, 보고서에 사진 두 장이 나온다 |
 
 **💡 힌트**
 
@@ -1055,9 +1055,9 @@ git push
 
 ### ✍️ 문제 7-6 · 웹 서버에 머리글만 묻기 — `curl -I`
 
-**어디서** — 터미널에서 명령 실행 → 보고서에 적기
+<b style="color:#1e88e5">어디서</b> — 터미널에서 명령 실행 → 보고서에 적기
 
-**적는 곳** — `day01_packet_analysis.md` 의 `## 실습 기록` 에 `- 7-6: …` 한 줄
+<b style="color:#1e88e5">적는 곳</b> — `day01_packet_analysis.md` 의 `## 실습 기록` 에 `- 7-6: …` 한 줄
 
 터미널에 아래를 입력하고, **첫 줄의 상태 코드**와 **`Server:` 줄의 값**을 보고서 맨 아래에 적으시오.
 
@@ -1067,7 +1067,7 @@ curl -I http://example.com
 
 | | |
 |---|---|
-| 🎯 나와야 하는 결과 | 첫 줄 `HTTP/1.1 200 OK`, 아래에 `Server: cloudflare` 같은 줄 — 본문(HTML)은 나오지 않는다 (값은 바뀔 수 있습니다) |
+| 🎯 <b style="color:#43a047">나와야 하는 결과</b> | 첫 줄 `HTTP/1.1 200 OK`, 아래에 `Server: cloudflare` 같은 줄 — 본문(HTML)은 나오지 않는다 (값은 바뀔 수 있습니다) |
 
 **💡 힌트**
 
@@ -1097,9 +1097,9 @@ curl -I http://example.com
 
 ### ⭐ 도전 7-7 · 암호화된 연결은 무엇이 다른가 (선택)
 
-**어디서** — Wireshark 에서 캡처 시작 → 터미널에서 `curl` 실행 → 다른 점을 보고서에 적기
+<b style="color:#1e88e5">어디서</b> — Wireshark 에서 캡처 시작 → 터미널에서 `curl` 실행 → 다른 점을 보고서에 적기
 
-**적는 곳** — `day01_packet_analysis.md` 의 `## 실습 기록` 에 `- 7-7: …` 한 줄
+<b style="color:#1e88e5">적는 곳</b> — `day01_packet_analysis.md` 의 `## 실습 기록` 에 `- 7-7: …` 한 줄
 
 캡처 필터를 **`tcp port 443`** 으로 바꿔 같은 방법으로 아래를 잡고, 7-3 의 HTTP 화면과 **무엇이 다른지** 보고서 맨 아래에 한 문장으로 적으시오.
 
@@ -1109,7 +1109,7 @@ curl "https://example.com/?q=network_day1"
 
 | | |
 |---|---|
-| 🎯 나와야 하는 결과 | 3-way 는 똑같이 보이지만, 그 뒤가 `TLSv1.3` · `Application Data` 로만 보이고 **검색어 `network_day1` 은 어디에도 안 보인다** |
+| 🎯 <b style="color:#43a047">나와야 하는 결과</b> | 3-way 는 똑같이 보이지만, 그 뒤가 `TLSv1.3` · `Application Data` 로만 보이고 **검색어 `network_day1` 은 어디에도 안 보인다** |
 
 **💡 힌트**
 
