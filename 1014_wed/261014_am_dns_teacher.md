@@ -1,0 +1,1107 @@
+# 10/14(수) 오전 · DNS — 이름을 IP 로 · 계층 · 레코드 · 캐시 — 실습
+
+> **강사용 · 학생에게 나눠 주지 않습니다.** 모든 문제 바로 아래에 「정답」과 해설이 있습니다. 찾아 쓰기 표는 채워 두었습니다.
+>
+> **수업 전에 확인할 것**
+> 1. `nslookup` 결과가 한국어(`서버:` · `권한 없는 응답:` · `이름:`)로 나오는지 — 학원 DNS 는 `kns.kornet.net`(`168.126.63.1`)
+> 2. `ipconfig //flushdns` 는 관리자 권한 없이 된다(10/6 실측)
+> 3. `nslookup` 은 PC 캐시를 거치지 않는다 — 캐시 실습(4-4)은 `ping` 으로 채운다
+
+12일에 `ping google.com` 을 쳤을 때 첫 줄의 대괄호 안에 IP 주소가 나왔습니다. 그 주소는 어디서 왔을까요? 오늘은 이름을 IP 주소로 바꿔 주는 **DNS**(디엔에스 · Domain Name System)를 배웁니다.
+
+| 교시 | 무엇 | 쓰는 것 |
+|---|---|---|
+| 2교시 | DNS 가 필요한 이유 · `nslookup` 첫 사용 · 이름을 못 찾을 때 | `nslookup`(엔에스룩업) · 파이썬 |
+| 3교시 | DNS 계층 — 루트 · TLD · 담당 네임서버 · 「권한 없는 응답」 | `nslookup -type=ns` · 파이썬 |
+| 4교시 | DNS 레코드(A · CNAME · MX · NS) · TTL · 캐시 | `nslookup -type=…` · `ipconfig //displaydns` · 파이썬 |
+
+**오늘 남기는 것:** `network_zt/day03_dns_analysis.md` 의 1 · 2절(조회 결과 표 · 계층). 오후에 의심 도메인 판정을 더해 완성합니다 — 강의계획서의 3일 차 산출물입니다. 평가 기준은 「`nslookup` 을 정확히 썼나 · 의심 도메인을 합리적 근거로 골랐나 · 판단 기준을 문서로 남겼나」입니다.
+
+---
+
+## 시작하기
+
+### 이 파일을 여는 법
+
+이 파일은 **카톡으로 받은 실습 안내**입니다. 노트북이 아니라 읽으면서 따라 하는 문서입니다.
+
+1. 카톡에서 받은 이 파일(`261014_am_dns.md`)을 `security-agent-toolkit` 안의 **`network_zt` 폴더**로 옮깁니다.
+2. VS Code 왼쪽 목록에서 이 파일을 누르고, **`Ctrl + Shift + V`** 를 눌러 **미리보기**로 엽니다. 표 · 굵은 글씨 · 「답 보기」가 읽기 좋게 보입니다. (화면을 둘로 나눠 보려면 `Ctrl + K` 를 누른 뒤 `V`.)
+3. 이 파일은 **읽기만** 합니다. 내가 적는 것은 그날 **보고서 파일**과 **`.py` 파일**입니다.
+4. 코드나 명령을 복사할 때는 미리보기의 코드 상자 안을 마우스로 끌어 선택하고 `Ctrl + C` 를 누릅니다.
+
+### 오늘 시작할 때
+
+1. 어제와 같은 터미널, `network_zt` 폴더에서 합니다.
+2. 강의계획서에는 `dig`(디그)도 나오지만 **Windows 에는 기본으로 없습니다**(실측). 오늘은 Windows 에 들어 있는 `nslookup` 을 씁니다. 둘은 같은 일을 합니다.
+3. 결과 화면 예시는 **학원 PC(한국어 Windows)에서 보이는 모양**입니다. 주소는 시간 · 장소마다 바뀔 수 있습니다.
+4. 문제 앞의 **상자**를 먼저 읽습니다 — 🐍 문법 상자(파이썬) · 명령 상자(터미널) · Wireshark 상자 · 개념 상자. 문제 제목 아래 **어디서** 줄이 실습하는 곳입니다. `→` 는 하는 순서입니다. 막히면 **💡 힌트** → 맨 아래 **「정답」** 순서로 봅니다. ⭐도전은 선택입니다.
+
+### 오늘의 보고서 파일을 만듭니다
+
+`network_zt` 폴더에 `day03_dns_analysis.md` 를 만들고 아래를 붙여 넣습니다.
+
+```markdown
+# Day 3 DNS 분석서 (이름 · 2026-10-14)
+
+## 1. 조회 결과
+
+| 묻는 것 | 명령 | 답 |
+|---|---|---|
+| example.com 의 IPv4 |  |  |
+| 내 PC 가 묻는 DNS 서버 |  |  |
+| example.com 을 담당하는 네임서버 |  |  |
+| google.com 의 메일 서버 (MX) |  |  |
+| www.naver.com 의 별명 (CNAME) |  |  |
+| 없는 이름을 물었을 때 |  |  |
+
+## 2. 이름의 계층
+(3교시에 채웁니다)
+```
+
+---
+
+# 2교시 (10:00–10:50) · DNS 가 필요한 이유 · `nslookup` 첫 사용
+
+### 왜 필요한가
+
+1. 사람은 `naver.com` 같은 이름을 기억하지만, 컴퓨터는 **IP 주소**로만 보낼 수 있습니다. 그 사이를 잇는 것이 DNS 입니다.
+2. 악성 코드도 공격자의 서버를 **이름으로** 찾아갑니다. 그래서 DNS 질의 기록은 관제가 가장 먼저 보는 로그 중 하나입니다.
+3. 「인터넷이 안 돼요」의 상당수가 DNS 문제입니다. 12일 4-5 에서 「숫자 주소는 되는데 이름만 안 된다」면 7층(DNS) 문제라고 했습니다.
+
+### 2.1 URL 과 DNS 가 묻는 것
+
+`https://example.com/news/today` 를 주소창에 치면:
+
+| 부분 | 이름 | DNS 가 묻나 |
+|---|---|---|
+| `https://` | 방식(scheme) — 암호화한 웹 | 아니요 |
+| `example.com` | **도메인 이름**(domain name) | **예 — 이것만 묻는다** |
+| `/news/today` | 경로(path) — 서버 안의 어느 페이지 | 아니요 — IP 를 알아낸 뒤 웹 서버에 묻는다 |
+
+### 2.2 질문이 오가는 길
+
+```
+내 PC  ──「example.com 의 IP 는?」──▶  DNS 서버(재귀 리졸버)  ──…──▶ 여러 네임서버
+       ◀──「104.20.23.154 입니다」──
+```
+
+- **재귀 리졸버**(recursive resolver · 리커시브 리졸버): 내 PC 대신 여기저기 물어 답을 찾아 주는 DNS 서버. 학원 · 통신사 · `8.8.8.8`(구글)이 이 역할을 합니다.
+- 내 PC 가 어느 리졸버에 묻는지는 `ipconfig //all` 의 **DNS 서버** 줄에 있습니다.
+
+#### 명령 상자 · `nslookup` 결과 읽기
+
+```
+$ nslookup example.com
+서버:    kns.kornet.net
+Address:  168.126.63.1
+
+권한 없는 응답:
+이름:    example.com
+Addresses:  2606:4700:10::ac42:93f3
+          2606:4700:10::6814:179a
+          172.66.147.243
+          104.20.23.154
+```
+
+> 학생 문서에서는 아래 표의 일부 칸이 **[찾아 쓰기]** 로 비어 있습니다. 강사용에는 채운 표를 둡니다.
+
+| 줄 | 뜻 |
+|---|---|
+| `서버` · `Address` (위 두 줄) | **내가 물어본** DNS 서버(리졸버)의 이름 · 주소 |
+| `권한 없는 응답` | 담당자가 아니라 리졸버가 찾아다 준 답(3교시) |
+| `이름` | 물어본 이름 |
+| `Addresses` | 답 — `:` 가 든 것은 IPv6(아이피 브이식스 · 새 방식의 긴 주소), 점 네 개짜리가 **IPv4** |
+
+⚠ 위 두 줄의 `Address` 는 **물어본 DNS 서버**의 주소입니다. example.com 의 주소는 **아래** `Addresses` 입니다. 학생이 가장 많이 헷갈리는 곳입니다.
+
+---
+
+### ✍️ 문제 2-1 · 무엇이 보일까요
+
+**어디서** — 실행하지 않고 머리로 예상합니다
+
+아래 코드를 실행하면 무엇이 보일지 적어 보세요.
+
+```python
+url = "https://example.com/news/today"
+parts = url.split("/")
+print(parts)
+print(parts[2])
+```
+
+#### 정답
+
+**결과** — `['https:', '', 'example.com', 'news', 'today']` 와 `example.com` 두 줄입니다.
+
+**왜** — `/` 로 자르면 `//` 사이가 비어 있어 빈 글자 `''` 가 하나 생깁니다. DNS 가 묻는 것은 `parts[2]`, 곧 도메인 이름 하나입니다.
+
+**자주 틀리는 곳** — 빈 글자 `''` 를 빼고 세어 `parts[2]` 를 `news` 로 적는 경우가 많습니다.
+
+**관제에서는** — 접속 로그의 URL 에서 도메인만 잘라 DNS 질의 기록과 맞춰 봅니다.
+
+---
+
+### ✍️ 문제 2-2 · 이름을 IP 로
+
+**어디서** — 터미널에서 명령 실행 → 결과를 보고서 파일에 적기
+
+`example.com` 을 `nslookup` 으로 묻고, 답의 **IPv4 주소**를 보고서 1절에 적으시오.
+
+```bash
+nslookup example.com
+```
+
+| | |
+|---|---|
+| 🎯 나와야 하는 결과 | `이름:    example.com` 아래 `Addresses` 에 `104.20.○○.○○○` · `172.66.○○○.○○○` 같은 IPv4 두 개(값은 바뀔 수 있음) |
+
+**💡 힌트**
+
+1. 점 네 개짜리가 IPv4, `:` 가 든 것이 IPv6 입니다.
+2. 위쪽 `Address` 는 물어본 DNS 서버입니다(명령 상자 ⚠).
+3. 이름 하나에 IP 가 여러 개일 수 있습니다 — 큰 서비스는 서버를 여러 대 둡니다.
+
+#### 정답 2-2
+
+💻 **터미널에 입력합니다.**
+
+```bash
+nslookup example.com
+```
+
+**결과** — `이름:    example.com` 아래 `Addresses` 의 점 네 개짜리 주소 두 개(예: `104.20.23.154` · `172.66.147.243`)를 적습니다. 값은 바뀔 수 있습니다.
+
+**왜** — DNS 서버(리졸버)가 이름을 IPv4(A 레코드)와 IPv6(AAAA 레코드)로 바꿔 준 답입니다. 큰 서비스는 서버를 여러 대 두어 IP 가 여러 개입니다.
+
+**자주 틀리는 곳** — `서버:` 바로 아래의 `Address` 를 적는 경우가 많습니다. 그것은 물어본 DNS 서버의 주소입니다.
+
+**관제에서는** — 의심 도메인이 가리키는 IP 를 확인해 방화벽 로그의 접속 IP 와 맞춰 봅니다.
+
+---
+
+### ✍️ 문제 2-3 · 다른 DNS 서버에 묻기
+
+**어디서** — 터미널에서 명령 실행
+
+이번에는 구글 DNS 서버 `8.8.8.8` 에 **직접** 묻고, 위 두 줄(`Server` · `Address`)이 2-2 와 어떻게 다른지 적으시오.
+
+```bash
+nslookup example.com 8.8.8.8
+```
+
+| | |
+|---|---|
+| 🎯 나와야 하는 결과 | `서버:    dns.google` · `Address:  8.8.8.8` — 답(IPv4)은 2-2 와 같다 (답 IP 는 실행할 때마다 다를 수 있습니다) |
+
+**💡 힌트**
+
+1. 이름 뒤에 DNS 서버 주소를 적으면 그 서버에 묻습니다.
+2. 리졸버가 달라도 같은 이름이면 대개 같은 답이 옵니다.
+3. 학원망이 외부 DNS 를 막으면 시간 초과가 납니다 — 그 자체가 「회사가 DNS 를 통제한다」는 관찰입니다.
+
+#### 정답 2-3
+
+💻 **터미널에 입력합니다.**
+
+```bash
+nslookup example.com 8.8.8.8
+```
+
+**결과** — 위 두 줄이 `서버:    dns.google` · `Address:  8.8.8.8` 로 바뀝니다. 답의 IPv4 는 2-2 와 같습니다(답 IP 는 실행할 때마다 다를 수 있습니다).
+
+**왜** — 위 두 줄은 「누구에게 물었나」라서 리졸버를 바꾸면 바뀝니다. 답은 같은 담당 네임서버의 원본에서 오므로 대개 같습니다.
+
+**자주 틀리는 곳** — 바뀐 `Address:  8.8.8.8` 을 example.com 의 주소로 적는 경우가 많습니다.
+
+**관제에서는** — 사내 PC 가 회사 DNS 서버 대신 `8.8.8.8` 같은 외부 DNS 에 직접 묻는 기록은 차단 · 기록을 피하려는 신호일 수 있어 확인합니다.
+
+---
+
+### ✍️ 문제 2-4 · 내 PC 는 어느 DNS 서버에 묻나
+
+**어디서** — 터미널에서 명령 실행 → 결과를 보고서 파일에 적기
+
+`ipconfig //all` 에서 **DNS 서버** 줄을 찾아, 2-2 의 위쪽 `Address` 와 같은지 확인하고 보고서에 적으시오.
+
+| | |
+|---|---|
+| 🎯 나와야 하는 결과 | `DNS 서버 . . . . : ○○○.○○○.○.○` — 2-2 의 위쪽 `Address` 와 같다 (값은 PC 마다 다릅니다) |
+
+**💡 힌트**
+
+1. 12일에 찾은 장치(기본 게이트웨이가 찬 것)의 줄 가운데 `DNS 서버` 입니다.
+2. 집에서는 공유기 주소가, 회사에서는 사내 DNS 서버 주소가 많습니다.
+3. 이 서버가 멈추면 「숫자로는 되는데 이름으로 안 되는」 장애가 납니다.
+
+#### 정답 2-4
+
+💻 **터미널에 입력합니다.**
+
+```bash
+ipconfig //all
+```
+
+**결과** — `DNS 서버 . . . . : ○○○.○○○.○.○` 의 주소가 2-2 의 위쪽 `Address` 와 같습니다(값은 PC 마다 다릅니다).
+
+**왜** — `nslookup` 은 서버를 따로 적지 않으면 PC 에 설정된 DNS 서버(리졸버)에 묻습니다. 그래서 두 값이 같습니다.
+
+**자주 틀리는 곳** — 기본 게이트웨이가 비어 있는 다른 장치의 `DNS 서버` 줄을 적는 경우가 많습니다.
+
+**관제에서는** — PC 의 DNS 서버가 회사가 정한 주소가 아니면 악성 코드가 설정을 바꿨는지 의심합니다.
+
+---
+
+### ✍️ 문제 2-5 · 없는 이름을 물으면
+
+**어디서** — 터미널에서 명령 실행 → 결과를 보고서 파일에 적기
+
+없는 이름을 묻고, 나온 문구를 보고서에 적으시오. 12일 2-4 의 `ping` 실패와 비교합니다.
+
+```bash
+nslookup abc.nowhere-not-exist.com
+```
+
+| | |
+|---|---|
+| 🎯 나와야 하는 결과 | `*** UnKnown can't find abc.nowhere-not-exist.com: Non-existent domain` (한국어 Windows 는 문구가 다를 수 있음) |
+
+**💡 힌트**
+
+1. `Non-existent domain` 은 「그런 이름은 없다」는 DNS 의 공식 답입니다. 기술 이름은 **NXDOMAIN**(엔엑스도메인)입니다.
+2. 12일의 `ping` 「호스트를 찾을 수 없습니다」도 같은 원인 — DNS 가 답을 못 준 것입니다.
+3. 짧은 시간에 NXDOMAIN 이 쏟아지는 PC 는 악성 코드를 의심합니다(오후에 배웁니다).
+
+#### 정답 2-5
+
+💻 **터미널에 입력합니다.**
+
+```bash
+nslookup abc.nowhere-not-exist.com
+```
+
+**결과** — `*** UnKnown can't find abc.nowhere-not-exist.com: Non-existent domain` (한국어 Windows 는 문구가 다를 수 있음) — 그런 이름이 없다는 DNS 의 답(NXDOMAIN)입니다.
+
+**왜** — DNS 서버는 「그런 이름은 없다」를 공식 답으로 돌려줍니다. 12일 `ping` 의 「호스트를 찾을 수 없습니다」도 이 답 때문입니다.
+
+**자주 틀리는 곳** — 인터넷 연결이 끊긴 것으로 적는 경우가 많습니다. DNS 서버는 정상으로 답했고, 그 답이 「이름이 없다」입니다.
+
+**관제에서는** — 한 PC 에서 짧은 시간에 NXDOMAIN 이 쏟아지면 악성 코드를 의심합니다.
+
+---
+
+### ⭐ 도전 2-6 · 파이썬으로 이름 묻기 (`dns_lookup.py`, 선택)
+
+**어디서** — VS Code 에서 `dns_lookup.py` 만들기 → 터미널에서 `python dns_lookup.py` 실행
+
+#### 🐍 문법 상자 · `socket.gethostbyname`(소켓 · 파이썬에 들어 있는 네트워크 도구)과 실패 잡기
+
+```python
+import socket
+try:
+    socket.gethostbyname("abc.nowhere-not-exist.com")
+except socket.gaierror:
+    print("이름을 찾지 못함")
+# 이름을 찾지 못함
+```
+
+| 쓰는 것 | 뜻 |
+|---|---|
+| `socket.gethostbyname("이름")` | 내 PC 의 DNS 설정으로 이름을 묻고 IPv4 하나를 돌려준다 |
+| `socket.gaierror` | 이름을 못 찾았을 때 나는 에러 |
+| `try` · `except` | 실패해도 멈추지 않게 (1과목 9/28) |
+
+⚠ `except` 없이 쓰면 없는 이름 하나에서 프로그램이 멈춥니다. 로그의 도메인을 여러 개 조회할 때는 꼭 잡습니다.
+
+이름 네 개를 차례로 물어 IP 를 출력하고, 못 찾은 이름은 「찾지 못함」으로 출력하시오.
+
+```python
+import socket
+
+names = ["example.com", "google.com", "www.naver.com", "abc.nowhere-not-exist.com"]
+# 1. 이름을 하나씩 꺼내 socket.gethostbyname 으로 묻고 「example.com → 104.20.23.154」 꼴로 출력하세요. 못 찾으면 「… → 찾지 못함」
+```
+
+**파일을 만들고 실행합니다**
+
+1. VS Code 왼쪽 목록에서 `network_zt` 폴더를 오른쪽 클릭 › **New File** › 이름 `dns_lookup.py` 를 입력하고 Enter 를 누릅니다.
+2. 위 코드 상자 안을 마우스로 끌어 선택하고 `Ctrl + C` 로 복사해 파일에 붙여 넣은 뒤, 번호 주석 아래를 채웁니다. 저장은 자동입니다.
+3. 터미널에 아래 명령을 입력합니다. 터미널의 줄 위에 `…/network_zt` 가 보여야 합니다. 아니면 먼저 `cd network_zt` 를 입력합니다.
+
+```bash
+python dns_lookup.py
+```
+
+4. 고친 뒤에는 같은 명령을 다시 입력합니다. 터미널에서 **↑(위 화살표)** 를 누르면 방금 입력한 명령이 다시 나옵니다.
+
+| | |
+|---|---|
+| 🎯 나와야 하는 결과 | 앞 셋은 `이름 → IPv4 주소`, 마지막은 `abc.nowhere-not-exist.com → 찾지 못함` (주소는 실행할 때마다 다를 수 있음) |
+
+**💡 힌트**
+
+1. 반복 안에 `try` · `except` 를 둡니다.
+2. 바로 위 문법 상자와 같은 모양입니다.
+3. 프로그램도 사람과 같은 DNS 서버(2-4)에 묻습니다.
+
+#### 정답 2-6
+
+```python
+import socket
+
+names = ["example.com", "google.com", "www.naver.com", "abc.nowhere-not-exist.com"]
+# 1. 이름을 하나씩 꺼내 socket.gethostbyname 으로 묻고 「example.com → 104.20.23.154」 꼴로 출력하세요. 못 찾으면 「… → 찾지 못함」
+for name in names:                                # 이름을 하나씩
+    try:
+        ip = socket.gethostbyname(name)           # 내 PC 의 DNS 설정으로 묻는다
+        print(name, "→", ip)
+    except socket.gaierror:                       # 이름이 없으면
+        print(name, "→ 찾지 못함")
+```
+
+💻 **터미널에 입력합니다.** `python dns_lookup.py`
+
+**결과** — 앞 셋은 `이름 → IPv4 주소`, 마지막은 `abc.nowhere-not-exist.com → 찾지 못함` 입니다(주소는 실행할 때마다 다를 수 있음).
+
+**왜** — 프로그램도 PC 에 설정된 DNS 서버(2-4)에 묻습니다. 이름이 없다는 답(NXDOMAIN)이 오면 `socket.gaierror` 가 납니다.
+
+**자주 틀리는 곳** — `try` · `except` 없이 쓰면 마지막 이름에서 에러가 나 프로그램이 멈춥니다.
+
+**관제에서는** — 로그에 나온 도메인 여러 개를 이렇게 한 번에 조회해 지금 어느 IP 를 가리키는지 확인합니다.
+
+### 2교시 한눈에
+
+| 하려는 일 | 명령 |
+|---|---|
+| 이름 → IP | `nslookup 이름` — 아래쪽 `Addresses` |
+| 다른 DNS 서버에 묻기 | `nslookup 이름 8.8.8.8` |
+| 내 PC 의 DNS 서버 | `ipconfig //all` 의 DNS 서버 |
+| 없는 이름 | `Non-existent domain` (NXDOMAIN) |
+
+---
+
+# 3교시 (11:00–11:50) · DNS 계층 — 누가 원본을 알고 있나
+
+### 왜 필요한가
+
+1. 세상의 모든 이름을 한 서버가 다 알 수는 없습니다. 이름은 **점으로 나뉜 층**마다 담당자가 따로 있습니다.
+2. 리졸버는 위층부터 차례로 물어 **담당 네임서버**(원본을 가진 서버)를 찾아갑니다.
+3. 공격자가 담당자 정보를 바꾸면 이름 전체를 가로챌 수 있습니다. 그래서 「누가 담당인가」를 읽을 줄 알아야 합니다.
+
+### 3.1 이름은 오른쪽부터 읽는다
+
+`www.example.com` 은 사실 맨 끝에 점이 하나 더 있는 `www.example.com.` 입니다. **오른쪽이 위층**입니다.
+
+| 층 | 이 이름에서 | 담당 |
+|---|---|---|
+| 루트(root) | `.` (맨 끝 점) | 루트 네임서버 — 세계에 13개 이름 |
+| TLD(티엘디 · Top-Level Domain) | `com` | `.com` 을 맡은 네임서버 — `.kr` · `.net` 도 각각 |
+| 2단계 도메인 | `example.com` | **권한 있는 네임서버**(authoritative · 원본을 가진 담당자) |
+| 호스트 이름 | `www.example.com` | 위 담당자가 함께 답한다 |
+
+리졸버의 질문 순서:
+
+```
+리졸버 ─ ① 「com 담당은?」 ─▶ 루트          ─▶ 「com 담당은 ○○」
+       ─ ② 「example.com 담당은?」 ─▶ com 담당  ─▶ 「hera.ns.cloudflare.com 이야」
+       ─ ③ 「www.example.com 의 IP 는?」 ─▶ hera.ns.cloudflare.com ─▶ 「104.20.23.154」 ← 원본 답
+```
+
+### 3.2 권한 있는 응답과 권한 없는 응답
+
+| | 권한 있는 응답 | 권한 없는 응답(Non-authoritative answer) |
+|---|---|---|
+| 누가 답했나 | **담당 네임서버**가 직접 | 리졸버가 **찾아다 준** 답(또는 잠시 저장해 둔 답) |
+| 언제 보나 | 담당 서버에 직접 물을 때(3-5) | 평소 `nslookup` 할 때 거의 항상 |
+| 틀렸나 | 아니요 | **아니요 — 원본을 옮겨 온 것일 뿐.** 다만 바뀐 지 얼마 안 된 값이면 옛 값일 수 있다(4교시 캐시) |
+
+#### 🐍 문법 상자 · 끝에서부터 꺼내기 `[-1]` · `reversed()`
+
+```python
+parts = "www.example.com".split(".")
+print(parts[-1], len(parts))
+print(list(reversed(parts)))
+# com 3
+# ['com', 'example', 'www']
+```
+
+| 쓰는 것 | 뜻 |
+|---|---|
+| `리스트[-1]` | 맨 끝 하나 — 이름이면 TLD |
+| `reversed(리스트)` | 뒤에서부터 차례로 꺼낸다 — `list()` 로 감싸면 리스트 |
+| `".".join(리스트)` | 리스트를 점으로 이어 붙인다 |
+
+⚠ `reversed()` 는 원래 리스트를 바꾸지 않습니다. 뒤집힌 것을 쓰려면 새 변수에 담습니다.
+
+---
+
+### ✍️ 문제 3-1 · 무엇이 보일까요
+
+**어디서** — 실행하지 않고 머리로 예상합니다
+
+아래 코드를 실행하면 무엇이 보일지 적어 보세요.
+
+```python
+name = "mail.google.co.kr"
+parts = name.split(".")
+print(parts[-1])
+print(".".join(parts[-2:]))
+```
+
+#### 정답
+
+**결과** — `kr` 과 `co.kr` 두 줄입니다.
+
+**왜** — 이름은 오른쪽이 위층이라 `[-1]` 이 TLD `kr` 입니다. `[-2:]` 는 끝의 두 조각을 점으로 이은 것이고, `co.kr` 은 한국의 회사용 2단계 이름입니다.
+
+**자주 틀리는 곳** — `[-2:]` 를 끝에서 두 번째 하나(`co`)만 꺼내는 것으로 읽는 경우가 많습니다.
+
+**관제에서는** — 로그의 도메인을 TLD 별로 묶어 어느 나라 · 어느 종류의 이름에 많이 묻는지 셉니다.
+
+---
+
+### ✍️ 문제 3-2 · 이름을 층으로 펼치기 (`dns_tree.py`)
+
+**어디서** — VS Code 에서 `dns_tree.py` 만들기 → 터미널에서 `python dns_tree.py` 실행
+
+이름 하나를 받아 **루트부터 한 층씩** 내려가며 출력하시오.
+
+```python
+def show_tree(name):                              # 이름을 위층부터 한 층씩 보여 주는 함수
+    parts = name.split(".")                       # ['www', 'example', 'com']
+    print("루트 (.)")
+    current = ""                                  # 지금까지 만든 이름
+    for label in reversed(parts):                 # com → example → www 차례로
+        # 1. current 가 비어 있으면 current 에 label 을, 아니면 label + "." + current 를 담으세요
+
+        print("  →", current)
+
+
+# ── 미리 채워 둔 줄입니다. 고치지 않습니다 ──
+show_tree("www.example.com")
+show_tree("mail.google.co.kr")
+# ── 여기까지 ──
+```
+
+**파일을 만들고 실행합니다**
+
+1. VS Code 왼쪽 목록에서 `network_zt` 폴더를 오른쪽 클릭 › **New File** › 이름 `dns_tree.py` 를 입력하고 Enter 를 누릅니다.
+2. 위 코드 상자 안을 마우스로 끌어 선택하고 `Ctrl + C` 로 복사해 파일에 붙여 넣은 뒤, 번호 주석 아래를 채웁니다. 저장은 자동입니다.
+3. 터미널에 아래 명령을 입력합니다. 터미널의 줄 위에 `…/network_zt` 가 보여야 합니다. 아니면 먼저 `cd network_zt` 를 입력합니다.
+
+```bash
+python dns_tree.py
+```
+
+4. 고친 뒤에는 같은 명령을 다시 입력합니다. 터미널에서 **↑(위 화살표)** 를 누르면 방금 입력한 명령이 다시 나옵니다.
+
+| | |
+|---|---|
+| 🎯 나와야 하는 결과 | `루트 (.)` · `→ com` · `→ example.com` · `→ www.example.com`, 그리고 `루트 (.)` · `→ kr` · `→ co.kr` · `→ google.co.kr` · `→ mail.google.co.kr` |
+
+**💡 힌트**
+
+1. 처음에는 `current` 가 `""` 입니다 — `if current == "":`.
+2. 새 층은 **왼쪽에** 붙습니다: `label + "." + current`.
+3. 출력이 3.1 표의 층 순서와 같은지 봅니다.
+
+#### 정답 3-2
+
+```python
+def show_tree(name):                              # 이름을 위층부터 한 층씩 보여 주는 함수
+    parts = name.split(".")                       # ['www', 'example', 'com']
+    print("루트 (.)")
+    current = ""                                  # 지금까지 만든 이름
+    for label in reversed(parts):                 # com → example → www 차례로
+        # 1. current 가 비어 있으면 current 에 label 을, 아니면 label + "." + current 를 담으세요
+        if current == "":                         # 첫 층(TLD)
+            current = label
+        else:                                     # 그 아래 층은 왼쪽에 붙인다
+            current = label + "." + current
+        print("  →", current)
+
+
+show_tree("www.example.com")
+show_tree("mail.google.co.kr")
+```
+
+💻 **터미널에 입력합니다.** `python dns_tree.py`
+
+**결과** — `루트 (.)` · `→ com` · `→ example.com` · `→ www.example.com`, 그리고 `루트 (.)` · `→ kr` · `→ co.kr` · `→ google.co.kr` · `→ mail.google.co.kr`
+
+**왜** — 이름은 오른쪽이 위층입니다. 뒤에서부터 꺼내 새 조각을 왼쪽에 붙이면 리졸버가 묻는 순서(루트 → TLD → 담당 네임서버)가 됩니다.
+
+**자주 틀리는 곳** — `current + "." + label` 로 오른쪽에 붙여 `com.example` 처럼 거꾸로 나오는 경우가 많습니다.
+
+**관제에서는** — `google.com.evil.top` 처럼 앞에 유명한 이름을 붙였지만 실제 위층은 `evil.top` 인 피싱 도메인을 가려냅니다.
+
+---
+
+### ✍️ 문제 3-3 · example.com 의 담당자 찾기
+
+**어디서** — 터미널에서 명령 실행 → 결과를 보고서 파일에 적기
+
+`-type=ns` 로 **example.com 을 담당하는 네임서버**를 묻고, 보고서 1절에 적으시오.
+
+```bash
+nslookup -type=ns example.com
+```
+
+| | |
+|---|---|
+| 🎯 나와야 하는 결과 | `example.com  nameserver = hera.ns.cloudflare.com` · `example.com  nameserver = elliott.ns.cloudflare.com` (담당자는 바뀔 수 있음) |
+
+**💡 힌트**
+
+1. `-type=ns` 는 「IP 말고 **담당 네임서버**(NS 레코드)를 달라」는 뜻입니다.
+2. 담당자가 둘인 것은 하나가 멈춰도 답하게 하려는 것입니다.
+3. 아래 `internet address` 줄은 그 네임서버들의 IP 입니다.
+
+#### 정답 3-3
+
+💻 **터미널에 입력합니다.**
+
+```bash
+nslookup -type=ns example.com
+```
+
+**결과** — `example.com  nameserver = hera.ns.cloudflare.com` · `example.com  nameserver = elliott.ns.cloudflare.com` 두 줄을 적습니다(담당자는 바뀔 수 있음).
+
+**왜** — NS 레코드는 이 이름의 원본을 가진 권한 있는 네임서버를 알려 줍니다. 하나가 멈춰도 답하도록 둘 이상 둡니다.
+
+**자주 틀리는 곳** — 아래 `internet address` 줄의 IP 를 담당자로 적는 경우가 많습니다. 담당자는 `nameserver =` 뒤의 이름입니다.
+
+**관제에서는** — 도메인의 NS 가 갑자기 낯선 서버로 바뀌면 도메인을 빼앗긴 신호일 수 있어 확인합니다.
+
+---
+
+### ✍️ 문제 3-4 · TLD 의 담당자 보기
+
+**어디서** — 터미널에서 명령 실행
+
+한 층 위, **`kr` 을 담당하는 네임서버**를 물으시오. 이름 끝의 **점(`.`)까지** 그대로 칩니다.
+
+```bash
+nslookup -type=ns kr.
+```
+
+| | |
+|---|---|
+| 🎯 나와야 하는 결과 | `kr  nameserver = b.dns.kr` · `c.dns.kr` … 여섯 줄 안팎 — `.kr` 전체를 맡은 서버들 (서버 이름과 줄 수는 바뀔 수 있습니다) |
+
+**💡 힌트**
+
+1. 끝의 점은 3.1 의 「맨 끝 점 = 루트」입니다. 점을 빼면 PC 가 회사 안의 짧은 이름으로 여겨 `can't find kr` 이 나옵니다(실측).
+2. 이 서버들은 「`naver.com` 은 몰라도 `○○.kr` 의 담당자가 누군지는 안다」 — 3.1 의 ②번 질문을 받는 곳입니다.
+3. 결과가 길면 위 몇 줄만 봅니다.
+
+#### 정답 3-4
+
+💻 **터미널에 입력합니다.**
+
+```bash
+nslookup -type=ns kr.
+```
+
+**결과** — `kr  nameserver = b.dns.kr` · `c.dns.kr` … 여섯 줄 안팎이 `.kr` 을 맡은 TLD 네임서버입니다(서버 이름과 줄 수는 바뀔 수 있습니다).
+
+**왜** — 루트 바로 아래 TLD 층의 담당자입니다. 이 서버들은 `○○.kr` 의 담당 네임서버가 누구인지 알려 주고, IP 는 그 담당자가 답합니다.
+
+**자주 틀리는 곳** — 끝의 점을 빼고 `kr` 로 쳐서 `can't find kr` 이 나오는 경우가 많습니다. 그때는 `kr.` 로 다시 칩니다.
+
+---
+
+### ✍️ 문제 3-5 · 담당자에게 직접 물으면
+
+**어디서** — 터미널에서 명령 실행
+
+3-3 에서 찾은 담당 네임서버에 **직접** 묻고, `권한 없는 응답:` 줄이 있는지 2-2 와 비교하시오.
+
+```bash
+nslookup example.com hera.ns.cloudflare.com
+```
+
+| | |
+|---|---|
+| 🎯 나와야 하는 결과 | 같은 IPv4 가 나오지만 **`권한 없는 응답:` 줄이 없다** — 담당자의 원본 답(권한 있는 응답) |
+
+**💡 힌트**
+
+1. 2-3 처럼 이름 뒤에 물어볼 서버를 적습니다. 이번에는 리졸버가 아니라 담당자입니다.
+2. 3.2 표를 다시 봅니다.
+3. 학원망이 외부 DNS 를 막으면 시간 초과가 납니다. 그때는 강사 화면으로 확인합니다.
+
+#### 정답 3-5
+
+💻 **터미널에 입력합니다.**
+
+```bash
+nslookup example.com hera.ns.cloudflare.com
+```
+
+**결과** — 답의 IPv4 는 2-2 와 같고, `권한 없는 응답:` 줄이 **없습니다**.
+
+**왜** — 담당 네임서버(권한 있는 서버)가 원본을 직접 답했기 때문입니다. 2-2 는 리졸버가 찾아다 준 답이라 그 줄이 붙었습니다.
+
+**자주 틀리는 곳** — `권한 없는 응답` 을 「틀린 답」으로 적는 경우가 많습니다. 원본을 옮겨 온 답일 뿐입니다.
+
+**관제에서는** — 리졸버의 답이 의심스러우면 담당자에게 직접 물어 원본과 같은지 비교합니다.
+
+---
+
+### ⭐ 도전 3-6 · DNS 로그에서 TLD 세기 (`tld_count.py`, 선택)
+
+**어디서** — VS Code 에서 `tld_count.py` 만들기 → 터미널에서 `python tld_count.py` 실행
+
+DNS 질의 로그에 나온 이름들을 **TLD 별로 몇 번인지** 세시오. 평소 안 쓰는 TLD 가 갑자기 많아지면 확인할 신호입니다.
+
+```python
+queries = [                                       # 하루 동안 물어본 이름이라고 가정합니다
+    "www.naver.com", "mail.google.com", "example.com", "www.daum.net",
+    "kxq3vz9a.top", "update.microsoft.com", "p0w8rk2m.top", "news.example.co.kr",
+]
+# 1. 이름마다 맨 끝 조각(TLD)을 꺼내 사전으로 세고, 「com 4」 꼴로 출력하세요
+```
+
+**파일을 만들고 실행합니다**
+
+1. VS Code 왼쪽 목록에서 `network_zt` 폴더를 오른쪽 클릭 › **New File** › 이름 `tld_count.py` 를 입력하고 Enter 를 누릅니다.
+2. 위 코드 상자 안을 마우스로 끌어 선택하고 `Ctrl + C` 로 복사해 파일에 붙여 넣은 뒤, 번호 주석 아래를 채웁니다. 저장은 자동입니다.
+3. 터미널에 아래 명령을 입력합니다. 터미널의 줄 위에 `…/network_zt` 가 보여야 합니다. 아니면 먼저 `cd network_zt` 를 입력합니다.
+
+```bash
+python tld_count.py
+```
+
+4. 고친 뒤에는 같은 명령을 다시 입력합니다. 터미널에서 **↑(위 화살표)** 를 누르면 방금 입력한 명령이 다시 나옵니다.
+
+| | |
+|---|---|
+| 🎯 나와야 하는 결과 | `com 4` · `net 1` · `top 2` · `kr 1` |
+
+**💡 힌트**
+
+1. TLD 는 `이름.split(".")[-1]` 입니다.
+2. 세기는 12일 5-4 의 `count.get(키, 0) + 1` 입니다.
+3. `.top` 같은 값싼 TLD 는 악성 도메인에 자주 쓰입니다 — 오후에 다시 봅니다.
+
+#### 정답 3-6
+
+```python
+queries = [                                       # 하루 동안 물어본 이름이라고 가정합니다
+    "www.naver.com", "mail.google.com", "example.com", "www.daum.net",
+    "kxq3vz9a.top", "update.microsoft.com", "p0w8rk2m.top", "news.example.co.kr",
+]
+# 1. 이름마다 맨 끝 조각(TLD)을 꺼내 사전으로 세고, 「com 4」 꼴로 출력하세요
+count = {}                                        # TLD → 횟수
+for name in queries:                              # 이름을 하나씩
+    tld = name.split(".")[-1]                     # 맨 끝 조각
+    count[tld] = count.get(tld, 0) + 1            # 처음 보면 0 에서 시작
+for tld in count:
+    print(tld, count[tld])
+```
+
+💻 **터미널에 입력합니다.** `python tld_count.py`
+
+**결과** — `com 4` · `net 1` · `top 2` · `kr 1`
+
+**왜** — 이름의 맨 끝 조각이 TLD 입니다. TLD 를 사전의 키로 두고, 볼 때마다 1씩 더합니다.
+
+**자주 틀리는 곳** — `news.example.co.kr` 을 `co.kr` 로 세는 경우가 많습니다. `[-1]` 은 `kr` 하나입니다.
+
+**관제에서는** — 평소 안 보이던 `.top` 같은 TLD 질의가 갑자기 늘면 확인할 신호로 봅니다.
+
+### 3교시 한눈에
+
+| 하려는 일 | 명령 · 코드 |
+|---|---|
+| 이름의 층 | 오른쪽이 위층 — 루트 → TLD → 2단계 → 호스트 |
+| 담당 네임서버 | `nslookup -type=ns 이름` |
+| TLD 담당 | `nslookup -type=ns kr.` — 끝의 점까지 |
+| 원본 답 | `nslookup 이름 담당서버` — `권한 없는 응답` 이 없다 |
+| TLD 꺼내기 | `이름.split(".")[-1]` |
+
+---
+
+# 4교시 (12:00–12:50) · DNS 레코드 · TTL · 캐시
+
+### 왜 필요한가
+
+1. DNS 는 IP 만 알려 주지 않습니다. **메일은 어디로 받나 · 이 이름의 진짜 이름은 뭔가** 같은 정보도 **레코드**(record · 기록 한 줄)로 담고 있습니다.
+2. 답은 매번 처음부터 찾지 않고 **잠시 저장(캐시 · cache)** 해 두고 씁니다. 얼마나 오래 쓸지는 **TTL** 이 정합니다.
+3. 피싱 · 악성 코드 분석에서 「이 도메인의 메일 서버는? 별명은? 언제 바뀌었나?」를 묻습니다. 레코드를 읽을 줄 알아야 합니다.
+
+### 4.1 자주 보는 레코드
+
+| 레코드 | 담는 것 | 예 (실측 10/4) | `nslookup` 옵션 |
+|---|---|---|---|
+| **A** | IPv4 주소 | `example.com` → `104.20.23.154` | (기본) |
+| **AAAA**(쿼드 에이) | IPv6 주소(새 방식의 긴 주소) | `example.com` → `2606:4700:10::6814:179a` | `-type=aaaa` |
+| **CNAME**(씨네임 · canonical name) | **별명** — 「이 이름의 진짜 이름은 저것」 | `www.naver.com` → `www.naver.com.nheos.com` | `-type=cname` |
+| **MX**(엠엑스 · mail exchanger) | 메일을 받을 서버 | `google.com` → `smtp.google.com` (우선순위 10) | `-type=mx` |
+| **NS** | 담당 네임서버 | `example.com` → `hera.ns.cloudflare.com` | `-type=ns` |
+| **TXT**(텍스트) | 글 — 메일 위조 방지 설정 등 | (오늘은 안 봄) | `-type=txt` |
+
+### 4.2 TTL 과 캐시
+
+| | |
+|---|---|
+| **TTL**(티티엘 · Time To Live) | 이 답을 **몇 초 동안** 저장해 써도 되는지. 담당자가 정한다 |
+| **캐시** | 리졸버와 내 PC 가 TTL 동안 답을 저장해 두는 곳 — 빠르고 DNS 서버 부담이 줄어든다 |
+| 그래서 생기는 일 | 담당자가 IP 를 바꿔도 **TTL 이 지날 때까지는 옛 IP 로** 간다 |
+
+내 PC 의 캐시는 `ipconfig //displaydns`(디스플레이 디엔에스)로 봅니다.
+
+#### 🐍 문법 상자 · 사전 안의 사전에서 꺼내기 · `while` 로 따라가기
+
+```python
+records = {"a.test": {"type": "CNAME", "value": "b.test"},
+           "b.test": {"type": "A", "value": "192.0.2.10"}}
+name = "a.test"
+while records[name]["type"] == "CNAME":
+    name = records[name]["value"]
+print(name, records[name]["value"])
+# b.test 192.0.2.10
+```
+
+| 쓰는 것 | 뜻 |
+|---|---|
+| `records[name]["type"]` | 바깥 사전에서 이름으로, 안쪽 사전에서 `type` 으로 |
+| `while 조건:` | 조건이 참인 **동안** 되풀이한다 (1과목) |
+
+⚠ CNAME 이 서로를 가리키면(a → b → a) `while` 이 끝나지 않습니다. 실무 코드는 횟수 제한을 둡니다.
+
+---
+
+### ✍️ 문제 4-1 · 무엇이 보일까요
+
+**어디서** — 실행하지 않고 머리로 예상합니다
+
+아래 코드를 실행하면 무엇이 보일지 적어 보세요.
+
+```python
+records = {
+    "google.com": {"type": "MX", "value": "smtp.google.com"},
+    "www.naver.com": {"type": "CNAME", "value": "www.naver.com.nheos.com"},
+}
+print(records["google.com"]["value"])
+print(records["www.naver.com"]["type"])
+```
+
+#### 정답
+
+**결과** — `smtp.google.com` 과 `CNAME` 두 줄입니다.
+
+**왜** — 바깥 키로 이름을, 안쪽 키(`value` · `type`)로 칸을 꺼냅니다. google.com 의 MX 값은 메일 서버 이름이고, www.naver.com 의 종류는 별명(CNAME)입니다.
+
+**자주 틀리는 곳** — 둘째 줄에서 `type` 이 아니라 `value` 를 읽어 `www.naver.com.nheos.com` 으로 적는 경우가 많습니다.
+
+---
+
+### ✍️ 문제 4-2 · 메일은 어디로 가나 — MX
+
+**어디서** — 터미널에서 명령 실행 → 결과를 보고서 파일에 적기
+
+`google.com` 의 **메일 서버**를 묻고 보고서 1절에 적으시오.
+
+```bash
+nslookup -type=mx google.com
+```
+
+| | |
+|---|---|
+| 🎯 나와야 하는 결과 | `google.com  MX preference = 10, mail exchanger = smtp.google.com` (값은 바뀔 수 있습니다) |
+
+**💡 힌트**
+
+1. `MX preference` 는 우선순위입니다. 숫자가 **작을수록 먼저** 씁니다.
+2. 메일 서버도 이름이라, 아래에 그 이름의 IP(A 레코드)가 함께 나옵니다.
+3. 피싱 메일 분석에서 「보낸 쪽 도메인에 MX 가 있나」를 확인합니다.
+
+#### 정답 4-2
+
+💻 **터미널에 입력합니다.**
+
+```bash
+nslookup -type=mx google.com
+```
+
+**결과** — `google.com  MX preference = 10, mail exchanger = smtp.google.com` 을 적습니다(값은 바뀔 수 있습니다).
+
+**왜** — MX 레코드는 이 도메인으로 오는 메일을 받을 서버를 알려 줍니다. `preference` 숫자가 작을수록 먼저 씁니다.
+
+**자주 틀리는 곳** — 아래에 함께 나오는 `smtp.google.com` 의 IP 를 메일 서버로 적는 경우가 많습니다. MX 의 답은 서버 이름입니다.
+
+**관제에서는** — 피싱 메일의 보낸 쪽 도메인에 MX 가 있는지 확인합니다.
+
+---
+
+### ✍️ 문제 4-3 · 별명 따라가기 — CNAME
+
+**어디서** — 터미널에서 명령 실행
+
+`www.naver.com` 의 **CNAME** 을 묻고, 이어서 그냥 `nslookup` 해 **별명이 몇 단계**인지 세시오.
+
+```bash
+nslookup -type=cname www.naver.com
+nslookup www.naver.com
+```
+
+| | |
+|---|---|
+| 🎯 나와야 하는 결과 | 첫째 `canonical name = www.naver.com.nheos.com`. 둘째는 `Aliases:` 아래에 `www.naver.com` · `www.naver.com.nheos.com` · … 그리고 `이름:` 에 최종 이름과 IP (단계 수는 바뀔 수 있음) |
+
+**💡 힌트**
+
+1. `canonical name` = 진짜 이름. `Aliases` = 거쳐 온 별명들입니다.
+2. 큰 사이트는 CNAME 으로 **CDN**(시디엔 · 가까운 곳에서 내용을 대신 내주는 서비스)에 연결합니다.
+3. 별명이 여러 단계인 것은 정상입니다. 단계 수를 보고서에 적습니다.
+
+#### 정답 4-3
+
+💻 **터미널에 입력합니다.**
+
+```bash
+nslookup -type=cname www.naver.com
+nslookup www.naver.com
+```
+
+**결과** — 첫째 `canonical name = www.naver.com.nheos.com`. 둘째는 `Aliases:` 아래에 `www.naver.com` · `www.naver.com.nheos.com` · … 그리고 `이름:`(영어 화면은 `Name:`)에 최종 이름과 IP 가 나옵니다. `Aliases:` 줄 수가 별명 단계입니다(단계 수는 바뀔 수 있음).
+
+**왜** — CNAME 은 「이 이름의 진짜 이름은 저것」이라는 레코드입니다. 리졸버가 별명을 끝까지 따라가 마지막 이름의 A 레코드로 IP 를 줍니다.
+
+**자주 틀리는 곳** — `Aliases:` 의 마지막 이름을 최종 이름으로 적는 경우가 많습니다. 최종 이름은 `이름:` 줄입니다.
+
+**관제에서는** — 잘 아는 이름이 처음 보는 도메인으로 CNAME 이 걸려 있으면 별명 끝까지 따라가 누구 서버인지 확인합니다.
+
+---
+
+### ✍️ 문제 4-4 · 내 PC 의 DNS 캐시 보기
+
+**어디서** — 터미널에서 명령 실행
+
+터미널에서 캐시를 보고 · 비우고 · 다시 채워 보시오.
+
+1. `ping -n 1 example.com` 으로 한 번 접속해 캐시에 넣고, `ipconfig //displaydns` 로 **`example.com`** 항목의 **TTL**(남은 초)을 적습니다.
+2. `ipconfig //flushdns` 로 캐시를 비우고, `ipconfig //displaydns` 를 다시 입력해 목록이 비었는지 봅니다.
+3. `ping -n 1 example.com` 을 다시 하고 `ipconfig //displaydns` 를 입력해 항목이 돌아왔는지 봅니다.
+
+⚠ `nslookup` 은 PC 의 캐시를 거치지 않고 DNS 서버에 바로 묻습니다. 그래서 `nslookup` 으로는 캐시가 채워지지 않습니다. 캐시를 채울 때는 `ping` · 브라우저처럼 보통 프로그램이 쓰는 길로 접속합니다.
+
+```bash
+ping -n 1 example.com
+ipconfig //displaydns
+ipconfig //flushdns
+ipconfig //displaydns
+ping -n 1 example.com
+ipconfig //displaydns
+```
+
+| | |
+|---|---|
+| 🎯 나와야 하는 결과 | 처음 `TTL(Time To Live) . : ○○○` · 비운 뒤 `DNS 확인자 캐시를 플러시했습니다.` 와 `Windows IP 구성` 한 줄뿐 · 다시 `ping` 한 뒤 `example.com` 항목이 돌아온다 |
+
+**💡 힌트**
+
+1. `//flushdns` 는 캐시를 비우는 명령입니다. 이상한 주소로 계속 접속될 때(DNS 캐시 오염 의심) 관제가 가장 먼저 하는 조치입니다.
+2. 슬래시는 두 번입니다 — `ipconfig //displaydns`(12일 오전 0.2).
+3. 「표시할 수 없습니다」가 나오는 PC 도 있습니다(설정에 따라 다름). 그때는 옆 사람 화면과 같이 봅니다.
+
+#### 정답 4-4
+
+💻 **터미널에 입력합니다.**
+
+```bash
+ping -n 1 example.com
+ipconfig //displaydns
+ipconfig //flushdns
+ipconfig //displaydns
+ping -n 1 example.com
+ipconfig //displaydns
+```
+
+**결과** — 처음에는 `example.com` 아래 `TTL(Time To Live) . : ○○○` 이 보입니다. `//flushdns` 뒤에는 `DNS 확인자 캐시를 플러시했습니다.` 가 나오고, 다시 본 목록은 `Windows IP 구성` 한 줄뿐입니다. `ping` 으로 다시 접속하면 `example.com` 항목이 다시 생깁니다.
+
+**왜** — PC 는 받은 답을 TTL 초 동안 캐시에 두고 그동안 다시 묻지 않습니다. `//flushdns` 는 그 저장을 모두 지웁니다.
+
+**자주 틀리는 곳** — `ipconfig /displaydns` 처럼 슬래시를 하나만 치는 경우가 많습니다. Git Bash 에서는 `//` 두 번입니다.
+
+**관제에서는** — 이상한 주소로 계속 접속될 때 캐시에서 그 이름의 IP 를 확인하고, 캐시 오염이 의심되면 `//flushdns` 로 비웁니다.
+
+---
+
+### ✍️ 문제 4-5 · 캐시 흉내 내기 (`dns_cache.py`)
+
+**어디서** — VS Code 에서 `dns_cache.py` 만들기 → 터미널에서 `python dns_cache.py` 실행
+
+TTL 이 지나기 전에는 **저장해 둔 답**을, 지나면 **새로 물은 답**을 쓰는 캐시를 완성하시오.
+
+```python
+# ── 미리 채워 둔 줄입니다. 고치지 않습니다 ──
+cache = {}                                        # 이름 → {"ip": 주소, "expire": 만료 시각}
+TTL = 300                                         # 답을 300초 동안 쓴다
+answers = {"example.com": "104.20.23.154"}        # 담당자에게 물었다고 가정한 답
+# ── 여기까지 ──
+
+
+def resolve(name, now):                           # now 초에 name 을 묻는다
+    # 1. name 이 cache 에 있고 now 가 cache[name]["expire"] 보다 작으면 "캐시 " + 그 IP 를 return 하세요
+
+    ip = answers[name]                            # 새로 묻는다
+    cache[name] = {"ip": ip, "expire": now + TTL}   # 만료 시각과 함께 저장
+    return "새로 물음 " + ip
+
+
+# ── 미리 채워 둔 줄입니다. 고치지 않습니다 ──
+for t in [0, 100, 299, 300, 450]:
+    print(t, "초:", resolve("example.com", t))
+# ── 여기까지 ──
+```
+
+**파일을 만들고 실행합니다**
+
+1. VS Code 왼쪽 목록에서 `network_zt` 폴더를 오른쪽 클릭 › **New File** › 이름 `dns_cache.py` 를 입력하고 Enter 를 누릅니다.
+2. 위 코드 상자 안을 마우스로 끌어 선택하고 `Ctrl + C` 로 복사해 파일에 붙여 넣은 뒤, 번호 주석 아래를 채웁니다. 저장은 자동입니다.
+3. 터미널에 아래 명령을 입력합니다. 터미널의 줄 위에 `…/network_zt` 가 보여야 합니다. 아니면 먼저 `cd network_zt` 를 입력합니다.
+
+```bash
+python dns_cache.py
+```
+
+4. 고친 뒤에는 같은 명령을 다시 입력합니다. 터미널에서 **↑(위 화살표)** 를 누르면 방금 입력한 명령이 다시 나옵니다.
+
+| | |
+|---|---|
+| 🎯 나와야 하는 결과 | `0 초: 새로 물음 104.20.23.154` · `100 초: 캐시 104.20.23.154` · `299 초: 캐시 …` · `300 초: 새로 물음 …` · `450 초: 캐시 …` |
+
+**💡 힌트**
+
+1. `cache[name]` 은 사전입니다 — `cache[name]["expire"]` 가 만료 시각, `cache[name]["ip"]` 가 주소.
+2. 두 조건은 `and` 로 잇습니다. 이름이 없으면 먼저 `in` 에서 걸러져 `KeyError` 가 나지 않습니다.
+3. 300초에는 **같거나 지났으니** 새로 묻습니다 — `<` 를 씁니다.
+
+#### 정답 4-5
+
+```python
+cache = {}                                        # 이름 → {"ip": 주소, "expire": 만료 시각}
+TTL = 300                                         # 답을 300초 동안 쓴다
+answers = {"example.com": "104.20.23.154"}        # 담당자에게 물었다고 가정한 답
+
+
+def resolve(name, now):                           # now 초에 name 을 묻는다
+    # 1. name 이 cache 에 있고 now 가 cache[name]["expire"] 보다 작으면 "캐시 " + 그 IP 를 return 하세요
+    if name in cache and now < cache[name]["expire"]:   # 저장해 둔 답이 아직 유효하면
+        return "캐시 " + cache[name]["ip"]
+    ip = answers[name]                            # 새로 묻는다
+    cache[name] = {"ip": ip, "expire": now + TTL}   # 만료 시각과 함께 저장
+    return "새로 물음 " + ip
+
+
+for t in [0, 100, 299, 300, 450]:
+    print(t, "초:", resolve("example.com", t))
+```
+
+💻 **터미널에 입력합니다.** `python dns_cache.py`
+
+**결과** — `0 초: 새로 물음 104.20.23.154` · `100 초: 캐시 104.20.23.154` · `299 초: 캐시 …` · `300 초: 새로 물음 …` · `450 초: 캐시 …`
+
+**왜** — 0초에 저장하면 만료는 300초입니다. 300초에 새로 물으면서 만료가 600초로 다시 정해져 450초는 캐시를 씁니다.
+
+**자주 틀리는 곳** — `<=` 를 써서 300초에도 캐시를 쓰는 경우가 많습니다. 만료 시각이 되면 새로 묻습니다.
+
+**관제에서는** — 도메인의 IP 가 바뀐 직후에는 TTL 이 지날 때까지 옛 IP 와 새 IP 가 섞여 로그에 나옵니다.
+
+---
+
+### ⭐ 도전 4-6 · CNAME 을 끝까지 따라가기 (`cname_chain.py`, 선택)
+
+**어디서** — VS Code 에서 `cname_chain.py` 만들기 → 터미널에서 `python cname_chain.py` 실행
+
+레코드 사전에서 이름 하나를 받아 **CNAME 을 따라가 마지막 A 레코드의 IP** 까지 찾고, 거쳐 간 이름을 모두 출력하시오.
+
+```python
+records = {
+    "www.shop.test": {"type": "CNAME", "value": "shop.cdn.test"},
+    "shop.cdn.test": {"type": "CNAME", "value": "edge7.cdn.test"},
+    "edge7.cdn.test": {"type": "A", "value": "192.0.2.77"},
+}
+# 1. "www.shop.test" 에서 시작해, CNAME 이면 다음 이름으로 옮기기를 되풀이하고, 거쳐 간 이름을 「 → 」 로 이어 출력한 뒤 마지막 IP 를 출력하세요
+```
+
+**파일을 만들고 실행합니다**
+
+1. VS Code 왼쪽 목록에서 `network_zt` 폴더를 오른쪽 클릭 › **New File** › 이름 `cname_chain.py` 를 입력하고 Enter 를 누릅니다.
+2. 위 코드 상자 안을 마우스로 끌어 선택하고 `Ctrl + C` 로 복사해 파일에 붙여 넣은 뒤, 번호 주석 아래를 채웁니다. 저장은 자동입니다.
+3. 터미널에 아래 명령을 입력합니다. 터미널의 줄 위에 `…/network_zt` 가 보여야 합니다. 아니면 먼저 `cd network_zt` 를 입력합니다.
+
+```bash
+python cname_chain.py
+```
+
+4. 고친 뒤에는 같은 명령을 다시 입력합니다. 터미널에서 **↑(위 화살표)** 를 누르면 방금 입력한 명령이 다시 나옵니다.
+
+| | |
+|---|---|
+| 🎯 나와야 하는 결과 | `www.shop.test → shop.cdn.test → edge7.cdn.test` · `IP: 192.0.2.77` |
+
+**💡 힌트**
+
+1. 바로 위 문법 상자의 `while` 과 같은 모양입니다.
+2. 거쳐 간 이름은 리스트에 `append` 하고, 끝에 `" → ".join(리스트)`.
+3. 4-3 에서 본 `Aliases` 가 이 사슬입니다.
+
+#### 정답 4-6
+
+```python
+records = {
+    "www.shop.test": {"type": "CNAME", "value": "shop.cdn.test"},
+    "shop.cdn.test": {"type": "CNAME", "value": "edge7.cdn.test"},
+    "edge7.cdn.test": {"type": "A", "value": "192.0.2.77"},
+}
+# 1. "www.shop.test" 에서 시작해, CNAME 이면 다음 이름으로 옮기기를 되풀이하고, 거쳐 간 이름을 「 → 」 로 이어 출력한 뒤 마지막 IP 를 출력하세요
+name = "www.shop.test"                            # 시작 이름
+chain = [name]                                    # 거쳐 간 이름들
+while records[name]["type"] == "CNAME":           # 별명인 동안
+    name = records[name]["value"]                 # 진짜 이름으로 옮긴다
+    chain.append(name)
+print(" → ".join(chain))
+print("IP:", records[name]["value"])
+```
+
+💻 **터미널에 입력합니다.** `python cname_chain.py`
+
+**결과** — `www.shop.test → shop.cdn.test → edge7.cdn.test` · `IP: 192.0.2.77`
+
+**왜** — CNAME 이면 값(진짜 이름)으로 옮기고, A 레코드를 만나면 멈춥니다. 4-3 에서 리졸버가 별명을 따라간 방식과 같습니다.
+
+**자주 틀리는 곳** — `chain` 을 빈 리스트로 시작해 첫 이름 `www.shop.test` 가 출력에서 빠지는 경우가 많습니다.
+
+**관제에서는** — 거쳐 간 이름을 모두 남겨야 로그에서 어느 CDN · 어느 회사 서버를 거쳤는지 추적할 수 있습니다.
+
+### 4교시 한눈에
+
+| 레코드 | 묻는 법 | 뜻 |
+|---|---|---|
+| A · AAAA | `nslookup 이름` | IPv4 · IPv6 |
+| CNAME | `-type=cname` | 별명 → 진짜 이름 |
+| MX | `-type=mx` | 메일 서버 (숫자 작은 것 먼저) |
+| NS | `-type=ns` | 담당 네임서버 |
+| 캐시 · TTL | `ipconfig //displaydns` | 저장해 둔 답과 남은 초 |
+| 캐시 비우기 | `ipconfig //flushdns` | 저장해 둔 답을 모두 지운다 — 다음 질문부터 새로 묻는다 |
+
+---
+
+## 오전 마무리 — 보고서 1 · 2절 채우기
+
+| 칸 | 문제 |
+|---|---|
+| example.com 의 IPv4 | 2-2 |
+| 내 PC 가 묻는 DNS 서버 | 2-4 |
+| 담당 네임서버 | 3-3 |
+| 메일 서버(MX) · 별명(CNAME) | 4-2 · 4-3 |
+| 없는 이름 | 2-5 |
+| 2절 이름의 계층 | 3-2 의 `www.example.com` 출력을 붙입니다 |
+
+오후에는 DNS 로그에서 **수상한 도메인**을 골라내는 규칙을 만들고, 판단 기준을 문서로 남깁니다.
+
+---
