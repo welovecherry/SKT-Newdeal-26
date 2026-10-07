@@ -65,7 +65,7 @@
 (**[찾아 쓰기]** 칸을 내 말로 — 예: `- TTL: …`)
 
 ```
-⚠ <b style="color:#e53935">오늘 적는 것은 모두 이 파일(`day03_dns_analysis.md`) 하나에</b> 적습니다. 문제마다 「<b style="color:#e53935">적는 곳</b>」 줄이 이 파일의 어느 절인지 알려 줍니다. 오후에 더하는 절은 늘 `## 실습 기록` <b style="color:#e53935">위에</b> 붙입니다.
+⚠ <mark style="background:#ffcdd2; color:#1a1a1a; padding:0 4px; border-radius:3px">오늘 적는 것은 모두 이 파일(`day03_dns_analysis.md`) 하나에</mark> 적습니다. 문제마다 「<mark style="background:#ffcdd2; color:#1a1a1a; padding:0 4px; border-radius:3px">적는 곳</mark>」 줄이 이 파일의 어느 절인지 알려 줍니다. 오후에 더하는 절은 늘 `## 실습 기록` <mark style="background:#ffcdd2; color:#1a1a1a; padding:0 4px; border-radius:3px">위에</mark> 붙입니다.
 
 
 ---
@@ -122,13 +122,13 @@ Addresses:  2606:4700:10::ac42:93f3
 | `이름` | 물어본 이름 |
 | `Addresses` | 답 — `:` 가 든 것은 IPv6(아이피 브이식스 · 새 방식의 긴 주소), 점 네 개짜리가 **IPv4** |
 
-⚠ 위 두 줄의 `Address` 는 <b style="color:#e53935">물어본 DNS 서버</b>의 주소입니다. example.com 의 주소는 <b style="color:#e53935">아래</b> `Addresses` 입니다. 학생이 가장 많이 헷갈리는 곳입니다.
+⚠ 위 두 줄의 `Address` 는 <mark style="background:#ffcdd2; color:#1a1a1a; padding:0 4px; border-radius:3px">물어본 DNS 서버</mark>의 주소입니다. example.com 의 주소는 <mark style="background:#ffcdd2; color:#1a1a1a; padding:0 4px; border-radius:3px">아래</mark> `Addresses` 입니다. 학생이 가장 많이 헷갈리는 곳입니다.
 
 ---
 
 ### ✍️ 문제 2-1 · 무엇이 보일까요
 
-<b style="color:#1e88e5">어디서</b> — 실행하지 않고 머리로 예상합니다
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — 실행하지 않고 머리로 예상합니다
 
 아래 코드를 실행하면 무엇이 보일지 적어 보세요.
 
@@ -155,9 +155,9 @@ print(parts[2])
 
 ### ✍️ 문제 2-2 · 이름을 IP 로
 
-<b style="color:#1e88e5">어디서</b> — 터미널에서 명령 실행 → 보고서에 적기
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — 터미널에서 명령 실행 → 보고서에 적기
 
-<b style="color:#1e88e5">적는 곳</b> — `day03_dns_analysis.md` 의 **1절 표**
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day03_dns_analysis.md` 의 **1절 표**
 
 `example.com` 을 `nslookup` 으로 묻고, 답의 **IPv4 주소**를 보고서 1절에 적으시오.
 
@@ -167,7 +167,7 @@ nslookup example.com
 
 | | |
 |---|---|
-| 🎯 <b style="color:#43a047">나와야 하는 결과</b> | `이름:    example.com` 아래 `Addresses` 에 `104.20.○○.○○○` · `172.66.○○○.○○○` 같은 IPv4 두 개(값은 바뀔 수 있음) |
+| 🎯 나와야 하는 결과 | `이름:    example.com` 아래 `Addresses` 에 `104.20.○○.○○○` · `172.66.○○○.○○○` 같은 IPv4 두 개(값은 바뀔 수 있음) |
 
 **💡 힌트**
 
@@ -197,9 +197,9 @@ nslookup example.com
 
 ### ✍️ 문제 2-3 · 다른 DNS 서버에 묻기
 
-<b style="color:#1e88e5">어디서</b> — 터미널에서 명령 실행 → 보고서에 적기
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — 터미널에서 명령 실행 → 보고서에 적기
 
-<b style="color:#1e88e5">적는 곳</b> — `day03_dns_analysis.md` 의 `## 실습 기록` 에 `- 2-3: …` 한 줄
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day03_dns_analysis.md` 의 `## 실습 기록` 에 `- 2-3: …` 한 줄
 
 이번에는 구글 DNS 서버 `8.8.8.8` 에 **직접** 묻고, 위 두 줄(`Server` · `Address`)이 2-2 와 어떻게 다른지 적으시오.
 
@@ -209,7 +209,7 @@ nslookup example.com 8.8.8.8
 
 | | |
 |---|---|
-| 🎯 <b style="color:#43a047">나와야 하는 결과</b> | `서버:    dns.google` · `Address:  8.8.8.8` — 답(IPv4)은 2-2 와 같다 (답 IP 는 실행할 때마다 다를 수 있습니다) |
+| 🎯 나와야 하는 결과 | `서버:    dns.google` · `Address:  8.8.8.8` — 답(IPv4)은 2-2 와 같다 (답 IP 는 실행할 때마다 다를 수 있습니다) |
 
 **💡 힌트**
 
@@ -239,15 +239,15 @@ nslookup example.com 8.8.8.8
 
 ### ✍️ 문제 2-4 · 내 PC 는 어느 DNS 서버에 묻나
 
-<b style="color:#1e88e5">어디서</b> — 터미널에서 명령 실행 → 보고서에 적기
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — 터미널에서 명령 실행 → 보고서에 적기
 
-<b style="color:#1e88e5">적는 곳</b> — `day03_dns_analysis.md` 의 **1절 표**
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day03_dns_analysis.md` 의 **1절 표**
 
 `ipconfig //all` 에서 **DNS 서버** 줄을 찾아, 2-2 의 위쪽 `Address` 와 같은지 확인하고 보고서에 적으시오.
 
 | | |
 |---|---|
-| 🎯 <b style="color:#43a047">나와야 하는 결과</b> | `DNS 서버 . . . . : ○○○.○○○.○.○` — 2-2 의 위쪽 `Address` 와 같다 (값은 PC 마다 다릅니다) |
+| 🎯 나와야 하는 결과 | `DNS 서버 . . . . : ○○○.○○○.○.○` — 2-2 의 위쪽 `Address` 와 같다 (값은 PC 마다 다릅니다) |
 
 **💡 힌트**
 
@@ -277,9 +277,9 @@ ipconfig //all
 
 ### ✍️ 문제 2-5 · 없는 이름을 물으면
 
-<b style="color:#1e88e5">어디서</b> — 터미널에서 명령 실행 → 보고서에 적기
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — 터미널에서 명령 실행 → 보고서에 적기
 
-<b style="color:#1e88e5">적는 곳</b> — `day03_dns_analysis.md` 의 **1절 표**
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day03_dns_analysis.md` 의 **1절 표**
 
 없는 이름을 묻고, 나온 문구를 보고서에 적으시오. 12일 2-4 의 `ping` 실패와 비교합니다.
 
@@ -289,7 +289,7 @@ nslookup abc.nowhere-not-exist.com
 
 | | |
 |---|---|
-| 🎯 <b style="color:#43a047">나와야 하는 결과</b> | `*** UnKnown can't find abc.nowhere-not-exist.com: Non-existent domain` (한국어 Windows 는 문구가 다를 수 있음) |
+| 🎯 나와야 하는 결과 | `*** UnKnown can't find abc.nowhere-not-exist.com: Non-existent domain` (한국어 Windows 는 문구가 다를 수 있음) |
 
 **💡 힌트**
 
@@ -319,7 +319,7 @@ nslookup abc.nowhere-not-exist.com
 
 ### ⭐ 도전 2-6 · 파이썬으로 이름 묻기 (`dns_lookup.py`, 선택)
 
-<b style="color:#1e88e5">어디서</b> — VS Code 에서 `dns_lookup.py` 만들기 → 터미널에서 `python dns_lookup.py` 실행
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — VS Code 에서 `dns_lookup.py` 만들기 → 터미널에서 `python dns_lookup.py` 실행
 
 #### 🐍 문법 상자 · `socket.gethostbyname`(소켓 · 파이썬에 들어 있는 네트워크 도구)과 실패 잡기
 
@@ -368,7 +368,7 @@ python dns_lookup.py
 
 | | |
 |---|---|
-| 🎯 <b style="color:#43a047">나와야 하는 결과</b> | 앞 셋은 `이름 → IPv4 주소`, 마지막은 `abc.nowhere-not-exist.com → 찾지 못함` (주소는 실행할 때마다 다를 수 있음) |
+| 🎯 나와야 하는 결과 | 앞 셋은 `이름 → IPv4 주소`, 마지막은 `abc.nowhere-not-exist.com → 찾지 못함` (주소는 실행할 때마다 다를 수 있음) |
 
 **💡 힌트**
 
@@ -460,7 +460,7 @@ print(list(reversed(parts)))
 
 ### ✍️ 문제 3-1 · 무엇이 보일까요
 
-<b style="color:#1e88e5">어디서</b> — 실행하지 않고 머리로 예상합니다
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — 실행하지 않고 머리로 예상합니다
 
 아래 코드를 실행하면 무엇이 보일지 적어 보세요.
 
@@ -487,7 +487,7 @@ print(".".join(parts[-2:]))
 
 ### ✍️ 문제 3-2 · 이름을 층으로 펼치기 (`dns_tree.py`)
 
-<b style="color:#1e88e5">어디서</b> — VS Code 에서 `dns_tree.py` 만들기 → 터미널에서 `python dns_tree.py` 실행
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — VS Code 에서 `dns_tree.py` 만들기 → 터미널에서 `python dns_tree.py` 실행
 
 이름 하나를 받아 **루트부터 한 층씩** 내려가며 출력하시오.
 
@@ -524,7 +524,7 @@ python dns_tree.py
 
 | | |
 |---|---|
-| 🎯 <b style="color:#43a047">나와야 하는 결과</b> | `루트 (.)` · `→ com` · `→ example.com` · `→ www.example.com`, 그리고 `루트 (.)` · `→ kr` · `→ co.kr` · `→ google.co.kr` · `→ mail.google.co.kr` |
+| 🎯 나와야 하는 결과 | `루트 (.)` · `→ com` · `→ example.com` · `→ www.example.com`, 그리고 `루트 (.)` · `→ kr` · `→ co.kr` · `→ google.co.kr` · `→ mail.google.co.kr` |
 
 **💡 힌트**
 
@@ -552,9 +552,9 @@ python dns_tree.py
 
 ### ✍️ 문제 3-3 · example.com 의 담당자 찾기
 
-<b style="color:#1e88e5">어디서</b> — 터미널에서 명령 실행 → 보고서에 적기
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — 터미널에서 명령 실행 → 보고서에 적기
 
-<b style="color:#1e88e5">적는 곳</b> — `day03_dns_analysis.md` 의 **1절 표**
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day03_dns_analysis.md` 의 **1절 표**
 
 `-type=ns` 로 **example.com 을 담당하는 네임서버**를 묻고, 보고서 1절에 적으시오.
 
@@ -564,7 +564,7 @@ nslookup -type=ns example.com
 
 | | |
 |---|---|
-| 🎯 <b style="color:#43a047">나와야 하는 결과</b> | `example.com  nameserver = hera.ns.cloudflare.com` · `example.com  nameserver = elliott.ns.cloudflare.com` (담당자는 바뀔 수 있음) |
+| 🎯 나와야 하는 결과 | `example.com  nameserver = hera.ns.cloudflare.com` · `example.com  nameserver = elliott.ns.cloudflare.com` (담당자는 바뀔 수 있음) |
 
 **💡 힌트**
 
@@ -594,7 +594,7 @@ nslookup -type=ns example.com
 
 ### ✍️ 문제 3-4 · TLD 의 담당자 보기
 
-<b style="color:#1e88e5">어디서</b> — 터미널에서 명령 실행
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — 터미널에서 명령 실행
 
 한 층 위, **`kr` 을 담당하는 네임서버**를 물으시오. 이름 끝의 **점(`.`)까지** 그대로 칩니다.
 
@@ -604,7 +604,7 @@ nslookup -type=ns kr.
 
 | | |
 |---|---|
-| 🎯 <b style="color:#43a047">나와야 하는 결과</b> | `kr  nameserver = b.dns.kr` · `c.dns.kr` … 여섯 줄 안팎 — `.kr` 전체를 맡은 서버들 (서버 이름과 줄 수는 바뀔 수 있습니다) |
+| 🎯 나와야 하는 결과 | `kr  nameserver = b.dns.kr` · `c.dns.kr` … 여섯 줄 안팎 — `.kr` 전체를 맡은 서버들 (서버 이름과 줄 수는 바뀔 수 있습니다) |
 
 **💡 힌트**
 
@@ -632,7 +632,7 @@ nslookup -type=ns kr.
 
 ### ✍️ 문제 3-5 · 담당자에게 직접 물으면
 
-<b style="color:#1e88e5">어디서</b> — 터미널에서 명령 실행
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — 터미널에서 명령 실행
 
 3-3 에서 찾은 담당 네임서버에 **직접** 묻고, `권한 없는 응답:` 줄이 있는지 2-2 와 비교하시오.
 
@@ -642,7 +642,7 @@ nslookup example.com hera.ns.cloudflare.com
 
 | | |
 |---|---|
-| 🎯 <b style="color:#43a047">나와야 하는 결과</b> | 같은 IPv4 가 나오지만 **`권한 없는 응답:` 줄이 없다** — 담당자의 원본 답(권한 있는 응답) |
+| 🎯 나와야 하는 결과 | 같은 IPv4 가 나오지만 **`권한 없는 응답:` 줄이 없다** — 담당자의 원본 답(권한 있는 응답) |
 
 **💡 힌트**
 
@@ -672,7 +672,7 @@ nslookup example.com hera.ns.cloudflare.com
 
 ### ⭐ 도전 3-6 · DNS 로그에서 TLD 세기 (`tld_count.py`, 선택)
 
-<b style="color:#1e88e5">어디서</b> — VS Code 에서 `tld_count.py` 만들기 → 터미널에서 `python tld_count.py` 실행
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — VS Code 에서 `tld_count.py` 만들기 → 터미널에서 `python tld_count.py` 실행
 
 DNS 질의 로그에 나온 이름들을 **TLD 별로 몇 번인지** 세시오. 평소 안 쓰는 TLD 가 갑자기 많아지면 확인할 신호입니다.
 
@@ -705,7 +705,7 @@ python tld_count.py
 
 | | |
 |---|---|
-| 🎯 <b style="color:#43a047">나와야 하는 결과</b> | `com 4` · `net 1` · `top 2` · `kr 1` |
+| 🎯 나와야 하는 결과 | `com 4` · `net 1` · `top 2` · `kr 1` |
 
 **💡 힌트**
 
@@ -793,7 +793,7 @@ print(name, records[name]["value"])
 
 ### ✍️ 문제 4-1 · 무엇이 보일까요
 
-<b style="color:#1e88e5">어디서</b> — 실행하지 않고 머리로 예상합니다
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — 실행하지 않고 머리로 예상합니다
 
 아래 코드를 실행하면 무엇이 보일지 적어 보세요.
 
@@ -820,9 +820,9 @@ print(records["www.naver.com"]["type"])
 
 ### ✍️ 문제 4-2 · 메일은 어디로 가나 — MX
 
-<b style="color:#1e88e5">어디서</b> — 터미널에서 명령 실행 → 보고서에 적기
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — 터미널에서 명령 실행 → 보고서에 적기
 
-<b style="color:#1e88e5">적는 곳</b> — `day03_dns_analysis.md` 의 **1절 표**
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day03_dns_analysis.md` 의 **1절 표**
 
 `google.com` 의 **메일 서버**를 묻고 보고서 1절에 적으시오.
 
@@ -832,7 +832,7 @@ nslookup -type=mx google.com
 
 | | |
 |---|---|
-| 🎯 <b style="color:#43a047">나와야 하는 결과</b> | `google.com  MX preference = 10, mail exchanger = smtp.google.com` (값은 바뀔 수 있습니다) |
+| 🎯 나와야 하는 결과 | `google.com  MX preference = 10, mail exchanger = smtp.google.com` (값은 바뀔 수 있습니다) |
 
 **💡 힌트**
 
@@ -862,9 +862,9 @@ nslookup -type=mx google.com
 
 ### ✍️ 문제 4-3 · 별명 따라가기 — CNAME
 
-<b style="color:#1e88e5">어디서</b> — 터미널에서 명령 실행 → 보고서에 적기
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — 터미널에서 명령 실행 → 보고서에 적기
 
-<b style="color:#1e88e5">적는 곳</b> — `day03_dns_analysis.md` 의 **1절 표**
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day03_dns_analysis.md` 의 **1절 표**
 
 `www.naver.com` 의 **CNAME** 을 묻고, 이어서 그냥 `nslookup` 해 **별명이 몇 단계**인지 세시오.
 
@@ -875,7 +875,7 @@ nslookup www.naver.com
 
 | | |
 |---|---|
-| 🎯 <b style="color:#43a047">나와야 하는 결과</b> | 첫째 `canonical name = www.naver.com.nheos.com`. 둘째는 `Aliases:` 아래에 `www.naver.com` · `www.naver.com.nheos.com` · … 그리고 `이름:` 에 최종 이름과 IP (단계 수는 바뀔 수 있음) |
+| 🎯 나와야 하는 결과 | 첫째 `canonical name = www.naver.com.nheos.com`. 둘째는 `Aliases:` 아래에 `www.naver.com` · `www.naver.com.nheos.com` · … 그리고 `이름:` 에 최종 이름과 IP (단계 수는 바뀔 수 있음) |
 
 **💡 힌트**
 
@@ -906,9 +906,9 @@ nslookup www.naver.com
 
 ### ✍️ 문제 4-4 · 내 PC 의 DNS 캐시 보기
 
-<b style="color:#1e88e5">어디서</b> — 터미널에서 명령 실행 → 보고서에 적기
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — 터미널에서 명령 실행 → 보고서에 적기
 
-<b style="color:#1e88e5">적는 곳</b> — `day03_dns_analysis.md` 의 `## 실습 기록` 에 `- 4-4: …` 한 줄
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day03_dns_analysis.md` 의 `## 실습 기록` 에 `- 4-4: …` 한 줄
 
 터미널에서 캐시를 보고 · 비우고 · 다시 채워 보시오.
 
@@ -929,7 +929,7 @@ ipconfig //displaydns
 
 | | |
 |---|---|
-| 🎯 <b style="color:#43a047">나와야 하는 결과</b> | 처음 `TTL(Time To Live) . : ○○○` · 비운 뒤 `DNS 확인자 캐시를 플러시했습니다.` 와 `Windows IP 구성` 한 줄뿐 · 다시 `ping` 한 뒤 `example.com` 항목이 돌아온다 |
+| 🎯 나와야 하는 결과 | 처음 `TTL(Time To Live) . : ○○○` · 비운 뒤 `DNS 확인자 캐시를 플러시했습니다.` 와 `Windows IP 구성` 한 줄뿐 · 다시 `ping` 한 뒤 `example.com` 항목이 돌아온다 |
 
 **💡 힌트**
 
@@ -964,7 +964,7 @@ ipconfig //displaydns
 
 ### ✍️ 문제 4-5 · 캐시 흉내 내기 (`dns_cache.py`)
 
-<b style="color:#1e88e5">어디서</b> — VS Code 에서 `dns_cache.py` 만들기 → 터미널에서 `python dns_cache.py` 실행
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — VS Code 에서 `dns_cache.py` 만들기 → 터미널에서 `python dns_cache.py` 실행
 
 TTL 이 지나기 전에는 **저장해 둔 답**을, 지나면 **새로 물은 답**을 쓰는 캐시를 완성하시오.
 
@@ -1002,7 +1002,7 @@ python dns_cache.py
 
 | | |
 |---|---|
-| 🎯 <b style="color:#43a047">나와야 하는 결과</b> | `0 초: 새로 물음 104.20.23.154` · `100 초: 캐시 104.20.23.154` · `299 초: 캐시 …` · `300 초: 새로 물음 …` · `450 초: 캐시 …` |
+| 🎯 나와야 하는 결과 | `0 초: 새로 물음 104.20.23.154` · `100 초: 캐시 104.20.23.154` · `299 초: 캐시 …` · `300 초: 새로 물음 …` · `450 초: 캐시 …` |
 
 **💡 힌트**
 
@@ -1030,7 +1030,7 @@ python dns_cache.py
 
 ### ⭐ 도전 4-6 · CNAME 을 끝까지 따라가기 (`cname_chain.py`, 선택)
 
-<b style="color:#1e88e5">어디서</b> — VS Code 에서 `cname_chain.py` 만들기 → 터미널에서 `python cname_chain.py` 실행
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — VS Code 에서 `cname_chain.py` 만들기 → 터미널에서 `python cname_chain.py` 실행
 
 레코드 사전에서 이름 하나를 받아 **CNAME 을 따라가 마지막 A 레코드의 IP** 까지 찾고, 거쳐 간 이름을 모두 출력하시오.
 
@@ -1065,7 +1065,7 @@ python cname_chain.py
 
 | | |
 |---|---|
-| 🎯 <b style="color:#43a047">나와야 하는 결과</b> | `www.shop.test → shop.cdn.test → edge7.cdn.test` · `IP: 192.0.2.77` |
+| 🎯 나와야 하는 결과 | `www.shop.test → shop.cdn.test → edge7.cdn.test` · `IP: 192.0.2.77` |
 
 **💡 힌트**
 

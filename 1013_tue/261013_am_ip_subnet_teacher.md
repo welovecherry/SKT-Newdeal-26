@@ -66,7 +66,7 @@
 (**[찾아 쓰기]** 칸을 내 말로 — 예: `- TTL: …`)
 
 ```
-⚠ <b style="color:#e53935">오늘 적는 것은 모두 이 파일(`day02_subnet_design.md`) 하나에</b> 적습니다. 문제마다 「<b style="color:#e53935">적는 곳</b>」 줄이 이 파일의 어느 절인지 알려 줍니다. 오후에 더하는 절은 늘 `## 실습 기록` <b style="color:#e53935">위에</b> 붙입니다.
+⚠ <mark style="background:#ffcdd2; color:#1a1a1a; padding:0 4px; border-radius:3px">오늘 적는 것은 모두 이 파일(`day02_subnet_design.md`) 하나에</mark> 적습니다. 문제마다 「<mark style="background:#ffcdd2; color:#1a1a1a; padding:0 4px; border-radius:3px">적는 곳</mark>」 줄이 이 파일의 어느 절인지 알려 줍니다. 오후에 더하는 절은 늘 `## 실습 기록` <mark style="background:#ffcdd2; color:#1a1a1a; padding:0 4px; border-radius:3px">위에</mark> 붙입니다.
 
 
 ---
@@ -141,7 +141,7 @@ PAT 공유기는 「바깥 포트 40002번 = 안의 `192.168.10.25:51234`」 같
 
 ### ✍️ 문제 2-1 · 무엇이 보일까요
 
-<b style="color:#1e88e5">어디서</b> — 실행하지 않고 머리로 예상합니다
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — 실행하지 않고 머리로 예상합니다
 
 아래 코드를 실행하면 무엇이 보일지 적어 보세요.
 
@@ -169,7 +169,7 @@ print(len(format(192, "08b") + format(10, "08b")))
 
 ### ✍️ 문제 2-2 · 내 IP 를 32칸으로 펼치기 (`ip_bits.py`)
 
-<b style="color:#1e88e5">어디서</b> — VS Code 에서 `ip_bits.py` 만들기 → 터미널에서 `python ip_bits.py` 실행
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — VS Code 에서 `ip_bits.py` 만들기 → 터미널에서 `python ip_bits.py` 실행
 
 IP 주소를 0과 1 서른두 칸으로 펼치는 함수 `to_bits` 를 완성하시오. 마지막 줄의 주소는 **어제 적은 내 IPv4 주소**로 바꿔 한 번 더 실행합니다.
 
@@ -203,7 +203,7 @@ python ip_bits.py
 
 | | |
 |---|---|
-| 🎯 <b style="color:#43a047">나와야 하는 결과</b> | `11000000101010000000101000011001` 과 `길이: 32` |
+| 🎯 나와야 하는 결과 | `11000000101010000000101000011001` 과 `길이: 32` |
 
 **💡 힌트**
 
@@ -231,7 +231,7 @@ python ip_bits.py
 
 ### ✍️ 문제 2-3 · 사설 IP 판별기 (`private_ip.py`)
 
-<b style="color:#1e88e5">어디서</b> — VS Code 에서 `private_ip.py` 만들기 → 터미널에서 `python private_ip.py` 실행
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — VS Code 에서 `private_ip.py` 만들기 → 터미널에서 `python private_ip.py` 실행
 
 주소가 사설 IP 인지 판별하는 `is_private` 를 완성하시오. **172 의 함정**에 걸리지 않아야 합니다.
 
@@ -307,7 +307,7 @@ python private_ip.py
 
 | | |
 |---|---|
-| 🎯 <b style="color:#43a047">나와야 하는 결과</b> | `[사설] 10.0.0.8` · `[사설] 172.20.5.6` · `[공인] 172.32.5.6` · `[사설] 192.168.10.25` · `[공인] 8.8.8.8` · `[공인] 203.0.113.7` |
+| 🎯 나와야 하는 결과 | `[사설] 10.0.0.8` · `[사설] 172.20.5.6` · `[공인] 172.32.5.6` · `[사설] 192.168.10.25` · `[공인] 8.8.8.8` · `[공인] 203.0.113.7` |
 
 **💡 힌트**
 
@@ -335,9 +335,9 @@ python private_ip.py
 
 ### ✍️ 문제 2-4 · 인터넷이 보는 내 주소
 
-<b style="color:#1e88e5">어디서</b> — 터미널에서 명령 실행 → 보고서에 적기
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — 터미널에서 명령 실행 → 보고서에 적기
 
-<b style="color:#1e88e5">적는 곳</b> — `day02_subnet_design.md` 의 **1절**
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day02_subnet_design.md` 의 **1절**
 
 터미널에 아래를 입력해 **인터넷이 보는 내 주소**(공인 IP)를 확인하고, 어제 적은 내 IPv4 주소와 비교해 보고서 1절에 적으시오.
 
@@ -347,7 +347,7 @@ curl https://api.ipify.org
 
 | | |
 |---|---|
-| 🎯 <b style="color:#43a047">나와야 하는 결과</b> | `211.○○○.○○○.○○` 같은 주소 한 줄 — `ipconfig` 의 `192.168.…` 과 **다르다.** 옆 사람과는 **같을** 수 있다 (값은 장소마다 다릅니다) |
+| 🎯 나와야 하는 결과 | `211.○○○.○○○.○○` 같은 주소 한 줄 — `ipconfig` 의 `192.168.…` 과 **다르다.** 옆 사람과는 **같을** 수 있다 (값은 장소마다 다릅니다) |
 
 **💡 힌트**
 
@@ -379,7 +379,7 @@ curl https://api.ipify.org
 
 ### ✍️ 문제 2-5 · 공유기의 변환표 따라가기 (`nat_table.py`)
 
-<b style="color:#1e88e5">어디서</b> — VS Code 에서 `nat_table.py` 만들기 → 터미널에서 `python nat_table.py` 실행
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — VS Code 에서 `nat_table.py` 만들기 → 터미널에서 `python nat_table.py` 실행
 
 PAT 변환표에서 **바깥 포트 40002번으로 돌아온 답**이 안의 어느 PC 로 가는지 찾으시오.
 
@@ -414,7 +414,7 @@ python nat_table.py
 
 | | |
 |---|---|
-| 🎯 <b style="color:#43a047">나와야 하는 결과</b> | `밖: 203.0.113.7:40002` · `안: 192.168.10.25:51234` |
+| 🎯 나와야 하는 결과 | `밖: 203.0.113.7:40002` · `안: 192.168.10.25:51234` |
 
 **💡 힌트**
 
@@ -442,7 +442,7 @@ python nat_table.py
 
 ### ⭐ 도전 2-6 · 바깥에서 온 실패만 골라내기 (`outside_fail.py`, 선택)
 
-<b style="color:#1e88e5">어디서</b> — VS Code 에서 `outside_fail.py` 만들기 → 터미널에서 `python outside_fail.py` 실행
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — VS Code 에서 `outside_fail.py` 만들기 → 터미널에서 `python outside_fail.py` 실행
 
 로그 다섯 줄에서 **공인 IP 에서 온 로그인 실패**만 골라 출력하시오. 2-3 의 `is_private` 를 그대로 붙여 넣어 씁니다.
 
@@ -489,7 +489,7 @@ python outside_fail.py
 
 | | |
 |---|---|
-| 🎯 <b style="color:#43a047">나와야 하는 결과</b> | `[바깥 실패] 09:02 FAIL admin from 203.0.113.50` · `[바깥 실패] 09:07 FAIL root from 198.51.100.9` |
+| 🎯 나와야 하는 결과 | `[바깥 실패] 09:02 FAIL admin from 203.0.113.50` · `[바깥 실패] 09:07 FAIL root from 198.51.100.9` |
 
 **💡 힌트**
 
@@ -575,7 +575,7 @@ print(net.network_address, net.broadcast_address, net.num_addresses)
 
 ### ✍️ 문제 3-1 · 무엇이 보일까요
 
-<b style="color:#1e88e5">어디서</b> — 실행하지 않고 머리로 예상합니다
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — 실행하지 않고 머리로 예상합니다
 
 아래 코드를 실행하면 무엇이 보일지 적어 보세요.
 
@@ -601,15 +601,15 @@ print(mask.count("0"))
 
 ### ✍️ 문제 3-2 · 내 서브넷 마스크를 CIDR 로
 
-<b style="color:#1e88e5">어디서</b> — 터미널에서 명령 실행 → 보고서에 적기
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — 터미널에서 명령 실행 → 보고서에 적기
 
-<b style="color:#1e88e5">적는 곳</b> — `day02_subnet_design.md` 의 **1절**
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day02_subnet_design.md` 의 **1절**
 
 `ipconfig` 로 내 **서브넷 마스크**를 찾고, 3.1 표를 보고 **CIDR** 로 바꿔 보고서 1절에 적으시오.
 
 | | |
 |---|---|
-| 🎯 <b style="color:#43a047">나와야 하는 결과</b> | 예: `255.255.255.0` → `/24`. 학원망은 다를 수 있습니다 |
+| 🎯 나와야 하는 결과 | 예: `255.255.255.0` → `/24`. 학원망은 다를 수 있습니다 |
 
 **💡 힌트**
 
@@ -635,7 +635,7 @@ print(mask.count("0"))
 
 ### ✍️ 문제 3-3 · CIDR 이 커질 때 주소 수 (`cidr_table.py`)
 
-<b style="color:#1e88e5">어디서</b> — VS Code 에서 `cidr_table.py` 만들기 → 터미널에서 `python cidr_table.py` 실행
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — VS Code 에서 `cidr_table.py` 만들기 → 터미널에서 `python cidr_table.py` 실행
 
 `/24` 부터 `/28` 까지 마스크와 주소 수를 출력하시오.
 
@@ -664,7 +664,7 @@ python cidr_table.py
 
 | | |
 |---|---|
-| 🎯 <b style="color:#43a047">나와야 하는 결과</b> | `24 255.255.255.0 256` · `25 255.255.255.128 128` · `26 255.255.255.192 64` · `27 255.255.255.224 32` · `28 255.255.255.240 16` |
+| 🎯 나와야 하는 결과 | `24 255.255.255.0 256` · `25 255.255.255.128 128` · `26 255.255.255.192 64` · `27 255.255.255.224 32` · `28 255.255.255.240 16` |
 
 **💡 힌트**
 
@@ -692,9 +692,9 @@ python cidr_table.py
 
 ### ✍️ 문제 3-4 · 내 PC 가 속한 망 계산 (`my_network.py`)
 
-<b style="color:#1e88e5">어디서</b> — VS Code 에서 `my_network.py` 만들기 → 터미널에서 `python my_network.py` 실행 → 보고서에 적기
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — VS Code 에서 `my_network.py` 만들기 → 터미널에서 `python my_network.py` 실행 → 보고서에 적기
 
-<b style="color:#1e88e5">적는 곳</b> — `day02_subnet_design.md` 의 **1절**
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day02_subnet_design.md` 의 **1절**
 
 **내 IPv4 주소와 CIDR** 로 네트워크 주소 · 브로드캐스트 주소 · 쓸 수 있는 주소 수를 계산해 보고서 1절에 적으시오.
 
@@ -727,7 +727,7 @@ python my_network.py
 
 | | |
 |---|---|
-| 🎯 <b style="color:#43a047">나와야 하는 결과</b> | 예시 값이면 `네트워크 주소: 192.168.10.0` · `브로드캐스트 주소: 192.168.10.255` · `사용 가능 주소 수: 254` |
+| 🎯 나와야 하는 결과 | 예시 값이면 `네트워크 주소: 192.168.10.0` · `브로드캐스트 주소: 192.168.10.255` · `사용 가능 주소 수: 254` |
 
 **💡 힌트**
 
@@ -755,7 +755,7 @@ python my_network.py
 
 ### ✍️ 문제 3-5 · 같은 망일까 (`same_network.py`)
 
-<b style="color:#1e88e5">어디서</b> — VS Code 에서 `same_network.py` 만들기 → 터미널에서 `python same_network.py` 실행
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — VS Code 에서 `same_network.py` 만들기 → 터미널에서 `python same_network.py` 실행
 
 `/26` 일 때 `.70` · `.120` · `.130` 세 주소 가운데 **같은 망끼리** 고르시오.
 
@@ -788,7 +788,7 @@ python same_network.py
 
 | | |
 |---|---|
-| 🎯 <b style="color:#43a047">나와야 하는 결과</b> | `192.168.10.64/26 192.168.10.64/26 192.168.10.128/26` · `70과 120: True` · `70과 130: False` |
+| 🎯 나와야 하는 결과 | `192.168.10.64/26 192.168.10.64/26 192.168.10.128/26` · `70과 120: True` · `70과 130: False` |
 
 **💡 힌트**
 
@@ -816,7 +816,7 @@ python same_network.py
 
 ### ⭐ 도전 3-6 · 내 게이트웨이는 내 망 안에 있나 (`gateway_check.py`, 선택)
 
-<b style="color:#1e88e5">어디서</b> — VS Code 에서 `gateway_check.py` 만들기 → 터미널에서 `python gateway_check.py` 실행
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — VS Code 에서 `gateway_check.py` 만들기 → 터미널에서 `python gateway_check.py` 실행
 
 내 IPv4 · CIDR · 기본 게이트웨이로, 게이트웨이가 **내 망 안에** 있는지 확인하시오.
 
@@ -871,7 +871,7 @@ python gateway_check.py
 
 | | |
 |---|---|
-| 🎯 <b style="color:#43a047">나와야 하는 결과</b> | `게이트웨이 192.168.10.1 이 내 망 안에 있나: True` |
+| 🎯 나와야 하는 결과 | `게이트웨이 192.168.10.1 이 내 망 안에 있나: True` |
 
 **💡 힌트**
 
@@ -969,7 +969,7 @@ print(a.overlaps(b))
 
 ### ✍️ 문제 4-1 · 무엇이 보일까요
 
-<b style="color:#1e88e5">어디서</b> — 실행하지 않고 머리로 예상합니다
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — 실행하지 않고 머리로 예상합니다
 
 아래 코드를 실행하면 무엇이 보일지 적어 보세요.
 
@@ -996,7 +996,7 @@ for sub in parent.subnets(new_prefix=26):
 
 ### ✍️ 문제 4-2 · 장비 수에 맞는 가장 작은 CIDR (`smallest_prefix.py`)
 
-<b style="color:#1e88e5">어디서</b> — VS Code 에서 `smallest_prefix.py` 만들기 → 터미널에서 `python smallest_prefix.py` 실행
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — VS Code 에서 `smallest_prefix.py` 만들기 → 터미널에서 `python smallest_prefix.py` 실행
 
 장비 수를 받아 **그만큼 담는 가장 작은 망의 CIDR 숫자**를 돌려주는 함수를 완성하시오.
 
@@ -1027,7 +1027,7 @@ python smallest_prefix.py
 
 | | |
 |---|---|
-| 🎯 <b style="color:#43a047">나와야 하는 결과</b> | `보안팀 10 /28` · `운영팀 25 /27` · `개발팀 50 /26` |
+| 🎯 나와야 하는 결과 | `보안팀 10 /28` · `운영팀 25 /27` · `개발팀 50 /26` |
 
 **💡 힌트**
 
@@ -1055,7 +1055,7 @@ python smallest_prefix.py
 
 ### ✍️ 문제 4-3 · 같은 크기로 나누기 — FLSM (`flsm.py`)
 
-<b style="color:#1e88e5">어디서</b> — VS Code 에서 `flsm.py` 만들기 → 터미널에서 `python flsm.py` 실행
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — VS Code 에서 `flsm.py` 만들기 → 터미널에서 `python flsm.py` 실행
 
 `192.168.50.0/24` 를 `/26` 네 개로 나눠, 망마다 **쓸 수 있는 수**를 출력하시오.
 
@@ -1083,7 +1083,7 @@ python flsm.py
 
 | | |
 |---|---|
-| 🎯 <b style="color:#43a047">나와야 하는 결과</b> | `192.168.50.0/26 사용 가능 62` 부터 `192.168.50.192/26 사용 가능 62` 까지 네 줄 |
+| 🎯 나와야 하는 결과 | `192.168.50.0/26 사용 가능 62` 부터 `192.168.50.192/26 사용 가능 62` 까지 네 줄 |
 
 **💡 힌트**
 
@@ -1111,7 +1111,7 @@ python flsm.py
 
 ### ✍️ 문제 4-4 · 주소가 어느 블록에 들어가나 (`which_block.py`)
 
-<b style="color:#1e88e5">어디서</b> — VS Code 에서 `which_block.py` 만들기 → 터미널에서 `python which_block.py` 실행
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — VS Code 에서 `which_block.py` 만들기 → 터미널에서 `python which_block.py` 실행
 
 주소 네 개가 `/27` 일 때 각각 **어느 망**에 속하는지 출력하시오.
 
@@ -1141,7 +1141,7 @@ python which_block.py
 
 | | |
 |---|---|
-| 🎯 <b style="color:#43a047">나와야 하는 결과</b> | `192.168.50.20 -> 192.168.50.0/27` · `192.168.50.70 -> 192.168.50.64/27` · `192.168.50.90 -> 192.168.50.64/27` · `192.168.50.130 -> 192.168.50.128/27` |
+| 🎯 나와야 하는 결과 | `192.168.50.20 -> 192.168.50.0/27` · `192.168.50.70 -> 192.168.50.64/27` · `192.168.50.90 -> 192.168.50.64/27` · `192.168.50.130 -> 192.168.50.128/27` |
 
 **💡 힌트**
 
@@ -1169,7 +1169,7 @@ python which_block.py
 
 ### ✍️ 문제 4-5 · 설계 검증 — 용량과 겹침 (`plan_check.py`)
 
-<b style="color:#1e88e5">어디서</b> — VS Code 에서 `plan_check.py` 만들기 → 터미널에서 `python plan_check.py` 실행
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — VS Code 에서 `plan_check.py` 만들기 → 터미널에서 `python plan_check.py` 실행
 
 VLSM 설계표가 **부서마다 충분한지**, **서로 겹치지 않는지** 검증하시오.
 
@@ -1210,7 +1210,7 @@ python plan_check.py
 
 | | |
 |---|---|
-| 🎯 <b style="color:#43a047">나와야 하는 결과</b> | `개발팀 192.168.50.0/26 충분: True` · `운영팀 … 충분: True` · `보안팀 … 충분: True` · `겹침 있음: False` |
+| 🎯 나와야 하는 결과 | `개발팀 192.168.50.0/26 충분: True` · `운영팀 … 충분: True` · `보안팀 … 충분: True` · `겹침 있음: False` |
 
 **💡 힌트**
 
@@ -1238,9 +1238,9 @@ python plan_check.py
 
 ### ⭐ 도전 4-6 · 설계표를 보고서 표로 (`design_table.py`, 선택)
 
-<b style="color:#1e88e5">어디서</b> — VS Code 에서 `design_table.py` 만들기 → 터미널에서 `python design_table.py` 실행 → 보고서에 적기
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — VS Code 에서 `design_table.py` 만들기 → 터미널에서 `python design_table.py` 실행 → 보고서에 적기
 
-<b style="color:#1e88e5">적는 곳</b> — `day02_subnet_design.md` 의 **2절**
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day02_subnet_design.md` 의 **2절**
 
 `10.20.0.0/24` 를 받은 회사의 세 부서 배정을 **마크다운 표**로 출력해 보고서 2절에 붙이시오. 첫 호스트 · 마지막 호스트도 적습니다.
 
@@ -1277,7 +1277,7 @@ python design_table.py
 
 | | |
 |---|---|
-| 🎯 <b style="color:#43a047">나와야 하는 결과</b> | `\| 개발팀 \| 10.20.0.0/26 \| 10.20.0.1 \| 10.20.0.62 \| 62 \| 50 \|` · `\| 운영팀 \| 10.20.0.64/27 \| 10.20.0.65 \| 10.20.0.94 \| 30 \| 25 \|` · `\| 보안팀 \| 10.20.0.96/28 \| 10.20.0.97 \| 10.20.0.110 \| 14 \| 10 \|` |
+| 🎯 나와야 하는 결과 | `\| 개발팀 \| 10.20.0.0/26 \| 10.20.0.1 \| 10.20.0.62 \| 62 \| 50 \|` · `\| 운영팀 \| 10.20.0.64/27 \| 10.20.0.65 \| 10.20.0.94 \| 30 \| 25 \|` · `\| 보안팀 \| 10.20.0.96/28 \| 10.20.0.97 \| 10.20.0.110 \| 14 \| 10 \|` |
 
 **💡 힌트**
 

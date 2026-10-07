@@ -94,13 +94,13 @@ print("a" in "aeiou", "x" in "aeiou")
 | `ch in "0123456789"` | 그 한 자가 숫자 중 하나인가 |
 | `ch in "aeiou"` | 그 한 자가 모음인가 |
 
-⚠ `"kxq3vz9a" in "0123456789"` 처럼 글자 <b style="color:#e53935">전체</b>로 물으면 늘 `False` 입니다. 한 자씩 꺼내서 묻습니다.
+⚠ `"kxq3vz9a" in "0123456789"` 처럼 글자 <mark style="background:#ffcdd2; color:#1a1a1a; padding:0 4px; border-radius:3px">전체</mark>로 물으면 늘 `False` 입니다. 한 자씩 꺼내서 묻습니다.
 
 ---
 
 ### ✍️ 문제 5-1 · 무엇이 보일까요
 
-<b style="color:#1e88e5">어디서</b> — 실행하지 않고 머리로 예상합니다 → 바로 아래 「답 보기」를 펼쳐 맞춰 봅니다
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — 실행하지 않고 머리로 예상합니다 → 바로 아래 「답 보기」를 펼쳐 맞춰 봅니다
 
 아래 코드를 실행하면 무엇이 보일지 적어 보세요.
 
@@ -131,7 +131,7 @@ print(label, len(label), vowels)
 
 ### ✍️ 문제 5-2 · 볼 조각 꺼내기 (`label.py`)
 
-<b style="color:#1e88e5">어디서</b> — VS Code 에서 `label.py` 만들기 → 터미널에서 `python label.py` 실행
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — VS Code 에서 `label.py` 만들기 → 터미널에서 `python label.py` 실행
 
 이름마다 **TLD 바로 앞 조각**과 **TLD** 를 꺼내 출력하시오.
 
@@ -161,7 +161,7 @@ python label.py
 
 | | |
 |---|---|
-| 🎯 <b style="color:#43a047">나와야 하는 결과</b> | `www.naver.com … 조각: naver … TLD: com` · `e6030.a.akamaiedge.net … 조각: akamaiedge … TLD: net` · `kxq3vz9a.top … 조각: kxq3vz9a … TLD: top` · `bnk-secure-login.xyz … 조각: bnk-secure-login … TLD: xyz` |
+| 🎯 나와야 하는 결과 | `www.naver.com … 조각: naver … TLD: com` · `e6030.a.akamaiedge.net … 조각: akamaiedge … TLD: net` · `kxq3vz9a.top … 조각: kxq3vz9a … TLD: top` · `bnk-secure-login.xyz … 조각: bnk-secure-login … TLD: xyz` |
 
 **💡 힌트**
 
@@ -173,7 +173,7 @@ python label.py
 
 ### ✍️ 문제 5-3 · 숫자 수와 모음 비율 (`features.py`)
 
-<b style="color:#1e88e5">어디서</b> — VS Code 에서 `features.py` 만들기 → 터미널에서 `python features.py` 실행
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — VS Code 에서 `features.py` 만들기 → 터미널에서 `python features.py` 실행
 
 TLD 앞 조각의 **숫자 개수**와 **모음 비율**(모음 수 ÷ 길이)을 계산하는 함수를 완성하시오.
 
@@ -210,7 +210,7 @@ python features.py
 
 | | |
 |---|---|
-| 🎯 <b style="color:#43a047">나와야 하는 결과</b> | `{'label': 'naver', 'len': 5, 'digits': 0, 'vowel_ratio': 0.4}` · `{'label': 'kxq3vz9a', 'len': 8, 'digits': 2, 'vowel_ratio': 0.12}` · `{'label': 'xn--3e0b707e', 'len': 12, 'digits': 5, 'vowel_ratio': 0.17}` |
+| 🎯 나와야 하는 결과 | `{'label': 'naver', 'len': 5, 'digits': 0, 'vowel_ratio': 0.4}` · `{'label': 'kxq3vz9a', 'len': 8, 'digits': 2, 'vowel_ratio': 0.12}` · `{'label': 'xn--3e0b707e', 'len': 12, 'digits': 5, 'vowel_ratio': 0.17}` |
 
 **💡 힌트**
 
@@ -222,7 +222,7 @@ python features.py
 
 ### ✍️ 문제 5-4 · 사칭 도메인 찾기 (`typosquat.py`)
 
-<b style="color:#1e88e5">어디서</b> — VS Code 에서 `typosquat.py` 만들기 → 터미널에서 `python typosquat.py` 실행
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — VS Code 에서 `typosquat.py` 만들기 → 터미널에서 `python typosquat.py` 실행
 
 `0` → `o`, `1` → `l`, `3` → `e` 로 바꿨을 때 **믿을 만한 도메인과 똑같아지면** 사칭으로 판정하시오.
 
@@ -257,7 +257,7 @@ python typosquat.py
 
 | | |
 |---|---|
-| 🎯 <b style="color:#43a047">나와야 하는 결과</b> | `[사칭 의심] nav3r.com → naver.com 흉내` · `[정상] google.com` · `[사칭 의심] g00gle.com → google.com 흉내` · `[정상] kbstar.com` · `[모름] kb5tar.com` |
+| 🎯 나와야 하는 결과 | `[사칭 의심] nav3r.com → naver.com 흉내` · `[정상] google.com` · `[사칭 의심] g00gle.com → google.com 흉내` · `[정상] kbstar.com` · `[모름] kb5tar.com` |
 
 **💡 힌트**
 
@@ -269,7 +269,7 @@ python typosquat.py
 
 ### ✍️ 문제 5-5 · NXDOMAIN 이 쏟아지는 PC 찾기 (`nx_count.py`)
 
-<b style="color:#1e88e5">어디서</b> — VS Code 에서 `nx_count.py` 만들기 → 터미널에서 `python nx_count.py` 실행
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — VS Code 에서 `nx_count.py` 만들기 → 터미널에서 `python nx_count.py` 실행
 
 DNS 로그에서 PC 마다 **NXDOMAIN 이 몇 번인지** 세고, **3번 이상**인 PC 를 출력하시오.
 
@@ -310,7 +310,7 @@ python nx_count.py
 
 | | |
 |---|---|
-| 🎯 <b style="color:#43a047">나와야 하는 결과</b> | `[확인 필요] 10.20.0.42 NXDOMAIN 3번` 한 줄 — `10.20.0.33` 은 1번이라 오타로 본다 |
+| 🎯 나와야 하는 결과 | `[확인 필요] 10.20.0.42 NXDOMAIN 3번` 한 줄 — `10.20.0.33` 은 1번이라 오타로 본다 |
 
 **💡 힌트**
 
@@ -322,7 +322,7 @@ python nx_count.py
 
 ### ⭐ 도전 5-6 · 너무 긴 하위 이름 찾기 (`long_label.py`, 선택)
 
-<b style="color:#1e88e5">어디서</b> — VS Code 에서 `long_label.py` 만들기 → 터미널에서 `python long_label.py` 실행
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — VS Code 에서 `long_label.py` 만들기 → 터미널에서 `python long_label.py` 실행
 
 DNS 질의에 데이터를 몰래 실어 보내는 **DNS 터널링**은 맨 앞 조각이 비정상적으로 깁니다. 맨 앞 조각이 **30글자 이상**인 이름을 찾으시오.
 
@@ -350,7 +350,7 @@ python long_label.py
 
 | | |
 |---|---|
-| 🎯 <b style="color:#43a047">나와야 하는 결과</b> | `[터널링 의심] 길이 35 : aGVsbG8…` · `[터널링 의심] 길이 40 : c2VjcmV0…` 두 줄 |
+| 🎯 나와야 하는 결과 | `[터널링 의심] 길이 35 : aGVsbG8…` · `[터널링 의심] 길이 40 : c2VjcmV0…` 두 줄 |
 
 **💡 힌트**
 
@@ -431,7 +431,7 @@ from dga_score import score      # 위 파일의 함수를 꺼내 쓴다 — 시
 
 ### ✍️ 문제 6-1 · 무엇이 보일까요
 
-<b style="color:#1e88e5">어디서</b> — 실행하지 않고 머리로 예상합니다 → 바로 아래 「답 보기」를 펼쳐 맞춰 봅니다
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — 실행하지 않고 머리로 예상합니다 → 바로 아래 「답 보기」를 펼쳐 맞춰 봅니다
 
 아래 코드를 실행하면 무엇이 보일지 적어 보세요.
 
@@ -465,7 +465,7 @@ print(score, score >= 3)
 
 ### ✍️ 문제 6-2 · 점수 함수 만들기 (`dga_score.py`)
 
-<b style="color:#1e88e5">어디서</b> — VS Code 에서 `dga_score.py` 만들기 → 터미널에서 `python dga_score.py` 실행
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — VS Code 에서 `dga_score.py` 만들기 → 터미널에서 `python dga_score.py` 실행
 
 6.1 의 규칙대로 점수와 **걸린 규칙 이름**을 돌려주는 함수를 완성하시오. 비어 있는 두 규칙만 채웁니다.
 
@@ -521,7 +521,7 @@ python dga_score.py
 
 | | |
 |---|---|
-| 🎯 <b style="color:#43a047">나와야 하는 결과</b> | `{'points': 0, 'why': []}` · `{'points': 5, 'why': ['숫자', '모음', 'TLD', 'NXDOMAIN']}` |
+| 🎯 나와야 하는 결과 | `{'points': 0, 'why': []}` · `{'points': 5, 'why': ['숫자', '모음', 'TLD', 'NXDOMAIN']}` |
 
 **💡 힌트**
 
@@ -533,7 +533,7 @@ python dga_score.py
 
 ### ✍️ 문제 6-3 · 로그 12건 판정하기 (`judge.py`)
 
-<b style="color:#1e88e5">어디서</b> — VS Code 에서 `judge.py` 만들기 → 터미널에서 `python judge.py` 실행
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — VS Code 에서 `judge.py` 만들기 → 터미널에서 `python judge.py` 실행
 
 6-2 의 `score` 를 불러와 로그 12건을 **문턱값 3** 으로 판정하시오.
 
@@ -573,7 +573,7 @@ python judge.py
 
 | | |
 |---|---|
-| 🎯 <b style="color:#43a047">나와야 하는 결과</b> | 열두 줄. `xn--3e0b707e.kr 3점 의심 (실제 정상)` 과 `qwrtpzkx7v.com 2점 정상 (실제 의심)` · `bnk-secure-login.xyz 2점 정상 (실제 의심)` 이 **틀린 줄**이다 |
+| 🎯 나와야 하는 결과 | 열두 줄. `xn--3e0b707e.kr 3점 의심 (실제 정상)` 과 `qwrtpzkx7v.com 2점 정상 (실제 의심)` · `bnk-secure-login.xyz 2점 정상 (실제 의심)` 이 **틀린 줄**이다 |
 
 **💡 힌트**
 
@@ -585,7 +585,7 @@ python judge.py
 
 ### ✍️ 문제 6-4 · 맞힘 · 오탐 · 미탐 세기 (`evaluate.py`)
 
-<b style="color:#1e88e5">어디서</b> — VS Code 에서 `evaluate.py` 만들기 → 터미널에서 `python evaluate.py` 실행
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — VS Code 에서 `evaluate.py` 만들기 → 터미널에서 `python evaluate.py` 실행
 
 6-3 의 판정을 **정답지(실제)와 비교해** 맞힘 · 오탐 · 미탐 수를 세시오.
 
@@ -636,7 +636,7 @@ python evaluate.py
 
 | | |
 |---|---|
-| 🎯 <b style="color:#43a047">나와야 하는 결과</b> | `맞힘 3 · 오탐 1 · 미탐 2` |
+| 🎯 나와야 하는 결과 | `맞힘 3 · 오탐 1 · 미탐 2` |
 
 **💡 힌트**
 
@@ -648,7 +648,7 @@ python evaluate.py
 
 ### ✍️ 문제 6-5 · 예외 목록으로 오탐 줄이기 (`dga_score.py` 고치기)
 
-<b style="color:#1e88e5">어디서</b> — VS Code 에서 앞 문제의 `dga_score.py` 열어 고치기 → 터미널에서 `python dga_score.py` 실행
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — VS Code 에서 앞 문제의 `dga_score.py` 열어 고치기 → 터미널에서 `python dga_score.py` 실행
 
 오탐 `xn--3e0b707e.kr` 은 **한글 도메인**을 영문으로 바꾼 모양(퓨니코드 · Punycode)이라 무작위처럼 보입니다. `dga_score.py` 의 `score` 맨 앞에 **`xn--` 로 시작하는 조각은 0점**으로 돌려보내는 줄을 넣고, 6-4 를 다시 실행하시오.
 
@@ -666,7 +666,7 @@ python dga_score.py
 
 | | |
 |---|---|
-| 🎯 <b style="color:#43a047">나와야 하는 결과</b> | 6-4 를 다시 실행하면 `맞힘 3 · 오탐 0 · 미탐 2` |
+| 🎯 나와야 하는 결과 | 6-4 를 다시 실행하면 `맞힘 3 · 오탐 0 · 미탐 2` |
 
 **💡 힌트**
 
@@ -678,7 +678,7 @@ python dga_score.py
 
 ### ⭐ 도전 6-6 · 문턱값을 바꾸면 (`threshold.py`, 선택)
 
-<b style="color:#1e88e5">어디서</b> — VS Code 에서 `threshold.py` 만들기 → 터미널에서 `python threshold.py` 실행
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — VS Code 에서 `threshold.py` 만들기 → 터미널에서 `python threshold.py` 실행
 
 6-5 를 고친 `score` 로 문턱값 **2 · 3 · 4** 마다 맞힘 · 오탐 · 미탐을 세어 표로 출력하시오.
 
@@ -712,7 +712,7 @@ python threshold.py
 
 | | |
 |---|---|
-| 🎯 <b style="color:#43a047">나와야 하는 결과</b> | `\| 2 \| 5 \| 0 \| 0 \|` · `\| 3 \| 3 \| 0 \| 2 \|` · `\| 4 \| 3 \| 0 \| 2 \|` |
+| 🎯 나와야 하는 결과 | `\| 2 \| 5 \| 0 \| 0 \|` · `\| 3 \| 3 \| 0 \| 2 \|` · `\| 4 \| 3 \| 0 \| 2 \|` |
 
 **💡 힌트**
 
@@ -760,7 +760,7 @@ print(", ".join([]) == "")
 
 ### ✍️ 문제 7-1 · 무엇이 보일까요
 
-<b style="color:#1e88e5">어디서</b> — 실행하지 않고 머리로 예상합니다 → 바로 아래 「답 보기」를 펼쳐 맞춰 봅니다
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — 실행하지 않고 머리로 예상합니다 → 바로 아래 「답 보기」를 펼쳐 맞춰 봅니다
 
 아래 코드를 실행하면 무엇이 보일지 적어 보세요.
 
@@ -785,9 +785,9 @@ print(f"| kxq3vz9a.top | {result['points']} | {', '.join(result['why'])} |")
 
 ### ✍️ 문제 7-2 · 판정표 만들기 (`report_table3.py`)
 
-<b style="color:#1e88e5">어디서</b> — VS Code 에서 `report_table3.py` 만들기 → 터미널에서 `python report_table3.py` 실행 → 보고서에 적기
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — VS Code 에서 `report_table3.py` 만들기 → 터미널에서 `python report_table3.py` 실행 → 보고서에 적기
 
-<b style="color:#1e88e5">적는 곳</b> — `day03_dns_analysis.md` 의 **3절**
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day03_dns_analysis.md` 의 **3절**
 
 로그 12건의 **점수 · 판정 · 근거**를 마크다운 표로 출력해 보고서 3절에 붙이시오. 근거가 없으면 `-` 로 적습니다.
 
@@ -830,7 +830,7 @@ python report_table3.py
 
 | | |
 |---|---|
-| 🎯 <b style="color:#43a047">나와야 하는 결과</b> | `\| www.naver.com \| NOERROR \| 0 \| 정상 \| - \|` 로 시작하는 열두 줄 — `xn--3e0b707e.kr` 은 `0 \| 정상 \| 한글 도메인 예외` |
+| 🎯 나와야 하는 결과 | `\| www.naver.com \| NOERROR \| 0 \| 정상 \| - \|` 로 시작하는 열두 줄 — `xn--3e0b707e.kr` 은 `0 \| 정상 \| 한글 도메인 예외` |
 
 **💡 힌트**
 
@@ -842,7 +842,7 @@ python report_table3.py
 
 ### ✍️ 문제 7-3 · 판정을 `nslookup` 으로 확인하기
 
-<b style="color:#1e88e5">어디서</b> — 터미널에서 명령 실행
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — 터미널에서 명령 실행
 
 규칙이 「정상」이라고 한 CDN 이름과, 지어낸 무작위 이름을 각각 물어 **있는 이름인지** 확인하시오.
 
@@ -853,7 +853,7 @@ nslookup qzkx7wp2v.invalid
 
 | | |
 |---|---|
-| 🎯 <b style="color:#43a047">나와야 하는 결과</b> | 첫째는 IP 가 나온다(있는 이름). 둘째는 `Non-existent domain`(없는 이름) (나오는 IP 는 실행할 때마다 다를 수 있습니다) |
+| 🎯 나와야 하는 결과 | 첫째는 IP 가 나온다(있는 이름). 둘째는 `Non-existent domain`(없는 이름) (나오는 IP 는 실행할 때마다 다를 수 있습니다) |
 
 **💡 힌트**
 
@@ -865,9 +865,9 @@ nslookup qzkx7wp2v.invalid
 
 ### ✍️ 문제 7-4 · 판단 기준과 한계 적기
 
-<b style="color:#1e88e5">어디서</b> — 명령 없이 생각해서 → 보고서에 적기
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — 명령 없이 생각해서 → 보고서에 적기
 
-<b style="color:#1e88e5">적는 곳</b> — `day03_dns_analysis.md` 의 **4절**
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day03_dns_analysis.md` 의 **4절**
 
 보고서 4절에 아래 틀을 붙여 채우시오. 코드는 쓰지 않습니다.
 
@@ -894,7 +894,7 @@ nslookup qzkx7wp2v.invalid
 
 | | |
 |---|---|
-| 🎯 <b style="color:#43a047">나와야 하는 결과</b> | 근거 칸이 모두 찼고, 결과 · 한계가 숫자와 함께 적혀 있다 |
+| 🎯 나와야 하는 결과 | 근거 칸이 모두 찼고, 결과 · 한계가 숫자와 함께 적혀 있다 |
 
 **💡 힌트**
 
@@ -906,7 +906,7 @@ nslookup qzkx7wp2v.invalid
 
 ### ✍️ 문제 7-5 · 분석서 완성하고 올리기
 
-<b style="color:#1e88e5">어디서</b> — 보고서 파일 마무리 → 깃허브에 올리기(웹 화면 또는 `git push`)
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — 보고서 파일 마무리 → 깃허브에 올리기(웹 화면 또는 `git push`)
 
 `day03_dns_analysis.md` 에 아래 3절을 4절 **앞에** 넣고 채운 뒤 깃허브에 올리시오.
 
@@ -921,7 +921,7 @@ nslookup qzkx7wp2v.invalid
 
 | | |
 |---|---|
-| 🎯 <b style="color:#43a047">나와야 하는 결과</b> | 깃허브의 `network_zt/day03_dns_analysis.md` 에 1~5절이 모두 보인다 |
+| 🎯 나와야 하는 결과 | 깃허브의 `network_zt/day03_dns_analysis.md` 에 1~5절이 모두 보인다 |
 
 **💡 힌트**
 
@@ -933,15 +933,15 @@ nslookup qzkx7wp2v.invalid
 
 ### ⭐ 도전 7-6 · 내가 고른 이름으로 시험하기 (선택)
 
-<b style="color:#1e88e5">어디서</b> — VS Code 에서 판정 파일의 `LOG` 고치기 → 터미널에서 실행 → 다른 점을 보고서에 적기
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — VS Code 에서 판정 파일의 `LOG` 고치기 → 터미널에서 실행 → 다른 점을 보고서에 적기
 
-<b style="color:#1e88e5">적는 곳</b> — `day03_dns_analysis.md` 의 **5절**
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day03_dns_analysis.md` 의 **5절**
 
 평소 자주 쓰는 사이트 이름 **세 개**와, 내가 지어낸 **무작위 이름 두 개**를 `LOG` 에 더해 판정하고, 결과가 예상과 다르면 왜 그런지 보고서 5절에 한 줄 적으시오.
 
 | | |
 |---|---|
-| 🎯 <b style="color:#43a047">나와야 하는 결과</b> | 다섯 줄이 더해진 판정표와 「예상과 달랐던 것」 한 줄 |
+| 🎯 나와야 하는 결과 | 다섯 줄이 더해진 판정표와 「예상과 달랐던 것」 한 줄 |
 
 **💡 힌트**
 

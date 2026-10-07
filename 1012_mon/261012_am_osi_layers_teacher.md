@@ -36,7 +36,7 @@
 
 ### 0.2 터미널은 지금까지처럼 Git Bash 를 씁니다
 
-⚠ 명령은 <b style="color:#e53935">이 문서에 적힌 그대로</b> 입력합니다. 예를 들어 `ipconfig //all` 처럼 슬래시가 두 번인 것도 그대로 칩니다.
+⚠ 명령은 <mark style="background:#ffcdd2; color:#1a1a1a; padding:0 4px; border-radius:3px">이 문서에 적힌 그대로</mark> 입력합니다. 예를 들어 `ipconfig //all` 처럼 슬래시가 두 번인 것도 그대로 칩니다.
 
 1. VS Code 에서 `security-agent-toolkit` 폴더를 엽니다.
 2. 아래쪽 터미널이 Git Bash 인지 봅니다. 줄 앞에 `$` 가 보이면 됩니다.
@@ -81,7 +81,7 @@ cd network_zt
 (**[찾아 쓰기]** 칸을 내 말로 — 예: `- TTL: …`)
 
 ```
-⚠ <b style="color:#e53935">오늘 적는 것은 모두 이 파일(`day01_packet_analysis.md`) 하나에</b> 적습니다. 문제마다 「<b style="color:#e53935">적는 곳</b>」 줄이 이 파일의 어느 절인지 알려 줍니다. 오후에 더하는 절은 늘 `## 실습 기록` <b style="color:#e53935">위에</b> 붙입니다.
+⚠ <mark style="background:#ffcdd2; color:#1a1a1a; padding:0 4px; border-radius:3px">오늘 적는 것은 모두 이 파일(`day01_packet_analysis.md`) 하나에</mark> 적습니다. 문제마다 「<mark style="background:#ffcdd2; color:#1a1a1a; padding:0 4px; border-radius:3px">적는 곳</mark>」 줄이 이 파일의 어느 절인지 알려 줍니다. 오후에 더하는 절은 늘 `## 실습 기록` <mark style="background:#ffcdd2; color:#1a1a1a; padding:0 4px; border-radius:3px">위에</mark> 붙입니다.
 
 
 ---
@@ -143,7 +143,7 @@ ping -t 8.8.8.8       # 멈출 때까지 계속 보낸다 — Ctrl + C 로 멈�
 
 ### ✍️ 문제 2-1 · 무엇이 보일까요
 
-<b style="color:#1e88e5">어디서</b> — 실행하지 않고 머리로 예상합니다
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — 실행하지 않고 머리로 예상합니다
 
 아래 결과를 보고 **세 가지**를 적어 보세요. 명령은 실행하지 않습니다.
 
@@ -176,15 +176,15 @@ ping -t 8.8.8.8       # 멈출 때까지 계속 보낸다 — Ctrl + C 로 멈�
 
 ### ✍️ 문제 2-2 · 구글 DNS 서버에 `ping` 보내기
 
-<b style="color:#1e88e5">어디서</b> — 터미널에서 명령 실행 → 보고서에 적기
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — 터미널에서 명령 실행 → 보고서에 적기
 
-<b style="color:#1e88e5">적는 곳</b> — `day01_packet_analysis.md` 의 **1절 표**
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day01_packet_analysis.md` 의 **1절 표**
 
 터미널에서 `8.8.8.8` 에 `ping` 을 보내고, **평균 왕복 시간**과 **TTL** 을 보고서 표에 적으시오.
 
 | | |
 |---|---|
-| 🎯 <b style="color:#43a047">나와야 하는 결과</b> | `8.8.8.8의 응답:` 네 줄과 `평균 = ○○ms`. 숫자는 PC 마다 다릅니다 |
+| 🎯 나와야 하는 결과 | `8.8.8.8의 응답:` 네 줄과 `평균 = ○○ms`. 숫자는 PC 마다 다릅니다 |
 
 **💡 힌트**
 
@@ -214,13 +214,13 @@ ping 8.8.8.8
 
 ### ✍️ 문제 2-3 · 이름으로 `ping` 보내기
 
-<b style="color:#1e88e5">어디서</b> — 터미널에서 명령 실행
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — 터미널에서 명령 실행
 
 터미널에서 `google.com` 에 `ping` 을 보내고, 첫 줄에서 **이름 옆 대괄호 `[ ]` 안의 숫자**를 찾으시오.
 
 | | |
 |---|---|
-| 🎯 <b style="color:#43a047">나와야 하는 결과</b> | `Ping google.com [142.250.x.x] 32바이트 데이터 사용:` 꼴의 첫 줄. 대괄호 안이 이름에 해당하는 IP 주소입니다 (IP 는 장소 · 실행할 때마다 다를 수 있습니다) |
+| 🎯 나와야 하는 결과 | `Ping google.com [142.250.x.x] 32바이트 데이터 사용:` 꼴의 첫 줄. 대괄호 안이 이름에 해당하는 IP 주소입니다 (IP 는 장소 · 실행할 때마다 다를 수 있습니다) |
 
 **💡 힌트**
 
@@ -250,9 +250,9 @@ ping google.com
 
 ### ✍️ 문제 2-4 · 두 가지 실패를 구별하기
 
-<b style="color:#1e88e5">어디서</b> — 터미널에서 명령 실행 → 보고서에 적기
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — 터미널에서 명령 실행 → 보고서에 적기
 
-<b style="color:#1e88e5">적는 곳</b> — `day01_packet_analysis.md` 의 `## 실습 기록` 에 `- 2-4: …` 한 줄
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day01_packet_analysis.md` 의 `## 실습 기록` 에 `- 2-4: …` 한 줄
 
 아래 두 명령을 터미널에 차례로 입력하고, **실패 문구가 어떻게 다른지** 한 줄씩 적으시오.
 
@@ -263,7 +263,7 @@ ping 192.0.2.1
 
 | | |
 |---|---|
-| 🎯 <b style="color:#43a047">나와야 하는 결과</b> | 첫째는 `호스트를 찾을 수 없습니다` — **이름을 IP 로 못 바꿨다.** 둘째는 `요청 시간이 만료되었습니다` 네 줄 — **주소는 있는데 답이 안 온다** |
+| 🎯 나와야 하는 결과 | 첫째는 `호스트를 찾을 수 없습니다` — **이름을 IP 로 못 바꿨다.** 둘째는 `요청 시간이 만료되었습니다` 네 줄 — **주소는 있는데 답이 안 온다** |
 
 **💡 힌트**
 
@@ -294,15 +294,15 @@ ping 192.0.2.1
 
 ### ✍️ 문제 2-5 · 열 번 보내서 손실 보기
 
-<b style="color:#1e88e5">어디서</b> — 터미널에서 명령 실행 → 보고서에 적기
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — 터미널에서 명령 실행 → 보고서에 적기
 
-<b style="color:#1e88e5">적는 곳</b> — `day01_packet_analysis.md` 의 `## 실습 기록` 에 `- 2-5: …` 한 줄
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day01_packet_analysis.md` 의 `## 실습 기록` 에 `- 2-5: …` 한 줄
 
 터미널에서 `8.8.8.8` 에 **열 번** `ping` 을 보내고, 받은 개수와 손실 % 를 적으시오.
 
 | | |
 |---|---|
-| 🎯 <b style="color:#43a047">나와야 하는 결과</b> | `패킷: 보냄 = 10, 받음 = 10, 손실 = 0 (0% 손실)` 꼴. 학원망이 붐비면 손실이 생길 수 있습니다 (받음 · 손실 숫자는 실행할 때마다 다릅니다) |
+| 🎯 나와야 하는 결과 | `패킷: 보냄 = 10, 받음 = 10, 손실 = 0 (0% 손실)` 꼴. 학원망이 붐비면 손실이 생길 수 있습니다 (받음 · 손실 숫자는 실행할 때마다 다릅니다) |
 
 **💡 힌트**
 
@@ -332,7 +332,7 @@ ping -n 10 8.8.8.8
 
 ### ⭐ 도전 2-6 · `ping` 결과를 파이썬으로 판정하기 (선택)
 
-<b style="color:#1e88e5">어디서</b> — VS Code 에서 `ping_check.py` 만들기 → 터미널에서 `python ping_check.py` 실행
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — VS Code 에서 `ping_check.py` 만들기 → 터미널에서 `python ping_check.py` 실행
 
 `ping` 결과를 사람이 매번 읽는 대신, 파이썬이 「정상 · 느림 · 실패」를 판정하게 하시오.
 
@@ -376,7 +376,7 @@ python ping_check.py
 
 | | |
 |---|---|
-| 🎯 <b style="color:#43a047">나와야 하는 결과</b> | `[정상] 8.8.8.8 34ms` · `[느림] 1.1.1.1 120ms` · `[실패] 192.0.2.1 응답 없음` |
+| 🎯 나와야 하는 결과 | `[정상] 8.8.8.8 34ms` · `[느림] 1.1.1.1 120ms` · `[실패] 192.0.2.1 응답 없음` |
 
 **💡 힌트**
 
@@ -446,13 +446,13 @@ python ping_check.py
 | 누가 정하나 | 망에 들어갈 때 받는다 — 장소가 바뀌면 바뀐다 | 랜카드(랜선을 꽂는 부품) · Wi-Fi(와이파이) 장치에 새겨져 나온다 |
 | 쓰는 범위 | 인터넷 전체 — 멀리 있는 상대 | **같은 망 안** — 바로 옆 장비까지 |
 
-⚠ 한 PC 에 MAC 주소가 여러 개일 수 있습니다. 랜 · Wi-Fi · 가상 장치마다 하나씩입니다. <b style="color:#e53935">기본 게이트웨이가 적힌 장치</b>가 지금 쓰는 장치입니다. 게이트웨이(gateway)는 우리 망에서 바깥 인터넷으로 나가는 출구로, 보통 공유기입니다.
+⚠ 한 PC 에 MAC 주소가 여러 개일 수 있습니다. 랜 · Wi-Fi · 가상 장치마다 하나씩입니다. <mark style="background:#ffcdd2; color:#1a1a1a; padding:0 4px; border-radius:3px">기본 게이트웨이가 적힌 장치</mark>가 지금 쓰는 장치입니다. 게이트웨이(gateway)는 우리 망에서 바깥 인터넷으로 나가는 출구로, 보통 공유기입니다.
 
 ---
 
 ### ✍️ 문제 3-1 · 무엇이 보일까요
 
-<b style="color:#1e88e5">어디서</b> — 실행하지 않고 머리로 예상합니다
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — 실행하지 않고 머리로 예상합니다
 
 아래는 `ipconfig //all` 결과의 일부입니다. ① MAC 주소 ② IP 주소 ③ 기본 게이트웨이가 각각 몇째 줄인지 적어 보세요.
 
@@ -483,15 +483,15 @@ python ping_check.py
 
 ### ✍️ 문제 3-2 · 내 IP 주소와 게이트웨이 찾기
 
-<b style="color:#1e88e5">어디서</b> — 터미널에서 명령 실행 → 보고서에 적기
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — 터미널에서 명령 실행 → 보고서에 적기
 
-<b style="color:#1e88e5">적는 곳</b> — `day01_packet_analysis.md` 의 **1절 표**
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day01_packet_analysis.md` 의 **1절 표**
 
 `ipconfig` 를 입력하고, **기본 게이트웨이가 적힌 장치**의 IPv4(아이피 브이포 · 지금 널리 쓰는 IP 주소 형식) 주소와 기본 게이트웨이를 보고서 표에 적으시오.
 
 | | |
 |---|---|
-| 🎯 <b style="color:#43a047">나와야 하는 결과</b> | `IPv4 주소 . . . : ○○○.○○○.○.○○` 와 `기본 게이트웨이 . . . : ○○○.○○○.○.○` (값은 PC 마다 다릅니다) |
+| 🎯 나와야 하는 결과 | `IPv4 주소 . . . : ○○○.○○○.○.○○` 와 `기본 게이트웨이 . . . : ○○○.○○○.○.○` (값은 PC 마다 다릅니다) |
 
 **💡 힌트**
 
@@ -521,15 +521,15 @@ ipconfig
 
 ### ✍️ 문제 3-3 · 내 MAC 주소 찾기
 
-<b style="color:#1e88e5">어디서</b> — 터미널에서 명령 실행 → 보고서에 적기
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — 터미널에서 명령 실행 → 보고서에 적기
 
-<b style="color:#1e88e5">적는 곳</b> — `day01_packet_analysis.md` 의 **1절 표**
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day01_packet_analysis.md` 의 **1절 표**
 
 `ipconfig //all` 을 입력하고, 3-2 와 **같은 장치**의 물리적 주소를 보고서 표에 적으시오.
 
 | | |
 |---|---|
-| 🎯 <b style="color:#43a047">나와야 하는 결과</b> | `물리적 주소 . . . : ○○-○○-○○-○○-○○-○○` (값은 PC 마다 다릅니다) |
+| 🎯 나와야 하는 결과 | `물리적 주소 . . . : ○○-○○-○○-○○-○○-○○` (값은 PC 마다 다릅니다) |
 
 **💡 힌트**
 
@@ -559,15 +559,15 @@ ipconfig //all
 
 ### ✍️ 문제 3-4 · 게이트웨이까지 `ping`
 
-<b style="color:#1e88e5">어디서</b> — 터미널에서 명령 실행 → 보고서에 적기
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — 터미널에서 명령 실행 → 보고서에 적기
 
-<b style="color:#1e88e5">적는 곳</b> — `day01_packet_analysis.md` 의 **1절 표**
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day01_packet_analysis.md` 의 **1절 표**
 
 터미널에서 3-2 에서 찾은 기본 게이트웨이에 `ping` 을 보내고, 평균 왕복 시간을 **2-2 의 `8.8.8.8` 결과와 비교**하시오.
 
 | | |
 |---|---|
-| 🎯 <b style="color:#43a047">나와야 하는 결과</b> | 게이트웨이 평균은 보통 `1~5ms` — `8.8.8.8` 보다 훨씬 짧습니다 (시간은 PC · 실행할 때마다 다릅니다) |
+| 🎯 나와야 하는 결과 | 게이트웨이 평균은 보통 `1~5ms` — `8.8.8.8` 보다 훨씬 짧습니다 (시간은 PC · 실행할 때마다 다릅니다) |
 
 **💡 힌트**
 
@@ -597,9 +597,9 @@ ping 192.168.0.1
 
 ### ✍️ 문제 3-5 · 같은 망의 이웃 명단 보기 — `arp -a`
 
-<b style="color:#1e88e5">어디서</b> — 터미널에서 명령 실행 → 보고서에 적기
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — 터미널에서 명령 실행 → 보고서에 적기
 
-<b style="color:#1e88e5">적는 곳</b> — `day01_packet_analysis.md` 의 `## 실습 기록` 에 `- 3-5: …` 한 줄
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day01_packet_analysis.md` 의 `## 실습 기록` 에 `- 3-5: …` 한 줄
 
 `arp -a` 를 입력하고, **기본 게이트웨이 IP 의 MAC 주소**와 그 줄의 **유형**을 적으시오.
 
@@ -612,7 +612,7 @@ ping 192.168.0.1
 
 | | |
 |---|---|
-| 🎯 <b style="color:#43a047">나와야 하는 결과</b> | 게이트웨이 IP 줄의 `물리적 주소` 와 `동적` (주소 값은 PC 마다 다릅니다) |
+| 🎯 나와야 하는 결과 | 게이트웨이 IP 줄의 `물리적 주소` 와 `동적` (주소 값은 PC 마다 다릅니다) |
 
 **💡 힌트**
 
@@ -642,7 +642,7 @@ arp -a
 
 ### ⭐ 도전 3-6 · 주소 모양으로 IP 와 MAC 구별하기 (선택)
 
-<b style="color:#1e88e5">어디서</b> — VS Code 에서 `addr_kind.py` 만들기 → 터미널에서 `python addr_kind.py` 실행
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — VS Code 에서 `addr_kind.py` 만들기 → 터미널에서 `python addr_kind.py` 실행
 
 로그에 섞여 들어온 주소가 IP 인지 MAC 인지 파이썬이 가려내게 하시오. `network_zt` 에 `addr_kind.py` 를 만들어 붙여 넣고, 번호 주석 아래를 채운 뒤 `python addr_kind.py` 를 입력합니다.
 
@@ -677,7 +677,7 @@ python addr_kind.py
 
 | | |
 |---|---|
-| 🎯 <b style="color:#43a047">나와야 하는 결과</b> | `IP 192.168.0.15` · `MAC a8-5e-45-01-2b-3c` · `MAC ff-ff-ff-ff-ff-ff` · `모름 192.168.0` |
+| 🎯 나와야 하는 결과 | `IP 192.168.0.15` · `MAC a8-5e-45-01-2b-3c` · `MAC ff-ff-ff-ff-ff-ff` · `모름 192.168.0` |
 
 **💡 힌트**
 
@@ -751,13 +751,13 @@ python addr_kind.py
 | `\| grep 글자` | 앞 명령의 결과에서 그 글자가 든 줄만 남긴다. `\|` 는 파이프(pipe) — 앞 결과를 뒤 명령에 넘긴다. `grep`(그렙) |
 | `tasklist` | 실행 중인 프로그램 목록과 PID(태스크리스트). `tasklist \| grep 1234` 는 PID 가 1234 인 줄만 |
 
-⚠ `192.168.0.15:51234` 처럼 <b style="color:#e53935">내 쪽 포트가 큰 숫자</b>인 것은 PC 가 그때그때 고른 임시 번호입니다. 서비스를 알려 주는 것은 <b style="color:#e53935">상대 쪽 포트</b>(`:443`)입니다.
+⚠ `192.168.0.15:51234` 처럼 <mark style="background:#ffcdd2; color:#1a1a1a; padding:0 4px; border-radius:3px">내 쪽 포트가 큰 숫자</mark>인 것은 PC 가 그때그때 고른 임시 번호입니다. 서비스를 알려 주는 것은 <mark style="background:#ffcdd2; color:#1a1a1a; padding:0 4px; border-radius:3px">상대 쪽 포트</mark>(`:443`)입니다.
 
 ---
 
 ### ✍️ 문제 4-1 · 무엇이 보일까요
 
-<b style="color:#1e88e5">어디서</b> — 실행하지 않고 머리로 예상합니다
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — 실행하지 않고 머리로 예상합니다
 
 아래 파이썬 코드를 실행하면 화면에 무엇이 보일지 적어 보세요.
 
@@ -785,9 +785,9 @@ print(PORTS.get(3389, "모름"))
 
 ### ✍️ 문제 4-2 · 지금의 연결 보기 — `netstat -n`
 
-<b style="color:#1e88e5">어디서</b> — 터미널에서 명령 실행 → 보고서에 적기
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — 터미널에서 명령 실행 → 보고서에 적기
 
-<b style="color:#1e88e5">적는 곳</b> — `day01_packet_analysis.md` 의 `## 실습 기록` 에 `- 4-2: …` 한 줄
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day01_packet_analysis.md` 의 `## 실습 기록` 에 `- 4-2: …` 한 줄
 
 `netstat -n` 을 입력하고, `ESTABLISHED`(이스태블리시드 · 연결된 상태) 줄 하나를 골라 **외부 주소의 포트**와 그 포트의 **서비스 이름**(4.1 표)을 적으시오.
 
@@ -800,7 +800,7 @@ print(PORTS.get(3389, "모름"))
 
 | | |
 |---|---|
-| 🎯 <b style="color:#43a047">나와야 하는 결과</b> | 예: 외부 포트 `443` → `HTTPS`. 브라우저를 켜 두면 443 줄이 여러 개 보입니다 |
+| 🎯 나와야 하는 결과 | 예: 외부 포트 `443` → `HTTPS`. 브라우저를 켜 두면 443 줄이 여러 개 보입니다 |
 
 **💡 힌트**
 
@@ -830,13 +830,13 @@ netstat -n
 
 ### ✍️ 문제 4-3 · 그 연결은 어느 프로그램의 것인가
 
-<b style="color:#1e88e5">어디서</b> — 터미널에서 명령 실행
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — 터미널에서 명령 실행
 
 터미널에 `netstat -ano | grep ESTABLISHED` 를 입력해 4-2 에서 고른 줄의 **PID** 를 찾고, `tasklist | grep PID숫자` 로 그 PID 의 프로그램 이름을 찾으시오. 침해 대응에서 「이 연결은 누가 열었나」를 찾는 순서 그대로입니다.
 
 | | |
 |---|---|
-| 🎯 <b style="color:#43a047">나와야 하는 결과</b> | PID 숫자 하나와 프로그램 이름(예: `chrome.exe` · `msedge.exe`) |
+| 🎯 나와야 하는 결과 | PID 숫자 하나와 프로그램 이름(예: `chrome.exe` · `msedge.exe`) |
 
 **💡 힌트**
 
@@ -868,15 +868,15 @@ tasklist | grep 1234
 
 ### ✍️ 문제 4-4 · 내 PC 가 열어 둔 문 찾기
 
-<b style="color:#1e88e5">어디서</b> — 터미널에서 명령 실행 → 보고서에 적기
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — 터미널에서 명령 실행 → 보고서에 적기
 
-<b style="color:#1e88e5">적는 곳</b> — `day01_packet_analysis.md` 의 `## 실습 기록` 에 `- 4-4: …` 한 줄
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day01_packet_analysis.md` 의 `## 실습 기록` 에 `- 4-4: …` 한 줄
 
 내 PC 가 **듣고 있는(LISTENING) 포트**만 골라 보고, 그중 **4.1 표에 있는 포트**를 적으시오.
 
 | | |
 |---|---|
-| 🎯 <b style="color:#43a047">나와야 하는 결과</b> | `TCP    0.0.0.0:135 … LISTENING` · `TCP    0.0.0.0:445 … LISTENING` 꼴의 줄. 135 · 445 는 Windows 파일 공유입니다. 다른 번호(예: 22 · 80)가 더 있어도 정상입니다 — PC 마다 켜 둔 프로그램이 다릅니다 |
+| 🎯 나와야 하는 결과 | `TCP    0.0.0.0:135 … LISTENING` · `TCP    0.0.0.0:445 … LISTENING` 꼴의 줄. 135 · 445 는 Windows 파일 공유입니다. 다른 번호(예: 22 · 80)가 더 있어도 정상입니다 — PC 마다 켜 둔 프로그램이 다릅니다 |
 
 **💡 힌트**
 
@@ -906,9 +906,9 @@ netstat -an | grep LISTENING
 
 ### ✍️ 문제 4-5 · 증상으로 층 좁히기
 
-<b style="color:#1e88e5">어디서</b> — 명령 없이 생각해서 답하기 → 보고서에 적기
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — 명령 없이 생각해서 답하기 → 보고서에 적기
 
-<b style="color:#1e88e5">적는 곳</b> — `day01_packet_analysis.md` 의 `## 실습 기록` 에 `- 4-5: …` 한 줄
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day01_packet_analysis.md` 의 `## 실습 기록` 에 `- 4-5: …` 한 줄
 
 아래 세 증상이 **몇 층 문제일 가능성이 큰지** 3.1 표를 보며 한 줄씩 적으시오. 명령은 입력하지 않습니다.
 
@@ -920,7 +920,7 @@ netstat -an | grep LISTENING
 
 | | |
 |---|---|
-| 🎯 <b style="color:#43a047">나와야 하는 결과</b> | ① 이름 → IP 변환(DNS, 7층) ② 우리 망 안 — 1~3층(선 · Wi-Fi · 공유기) ③ 4층 이상 — 그 서버의 포트나 서비스 |
+| 🎯 나와야 하는 결과 | ① 이름 → IP 변환(DNS, 7층) ② 우리 망 안 — 1~3층(선 · Wi-Fi · 공유기) ③ 4층 이상 — 그 서버의 포트나 서비스 |
 
 **💡 힌트**
 
@@ -950,7 +950,7 @@ netstat -an | grep LISTENING
 
 ### ⭐ 도전 4-6 · 포트에 이름 붙이기 (선택)
 
-<b style="color:#1e88e5">어디서</b> — VS Code 에서 `port_name.py` 만들기 → 터미널에서 `python port_name.py` 실행
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — VS Code 에서 `port_name.py` 만들기 → 터미널에서 `python port_name.py` 실행
 
 `netstat` 에서 본 포트 번호들에 서비스 이름을 붙여 출력하시오. 모르는 포트는 「모름」으로 둡니다. `network_zt` 에 `port_name.py` 를 만들어 붙여 넣고, 채운 뒤 `python port_name.py` 를 입력합니다.
 
@@ -980,7 +980,7 @@ python port_name.py
 
 | | |
 |---|---|
-| 🎯 <b style="color:#43a047">나와야 하는 결과</b> | `443 → HTTPS` · `445 → SMB` · `3389 → RDP` · `51234 → 모름` |
+| 🎯 나와야 하는 결과 | `443 → HTTPS` · `445 → SMB` · `3389 → RDP` · `51234 → 모름` |
 
 **💡 힌트**
 
