@@ -52,11 +52,12 @@ $ pwd
 git 은 올릴 때마다 **누가 올렸는지**를 함께 남깁니다. 이 PC 에서 **한 번만** 하면 됩니다.
 
 ```
-$ git config --global user.name "내 이름"
+$ git config --global user.name "Hong Gildong"
 $ git config --global user.email "깃허브에 가입한 이메일"
 ```
 
 - 따옴표 안을 자기 것으로 바꿉니다. 따옴표는 그대로 둡니다.
+- ⚠ **이름은 영어로 적습니다**(예: `Hong Gildong`). 한글로 적으면 터미널 · 깃허브 기록에서 글자가 깨져 보일 수 있습니다.
 - 확인합니다. 방금 적은 이름과 이메일이 나오면 됩니다.
 
 ```
