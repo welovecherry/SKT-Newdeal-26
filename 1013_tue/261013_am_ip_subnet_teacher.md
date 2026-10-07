@@ -153,9 +153,9 @@ print(len(format(192, "08b") + format(10, "08b")))
 
 막히면 바로 위 문법 상자와 2.1 표를 봅니다.
 
-#### 정답
+#### <mark style="display:block; background:#fff59d; color:#1a1a1a; padding:4px 12px; border-radius:4px; text-decoration:underline">정답</mark>
 
-**결과** — `11000000` · `00001010` · `16`
+<mark style="background:#fff59d; color:#1a1a1a; text-decoration:underline; padding:0 4px; border-radius:3px">**결과** — `11000000` · `00001010` · `16`</mark>
 
 **왜** — 192 = 128 + 64 라 앞 두 칸만 1 이고, 10 = 8 + 2 라 `00001010` 입니다. 여덟 칸짜리 두 개를 이어 붙여 16칸입니다.
 
@@ -211,13 +211,13 @@ python ip_bits.py
 2. `part` 는 `"192"` 같은 **글자**라 `int()` 로 숫자로 바꿉니다.
 3. 내 주소로 바꿔도 길이는 언제나 32 입니다.
 
-#### 정답 2-2
+#### <mark style="display:block; background:#fff59d; color:#1a1a1a; padding:4px 12px; border-radius:4px; text-decoration:underline">정답 2-2</mark>
 
 (코드는 위 문제 칸에 채워 두었습니다.)
 
 💻 **터미널에 입력합니다.** `python ip_bits.py`
 
-**결과** — `11000000101010000000101000011001` 과 `길이: 32`
+<mark style="background:#fff59d; color:#1a1a1a; text-decoration:underline; padding:0 4px; border-radius:3px">**결과** — `11000000101010000000101000011001` 과 `길이: 32`</mark>
 
 **왜** — 마디 네 개를 `format(int(part), "08b")` 로 여덟 칸씩 바꿔 이어 붙이므로 8 × 4 = 32칸이 됩니다.
 
@@ -315,13 +315,13 @@ python private_ip.py
 2. 2번은 `and` 로 두 조건을 잇습니다.
 3. `return` 을 만나면 함수가 끝나므로 `elif` 가 없어도 됩니다.
 
-#### 정답 2-3
+#### <mark style="display:block; background:#fff59d; color:#1a1a1a; padding:4px 12px; border-radius:4px; text-decoration:underline">정답 2-3</mark>
 
 (코드는 위 문제 칸에 채워 두었습니다.)
 
 💻 **터미널에 입력합니다.** `python private_ip.py`
 
-**결과** — `[사설] 10.0.0.8` · `[사설] 172.20.5.6` · `[공인] 172.32.5.6` · `[사설] 192.168.10.25` · `[공인] 8.8.8.8` · `[공인] 203.0.113.7`
+<mark style="background:#fff59d; color:#1a1a1a; text-decoration:underline; padding:0 4px; border-radius:3px">**결과** — `[사설] 10.0.0.8` · `[사설] 172.20.5.6` · `[공인] 172.32.5.6` · `[사설] 192.168.10.25` · `[공인] 8.8.8.8` · `[공인] 203.0.113.7`</mark>
 
 **왜** — 사설 범위는 `10.x` · `172.16~31.x` · `192.168.x` 세 개뿐이라, 172 는 둘째 마디까지 `16 <= second <= 31` 로 봅니다.
 
@@ -355,7 +355,7 @@ curl https://api.ipify.org
 2. 다르게 나오는 것이 2.3 의 NAT 입니다.
 3. 옆 사람과 같다면 같은 공유기의 공인 IP 하나를 함께 쓰는 것 — PAT 일 가능성이 큽니다.
 
-#### 정답 2-4
+#### <mark style="display:block; background:#fff59d; color:#1a1a1a; padding:4px 12px; border-radius:4px; text-decoration:underline">정답 2-4</mark>
 
 💻 **터미널에 입력합니다.**
 
@@ -365,7 +365,7 @@ curl https://api.ipify.org
 
 나온 주소를 보고서 1절 「공인 IP」 칸에 적습니다.
 
-**결과** — `211.○○○.○○○.○○` 같은 주소 한 줄 — `ipconfig` 의 `192.168.…` 과 **다르다.** 옆 사람과는 **같을** 수 있다 (값은 장소마다 다릅니다)
+<mark style="background:#fff59d; color:#1a1a1a; text-decoration:underline; padding:0 4px; border-radius:3px">**결과** — `211.○○○.○○○.○○` 같은 주소 한 줄 — `ipconfig` 의 `192.168.…` 과 **다르다.** 옆 사람과는 **같을** 수 있다 (값은 장소마다 다릅니다)</mark>
 
 **왜** — 공유기가 나가는 요청의 출발지 주소를 자기 공인 IP 로 바꾸기(NAT) 때문에 사이트는 공유기 주소만 봅니다. 같은 공유기를 쓰는 옆 사람도 같은 주소가 나옵니다(PAT).
 
@@ -422,13 +422,13 @@ python nat_table.py
 2. 꺼낸 값도 사전이라 `inside['ip']` 처럼 한 번 더 꺼냅니다.
 3. 공인 IP 는 하나인데 포트로 세 PC 를 구별하는 것이 PAT 입니다.
 
-#### 정답 2-5
+#### <mark style="display:block; background:#fff59d; color:#1a1a1a; padding:4px 12px; border-radius:4px; text-decoration:underline">정답 2-5</mark>
 
 (코드는 위 문제 칸에 채워 두었습니다.)
 
 💻 **터미널에 입력합니다.** `python nat_table.py`
 
-**결과** — `밖: 203.0.113.7:40002` · `안: 192.168.10.25:51234`
+<mark style="background:#fff59d; color:#1a1a1a; text-decoration:underline; padding:0 4px; border-radius:3px">**결과** — `밖: 203.0.113.7:40002` · `안: 192.168.10.25:51234`</mark>
 
 **왜** — `nat_table[reply_port]` 가 바깥 포트 40002 를 키로 안의 주소 · 포트 사전을 꺼냅니다. 공인 IP 는 하나라 포트로 PC 를 구별합니다(PAT).
 
@@ -497,13 +497,13 @@ python outside_fail.py
 2. 「사설이 아니다」는 `not is_private(주소)` 입니다.
 3. 안에서 난 실패는 직원의 오타일 가능성이 크고, 바깥에서 온 실패는 먼저 확인할 대상입니다.
 
-#### 정답 2-6
+#### <mark style="display:block; background:#fff59d; color:#1a1a1a; padding:4px 12px; border-radius:4px; text-decoration:underline">정답 2-6</mark>
 
 (코드는 위 문제 칸에 채워 두었습니다.)
 
 💻 **터미널에 입력합니다.** `python outside_fail.py`
 
-**결과** — `[바깥 실패] 09:02 FAIL admin from 203.0.113.50` · `[바깥 실패] 09:07 FAIL root from 198.51.100.9`
+<mark style="background:#fff59d; color:#1a1a1a; text-decoration:underline; padding:0 4px; border-radius:3px">**결과** — `[바깥 실패] 09:02 FAIL admin from 203.0.113.50` · `[바깥 실패] 09:07 FAIL root from 198.51.100.9`</mark>
 
 **왜** — `line.split()[-1]` 로 맨 끝 주소를 꺼내고, `"FAIL" in line and not is_private(address)` 로 실패이면서 공인인 줄만 남깁니다. `172.20.5.6` 은 사설이라 빠집니다.
 
@@ -585,9 +585,9 @@ print(mask.count("1"))
 print(mask.count("0"))
 ```
 
-#### 정답
+#### <mark style="display:block; background:#fff59d; color:#1a1a1a; padding:4px 12px; border-radius:4px; text-decoration:underline">정답</mark>
 
-**결과** — `26` · `6`
+<mark style="background:#fff59d; color:#1a1a1a; text-decoration:underline; padding:0 4px; border-radius:3px">**결과** — `26` · `6`</mark>
 
 **왜** — 1 이 26개라 `/26` 이고, 호스트 자리 6칸이라 주소는 2⁶ = 64개, 장비에 쓸 수 있는 수는 64 − 2 = 62 입니다.
 
@@ -617,11 +617,11 @@ print(mask.count("0"))
 2. 255 하나는 1 이 여덟 개입니다.
 3. 표에 없는 값(예: `255.255.254.0`)이면 손을 듭니다 — `/23` 입니다.
 
-#### 정답 3-2
+#### <mark style="display:block; background:#fff59d; color:#1a1a1a; padding:4px 12px; border-radius:4px; text-decoration:underline">정답 3-2</mark>
 
 💻 **터미널에 입력합니다.** `ipconfig` → `서브넷 마스크` 줄.
 
-**결과** — 예: `255.255.255.0` → `/24`. 학원망은 다를 수 있습니다
+<mark style="background:#fff59d; color:#1a1a1a; text-decoration:underline; padding:0 4px; border-radius:3px">**결과** — 예: `255.255.255.0` → `/24`. 학원망은 다를 수 있습니다</mark>
 
 **왜** — 255 는 1 이 여덟 개라 255 세 개면 1 이 24개, 곧 `/24` 입니다. 주소는 2⁸ = 256개, 쓸 수 있는 수는 254 입니다.
 
@@ -672,13 +672,13 @@ python cidr_table.py
 2. `192.168.10.0` 은 망의 첫 주소라 `strict=False` 가 없어도 됩니다.
 3. 3.1 표와 같은지 비교합니다.
 
-#### 정답 3-3
+#### <mark style="display:block; background:#fff59d; color:#1a1a1a; padding:4px 12px; border-radius:4px; text-decoration:underline">정답 3-3</mark>
 
 (코드는 위 문제 칸에 채워 두었습니다.)
 
 💻 **터미널에 입력합니다.** `python cidr_table.py`
 
-**결과** — `24 255.255.255.0 256` · `25 255.255.255.128 128` · `26 255.255.255.192 64` · `27 255.255.255.224 32` · `28 255.255.255.240 16`
+<mark style="background:#fff59d; color:#1a1a1a; text-decoration:underline; padding:0 4px; border-radius:3px">**결과** — `24 255.255.255.0 256` · `25 255.255.255.128 128` · `26 255.255.255.192 64` · `27 255.255.255.224 32` · `28 255.255.255.240 16`</mark>
 
 **왜** — 주소 수는 2^(32 − CIDR) 라 CIDR 이 1 커질 때마다 호스트 칸이 하나 줄어 절반이 됩니다.
 
@@ -735,13 +735,13 @@ python my_network.py
 2. 사용 가능 수는 `net.num_addresses - 2` 입니다.
 3. 내 기본 게이트웨이 주소가 그 범위 안에 있는지도 봅니다.
 
-#### 정답 3-4
+#### <mark style="display:block; background:#fff59d; color:#1a1a1a; padding:4px 12px; border-radius:4px; text-decoration:underline">정답 3-4</mark>
 
 (코드는 위 문제 칸에 채워 두었습니다.)
 
 💻 **터미널에 입력합니다.** `python my_network.py`
 
-**결과** — 예시 값이면 `네트워크 주소: 192.168.10.0` · `브로드캐스트 주소: 192.168.10.255` · `사용 가능 주소 수: 254`
+<mark style="background:#fff59d; color:#1a1a1a; text-decoration:underline; padding:0 4px; border-radius:3px">**결과** — 예시 값이면 `네트워크 주소: 192.168.10.0` · `브로드캐스트 주소: 192.168.10.255` · `사용 가능 주소 수: 254`</mark>
 
 **왜** — `/24` 는 앞 세 마디가 망이라 마지막 마디 0 이 네트워크 주소, 255 가 브로드캐스트 주소이고, 그 둘을 뺀 256 − 2 = 254 개를 장비에 씁니다.
 
@@ -796,13 +796,13 @@ python same_network.py
 2. `/26` 은 마지막 마디를 64 씩 끊습니다 — 0~63 · 64~127 · 128~191 · 192~255.
 3. 같은 망이면 바로, 다른 망이면 게이트웨이를 거쳐 갑니다.
 
-#### 정답 3-5
+#### <mark style="display:block; background:#fff59d; color:#1a1a1a; padding:4px 12px; border-radius:4px; text-decoration:underline">정답 3-5</mark>
 
 (코드는 위 문제 칸에 채워 두었습니다.)
 
 💻 **터미널에 입력합니다.** `python same_network.py`
 
-**결과** — `192.168.10.64/26 192.168.10.64/26 192.168.10.128/26` · `70과 120: True` · `70과 130: False`
+<mark style="background:#fff59d; color:#1a1a1a; text-decoration:underline; padding:0 4px; border-radius:3px">**결과** — `192.168.10.64/26 192.168.10.64/26 192.168.10.128/26` · `70과 120: True` · `70과 130: False`</mark>
 
 **왜** — `/26` 은 마지막 마디를 64 씩 끊어 70 · 120 은 64~127, 130 은 128~191 블록이므로 `a == b` 만 `True` 입니다.
 
@@ -879,13 +879,13 @@ python gateway_check.py
 2. `False` 가 나오면 마스크나 게이트웨이 설정이 잘못된 것 — 실제 장애 원인 중 하나입니다.
 3. 바로 위 문법 상자의 둘째 줄과 같은 모양입니다.
 
-#### 정답 3-6
+#### <mark style="display:block; background:#fff59d; color:#1a1a1a; padding:4px 12px; border-radius:4px; text-decoration:underline">정답 3-6</mark>
 
 (코드는 위 문제 칸에 채워 두었습니다.)
 
 💻 **터미널에 입력합니다.** `python gateway_check.py`
 
-**결과** — `게이트웨이 192.168.10.1 이 내 망 안에 있나: True`
+<mark style="background:#fff59d; color:#1a1a1a; text-decoration:underline; padding:0 4px; border-radius:3px">**결과** — `게이트웨이 192.168.10.1 이 내 망 안에 있나: True`</mark>
 
 **왜** — `ipaddress.ip_address(gateway) in net` 이 주소 하나가 `192.168.10.0` ~ `192.168.10.255` 안에 있는지 봅니다. 게이트웨이는 같은 망 안에 있어야 PC 가 바로 찾아갑니다.
 
@@ -980,9 +980,9 @@ for sub in parent.subnets(new_prefix=26):
     print(sub)
 ```
 
-#### 정답
+#### <mark style="display:block; background:#fff59d; color:#1a1a1a; padding:4px 12px; border-radius:4px; text-decoration:underline">정답</mark>
 
-**결과** — `192.168.50.0/26` · `192.168.50.64/26` · `192.168.50.128/26` · `192.168.50.192/26` 네 줄
+<mark style="background:#fff59d; color:#1a1a1a; text-decoration:underline; padding:0 4px; border-radius:3px">**결과** — `192.168.50.0/26` · `192.168.50.64/26` · `192.168.50.128/26` · `192.168.50.192/26` 네 줄</mark>
 
 **왜** — `/24`(256개)를 `/26`(64개)로 나누면 256 ÷ 64 = 4개이고, 각 망은 0 · 64 · 128 · 192 에서 시작합니다.
 
@@ -1035,13 +1035,13 @@ python smallest_prefix.py
 2. 「이상」은 `>=` 입니다.
 3. 처음 맞는 칸에서 바로 `return` 하므로 가장 작은 것이 나옵니다.
 
-#### 정답 4-2
+#### <mark style="display:block; background:#fff59d; color:#1a1a1a; padding:4px 12px; border-radius:4px; text-decoration:underline">정답 4-2</mark>
 
 (코드는 위 문제 칸에 채워 두었습니다.)
 
 💻 **터미널에 입력합니다.** `python smallest_prefix.py`
 
-**결과** — `보안팀 10 /28` · `운영팀 25 /27` · `개발팀 50 /26`
+<mark style="background:#fff59d; color:#1a1a1a; text-decoration:underline; padding:0 4px; border-radius:3px">**결과** — `보안팀 10 /28` · `운영팀 25 /27` · `개발팀 50 /26`</mark>
 
 **왜** — 호스트 칸을 늘려 가다 `2 ** host_bits - 2` 가 처음으로 장비 수 이상이 되는 칸(10 → 4칸 14 · 25 → 5칸 30 · 50 → 6칸 62)에서 `32 - host_bits` 를 돌려줍니다.
 
@@ -1091,13 +1091,13 @@ python flsm.py
 2. 개발팀 50대 · 운영팀 25대 · 보안팀 10대에 이렇게 주면 몇 칸이 남을까요?(62 × 3 − 85 = 101칸)
 3. 넷째 `/26` 은 통째로 남습니다.
 
-#### 정답 4-3
+#### <mark style="display:block; background:#fff59d; color:#1a1a1a; padding:4px 12px; border-radius:4px; text-decoration:underline">정답 4-3</mark>
 
 (코드는 위 문제 칸에 채워 두었습니다.)
 
 💻 **터미널에 입력합니다.** `python flsm.py`
 
-**결과** — `192.168.50.0/26 사용 가능 62` 부터 `192.168.50.192/26 사용 가능 62` 까지 네 줄
+<mark style="background:#fff59d; color:#1a1a1a; text-decoration:underline; padding:0 4px; border-radius:3px">**결과** — `192.168.50.0/26 사용 가능 62` 부터 `192.168.50.192/26 사용 가능 62` 까지 네 줄</mark>
 
 **왜** — FLSM 은 모두 같은 크기라 `/26` 네 개가 모두 64 − 2 = 62 입니다. 50 · 25 · 10대에 주면 62 × 3 − 85 = 101칸이 남고 넷째 `/26` 은 통째로 남습니다.
 
@@ -1149,13 +1149,13 @@ python which_block.py
 2. `.70` 과 `.90` 은 둘 다 64~95 블록이라 같은 망입니다.
 3. 블록 크기 = 256 − 마스크 마지막 값(224) = 32.
 
-#### 정답 4-4
+#### <mark style="display:block; background:#fff59d; color:#1a1a1a; padding:4px 12px; border-radius:4px; text-decoration:underline">정답 4-4</mark>
 
 (코드는 위 문제 칸에 채워 두었습니다.)
 
 💻 **터미널에 입력합니다.** `python which_block.py`
 
-**결과** — `192.168.50.20 -> 192.168.50.0/27` · `192.168.50.70 -> 192.168.50.64/27` · `192.168.50.90 -> 192.168.50.64/27` · `192.168.50.130 -> 192.168.50.128/27`
+<mark style="background:#fff59d; color:#1a1a1a; text-decoration:underline; padding:0 4px; border-radius:3px">**결과** — `192.168.50.20 -> 192.168.50.0/27` · `192.168.50.70 -> 192.168.50.64/27` · `192.168.50.90 -> 192.168.50.64/27` · `192.168.50.130 -> 192.168.50.128/27`</mark>
 
 **왜** — `/27` 은 256 − 224 = 32칸 블록이라 0 · 32 · 64 · 96 · 128 에서 끊기고, `strict=False` 가 주소를 그 블록의 첫 주소로 내려 줍니다. `.70` 과 `.90` 은 둘 다 64~95 입니다.
 
@@ -1218,13 +1218,13 @@ python plan_check.py
 2. 2번은 `.overlaps()` 세 개를 `or` 로 잇습니다.
 3. 개발팀을 `/27` 로 바꿔 실행해 보면 `충분: False` 가 나옵니다 — 이런 실수를 잡는 검사입니다.
 
-#### 정답 4-5
+#### <mark style="display:block; background:#fff59d; color:#1a1a1a; padding:4px 12px; border-radius:4px; text-decoration:underline">정답 4-5</mark>
 
 (코드는 위 문제 칸에 채워 두었습니다.)
 
 💻 **터미널에 입력합니다.** `python plan_check.py`
 
-**결과** — `개발팀 192.168.50.0/26 충분: True` · `운영팀 … 충분: True` · `보안팀 … 충분: True` · `겹침 있음: False`
+<mark style="background:#fff59d; color:#1a1a1a; text-decoration:underline; padding:0 4px; border-radius:3px">**결과** — `개발팀 192.168.50.0/26 충분: True` · `운영팀 … 충분: True` · `보안팀 … 충분: True` · `겹침 있음: False`</mark>
 
 **왜** — 쓸 수 있는 수가 62 ≥ 50 · 30 ≥ 25 · 14 ≥ 10 이라 모두 충분하고, 0~63 · 64~95 · 96~111 로 이어져 `.overlaps()` 셋이 모두 `False` 입니다.
 
@@ -1285,13 +1285,13 @@ python design_table.py
 2. 표 한 줄은 어제 7-4 의 f-string 모양입니다.
 3. 출력을 그대로 `day02_subnet_design.md` 의 2절에 붙입니다.
 
-#### 정답 4-6
+#### <mark style="display:block; background:#fff59d; color:#1a1a1a; padding:4px 12px; border-radius:4px; text-decoration:underline">정답 4-6</mark>
 
 (코드는 위 문제 칸에 채워 두었습니다.)
 
 💻 **터미널에 입력합니다.** `python design_table.py`
 
-**결과** — `| 개발팀 | 10.20.0.0/26 | 10.20.0.1 | 10.20.0.62 | 62 | 50 |` · `| 운영팀 | 10.20.0.64/27 | 10.20.0.65 | 10.20.0.94 | 30 | 25 |` · `| 보안팀 | 10.20.0.96/28 | 10.20.0.97 | 10.20.0.110 | 14 | 10 |`
+<mark style="background:#fff59d; color:#1a1a1a; text-decoration:underline; padding:0 4px; border-radius:3px">**결과** — `| 개발팀 | 10.20.0.0/26 | 10.20.0.1 | 10.20.0.62 | 62 | 50 |` · `| 운영팀 | 10.20.0.64/27 | 10.20.0.65 | 10.20.0.94 | 30 | 25 |` · `| 보안팀 | 10.20.0.96/28 | 10.20.0.97 | 10.20.0.110 | 14 | 10 |`</mark>
 
 **왜** — 첫 호스트는 네트워크 주소 + 1, 마지막 호스트는 브로드캐스트 주소 − 1 입니다. 운영팀 `/27` 은 64~95 라 65~94 를 씁니다.
 

@@ -160,9 +160,9 @@ ping -t 8.8.8.8       # 멈출 때까지 계속 보낸다 — Ctrl + C 로 멈�
 
 막히면 바로 위 `2.1` 표를 다시 봅니다.
 
-#### 정답
+#### <mark style="display:block; background:#fff59d; color:#1a1a1a; padding:4px 12px; border-radius:4px; text-decoration:underline">정답</mark>
 
-**결과** — 4번 보내서 3번 돌아왔습니다 · 25% 손실 · 평균 47ms.
+<mark style="background:#fff59d; color:#1a1a1a; text-decoration:underline; padding:0 4px; border-radius:3px">**결과** — 4번 보내서 3번 돌아왔습니다 · 25% 손실 · 평균 47ms.</mark>
 
 **왜** — 손실은 보낸 수와 받은 수의 차이입니다. 4개 중 1개가 돌아오지 않았으니 1 ÷ 4 = 25% 입니다.
 
@@ -192,7 +192,7 @@ ping -t 8.8.8.8       # 멈출 때까지 계속 보낸다 — Ctrl + C 로 멈�
 2. 평균은 맨 아래 `왕복 시간` 줄에 있습니다.
 3. TTL 은 `응답:` 줄의 맨 끝에 있습니다.
 
-#### 정답 2-2
+#### <mark style="display:block; background:#fff59d; color:#1a1a1a; padding:4px 12px; border-radius:4px; text-decoration:underline">정답 2-2</mark>
 
 💻 **터미널에 입력합니다.**
 
@@ -200,7 +200,7 @@ ping -t 8.8.8.8       # 멈출 때까지 계속 보낸다 — Ctrl + C 로 멈�
 ping 8.8.8.8
 ```
 
-**결과** — `8.8.8.8의 응답:` 네 줄이 나옵니다. 맨 아래 `평균 = ○○ms` 의 숫자와 `응답:` 줄 끝의 `TTL=○○○` 을 보고서에 적습니다.
+<mark style="background:#fff59d; color:#1a1a1a; text-decoration:underline; padding:0 4px; border-radius:3px">**결과** — `8.8.8.8의 응답:` 네 줄이 나옵니다. 맨 아래 `평균 = ○○ms` 의 숫자와 `응답:` 줄 끝의 `TTL=○○○` 을 보고서에 적습니다.</mark>
 
 **왜** — 옵션이 없으면 4번 보내므로 답이 오면 `응답:` 줄이 네 개입니다. TTL 은 라우터를 하나 지날 때마다 1씩 줄어서, 거쳐 온 장비 수에 따라 값이 달라집니다.
 
@@ -228,7 +228,7 @@ ping 8.8.8.8
 2. 컴퓨터는 이름으로 통신하지 못합니다. 먼저 이름을 IP 주소로 바꾼 뒤 보냅니다 — 그 결과가 대괄호에 보입니다.
 3. 이름을 IP 로 바꾸는 일은 **DNS** 가 합니다. 3일 차(10/14)에 자세히 배웁니다.
 
-#### 정답 2-3
+#### <mark style="display:block; background:#fff59d; color:#1a1a1a; padding:4px 12px; border-radius:4px; text-decoration:underline">정답 2-3</mark>
 
 💻 **터미널에 입력합니다.**
 
@@ -236,7 +236,7 @@ ping 8.8.8.8
 ping google.com
 ```
 
-**결과** — 첫 줄 `Ping google.com [○○○.○○○.○.○] 32바이트 데이터 사용:` 의 대괄호 안이 google.com 의 IP 주소입니다.
+<mark style="background:#fff59d; color:#1a1a1a; text-decoration:underline; padding:0 4px; border-radius:3px">**결과** — 첫 줄 `Ping google.com [○○○.○○○.○.○] 32바이트 데이터 사용:` 의 대괄호 안이 google.com 의 IP 주소입니다.</mark>
 
 **왜** — 컴퓨터는 이름으로 통신하지 못합니다. `ping` 이 먼저 DNS 로 이름을 IP 주소로 바꾼 뒤 보내고, 바꾼 결과를 대괄호에 보여 줍니다.
 
@@ -271,7 +271,7 @@ ping 192.0.2.1
 2. 둘째 `192.0.2.1` 은 문서 예시용으로 비워 둔 주소라 아무도 답하지 않습니다.
 3. 둘 다 「안 된다」지만 **멈춘 자리가 다릅니다.** 4교시에 이 차이로 층을 좁힙니다.
 
-#### 정답 2-4
+#### <mark style="display:block; background:#fff59d; color:#1a1a1a; padding:4px 12px; border-radius:4px; text-decoration:underline">정답 2-4</mark>
 
 💻 **터미널에 입력합니다.**
 
@@ -280,7 +280,7 @@ ping abc.nowhere-not-exist
 ping 192.0.2.1
 ```
 
-**결과** — 첫째는 `Ping 요청에서 abc.nowhere-not-exist 호스트를 찾을 수 없습니다.` 한 줄, 둘째는 `요청 시간이 만료되었습니다.` 네 줄입니다.
+<mark style="background:#fff59d; color:#1a1a1a; text-decoration:underline; padding:0 4px; border-radius:3px">**결과** — 첫째는 `Ping 요청에서 abc.nowhere-not-exist 호스트를 찾을 수 없습니다.` 한 줄, 둘째는 `요청 시간이 만료되었습니다.` 네 줄입니다.</mark>
 
 **왜** — 첫째는 이름을 IP 로 바꾸지 못해 보내기 전에 멈췄습니다. 둘째는 주소로 보냈지만 `192.0.2.1` 은 아무도 쓰지 않는 주소라 답이 오지 않았습니다.
 
@@ -310,7 +310,7 @@ ping 192.0.2.1
 2. 옵션은 주소 **앞**에 씁니다.
 3. 10번이라 10초쯤 걸립니다. 기다립니다.
 
-#### 정답 2-5
+#### <mark style="display:block; background:#fff59d; color:#1a1a1a; padding:4px 12px; border-radius:4px; text-decoration:underline">정답 2-5</mark>
 
 💻 **터미널에 입력합니다.**
 
@@ -318,7 +318,7 @@ ping 192.0.2.1
 ping -n 10 8.8.8.8
 ```
 
-**결과** — `패킷: 보냄 = 10, 받음 = ○○, 손실 = ○ (○% 손실)` 줄을 읽습니다. 학원망이 붐비지 않으면 `받음 = 10, 손실 = 0 (0% 손실)` 입니다.
+<mark style="background:#fff59d; color:#1a1a1a; text-decoration:underline; padding:0 4px; border-radius:3px">**결과** — `패킷: 보냄 = 10, 받음 = ○○, 손실 = ○ (○% 손실)` 줄을 읽습니다. 학원망이 붐비지 않으면 `받음 = 10, 손실 = 0 (0% 손실)` 입니다.</mark>
 
 **왜** — `-n 10` 이 보낼 횟수를 10번으로 정합니다. 4번보다 많이 보내야 가끔 생기는 손실도 숫자로 잡힙니다.
 
@@ -384,7 +384,7 @@ python ping_check.py
 2. `None` 인지는 `is None` 으로 봅니다. **이 비교를 맨 먼저** 합니다 — `None > 100` 은 에러가 납니다.
 3. 1과목 10/8 의 `needs_approval` 처럼 「기준값은 맨 위 변수 하나」로 둡니다.
 
-#### 정답 2-6
+#### <mark style="display:block; background:#fff59d; color:#1a1a1a; padding:4px 12px; border-radius:4px; text-decoration:underline">정답 2-6</mark>
 
 (코드는 위 문제 칸에 채워 두었습니다.)
 
@@ -394,7 +394,7 @@ python ping_check.py
 python ping_check.py
 ```
 
-**결과** — `[정상] 8.8.8.8 34ms` · `[느림] 1.1.1.1 120ms` · `[실패] 192.0.2.1 응답 없음` 세 줄입니다.
+<mark style="background:#fff59d; color:#1a1a1a; text-decoration:underline; padding:0 4px; border-radius:3px">**결과** — `[정상] 8.8.8.8 34ms` · `[느림] 1.1.1.1 120ms` · `[실패] 192.0.2.1 응답 없음` 세 줄입니다.</mark>
 
 **왜** — `None` 검사를 맨 앞에 두어서 답이 없는 결과는 숫자 비교까지 가지 않습니다. `120` 은 `LIMIT` 100 보다 커서 느림입니다.
 
@@ -467,9 +467,9 @@ python ping_check.py
 
 막히면 바로 위 개념 상자를 다시 봅니다.
 
-#### 정답
+#### <mark style="display:block; background:#fff59d; color:#1a1a1a; padding:4px 12px; border-radius:4px; text-decoration:underline">정답</mark>
 
-**결과** — ① `물리적 주소` 줄 ② `IPv4 주소` 줄 ③ `기본 게이트웨이` 줄.
+<mark style="background:#fff59d; color:#1a1a1a; text-decoration:underline; padding:0 4px; border-radius:3px">**결과** — ① `물리적 주소` 줄 ② `IPv4 주소` 줄 ③ `기본 게이트웨이` 줄.</mark>
 
 **왜** — 모양으로 가립니다. MAC 주소는 `-` 로 나뉜 16진수 6덩어리, IP 주소는 점으로 나뉜 숫자 4덩어리입니다. 게이트웨이는 우리 망에서 바깥 인터넷으로 나가는 장비(보통 공유기)의 IP 주소입니다.
 
@@ -499,7 +499,7 @@ python ping_check.py
 2. 장치가 여러 개 보이면 **기본 게이트웨이 칸이 비어 있지 않은 것**을 고릅니다.
 3. 학원 PC 는 보통 `이더넷 어댑터`, 노트북은 `무선 LAN 어댑터 Wi-Fi` 입니다. 어댑터(adapter)는 네트워크에 연결하는 장치, 이더넷(Ethernet)은 랜선 연결입니다.
 
-#### 정답 3-2
+#### <mark style="display:block; background:#fff59d; color:#1a1a1a; padding:4px 12px; border-radius:4px; text-decoration:underline">정답 3-2</mark>
 
 💻 **터미널에 입력합니다.**
 
@@ -507,7 +507,7 @@ python ping_check.py
 ipconfig
 ```
 
-**결과** — `IPv4 주소 . . . : ○○○.○○○.○.○○` 와 `기본 게이트웨이 . . . : ○○○.○○○.○.○`. 기본 게이트웨이 칸이 비어 있지 않은 장치의 두 값을 적습니다.
+<mark style="background:#fff59d; color:#1a1a1a; text-decoration:underline; padding:0 4px; border-radius:3px">**결과** — `IPv4 주소 . . . : ○○○.○○○.○.○○` 와 `기본 게이트웨이 . . . : ○○○.○○○.○.○`. 기본 게이트웨이 칸이 비어 있지 않은 장치의 두 값을 적습니다.</mark>
 
 **왜** — 게이트웨이가 적힌 장치가 지금 바깥 인터넷과 통신하는 장치입니다. IP 주소는 망에 들어갈 때 받는 값이라 PC 마다 다릅니다.
 
@@ -537,7 +537,7 @@ ipconfig
 2. 줄이 많습니다. 3-2 에서 고른 장치 이름 아래를 봅니다.
 3. 사용법 안내만 나오면 슬래시를 하나만 쓴 것입니다. `ipconfig //all` 로 다시 입력합니다.
 
-#### 정답 3-3
+#### <mark style="display:block; background:#fff59d; color:#1a1a1a; padding:4px 12px; border-radius:4px; text-decoration:underline">정답 3-3</mark>
 
 💻 **터미널에 입력합니다.**
 
@@ -545,7 +545,7 @@ ipconfig
 ipconfig //all
 ```
 
-**결과** — 3-2 와 같은 장치 이름 아래의 `물리적 주소 . . . : ○○-○○-○○-○○-○○-○○` 를 적습니다.
+<mark style="background:#fff59d; color:#1a1a1a; text-decoration:underline; padding:0 4px; border-radius:3px">**결과** — 3-2 와 같은 장치 이름 아래의 `물리적 주소 . . . : ○○-○○-○○-○○-○○-○○` 를 적습니다.</mark>
 
 **왜** — MAC 주소는 2층 주소라 옵션 없는 `ipconfig` 에는 나오지 않고 `//all` 로 자세히 볼 때 나옵니다.
 
@@ -575,7 +575,7 @@ ipconfig //all
 2. 게이트웨이는 같은 건물 안, `8.8.8.8` 은 인터넷 건너편입니다. 거리가 시간 차이로 보입니다.
 3. 게이트웨이에서 이미 답이 없으면 **바깥이 아니라 우리 망 안**이 문제입니다(4교시 4-5).
 
-#### 정답 3-4
+#### <mark style="display:block; background:#fff59d; color:#1a1a1a; padding:4px 12px; border-radius:4px; text-decoration:underline">정답 3-4</mark>
 
 💻 **터미널에 입력합니다.** 주소 자리에는 3-2 에서 찾은 내 기본 게이트웨이를 씁니다.
 
@@ -583,7 +583,7 @@ ipconfig //all
 ping 192.168.0.1
 ```
 
-**결과** — 게이트웨이 평균은 보통 `1~5ms` 로, 2-2 의 `8.8.8.8` 평균보다 훨씬 작게 나옵니다.
+<mark style="background:#fff59d; color:#1a1a1a; text-decoration:underline; padding:0 4px; border-radius:3px">**결과** — 게이트웨이 평균은 보통 `1~5ms` 로, 2-2 의 `8.8.8.8` 평균보다 훨씬 작게 나옵니다.</mark>
 
 **왜** — 게이트웨이는 같은 건물 안에 있고 `8.8.8.8` 은 인터넷 건너편에 있습니다. 거리가 가깝고 거쳐 가는 장비가 적을수록 왕복 시간이 짧습니다.
 
@@ -620,7 +620,7 @@ ping 192.168.0.1
 2. `동적` 은 물어봐서 알아낸 것, `정적` 은 미리 정해진 것입니다.
 3. `ff-ff-ff-ff-ff-ff` 는 특정 장비가 아니라 **같은 망 전체에 보내는 주소**(브로드캐스트)입니다.
 
-#### 정답 3-5
+#### <mark style="display:block; background:#fff59d; color:#1a1a1a; padding:4px 12px; border-radius:4px; text-decoration:underline">정답 3-5</mark>
 
 💻 **터미널에 입력합니다.**
 
@@ -628,7 +628,7 @@ ping 192.168.0.1
 arp -a
 ```
 
-**결과** — `인터넷 주소` 가 내 기본 게이트웨이인 줄의 `물리적 주소`(○○-○○-○○-○○-○○-○○)를 적고, 유형은 `동적` 입니다.
+<mark style="background:#fff59d; color:#1a1a1a; text-decoration:underline; padding:0 4px; border-radius:3px">**결과** — `인터넷 주소` 가 내 기본 게이트웨이인 줄의 `물리적 주소`(○○-○○-○○-○○-○○-○○)를 적고, 유형은 `동적` 입니다.</mark>
 
 **왜** — PC 는 같은 망의 게이트웨이에 보내려면 그 MAC 주소를 알아야 해서 ARP 로 물어봅니다. 물어봐서 알아낸 값이라 `동적` 입니다.
 
@@ -685,7 +685,7 @@ python addr_kind.py
 2. 조각의 개수는 `len()` 으로 셉니다.
 3. `return` 을 만나면 함수는 거기서 끝납니다. 그래서 `else` 없이 순서대로 써도 됩니다.
 
-#### 정답 3-6
+#### <mark style="display:block; background:#fff59d; color:#1a1a1a; padding:4px 12px; border-radius:4px; text-decoration:underline">정답 3-6</mark>
 
 (코드는 위 문제 칸에 채워 두었습니다.)
 
@@ -695,7 +695,7 @@ python addr_kind.py
 python addr_kind.py
 ```
 
-**결과** — `IP 192.168.0.15` · `MAC a8-5e-45-01-2b-3c` · `MAC ff-ff-ff-ff-ff-ff` · `모름 192.168.0` 네 줄입니다.
+<mark style="background:#fff59d; color:#1a1a1a; text-decoration:underline; padding:0 4px; border-radius:3px">**결과** — `IP 192.168.0.15` · `MAC a8-5e-45-01-2b-3c` · `MAC ff-ff-ff-ff-ff-ff` · `모름 192.168.0` 네 줄입니다.</mark>
 
 **왜** — `192.168.0` 은 점으로 나누면 3조각, `-` 로 나누면 1조각이라 두 조건에 모두 맞지 않아 `모름` 입니다. `return` 을 만나면 함수가 끝나서 위 조건부터 차례로 검사됩니다.
 
@@ -769,9 +769,9 @@ print(PORTS.get(3389, "모름"))
 
 막히면 바로 위 `4.1` 표와 1과목의 `.get()` 을 떠올립니다.
 
-#### 정답
+#### <mark style="display:block; background:#fff59d; color:#1a1a1a; padding:4px 12px; border-radius:4px; text-decoration:underline">정답</mark>
 
-**결과** — `HTTPS` 와 `모름` 두 줄입니다.
+<mark style="background:#fff59d; color:#1a1a1a; text-decoration:underline; padding:0 4px; border-radius:3px">**결과** — `HTTPS` 와 `모름` 두 줄입니다.</mark>
 
 **왜** — `PORTS[443]` 은 키 443 의 값을 꺼냅니다. `3389` 는 사전에 없는 키라 `.get` 의 두 번째 값 `"모름"` 이 나옵니다.
 
@@ -808,7 +808,7 @@ print(PORTS.get(3389, "모름"))
 2. 외부 주소의 **`:` 뒤 숫자**가 상대 쪽 포트입니다.
 3. 줄이 너무 많으면 브라우저를 하나 열어 둔 채 다시 입력합니다.
 
-#### 정답 4-2
+#### <mark style="display:block; background:#fff59d; color:#1a1a1a; padding:4px 12px; border-radius:4px; text-decoration:underline">정답 4-2</mark>
 
 💻 **터미널에 입력합니다.**
 
@@ -816,7 +816,7 @@ print(PORTS.get(3389, "모름"))
 netstat -n
 ```
 
-**결과** — `ESTABLISHED` 줄의 `외부 주소` 에서 `:` 뒤 숫자를 읽고, 4.1 표에서 서비스 이름을 찾습니다. 예: `443` 이면 `HTTPS` 입니다.
+<mark style="background:#fff59d; color:#1a1a1a; text-decoration:underline; padding:0 4px; border-radius:3px">**결과** — `ESTABLISHED` 줄의 `외부 주소` 에서 `:` 뒤 숫자를 읽고, 4.1 표에서 서비스 이름을 찾습니다. 예: `443` 이면 `HTTPS` 입니다.</mark>
 
 **왜** — 서비스를 알려 주는 것은 상대 쪽 포트입니다. 요즘 웹은 거의 다 HTTPS 라서 브라우저를 켜 두면 443 줄이 여러 개 보입니다.
 
@@ -845,7 +845,7 @@ netstat -n
 3. 아무것도 안 나오면 작업 관리자(`Ctrl + Shift + Esc`) › **세부 정보** 탭의 PID 열에서 찾습니다.
 4. PID 는 프로그램을 다시 켤 때마다 바뀝니다. 지금 화면의 숫자로 찾습니다.
 
-#### 정답 4-3
+#### <mark style="display:block; background:#fff59d; color:#1a1a1a; padding:4px 12px; border-radius:4px; text-decoration:underline">정답 4-3</mark>
 
 💻 **터미널에 입력합니다.**
 
@@ -854,7 +854,7 @@ netstat -ano | grep ESTABLISHED
 tasklist | grep 1234
 ```
 
-**결과** — 첫 줄로 4-2 의 줄을 찾아 맨 끝 숫자(PID)를 읽고, 둘째 줄의 `1234` 자리에 그 숫자를 넣습니다. 나온 줄의 첫 칸(예: `chrome.exe` · `msedge.exe`)이 프로그램 이름입니다.
+<mark style="background:#fff59d; color:#1a1a1a; text-decoration:underline; padding:0 4px; border-radius:3px">**결과** — 첫 줄로 4-2 의 줄을 찾아 맨 끝 숫자(PID)를 읽고, 둘째 줄의 `1234` 자리에 그 숫자를 넣습니다. 나온 줄의 첫 칸(예: `chrome.exe` · `msedge.exe`)이 프로그램 이름입니다.</mark>
 
 **왜** — `-o` 가 연결 줄 맨 끝에 PID 를 붙이고, `tasklist` 는 PID 와 프로그램 이름을 함께 보여 줍니다. 같은 PID 로 두 결과를 이어서 연결을 연 프로그램을 찾습니다.
 
@@ -884,7 +884,7 @@ tasklist | grep 1234
 2. 결과에서 `LISTENING` 이 든 줄만 남기는 방법은 명령 상자의 `| grep` 줄에 있습니다.
 3. `0.0.0.0` 은 「이 PC 의 모든 주소에서 듣는다」는 뜻입니다.
 
-#### 정답 4-4
+#### <mark style="display:block; background:#fff59d; color:#1a1a1a; padding:4px 12px; border-radius:4px; text-decoration:underline">정답 4-4</mark>
 
 💻 **터미널에 입력합니다.**
 
@@ -892,7 +892,7 @@ tasklist | grep 1234
 netstat -an | grep LISTENING
 ```
 
-**결과** — `TCP    0.0.0.0:135 … LISTENING` · `TCP    0.0.0.0:445 … LISTENING` 꼴의 줄에서 4.1 표에 있는 포트(135 · 445 등)를 적습니다. 다른 번호가 더 있어도 정상입니다.
+<mark style="background:#fff59d; color:#1a1a1a; text-decoration:underline; padding:0 4px; border-radius:3px">**결과** — `TCP    0.0.0.0:135 … LISTENING` · `TCP    0.0.0.0:445 … LISTENING` 꼴의 줄에서 4.1 표에 있는 포트(135 · 445 등)를 적습니다. 다른 번호가 더 있어도 정상입니다.</mark>
 
 **왜** — `-a` 가 듣고 있는 포트까지 보여 주고, `| grep LISTENING` 이 그 줄만 남깁니다. 135 · 445 는 Windows 파일 공유가 쓰는 포트입니다.
 
@@ -928,7 +928,7 @@ netstat -an | grep LISTENING
 2. ①은 숫자 주소로는 됐습니다. 그럼 3층(IP)까지는 문제가 없습니다.
 3. ③은 `ping`(3층)이 됩니다. 남은 것은 그 위입니다.
 
-#### 정답 4-5
+#### <mark style="display:block; background:#fff59d; color:#1a1a1a; padding:4px 12px; border-radius:4px; text-decoration:underline">정답 4-5</mark>
 
 | 증상 | 층 | 이유 |
 |---|---|---|
@@ -936,7 +936,7 @@ netstat -an | grep LISTENING
 | ② 게이트웨이도 응답 없음 | 1~3층 — 우리 망 안 | 바깥까지 가기 전에, 우리 망 안의 게이트웨이부터 답이 없다 |
 | ③ `ping` 은 되는데 웹 하나만 안 됨 | 4층 이상 — 그 서버의 포트 · 서비스 | 3층(`ping`)은 되니, 그 위의 포트나 서비스가 문제다 |
 
-**결과** — ① 7층 DNS(이름 → IP 변환) ② 1~3층 우리 망 안(선 · Wi-Fi · 공유기) ③ 4층 이상 그 서버의 포트나 서비스.
+<mark style="background:#fff59d; color:#1a1a1a; text-decoration:underline; padding:0 4px; border-radius:3px">**결과** — ① 7층 DNS(이름 → IP 변환) ② 1~3층 우리 망 안(선 · Wi-Fi · 공유기) ③ 4층 이상 그 서버의 포트나 서비스.</mark>
 
 **왜** — 아래 층부터 되는지 확인하고, 처음으로 안 되는 층을 원인으로 봅니다. 숫자 주소 `ping` 이 되면 3층까지는 정상입니다.
 
@@ -988,7 +988,7 @@ python port_name.py
 2. `51234` 처럼 큰 숫자는 대개 내 쪽의 임시 포트입니다.
 3. 관제에서는 `3389` 가 바깥에 열려 있으면 바로 확인합니다.
 
-#### 정답 4-6
+#### <mark style="display:block; background:#fff59d; color:#1a1a1a; padding:4px 12px; border-radius:4px; text-decoration:underline">정답 4-6</mark>
 
 (코드는 위 문제 칸에 채워 두었습니다.)
 
@@ -998,7 +998,7 @@ python port_name.py
 python port_name.py
 ```
 
-**결과** — `443 → HTTPS` · `445 → SMB` · `3389 → RDP` · `51234 → 모름` 네 줄입니다.
+<mark style="background:#fff59d; color:#1a1a1a; text-decoration:underline; padding:0 4px; border-radius:3px">**결과** — `443 → HTTPS` · `445 → SMB` · `3389 → RDP` · `51234 → 모름` 네 줄입니다.</mark>
 
 **왜** — `PORTS.get(port, "모름")` 은 사전에 키가 있으면 그 이름을, 없으면 `"모름"` 을 돌려줍니다. `51234` 는 사전에 없는 임시 포트입니다.
 

@@ -122,9 +122,9 @@ for ch in label:
 print(label, len(label), vowels)
 ```
 
-#### 정답
+#### <mark style="display:block; background:#fff59d; color:#1a1a1a; padding:4px 12px; border-radius:4px; text-decoration:underline">정답</mark>
 
-**결과** — `p0w8rk2mzq 10 0`
+<mark style="background:#fff59d; color:#1a1a1a; text-decoration:underline; padding:0 4px; border-radius:3px">**결과** — `p0w8rk2mzq 10 0`</mark>
 
 **왜** — `parts[-2]` 는 TLD(`xyz`) 바로 앞 조각 `p0w8rk2mzq` 입니다. 열 글자인데 모음이 하나도 없습니다 — 사람이 지은 이름에서는 드문 DGA 의 특징입니다.
 
@@ -176,13 +176,13 @@ python label.py
 2. 출력 줄은 미리 채워 두었습니다. `label` · `tld` 두 변수만 만들면 됩니다.
 3. `e6030` 이 아니라 `akamaiedge` 를 보는 이유는 5.1 표 아래에 있습니다.
 
-#### 정답 5-2
+#### <mark style="display:block; background:#fff59d; color:#1a1a1a; padding:4px 12px; border-radius:4px; text-decoration:underline">정답 5-2</mark>
 
 (코드는 위 문제 칸에 채워 두었습니다.)
 
 💻 **터미널에 입력합니다.** `python label.py`
 
-**결과** — `www.naver.com 조각: naver TLD: com` · `e6030.a.akamaiedge.net 조각: akamaiedge TLD: net` · `kxq3vz9a.top 조각: kxq3vz9a TLD: top` · `bnk-secure-login.xyz 조각: bnk-secure-login TLD: xyz`
+<mark style="background:#fff59d; color:#1a1a1a; text-decoration:underline; padding:0 4px; border-radius:3px">**결과** — `www.naver.com 조각: naver TLD: com` · `e6030.a.akamaiedge.net 조각: akamaiedge TLD: net` · `kxq3vz9a.top 조각: kxq3vz9a TLD: top` · `bnk-secure-login.xyz 조각: bnk-secure-login TLD: xyz`</mark>
 
 **왜** — `split(".")` 로 나눈 조각 수는 이름마다 다르지만, `[-1]` · `[-2]` 처럼 끝에서 세면 TLD 와 그 앞 조각을 늘 같은 자리에서 꺼냅니다.
 
@@ -242,13 +242,13 @@ python features.py
 2. `round(값, 2)` 는 소수 둘째 자리까지 반올림합니다(미리 채워 둔 줄).
 3. 셋째 줄 `xn--3e0b707e` 는 **정상** 도메인인데 숫자가 많고 모음이 적습니다. 6교시에 다시 봅니다.
 
-#### 정답 5-3
+#### <mark style="display:block; background:#fff59d; color:#1a1a1a; padding:4px 12px; border-radius:4px; text-decoration:underline">정답 5-3</mark>
 
 (코드는 위 문제 칸에 채워 두었습니다.)
 
 💻 **터미널에 입력합니다.** `python features.py`
 
-**결과** — `{'label': 'naver', 'len': 5, 'digits': 0, 'vowel_ratio': 0.4}` · `{'label': 'kxq3vz9a', 'len': 8, 'digits': 2, 'vowel_ratio': 0.12}` · `{'label': 'xn--3e0b707e', 'len': 12, 'digits': 5, 'vowel_ratio': 0.17}`
+<mark style="background:#fff59d; color:#1a1a1a; text-decoration:underline; padding:0 4px; border-radius:3px">**결과** — `{'label': 'naver', 'len': 5, 'digits': 0, 'vowel_ratio': 0.4}` · `{'label': 'kxq3vz9a', 'len': 8, 'digits': 2, 'vowel_ratio': 0.12}` · `{'label': 'xn--3e0b707e', 'len': 12, 'digits': 5, 'vowel_ratio': 0.17}`</mark>
 
 **왜** — `if` 두 개가 한 자씩 숫자와 모음을 따로 셉니다. DGA 이름인 `kxq3vz9a` 는 숫자가 많고 모음 비율이 0.12 로 낮습니다.
 
@@ -305,13 +305,13 @@ python typosquat.py
 2. 2번은 `elif` 입니다.
 3. `kb5tar` 는 `5 → s` 바꾸기를 넣지 않아 「모름」입니다 — 규칙은 넣은 만큼만 잡습니다.
 
-#### 정답 5-4
+#### <mark style="display:block; background:#fff59d; color:#1a1a1a; padding:4px 12px; border-radius:4px; text-decoration:underline">정답 5-4</mark>
 
 (코드는 위 문제 칸에 채워 두었습니다.)
 
 💻 **터미널에 입력합니다.** `python typosquat.py`
 
-**결과** — `[사칭 의심] nav3r.com → naver.com 흉내` · `[정상] google.com` · `[사칭 의심] g00gle.com → google.com 흉내` · `[정상] kbstar.com` · `[모름] kb5tar.com`
+<mark style="background:#fff59d; color:#1a1a1a; text-decoration:underline; padding:0 4px; border-radius:3px">**결과** — `[사칭 의심] nav3r.com → naver.com 흉내` · `[정상] google.com` · `[사칭 의심] g00gle.com → google.com 흉내` · `[정상] kbstar.com` · `[모름] kb5tar.com`</mark>
 
 **왜** — `replace` 로 숫자를 닮은 글자로 되돌렸을 때 진짜 도메인과 같아지면 사칭입니다. `kb5tar` 는 `5 → s` 바꾸기가 없어 `[모름]` 입니다.
 
@@ -375,13 +375,13 @@ python nx_count.py
 2. 한 번 틀린 이름은 사람의 오타일 가능성이 큽니다. **짧은 시간에 여러 번**이 신호입니다.
 3. `10.20.0.42` 는 마지막에 `qwrtpzkx7v.com` 의 답을 받았습니다 — DGA 이름 가운데 **실제로 등록된 하나**를 찾아낸 것일 수 있습니다.
 
-#### 정답 5-5
+#### <mark style="display:block; background:#fff59d; color:#1a1a1a; padding:4px 12px; border-radius:4px; text-decoration:underline">정답 5-5</mark>
 
 (코드는 위 문제 칸에 채워 두었습니다.)
 
 💻 **터미널에 입력합니다.** `python nx_count.py`
 
-**결과** — `[확인 필요] 10.20.0.42 NXDOMAIN 3번` 한 줄
+<mark style="background:#fff59d; color:#1a1a1a; text-decoration:underline; padding:0 4px; border-radius:3px">**결과** — `[확인 필요] 10.20.0.42 NXDOMAIN 3번` 한 줄</mark>
 
 **왜** — `nx.get(pc, 0) + 1` 이 PC 마다 NXDOMAIN 횟수를 쌓습니다. `10.20.0.42` 는 3번, `10.20.0.33` 은 1번이라 문턱 3 을 넘는 PC 는 하나입니다.
 
@@ -436,13 +436,13 @@ python long_label.py
 2. 이 글자들은 정보를 숨기는 방식(Base64 · 베이스64)으로 바꾼 것이라 뜻 없는 글자처럼 보입니다.
 3. 5.1 표의 「길이」 지표를 맨 앞 조각에 쓴 것입니다.
 
-#### 정답 5-6
+#### <mark style="display:block; background:#fff59d; color:#1a1a1a; padding:4px 12px; border-radius:4px; text-decoration:underline">정답 5-6</mark>
 
 (코드는 위 문제 칸에 채워 두었습니다.)
 
 💻 **터미널에 입력합니다.** `python long_label.py`
 
-**결과** — `[터널링 의심] 길이 35 : aGVsbG8…` · `[터널링 의심] 길이 40 : c2VjcmV0…` 두 줄
+<mark style="background:#fff59d; color:#1a1a1a; text-decoration:underline; padding:0 4px; border-radius:3px">**결과** — `[터널링 의심] 길이 35 : aGVsbG8…` · `[터널링 의심] 길이 40 : c2VjcmV0…` 두 줄</mark>
 
 **왜** — `split(".")[0]` 이 맨 앞 조각을 꺼냅니다. 숨긴 데이터를 실은 조각은 35 · 40 글자로, `www` · `update` 보다 훨씬 깁니다.
 
@@ -541,9 +541,9 @@ if rcode == "NXDOMAIN":
 print(score, score >= 3)
 ```
 
-#### 정답
+#### <mark style="display:block; background:#fff59d; color:#1a1a1a; padding:4px 12px; border-radius:4px; text-decoration:underline">정답</mark>
 
-**결과** — `3 True`
+<mark style="background:#fff59d; color:#1a1a1a; text-decoration:underline; padding:0 4px; border-radius:3px">**결과** — `3 True`</mark>
 
 **왜** — 길이는 8 이라 0점, TLD `top` 1점, NXDOMAIN 2점입니다. 숫자 · 모음 규칙을 빼도 합이 3 이라 `score >= 3` 이 `True` 입니다.
 
@@ -626,13 +626,13 @@ python dga_score.py
 2. 2번은 2점입니다.
 3. `why` 에 쌓인 이름이 7교시 보고서의 「근거」 칸이 됩니다.
 
-#### 정답 6-2
+#### <mark style="display:block; background:#fff59d; color:#1a1a1a; padding:4px 12px; border-radius:4px; text-decoration:underline">정답 6-2</mark>
 
 (코드는 위 문제 칸에 채워 두었습니다.)
 
 💻 **터미널에 입력합니다.** `python dga_score.py`
 
-**결과** — `{'points': 0, 'why': []}` · `{'points': 5, 'why': ['숫자', '모음', 'TLD', 'NXDOMAIN']}`
+<mark style="background:#fff59d; color:#1a1a1a; text-decoration:underline; padding:0 4px; border-radius:3px">**결과** — `{'points': 0, 'why': []}` · `{'points': 5, 'why': ['숫자', '모음', 'TLD', 'NXDOMAIN']}`</mark>
 
 **왜** — `kxq3vz9a` 는 8글자라 길이 규칙만 빠지고, 숫자 · 모음 · TLD 각 1점에 NXDOMAIN 2점이 더해져 5점입니다. `why` 에 걸린 규칙 이름이 차례로 쌓입니다.
 
@@ -696,13 +696,13 @@ python judge.py
 2. `dga_score.py` 와 같은 폴더에서 실행해야 `import` 가 됩니다.
 3. 틀린 줄 세 개가 6-4 의 오탐 1 · 미탐 2 입니다.
 
-#### 정답 6-3
+#### <mark style="display:block; background:#fff59d; color:#1a1a1a; padding:4px 12px; border-radius:4px; text-decoration:underline">정답 6-3</mark>
 
 (코드는 위 문제 칸에 채워 두었습니다.)
 
 💻 **터미널에 입력합니다.** `python judge.py`
 
-**결과** — 열두 줄. `xn--3e0b707e.kr 3점 의심 (실제 정상)` 과 `qwrtpzkx7v.com 2점 정상 (실제 의심)` · `bnk-secure-login.xyz 2점 정상 (실제 의심)` 이 **틀린 줄**입니다.
+<mark style="background:#fff59d; color:#1a1a1a; text-decoration:underline; padding:0 4px; border-radius:3px">**결과** — 열두 줄. `xn--3e0b707e.kr 3점 의심 (실제 정상)` 과 `qwrtpzkx7v.com 2점 정상 (실제 의심)` · `bnk-secure-login.xyz 2점 정상 (실제 의심)` 이 **틀린 줄**입니다.</mark>
 
 **왜** — `result["points"] >= THRESHOLD` 한 줄이 판정을 정합니다. `qwrtpzkx7v.com` 은 실제로 등록돼 NOERROR 라 NXDOMAIN 2점을 못 받았고, `bnk-secure-login` 은 모음이 충분해 길이 · TLD 2점에 그쳤습니다.
 
@@ -777,13 +777,13 @@ python evaluate.py
 2. `judged` 를 정하는 네 줄은 6-3 에서 쓴 것과 같아 미리 채워 두었습니다.
 3. 6.2 표의 네 칸 가운데 세 칸을 세는 것입니다.
 
-#### 정답 6-4
+#### <mark style="display:block; background:#fff59d; color:#1a1a1a; padding:4px 12px; border-radius:4px; text-decoration:underline">정답 6-4</mark>
 
 (코드는 위 문제 칸에 채워 두었습니다.)
 
 💻 **터미널에 입력합니다.** `python evaluate.py`
 
-**결과** — `맞힘 3 · 오탐 1 · 미탐 2`
+<mark style="background:#fff59d; color:#1a1a1a; text-decoration:underline; padding:0 4px; border-radius:3px">**결과** — `맞힘 3 · 오탐 1 · 미탐 2`</mark>
 
 **왜** — `and` 로 판정과 실제를 함께 봅니다. 맞힘은 NXDOMAIN 세 개, 오탐은 한글 도메인 `xn--3e0b707e.kr`, 미탐은 `qwrtpzkx7v.com` · `bnk-secure-login.xyz` 입니다.
 
@@ -823,7 +823,7 @@ python dga_score.py
 2. `label.startswith("xn--")` 이면 `return {"points": 0, "why": ["한글 도메인 예외"]}`.
 3. 예외는 **근거가 분명할 때만** 넣습니다. 예외가 많아지면 공격자가 그 틈으로 숨습니다.
 
-#### 정답 6-5
+#### <mark style="display:block; background:#fff59d; color:#1a1a1a; padding:4px 12px; border-radius:4px; text-decoration:underline">정답 6-5</mark>
 
 `dga_score.py` 의 `label = parts[-2]` 바로 아래에 두 줄을 넣습니다.
 
@@ -873,7 +873,7 @@ if __name__ == "__main__":                        # 직접 실행할 때만 시�
 python dga_score.py
 ```
 
-**결과** — 6-4 를 다시 실행하면 `맞힘 3 · 오탐 0 · 미탐 2`
+<mark style="background:#fff59d; color:#1a1a1a; text-decoration:underline; padding:0 4px; border-radius:3px">**결과** — 6-4 를 다시 실행하면 `맞힘 3 · 오탐 0 · 미탐 2`</mark>
 
 **왜** — `label.startswith("xn--")` 이면 점수를 세기 전에 0점으로 돌려보내므로, 한글 도메인 하나가 오탐에서 빠집니다. 다른 이름의 점수는 그대로입니다.
 
@@ -946,13 +946,13 @@ python threshold.py
 2. 예외(6-5)를 넣었기 때문에 문턱값 2 에서도 오탐이 0 입니다.
 3. 오늘 데이터에서는 2 가 가장 좋아 보이지만, 데이터 12건으로 정한 값은 믿기 어렵습니다 — 7교시 「한계」에 적습니다.
 
-#### 정답 6-6
+#### <mark style="display:block; background:#fff59d; color:#1a1a1a; padding:4px 12px; border-radius:4px; text-decoration:underline">정답 6-6</mark>
 
 (코드는 위 문제 칸에 채워 두었습니다.)
 
 💻 **터미널에 입력합니다.** `python threshold.py`
 
-**결과** — `| 2 | 5 | 0 | 0 |` · `| 3 | 3 | 0 | 2 |` · `| 4 | 3 | 0 | 2 |`
+<mark style="background:#fff59d; color:#1a1a1a; text-decoration:underline; padding:0 4px; border-radius:3px">**결과** — `| 2 | 5 | 0 | 0 |` · `| 3 | 3 | 0 | 2 |` · `| 4 | 3 | 0 | 2 |`</mark>
 
 **왜** — 미탐 두 건(`qwrtpzkx7v.com` · `bnk-secure-login.xyz`)이 모두 2점이라 문턱값 2 에서만 잡힙니다. 정상 이름은 예외 덕분에 가장 높은 것이 1점(`akamaiedge`)이라 오탐은 계속 0 입니다.
 
@@ -1011,9 +1011,9 @@ result = {"points": 5, "why": ["숫자", "모음", "TLD", "NXDOMAIN"]}
 print(f"| kxq3vz9a.top | {result['points']} | {', '.join(result['why'])} |")
 ```
 
-#### 정답
+#### <mark style="display:block; background:#fff59d; color:#1a1a1a; padding:4px 12px; border-radius:4px; text-decoration:underline">정답</mark>
 
-**결과** — `| kxq3vz9a.top | 5 | 숫자, 모음, TLD, NXDOMAIN |`
+<mark style="background:#fff59d; color:#1a1a1a; text-decoration:underline; padding:0 4px; border-radius:3px">**결과** — `| kxq3vz9a.top | 5 | 숫자, 모음, TLD, NXDOMAIN |`</mark>
 
 **왜** — `', '.join(...)` 이 리스트 네 개를 쉼표와 빈칸으로 이어 글자 하나로 만듭니다. 앞뒤의 `|` 덕분에 마크다운 표의 한 줄이 됩니다.
 
@@ -1081,13 +1081,13 @@ python report_table3.py
 2. 비어 있는지는 `if reason == "":` 로 봅니다.
 3. 6-5 를 고친 `dga_score.py` 를 불러오므로 한글 도메인은 예외로 나옵니다.
 
-#### 정답 7-2
+#### <mark style="display:block; background:#fff59d; color:#1a1a1a; padding:4px 12px; border-radius:4px; text-decoration:underline">정답 7-2</mark>
 
 (코드는 위 문제 칸에 채워 두었습니다.)
 
 💻 **터미널에 입력합니다.** `python report_table3.py`
 
-**결과** — `| www.naver.com | NOERROR | 0 | 정상 | - |` 로 시작하는 열두 줄 — `xn--3e0b707e.kr` 은 `0 | 정상 | 한글 도메인 예외`
+<mark style="background:#fff59d; color:#1a1a1a; text-decoration:underline; padding:0 4px; border-radius:3px">**결과** — `| www.naver.com | NOERROR | 0 | 정상 | - |` 로 시작하는 열두 줄 — `xn--3e0b707e.kr` 은 `0 | 정상 | 한글 도메인 예외`</mark>
 
 **왜** — `", ".join(result["why"])` 가 걸린 규칙을 한 칸에 이어 붙이고, 아무 규칙에도 안 걸려 빈 글자면 `-` 로 바꿉니다.
 
@@ -1120,7 +1120,7 @@ nslookup qzkx7wp2v.invalid
 2. 실무에서는 여기에 「언제 처음 등록됐나」, 「위협 정보 사이트에 올라 있나」를 더 봅니다.
 3. 의심 도메인에 **브라우저로 접속하지 않습니다.** `nslookup` 은 이름만 묻고 접속하지 않습니다.
 
-#### 정답 7-3
+#### <mark style="display:block; background:#fff59d; color:#1a1a1a; padding:4px 12px; border-radius:4px; text-decoration:underline">정답 7-3</mark>
 
 💻 **터미널에 입력합니다.**
 
@@ -1129,7 +1129,7 @@ nslookup e6030.a.akamaiedge.net
 nslookup qzkx7wp2v.invalid
 ```
 
-**결과** — 첫째는 `Address` 에 IP 가 나오고(있는 이름), 둘째는 `Non-existent domain`(없는 이름)입니다. IP 는 실행할 때마다 다를 수 있습니다.
+<mark style="background:#fff59d; color:#1a1a1a; text-decoration:underline; padding:0 4px; border-radius:3px">**결과** — 첫째는 `Address` 에 IP 가 나오고(있는 이름), 둘째는 `Non-existent domain`(없는 이름)입니다. IP 는 실행할 때마다 다를 수 있습니다.</mark>
 
 **왜** — 둘 다 겉모습은 무작위지만, `nslookup` 은 DNS 에 실제로 물어 답(NOERROR · NXDOMAIN)을 받아 옵니다. `.invalid` 는 존재하지 않도록 정해 둔 TLD 입니다.
 
@@ -1180,11 +1180,11 @@ nslookup qzkx7wp2v.invalid
 2. 미탐 `bnk-secure-login.xyz` 는 DGA 가 아니라 **사칭**이라 이 규칙으로는 못 잡습니다 — 5-4 같은 다른 규칙이 필요합니다.
 3. 한계를 숨기지 않는 것이 좋은 보고서입니다.
 
-#### 정답 7-4
+#### <mark style="display:block; background:#fff59d; color:#1a1a1a; padding:4px 12px; border-radius:4px; text-decoration:underline">정답 7-4</mark>
 
 보고서 4 · 5절의 예 — 근거: 「길이 — 사람이 지은 이름은 짧고 뜻이 있다」, 「NXDOMAIN — DGA 는 대부분 등록하지 않은 이름을 묻는다」. 결과: 맞힘 3 · 오탐 0 · 미탐 2. 한계: 「`qwrtpzkx7v.com` 은 실제로 등록돼 NOERROR 라 2점에 그쳤다 · `bnk-secure-login.xyz` 는 사칭이라 DGA 규칙으로 못 잡는다 · 12건으로 정한 문턱값은 믿기 어렵다」.
 
-**결과** — 근거 칸이 모두 찼고, 결과 · 한계가 숫자와 함께 적혀 있습니다. 결과는 예외를 넣은 뒤 숫자인 `맞힘 3 · 오탐 0 · 미탐 2` 입니다.
+<mark style="background:#fff59d; color:#1a1a1a; text-decoration:underline; padding:0 4px; border-radius:3px">**결과** — 근거 칸이 모두 찼고, 결과 · 한계가 숫자와 함께 적혀 있습니다. 결과는 예외를 넣은 뒤 숫자인 `맞힘 3 · 오탐 0 · 미탐 2` 입니다.</mark>
 
 **왜** — 규칙마다 「왜 의심스러운가」를 적어야 다른 사람이 규칙을 이해하고 고칩니다. 미탐 두 건의 이유가 곧 다음에 넣을 지표입니다.
 
@@ -1221,7 +1221,7 @@ nslookup qzkx7wp2v.invalid
 2. 표는 코드가 낸 것을 그대로 붙입니다.
 3. 올리기는 `git add network_zt` → `git commit -m "…"` → `git push`.
 
-#### 정답 7-5
+#### <mark style="display:block; background:#fff59d; color:#1a1a1a; padding:4px 12px; border-radius:4px; text-decoration:underline">정답 7-5</mark>
 
 보고서를 채운 뒤, **터미널(`security-agent-toolkit` 폴더)에 입력합니다.**
 
@@ -1232,7 +1232,7 @@ git commit -m "Add day 3 DNS analysis"
 git push
 ```
 
-**결과** — 깃허브의 `network_zt/day03_dns_analysis.md` 에 1~5절이 모두 보입니다.
+<mark style="background:#fff59d; color:#1a1a1a; text-decoration:underline; padding:0 4px; border-radius:3px">**결과** — 깃허브의 `network_zt/day03_dns_analysis.md` 에 1~5절이 모두 보입니다.</mark>
 
 **왜** — `git add network_zt` 가 과목 폴더의 바뀐 파일을 담고, `commit` 이 기록하고, `push` 가 깃허브로 올립니다. 그래서 `security-agent-toolkit` 폴더에서 실행합니다.
 
@@ -1262,11 +1262,11 @@ git push
 2. 짧은 무작위 이름(예: `qz7.top`)은 점수가 낮게 나올 수 있습니다 — 길이 규칙 때문입니다.
 3. 결과를 보고 규칙을 고치고 싶어지면, 그 생각이 곧 「다음에 할 일」입니다.
 
-#### 정답 7-6
+#### <mark style="display:block; background:#fff59d; color:#1a1a1a; padding:4px 12px; border-radius:4px; text-decoration:underline">정답 7-6</mark>
 
 자주 쓰는 이름 세 개와 지어낸 이름 두 개를 `nslookup` 으로 물어 `rcode` 를 정한 뒤 `LOG` 에 더해 7-2 를 다시 실행합니다. 예상과 다른 결과(예: 짧은 무작위 이름이 낮은 점수)를 5절에 한 줄 적습니다.
 
-**결과** — 다섯 줄이 더해진 판정표와 「예상과 달랐던 것」 한 줄
+<mark style="background:#fff59d; color:#1a1a1a; text-decoration:underline; padding:0 4px; border-radius:3px">**결과** — 다섯 줄이 더해진 판정표와 「예상과 달랐던 것」 한 줄</mark>
 
 **왜** — 같은 `score` 를 새 이름에 돌려 보면 규칙의 빈틈이 드러납니다. 예를 들어 `qz7.top` 같은 짧은 무작위 이름은 길이 · 숫자 규칙에 안 걸려 점수가 낮게 나올 수 있습니다.
 

@@ -130,9 +130,9 @@ print(packet["dst_port"])
 
 막히면 바로 위 문법 상자를 다시 봅니다.
 
-#### 정답
+#### <mark style="display:block; background:#fff59d; color:#1a1a1a; padding:4px 12px; border-radius:4px; text-decoration:underline">정답</mark>
 
-**결과** — `True` · `False` · `443` 세 줄.
+<mark style="background:#fff59d; color:#1a1a1a; text-decoration:underline; padding:0 4px; border-radius:3px">**결과** — `True` · `False` · `443` 세 줄.</mark>
 
 **왜** — `in` 은 리스트 안에 `"ACK"` 가 있는지 묻고, `==` 는 리스트 전체를 글자 `"ACK"` 와 비교하므로 늘 `False` 입니다.
 
@@ -170,7 +170,7 @@ print(packet["dst_port"])
 2. `requests.post` 는 웹(HTTPS) 요청입니다.
 3. 5.1 표 아래 줄을 다시 봅니다.
 
-#### 정답 5-2
+#### <mark style="display:block; background:#fff59d; color:#1a1a1a; padding:4px 12px; border-radius:4px; text-decoration:underline">정답 5-2</mark>
 
 | # | 답 | 이유 |
 |---|---|---|
@@ -180,7 +180,7 @@ print(packet["dst_port"])
 | ④ DNS 조회 | UDP | 짧은 질문 하나 · 답 하나라 연결을 맺지 않는다 |
 | ⑤ `ping` | 둘 다 아님 | ICMP 라는 별도 방식이다 |
 
-**결과** — ① TCP ② UDP ③ TCP ④ UDP ⑤ 둘 다 아님(ICMP)
+<mark style="background:#fff59d; color:#1a1a1a; text-decoration:underline; padding:0 4px; border-radius:3px">**결과** — ① TCP ② UDP ③ TCP ④ UDP ⑤ 둘 다 아님(ICMP)</mark>
 
 **왜** — 하나라도 빠지면 안 되는 데이터는 받았는지 확인하고 다시 보내는 TCP, 빠른 게 중요한 데이터는 확인을 하지 않는 UDP 를 씁니다.
 
@@ -216,9 +216,9 @@ print(packet["dst_port"])
 2. 서버는 「받았다」와 「나도 연결하자」를 한 번에 보냅니다.
 3. 마지막 「받았다」를 보내면 `ESTABLISHED` 가 됩니다.
 
-#### 정답 5-3
+#### <mark style="display:block; background:#fff59d; color:#1a1a1a; padding:4px 12px; border-radius:4px; text-decoration:underline">정답 5-3</mark>
 
-**결과** — (나) 내 PC → 서버 · (다) 서버 → 내 PC · (가) 내 PC → 서버
+<mark style="background:#fff59d; color:#1a1a1a; text-decoration:underline; padding:0 4px; border-radius:3px">**결과** — (나) 내 PC → 서버 · (다) 서버 → 내 PC · (가) 내 PC → 서버</mark>
 
 **왜** — 내 PC 가 `[SYN]` 으로 먼저 청하고, 서버는 「받았다(ACK)」와 「나도 연결하자(SYN)」를 한 줄에 실어 답합니다. 내 PC 의 마지막 `[ACK]` 뒤에 `ESTABLISHED` 가 됩니다.
 
@@ -306,7 +306,7 @@ python state_count.py
 2. 키는 `c["state"]` 입니다.
 3. `SYN_SENT`(신 센트)는 SYN 을 보내고 답을 기다리는 중 — 이게 많이 쌓이면 상대가 응답하지 않는 것입니다.
 
-#### 정답 5-4
+#### <mark style="display:block; background:#fff59d; color:#1a1a1a; padding:4px 12px; border-radius:4px; text-decoration:underline">정답 5-4</mark>
 
 (코드는 위 문제 칸에 채워 두었습니다.)
 
@@ -316,7 +316,7 @@ python state_count.py
 python state_count.py
 ```
 
-**결과** — `ESTABLISHED 2` · `TIME_WAIT 2` · `SYN_SENT 1`
+<mark style="background:#fff59d; color:#1a1a1a; text-decoration:underline; padding:0 4px; border-radius:3px">**결과** — `ESTABLISHED 2` · `TIME_WAIT 2` · `SYN_SENT 1`</mark>
 
 **왜** — `count.get(키, 0)` 은 처음 보는 상태면 `0` 을 주므로, 상태가 나올 때마다 지금까지 센 수에 1 을 더해 다시 담습니다.
 
@@ -346,7 +346,7 @@ python state_count.py
 2. 줄이 너무 많으면 `netstat -n | grep 443` 으로 443 줄만 봅니다.
 3. 같은 줄이 안 보이면 탭을 하나 더 열고 다시 입력합니다.
 
-#### 정답 5-5
+#### <mark style="display:block; background:#fff59d; color:#1a1a1a; padding:4px 12px; border-radius:4px; text-decoration:underline">정답 5-5</mark>
 
 💻 **터미널에 입력합니다.**
 
@@ -354,7 +354,7 @@ python state_count.py
 netstat -n
 ```
 
-**결과** — 외부 주소(목적지 IP · 포트)는 같고 로컬 주소 끝의 포트(임시 포트)만 다르다 — 예: `192.168.0.15:51234` 와 `192.168.0.15:51240`
+<mark style="background:#fff59d; color:#1a1a1a; text-decoration:underline; padding:0 4px; border-radius:3px">**결과** — 외부 주소(목적지 IP · 포트)는 같고 로컬 주소 끝의 포트(임시 포트)만 다르다 — 예: `192.168.0.15:51234` 와 `192.168.0.15:51240`</mark>
 
 **왜** — 연결 하나는 네 값(출발지 IP · 출발지 포트 · 목적지 IP · 목적지 포트)으로 구별됩니다. 목적지와 내 IP 가 같으니, 내 PC 가 연결마다 다른 임시 포트를 골라 구별합니다.
 
@@ -418,7 +418,7 @@ python packet_filter.py
 2. 「이거나」는 `or` 입니다.
 3. 6교시의 Wireshark 필터 `tcp.flags.syn == 1` 과 `ip.addr == 주소` 가 이 두 반복과 같은 일을 합니다.
 
-#### 정답 5-6
+#### <mark style="display:block; background:#fff59d; color:#1a1a1a; padding:4px 12px; border-radius:4px; text-decoration:underline">정답 5-6</mark>
 
 (코드는 위 문제 칸에 채워 두었습니다.)
 
@@ -428,7 +428,7 @@ python packet_filter.py
 python packet_filter.py
 ```
 
-**결과** — `[SYN 필터]` 아래 12 · 13 두 줄, `[서버 대화 필터]` 아래 12 · 13 · 14 · 16 네 줄
+<mark style="background:#fff59d; color:#1a1a1a; text-decoration:underline; padding:0 4px; border-radius:3px">**결과** — `[SYN 필터]` 아래 12 · 13 두 줄, `[서버 대화 필터]` 아래 12 · 13 · 14 · 16 네 줄</mark>
 
 **왜** — 13번의 `["SYN", "ACK"]` 에도 SYN 이 들어 있어 `in` 이 잡습니다. 서버 필터는 보낸 쪽 · 받은 쪽을 둘 다 보므로 서버가 보낸 13번도 남습니다.
 
@@ -501,9 +501,9 @@ tcp.port == 443
 
 막히면 바로 위 Wireshark 상자의 색 표를 봅니다.
 
-#### 정답
+#### <mark style="display:block; background:#fff59d; color:#1a1a1a; padding:4px 12px; border-radius:4px; text-decoration:underline">정답</mark>
 
-**결과** — 초록 · 빨강 · 초록.
+<mark style="background:#fff59d; color:#1a1a1a; text-decoration:underline; padding:0 4px; border-radius:3px">**결과** — 초록 · 빨강 · 초록.</mark>
 
 **왜** — Wireshark 는 친 글자를 아는 이름 · 문법과 맞춰 보고 색으로 알려 줍니다. `tpc` 는 없는 이름(오타)이라 빨강입니다. 6-5 에서 직접 쳐 보며 맞춰 봅니다.
 
@@ -534,11 +534,11 @@ tcp.port == 443
 2. 목록이 비어 있으면 Npcap 이 빠진 것입니다. 설치 파일을 다시 실행해 Npcap 을 체크합니다.
 3. 막히면 손을 듭니다 — 전원이 같이 출발해야 다음 단계가 됩니다.
 
-#### 정답 6-2
+#### <mark style="display:block; background:#fff59d; color:#1a1a1a; padding:4px 12px; border-radius:4px; text-decoration:underline">정답 6-2</mark>
 
 시작 메뉴에서 Wireshark 를 실행합니다(설치는 아침 과제 8). 첫 화면 가운데에 통로 이름 목록이 보이면 됩니다.
 
-**결과** — `Welcome to Wireshark` 아래에 이더넷 · Wi-Fi 같은 통로 이름 목록, 오른쪽에 작은 그래프 (이름 · 개수는 PC 마다 다름)
+<mark style="background:#fff59d; color:#1a1a1a; text-decoration:underline; padding:0 4px; border-radius:3px">**결과** — `Welcome to Wireshark` 아래에 이더넷 · Wi-Fi 같은 통로 이름 목록, 오른쪽에 작은 그래프 (이름 · 개수는 PC 마다 다름)</mark>
 
 **왜** — 통로 목록은 Npcap 이 PC 의 통로를 찾아 Wireshark 에 넘겨 줘야 보입니다.
 
@@ -568,11 +568,11 @@ tcp.port == 443
 2. 멈추기는 도구 줄의 **빨간 네모**(또는 메뉴 캡처 › 정지 · Capture › Stop).
 3. 사이트 하나만 열었는데 수백 줄인 것이 정상입니다 — 업데이트 · 백신 · 메신저가 쉬지 않고 통신합니다.
 
-#### 정답 6-3
+#### <mark style="display:block; background:#fff59d; color:#1a1a1a; padding:4px 12px; border-radius:4px; text-decoration:underline">정답 6-3</mark>
 
 통로 더블클릭 → 브라우저로 사이트 열기 → 빨간 네모. 상태 줄 `패킷: ○○○`, Protocol 열의 `TCP` · `UDP` · `DNS` · `TLSv1.3` 등을 적습니다.
 
-**결과** — `패킷: ○○○` (0 이 아님)과 `TCP` · `UDP` · `DNS` · `TLSv1.3` 같은 이름 (매번 다름)
+<mark style="background:#fff59d; color:#1a1a1a; text-decoration:underline; padding:0 4px; border-radius:3px">**결과** — `패킷: ○○○` (0 이 아님)과 `TCP` · `UDP` · `DNS` · `TLSv1.3` 같은 이름 (매번 다름)</mark>
 
 **왜** — 사이트 하나를 열어도 DNS 조회(UDP) · 연결(TCP) · 암호화된 내용(TLS)이 이어지고, 업데이트 · 메신저 같은 다른 프로그램의 통신도 함께 잡힙니다.
 
@@ -606,11 +606,11 @@ tcp.port == 443
 2. 내 PC 가 보낸 패킷이면 Source IP 가 오전에 적은 내 IPv4 주소입니다.
 3. 봉투 안에 봉투가 든 모양 — 5.3 의 「헤더가 여러 겹」을 실물로 보는 것입니다.
 
-#### 정답 6-4
+#### <mark style="display:block; background:#fff59d; color:#1a1a1a; padding:4px 12px; border-radius:4px; text-decoration:underline">정답 6-4</mark>
 
 `Ethernet II` › Source(MAC) · `Internet Protocol Version 4` › Source · Destination · Time to Live · `Transmission Control Protocol` › Source Port · Destination Port · Flags 를 펼쳐 읽습니다.
 
-**결과** — 가운데 칸이 2층 `Ethernet II` → 3층 `Internet Protocol Version 4` → 4층 `Transmission Control Protocol` 순서로 쌓여 있고 표의 칸이 모두 찬다 (값은 PC 마다 다름)
+<mark style="background:#fff59d; color:#1a1a1a; text-decoration:underline; padding:0 4px; border-radius:3px">**결과** — 가운데 칸이 2층 `Ethernet II` → 3층 `Internet Protocol Version 4` → 4층 `Transmission Control Protocol` 순서로 쌓여 있고 표의 칸이 모두 찬다 (값은 PC 마다 다름)</mark>
 
 **왜** — 보낼 때 층마다 헤더를 하나씩 붙이므로, 패킷 하나에 MAC(2층) · IP 와 TTL(3층) · 포트와 플래그(4층)가 겹쳐 들어 있습니다.
 
@@ -646,7 +646,7 @@ tcp.port == 443
 2. `udp` 결과 대부분이 DNS 입니다 — 5.1 표의 「DNS 조회는 UDP」를 눈으로 확인하는 것입니다.
 3. 칸이 빨간색이면 오타입니다. 6-1 의 `tpc` 도 쳐 봅니다.
 
-#### 정답 6-5
+#### <mark style="display:block; background:#fff59d; color:#1a1a1a; padding:4px 12px; border-radius:4px; text-decoration:underline">정답 6-5</mark>
 
 필터 칸에 하나씩 입력하고 Enter. 상태 줄의 `표시됨` 숫자를 적고 X 로 지운 뒤 다음 것을 겁니다.
 
@@ -656,7 +656,7 @@ udp
 tcp.port == 443
 ```
 
-**결과** — 셋 다 `표시됨` 이 `패킷` 보다 작다. `dns` 에서는 Info 열에 방금 연 사이트 이름이 보인다 (숫자는 매번 다름)
+<mark style="background:#fff59d; color:#1a1a1a; text-decoration:underline; padding:0 4px; border-radius:3px">**결과** — 셋 다 `표시됨` 이 `패킷` 보다 작다. `dns` 에서는 Info 열에 방금 연 사이트 이름이 보인다 (숫자는 매번 다름)</mark>
 
 **왜** — 표시 필터는 패킷을 지우지 않고 조건에 맞는 줄만 보여 줍니다. 그래서 `패킷` 수는 그대로이고 `표시됨` 만 줄어듭니다.
 
@@ -688,11 +688,11 @@ tcp.port == 443
 2. Wireshark 상자 맨 아래 ⚠ 줄을 다시 봅니다.
 3. 같은 방법으로 `Destination Port` 를 찍으면 `tcp.port == 443` 이 생깁니다.
 
-#### 정답 6-6
+#### <mark style="display:block; background:#fff59d; color:#1a1a1a; padding:4px 12px; border-radius:4px; text-decoration:underline">정답 6-6</mark>
 
 `Destination Address` 오른쪽 클릭 › 필터로 적용 › 선택됨 → 필터 칸이 `ip.dst == 주소` 가 됨 → `ip.dst` 를 `ip.addr` 로 고쳐 Enter.
 
-**결과** — `ip.dst` 일 때는 나가는 줄만, `ip.addr` 로 고치면 오고 간 줄이 모두 남는다
+<mark style="background:#fff59d; color:#1a1a1a; text-decoration:underline; padding:0 4px; border-radius:3px">**결과** — `ip.dst` 일 때는 나가는 줄만, `ip.addr` 로 고치면 오고 간 줄이 모두 남는다</mark>
 
 **왜** — `ip.dst` 는 목적지 칸만 보고, `ip.addr` 는 출발지 · 목적지 둘 중 하나라도 그 주소면 남깁니다.
 
@@ -765,9 +765,9 @@ for p in packets:
     print(f"| {i} | {p['info']} |")
 ```
 
-#### 정답
+#### <mark style="display:block; background:#fff59d; color:#1a1a1a; padding:4px 12px; border-radius:4px; text-decoration:underline">정답</mark>
 
-**결과** — `| 1 | [SYN] |` · `| 2 | [SYN, ACK] |` · `| 3 | [ACK] |` 세 줄.
+<mark style="background:#fff59d; color:#1a1a1a; text-decoration:underline; padding:0 4px; border-radius:3px">**결과** — `| 1 | [SYN] |` · `| 2 | [SYN, ACK] |` · `| 3 | [ACK] |` 세 줄.</mark>
 
 **왜** — `i = i + 1` 이 `print` 보다 위에 있어서 첫 줄 번호가 1 입니다. 번호는 반복할 때마다 1씩 늘어납니다.
 
@@ -801,7 +801,7 @@ curl "http://example.com/?q=network_day1"
 2. 캡처가 **돌아가는 동안** `curl` 을 입력해야 잡힙니다.
 3. 화면 자르기는 `Win + Shift + S`(윈도우 키 + Shift + S · 캡처 도구) → 잘라서 `network_zt` 폴더에 붙여 저장합니다(그림판에 붙여 저장해도 됩니다).
 
-#### 정답 7-2
+#### <mark style="display:block; background:#fff59d; color:#1a1a1a; padding:4px 12px; border-radius:4px; text-decoration:underline">정답 7-2</mark>
 
 캡처 › 옵션(`Ctrl + K`) › 통로 선택 › 캡처 필터 `tcp port 80` › 시작. **터미널에 입력합니다.**
 
@@ -811,7 +811,7 @@ curl "http://example.com/?q=network_day1"
 
 3초 뒤 정지 → 표시 필터 `tcp.flags.syn == 1` 로 `[SYN]` · `[SYN, ACK]` 확인 → 필터를 지우고 바로 다음 `[ACK]` 까지 세 줄을 `Win + Shift + S` 로 잘라 `handshake.png` 로 저장.
 
-**결과** — Info 열에 `[SYN]` → `[SYN, ACK]` → `[ACK]` 가 차례로, 터미널에는 `<title>Example Domain</title>` 이 든 HTML (줄 번호 · 주소는 매번 다름)
+<mark style="background:#fff59d; color:#1a1a1a; text-decoration:underline; padding:0 4px; border-radius:3px">**결과** — Info 열에 `[SYN]` → `[SYN, ACK]` → `[ACK]` 가 차례로, 터미널에는 `<title>Example Domain</title>` 이 든 HTML (줄 번호 · 주소는 매번 다름)</mark>
 
 **왜** — 캡처 필터 `tcp port 80` 이 처음부터 80번 통신만 잡아 내 `curl` 연결이 짧게 남습니다. 세 번째 `[ACK]` 는 SYN 이 꺼져 있어 `tcp.flags.syn == 1` 에 안 걸리므로 필터를 지우고 찾습니다.
 
@@ -844,11 +844,11 @@ curl "http://example.com/?q=network_day1"
 2. FIN 이 2줄인 것은 5.2 그림의 「나는 다 보냈다」 · 「나도 다 보냈다」 두 번입니다.
 3. 줄이 안 보이면 `curl` 을 캡처 중에 다시 입력합니다.
 
-#### 정답 7-3
+#### <mark style="display:block; background:#fff59d; color:#1a1a1a; padding:4px 12px; border-radius:4px; text-decoration:underline">정답 7-3</mark>
 
 표시 필터 `http` → `GET /?q=network_day1 HTTP/1.1` 줄을 잘라 `http_request.png`. 표시 필터 `tcp.flags.fin == 1` → FIN 이 든 줄 2줄.
 
-**결과** — ① Info 에 `GET /?q=network_day1 HTTP/1.1` — 검색어가 그대로 보인다 ② FIN 줄 2줄(양쪽이 하나씩) (FIN 대신 RST 가 보이는 등 조금 다를 수 있음)
+<mark style="background:#fff59d; color:#1a1a1a; text-decoration:underline; padding:0 4px; border-radius:3px">**결과** — ① Info 에 `GET /?q=network_day1 HTTP/1.1` — 검색어가 그대로 보인다 ② FIN 줄 2줄(양쪽이 하나씩) (FIN 대신 RST 가 보이는 등 조금 다를 수 있음)</mark>
 
 **왜** — HTTP 는 암호화하지 않아 보낸 글자가 패킷에 그대로 실립니다. FIN 2줄은 5.2 그림의 「나는 다 보냈다」 · 「나도 다 보냈다」입니다.
 
@@ -919,7 +919,7 @@ python report_table.py
 2. 바깥은 큰따옴표, 안쪽 키는 작은따옴표입니다.
 3. 출력을 그대로 복사해 보고서에 붙입니다(7-5).
 
-#### 정답 7-4
+#### <mark style="display:block; background:#fff59d; color:#1a1a1a; padding:4px 12px; border-radius:4px; text-decoration:underline">정답 7-4</mark>
 
 (코드는 위 문제 칸에 채워 두었습니다.)
 
@@ -929,7 +929,7 @@ python report_table.py
 python report_table.py
 ```
 
-**결과** — `| 1 | 192.168.0.15 | 203.0.113.10 | [SYN] |` 로 시작하는 표 하나와 `| 출발지 IP | … | IP 헤더 (3층) |` 로 시작하는 표 하나 — 값은 내 화면의 값
+<mark style="background:#fff59d; color:#1a1a1a; text-decoration:underline; padding:0 4px; border-radius:3px">**결과** — `| 1 | 192.168.0.15 | 203.0.113.10 | [SYN] |` 로 시작하는 표 하나와 `| 출발지 IP | … | IP 헤더 (3층) |` 로 시작하는 표 하나 — 값은 내 화면의 값</mark>
 
 **왜** — f-string 이 사전 값을 `|` 칸 사이에 끼워 표 한 줄을 만들고, 반복이 패킷 · 헤더마다 그 줄을 찍습니다.
 
@@ -978,7 +978,7 @@ python report_table.py
 2. 올리기는 10/8 에 배운 순서입니다 — `security-agent-toolkit` 폴더에서 `git add network_zt` → `git commit -m "…"` → `git push`.
 3. `git status` 에 `.env` 가 보이면 멈춥니다.
 
-#### 정답 7-5
+#### <mark style="display:block; background:#fff59d; color:#1a1a1a; padding:4px 12px; border-radius:4px; text-decoration:underline">정답 7-5</mark>
 
 보고서에 2~5절을 붙여 채운 뒤, **터미널(`security-agent-toolkit` 폴더)에 입력합니다.**
 
@@ -989,7 +989,7 @@ git commit -m "Add day 1 packet analysis report"
 git push
 ```
 
-**결과** — 깃허브의 내 저장소 `network_zt` 폴더에 `day01_packet_analysis.md` · `handshake.png` · `http_request.png` 가 보이고, 보고서에 사진 두 장이 나온다
+<mark style="background:#fff59d; color:#1a1a1a; text-decoration:underline; padding:0 4px; border-radius:3px">**결과** — 깃허브의 내 저장소 `network_zt` 폴더에 `day01_packet_analysis.md` · `handshake.png` · `http_request.png` 가 보이고, 보고서에 사진 두 장이 나온다</mark>
 
 **왜** — `![설명](파일이름)` 은 같은 폴더의 사진을 보고서에 띄웁니다. 그래서 사진 파일도 같은 폴더에 함께 올려야 보입니다.
 
@@ -1023,7 +1023,7 @@ curl -I http://example.com
 2. 관제에서는 「이 웹 서버가 살아 있나 · 무슨 서버인가」를 볼 때 가장 먼저 씁니다. 화면이 짧아 읽기 쉽습니다.
 3. 상태 코드 `200` 은 9/29 에 배운 「성공」입니다.
 
-#### 정답 7-6
+#### <mark style="display:block; background:#fff59d; color:#1a1a1a; padding:4px 12px; border-radius:4px; text-decoration:underline">정답 7-6</mark>
 
 💻 **터미널에 입력합니다.**
 
@@ -1031,7 +1031,7 @@ curl -I http://example.com
 curl -I http://example.com
 ```
 
-**결과** — 첫 줄 `HTTP/1.1 200 OK`, 아래에 `Server: cloudflare` 같은 줄 — 본문(HTML)은 나오지 않는다 (값은 바뀔 수 있음)
+<mark style="background:#fff59d; color:#1a1a1a; text-decoration:underline; padding:0 4px; border-radius:3px">**결과** — 첫 줄 `HTTP/1.1 200 OK`, 아래에 `Server: cloudflare` 같은 줄 — 본문(HTML)은 나오지 않는다 (값은 바뀔 수 있음)</mark>
 
 **왜** — `-I` 는 본문 없이 머리글(헤더)만 받아 옵니다. `200` 이 상태 코드(성공), `Server:` 줄의 값이 서버가 밝힌 서버 종류입니다.
 
@@ -1065,11 +1065,11 @@ curl "https://example.com/?q=network_day1"
 2. 열리는 순간(3-way)은 암호화 **전**이라 똑같습니다.
 3. 관제 관점: HTTPS 는 내용이 안 보이니 **누구와 · 언제 · 얼마나** 통신했는지를 봅니다.
 
-#### 정답 7-7
+#### <mark style="display:block; background:#fff59d; color:#1a1a1a; padding:4px 12px; border-radius:4px; text-decoration:underline">정답 7-7</mark>
 
 캡처 필터 `tcp port 443` 으로 다시 잡고 `curl "https://example.com/?q=network_day1"`. 표시 필터 `tls` 로 보면 `Client Hello` · `Application Data` 만 보이고 검색어는 보이지 않습니다. 보고서에는 예: 「HTTP 는 내용이 그대로 보였지만 HTTPS 는 3-way 뒤의 내용이 암호화돼 검색어가 보이지 않았다」.
 
-**결과** — 3-way 는 똑같이 보이지만, 그 뒤가 `TLSv1.3` · `Application Data` 로만 보이고 검색어 `network_day1` 은 어디에도 안 보인다
+<mark style="background:#fff59d; color:#1a1a1a; text-decoration:underline; padding:0 4px; border-radius:3px">**결과** — 3-way 는 똑같이 보이지만, 그 뒤가 `TLSv1.3` · `Application Data` 로만 보이고 검색어 `network_day1` 은 어디에도 안 보인다</mark>
 
 **왜** — 3-way 는 암호화 전에 일어나서 똑같습니다. 그 뒤 내용은 TLS 가 암호화해 주소 뒤의 `?q=network_day1` 까지 가려집니다.
 

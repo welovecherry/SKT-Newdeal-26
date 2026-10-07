@@ -113,9 +113,9 @@ else:
     print("모든 포트로")
 ```
 
-#### 정답
+#### <mark style="display:block; background:#fff59d; color:#1a1a1a; padding:4px 12px; border-radius:4px; text-decoration:underline">정답</mark>
 
-**결과** — `포트 3 로만`
+<mark style="background:#fff59d; color:#1a1a1a; text-decoration:underline; padding:0 4px; border-radius:3px">**결과** — `포트 3 로만`</mark>
 
 **왜** — 표에 `BB` 가 있으니 3번 포트 하나로만 보냅니다. 플러딩은 목적지가 표에 없을 때만 합니다.
 
@@ -170,13 +170,13 @@ python direct_or_gw.py
 2. `/26` 이라 `.0 ~ .63` 이 한 망입니다. `.63` 은 브로드캐스트(망 전체에 보내는 주소)지만 같은 망입니다.
 3. 갈래가 둘이라 `if` · `else` 입니다.
 
-#### 정답 5-2
+#### <mark style="display:block; background:#fff59d; color:#1a1a1a; padding:4px 12px; border-radius:4px; text-decoration:underline">정답 5-2</mark>
 
 (코드는 위 문제 칸에 채워 두었습니다.)
 
 💻 **터미널에 입력합니다.** `python direct_or_gw.py`
 
-**결과** — `10.20.0.40 스위치로 직접` · `10.20.0.63 스위치로 직접` · `10.20.0.70 게이트웨이로`
+<mark style="background:#fff59d; color:#1a1a1a; text-decoration:underline; padding:0 4px; border-radius:3px">**결과** — `10.20.0.40 스위치로 직접` · `10.20.0.63 스위치로 직접` · `10.20.0.70 게이트웨이로`</mark>
 
 **왜** — `/26` 은 `.0 ~ .63` 이 한 망입니다. 같은 망이면 스위치로 바로, 망 밖이면 기본 게이트웨이로 보냅니다.
 
@@ -242,13 +242,13 @@ python switch_sim.py
 2. 2번은 바로 위 5-1 과 같은 `in` 확인입니다. 리스트로 돌려주려고 대괄호로 감쌉니다.
 3. 3번은 문법 상자의 `append` 반복과 같은 모양입니다.
 
-#### 정답 5-3
+#### <mark style="display:block; background:#fff59d; color:#1a1a1a; padding:4px 12px; border-radius:4px; text-decoration:underline">정답 5-3</mark>
 
 (코드는 위 문제 칸에 채워 두었습니다.)
 
 💻 **터미널에 입력합니다.** `python switch_sim.py`
 
-**결과** — `AA → BB : [2, 3, 4]` · `BB → AA : [1]` · `AA → BB : [3]` · `표: {'AA': 1, 'BB': 3}`
+<mark style="background:#fff59d; color:#1a1a1a; text-decoration:underline; padding:0 4px; border-radius:3px">**결과** — `AA → BB : [2, 3, 4]` · `BB → AA : [1]` · `AA → BB : [3]` · `표: {'AA': 1, 'BB': 3}`</mark>
 
 **왜** — 스위치는 들어온 프레임의 **출발지** MAC 과 포트를 배웁니다. 첫 줄에선 BB 를 몰라 플러딩하고, 둘째 줄에서 BB 가 3번에 있다고 배웁니다.
 
@@ -281,7 +281,7 @@ arp -a
 2. ARP(에이알피 · IP 로 MAC 을 묻는 방법)는 **같은 망 안에서만** 묻습니다.
 3. 학원망에서 `ping` 이 막혀도 이 문제는 됩니다 — 보낸 순간 게이트웨이 MAC 을 이미 찾았기 때문입니다.
 
-#### 정답 5-4
+#### <mark style="display:block; background:#fff59d; color:#1a1a1a; padding:4px 12px; border-radius:4px; text-decoration:underline">정답 5-4</mark>
 
 💻 **터미널에 입력합니다.**
 
@@ -290,7 +290,7 @@ ping -n 1 8.8.8.8
 arp -a
 ```
 
-**결과** — 기본 게이트웨이 IP(예: `192.168.○.1`) 줄에 물리적 주소가 있고, `8.8.8.8` 줄은 **없습니다**.
+<mark style="background:#fff59d; color:#1a1a1a; text-decoration:underline; padding:0 4px; border-radius:3px">**결과** — 기본 게이트웨이 IP(예: `192.168.○.1`) 줄에 물리적 주소가 있고, `8.8.8.8` 줄은 **없습니다**.</mark>
 
 **왜** — ARP 는 같은 망 안에서만 묻습니다. `8.8.8.8` 은 다른 망이라 PC 는 게이트웨이의 MAC 을 찾아 그쪽으로 보냅니다.
 
@@ -349,13 +349,13 @@ python gw_mistake.py
 2. PC1 의 망은 `.0 ~ .63` 인데 게이트웨이 `.65` 는 다음 망입니다.
 3. 이 실수는 선이 다 연결돼 있어도 **에러 없이** 통신만 안 됩니다.
 
-#### 정답 5-5
+#### <mark style="display:block; background:#fff59d; color:#1a1a1a; padding:4px 12px; border-radius:4px; text-decoration:underline">정답 5-5</mark>
 
 (코드는 위 문제 칸에 채워 두었습니다.)
 
 💻 **터미널에 입력합니다.** `python gw_mistake.py`
 
-**결과** — `PC0 정상` · `PC1 게이트웨이 192.168.10.65 가 망 밖 — 밖으로 못 나감` · `PC2 정상`
+<mark style="background:#fff59d; color:#1a1a1a; text-decoration:underline; padding:0 4px; border-radius:3px">**결과** — `PC0 정상` · `PC1 게이트웨이 192.168.10.65 가 망 밖 — 밖으로 못 나감` · `PC2 정상`</mark>
 
 **왜** — PC 는 게이트웨이의 MAC 을 ARP 로 찾는데, ARP 는 같은 망에서만 됩니다. PC1 의 망은 `.0 ~ .63` 이라 `.65` 에 닿지 못합니다.
 
@@ -418,13 +418,13 @@ python route_judge.py
 2. 「둘 다 같다」는 `and` 입니다.
 3. 게이트웨이는 **출발지** 장비의 것입니다.
 
-#### 정답 5-6
+#### <mark style="display:block; background:#fff59d; color:#1a1a1a; padding:4px 12px; border-radius:4px; text-decoration:underline">정답 5-6</mark>
 
 (코드는 위 문제 칸에 채워 두었습니다.)
 
 💻 **터미널에 입력합니다.** `python route_judge.py`
 
-**결과** — `PC0 -> PC1 스위치 직접 전달` · `PC0 -> PC2 게이트웨이 192.168.10.1로 전달` · `PC0 -> PC2 통신 불가`
+<mark style="background:#fff59d; color:#1a1a1a; text-decoration:underline; padding:0 4px; border-radius:3px">**결과** — `PC0 -> PC1 스위치 직접 전달` · `PC0 -> PC2 게이트웨이 192.168.10.1로 전달` · `PC0 -> PC2 통신 불가`</mark>
 
 **왜** — VLAN 과 망이 둘 다 같아야 스위치가 바로 넘깁니다. 하나라도 다르면 라우터를 거치고, 첫 홉은 출발지 PC0 의 게이트웨이입니다.
 
@@ -518,9 +518,9 @@ for port in port_vlan:
 print(out)
 ```
 
-#### 정답
+#### <mark style="display:block; background:#fff59d; color:#1a1a1a; padding:4px 12px; border-radius:4px; text-decoration:underline">정답</mark>
 
-**결과** — `[4]`
+<mark style="background:#fff59d; color:#1a1a1a; text-decoration:underline; padding:0 4px; border-radius:3px">**결과** — `[4]`</mark>
 
 **왜** — 3번 포트는 VLAN 20 이라 같은 VLAN 20 인 4번에만 퍼집니다. 1 · 2번(VLAN 10)과 들어온 3번은 빠집니다.
 
@@ -552,7 +552,7 @@ route print -4
 2. 결과 중간의 `IPv4 경로 테이블`(영문 `IPv4 Route Table`) 아래 `활성 경로` 표를 봅니다.
 3. 맨 앞 두 칸이 `0.0.0.0 0.0.0.0` 인 줄 = `0.0.0.0/0` = 기본 경로입니다.
 
-#### 정답 6-2
+#### <mark style="display:block; background:#fff59d; color:#1a1a1a; padding:4px 12px; border-radius:4px; text-decoration:underline">정답 6-2</mark>
 
 💻 **터미널에 입력합니다.**
 
@@ -560,7 +560,7 @@ route print -4
 route print -4
 ```
 
-**결과** — `활성 경로` 표의 `0.0.0.0          0.0.0.0     192.168.○.1   192.168.○.○○   25` 꼴의 줄 — 셋째 칸(게이트웨이)이 `ipconfig` 의 기본 게이트웨이와 같습니다.
+<mark style="background:#fff59d; color:#1a1a1a; text-decoration:underline; padding:0 4px; border-radius:3px">**결과** — `활성 경로` 표의 `0.0.0.0          0.0.0.0     192.168.○.1   192.168.○.○○   25` 꼴의 줄 — 셋째 칸(게이트웨이)이 `ipconfig` 의 기본 게이트웨이와 같습니다.</mark>
 
 **왜** — `0.0.0.0 0.0.0.0` 은 `0.0.0.0/0`, 곧 기본 경로입니다. 더 좁은 줄에 안 맞는 목적지는 전부 이 게이트웨이로 갑니다.
 
@@ -592,7 +592,7 @@ tracert -d -h 5 8.8.8.8
 2. 줄마다 하나씩, 패킷이 지나간 **라우터**입니다. 5.2 의 「다음 홉」이 차례로 보이는 것입니다.
 3. `*  *  *` 만 나오는 줄은 그 장비가 답하지 않도록 막아 둔 것입니다. 학원망에서 전부 막히면 첫 줄만 봅니다.
 
-#### 정답 6-3
+#### <mark style="display:block; background:#fff59d; color:#1a1a1a; padding:4px 12px; border-radius:4px; text-decoration:underline">정답 6-3</mark>
 
 💻 **터미널에 입력합니다.**
 
@@ -600,7 +600,7 @@ tracert -d -h 5 8.8.8.8
 tracert -d -h 5 8.8.8.8
 ```
 
-**결과** — `1    <1 ms    <1 ms    <1 ms  192.168.○.1` — `1` 번 줄의 주소가 내 기본 게이트웨이입니다. 그 뒤 줄들은 학원 · 통신사의 라우터입니다.
+<mark style="background:#fff59d; color:#1a1a1a; text-decoration:underline; padding:0 4px; border-radius:3px">**결과** — `1    <1 ms    <1 ms    <1 ms  192.168.○.1` — `1` 번 줄의 주소가 내 기본 게이트웨이입니다. 그 뒤 줄들은 학원 · 통신사의 라우터입니다.</mark>
 
 **왜** — 다른 망으로 가는 패킷은 먼저 기본 게이트웨이로 가므로 첫 다음 홉은 늘 게이트웨이입니다. 줄 하나가 라우터 하나입니다.
 
@@ -659,13 +659,13 @@ python vlan_flood.py
 2. 두 조건은 `and` 로 잇습니다.
 3. VLAN 이 다르면 같은 스위치여도 안 퍼집니다 — 그게 VLAN 의 목적입니다.
 
-#### 정답 6-4
+#### <mark style="display:block; background:#fff59d; color:#1a1a1a; padding:4px 12px; border-radius:4px; text-decoration:underline">정답 6-4</mark>
 
 (코드는 위 문제 칸에 채워 두었습니다.)
 
 💻 **터미널에 입력합니다.** `python vlan_flood.py`
 
-**결과** — `1번에서: [2, 5]` · `3번에서: [4]`
+<mark style="background:#fff59d; color:#1a1a1a; text-decoration:underline; padding:0 4px; border-radius:3px">**결과** — `1번에서: [2, 5]` · `3번에서: [4]`</mark>
 
 **왜** — 브로드캐스트는 들어온 포트와 같은 VLAN 안에서만 퍼집니다. VLAN 하나가 브로드캐스트가 닿는 범위 하나입니다.
 
@@ -731,13 +731,13 @@ python route_lookup.py
 2. `best is None or …` 으로 처음 맞은 줄도 받습니다.
 3. `0.0.0.0/0` 은 늘 맞지만 숫자가 0 이라 더 좁은 줄에 집니다.
 
-#### 정답 6-5
+#### <mark style="display:block; background:#fff59d; color:#1a1a1a; padding:4px 12px; border-radius:4px; text-decoration:underline">정답 6-5</mark>
 
 (코드는 위 문제 칸에 채워 두었습니다.)
 
 💻 **터미널에 입력합니다.** `python route_lookup.py`
 
-**결과** — `192.168.10.20 → 직접 연결 G0/0` · `192.168.10.70 → 직접 연결 G0/1` · `8.8.8.8 → 인터넷 게이트웨이`
+<mark style="background:#fff59d; color:#1a1a1a; text-decoration:underline; padding:0 4px; border-radius:3px">**결과** — `192.168.10.20 → 직접 연결 G0/0` · `192.168.10.70 → 직접 연결 G0/1` · `8.8.8.8 → 인터넷 게이트웨이`</mark>
 
 **왜** — 맞는 줄이 여럿이면 CIDR 숫자가 가장 큰(가장 좁은) 줄을 고릅니다. `0.0.0.0/0` 은 늘 맞지만 숫자가 0 이라 다른 줄이 안 맞을 때만 쓰입니다.
 
@@ -794,13 +794,13 @@ python vlan_pair.py
 2. 짝은 세 개뿐이라 리스트 `[(10, 20), (10, 30), (20, 30)]` 로 적어 반복해도 됩니다.
 3. 6.1 의 ⚠ 줄이 이 실수의 결과입니다.
 
-#### 정답 6-6
+#### <mark style="display:block; background:#fff59d; color:#1a1a1a; padding:4px 12px; border-radius:4px; text-decoration:underline">정답 6-6</mark>
 
 (코드는 위 문제 칸에 채워 두었습니다.)
 
 💻 **터미널에 입력합니다.** `python vlan_pair.py`
 
-**결과** — `VLAN 10 과 20 이 같은 주소를 씀 — 라우터가 있어도 통신 안 됨` 한 줄
+<mark style="background:#fff59d; color:#1a1a1a; text-decoration:underline; padding:0 4px; border-radius:3px">**결과** — `VLAN 10 과 20 이 같은 주소를 씀 — 라우터가 있어도 통신 안 됨` 한 줄</mark>
 
 **왜** — 같은 서브넷이면 PC 는 같은 망이라 보고 게이트웨이로 안 보내는데, 스위치는 VLAN 이 달라 막습니다. 그래서 VLAN 하나에 서브넷 하나를 짝짓습니다.
 
@@ -862,9 +862,9 @@ print(net.network_address + 1)
 print(net.broadcast_address)
 ```
 
-#### 정답
+#### <mark style="display:block; background:#fff59d; color:#1a1a1a; padding:4px 12px; border-radius:4px; text-decoration:underline">정답</mark>
 
-**결과** — `10.20.0.65` · `10.20.0.95`
+<mark style="background:#fff59d; color:#1a1a1a; text-decoration:underline; padding:0 4px; border-radius:3px">**결과** — `10.20.0.65` · `10.20.0.95`</mark>
 
 **왜** — 첫 호스트는 네트워크 주소 + 1, 브로드캐스트는 블록의 마지막 주소(64 + 32 − 1 = 95)입니다.
 
@@ -944,13 +944,13 @@ for n in [3, 8, 12, 20]:
 
 ⚠ `break` 를 빼면 마지막으로 맞은 후보(가장 뒤 블록)가 담깁니다. 「다음 빈 자리」가 아니게 됩니다.
 
-#### 정답 7-2
+#### <mark style="display:block; background:#fff59d; color:#1a1a1a; padding:4px 12px; border-radius:4px; text-decoration:underline">정답 7-2</mark>
 
 (코드는 위 문제 칸에 채워 두었습니다.)
 
 💻 **터미널에 입력합니다.** `python vlan_plan.py`
 
-**결과** — `| 개발팀 | 10 | 10.20.0.0/26 | 10.20.0.1 | 10.20.0.2 ~ 10.20.0.62 |` · `| 운영팀 | 20 | 10.20.0.64/27 | 10.20.0.65 | 10.20.0.66 ~ 10.20.0.94 |` · `| 보안팀 | 30 | 10.20.0.96/28 | 10.20.0.97 | 10.20.0.98 ~ 10.20.0.110 |`
+<mark style="background:#fff59d; color:#1a1a1a; text-decoration:underline; padding:0 4px; border-radius:3px">**결과** — `| 개발팀 | 10 | 10.20.0.0/26 | 10.20.0.1 | 10.20.0.2 ~ 10.20.0.62 |` · `| 운영팀 | 20 | 10.20.0.64/27 | 10.20.0.65 | 10.20.0.66 ~ 10.20.0.94 |` · `| 보안팀 | 30 | 10.20.0.96/28 | 10.20.0.97 | 10.20.0.98 ~ 10.20.0.110 |`</mark>
 
 **왜** — 게이트웨이는 첫 호스트(네트워크 주소 + 1), PC 범위는 그다음부터 브로드캐스트 바로 앞까지입니다.
 
@@ -1021,13 +1021,13 @@ python next_block.py
 2. 「겹치는 부서 수」를 세는 변수를 후보마다 0 에서 시작합니다.
 3. 112 는 96 + 16 — 보안팀 `/28` 바로 다음입니다.
 
-#### 정답 7-3
+#### <mark style="display:block; background:#fff59d; color:#1a1a1a; padding:4px 12px; border-radius:4px; text-decoration:underline">정답 7-3</mark>
 
 (코드는 위 문제 칸에 채워 두었습니다.)
 
 💻 **터미널에 입력합니다.** `python next_block.py`
 
-**결과** — `서버망: 10.20.0.112/28` · `겹침 있음: False`
+<mark style="background:#fff59d; color:#1a1a1a; text-decoration:underline; padding:0 4px; border-radius:3px">**결과** — `서버망: 10.20.0.112/28` · `겹침 있음: False`</mark>
 
 **왜** — `/28` 후보를 앞에서부터 보며 처음으로 아무와도 안 겹치는 블록에서 멈춥니다. `.0 ~ .111` 은 세 부서가 쓰므로 112(96 + 16)가 첫 빈 자리입니다.
 
@@ -1063,7 +1063,7 @@ python next_block.py
 2. 다른 망이면 **출발지의** 게이트웨이로 먼저 갑니다.
 3. 라우터는 목적지 망이 자기 표에 직접 연결돼 있으면 그쪽 VLAN 으로, 없으면 기본 경로로 보냅니다(6.2).
 
-#### 정답 7-4
+#### <mark style="display:block; background:#fff59d; color:#1a1a1a; padding:4px 12px; border-radius:4px; text-decoration:underline">정답 7-4</mark>
 
 | # | 경로 |
 |---|---|
@@ -1071,7 +1071,7 @@ python next_block.py
 | ② | 개발팀 PC → 스위치(VLAN 10) → 게이트웨이 `10.20.0.1`(라우터) → 스위치(VLAN 30) → 보안팀 PC |
 | ③ | 운영팀 PC → 스위치(VLAN 20) → 게이트웨이 `10.20.0.65`(라우터) → 기본 경로(`0.0.0.0/0`) → 인터넷 |
 
-**결과** — 위 표 — ① 라우터를 안 거침 · ② 게이트웨이 `10.20.0.1` 을 거쳐 VLAN 30 으로 · ③ 게이트웨이 `10.20.0.65` 를 거쳐 기본 경로로
+<mark style="background:#fff59d; color:#1a1a1a; text-decoration:underline; padding:0 4px; border-radius:3px">**결과** — 위 표 — ① 라우터를 안 거침 · ② 게이트웨이 `10.20.0.1` 을 거쳐 VLAN 30 으로 · ③ 게이트웨이 `10.20.0.65` 를 거쳐 기본 경로로</mark>
 
 **왜** — 같은 VLAN · 같은 망이면 스위치가 바로 넘기고, 다른 망이면 출발지의 게이트웨이로 먼저 갑니다. 라우터는 목적지 망이 직접 연결돼 있으면 그 VLAN 으로, 없으면 기본 경로로 보냅니다.
 
@@ -1117,7 +1117,7 @@ python next_block.py
 2. 올리기는 어제와 같습니다 — `git add network_zt` → `git commit -m "…"` → `git push`.
 3. 숫자는 코드가 낸 값을 붙입니다. 손으로 옮기지 않습니다.
 
-#### 정답 7-5
+#### <mark style="display:block; background:#fff59d; color:#1a1a1a; padding:4px 12px; border-radius:4px; text-decoration:underline">정답 7-5</mark>
 
 보고서 3~5절을 채운 뒤, **터미널(`security-agent-toolkit` 폴더)에 입력합니다.**
 
@@ -1128,7 +1128,7 @@ git commit -m "Add day 2 subnet design"
 git push
 ```
 
-**결과** — 깃허브의 `network_zt/day02_subnet_design.md` 에 1~5절이 모두 보입니다.
+<mark style="background:#fff59d; color:#1a1a1a; text-decoration:underline; padding:0 4px; border-radius:3px">**결과** — 깃허브의 `network_zt/day02_subnet_design.md` 에 1~5절이 모두 보입니다.</mark>
 
 **왜** — `commit` 은 내 PC 에만 기록하고, `push` 까지 해야 깃허브에 올라갑니다.
 
@@ -1158,11 +1158,11 @@ git push
 2. 내보내기는 메뉴 **파일 › 내보내기 › PNG**(File › Export as › PNG).
 3. 5일 차(10/16)에 같은 도구로 회사 전체 망 구성도를 그립니다. 미리 손에 익혀 둡니다.
 
-#### 정답 7-6
+#### <mark style="display:block; background:#fff59d; color:#1a1a1a; padding:4px 12px; border-radius:4px; text-decoration:underline">정답 7-6</mark>
 
 app.diagrams.net → 네모(라우터 · 스위치 · 부서 넷)와 선 → 글자로 VLAN · 게이트웨이 → 파일 › 내보내기 › PNG → `day02_diagram.png` 를 `network_zt` 에 저장 → 보고서 4절에 `![망 구성도](day02_diagram.png)`.
 
-**결과** — 라우터 1 · 스위치 1 · 부서 4개와 VLAN 번호 · 게이트웨이 주소가 적힌 그림 `day02_diagram.png`
+<mark style="background:#fff59d; color:#1a1a1a; text-decoration:underline; padding:0 4px; border-radius:3px">**결과** — 라우터 1 · 스위치 1 · 부서 4개와 VLAN 번호 · 게이트웨이 주소가 적힌 그림 `day02_diagram.png`</mark>
 
 **왜** — 구성도에 VLAN 과 게이트웨이를 적어 두면 7-4 의 경로를 그림 위에서 그대로 따라갈 수 있습니다.
 

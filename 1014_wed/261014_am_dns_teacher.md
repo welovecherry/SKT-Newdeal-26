@@ -139,9 +139,9 @@ print(parts)
 print(parts[2])
 ```
 
-#### 정답
+#### <mark style="display:block; background:#fff59d; color:#1a1a1a; padding:4px 12px; border-radius:4px; text-decoration:underline">정답</mark>
 
-**결과** — `['https:', '', 'example.com', 'news', 'today']` 와 `example.com` 두 줄입니다.
+<mark style="background:#fff59d; color:#1a1a1a; text-decoration:underline; padding:0 4px; border-radius:3px">**결과** — `['https:', '', 'example.com', 'news', 'today']` 와 `example.com` 두 줄입니다.</mark>
 
 **왜** — `/` 로 자르면 `//` 사이가 비어 있어 빈 글자 `''` 가 하나 생깁니다. DNS 가 묻는 것은 `parts[2]`, 곧 도메인 이름 하나입니다.
 
@@ -175,7 +175,7 @@ nslookup example.com
 2. 위쪽 `Address` 는 물어본 DNS 서버입니다(명령 상자 ⚠).
 3. 이름 하나에 IP 가 여러 개일 수 있습니다 — 큰 서비스는 서버를 여러 대 둡니다.
 
-#### 정답 2-2
+#### <mark style="display:block; background:#fff59d; color:#1a1a1a; padding:4px 12px; border-radius:4px; text-decoration:underline">정답 2-2</mark>
 
 💻 **터미널에 입력합니다.**
 
@@ -183,7 +183,7 @@ nslookup example.com
 nslookup example.com
 ```
 
-**결과** — `이름:    example.com` 아래 `Addresses` 의 점 네 개짜리 주소 두 개(예: `104.20.23.154` · `172.66.147.243`)를 적습니다. 값은 바뀔 수 있습니다.
+<mark style="background:#fff59d; color:#1a1a1a; text-decoration:underline; padding:0 4px; border-radius:3px">**결과** — `이름:    example.com` 아래 `Addresses` 의 점 네 개짜리 주소 두 개(예: `104.20.23.154` · `172.66.147.243`)를 적습니다. 값은 바뀔 수 있습니다.</mark>
 
 **왜** — DNS 서버(리졸버)가 이름을 IPv4(A 레코드)와 IPv6(AAAA 레코드)로 바꿔 준 답입니다. 큰 서비스는 서버를 여러 대 두어 IP 가 여러 개입니다.
 
@@ -217,7 +217,7 @@ nslookup example.com 8.8.8.8
 2. 리졸버가 달라도 같은 이름이면 대개 같은 답이 옵니다.
 3. 학원망이 외부 DNS 를 막으면 시간 초과가 납니다 — 그 자체가 「회사가 DNS 를 통제한다」는 관찰입니다.
 
-#### 정답 2-3
+#### <mark style="display:block; background:#fff59d; color:#1a1a1a; padding:4px 12px; border-radius:4px; text-decoration:underline">정답 2-3</mark>
 
 💻 **터미널에 입력합니다.**
 
@@ -225,7 +225,7 @@ nslookup example.com 8.8.8.8
 nslookup example.com 8.8.8.8
 ```
 
-**결과** — 위 두 줄이 `서버:    dns.google` · `Address:  8.8.8.8` 로 바뀝니다. 답의 IPv4 는 2-2 와 같습니다(답 IP 는 실행할 때마다 다를 수 있습니다).
+<mark style="background:#fff59d; color:#1a1a1a; text-decoration:underline; padding:0 4px; border-radius:3px">**결과** — 위 두 줄이 `서버:    dns.google` · `Address:  8.8.8.8` 로 바뀝니다. 답의 IPv4 는 2-2 와 같습니다(답 IP 는 실행할 때마다 다를 수 있습니다).</mark>
 
 **왜** — 위 두 줄은 「누구에게 물었나」라서 리졸버를 바꾸면 바뀝니다. 답은 같은 담당 네임서버의 원본에서 오므로 대개 같습니다.
 
@@ -255,7 +255,7 @@ nslookup example.com 8.8.8.8
 2. 집에서는 공유기 주소가, 회사에서는 사내 DNS 서버 주소가 많습니다.
 3. 이 서버가 멈추면 「숫자로는 되는데 이름으로 안 되는」 장애가 납니다.
 
-#### 정답 2-4
+#### <mark style="display:block; background:#fff59d; color:#1a1a1a; padding:4px 12px; border-radius:4px; text-decoration:underline">정답 2-4</mark>
 
 💻 **터미널에 입력합니다.**
 
@@ -263,7 +263,7 @@ nslookup example.com 8.8.8.8
 ipconfig //all
 ```
 
-**결과** — `DNS 서버 . . . . : ○○○.○○○.○.○` 의 주소가 2-2 의 위쪽 `Address` 와 같습니다(값은 PC 마다 다릅니다).
+<mark style="background:#fff59d; color:#1a1a1a; text-decoration:underline; padding:0 4px; border-radius:3px">**결과** — `DNS 서버 . . . . : ○○○.○○○.○.○` 의 주소가 2-2 의 위쪽 `Address` 와 같습니다(값은 PC 마다 다릅니다).</mark>
 
 **왜** — `nslookup` 은 서버를 따로 적지 않으면 PC 에 설정된 DNS 서버(리졸버)에 묻습니다. 그래서 두 값이 같습니다.
 
@@ -297,7 +297,7 @@ nslookup abc.nowhere-not-exist.com
 2. 12일의 `ping` 「호스트를 찾을 수 없습니다」도 같은 원인 — DNS 가 답을 못 준 것입니다.
 3. 짧은 시간에 NXDOMAIN 이 쏟아지는 PC 는 악성 코드를 의심합니다(오후에 배웁니다).
 
-#### 정답 2-5
+#### <mark style="display:block; background:#fff59d; color:#1a1a1a; padding:4px 12px; border-radius:4px; text-decoration:underline">정답 2-5</mark>
 
 💻 **터미널에 입력합니다.**
 
@@ -305,7 +305,7 @@ nslookup abc.nowhere-not-exist.com
 nslookup abc.nowhere-not-exist.com
 ```
 
-**결과** — `*** UnKnown can't find abc.nowhere-not-exist.com: Non-existent domain` (한국어 Windows 는 문구가 다를 수 있음) — 그런 이름이 없다는 DNS 의 답(NXDOMAIN)입니다.
+<mark style="background:#fff59d; color:#1a1a1a; text-decoration:underline; padding:0 4px; border-radius:3px">**결과** — `*** UnKnown can't find abc.nowhere-not-exist.com: Non-existent domain` (한국어 Windows 는 문구가 다를 수 있음) — 그런 이름이 없다는 DNS 의 답(NXDOMAIN)입니다.</mark>
 
 **왜** — DNS 서버는 「그런 이름은 없다」를 공식 답으로 돌려줍니다. 12일 `ping` 의 「호스트를 찾을 수 없습니다」도 이 답 때문입니다.
 
@@ -376,13 +376,13 @@ python dns_lookup.py
 2. 바로 위 문법 상자와 같은 모양입니다.
 3. 프로그램도 사람과 같은 DNS 서버(2-4)에 묻습니다.
 
-#### 정답 2-6
+#### <mark style="display:block; background:#fff59d; color:#1a1a1a; padding:4px 12px; border-radius:4px; text-decoration:underline">정답 2-6</mark>
 
 (코드는 위 문제 칸에 채워 두었습니다.)
 
 💻 **터미널에 입력합니다.** `python dns_lookup.py`
 
-**결과** — 앞 셋은 `이름 → IPv4 주소`, 마지막은 `abc.nowhere-not-exist.com → 찾지 못함` 입니다(주소는 실행할 때마다 다를 수 있음).
+<mark style="background:#fff59d; color:#1a1a1a; text-decoration:underline; padding:0 4px; border-radius:3px">**결과** — 앞 셋은 `이름 → IPv4 주소`, 마지막은 `abc.nowhere-not-exist.com → 찾지 못함` 입니다(주소는 실행할 때마다 다를 수 있음).</mark>
 
 **왜** — 프로그램도 PC 에 설정된 DNS 서버(2-4)에 묻습니다. 이름이 없다는 답(NXDOMAIN)이 오면 `socket.gaierror` 가 납니다.
 
@@ -471,9 +471,9 @@ print(parts[-1])
 print(".".join(parts[-2:]))
 ```
 
-#### 정답
+#### <mark style="display:block; background:#fff59d; color:#1a1a1a; padding:4px 12px; border-radius:4px; text-decoration:underline">정답</mark>
 
-**결과** — `kr` 과 `co.kr` 두 줄입니다.
+<mark style="background:#fff59d; color:#1a1a1a; text-decoration:underline; padding:0 4px; border-radius:3px">**결과** — `kr` 과 `co.kr` 두 줄입니다.</mark>
 
 **왜** — 이름은 오른쪽이 위층이라 `[-1]` 이 TLD `kr` 입니다. `[-2:]` 는 끝의 두 조각을 점으로 이은 것이고, `co.kr` 은 한국의 회사용 2단계 이름입니다.
 
@@ -532,13 +532,13 @@ python dns_tree.py
 2. 새 층은 **왼쪽에** 붙습니다: `label + "." + current`.
 3. 출력이 3.1 표의 층 순서와 같은지 봅니다.
 
-#### 정답 3-2
+#### <mark style="display:block; background:#fff59d; color:#1a1a1a; padding:4px 12px; border-radius:4px; text-decoration:underline">정답 3-2</mark>
 
 (코드는 위 문제 칸에 채워 두었습니다.)
 
 💻 **터미널에 입력합니다.** `python dns_tree.py`
 
-**결과** — `루트 (.)` · `→ com` · `→ example.com` · `→ www.example.com`, 그리고 `루트 (.)` · `→ kr` · `→ co.kr` · `→ google.co.kr` · `→ mail.google.co.kr`
+<mark style="background:#fff59d; color:#1a1a1a; text-decoration:underline; padding:0 4px; border-radius:3px">**결과** — `루트 (.)` · `→ com` · `→ example.com` · `→ www.example.com`, 그리고 `루트 (.)` · `→ kr` · `→ co.kr` · `→ google.co.kr` · `→ mail.google.co.kr`</mark>
 
 **왜** — 이름은 오른쪽이 위층입니다. 뒤에서부터 꺼내 새 조각을 왼쪽에 붙이면 리졸버가 묻는 순서(루트 → TLD → 담당 네임서버)가 됩니다.
 
@@ -572,7 +572,7 @@ nslookup -type=ns example.com
 2. 담당자가 둘인 것은 하나가 멈춰도 답하게 하려는 것입니다.
 3. 아래 `internet address` 줄은 그 네임서버들의 IP 입니다.
 
-#### 정답 3-3
+#### <mark style="display:block; background:#fff59d; color:#1a1a1a; padding:4px 12px; border-radius:4px; text-decoration:underline">정답 3-3</mark>
 
 💻 **터미널에 입력합니다.**
 
@@ -580,7 +580,7 @@ nslookup -type=ns example.com
 nslookup -type=ns example.com
 ```
 
-**결과** — `example.com  nameserver = hera.ns.cloudflare.com` · `example.com  nameserver = elliott.ns.cloudflare.com` 두 줄을 적습니다(담당자는 바뀔 수 있음).
+<mark style="background:#fff59d; color:#1a1a1a; text-decoration:underline; padding:0 4px; border-radius:3px">**결과** — `example.com  nameserver = hera.ns.cloudflare.com` · `example.com  nameserver = elliott.ns.cloudflare.com` 두 줄을 적습니다(담당자는 바뀔 수 있음).</mark>
 
 **왜** — NS 레코드는 이 이름의 원본을 가진 권한 있는 네임서버를 알려 줍니다. 하나가 멈춰도 답하도록 둘 이상 둡니다.
 
@@ -612,7 +612,7 @@ nslookup -type=ns kr.
 2. 이 서버들은 「`naver.com` 은 몰라도 `○○.kr` 의 담당자가 누군지는 안다」 — 3.1 의 ②번 질문을 받는 곳입니다.
 3. 결과가 길면 위 몇 줄만 봅니다.
 
-#### 정답 3-4
+#### <mark style="display:block; background:#fff59d; color:#1a1a1a; padding:4px 12px; border-radius:4px; text-decoration:underline">정답 3-4</mark>
 
 💻 **터미널에 입력합니다.**
 
@@ -620,7 +620,7 @@ nslookup -type=ns kr.
 nslookup -type=ns kr.
 ```
 
-**결과** — `kr  nameserver = b.dns.kr` · `c.dns.kr` … 여섯 줄 안팎이 `.kr` 을 맡은 TLD 네임서버입니다(서버 이름과 줄 수는 바뀔 수 있습니다).
+<mark style="background:#fff59d; color:#1a1a1a; text-decoration:underline; padding:0 4px; border-radius:3px">**결과** — `kr  nameserver = b.dns.kr` · `c.dns.kr` … 여섯 줄 안팎이 `.kr` 을 맡은 TLD 네임서버입니다(서버 이름과 줄 수는 바뀔 수 있습니다).</mark>
 
 **왜** — 루트 바로 아래 TLD 층의 담당자입니다. 이 서버들은 `○○.kr` 의 담당 네임서버가 누구인지 알려 주고, IP 는 그 담당자가 답합니다.
 
@@ -650,7 +650,7 @@ nslookup example.com hera.ns.cloudflare.com
 2. 3.2 표를 다시 봅니다.
 3. 학원망이 외부 DNS 를 막으면 시간 초과가 납니다. 그때는 강사 화면으로 확인합니다.
 
-#### 정답 3-5
+#### <mark style="display:block; background:#fff59d; color:#1a1a1a; padding:4px 12px; border-radius:4px; text-decoration:underline">정답 3-5</mark>
 
 💻 **터미널에 입력합니다.**
 
@@ -658,7 +658,7 @@ nslookup example.com hera.ns.cloudflare.com
 nslookup example.com hera.ns.cloudflare.com
 ```
 
-**결과** — 답의 IPv4 는 2-2 와 같고, `권한 없는 응답:` 줄이 **없습니다**.
+<mark style="background:#fff59d; color:#1a1a1a; text-decoration:underline; padding:0 4px; border-radius:3px">**결과** — 답의 IPv4 는 2-2 와 같고, `권한 없는 응답:` 줄이 **없습니다**.</mark>
 
 **왜** — 담당 네임서버(권한 있는 서버)가 원본을 직접 답했기 때문입니다. 2-2 는 리졸버가 찾아다 준 답이라 그 줄이 붙었습니다.
 
@@ -713,13 +713,13 @@ python tld_count.py
 2. 세기는 12일 5-4 의 `count.get(키, 0) + 1` 입니다.
 3. `.top` 같은 값싼 TLD 는 악성 도메인에 자주 쓰입니다 — 오후에 다시 봅니다.
 
-#### 정답 3-6
+#### <mark style="display:block; background:#fff59d; color:#1a1a1a; padding:4px 12px; border-radius:4px; text-decoration:underline">정답 3-6</mark>
 
 (코드는 위 문제 칸에 채워 두었습니다.)
 
 💻 **터미널에 입력합니다.** `python tld_count.py`
 
-**결과** — `com 4` · `net 1` · `top 2` · `kr 1`
+<mark style="background:#fff59d; color:#1a1a1a; text-decoration:underline; padding:0 4px; border-radius:3px">**결과** — `com 4` · `net 1` · `top 2` · `kr 1`</mark>
 
 **왜** — 이름의 맨 끝 조각이 TLD 입니다. TLD 를 사전의 키로 두고, 볼 때마다 1씩 더합니다.
 
@@ -806,9 +806,9 @@ print(records["google.com"]["value"])
 print(records["www.naver.com"]["type"])
 ```
 
-#### 정답
+#### <mark style="display:block; background:#fff59d; color:#1a1a1a; padding:4px 12px; border-radius:4px; text-decoration:underline">정답</mark>
 
-**결과** — `smtp.google.com` 과 `CNAME` 두 줄입니다.
+<mark style="background:#fff59d; color:#1a1a1a; text-decoration:underline; padding:0 4px; border-radius:3px">**결과** — `smtp.google.com` 과 `CNAME` 두 줄입니다.</mark>
 
 **왜** — 바깥 키로 이름을, 안쪽 키(`value` · `type`)로 칸을 꺼냅니다. google.com 의 MX 값은 메일 서버 이름이고, www.naver.com 의 종류는 별명(CNAME)입니다.
 
@@ -840,7 +840,7 @@ nslookup -type=mx google.com
 2. 메일 서버도 이름이라, 아래에 그 이름의 IP(A 레코드)가 함께 나옵니다.
 3. 피싱 메일 분석에서 「보낸 쪽 도메인에 MX 가 있나」를 확인합니다.
 
-#### 정답 4-2
+#### <mark style="display:block; background:#fff59d; color:#1a1a1a; padding:4px 12px; border-radius:4px; text-decoration:underline">정답 4-2</mark>
 
 💻 **터미널에 입력합니다.**
 
@@ -848,7 +848,7 @@ nslookup -type=mx google.com
 nslookup -type=mx google.com
 ```
 
-**결과** — `google.com  MX preference = 10, mail exchanger = smtp.google.com` 을 적습니다(값은 바뀔 수 있습니다).
+<mark style="background:#fff59d; color:#1a1a1a; text-decoration:underline; padding:0 4px; border-radius:3px">**결과** — `google.com  MX preference = 10, mail exchanger = smtp.google.com` 을 적습니다(값은 바뀔 수 있습니다).</mark>
 
 **왜** — MX 레코드는 이 도메인으로 오는 메일을 받을 서버를 알려 줍니다. `preference` 숫자가 작을수록 먼저 씁니다.
 
@@ -883,7 +883,7 @@ nslookup www.naver.com
 2. 큰 사이트는 CNAME 으로 **CDN**(시디엔 · 가까운 곳에서 내용을 대신 내주는 서비스)에 연결합니다.
 3. 별명이 여러 단계인 것은 정상입니다. 단계 수를 보고서에 적습니다.
 
-#### 정답 4-3
+#### <mark style="display:block; background:#fff59d; color:#1a1a1a; padding:4px 12px; border-radius:4px; text-decoration:underline">정답 4-3</mark>
 
 💻 **터미널에 입력합니다.**
 
@@ -892,7 +892,7 @@ nslookup -type=cname www.naver.com
 nslookup www.naver.com
 ```
 
-**결과** — 첫째 `canonical name = www.naver.com.nheos.com`. 둘째는 `Aliases:` 아래에 `www.naver.com` · `www.naver.com.nheos.com` · … 그리고 `이름:`(영어 화면은 `Name:`)에 최종 이름과 IP 가 나옵니다. `Aliases:` 줄 수가 별명 단계입니다(단계 수는 바뀔 수 있음).
+<mark style="background:#fff59d; color:#1a1a1a; text-decoration:underline; padding:0 4px; border-radius:3px">**결과** — 첫째 `canonical name = www.naver.com.nheos.com`. 둘째는 `Aliases:` 아래에 `www.naver.com` · `www.naver.com.nheos.com` · … 그리고 `이름:`(영어 화면은 `Name:`)에 최종 이름과 IP 가 나옵니다. `Aliases:` 줄 수가 별명 단계입니다(단계 수는 바뀔 수 있음).</mark>
 
 **왜** — CNAME 은 「이 이름의 진짜 이름은 저것」이라는 레코드입니다. 리졸버가 별명을 끝까지 따라가 마지막 이름의 A 레코드로 IP 를 줍니다.
 
@@ -937,7 +937,7 @@ ipconfig //displaydns
 2. 슬래시는 두 번입니다 — `ipconfig //displaydns`(12일 오전 0.2).
 3. 「표시할 수 없습니다」가 나오는 PC 도 있습니다(설정에 따라 다름). 그때는 옆 사람 화면과 같이 봅니다.
 
-#### 정답 4-4
+#### <mark style="display:block; background:#fff59d; color:#1a1a1a; padding:4px 12px; border-radius:4px; text-decoration:underline">정답 4-4</mark>
 
 💻 **터미널에 입력합니다.**
 
@@ -950,7 +950,7 @@ ping -n 1 example.com
 ipconfig //displaydns
 ```
 
-**결과** — 처음에는 `example.com` 아래 `TTL(Time To Live) . : ○○○` 이 보입니다. `//flushdns` 뒤에는 `DNS 확인자 캐시를 플러시했습니다.` 가 나오고, 다시 본 목록은 `Windows IP 구성` 한 줄뿐입니다. `ping` 으로 다시 접속하면 `example.com` 항목이 다시 생깁니다.
+<mark style="background:#fff59d; color:#1a1a1a; text-decoration:underline; padding:0 4px; border-radius:3px">**결과** — 처음에는 `example.com` 아래 `TTL(Time To Live) . : ○○○` 이 보입니다. `//flushdns` 뒤에는 `DNS 확인자 캐시를 플러시했습니다.` 가 나오고, 다시 본 목록은 `Windows IP 구성` 한 줄뿐입니다. `ping` 으로 다시 접속하면 `example.com` 항목이 다시 생깁니다.</mark>
 
 **왜** — PC 는 받은 답을 TTL 초 동안 캐시에 두고 그동안 다시 묻지 않습니다. `//flushdns` 는 그 저장을 모두 지웁니다.
 
@@ -1010,13 +1010,13 @@ python dns_cache.py
 2. 두 조건은 `and` 로 잇습니다. 이름이 없으면 먼저 `in` 에서 걸러져 `KeyError` 가 나지 않습니다.
 3. 300초에는 **같거나 지났으니** 새로 묻습니다 — `<` 를 씁니다.
 
-#### 정답 4-5
+#### <mark style="display:block; background:#fff59d; color:#1a1a1a; padding:4px 12px; border-radius:4px; text-decoration:underline">정답 4-5</mark>
 
 (코드는 위 문제 칸에 채워 두었습니다.)
 
 💻 **터미널에 입력합니다.** `python dns_cache.py`
 
-**결과** — `0 초: 새로 물음 104.20.23.154` · `100 초: 캐시 104.20.23.154` · `299 초: 캐시 …` · `300 초: 새로 물음 …` · `450 초: 캐시 …`
+<mark style="background:#fff59d; color:#1a1a1a; text-decoration:underline; padding:0 4px; border-radius:3px">**결과** — `0 초: 새로 물음 104.20.23.154` · `100 초: 캐시 104.20.23.154` · `299 초: 캐시 …` · `300 초: 새로 물음 …` · `450 초: 캐시 …`</mark>
 
 **왜** — 0초에 저장하면 만료는 300초입니다. 300초에 새로 물으면서 만료가 600초로 다시 정해져 450초는 캐시를 씁니다.
 
@@ -1073,13 +1073,13 @@ python cname_chain.py
 2. 거쳐 간 이름은 리스트에 `append` 하고, 끝에 `" → ".join(리스트)`.
 3. 4-3 에서 본 `Aliases` 가 이 사슬입니다.
 
-#### 정답 4-6
+#### <mark style="display:block; background:#fff59d; color:#1a1a1a; padding:4px 12px; border-radius:4px; text-decoration:underline">정답 4-6</mark>
 
 (코드는 위 문제 칸에 채워 두었습니다.)
 
 💻 **터미널에 입력합니다.** `python cname_chain.py`
 
-**결과** — `www.shop.test → shop.cdn.test → edge7.cdn.test` · `IP: 192.0.2.77`
+<mark style="background:#fff59d; color:#1a1a1a; text-decoration:underline; padding:0 4px; border-radius:3px">**결과** — `www.shop.test → shop.cdn.test → edge7.cdn.test` · `IP: 192.0.2.77`</mark>
 
 **왜** — CNAME 이면 값(진짜 이름)으로 옮기고, A 레코드를 만나면 멈춥니다. 4-3 에서 리졸버가 별명을 따라간 방식과 같습니다.
 
