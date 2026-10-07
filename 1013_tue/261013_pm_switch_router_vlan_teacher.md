@@ -134,16 +134,18 @@ else:
 PC `10.20.0.10/26` 에서 세 목적지로 보낼 때 **스위치로 직접**인지 **게이트웨이로**인지 판정하시오.
 
 ```python
+# ── 강사용: 정답을 채운 코드입니다 ──
 import ipaddress
 
-# ── 미리 채워 둔 줄입니다. 고치지 않습니다 ──
 my_net = ipaddress.ip_network("10.20.0.10/26", strict=False)   # 내 PC 가 속한 망
 destinations = ["10.20.0.40", "10.20.0.63", "10.20.0.70"]
-# ── 여기까지 ──
 
 for dest in destinations:                         # 목적지를 하나씩
     # 1. dest 가 my_net 안에 있으면 「10.20.0.40 스위치로 직접」, 아니면 「… 게이트웨이로」 를 출력하세요
-
+    if ipaddress.ip_address(dest) in my_net:      # 같은 망이면
+        print(dest, "스위치로 직접")
+    else:                                         # 다른 망이면
+        print(dest, "게이트웨이로")
 ```
 
 **파일을 만들고 실행합니다**
@@ -170,19 +172,7 @@ python direct_or_gw.py
 
 #### 정답 5-2
 
-```python
-import ipaddress
-
-my_net = ipaddress.ip_network("10.20.0.10/26", strict=False)   # 내 PC 가 속한 망
-destinations = ["10.20.0.40", "10.20.0.63", "10.20.0.70"]
-
-for dest in destinations:                         # 목적지를 하나씩
-    # 1. dest 가 my_net 안에 있으면 「10.20.0.40 스위치로 직접」, 아니면 「… 게이트웨이로」 를 출력하세요
-    if ipaddress.ip_address(dest) in my_net:      # 같은 망이면
-        print(dest, "스위치로 직접")
-    else:                                         # 다른 망이면
-        print(dest, "게이트웨이로")
-```
+(코드는 위 문제 칸에 채워 두었습니다.)
 
 💻 **터미널에 입력합니다.** `python direct_or_gw.py`
 
@@ -205,30 +195,29 @@ for dest in destinations:                         # 목적지를 하나씩
 5.3 의 세 단계대로 움직이는 스위치를 완성하시오. **배우기 전과 배운 뒤** 나가는 포트가 어떻게 달라지는지 봅니다.
 
 ```python
-# ── 미리 채워 둔 줄입니다. 고치지 않습니다 ──
+# ── 강사용: 정답을 채운 코드입니다 ──
 PORTS = [1, 2, 3, 4]                              # 스위치의 포트 네 개
 mac_table = {}                                    # 처음엔 아무것도 모른다
-# ── 여기까지 ──
 
 
 def receive(in_port, src, dest):                  # 프레임 하나가 in_port 로 들어왔다
     # 1. mac_table 의 src 키에 in_port 를 담으세요 (출발지를 배운다)
-
+    mac_table[src] = in_port                      # 이 MAC 은 이 포트에 있다
     # 2. dest 가 mac_table 에 있으면 [mac_table[dest]] 를 return 하세요
-
+    if dest in mac_table:                         # 목적지를 안다면
+        return [mac_table[dest]]                  # 그 포트 하나로만
     out = []                                      # 모르면 플러딩할 포트들
     for port in PORTS:
         # 3. port 가 in_port 가 아니면 out 에 더하세요
-
+        if port != in_port:                       # 들어온 포트는 빼고
+            out.append(port)
     return out
 
 
-# ── 미리 채워 둔 줄입니다. 고치지 않습니다 ──
 print("AA → BB :", receive(1, "AA", "BB"))       # BB 를 아직 모른다
 print("BB → AA :", receive(3, "BB", "AA"))       # AA 는 1번에서 배웠다
 print("AA → BB :", receive(1, "AA", "BB"))       # 이제 BB 도 안다
 print("표:", mac_table)
-# ── 여기까지 ──
 ```
 
 **파일을 만들고 실행합니다**
@@ -255,30 +244,7 @@ python switch_sim.py
 
 #### 정답 5-3
 
-```python
-PORTS = [1, 2, 3, 4]                              # 스위치의 포트 네 개
-mac_table = {}                                    # 처음엔 아무것도 모른다
-
-
-def receive(in_port, src, dest):                  # 프레임 하나가 in_port 로 들어왔다
-    # 1. mac_table 의 src 키에 in_port 를 담으세요 (출발지를 배운다)
-    mac_table[src] = in_port                      # 이 MAC 은 이 포트에 있다
-    # 2. dest 가 mac_table 에 있으면 [mac_table[dest]] 를 return 하세요
-    if dest in mac_table:                         # 목적지를 안다면
-        return [mac_table[dest]]                  # 그 포트 하나로만
-    out = []                                      # 모르면 플러딩할 포트들
-    for port in PORTS:
-        # 3. port 가 in_port 가 아니면 out 에 더하세요
-        if port != in_port:                       # 들어온 포트는 빼고
-            out.append(port)
-    return out
-
-
-print("AA → BB :", receive(1, "AA", "BB"))       # BB 를 아직 모른다
-print("BB → AA :", receive(3, "BB", "AA"))       # AA 는 1번에서 배웠다
-print("AA → BB :", receive(1, "AA", "BB"))       # 이제 BB 도 안다
-print("표:", mac_table)
-```
+(코드는 위 문제 칸에 채워 두었습니다.)
 
 💻 **터미널에 입력합니다.** `python switch_sim.py`
 
@@ -343,20 +309,22 @@ arp -a
 PC 세 대의 설정 가운데 **게이트웨이가 자기 망 밖에 있는** PC 를 찾으시오.
 
 ```python
+# ── 강사용: 정답을 채운 코드입니다 ──
 import ipaddress
 
-# ── 미리 채워 둔 줄입니다. 고치지 않습니다 ──
 pcs = [                                           # (이름, IP/CIDR, 기본 게이트웨이)
     ("PC0", "192.168.10.10/26", "192.168.10.1"),
     ("PC1", "192.168.10.20/26", "192.168.10.65"),
     ("PC2", "192.168.10.70/26", "192.168.10.65"),
 ]
-# ── 여기까지 ──
 
 for name, cidr, gw in pcs:                        # PC 를 하나씩
     net = ipaddress.ip_network(cidr, strict=False)   # 그 PC 가 속한 망
     # 1. gw 가 net 안에 있으면 「PC0 정상」, 아니면 「PC1 게이트웨이 192.168.10.65 가 망 밖 — 밖으로 못 나감」 을 출력하세요
-
+    if ipaddress.ip_address(gw) in net:           # 게이트웨이가 같은 망에 있으면
+        print(name, "정상")
+    else:                                         # 망 밖이면
+        print(name, "게이트웨이", gw, "가 망 밖 — 밖으로 못 나감")
 ```
 
 **파일을 만들고 실행합니다**
@@ -383,23 +351,7 @@ python gw_mistake.py
 
 #### 정답 5-5
 
-```python
-import ipaddress
-
-pcs = [                                           # (이름, IP/CIDR, 기본 게이트웨이)
-    ("PC0", "192.168.10.10/26", "192.168.10.1"),
-    ("PC1", "192.168.10.20/26", "192.168.10.65"),
-    ("PC2", "192.168.10.70/26", "192.168.10.65"),
-]
-
-for name, cidr, gw in pcs:                        # PC 를 하나씩
-    net = ipaddress.ip_network(cidr, strict=False)   # 그 PC 가 속한 망
-    # 1. gw 가 net 안에 있으면 「PC0 정상」, 아니면 「PC1 게이트웨이 192.168.10.65 가 망 밖 — 밖으로 못 나감」 을 출력하세요
-    if ipaddress.ip_address(gw) in net:           # 게이트웨이가 같은 망에 있으면
-        print(name, "정상")
-    else:                                         # 망 밖이면
-        print(name, "게이트웨이", gw, "가 망 밖 — 밖으로 못 나감")
-```
+(코드는 위 문제 칸에 채워 두었습니다.)
 
 💻 **터미널에 입력합니다.** `python gw_mistake.py`
 
@@ -422,6 +374,7 @@ for name, cidr, gw in pcs:                        # PC 를 하나씩
 두 장비의 **VLAN 과 망이 모두 같으면** 「스위치 직접」, 하나라도 다르면 라우터가 있을 때 「게이트웨이 ○로」, 없으면 「통신 불가」를 출력하시오.
 
 ```python
+# ── 강사용: 정답을 채운 코드입니다 ──
 import ipaddress
 
 devices = {
@@ -431,6 +384,16 @@ devices = {
 }
 checks = [("PC0", "PC1", True), ("PC0", "PC2", True), ("PC0", "PC2", False)]   # (출발, 도착, 라우터 있음)
 # 1. checks 를 하나씩 꺼내 판정하고 「PC0 -> PC1 스위치 직접 전달」 꼴로 출력하세요
+for src, dst, has_router in checks:               # 검사를 하나씩
+    a = devices[src]                              # 출발 장비
+    b = devices[dst]                              # 도착 장비
+    same_net = ipaddress.ip_network(a["ip"], strict=False) == ipaddress.ip_network(b["ip"], strict=False)
+    if a["vlan"] == b["vlan"] and same_net:       # VLAN 도 망도 같으면
+        print(f"{src} -> {dst} 스위치 직접 전달")
+    elif has_router:                              # 다르지만 라우터가 있으면
+        print(f"{src} -> {dst} 게이트웨이 {a['gateway']}로 전달")
+    else:                                         # 다르고 라우터도 없으면
+        print(f"{src} -> {dst} 통신 불가")
 ```
 
 **파일을 만들고 실행합니다**
@@ -457,27 +420,7 @@ python route_judge.py
 
 #### 정답 5-6
 
-```python
-import ipaddress
-
-devices = {
-    "PC0": {"vlan": 10, "ip": "192.168.10.10/26", "gateway": "192.168.10.1"},
-    "PC1": {"vlan": 10, "ip": "192.168.10.20/26", "gateway": "192.168.10.1"},
-    "PC2": {"vlan": 20, "ip": "192.168.10.70/26", "gateway": "192.168.10.65"},
-}
-checks = [("PC0", "PC1", True), ("PC0", "PC2", True), ("PC0", "PC2", False)]   # (출발, 도착, 라우터 있음)
-# 1. checks 를 하나씩 꺼내 판정하고 「PC0 -> PC1 스위치 직접 전달」 꼴로 출력하세요
-for src, dst, has_router in checks:               # 검사를 하나씩
-    a = devices[src]                              # 출발 장비
-    b = devices[dst]                              # 도착 장비
-    same_net = ipaddress.ip_network(a["ip"], strict=False) == ipaddress.ip_network(b["ip"], strict=False)
-    if a["vlan"] == b["vlan"] and same_net:       # VLAN 도 망도 같으면
-        print(f"{src} -> {dst} 스위치 직접 전달")
-    elif has_router:                              # 다르지만 라우터가 있으면
-        print(f"{src} -> {dst} 게이트웨이 {a['gateway']}로 전달")
-    else:                                         # 다르고 라우터도 없으면
-        print(f"{src} -> {dst} 통신 불가")
-```
+(코드는 위 문제 칸에 채워 두었습니다.)
 
 💻 **터미널에 입력합니다.** `python route_judge.py`
 
@@ -676,9 +619,8 @@ tracert -d -h 5 8.8.8.8
 포트별 VLAN 이 정해진 스위치에서, **들어온 포트와 같은 VLAN 의 다른 포트**만 고르는 함수를 완성하시오.
 
 ```python
-# ── 미리 채워 둔 줄입니다. 고치지 않습니다 ──
+# ── 강사용: 정답을 채운 코드입니다 ──
 port_vlan = {1: 10, 2: 10, 3: 20, 4: 20, 5: 10}   # 포트 → VLAN 번호
-# ── 여기까지 ──
 
 
 def flood_ports(in_port):                         # in_port 로 들어온 브로드캐스트가 퍼질 포트들
@@ -686,7 +628,8 @@ def flood_ports(in_port):                         # in_port 로 들어온 브로
     out = []
     for port in port_vlan:                        # 포트를 하나씩
         # 1. port 의 VLAN 이 vlan 과 같고 port 가 in_port 가 아니면 out 에 더하세요
-
+        if port_vlan[port] == vlan and port != in_port:   # 같은 VLAN 이고 들어온 포트가 아니면
+            out.append(port)
     return out
 
 
@@ -718,23 +661,7 @@ python vlan_flood.py
 
 #### 정답 6-4
 
-```python
-port_vlan = {1: 10, 2: 10, 3: 20, 4: 20, 5: 10}   # 포트 → VLAN 번호
-
-
-def flood_ports(in_port):                         # in_port 로 들어온 브로드캐스트가 퍼질 포트들
-    vlan = port_vlan[in_port]                     # 들어온 포트의 VLAN
-    out = []
-    for port in port_vlan:                        # 포트를 하나씩
-        # 1. port 의 VLAN 이 vlan 과 같고 port 가 in_port 가 아니면 out 에 더하세요
-        if port_vlan[port] == vlan and port != in_port:   # 같은 VLAN 이고 들어온 포트가 아니면
-            out.append(port)
-    return out
-
-
-print("1번에서:", flood_ports(1))
-print("3번에서:", flood_ports(3))
-```
+(코드는 위 문제 칸에 채워 두었습니다.)
 
 💻 **터미널에 입력합니다.** `python vlan_flood.py`
 
@@ -757,15 +684,14 @@ print("3번에서:", flood_ports(3))
 목적지마다 **맞는 줄 가운데 CIDR 숫자가 가장 큰 줄**의 다음 홉을 고르시오.
 
 ```python
+# ── 강사용: 정답을 채운 코드입니다 ──
 import ipaddress
 
-# ── 미리 채워 둔 줄입니다. 고치지 않습니다 ──
 routes = [                                        # (목적지 망, 다음 홉)
     ("0.0.0.0/0", "인터넷 게이트웨이"),
     ("192.168.10.0/26", "직접 연결 G0/0"),        # G0/0 · G0/1 은 라우터의 포트 이름
     ("192.168.10.64/26", "직접 연결 G0/1"),
 ]
-# ── 여기까지 ──
 
 
 def lookup(dest):                                 # 목적지 주소의 다음 홉을 돌려준다
@@ -774,7 +700,8 @@ def lookup(dest):                                 # 목적지 주소의 다음 �
     for cidr, hop in routes:                      # 표를 한 줄씩
         net = ipaddress.ip_network(cidr)
         # 1. dest 가 net 안에 있고, best 가 None 이거나 net.prefixlen 이 best 의 prefixlen 보다 크면 best 에 (net, hop) 을 담으세요
-
+        if dest in net and (best is None or net.prefixlen > best[0].prefixlen):   # 맞고 더 좁으면
+            best = (net, hop)
     return best[1]                                # 고른 줄의 다음 홉
 
 
@@ -806,30 +733,7 @@ python route_lookup.py
 
 #### 정답 6-5
 
-```python
-import ipaddress
-
-routes = [                                        # (목적지 망, 다음 홉)
-    ("0.0.0.0/0", "인터넷 게이트웨이"),
-    ("192.168.10.0/26", "직접 연결 G0/0"),        # G0/0 · G0/1 은 라우터의 포트 이름
-    ("192.168.10.64/26", "직접 연결 G0/1"),
-]
-
-
-def lookup(dest):                                 # 목적지 주소의 다음 홉을 돌려준다
-    dest = ipaddress.ip_address(dest)
-    best = None                                   # 지금까지 고른 줄
-    for cidr, hop in routes:                      # 표를 한 줄씩
-        net = ipaddress.ip_network(cidr)
-        # 1. dest 가 net 안에 있고, best 가 None 이거나 net.prefixlen 이 best 의 prefixlen 보다 크면 best 에 (net, hop) 을 담으세요
-        if dest in net and (best is None or net.prefixlen > best[0].prefixlen):   # 맞고 더 좁으면
-            best = (net, hop)
-    return best[1]                                # 고른 줄의 다음 홉
-
-
-for d in ["192.168.10.20", "192.168.10.70", "8.8.8.8"]:
-    print(d, "→", lookup(d))
-```
+(코드는 위 문제 칸에 채워 두었습니다.)
 
 💻 **터미널에 입력합니다.** `python route_lookup.py`
 
@@ -852,6 +756,7 @@ for d in ["192.168.10.20", "192.168.10.70", "8.8.8.8"]:
 VLAN 마다 받은 서브넷 가운데 **다른 VLAN 과 겹치는** 짝을 찾으시오.
 
 ```python
+# ── 강사용: 정답을 채운 코드입니다 ──
 import ipaddress
 
 vlan_subnet = {                                   # VLAN 번호 → 서브넷
@@ -860,6 +765,11 @@ vlan_subnet = {                                   # VLAN 번호 → 서브넷
     30: "192.168.10.64/27",
 }
 # 1. VLAN 을 둘씩 짝지어(10-20, 10-30, 20-30) 서브넷이 겹치면 「VLAN 10 과 20 이 같은 주소를 씀 — 라우터가 있어도 통신 안 됨」 을 출력하세요
+for a, b in [(10, 20), (10, 30), (20, 30)]:       # 짝을 하나씩
+    net_a = ipaddress.ip_network(vlan_subnet[a])
+    net_b = ipaddress.ip_network(vlan_subnet[b])
+    if net_a.overlaps(net_b):                     # 주소가 겹치면
+        print(f"VLAN {a} 과 {b} 이 같은 주소를 씀 — 라우터가 있어도 통신 안 됨")
 ```
 
 **파일을 만들고 실행합니다**
@@ -886,21 +796,7 @@ python vlan_pair.py
 
 #### 정답 6-6
 
-```python
-import ipaddress
-
-vlan_subnet = {                                   # VLAN 번호 → 서브넷
-    10: "192.168.10.0/26",
-    20: "192.168.10.0/26",
-    30: "192.168.10.64/27",
-}
-# 1. VLAN 을 둘씩 짝지어(10-20, 10-30, 20-30) 서브넷이 겹치면 「VLAN 10 과 20 이 같은 주소를 씀 — 라우터가 있어도 통신 안 됨」 을 출력하세요
-for a, b in [(10, 20), (10, 30), (20, 30)]:       # 짝을 하나씩
-    net_a = ipaddress.ip_network(vlan_subnet[a])
-    net_b = ipaddress.ip_network(vlan_subnet[b])
-    if net_a.overlaps(net_b):                     # 주소가 겹치면
-        print(f"VLAN {a} 과 {b} 이 같은 주소를 씀 — 라우터가 있어도 통신 안 됨")
-```
+(코드는 위 문제 칸에 채워 두었습니다.)
 
 💻 **터미널에 입력합니다.** `python vlan_pair.py`
 
@@ -989,9 +885,9 @@ print(net.broadcast_address)
 7.1 의 세 부서에 대해 **VLAN · CIDR · 게이트웨이 · 장비에 줄 범위**를 마크다운 표로 출력하시오.
 
 ```python
+# ── 강사용: 정답을 채운 코드입니다 ──
 import ipaddress
 
-# ── 미리 채워 둔 줄입니다. 고치지 않습니다 ──
 plan = [                                          # (부서, CIDR, VLAN)
     ("개발팀", "10.20.0.0/26", 10),
     ("운영팀", "10.20.0.64/27", 20),
@@ -999,14 +895,14 @@ plan = [                                          # (부서, CIDR, VLAN)
 ]
 print("| 부서 | VLAN | CIDR | 게이트웨이 | 장비에 줄 범위 |")
 print("|---|---|---|---|---|")
-# ── 여기까지 ──
 
 for name, cidr, vlan in plan:                     # 부서를 하나씩
     net = ipaddress.ip_network(cidr)              # 그 부서의 망
     # 1. gateway 에 net.network_address + 1 을 담으세요
-
+    gateway = net.network_address + 1             # 첫 호스트를 게이트웨이로
     # 2. first 에 gateway + 1, last 에 net.broadcast_address - 1 을 담으세요
-
+    first = gateway + 1                           # PC 에 줄 첫 주소
+    last = net.broadcast_address - 1              # PC 에 줄 마지막 주소
     print(f"| {name} | {vlan} | {cidr} | {gateway} | {first} ~ {last} |")
 ```
 
@@ -1050,26 +946,7 @@ for n in [3, 8, 12, 20]:
 
 #### 정답 7-2
 
-```python
-import ipaddress
-
-plan = [                                          # (부서, CIDR, VLAN)
-    ("개발팀", "10.20.0.0/26", 10),
-    ("운영팀", "10.20.0.64/27", 20),
-    ("보안팀", "10.20.0.96/28", 30),
-]
-print("| 부서 | VLAN | CIDR | 게이트웨이 | 장비에 줄 범위 |")
-print("|---|---|---|---|---|")
-
-for name, cidr, vlan in plan:                     # 부서를 하나씩
-    net = ipaddress.ip_network(cidr)              # 그 부서의 망
-    # 1. gateway 에 net.network_address + 1 을 담으세요
-    gateway = net.network_address + 1             # 첫 호스트를 게이트웨이로
-    # 2. first 에 gateway + 1, last 에 net.broadcast_address - 1 을 담으세요
-    first = gateway + 1                           # PC 에 줄 첫 주소
-    last = net.broadcast_address - 1              # PC 에 줄 마지막 주소
-    print(f"| {name} | {vlan} | {cidr} | {gateway} | {first} ~ {last} |")
-```
+(코드는 위 문제 칸에 채워 두었습니다.)
 
 💻 **터미널에 입력합니다.** `python vlan_plan.py`
 
@@ -1092,55 +969,7 @@ for name, cidr, vlan in plan:                     # 부서를 하나씩
 서버 10대가 들어갈 `/28` 을 **보안팀 바로 다음 빈 경계**에 놓고, 네 부서가 **겹치지 않는지** 검증하시오.
 
 ```python
-import ipaddress
-
-# ── 미리 채워 둔 줄입니다. 고치지 않습니다 ──
-used = [                                          # 이미 쓰는 세 부서의 망
-    ipaddress.ip_network("10.20.0.0/26"),
-    ipaddress.ip_network("10.20.0.64/27"),
-    ipaddress.ip_network("10.20.0.96/28"),
-]
-parent = ipaddress.ip_network("10.20.0.0/24")
-# ── 여기까지 ──
-
-server = None
-for candidate in parent.subnets(new_prefix=28):   # /28 후보를 앞에서부터
-    # 1. candidate 가 used 의 어느 것과도 겹치지 않으면 server 에 담고 반복을 끝내세요(break)
-
-
-print("서버망:", server)
-overlap = False
-for net in used:                                  # 기존 부서와 하나씩 비교
-    # 2. server 가 net 과 겹치면 overlap 을 True 로 바꾸세요
-
-print("겹침 있음:", overlap)
-```
-
-**파일을 만들고 실행합니다**
-
-1. VS Code 왼쪽 목록에서 `network_zt` 폴더를 오른쪽 클릭 › **New File** › 이름 `next_block.py` 를 입력하고 Enter 를 누릅니다.
-2. 위 코드 상자 안을 마우스로 끌어 선택하고 `Ctrl + C` 로 복사해 파일에 붙여 넣은 뒤, 번호 주석 아래를 채웁니다. 저장은 자동입니다.
-3. 터미널에 아래 명령을 입력합니다. 터미널의 줄 위에 `…/network_zt` 가 보여야 합니다. 아니면 먼저 `cd network_zt` 를 입력합니다.
-
-```bash
-python next_block.py
-```
-
-4. 고친 뒤에는 같은 명령을 다시 입력합니다. 터미널에서 **↑(위 화살표)** 를 누르면 방금 입력한 명령이 다시 나옵니다.
-
-| | |
-|---|---|
-| 🎯 <b style="color:#43a047">나와야 하는 결과</b> | `서버망: 10.20.0.112/28` · `겹침 있음: False` |
-
-**💡 힌트**
-
-1. 「어느 것과도 겹치지 않는다」는 `used` 를 돌며 하나라도 겹치는지 먼저 세고, 0 이면 비어 있는 것입니다.
-2. 「겹치는 부서 수」를 세는 변수를 후보마다 0 에서 시작합니다.
-3. 112 는 96 + 16 — 보안팀 `/28` 바로 다음입니다.
-
-#### 정답 7-3
-
-```python
+# ── 강사용: 정답을 채운 코드입니다 ──
 import ipaddress
 
 used = [                                          # 이미 쓰는 세 부서의 망
@@ -1169,6 +998,32 @@ for net in used:                                  # 기존 부서와 하나씩 �
         overlap = True
 print("겹침 있음:", overlap)
 ```
+
+**파일을 만들고 실행합니다**
+
+1. VS Code 왼쪽 목록에서 `network_zt` 폴더를 오른쪽 클릭 › **New File** › 이름 `next_block.py` 를 입력하고 Enter 를 누릅니다.
+2. 위 코드 상자 안을 마우스로 끌어 선택하고 `Ctrl + C` 로 복사해 파일에 붙여 넣은 뒤, 번호 주석 아래를 채웁니다. 저장은 자동입니다.
+3. 터미널에 아래 명령을 입력합니다. 터미널의 줄 위에 `…/network_zt` 가 보여야 합니다. 아니면 먼저 `cd network_zt` 를 입력합니다.
+
+```bash
+python next_block.py
+```
+
+4. 고친 뒤에는 같은 명령을 다시 입력합니다. 터미널에서 **↑(위 화살표)** 를 누르면 방금 입력한 명령이 다시 나옵니다.
+
+| | |
+|---|---|
+| 🎯 <b style="color:#43a047">나와야 하는 결과</b> | `서버망: 10.20.0.112/28` · `겹침 있음: False` |
+
+**💡 힌트**
+
+1. 「어느 것과도 겹치지 않는다」는 `used` 를 돌며 하나라도 겹치는지 먼저 세고, 0 이면 비어 있는 것입니다.
+2. 「겹치는 부서 수」를 세는 변수를 후보마다 0 에서 시작합니다.
+3. 112 는 96 + 16 — 보안팀 `/28` 바로 다음입니다.
+
+#### 정답 7-3
+
+(코드는 위 문제 칸에 채워 두었습니다.)
 
 💻 **터미널에 입력합니다.** `python next_block.py`
 

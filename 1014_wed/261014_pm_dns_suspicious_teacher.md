@@ -143,14 +143,14 @@ print(label, len(label), vowels)
 이름마다 **TLD 바로 앞 조각**과 **TLD** 를 꺼내 출력하시오.
 
 ```python
-# ── 미리 채워 둔 줄입니다. 고치지 않습니다 ──
+# ── 강사용: 정답을 채운 코드입니다 ──
 names = ["www.naver.com", "e6030.a.akamaiedge.net", "kxq3vz9a.top", "bnk-secure-login.xyz"]
-# ── 여기까지 ──
 
 for name in names:                                # 이름을 하나씩
     parts = name.split(".")                       # 점으로 나눈 조각들
     # 1. label 에 parts 의 끝에서 둘째(-2)를, tld 에 맨 끝(-1)을 담으세요
-
+    label = parts[-2]                             # TLD 앞 조각
+    tld = parts[-1]                               # TLD
     print(name, "조각:", label, "TLD:", tld)
 ```
 
@@ -178,16 +178,7 @@ python label.py
 
 #### 정답 5-2
 
-```python
-names = ["www.naver.com", "e6030.a.akamaiedge.net", "kxq3vz9a.top", "bnk-secure-login.xyz"]
-
-for name in names:                                # 이름을 하나씩
-    parts = name.split(".")                       # 점으로 나눈 조각들
-    # 1. label 에 parts 의 끝에서 둘째(-2)를, tld 에 맨 끝(-1)을 담으세요
-    label = parts[-2]                             # TLD 앞 조각
-    tld = parts[-1]                               # TLD
-    print(name, "조각:", label, "TLD:", tld)
-```
+(코드는 위 문제 칸에 채워 두었습니다.)
 
 💻 **터미널에 입력합니다.** `python label.py`
 
@@ -210,22 +201,23 @@ for name in names:                                # 이름을 하나씩
 TLD 앞 조각의 **숫자 개수**와 **모음 비율**(모음 수 ÷ 길이)을 계산하는 함수를 완성하시오.
 
 ```python
+# ── 강사용: 정답을 채운 코드입니다 ──
 def features(name):                               # 이름 하나의 특징을 사전으로 돌려준다
     label = name.split(".")[-2]                   # TLD 앞 조각
     digits = 0
     vowels = 0
     for ch in label:                              # 한 자씩
         # 1. ch 가 숫자면 digits 에 1 을 더하세요
-
+        if ch in "0123456789":
+            digits = digits + 1
         # 2. ch 가 모음(aeiou)이면 vowels 에 1 을 더하세요
-
+        if ch in "aeiou":
+            vowels = vowels + 1
     return {"label": label, "len": len(label), "digits": digits, "vowel_ratio": round(vowels / len(label), 2)}
 
 
-# ── 미리 채워 둔 줄입니다. 고치지 않습니다 ──
 for name in ["www.naver.com", "kxq3vz9a.top", "xn--3e0b707e.kr"]:
     print(features(name))
-# ── 여기까지 ──
 ```
 
 **파일을 만들고 실행합니다**
@@ -252,24 +244,7 @@ python features.py
 
 #### 정답 5-3
 
-```python
-def features(name):                               # 이름 하나의 특징을 사전으로 돌려준다
-    label = name.split(".")[-2]                   # TLD 앞 조각
-    digits = 0
-    vowels = 0
-    for ch in label:                              # 한 자씩
-        # 1. ch 가 숫자면 digits 에 1 을 더하세요
-        if ch in "0123456789":
-            digits = digits + 1
-        # 2. ch 가 모음(aeiou)이면 vowels 에 1 을 더하세요
-        if ch in "aeiou":
-            vowels = vowels + 1
-    return {"label": label, "len": len(label), "digits": digits, "vowel_ratio": round(vowels / len(label), 2)}
-
-
-for name in ["www.naver.com", "kxq3vz9a.top", "xn--3e0b707e.kr"]:
-    print(features(name))
-```
+(코드는 위 문제 칸에 채워 두었습니다.)
 
 💻 **터미널에 입력합니다.** `python features.py`
 
@@ -292,18 +267,18 @@ for name in ["www.naver.com", "kxq3vz9a.top", "xn--3e0b707e.kr"]:
 `0` → `o`, `1` → `l`, `3` → `e` 로 바꿨을 때 **믿을 만한 도메인과 똑같아지면** 사칭으로 판정하시오.
 
 ```python
-# ── 미리 채워 둔 줄입니다. 고치지 않습니다 ──
+# ── 강사용: 정답을 채운 코드입니다 ──
 TRUSTED = ["naver.com", "google.com", "kbstar.com"]   # 우리 회사가 쓰는 진짜 도메인
 seen = ["nav3r.com", "google.com", "g00gle.com", "kbstar.com", "kb5tar.com"]
-# ── 여기까지 ──
 
 for name in seen:                                 # 로그에 나온 이름을 하나씩
     # 1. plain 에 name 의 0 을 o 로, 1 을 l 로, 3 을 e 로 바꾼 글자를 담으세요
-
+    plain = name.replace("0", "o").replace("1", "l").replace("3", "e")   # 숫자를 닮은 글자로
     if name in TRUSTED:
         print("[정상]", name)
     # 2. 아니고 plain 이 TRUSTED 안에 있으면 「[사칭 의심] nav3r.com → naver.com 흉내」 를 출력하세요
-
+    elif plain in TRUSTED:                        # 바꾸니 진짜와 같아지면
+        print("[사칭 의심]", name, "→", plain, "흉내")
     else:
         print("[모름]", name)
 ```
@@ -332,21 +307,7 @@ python typosquat.py
 
 #### 정답 5-4
 
-```python
-TRUSTED = ["naver.com", "google.com", "kbstar.com"]   # 우리 회사가 쓰는 진짜 도메인
-seen = ["nav3r.com", "google.com", "g00gle.com", "kbstar.com", "kb5tar.com"]
-
-for name in seen:                                 # 로그에 나온 이름을 하나씩
-    # 1. plain 에 name 의 0 을 o 로, 1 을 l 로, 3 을 e 로 바꾼 글자를 담으세요
-    plain = name.replace("0", "o").replace("1", "l").replace("3", "e")   # 숫자를 닮은 글자로
-    if name in TRUSTED:
-        print("[정상]", name)
-    # 2. 아니고 plain 이 TRUSTED 안에 있으면 「[사칭 의심] nav3r.com → naver.com 흉내」 를 출력하세요
-    elif plain in TRUSTED:                        # 바꾸니 진짜와 같아지면
-        print("[사칭 의심]", name, "→", plain, "흉내")
-    else:
-        print("[모름]", name)
-```
+(코드는 위 문제 칸에 채워 두었습니다.)
 
 💻 **터미널에 입력합니다.** `python typosquat.py`
 
@@ -369,7 +330,7 @@ for name in seen:                                 # 로그에 나온 이름을 �
 DNS 로그에서 PC 마다 **NXDOMAIN 이 몇 번인지** 세고, **3번 이상**인 PC 를 출력하시오.
 
 ```python
-# ── 미리 채워 둔 줄입니다. 고치지 않습니다 ──
+# ── 강사용: 정답을 채운 코드입니다 ──
 logs = [                                          # (PC 주소, 물어본 이름, 답)
     ("10.20.0.15", "www.naver.com", "NOERROR"),
     ("10.20.0.42", "kxq3vz9a.top", "NXDOMAIN"),
@@ -380,15 +341,16 @@ logs = [                                          # (PC 주소, 물어본 이름
     ("10.20.0.42", "qwrtpzkx7v.com", "NOERROR"),
 ]
 nx = {}                                           # PC 주소 → NXDOMAIN 횟수
-# ── 여기까지 ──
 
 for pc, name, rcode in logs:                      # 로그를 한 줄씩
     # 1. rcode 가 "NXDOMAIN" 이면 nx 의 pc 키를 1 늘리세요 (.get)
-
+    if rcode == "NXDOMAIN":
+        nx[pc] = nx.get(pc, 0) + 1                # 처음 보는 PC 면 0 에서
 
 for pc in nx:
     # 2. 횟수가 3 이상이면 「[확인 필요] 10.20.0.42 NXDOMAIN 3번」 을 출력하세요
-
+    if nx[pc] >= 3:
+        print(f"[확인 필요] {pc} NXDOMAIN {nx[pc]}번")
 ```
 
 **파일을 만들고 실행합니다**
@@ -415,28 +377,7 @@ python nx_count.py
 
 #### 정답 5-5
 
-```python
-logs = [                                          # (PC 주소, 물어본 이름, 답)
-    ("10.20.0.15", "www.naver.com", "NOERROR"),
-    ("10.20.0.42", "kxq3vz9a.top", "NXDOMAIN"),
-    ("10.20.0.42", "p0w8rk2mzq.xyz", "NXDOMAIN"),
-    ("10.20.0.15", "mail.google.com", "NOERROR"),
-    ("10.20.0.42", "zzx9q2lk.top", "NXDOMAIN"),
-    ("10.20.0.33", "typo-nevar.com", "NXDOMAIN"),
-    ("10.20.0.42", "qwrtpzkx7v.com", "NOERROR"),
-]
-nx = {}                                           # PC 주소 → NXDOMAIN 횟수
-
-for pc, name, rcode in logs:                      # 로그를 한 줄씩
-    # 1. rcode 가 "NXDOMAIN" 이면 nx 의 pc 키를 1 늘리세요 (.get)
-    if rcode == "NXDOMAIN":
-        nx[pc] = nx.get(pc, 0) + 1                # 처음 보는 PC 면 0 에서
-
-for pc in nx:
-    # 2. 횟수가 3 이상이면 「[확인 필요] 10.20.0.42 NXDOMAIN 3번」 을 출력하세요
-    if nx[pc] >= 3:
-        print(f"[확인 필요] {pc} NXDOMAIN {nx[pc]}번")
-```
+(코드는 위 문제 칸에 채워 두었습니다.)
 
 💻 **터미널에 입력합니다.** `python nx_count.py`
 
@@ -459,6 +400,7 @@ for pc in nx:
 DNS 질의에 데이터를 몰래 실어 보내는 **DNS 터널링**은 맨 앞 조각이 비정상적으로 깁니다. 맨 앞 조각이 **30글자 이상**인 이름을 찾으시오.
 
 ```python
+# ── 강사용: 정답을 채운 코드입니다 ──
 names = [
     "www.naver.com",
     "aGVsbG8gd29ybGQgdGhpcyBpcyBzZWNyZXQ.t1.example.com",
@@ -466,6 +408,10 @@ names = [
     "c2VjcmV0X3Bhc3N3b3JkX2Zvcl9hZG1pbl91c2Vy.t1.example.com",
 ]
 # 1. 이름마다 맨 앞 조각의 길이를 재서 30 이상이면 「[터널링 의심] 길이 35 : 이름」 꼴로 출력하세요
+for name in names:                                # 이름을 하나씩
+    first = name.split(".")[0]                    # 맨 앞 조각
+    if len(first) >= 30:                          # 비정상적으로 길면
+        print("[터널링 의심] 길이", len(first), ":", name)
 ```
 
 **파일을 만들고 실행합니다**
@@ -492,19 +438,7 @@ python long_label.py
 
 #### 정답 5-6
 
-```python
-names = [
-    "www.naver.com",
-    "aGVsbG8gd29ybGQgdGhpcyBpcyBzZWNyZXQ.t1.example.com",
-    "update.microsoft.com",
-    "c2VjcmV0X3Bhc3N3b3JkX2Zvcl9hZG1pbl91c2Vy.t1.example.com",
-]
-# 1. 이름마다 맨 앞 조각의 길이를 재서 30 이상이면 「[터널링 의심] 길이 35 : 이름」 꼴로 출력하세요
-for name in names:                                # 이름을 하나씩
-    first = name.split(".")[0]                    # 맨 앞 조각
-    if len(first) >= 30:                          # 비정상적으로 길면
-        print("[터널링 의심] 길이", len(first), ":", name)
-```
+(코드는 위 문제 칸에 채워 두었습니다.)
 
 💻 **터미널에 입력합니다.** `python long_label.py`
 
@@ -628,68 +562,7 @@ print(score, score >= 3)
 6.1 의 규칙대로 점수와 **걸린 규칙 이름**을 돌려주는 함수를 완성하시오. 비어 있는 두 규칙만 채웁니다.
 
 ```python
-CHEAP_TLD = ["top", "xyz", "tk"]                  # 값싼 TLD
-
-
-def score(name, rcode):                           # 이름과 답을 받아 점수 · 이유를 돌려준다
-    parts = name.split(".")
-    label = parts[-2]                             # TLD 앞 조각
-    tld = parts[-1]                               # TLD
-    points = 0                                    # 합계 점수
-    why = []                                      # 걸린 규칙 이름
-    if len(label) >= 10:                          # 규칙 ① 길이
-        points = points + 1
-        why.append("길이")
-    digits = 0
-    vowels = 0
-    for ch in label:                              # 한 자씩 센다
-        if ch in "0123456789":
-            digits = digits + 1
-        if ch in "aeiou":
-            vowels = vowels + 1
-    if digits >= 2:                               # 규칙 ② 숫자
-        points = points + 1
-        why.append("숫자")
-    # 1. 모음 비율(vowels / len(label))이 0.25 미만이면 points 에 1 을 더하고 why 에 "모음" 을 더하세요
-
-    if tld in CHEAP_TLD:                          # 규칙 ④ 값싼 TLD
-        points = points + 1
-        why.append("TLD")
-    # 2. rcode 가 "NXDOMAIN" 이면 points 에 2 를 더하고 why 에 "NXDOMAIN" 을 더하세요
-
-    return {"points": points, "why": why}
-
-
-if __name__ == "__main__":                        # 직접 실행할 때만 시험한다
-    print(score("www.naver.com", "NOERROR"))
-    print(score("kxq3vz9a.top", "NXDOMAIN"))
-```
-
-**파일을 만들고 실행합니다**
-
-1. VS Code 왼쪽 목록에서 `network_zt` 폴더를 오른쪽 클릭 › **New File** › 이름 `dga_score.py` 를 입력하고 Enter 를 누릅니다.
-2. 위 코드 상자 안을 마우스로 끌어 선택하고 `Ctrl + C` 로 복사해 파일에 붙여 넣은 뒤, 번호 주석 아래를 채웁니다. 저장은 자동입니다.
-3. 터미널에 아래 명령을 입력합니다. 터미널의 줄 위에 `…/network_zt` 가 보여야 합니다. 아니면 먼저 `cd network_zt` 를 입력합니다.
-
-```bash
-python dga_score.py
-```
-
-4. 고친 뒤에는 같은 명령을 다시 입력합니다. 터미널에서 **↑(위 화살표)** 를 누르면 방금 입력한 명령이 다시 나옵니다.
-
-| | |
-|---|---|
-| 🎯 <b style="color:#43a047">나와야 하는 결과</b> | `{'points': 0, 'why': []}` · `{'points': 5, 'why': ['숫자', '모음', 'TLD', 'NXDOMAIN']}` |
-
-**💡 힌트**
-
-1. 1번은 `if vowels / len(label) < 0.25:` 아래 두 줄입니다 — 위 규칙 ②와 같은 모양.
-2. 2번은 2점입니다.
-3. `why` 에 쌓인 이름이 7교시 보고서의 「근거」 칸이 됩니다.
-
-#### 정답 6-2
-
-```python
+# ── 강사용: 정답을 채운 코드입니다 ──
 CHEAP_TLD = ["top", "xyz", "tk"]                  # 값싼 TLD
 
 
@@ -731,6 +604,32 @@ if __name__ == "__main__":                        # 직접 실행할 때만 시�
     print(score("kxq3vz9a.top", "NXDOMAIN"))
 ```
 
+**파일을 만들고 실행합니다**
+
+1. VS Code 왼쪽 목록에서 `network_zt` 폴더를 오른쪽 클릭 › **New File** › 이름 `dga_score.py` 를 입력하고 Enter 를 누릅니다.
+2. 위 코드 상자 안을 마우스로 끌어 선택하고 `Ctrl + C` 로 복사해 파일에 붙여 넣은 뒤, 번호 주석 아래를 채웁니다. 저장은 자동입니다.
+3. 터미널에 아래 명령을 입력합니다. 터미널의 줄 위에 `…/network_zt` 가 보여야 합니다. 아니면 먼저 `cd network_zt` 를 입력합니다.
+
+```bash
+python dga_score.py
+```
+
+4. 고친 뒤에는 같은 명령을 다시 입력합니다. 터미널에서 **↑(위 화살표)** 를 누르면 방금 입력한 명령이 다시 나옵니다.
+
+| | |
+|---|---|
+| 🎯 <b style="color:#43a047">나와야 하는 결과</b> | `{'points': 0, 'why': []}` · `{'points': 5, 'why': ['숫자', '모음', 'TLD', 'NXDOMAIN']}` |
+
+**💡 힌트**
+
+1. 1번은 `if vowels / len(label) < 0.25:` 아래 두 줄입니다 — 위 규칙 ②와 같은 모양.
+2. 2번은 2점입니다.
+3. `why` 에 쌓인 이름이 7교시 보고서의 「근거」 칸이 됩니다.
+
+#### 정답 6-2
+
+(코드는 위 문제 칸에 채워 두었습니다.)
+
 💻 **터미널에 입력합니다.** `python dga_score.py`
 
 **결과** — `{'points': 0, 'why': []}` · `{'points': 5, 'why': ['숫자', '모음', 'TLD', 'NXDOMAIN']}`
@@ -752,9 +651,9 @@ if __name__ == "__main__":                        # 직접 실행할 때만 시�
 6-2 의 `score` 를 불러와 로그 12건을 **문턱값 3** 으로 판정하시오.
 
 ```python
+# ── 강사용: 정답을 채운 코드입니다 ──
 from dga_score import score                       # 6-2 의 함수를 꺼내 쓴다
 
-# ── 미리 채워 둔 줄입니다. 고치지 않습니다 ──
 LOG = [                                           # (이름, 답, 실제)
     ("www.naver.com", "NOERROR", "정상"), ("mail.google.com", "NOERROR", "정상"),
     ("update.microsoft.com", "NOERROR", "정상"), ("e6030.a.akamaiedge.net", "NOERROR", "정상"),
@@ -764,12 +663,14 @@ LOG = [                                           # (이름, 답, 실제)
     ("bnk-secure-login.xyz", "NOERROR", "의심"), ("www.example.com", "NOERROR", "정상"),
 ]
 THRESHOLD = 3                                     # 문턱값
-# ── 여기까지 ──
 
 for name, rcode, truth in LOG:                    # 로그를 한 줄씩
     result = score(name, rcode)
     # 1. judged 에 result["points"] 가 THRESHOLD 이상이면 "의심", 아니면 "정상" 을 담으세요
-
+    if result["points"] >= THRESHOLD:             # 기준을 넘으면
+        judged = "의심"
+    else:
+        judged = "정상"
     print(name, f"{result['points']}점", judged, f"(실제 {truth})")
 ```
 
@@ -797,28 +698,7 @@ python judge.py
 
 #### 정답 6-3
 
-```python
-from dga_score import score                       # 6-2 의 함수를 꺼내 쓴다
-
-LOG = [                                           # (이름, 답, 실제)
-    ("www.naver.com", "NOERROR", "정상"), ("mail.google.com", "NOERROR", "정상"),
-    ("update.microsoft.com", "NOERROR", "정상"), ("e6030.a.akamaiedge.net", "NOERROR", "정상"),
-    ("cdn.jsdelivr.net", "NOERROR", "정상"), ("xn--3e0b707e.kr", "NOERROR", "정상"),
-    ("kxq3vz9a.top", "NXDOMAIN", "의심"), ("p0w8rk2mzq.xyz", "NXDOMAIN", "의심"),
-    ("qwrtpzkx7v.com", "NOERROR", "의심"), ("zzx9q2lk.top", "NXDOMAIN", "의심"),
-    ("bnk-secure-login.xyz", "NOERROR", "의심"), ("www.example.com", "NOERROR", "정상"),
-]
-THRESHOLD = 3                                     # 문턱값
-
-for name, rcode, truth in LOG:                    # 로그를 한 줄씩
-    result = score(name, rcode)
-    # 1. judged 에 result["points"] 가 THRESHOLD 이상이면 "의심", 아니면 "정상" 을 담으세요
-    if result["points"] >= THRESHOLD:             # 기준을 넘으면
-        judged = "의심"
-    else:
-        judged = "정상"
-    print(name, f"{result['points']}점", judged, f"(실제 {truth})")
-```
+(코드는 위 문제 칸에 채워 두었습니다.)
 
 💻 **터미널에 입력합니다.** `python judge.py`
 
@@ -841,63 +721,7 @@ for name, rcode, truth in LOG:                    # 로그를 한 줄씩
 6-3 의 판정을 **정답지(실제)와 비교해** 맞힘 · 오탐 · 미탐 수를 세시오.
 
 ```python
-from dga_score import score
-
-# ── 미리 채워 둔 줄입니다. 고치지 않습니다 ──
-LOG = [
-    ("www.naver.com", "NOERROR", "정상"), ("mail.google.com", "NOERROR", "정상"),
-    ("update.microsoft.com", "NOERROR", "정상"), ("e6030.a.akamaiedge.net", "NOERROR", "정상"),
-    ("cdn.jsdelivr.net", "NOERROR", "정상"), ("xn--3e0b707e.kr", "NOERROR", "정상"),
-    ("kxq3vz9a.top", "NXDOMAIN", "의심"), ("p0w8rk2mzq.xyz", "NXDOMAIN", "의심"),
-    ("qwrtpzkx7v.com", "NOERROR", "의심"), ("zzx9q2lk.top", "NXDOMAIN", "의심"),
-    ("bnk-secure-login.xyz", "NOERROR", "의심"), ("www.example.com", "NOERROR", "정상"),
-]
-THRESHOLD = 3
-hit = 0                                           # 맞힘 — 의심을 의심으로
-false_alarm = 0                                   # 오탐 — 정상을 의심으로
-missed = 0                                        # 미탐 — 의심을 정상으로
-# ── 여기까지 ──
-
-for name, rcode, truth in LOG:
-    if score(name, rcode)["points"] >= THRESHOLD:   # 기준을 넘으면 의심
-        judged = "의심"
-    else:
-        judged = "정상"
-    # 1. judged 가 "의심" 이고 truth 가 "의심" 이면 hit 에 1 을 더하세요
-
-    # 2. judged 가 "의심" 이고 truth 가 "정상" 이면 false_alarm 에 1 을 더하세요
-
-    # 3. judged 가 "정상" 이고 truth 가 "의심" 이면 missed 에 1 을 더하세요
-
-
-print("맞힘", hit, "· 오탐", false_alarm, "· 미탐", missed)
-```
-
-**파일을 만들고 실행합니다**
-
-1. VS Code 왼쪽 목록에서 `network_zt` 폴더를 오른쪽 클릭 › **New File** › 이름 `evaluate.py` 를 입력하고 Enter 를 누릅니다.
-2. 위 코드 상자 안을 마우스로 끌어 선택하고 `Ctrl + C` 로 복사해 파일에 붙여 넣은 뒤, 번호 주석 아래를 채웁니다. 저장은 자동입니다.
-3. 터미널에 아래 명령을 입력합니다. 터미널의 줄 위에 `…/network_zt` 가 보여야 합니다. 아니면 먼저 `cd network_zt` 를 입력합니다.
-
-```bash
-python evaluate.py
-```
-
-4. 고친 뒤에는 같은 명령을 다시 입력합니다. 터미널에서 **↑(위 화살표)** 를 누르면 방금 입력한 명령이 다시 나옵니다.
-
-| | |
-|---|---|
-| 🎯 <b style="color:#43a047">나와야 하는 결과</b> | `맞힘 3 · 오탐 1 · 미탐 2` |
-
-**💡 힌트**
-
-1. 세 개 모두 `and` 로 두 조건을 잇습니다.
-2. `judged` 를 정하는 네 줄은 6-3 에서 쓴 것과 같아 미리 채워 두었습니다.
-3. 6.2 표의 네 칸 가운데 세 칸을 세는 것입니다.
-
-#### 정답 6-4
-
-```python
+# ── 강사용: 정답을 채운 코드입니다 ──
 from dga_score import score
 
 LOG = [
@@ -931,6 +755,32 @@ for name, rcode, truth in LOG:
 print("맞힘", hit, "· 오탐", false_alarm, "· 미탐", missed)
 ```
 
+**파일을 만들고 실행합니다**
+
+1. VS Code 왼쪽 목록에서 `network_zt` 폴더를 오른쪽 클릭 › **New File** › 이름 `evaluate.py` 를 입력하고 Enter 를 누릅니다.
+2. 위 코드 상자 안을 마우스로 끌어 선택하고 `Ctrl + C` 로 복사해 파일에 붙여 넣은 뒤, 번호 주석 아래를 채웁니다. 저장은 자동입니다.
+3. 터미널에 아래 명령을 입력합니다. 터미널의 줄 위에 `…/network_zt` 가 보여야 합니다. 아니면 먼저 `cd network_zt` 를 입력합니다.
+
+```bash
+python evaluate.py
+```
+
+4. 고친 뒤에는 같은 명령을 다시 입력합니다. 터미널에서 **↑(위 화살표)** 를 누르면 방금 입력한 명령이 다시 나옵니다.
+
+| | |
+|---|---|
+| 🎯 <b style="color:#43a047">나와야 하는 결과</b> | `맞힘 3 · 오탐 1 · 미탐 2` |
+
+**💡 힌트**
+
+1. 세 개 모두 `and` 로 두 조건을 잇습니다.
+2. `judged` 를 정하는 네 줄은 6-3 에서 쓴 것과 같아 미리 채워 두었습니다.
+3. 6.2 표의 네 칸 가운데 세 칸을 세는 것입니다.
+
+#### 정답 6-4
+
+(코드는 위 문제 칸에 채워 두었습니다.)
+
 💻 **터미널에 입력합니다.** `python evaluate.py`
 
 **결과** — `맞힘 3 · 오탐 1 · 미탐 2`
@@ -954,7 +804,7 @@ print("맞힘", hit, "· 오탐", false_alarm, "· 미탐", missed)
 **파일을 만들고 실행합니다**
 
 1. 왼쪽 목록에서 앞 문제에서 만든 `dga_score.py` 를 엽니다.
-2. 위 코드 상자 안을 마우스로 끌어 선택하고 `Ctrl + C` 로 복사해 파일에 붙여 넣은 뒤, 번호 주석 아래를 채웁니다. 저장은 자동입니다.
+2. 아래 힌트대로 `label = parts[-2]` 바로 아래에 예외 두 줄을 넣습니다. 새 코드를 붙여 넣지 않고 **있는 파일을 고칩니다.** 저장은 자동입니다.
 3. 터미널에 아래 명령을 입력합니다. 터미널의 줄 위에 `…/network_zt` 가 보여야 합니다. 아니면 먼저 `cd network_zt` 를 입력합니다.
 
 ```bash
@@ -1042,46 +892,7 @@ python dga_score.py
 6-5 를 고친 `score` 로 문턱값 **2 · 3 · 4** 마다 맞힘 · 오탐 · 미탐을 세어 표로 출력하시오.
 
 ```python
-from dga_score import score
-
-LOG = [
-    ("www.naver.com", "NOERROR", "정상"), ("mail.google.com", "NOERROR", "정상"),
-    ("update.microsoft.com", "NOERROR", "정상"), ("e6030.a.akamaiedge.net", "NOERROR", "정상"),
-    ("cdn.jsdelivr.net", "NOERROR", "정상"), ("xn--3e0b707e.kr", "NOERROR", "정상"),
-    ("kxq3vz9a.top", "NXDOMAIN", "의심"), ("p0w8rk2mzq.xyz", "NXDOMAIN", "의심"),
-    ("qwrtpzkx7v.com", "NOERROR", "의심"), ("zzx9q2lk.top", "NXDOMAIN", "의심"),
-    ("bnk-secure-login.xyz", "NOERROR", "의심"), ("www.example.com", "NOERROR", "정상"),
-]
-print("| 문턱값 | 맞힘 | 오탐 | 미탐 |")
-print("|---|---|---|---|")
-# 1. 문턱값 2, 3, 4 를 하나씩 꺼내 6-4 처럼 세고, 한 줄씩 표로 출력하세요
-```
-
-**파일을 만들고 실행합니다**
-
-1. VS Code 왼쪽 목록에서 `network_zt` 폴더를 오른쪽 클릭 › **New File** › 이름 `threshold.py` 를 입력하고 Enter 를 누릅니다.
-2. 위 코드 상자 안을 마우스로 끌어 선택하고 `Ctrl + C` 로 복사해 파일에 붙여 넣은 뒤, 번호 주석 아래를 채웁니다. 저장은 자동입니다.
-3. 터미널에 아래 명령을 입력합니다. 터미널의 줄 위에 `…/network_zt` 가 보여야 합니다. 아니면 먼저 `cd network_zt` 를 입력합니다.
-
-```bash
-python threshold.py
-```
-
-4. 고친 뒤에는 같은 명령을 다시 입력합니다. 터미널에서 **↑(위 화살표)** 를 누르면 방금 입력한 명령이 다시 나옵니다.
-
-| | |
-|---|---|
-| 🎯 <b style="color:#43a047">나와야 하는 결과</b> | `\| 2 \| 5 \| 0 \| 0 \|` · `\| 3 \| 3 \| 0 \| 2 \|` · `\| 4 \| 3 \| 0 \| 2 \|` |
-
-**💡 힌트**
-
-1. 6-4 의 반복을 문턱값 반복 **안에** 넣습니다. 세는 변수는 문턱값마다 0 에서 시작합니다.
-2. 예외(6-5)를 넣었기 때문에 문턱값 2 에서도 오탐이 0 입니다.
-3. 오늘 데이터에서는 2 가 가장 좋아 보이지만, 데이터 12건으로 정한 값은 믿기 어렵습니다 — 7교시 「한계」에 적습니다.
-
-#### 정답 6-6
-
-```python
+# ── 강사용: 정답을 채운 코드입니다 ──
 from dga_score import score
 
 LOG = [
@@ -1112,6 +923,32 @@ for threshold in [2, 3, 4]:                       # 문턱값을 하나씩
             missed = missed + 1
     print(f"| {threshold} | {hit} | {false_alarm} | {missed} |")
 ```
+
+**파일을 만들고 실행합니다**
+
+1. VS Code 왼쪽 목록에서 `network_zt` 폴더를 오른쪽 클릭 › **New File** › 이름 `threshold.py` 를 입력하고 Enter 를 누릅니다.
+2. 위 코드 상자 안을 마우스로 끌어 선택하고 `Ctrl + C` 로 복사해 파일에 붙여 넣은 뒤, 번호 주석 아래를 채웁니다. 저장은 자동입니다.
+3. 터미널에 아래 명령을 입력합니다. 터미널의 줄 위에 `…/network_zt` 가 보여야 합니다. 아니면 먼저 `cd network_zt` 를 입력합니다.
+
+```bash
+python threshold.py
+```
+
+4. 고친 뒤에는 같은 명령을 다시 입력합니다. 터미널에서 **↑(위 화살표)** 를 누르면 방금 입력한 명령이 다시 나옵니다.
+
+| | |
+|---|---|
+| 🎯 <b style="color:#43a047">나와야 하는 결과</b> | `\| 2 \| 5 \| 0 \| 0 \|` · `\| 3 \| 3 \| 0 \| 2 \|` · `\| 4 \| 3 \| 0 \| 2 \|` |
+
+**💡 힌트**
+
+1. 6-4 의 반복을 문턱값 반복 **안에** 넣습니다. 세는 변수는 문턱값마다 0 에서 시작합니다.
+2. 예외(6-5)를 넣었기 때문에 문턱값 2 에서도 오탐이 0 입니다.
+3. 오늘 데이터에서는 2 가 가장 좋아 보이지만, 데이터 12건으로 정한 값은 믿기 어렵습니다 — 7교시 「한계」에 적습니다.
+
+#### 정답 6-6
+
+(코드는 위 문제 칸에 채워 두었습니다.)
 
 💻 **터미널에 입력합니다.** `python threshold.py`
 
@@ -1197,9 +1034,9 @@ print(f"| kxq3vz9a.top | {result['points']} | {', '.join(result['why'])} |")
 로그 12건의 **점수 · 판정 · 근거**를 마크다운 표로 출력해 보고서 3절에 붙이시오. 근거가 없으면 `-` 로 적습니다.
 
 ```python
+# ── 강사용: 정답을 채운 코드입니다 ──
 from dga_score import score
 
-# ── 미리 채워 둔 줄입니다. 고치지 않습니다 ──
 LOG = [
     ("www.naver.com", "NOERROR"), ("mail.google.com", "NOERROR"), ("update.microsoft.com", "NOERROR"),
     ("e6030.a.akamaiedge.net", "NOERROR"), ("cdn.jsdelivr.net", "NOERROR"), ("xn--3e0b707e.kr", "NOERROR"),
@@ -1208,7 +1045,6 @@ LOG = [
 ]
 print("| 이름 | 답 | 점수 | 판정 | 근거 |")
 print("|---|---|---|---|---|")
-# ── 여기까지 ──
 
 for name, rcode in LOG:
     result = score(name, rcode)
@@ -1217,7 +1053,9 @@ for name, rcode in LOG:
     else:
         judged = "정상"
     # 1. reason 에 result["why"] 를 ", " 로 이은 글자를 담고, 비어 있으면 "-" 를 담으세요
-
+    reason = ", ".join(result["why"])             # 걸린 규칙을 이어 붙인다
+    if reason == "":                              # 아무 규칙에도 안 걸렸으면
+        reason = "-"
     print(f"| {name} | {rcode} | {result['points']} | {judged} | {reason} |")
 ```
 
@@ -1245,30 +1083,7 @@ python report_table3.py
 
 #### 정답 7-2
 
-```python
-from dga_score import score
-
-LOG = [
-    ("www.naver.com", "NOERROR"), ("mail.google.com", "NOERROR"), ("update.microsoft.com", "NOERROR"),
-    ("e6030.a.akamaiedge.net", "NOERROR"), ("cdn.jsdelivr.net", "NOERROR"), ("xn--3e0b707e.kr", "NOERROR"),
-    ("kxq3vz9a.top", "NXDOMAIN"), ("p0w8rk2mzq.xyz", "NXDOMAIN"), ("qwrtpzkx7v.com", "NOERROR"),
-    ("zzx9q2lk.top", "NXDOMAIN"), ("bnk-secure-login.xyz", "NOERROR"), ("www.example.com", "NOERROR"),
-]
-print("| 이름 | 답 | 점수 | 판정 | 근거 |")
-print("|---|---|---|---|---|")
-
-for name, rcode in LOG:
-    result = score(name, rcode)
-    if result["points"] >= 3:                     # 문턱값 3
-        judged = "의심"
-    else:
-        judged = "정상"
-    # 1. reason 에 result["why"] 를 ", " 로 이은 글자를 담고, 비어 있으면 "-" 를 담으세요
-    reason = ", ".join(result["why"])             # 걸린 규칙을 이어 붙인다
-    if reason == "":                              # 아무 규칙에도 안 걸렸으면
-        reason = "-"
-    print(f"| {name} | {rcode} | {result['points']} | {judged} | {reason} |")
-```
+(코드는 위 문제 칸에 채워 두었습니다.)
 
 💻 **터미널에 입력합니다.** `python report_table3.py`
 

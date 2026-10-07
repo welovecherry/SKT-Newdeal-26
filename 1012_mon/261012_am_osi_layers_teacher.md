@@ -341,23 +341,25 @@ ping -n 10 8.8.8.8
 3. 터미널에 `python ping_check.py` 를 입력합니다.
 
 ```python
+# ── 강사용: 정답을 채운 코드입니다 ──
 LIMIT = 100                                       # 이 값(ms)을 넘으면 느리다고 본다
 
-# ── 미리 채워 둔 줄입니다. 고치지 않습니다 ──
 results = [                                       # 문제 2-2 ~ 2-4 에서 본 결과라고 가정합니다
     {"target": "8.8.8.8", "ms": 34},
     {"target": "1.1.1.1", "ms": 120},
     {"target": "192.0.2.1", "ms": None},          # None = 답이 오지 않았다
 ]
-# ── 여기까지 ──
 
 for r in results:                                 # 결과를 하나씩 꺼낸다
     # 1. r["ms"] 가 None 이면 f"[실패] {r['target']} 응답 없음" 을 출력하세요
-
+    if r["ms"] is None:                           # 답이 없었으면 — 맨 먼저 본다
+        print(f"[실패] {r['target']} 응답 없음")
     # 2. 아니고 r["ms"] 가 LIMIT 보다 크면 f"[느림] {r['target']} {r['ms']}ms" 를 출력하세요
-
+    elif r["ms"] > LIMIT:                         # 기준보다 오래 걸렸으면
+        print(f"[느림] {r['target']} {r['ms']}ms")
     # 3. 그 밖에는 f"[정상] {r['target']} {r['ms']}ms" 를 출력하세요
-
+    else:                                         # 그 밖은 정상
+        print(f"[정상] {r['target']} {r['ms']}ms")
 ```
 
 **파일을 만들고 실행합니다**
@@ -384,26 +386,7 @@ python ping_check.py
 
 #### 정답 2-6
 
-```python
-LIMIT = 100                                       # 이 값(ms)을 넘으면 느리다고 본다
-
-results = [                                       # 문제 2-2 ~ 2-4 에서 본 결과라고 가정합니다
-    {"target": "8.8.8.8", "ms": 34},
-    {"target": "1.1.1.1", "ms": 120},
-    {"target": "192.0.2.1", "ms": None},          # None = 답이 오지 않았다
-]
-
-for r in results:                                 # 결과를 하나씩 꺼낸다
-    # 1. r["ms"] 가 None 이면 f"[실패] {r['target']} 응답 없음" 을 출력하세요
-    if r["ms"] is None:                           # 답이 없었으면 — 맨 먼저 본다
-        print(f"[실패] {r['target']} 응답 없음")
-    # 2. 아니고 r["ms"] 가 LIMIT 보다 크면 f"[느림] {r['target']} {r['ms']}ms" 를 출력하세요
-    elif r["ms"] > LIMIT:                         # 기준보다 오래 걸렸으면
-        print(f"[느림] {r['target']} {r['ms']}ms")
-    # 3. 그 밖에는 f"[정상] {r['target']} {r['ms']}ms" 를 출력하세요
-    else:                                         # 그 밖은 정상
-        print(f"[정상] {r['target']} {r['ms']}ms")
-```
+(코드는 위 문제 칸에 채워 두었습니다.)
 
 💻 **터미널에 입력합니다.**
 
@@ -664,19 +647,20 @@ arp -a
 로그에 섞여 들어온 주소가 IP 인지 MAC 인지 파이썬이 가려내게 하시오. `network_zt` 에 `addr_kind.py` 를 만들어 붙여 넣고, 번호 주석 아래를 채운 뒤 `python addr_kind.py` 를 입력합니다.
 
 ```python
+# ── 강사용: 정답을 채운 코드입니다 ──
 def kind(address):                                # 주소의 모양을 보고 종류를 돌려주는 함수
     # 1. address 를 "." 로 나눈 조각이 4개이면 "IP" 를 return 하세요
-
+    if len(address.split(".")) == 4:              # 점으로 나눠 네 조각이면
+        return "IP"
     # 2. address 를 "-" 로 나눈 조각이 6개이면 "MAC" 을 return 하세요
-
+    if len(address.split("-")) == 6:              # - 로 나눠 여섯 조각이면
+        return "MAC"
     # 3. 둘 다 아니면 "모름" 을 return 하세요
+    return "모름"                                  # 둘 다 아니면
 
 
-
-# ── 미리 채워 둔 줄입니다. 고치지 않습니다 ──
 for a in ["192.168.0.15", "a8-5e-45-01-2b-3c", "ff-ff-ff-ff-ff-ff", "192.168.0"]:
     print(kind(a), a)                             # 종류와 주소를 한 줄에
-# ── 여기까지 ──
 ```
 
 **파일을 만들고 실행합니다**
@@ -703,21 +687,7 @@ python addr_kind.py
 
 #### 정답 3-6
 
-```python
-def kind(address):                                # 주소의 모양을 보고 종류를 돌려주는 함수
-    # 1. address 를 "." 로 나눈 조각이 4개이면 "IP" 를 return 하세요
-    if len(address.split(".")) == 4:              # 점으로 나눠 네 조각이면
-        return "IP"
-    # 2. address 를 "-" 로 나눈 조각이 6개이면 "MAC" 을 return 하세요
-    if len(address.split("-")) == 6:              # - 로 나눠 여섯 조각이면
-        return "MAC"
-    # 3. 둘 다 아니면 "모름" 을 return 하세요
-    return "모름"                                  # 둘 다 아니면
-
-
-for a in ["192.168.0.15", "a8-5e-45-01-2b-3c", "ff-ff-ff-ff-ff-ff", "192.168.0"]:
-    print(kind(a), a)                             # 종류와 주소를 한 줄에
-```
+(코드는 위 문제 칸에 채워 두었습니다.)
 
 💻 **터미널에 입력합니다.**
 
@@ -985,16 +955,15 @@ netstat -an | grep LISTENING
 `netstat` 에서 본 포트 번호들에 서비스 이름을 붙여 출력하시오. 모르는 포트는 「모름」으로 둡니다. `network_zt` 에 `port_name.py` 를 만들어 붙여 넣고, 채운 뒤 `python port_name.py` 를 입력합니다.
 
 ```python
-# ── 미리 채워 둔 줄입니다. 고치지 않습니다 ──
+# ── 강사용: 정답을 채운 코드입니다 ──
 PORTS = {22: "SSH", 53: "DNS", 80: "HTTP", 443: "HTTPS", 3389: "RDP", 135: "RPC", 445: "SMB"}
 seen = [443, 445, 3389, 51234]                    # netstat 에서 본 포트라고 가정합니다
-# ── 여기까지 ──
 
 for port in seen:                                 # 포트를 하나씩 꺼낸다
     # 1. name 이라는 변수에 PORTS 에서 port 의 이름을 꺼내 담으세요. 없으면 "모름" 입니다
-
+    name = PORTS.get(port, "모름")                 # 없는 포트는 "모름"
     # 2. f"{port} → {name}" 을 출력하세요
-
+    print(f"{port} → {name}")
 ```
 
 **파일을 만들고 실행합니다**
@@ -1021,16 +990,7 @@ python port_name.py
 
 #### 정답 4-6
 
-```python
-PORTS = {22: "SSH", 53: "DNS", 80: "HTTP", 443: "HTTPS", 3389: "RDP", 135: "RPC", 445: "SMB"}
-seen = [443, 445, 3389, 51234]                    # netstat 에서 본 포트라고 가정합니다
-
-for port in seen:                                 # 포트를 하나씩 꺼낸다
-    # 1. name 이라는 변수에 PORTS 에서 port 의 이름을 꺼내 담으세요. 없으면 "모름" 입니다
-    name = PORTS.get(port, "모름")                 # 없는 포트는 "모름"
-    # 2. f"{port} → {name}" 을 출력하세요
-    print(f"{port} → {name}")
-```
+(코드는 위 문제 칸에 채워 두었습니다.)
 
 💻 **터미널에 입력합니다.**
 

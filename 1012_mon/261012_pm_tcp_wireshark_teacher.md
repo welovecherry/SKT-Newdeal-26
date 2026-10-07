@@ -239,10 +239,22 @@ print(packet["dst_port"])
 #### 🐍 문법 상자 · 사전으로 세기 `count.get(키, 0) + 1`
 
 ```python
-count = {}
-for s in ["A", "B", "A"]:
-    count[s] = count.get(s, 0) + 1
-print(count)            # {'A': 2, 'B': 1}
+# ── 강사용: 정답을 채운 코드입니다 ──
+conns = [                                         # netstat -n 의 상태 칸을 옮겨 왔다고 가정합니다
+    {"peer": "203.0.113.10:443", "state": "ESTABLISHED"},
+    {"peer": "198.51.100.7:443", "state": "ESTABLISHED"},
+    {"peer": "203.0.113.10:443", "state": "TIME_WAIT"},
+    {"peer": "192.0.2.53:53", "state": "TIME_WAIT"},
+    {"peer": "198.51.100.20:443", "state": "SYN_SENT"},
+]
+count = {}                                        # 상태마다 센 수를 담을 빈 사전
+
+for c in conns:                                   # 연결을 하나씩 꺼낸다
+    # 1. count 의 c["state"] 키에 지금까지 센 수 + 1 을 담으세요 (.get 을 씁니다)
+    count[c["state"]] = count.get(c["state"], 0) + 1   # 처음 보는 상태면 0 에서 시작
+
+for state in count:                               # 센 상태를 하나씩
+    print(state, count[state])                    # 상태와 개수
 ```
 
 | 쓰는 것 | 뜻 |
@@ -296,23 +308,7 @@ python state_count.py
 
 #### 정답 5-4
 
-```python
-conns = [                                         # netstat -n 의 상태 칸을 옮겨 왔다고 가정합니다
-    {"peer": "203.0.113.10:443", "state": "ESTABLISHED"},
-    {"peer": "198.51.100.7:443", "state": "ESTABLISHED"},
-    {"peer": "203.0.113.10:443", "state": "TIME_WAIT"},
-    {"peer": "192.0.2.53:53", "state": "TIME_WAIT"},
-    {"peer": "198.51.100.20:443", "state": "SYN_SENT"},
-]
-count = {}                                        # 상태마다 센 수를 담을 빈 사전
-
-for c in conns:                                   # 연결을 하나씩 꺼낸다
-    # 1. count 의 c["state"] 키에 지금까지 센 수 + 1 을 담으세요 (.get 을 씁니다)
-    count[c["state"]] = count.get(c["state"], 0) + 1   # 처음 보는 상태면 0 에서 시작
-
-for state in count:                               # 센 상태를 하나씩
-    print(state, count[state])                    # 상태와 개수
-```
+(코드는 위 문제 칸에 채워 두었습니다.)
 
 💻 **터미널에 입력합니다.**
 
@@ -377,7 +373,7 @@ netstat -n
 캡처한 패킷 다섯 건에서 **SYN 이 든 것**만, 그리고 **서버 `203.0.113.10` 과 주고받은 것**만 골라 출력하시오. 6교시 Wireshark 필터가 하는 일을 직접 만들어 봅니다.
 
 ```python
-# ── 미리 채워 둔 줄입니다. 고치지 않습니다 ──
+# ── 강사용: 정답을 채운 코드입니다 ──
 SERVER = "203.0.113.10"                           # 살펴볼 서버
 packets = [                                       # 캡처한 패킷이라고 가정합니다
     {"no": 12, "src": "192.168.0.15", "dst": "203.0.113.10", "flags": ["SYN"]},
@@ -386,17 +382,18 @@ packets = [                                       # 캡처한 패킷이라고 �
     {"no": 15, "src": "192.168.0.15", "dst": "198.51.100.7", "flags": ["ACK"]},
     {"no": 16, "src": "192.168.0.15", "dst": "203.0.113.10", "flags": ["FIN", "ACK"]},
 ]
-# ── 여기까지 ──
 
 print("[SYN 필터]")
 for p in packets:                                 # 패킷을 하나씩
     # 1. p["flags"] 안에 "SYN" 이 있으면 f"{p['no']} {p['src']} → {p['dst']} {p['flags']}" 를 출력하세요
-
+    if "SYN" in p["flags"]:                       # 플래그 리스트 안에 SYN 이 있으면
+        print(f"{p['no']} {p['src']} → {p['dst']} {p['flags']}")
 
 print("[서버 대화 필터]")
 for p in packets:
     # 2. p["src"] 가 SERVER 이거나 p["dst"] 가 SERVER 이면 같은 모양으로 출력하세요
-
+    if p["src"] == SERVER or p["dst"] == SERVER:  # 보낸 쪽이든 받은 쪽이든 그 서버면
+        print(f"{p['no']} {p['src']} → {p['dst']} {p['flags']}")
 ```
 
 **파일을 만들고 실행합니다**
@@ -423,28 +420,7 @@ python packet_filter.py
 
 #### 정답 5-6
 
-```python
-SERVER = "203.0.113.10"                           # 살펴볼 서버
-packets = [                                       # 캡처한 패킷이라고 가정합니다
-    {"no": 12, "src": "192.168.0.15", "dst": "203.0.113.10", "flags": ["SYN"]},
-    {"no": 13, "src": "203.0.113.10", "dst": "192.168.0.15", "flags": ["SYN", "ACK"]},
-    {"no": 14, "src": "192.168.0.15", "dst": "203.0.113.10", "flags": ["ACK"]},
-    {"no": 15, "src": "192.168.0.15", "dst": "198.51.100.7", "flags": ["ACK"]},
-    {"no": 16, "src": "192.168.0.15", "dst": "203.0.113.10", "flags": ["FIN", "ACK"]},
-]
-
-print("[SYN 필터]")
-for p in packets:                                 # 패킷을 하나씩
-    # 1. p["flags"] 안에 "SYN" 이 있으면 f"{p['no']} {p['src']} → {p['dst']} {p['flags']}" 를 출력하세요
-    if "SYN" in p["flags"]:                       # 플래그 리스트 안에 SYN 이 있으면
-        print(f"{p['no']} {p['src']} → {p['dst']} {p['flags']}")
-
-print("[서버 대화 필터]")
-for p in packets:
-    # 2. p["src"] 가 SERVER 이거나 p["dst"] 가 SERVER 이면 같은 모양으로 출력하세요
-    if p["src"] == SERVER or p["dst"] == SERVER:  # 보낸 쪽이든 받은 쪽이든 그 서버면
-        print(f"{p['no']} {p['src']} → {p['dst']} {p['flags']}")
-```
+(코드는 위 문제 칸에 채워 두었습니다.)
 
 💻 **터미널에 입력합니다.**
 
@@ -891,61 +867,7 @@ curl "http://example.com/?q=network_day1"
 7-2 에서 찾은 세 줄과 6-4 에서 읽은 헤더 값을 **마크다운 표 두 개**로 출력하시오. `network_zt` 에 `report_table.py` 를 만들어 붙여 넣고, **데이터의 값을 내 화면 값으로 바꾼 뒤** 번호 주석 아래를 채웁니다. `python report_table.py`
 
 ```python
-# ── 내 화면의 값으로 바꿔 적습니다 ──
-packets = [                                       # 7-2 의 3-way 세 줄
-    {"src": "192.168.0.15", "dst": "203.0.113.10", "info": "[SYN]"},
-    {"src": "203.0.113.10", "dst": "192.168.0.15", "info": "[SYN, ACK]"},
-    {"src": "192.168.0.15", "dst": "203.0.113.10", "info": "[ACK]"},
-]
-headers = [                                       # 6-4 · 7-2 에서 읽은 헤더 값
-    {"item": "출발지 IP", "value": "192.168.0.15", "where": "IP 헤더 (3층)"},
-    {"item": "목적지 IP", "value": "203.0.113.10", "where": "IP 헤더 (3층)"},
-    {"item": "TTL", "value": "128", "where": "IP 헤더 (3층)"},
-    {"item": "출발지 포트", "value": "51234", "where": "TCP 헤더 (4층)"},
-    {"item": "목적지 포트", "value": "80", "where": "TCP 헤더 (4층)"},
-]
-# ── 여기까지 ──
-
-print("| 순서 | Source | Destination | Info |")
-print("|---|---|---|---|")
-i = 0                                             # 순서 번호
-for p in packets:                                 # 3-way 세 줄을 하나씩
-    # 1. i 에 1 을 더하고, f"| {i} | {p['src']} | {p['dst']} | {p['info']} |" 를 출력하세요
-
-
-print()
-print("| 항목 | 값 | 어느 헤더 |")
-print("|---|---|---|")
-for h in headers:                                 # 헤더 값을 하나씩
-    # 2. f"| {h['item']} | {h['value']} | {h['where']} |" 를 출력하세요
-
-```
-
-**파일을 만들고 실행합니다**
-
-1. VS Code 왼쪽 목록에서 `network_zt` 폴더를 오른쪽 클릭 › **New File** › 이름 `report_table.py` 를 입력하고 Enter 를 누릅니다.
-2. 위 코드 상자 안을 마우스로 끌어 선택하고 `Ctrl + C` 로 복사해 파일에 붙여 넣은 뒤, 번호 주석 아래를 채웁니다. 저장은 자동입니다.
-3. 터미널에 아래 명령을 입력합니다. 터미널의 줄 위에 `…/network_zt` 가 보여야 합니다. 아니면 먼저 `cd network_zt` 를 입력합니다.
-
-```bash
-python report_table.py
-```
-
-4. 고친 뒤에는 같은 명령을 다시 입력합니다. 터미널에서 **↑(위 화살표)** 를 누르면 방금 입력한 명령이 다시 나옵니다.
-
-| | |
-|---|---|
-| 🎯 <b style="color:#43a047">나와야 하는 결과</b> | `\| 1 \| 192.168.0.15 \| 203.0.113.10 \| [SYN] \|` 로 시작하는 표 하나와 `\| 출발지 IP \| … \| IP 헤더 (3층) \|` 로 시작하는 표 하나 — 값은 내 화면의 값 |
-
-**💡 힌트**
-
-1. 7-1 과 같은 모양입니다.
-2. 바깥은 큰따옴표, 안쪽 키는 작은따옴표입니다.
-3. 출력을 그대로 복사해 보고서에 붙입니다(7-5).
-
-#### 정답 7-4
-
-```python
+# ── 강사용: 정답을 채운 코드입니다 ──
 packets = [                                       # 7-2 의 3-way 세 줄
     {"src": "192.168.0.15", "dst": "203.0.113.10", "info": "[SYN]"},
     {"src": "203.0.113.10", "dst": "192.168.0.15", "info": "[SYN, ACK]"},
@@ -974,6 +896,32 @@ for h in headers:                                 # 헤더 값을 하나씩
     # 2. f"| {h['item']} | {h['value']} | {h['where']} |" 를 출력하세요
     print(f"| {h['item']} | {h['value']} | {h['where']} |")
 ```
+
+**파일을 만들고 실행합니다**
+
+1. VS Code 왼쪽 목록에서 `network_zt` 폴더를 오른쪽 클릭 › **New File** › 이름 `report_table.py` 를 입력하고 Enter 를 누릅니다.
+2. 위 코드 상자 안을 마우스로 끌어 선택하고 `Ctrl + C` 로 복사해 파일에 붙여 넣은 뒤, 번호 주석 아래를 채웁니다. 저장은 자동입니다.
+3. 터미널에 아래 명령을 입력합니다. 터미널의 줄 위에 `…/network_zt` 가 보여야 합니다. 아니면 먼저 `cd network_zt` 를 입력합니다.
+
+```bash
+python report_table.py
+```
+
+4. 고친 뒤에는 같은 명령을 다시 입력합니다. 터미널에서 **↑(위 화살표)** 를 누르면 방금 입력한 명령이 다시 나옵니다.
+
+| | |
+|---|---|
+| 🎯 <b style="color:#43a047">나와야 하는 결과</b> | `\| 1 \| 192.168.0.15 \| 203.0.113.10 \| [SYN] \|` 로 시작하는 표 하나와 `\| 출발지 IP \| … \| IP 헤더 (3층) \|` 로 시작하는 표 하나 — 값은 내 화면의 값 |
+
+**💡 힌트**
+
+1. 7-1 과 같은 모양입니다.
+2. 바깥은 큰따옴표, 안쪽 키는 작은따옴표입니다.
+3. 출력을 그대로 복사해 보고서에 붙입니다(7-5).
+
+#### 정답 7-4
+
+(코드는 위 문제 칸에 채워 두었습니다.)
 
 💻 **터미널에 입력합니다.**
 

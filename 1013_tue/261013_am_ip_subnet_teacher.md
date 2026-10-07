@@ -174,20 +174,19 @@ print(len(format(192, "08b") + format(10, "08b")))
 IP 주소를 0과 1 서른두 칸으로 펼치는 함수 `to_bits` 를 완성하시오. 마지막 줄의 주소는 **어제 적은 내 IPv4 주소**로 바꿔 한 번 더 실행합니다.
 
 ```python
+# ── 강사용: 정답을 채운 코드입니다 ──
 def to_bits(ip):                                  # IP 주소를 2진수 32칸 글자로 바꾸는 함수
     bits = ""                                     # 이어 붙일 빈 글자
     for part in ip.split("."):                    # 점으로 나눈 마디를 하나씩
         # 1. bits 뒤에 format(int(part), "08b") 를 이어 붙이세요
-
+        bits = bits + format(int(part), "08b")    # 마디 하나를 여덟 칸으로 바꿔 붙인다
     return bits                                   # 32칸 글자를 돌려준다
 
 
-# ── 미리 채워 둔 줄입니다. 고치지 않습니다 ──
 ip = "192.168.10.25"                              # 내 IPv4 주소로 바꿔 봅니다
 print(ip)
 print(to_bits(ip))
 print("길이:", len(to_bits(ip)))
-# ── 여기까지 ──
 ```
 
 **파일을 만들고 실행합니다**
@@ -214,20 +213,7 @@ python ip_bits.py
 
 #### 정답 2-2
 
-```python
-def to_bits(ip):                                  # IP 주소를 2진수 32칸 글자로 바꾸는 함수
-    bits = ""                                     # 이어 붙일 빈 글자
-    for part in ip.split("."):                    # 점으로 나눈 마디를 하나씩
-        # 1. bits 뒤에 format(int(part), "08b") 를 이어 붙이세요
-        bits = bits + format(int(part), "08b")    # 마디 하나를 여덟 칸으로 바꿔 붙인다
-    return bits                                   # 32칸 글자를 돌려준다
-
-
-ip = "192.168.10.25"                              # 내 IPv4 주소로 바꿔 봅니다
-print(ip)
-print(to_bits(ip))
-print("길이:", len(to_bits(ip)))
-```
+(코드는 위 문제 칸에 채워 두었습니다.)
 
 💻 **터미널에 입력합니다.** `python ip_bits.py`
 
@@ -252,11 +238,28 @@ print("길이:", len(to_bits(ip)))
 #### 🐍 문법 상자 · `and` · `or` · 범위 비교
 
 ```python
-second = 20
-print(16 <= second <= 31)          # True — 16 이상 31 이하
-print(second == 10 or second == 20)
-# True
-# True
+# ── 강사용: 정답을 채운 코드입니다 ──
+def is_private(ip):                               # 사설 IP 면 True 를 돌려주는 함수
+    parts = ip.split(".")                         # 점으로 나눈 마디 네 개
+    first = int(parts[0])                         # 첫 마디(숫자)
+    second = int(parts[1])                        # 둘째 마디(숫자)
+    # 1. first 가 10 이면 True 를 return 하세요
+    if first == 10:                               # 10.x.x.x
+        return True
+    # 2. first 가 172 이고 second 가 16 이상 31 이하이면 True 를 return 하세요
+    if first == 172 and 16 <= second <= 31:       # 172.16 ~ 172.31 만
+        return True
+    # 3. first 가 192 이고 second 가 168 이면 True 를 return 하세요
+    if first == 192 and second == 168:            # 192.168.x.x
+        return True
+    return False                                  # 셋 다 아니면 공인
+
+
+for ip in ["10.0.0.8", "172.20.5.6", "172.32.5.6", "192.168.10.25", "8.8.8.8", "203.0.113.7"]:
+    if is_private(ip):
+        print("[사설]", ip)
+    else:
+        print("[공인]", ip)
 ```
 
 | 쓰는 것 | 뜻 |
@@ -314,29 +317,7 @@ python private_ip.py
 
 #### 정답 2-3
 
-```python
-def is_private(ip):                               # 사설 IP 면 True 를 돌려주는 함수
-    parts = ip.split(".")                         # 점으로 나눈 마디 네 개
-    first = int(parts[0])                         # 첫 마디(숫자)
-    second = int(parts[1])                        # 둘째 마디(숫자)
-    # 1. first 가 10 이면 True 를 return 하세요
-    if first == 10:                               # 10.x.x.x
-        return True
-    # 2. first 가 172 이고 second 가 16 이상 31 이하이면 True 를 return 하세요
-    if first == 172 and 16 <= second <= 31:       # 172.16 ~ 172.31 만
-        return True
-    # 3. first 가 192 이고 second 가 168 이면 True 를 return 하세요
-    if first == 192 and second == 168:            # 192.168.x.x
-        return True
-    return False                                  # 셋 다 아니면 공인
-
-
-for ip in ["10.0.0.8", "172.20.5.6", "172.32.5.6", "192.168.10.25", "8.8.8.8", "203.0.113.7"]:
-    if is_private(ip):
-        print("[사설]", ip)
-    else:
-        print("[공인]", ip)
-```
+(코드는 위 문제 칸에 채워 두었습니다.)
 
 💻 **터미널에 입력합니다.** `python private_ip.py`
 
@@ -403,7 +384,7 @@ curl https://api.ipify.org
 PAT 변환표에서 **바깥 포트 40002번으로 돌아온 답**이 안의 어느 PC 로 가는지 찾으시오.
 
 ```python
-# ── 미리 채워 둔 줄입니다. 고치지 않습니다 ──
+# ── 강사용: 정답을 채운 코드입니다 ──
 PUBLIC_IP = "203.0.113.7"                         # 공유기의 공인 IP
 nat_table = {                                     # 바깥 포트 → 안의 주소 · 포트
     40001: {"ip": "192.168.10.10", "port": 51001},
@@ -411,13 +392,12 @@ nat_table = {                                     # 바깥 포트 → 안의 주
     40003: {"ip": "192.168.10.31", "port": 50999},
 }
 reply_port = 40002                                # 답이 돌아온 바깥 포트
-# ── 여기까지 ──
 
 # 1. inside 라는 변수에 nat_table 에서 reply_port 로 꺼낸 값을 담으세요
-
+inside = nat_table[reply_port]                    # 표에서 원래 주인을 찾는다
 print(f"밖: {PUBLIC_IP}:{reply_port}")
 # 2. f"안: {inside['ip']}:{inside['port']}" 를 출력하세요
-
+print(f"안: {inside['ip']}:{inside['port']}")
 ```
 
 **파일을 만들고 실행합니다**
@@ -444,21 +424,7 @@ python nat_table.py
 
 #### 정답 2-5
 
-```python
-PUBLIC_IP = "203.0.113.7"                         # 공유기의 공인 IP
-nat_table = {                                     # 바깥 포트 → 안의 주소 · 포트
-    40001: {"ip": "192.168.10.10", "port": 51001},
-    40002: {"ip": "192.168.10.25", "port": 51234},
-    40003: {"ip": "192.168.10.31", "port": 50999},
-}
-reply_port = 40002                                # 답이 돌아온 바깥 포트
-
-# 1. inside 라는 변수에 nat_table 에서 reply_port 로 꺼낸 값을 담으세요
-inside = nat_table[reply_port]                    # 표에서 원래 주인을 찾는다
-print(f"밖: {PUBLIC_IP}:{reply_port}")
-# 2. f"안: {inside['ip']}:{inside['port']}" 를 출력하세요
-print(f"안: {inside['ip']}:{inside['port']}")
-```
+(코드는 위 문제 칸에 채워 두었습니다.)
 
 💻 **터미널에 입력합니다.** `python nat_table.py`
 
@@ -481,43 +447,7 @@ print(f"안: {inside['ip']}:{inside['port']}")
 로그 다섯 줄에서 **공인 IP 에서 온 로그인 실패**만 골라 출력하시오. 2-3 의 `is_private` 를 그대로 붙여 넣어 씁니다.
 
 ```python
-# 2-3 의 is_private 함수를 여기에 붙여 넣습니다
-
-logs = [                                          # 로그라고 가정합니다
-    "09:01 FAIL admin from 192.168.10.31",
-    "09:02 FAIL admin from 203.0.113.50",
-    "09:05 OK kim01 from 192.168.10.25",
-    "09:07 FAIL root from 198.51.100.9",
-    "09:09 FAIL guest from 172.20.5.6",
-]
-# 1. 로그를 하나씩 꺼내, "FAIL" 이 들었고 맨 끝 주소가 공인 IP 인 줄만 「[바깥 실패] 줄」 꼴로 출력하세요
-```
-
-**파일을 만들고 실행합니다**
-
-1. VS Code 왼쪽 목록에서 `network_zt` 폴더를 오른쪽 클릭 › **New File** › 이름 `outside_fail.py` 를 입력하고 Enter 를 누릅니다.
-2. 위 코드 상자 안을 마우스로 끌어 선택하고 `Ctrl + C` 로 복사해 파일에 붙여 넣은 뒤, 번호 주석 아래를 채웁니다. 저장은 자동입니다.
-3. 터미널에 아래 명령을 입력합니다. 터미널의 줄 위에 `…/network_zt` 가 보여야 합니다. 아니면 먼저 `cd network_zt` 를 입력합니다.
-
-```bash
-python outside_fail.py
-```
-
-4. 고친 뒤에는 같은 명령을 다시 입력합니다. 터미널에서 **↑(위 화살표)** 를 누르면 방금 입력한 명령이 다시 나옵니다.
-
-| | |
-|---|---|
-| 🎯 <b style="color:#43a047">나와야 하는 결과</b> | `[바깥 실패] 09:02 FAIL admin from 203.0.113.50` · `[바깥 실패] 09:07 FAIL root from 198.51.100.9` |
-
-**💡 힌트**
-
-1. 맨 끝 주소는 `line.split()[-1]` 입니다.
-2. 「사설이 아니다」는 `not is_private(주소)` 입니다.
-3. 안에서 난 실패는 직원의 오타일 가능성이 크고, 바깥에서 온 실패는 먼저 확인할 대상입니다.
-
-#### 정답 2-6
-
-```python
+# ── 강사용: 정답을 채운 코드입니다 ──
 def is_private(ip):                               # 2-3 에서 만든 함수
     parts = ip.split(".")
     first = int(parts[0])
@@ -544,6 +474,32 @@ for line in logs:                                 # 로그를 한 줄씩
     if "FAIL" in line and not is_private(address):   # 실패이고 바깥 주소면
         print("[바깥 실패]", line)
 ```
+
+**파일을 만들고 실행합니다**
+
+1. VS Code 왼쪽 목록에서 `network_zt` 폴더를 오른쪽 클릭 › **New File** › 이름 `outside_fail.py` 를 입력하고 Enter 를 누릅니다.
+2. 위 코드 상자 안을 마우스로 끌어 선택하고 `Ctrl + C` 로 복사해 파일에 붙여 넣은 뒤, 번호 주석 아래를 채웁니다. 저장은 자동입니다.
+3. 터미널에 아래 명령을 입력합니다. 터미널의 줄 위에 `…/network_zt` 가 보여야 합니다. 아니면 먼저 `cd network_zt` 를 입력합니다.
+
+```bash
+python outside_fail.py
+```
+
+4. 고친 뒤에는 같은 명령을 다시 입력합니다. 터미널에서 **↑(위 화살표)** 를 누르면 방금 입력한 명령이 다시 나옵니다.
+
+| | |
+|---|---|
+| 🎯 <b style="color:#43a047">나와야 하는 결과</b> | `[바깥 실패] 09:02 FAIL admin from 203.0.113.50` · `[바깥 실패] 09:07 FAIL root from 198.51.100.9` |
+
+**💡 힌트**
+
+1. 맨 끝 주소는 `line.split()[-1]` 입니다.
+2. 「사설이 아니다」는 `not is_private(주소)` 입니다.
+3. 안에서 난 실패는 직원의 오타일 가능성이 크고, 바깥에서 온 실패는 먼저 확인할 대상입니다.
+
+#### 정답 2-6
+
+(코드는 위 문제 칸에 채워 두었습니다.)
 
 💻 **터미널에 입력합니다.** `python outside_fail.py`
 
@@ -684,13 +640,14 @@ print(mask.count("0"))
 `/24` 부터 `/28` 까지 마스크와 주소 수를 출력하시오.
 
 ```python
+# ── 강사용: 정답을 채운 코드입니다 ──
 import ipaddress                                  # 파이썬에 들어 있는 IP 계산 도구
 
 for prefix in range(24, 29):                      # 24, 25, 26, 27, 28
     # 1. net 이라는 변수에 ipaddress.ip_network(f"192.168.10.0/{prefix}") 를 담으세요
-
+    net = ipaddress.ip_network(f"192.168.10.0/{prefix}")   # 그 크기의 망
     # 2. prefix, net.netmask, net.num_addresses 를 한 줄에 출력하세요
-
+    print(prefix, net.netmask, net.num_addresses)
 ```
 
 **파일을 만들고 실행합니다**
@@ -717,15 +674,7 @@ python cidr_table.py
 
 #### 정답 3-3
 
-```python
-import ipaddress                                  # 파이썬에 들어 있는 IP 계산 도구
-
-for prefix in range(24, 29):                      # 24, 25, 26, 27, 28
-    # 1. net 이라는 변수에 ipaddress.ip_network(f"192.168.10.0/{prefix}") 를 담으세요
-    net = ipaddress.ip_network(f"192.168.10.0/{prefix}")   # 그 크기의 망
-    # 2. prefix, net.netmask, net.num_addresses 를 한 줄에 출력하세요
-    print(prefix, net.netmask, net.num_addresses)
-```
+(코드는 위 문제 칸에 채워 두었습니다.)
 
 💻 **터미널에 입력합니다.** `python cidr_table.py`
 
@@ -750,17 +699,18 @@ for prefix in range(24, 29):                      # 24, 25, 26, 27, 28
 **내 IPv4 주소와 CIDR** 로 네트워크 주소 · 브로드캐스트 주소 · 쓸 수 있는 주소 수를 계산해 보고서 1절에 적으시오.
 
 ```python
+# ── 강사용: 정답을 채운 코드입니다 ──
 import ipaddress
 
-# ── 내 값으로 바꿔 적습니다 ──
 my_ip = "192.168.10.25"                           # 내 IPv4 주소 (ipconfig)
 prefix = 24                                       # 3-2 에서 바꾼 CIDR 숫자
-# ── 여기까지 ──
 
 # 1. net 이라는 변수에 ipaddress.ip_network(f"{my_ip}/{prefix}", strict=False) 를 담으세요
-
+net = ipaddress.ip_network(f"{my_ip}/{prefix}", strict=False)   # 내 주소가 속한 망
 # 2. "네트워크 주소:", "브로드캐스트 주소:", "사용 가능 주소 수:" 를 각각의 값과 함께 한 줄씩 출력하세요
-
+print("네트워크 주소:", net.network_address)
+print("브로드캐스트 주소:", net.broadcast_address)
+print("사용 가능 주소 수:", net.num_addresses - 2)
 ```
 
 **파일을 만들고 실행합니다**
@@ -787,19 +737,7 @@ python my_network.py
 
 #### 정답 3-4
 
-```python
-import ipaddress
-
-my_ip = "192.168.10.25"                           # 내 IPv4 주소 (ipconfig)
-prefix = 24                                       # 3-2 에서 바꾼 CIDR 숫자
-
-# 1. net 이라는 변수에 ipaddress.ip_network(f"{my_ip}/{prefix}", strict=False) 를 담으세요
-net = ipaddress.ip_network(f"{my_ip}/{prefix}", strict=False)   # 내 주소가 속한 망
-# 2. "네트워크 주소:", "브로드캐스트 주소:", "사용 가능 주소 수:" 를 각각의 값과 함께 한 줄씩 출력하세요
-print("네트워크 주소:", net.network_address)
-print("브로드캐스트 주소:", net.broadcast_address)
-print("사용 가능 주소 수:", net.num_addresses - 2)
-```
+(코드는 위 문제 칸에 채워 두었습니다.)
 
 💻 **터미널에 입력합니다.** `python my_network.py`
 
@@ -822,19 +760,18 @@ print("사용 가능 주소 수:", net.num_addresses - 2)
 `/26` 일 때 `.70` · `.120` · `.130` 세 주소 가운데 **같은 망끼리** 고르시오.
 
 ```python
+# ── 강사용: 정답을 채운 코드입니다 ──
 import ipaddress
 
-# ── 미리 채워 둔 줄입니다. 고치지 않습니다 ──
 a = ipaddress.ip_network("192.168.10.70/26", strict=False)
 b = ipaddress.ip_network("192.168.10.120/26", strict=False)
 c = ipaddress.ip_network("192.168.10.130/26", strict=False)
 print(a, b, c)
-# ── 여기까지 ──
 
 # 1. a 와 b 가 같은 망인지(a == b) 를 「70과 120: True」 꼴로 출력하세요
-
+print("70과 120:", a == b)                        # 둘 다 64~127
 # 2. a 와 c 가 같은 망인지를 같은 꼴로 출력하세요
-
+print("70과 130:", a == c)                        # 130 은 128~191
 ```
 
 **파일을 만들고 실행합니다**
@@ -861,19 +798,7 @@ python same_network.py
 
 #### 정답 3-5
 
-```python
-import ipaddress
-
-a = ipaddress.ip_network("192.168.10.70/26", strict=False)
-b = ipaddress.ip_network("192.168.10.120/26", strict=False)
-c = ipaddress.ip_network("192.168.10.130/26", strict=False)
-print(a, b, c)
-
-# 1. a 와 b 가 같은 망인지(a == b) 를 「70과 120: True」 꼴로 출력하세요
-print("70과 120:", a == b)                        # 둘 다 64~127
-# 2. a 와 c 가 같은 망인지를 같은 꼴로 출력하세요
-print("70과 130:", a == c)                        # 130 은 128~191
-```
+(코드는 위 문제 칸에 채워 두었습니다.)
 
 💻 **터미널에 입력합니다.** `python same_network.py`
 
@@ -898,12 +823,18 @@ print("70과 130:", a == c)                        # 130 은 128~191
 #### 🐍 문법 상자 · 주소가 망 안에 있나 — `in`
 
 ```python
+# ── 강사용: 정답을 채운 코드입니다 ──
 import ipaddress
-net = ipaddress.ip_network("192.168.10.0/24")
-print(ipaddress.ip_address("192.168.10.1") in net)
-print(ipaddress.ip_address("192.168.11.1") in net)
-# True
-# False
+
+my_ip = "192.168.10.25"
+prefix = 24
+gateway = "192.168.10.1"
+
+# 1. net 에 내 망을 담으세요 (3-4 와 같은 줄)
+net = ipaddress.ip_network(f"{my_ip}/{prefix}", strict=False)   # 내 망
+# 2. 게이트웨이가 net 안에 있는지를 「게이트웨이 192.168.10.1 이 내 망 안에 있나: True」 꼴로 출력하세요
+inside = ipaddress.ip_address(gateway) in net     # 주소 하나가 망 안에 있나
+print(f"게이트웨이 {gateway} 이 내 망 안에 있나: {inside}")
 ```
 
 | 쓰는 것 | 뜻 |
@@ -950,19 +881,7 @@ python gateway_check.py
 
 #### 정답 3-6
 
-```python
-import ipaddress
-
-my_ip = "192.168.10.25"
-prefix = 24
-gateway = "192.168.10.1"
-
-# 1. net 에 내 망을 담으세요 (3-4 와 같은 줄)
-net = ipaddress.ip_network(f"{my_ip}/{prefix}", strict=False)   # 내 망
-# 2. 게이트웨이가 net 안에 있는지를 「게이트웨이 192.168.10.1 이 내 망 안에 있나: True」 꼴로 출력하세요
-inside = ipaddress.ip_address(gateway) in net     # 주소 하나가 망 안에 있나
-print(f"게이트웨이 {gateway} 이 내 망 안에 있나: {inside}")
-```
+(코드는 위 문제 칸에 채워 두었습니다.)
 
 💻 **터미널에 입력합니다.** `python gateway_check.py`
 
@@ -1082,16 +1001,16 @@ for sub in parent.subnets(new_prefix=26):
 장비 수를 받아 **그만큼 담는 가장 작은 망의 CIDR 숫자**를 돌려주는 함수를 완성하시오.
 
 ```python
+# ── 강사용: 정답을 채운 코드입니다 ──
 def smallest_prefix(required):                    # 장비 수를 받아 CIDR 숫자를 돌려준다
     for host_bits in range(2, 33):                # 호스트 칸을 2칸부터 하나씩 늘려 본다
         # 1. 2 ** host_bits - 2 가 required 이상이면 32 - host_bits 를 return 하세요
+        if 2 ** host_bits - 2 >= required:        # 이 칸 수로 충분하면
+            return 32 - host_bits                 # 나머지가 네트워크 칸 = CIDR 숫자
 
 
-
-# ── 미리 채워 둔 줄입니다. 고치지 않습니다 ──
 for name, count in [("보안팀", 10), ("운영팀", 25), ("개발팀", 50)]:
     print(name, count, f"/{smallest_prefix(count)}")
-# ── 여기까지 ──
 ```
 
 **파일을 만들고 실행합니다**
@@ -1118,17 +1037,7 @@ python smallest_prefix.py
 
 #### 정답 4-2
 
-```python
-def smallest_prefix(required):                    # 장비 수를 받아 CIDR 숫자를 돌려준다
-    for host_bits in range(2, 33):                # 호스트 칸을 2칸부터 하나씩 늘려 본다
-        # 1. 2 ** host_bits - 2 가 required 이상이면 32 - host_bits 를 return 하세요
-        if 2 ** host_bits - 2 >= required:        # 이 칸 수로 충분하면
-            return 32 - host_bits                 # 나머지가 네트워크 칸 = CIDR 숫자
-
-
-for name, count in [("보안팀", 10), ("운영팀", 25), ("개발팀", 50)]:
-    print(name, count, f"/{smallest_prefix(count)}")
-```
+(코드는 위 문제 칸에 채워 두었습니다.)
 
 💻 **터미널에 입력합니다.** `python smallest_prefix.py`
 
@@ -1151,12 +1060,13 @@ for name, count in [("보안팀", 10), ("운영팀", 25), ("개발팀", 50)]:
 `192.168.50.0/24` 를 `/26` 네 개로 나눠, 망마다 **쓸 수 있는 수**를 출력하시오.
 
 ```python
+# ── 강사용: 정답을 채운 코드입니다 ──
 import ipaddress
 
 parent = ipaddress.ip_network("192.168.50.0/24")  # 회사가 받은 전체 주소
 for sub in parent.subnets(new_prefix=26):         # /26 네 개를 하나씩
     # 1. sub 와 「사용 가능 62」 처럼 쓸 수 있는 수를 한 줄에 출력하세요
-
+    print(sub, "사용 가능", sub.num_addresses - 2)
 ```
 
 **파일을 만들고 실행합니다**
@@ -1183,14 +1093,7 @@ python flsm.py
 
 #### 정답 4-3
 
-```python
-import ipaddress
-
-parent = ipaddress.ip_network("192.168.50.0/24")  # 회사가 받은 전체 주소
-for sub in parent.subnets(new_prefix=26):         # /26 네 개를 하나씩
-    # 1. sub 와 「사용 가능 62」 처럼 쓸 수 있는 수를 한 줄에 출력하세요
-    print(sub, "사용 가능", sub.num_addresses - 2)
-```
+(코드는 위 문제 칸에 채워 두었습니다.)
 
 💻 **터미널에 입력합니다.** `python flsm.py`
 
@@ -1213,14 +1116,15 @@ for sub in parent.subnets(new_prefix=26):         # /26 네 개를 하나씩
 주소 네 개가 `/27` 일 때 각각 **어느 망**에 속하는지 출력하시오.
 
 ```python
+# ── 강사용: 정답을 채운 코드입니다 ──
 import ipaddress
 
 addresses = ["192.168.50.20", "192.168.50.70", "192.168.50.90", "192.168.50.130"]
 for address in addresses:                         # 주소를 하나씩
     # 1. net 에 ipaddress.ip_network(f"{address}/27", strict=False) 를 담으세요
-
+    net = ipaddress.ip_network(f"{address}/27", strict=False)   # 그 주소가 속한 /27 망
     # 2. f"{address} -> {net}" 을 출력하세요
-
+    print(f"{address} -> {net}")
 ```
 
 **파일을 만들고 실행합니다**
@@ -1247,16 +1151,7 @@ python which_block.py
 
 #### 정답 4-4
 
-```python
-import ipaddress
-
-addresses = ["192.168.50.20", "192.168.50.70", "192.168.50.90", "192.168.50.130"]
-for address in addresses:                         # 주소를 하나씩
-    # 1. net 에 ipaddress.ip_network(f"{address}/27", strict=False) 를 담으세요
-    net = ipaddress.ip_network(f"{address}/27", strict=False)   # 그 주소가 속한 /27 망
-    # 2. f"{address} -> {net}" 을 출력하세요
-    print(f"{address} -> {net}")
-```
+(코드는 위 문제 칸에 채워 두었습니다.)
 
 💻 **터미널에 입력합니다.** `python which_block.py`
 
@@ -1279,26 +1174,25 @@ for address in addresses:                         # 주소를 하나씩
 VLSM 설계표가 **부서마다 충분한지**, **서로 겹치지 않는지** 검증하시오.
 
 ```python
+# ── 강사용: 정답을 채운 코드입니다 ──
 import ipaddress
 
-# ── 미리 채워 둔 줄입니다. 고치지 않습니다 ──
 plan = [                                          # (부서, CIDR, 필요한 장비 수)
     ("개발팀", "192.168.50.0/26", 50),
     ("운영팀", "192.168.50.64/27", 25),
     ("보안팀", "192.168.50.96/28", 10),
 ]
 networks = []                                     # 겹침 검사용으로 망을 모을 리스트
-# ── 여기까지 ──
 
 for name, cidr, required in plan:                 # 부서를 하나씩
     net = ipaddress.ip_network(cidr)              # CIDR 을 망으로
     # 1. ok 라는 변수에 「쓸 수 있는 수가 required 이상인지」 를 담으세요
-
+    ok = net.num_addresses - 2 >= required        # 장비를 다 담을 수 있나
     print(name, cidr, "충분:", ok)
     networks.append(net)                          # 겹침 검사용으로 모은다
 
 # 2. overlap 에 「앞 둘(networks[0], networks[1])이 겹치거나 networks[1] 과 networks[2] 가 겹치거나 networks[0] 과 networks[2] 가 겹치는지」 를 담으세요
-
+overlap = networks[0].overlaps(networks[1]) or networks[1].overlaps(networks[2]) or networks[0].overlaps(networks[2])
 print("겹침 있음:", overlap)
 ```
 
@@ -1326,27 +1220,7 @@ python plan_check.py
 
 #### 정답 4-5
 
-```python
-import ipaddress
-
-plan = [                                          # (부서, CIDR, 필요한 장비 수)
-    ("개발팀", "192.168.50.0/26", 50),
-    ("운영팀", "192.168.50.64/27", 25),
-    ("보안팀", "192.168.50.96/28", 10),
-]
-networks = []                                     # 겹침 검사용으로 망을 모을 리스트
-
-for name, cidr, required in plan:                 # 부서를 하나씩
-    net = ipaddress.ip_network(cidr)              # CIDR 을 망으로
-    # 1. ok 라는 변수에 「쓸 수 있는 수가 required 이상인지」 를 담으세요
-    ok = net.num_addresses - 2 >= required        # 장비를 다 담을 수 있나
-    print(name, cidr, "충분:", ok)
-    networks.append(net)                          # 겹침 검사용으로 모은다
-
-# 2. overlap 에 「앞 둘(networks[0], networks[1])이 겹치거나 networks[1] 과 networks[2] 가 겹치거나 networks[0] 과 networks[2] 가 겹치는지」 를 담으세요
-overlap = networks[0].overlaps(networks[1]) or networks[1].overlaps(networks[2]) or networks[0].overlaps(networks[2])
-print("겹침 있음:", overlap)
-```
+(코드는 위 문제 칸에 채워 두었습니다.)
 
 💻 **터미널에 입력합니다.** `python plan_check.py`
 
@@ -1371,6 +1245,7 @@ print("겹침 있음:", overlap)
 `10.20.0.0/24` 를 받은 회사의 세 부서 배정을 **마크다운 표**로 출력해 보고서 2절에 붙이시오. 첫 호스트 · 마지막 호스트도 적습니다.
 
 ```python
+# ── 강사용: 정답을 채운 코드입니다 ──
 import ipaddress
 
 assignments = [                                   # (부서, CIDR, 필요한 장비 수)
@@ -1381,6 +1256,11 @@ assignments = [                                   # (부서, CIDR, 필요한 장
 print("| 부서 | CIDR | 첫 호스트 | 마지막 호스트 | 사용 가능 | 필요 |")
 print("|---|---|---|---|---|---|")
 # 1. 부서를 하나씩 꺼내 망을 만들고, 첫 호스트(네트워크 주소 + 1)와 마지막 호스트(브로드캐스트 주소 - 1)를 구해 한 줄씩 출력하세요
+for name, cidr, required in assignments:          # 부서를 하나씩
+    net = ipaddress.ip_network(cidr)              # CIDR 을 망으로
+    first = net.network_address + 1              # 첫 호스트
+    last = net.broadcast_address - 1              # 마지막 호스트
+    print(f"| {name} | {cidr} | {first} | {last} | {net.num_addresses - 2} | {required} |")
 ```
 
 **파일을 만들고 실행합니다**
@@ -1407,23 +1287,7 @@ python design_table.py
 
 #### 정답 4-6
 
-```python
-import ipaddress
-
-assignments = [                                   # (부서, CIDR, 필요한 장비 수)
-    ("개발팀", "10.20.0.0/26", 50),
-    ("운영팀", "10.20.0.64/27", 25),
-    ("보안팀", "10.20.0.96/28", 10),
-]
-print("| 부서 | CIDR | 첫 호스트 | 마지막 호스트 | 사용 가능 | 필요 |")
-print("|---|---|---|---|---|---|")
-# 1. 부서를 하나씩 꺼내 망을 만들고, 첫 호스트(네트워크 주소 + 1)와 마지막 호스트(브로드캐스트 주소 - 1)를 구해 한 줄씩 출력하세요
-for name, cidr, required in assignments:          # 부서를 하나씩
-    net = ipaddress.ip_network(cidr)              # CIDR 을 망으로
-    first = net.network_address + 1              # 첫 호스트
-    last = net.broadcast_address - 1              # 마지막 호스트
-    print(f"| {name} | {cidr} | {first} | {last} | {net.num_addresses - 2} | {required} |")
-```
+(코드는 위 문제 칸에 채워 두었습니다.)
 
 💻 **터미널에 입력합니다.** `python design_table.py`
 

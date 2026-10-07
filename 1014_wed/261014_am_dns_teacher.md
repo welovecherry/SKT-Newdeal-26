@@ -324,12 +324,17 @@ nslookup abc.nowhere-not-exist.com
 #### 🐍 문법 상자 · `socket.gethostbyname`(소켓 · 파이썬에 들어 있는 네트워크 도구)과 실패 잡기
 
 ```python
+# ── 강사용: 정답을 채운 코드입니다 ──
 import socket
-try:
-    socket.gethostbyname("abc.nowhere-not-exist.com")
-except socket.gaierror:
-    print("이름을 찾지 못함")
-# 이름을 찾지 못함
+
+names = ["example.com", "google.com", "www.naver.com", "abc.nowhere-not-exist.com"]
+# 1. 이름을 하나씩 꺼내 socket.gethostbyname 으로 묻고 「example.com → 104.20.23.154」 꼴로 출력하세요. 못 찾으면 「… → 찾지 못함」
+for name in names:                                # 이름을 하나씩
+    try:
+        ip = socket.gethostbyname(name)           # 내 PC 의 DNS 설정으로 묻는다
+        print(name, "→", ip)
+    except socket.gaierror:                       # 이름이 없으면
+        print(name, "→ 찾지 못함")
 ```
 
 | 쓰는 것 | 뜻 |
@@ -373,18 +378,7 @@ python dns_lookup.py
 
 #### 정답 2-6
 
-```python
-import socket
-
-names = ["example.com", "google.com", "www.naver.com", "abc.nowhere-not-exist.com"]
-# 1. 이름을 하나씩 꺼내 socket.gethostbyname 으로 묻고 「example.com → 104.20.23.154」 꼴로 출력하세요. 못 찾으면 「… → 찾지 못함」
-for name in names:                                # 이름을 하나씩
-    try:
-        ip = socket.gethostbyname(name)           # 내 PC 의 DNS 설정으로 묻는다
-        print(name, "→", ip)
-    except socket.gaierror:                       # 이름이 없으면
-        print(name, "→ 찾지 못함")
-```
+(코드는 위 문제 칸에 채워 두었습니다.)
 
 💻 **터미널에 입력합니다.** `python dns_lookup.py`
 
@@ -498,20 +492,22 @@ print(".".join(parts[-2:]))
 이름 하나를 받아 **루트부터 한 층씩** 내려가며 출력하시오.
 
 ```python
+# ── 강사용: 정답을 채운 코드입니다 ──
 def show_tree(name):                              # 이름을 위층부터 한 층씩 보여 주는 함수
     parts = name.split(".")                       # ['www', 'example', 'com']
     print("루트 (.)")
     current = ""                                  # 지금까지 만든 이름
     for label in reversed(parts):                 # com → example → www 차례로
         # 1. current 가 비어 있으면 current 에 label 을, 아니면 label + "." + current 를 담으세요
-
+        if current == "":                         # 첫 층(TLD)
+            current = label
+        else:                                     # 그 아래 층은 왼쪽에 붙인다
+            current = label + "." + current
         print("  →", current)
 
 
-# ── 미리 채워 둔 줄입니다. 고치지 않습니다 ──
 show_tree("www.example.com")
 show_tree("mail.google.co.kr")
-# ── 여기까지 ──
 ```
 
 **파일을 만들고 실행합니다**
@@ -538,23 +534,7 @@ python dns_tree.py
 
 #### 정답 3-2
 
-```python
-def show_tree(name):                              # 이름을 위층부터 한 층씩 보여 주는 함수
-    parts = name.split(".")                       # ['www', 'example', 'com']
-    print("루트 (.)")
-    current = ""                                  # 지금까지 만든 이름
-    for label in reversed(parts):                 # com → example → www 차례로
-        # 1. current 가 비어 있으면 current 에 label 을, 아니면 label + "." + current 를 담으세요
-        if current == "":                         # 첫 층(TLD)
-            current = label
-        else:                                     # 그 아래 층은 왼쪽에 붙인다
-            current = label + "." + current
-        print("  →", current)
-
-
-show_tree("www.example.com")
-show_tree("mail.google.co.kr")
-```
+(코드는 위 문제 칸에 채워 두었습니다.)
 
 💻 **터미널에 입력합니다.** `python dns_tree.py`
 
@@ -697,11 +677,18 @@ nslookup example.com hera.ns.cloudflare.com
 DNS 질의 로그에 나온 이름들을 **TLD 별로 몇 번인지** 세시오. 평소 안 쓰는 TLD 가 갑자기 많아지면 확인할 신호입니다.
 
 ```python
+# ── 강사용: 정답을 채운 코드입니다 ──
 queries = [                                       # 하루 동안 물어본 이름이라고 가정합니다
     "www.naver.com", "mail.google.com", "example.com", "www.daum.net",
     "kxq3vz9a.top", "update.microsoft.com", "p0w8rk2m.top", "news.example.co.kr",
 ]
 # 1. 이름마다 맨 끝 조각(TLD)을 꺼내 사전으로 세고, 「com 4」 꼴로 출력하세요
+count = {}                                        # TLD → 횟수
+for name in queries:                              # 이름을 하나씩
+    tld = name.split(".")[-1]                     # 맨 끝 조각
+    count[tld] = count.get(tld, 0) + 1            # 처음 보면 0 에서 시작
+for tld in count:
+    print(tld, count[tld])
 ```
 
 **파일을 만들고 실행합니다**
@@ -728,19 +715,7 @@ python tld_count.py
 
 #### 정답 3-6
 
-```python
-queries = [                                       # 하루 동안 물어본 이름이라고 가정합니다
-    "www.naver.com", "mail.google.com", "example.com", "www.daum.net",
-    "kxq3vz9a.top", "update.microsoft.com", "p0w8rk2m.top", "news.example.co.kr",
-]
-# 1. 이름마다 맨 끝 조각(TLD)을 꺼내 사전으로 세고, 「com 4」 꼴로 출력하세요
-count = {}                                        # TLD → 횟수
-for name in queries:                              # 이름을 하나씩
-    tld = name.split(".")[-1]                     # 맨 끝 조각
-    count[tld] = count.get(tld, 0) + 1            # 처음 보면 0 에서 시작
-for tld in count:
-    print(tld, count[tld])
-```
+(코드는 위 문제 칸에 채워 두었습니다.)
 
 💻 **터미널에 입력합니다.** `python tld_count.py`
 
@@ -994,25 +969,23 @@ ipconfig //displaydns
 TTL 이 지나기 전에는 **저장해 둔 답**을, 지나면 **새로 물은 답**을 쓰는 캐시를 완성하시오.
 
 ```python
-# ── 미리 채워 둔 줄입니다. 고치지 않습니다 ──
+# ── 강사용: 정답을 채운 코드입니다 ──
 cache = {}                                        # 이름 → {"ip": 주소, "expire": 만료 시각}
 TTL = 300                                         # 답을 300초 동안 쓴다
 answers = {"example.com": "104.20.23.154"}        # 담당자에게 물었다고 가정한 답
-# ── 여기까지 ──
 
 
 def resolve(name, now):                           # now 초에 name 을 묻는다
     # 1. name 이 cache 에 있고 now 가 cache[name]["expire"] 보다 작으면 "캐시 " + 그 IP 를 return 하세요
-
+    if name in cache and now < cache[name]["expire"]:   # 저장해 둔 답이 아직 유효하면
+        return "캐시 " + cache[name]["ip"]
     ip = answers[name]                            # 새로 묻는다
     cache[name] = {"ip": ip, "expire": now + TTL}   # 만료 시각과 함께 저장
     return "새로 물음 " + ip
 
 
-# ── 미리 채워 둔 줄입니다. 고치지 않습니다 ──
 for t in [0, 100, 299, 300, 450]:
     print(t, "초:", resolve("example.com", t))
-# ── 여기까지 ──
 ```
 
 **파일을 만들고 실행합니다**
@@ -1039,24 +1012,7 @@ python dns_cache.py
 
 #### 정답 4-5
 
-```python
-cache = {}                                        # 이름 → {"ip": 주소, "expire": 만료 시각}
-TTL = 300                                         # 답을 300초 동안 쓴다
-answers = {"example.com": "104.20.23.154"}        # 담당자에게 물었다고 가정한 답
-
-
-def resolve(name, now):                           # now 초에 name 을 묻는다
-    # 1. name 이 cache 에 있고 now 가 cache[name]["expire"] 보다 작으면 "캐시 " + 그 IP 를 return 하세요
-    if name in cache and now < cache[name]["expire"]:   # 저장해 둔 답이 아직 유효하면
-        return "캐시 " + cache[name]["ip"]
-    ip = answers[name]                            # 새로 묻는다
-    cache[name] = {"ip": ip, "expire": now + TTL}   # 만료 시각과 함께 저장
-    return "새로 물음 " + ip
-
-
-for t in [0, 100, 299, 300, 450]:
-    print(t, "초:", resolve("example.com", t))
-```
+(코드는 위 문제 칸에 채워 두었습니다.)
 
 💻 **터미널에 입력합니다.** `python dns_cache.py`
 
@@ -1079,12 +1035,20 @@ for t in [0, 100, 299, 300, 450]:
 레코드 사전에서 이름 하나를 받아 **CNAME 을 따라가 마지막 A 레코드의 IP** 까지 찾고, 거쳐 간 이름을 모두 출력하시오.
 
 ```python
+# ── 강사용: 정답을 채운 코드입니다 ──
 records = {
     "www.shop.test": {"type": "CNAME", "value": "shop.cdn.test"},
     "shop.cdn.test": {"type": "CNAME", "value": "edge7.cdn.test"},
     "edge7.cdn.test": {"type": "A", "value": "192.0.2.77"},
 }
 # 1. "www.shop.test" 에서 시작해, CNAME 이면 다음 이름으로 옮기기를 되풀이하고, 거쳐 간 이름을 「 → 」 로 이어 출력한 뒤 마지막 IP 를 출력하세요
+name = "www.shop.test"                            # 시작 이름
+chain = [name]                                    # 거쳐 간 이름들
+while records[name]["type"] == "CNAME":           # 별명인 동안
+    name = records[name]["value"]                 # 진짜 이름으로 옮긴다
+    chain.append(name)
+print(" → ".join(chain))
+print("IP:", records[name]["value"])
 ```
 
 **파일을 만들고 실행합니다**
@@ -1111,21 +1075,7 @@ python cname_chain.py
 
 #### 정답 4-6
 
-```python
-records = {
-    "www.shop.test": {"type": "CNAME", "value": "shop.cdn.test"},
-    "shop.cdn.test": {"type": "CNAME", "value": "edge7.cdn.test"},
-    "edge7.cdn.test": {"type": "A", "value": "192.0.2.77"},
-}
-# 1. "www.shop.test" 에서 시작해, CNAME 이면 다음 이름으로 옮기기를 되풀이하고, 거쳐 간 이름을 「 → 」 로 이어 출력한 뒤 마지막 IP 를 출력하세요
-name = "www.shop.test"                            # 시작 이름
-chain = [name]                                    # 거쳐 간 이름들
-while records[name]["type"] == "CNAME":           # 별명인 동안
-    name = records[name]["value"]                 # 진짜 이름으로 옮긴다
-    chain.append(name)
-print(" → ".join(chain))
-print("IP:", records[name]["value"])
-```
+(코드는 위 문제 칸에 채워 두었습니다.)
 
 💻 **터미널에 입력합니다.** `python cname_chain.py`
 
