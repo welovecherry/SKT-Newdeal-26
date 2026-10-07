@@ -27,7 +27,7 @@
 
 1. 오전과 같은 터미널, `network_zt` 폴더에서 합니다.
 2. 오늘 쓰는 의심 도메인은 **수업용으로 지어낸 이름**입니다. 실제로 접속하지 않습니다 — `nslookup` 으로 「있는지」만 봅니다(7-3).
-3. 문제 앞의 **상자**를 먼저 읽습니다 — 🐍 문법 상자(파이썬) · 명령 상자(터미널) · Wireshark 상자 · 개념 상자. 문제 제목 아래 **어디서** 줄이 실습하는 곳(터미널 · Wireshark · VS Code · 보고서)입니다. 막히면 **💡 힌트** → 맨 아래 **「정답」** 순서로 봅니다. ⭐도전은 선택입니다.
+3. 문제 앞의 **상자**를 먼저 읽습니다 — 🐍 문법 상자(파이썬) · 명령 상자(터미널) · Wireshark 상자 · 개념 상자. 문제 제목 아래 **어디서** 줄이 실습하는 곳입니다. `→` 는 하는 순서입니다. 막히면 **💡 힌트** → 맨 아래 **「정답」** 순서로 봅니다. ⭐도전은 선택입니다.
 
 ### 오늘 쓰는 DNS 로그
 
@@ -130,7 +130,7 @@ print(label, len(label), vowels)
 
 ### ✍️ 문제 5-2 · 볼 조각 꺼내기 (`label.py`)
 
-**어디서** — VS Code 에서 `label.py` 를 만들고 → 터미널에서 `python label.py` 로 실행
+**어디서** — VS Code 에서 `label.py` 만들기 → 터미널에서 `python label.py` 실행
 
 이름마다 **TLD 바로 앞 조각**과 **TLD** 를 꺼내 출력하시오.
 
@@ -172,7 +172,7 @@ python label.py
 
 ### ✍️ 문제 5-3 · 숫자 수와 모음 비율 (`features.py`)
 
-**어디서** — VS Code 에서 `features.py` 를 만들고 → 터미널에서 `python features.py` 로 실행
+**어디서** — VS Code 에서 `features.py` 만들기 → 터미널에서 `python features.py` 실행
 
 TLD 앞 조각의 **숫자 개수**와 **모음 비율**(모음 수 ÷ 길이)을 계산하는 함수를 완성하시오.
 
@@ -221,7 +221,7 @@ python features.py
 
 ### ✍️ 문제 5-4 · 사칭 도메인 찾기 (`typosquat.py`)
 
-**어디서** — VS Code 에서 `typosquat.py` 를 만들고 → 터미널에서 `python typosquat.py` 로 실행
+**어디서** — VS Code 에서 `typosquat.py` 만들기 → 터미널에서 `python typosquat.py` 실행
 
 `0` → `o`, `1` → `l`, `3` → `e` 로 바꿨을 때 **믿을 만한 도메인과 똑같아지면** 사칭으로 판정하시오.
 
@@ -268,7 +268,7 @@ python typosquat.py
 
 ### ✍️ 문제 5-5 · NXDOMAIN 이 쏟아지는 PC 찾기 (`nx_count.py`)
 
-**어디서** — VS Code 에서 `nx_count.py` 를 만들고 → 터미널에서 `python nx_count.py` 로 실행
+**어디서** — VS Code 에서 `nx_count.py` 만들기 → 터미널에서 `python nx_count.py` 실행
 
 DNS 로그에서 PC 마다 **NXDOMAIN 이 몇 번인지** 세고, **3번 이상**인 PC 를 출력하시오.
 
@@ -321,7 +321,7 @@ python nx_count.py
 
 ### ⭐ 도전 5-6 · 너무 긴 하위 이름 찾기 (`long_label.py`, 선택)
 
-**어디서** — VS Code 에서 `long_label.py` 를 만들고 → 터미널에서 `python long_label.py` 로 실행
+**어디서** — VS Code 에서 `long_label.py` 만들기 → 터미널에서 `python long_label.py` 실행
 
 DNS 질의에 데이터를 몰래 실어 보내는 **DNS 터널링**은 맨 앞 조각이 비정상적으로 깁니다. 맨 앞 조각이 **30글자 이상**인 이름을 찾으시오.
 
@@ -464,7 +464,7 @@ print(score, score >= 3)
 
 ### ✍️ 문제 6-2 · 점수 함수 만들기 (`dga_score.py`)
 
-**어디서** — VS Code 에서 `dga_score.py` 를 만들고 → 터미널에서 `python dga_score.py` 로 실행
+**어디서** — VS Code 에서 `dga_score.py` 만들기 → 터미널에서 `python dga_score.py` 실행
 
 6.1 의 규칙대로 점수와 **걸린 규칙 이름**을 돌려주는 함수를 완성하시오. 비어 있는 두 규칙만 채웁니다.
 
@@ -532,7 +532,7 @@ python dga_score.py
 
 ### ✍️ 문제 6-3 · 로그 12건 판정하기 (`judge.py`)
 
-**어디서** — VS Code 에서 `judge.py` 를 만들고 → 터미널에서 `python judge.py` 로 실행
+**어디서** — VS Code 에서 `judge.py` 만들기 → 터미널에서 `python judge.py` 실행
 
 6-2 의 `score` 를 불러와 로그 12건을 **문턱값 3** 으로 판정하시오.
 
@@ -584,7 +584,7 @@ python judge.py
 
 ### ✍️ 문제 6-4 · 맞힘 · 오탐 · 미탐 세기 (`evaluate.py`)
 
-**어디서** — VS Code 에서 `evaluate.py` 를 만들고 → 터미널에서 `python evaluate.py` 로 실행
+**어디서** — VS Code 에서 `evaluate.py` 만들기 → 터미널에서 `python evaluate.py` 실행
 
 6-3 의 판정을 **정답지(실제)와 비교해** 맞힘 · 오탐 · 미탐 수를 세시오.
 
@@ -647,7 +647,7 @@ python evaluate.py
 
 ### ✍️ 문제 6-5 · 예외 목록으로 오탐 줄이기 (`dga_score.py` 고치기)
 
-**어디서** — VS Code 에서 `dga_score.py` 를 만들고 → 터미널에서 `python dga_score.py` 로 실행
+**어디서** — VS Code 에서 앞 문제의 `dga_score.py` 열어 고치기 → 터미널에서 `python dga_score.py` 실행
 
 오탐 `xn--3e0b707e.kr` 은 **한글 도메인**을 영문으로 바꾼 모양(퓨니코드 · Punycode)이라 무작위처럼 보입니다. `dga_score.py` 의 `score` 맨 앞에 **`xn--` 로 시작하는 조각은 0점**으로 돌려보내는 줄을 넣고, 6-4 를 다시 실행하시오.
 
@@ -677,7 +677,7 @@ python dga_score.py
 
 ### ⭐ 도전 6-6 · 문턱값을 바꾸면 (`threshold.py`, 선택)
 
-**어디서** — VS Code 에서 `threshold.py` 를 만들고 → 터미널에서 `python threshold.py` 로 실행
+**어디서** — VS Code 에서 `threshold.py` 만들기 → 터미널에서 `python threshold.py` 실행
 
 6-5 를 고친 `score` 로 문턱값 **2 · 3 · 4** 마다 맞힘 · 오탐 · 미탐을 세어 표로 출력하시오.
 
@@ -784,7 +784,7 @@ print(f"| kxq3vz9a.top | {result['points']} | {', '.join(result['why'])} |")
 
 ### ✍️ 문제 7-2 · 판정표 만들기 (`report_table3.py`)
 
-**어디서** — VS Code 에서 `report_table3.py` 를 만들고 → 터미널에서 `python report_table3.py` 로 실행
+**어디서** — VS Code 에서 `report_table3.py` 만들기 → 터미널에서 `python report_table3.py` 실행
 
 로그 12건의 **점수 · 판정 · 근거**를 마크다운 표로 출력해 보고서 3절에 붙이시오. 근거가 없으면 `-` 로 적습니다.
 
@@ -839,7 +839,7 @@ python report_table3.py
 
 ### ✍️ 문제 7-3 · 판정을 `nslookup` 으로 확인하기
 
-**어디서** — 터미널
+**어디서** — 터미널에서 명령 실행
 
 규칙이 「정상」이라고 한 CDN 이름과, 지어낸 무작위 이름을 각각 물어 **있는 이름인지** 확인하시오.
 
@@ -862,7 +862,7 @@ nslookup qzkx7wp2v.invalid
 
 ### ✍️ 문제 7-4 · 판단 기준과 한계 적기
 
-**어디서** — 생각해서 적습니다 + 보고서 파일
+**어디서** — 명령 없이 생각해서 → 보고서 파일에 적기
 
 보고서 4절에 아래 틀을 붙여 채우시오. 코드는 쓰지 않습니다.
 
@@ -901,7 +901,7 @@ nslookup qzkx7wp2v.invalid
 
 ### ✍️ 문제 7-5 · 분석서 완성하고 올리기
 
-**어디서** — 보고서 파일 마무리 → 깃허브(웹 화면 또는 `git push`)
+**어디서** — 보고서 파일 마무리 → 깃허브에 올리기(웹 화면 또는 `git push`)
 
 `day03_dns_analysis.md` 에 아래 3절을 4절 **앞에** 넣고 채운 뒤 깃허브에 올리시오.
 
@@ -928,7 +928,7 @@ nslookup qzkx7wp2v.invalid
 
 ### ⭐ 도전 7-6 · 내가 고른 이름으로 시험하기 (선택)
 
-**어디서** — VS Code 에서 판정 파일의 `LOG` 를 고치고 → 터미널에서 실행 + 보고서 파일
+**어디서** — VS Code 에서 판정 파일의 `LOG` 고치기 → 터미널에서 실행 → 다른 점을 보고서 파일에 적기
 
 평소 자주 쓰는 사이트 이름 **세 개**와, 내가 지어낸 **무작위 이름 두 개**를 `LOG` 에 더해 판정하고, 결과가 예상과 다르면 왜 그런지 보고서 5절에 한 줄 적으시오.
 

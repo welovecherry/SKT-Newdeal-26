@@ -27,7 +27,7 @@
 
 1. 오전과 같은 터미널, `network_zt` 폴더에서 합니다.
 2. 파이썬 파일은 문제마다 적힌 이름으로 만들고 `python 파일이름.py` 로 실행합니다.
-3. 문제 앞의 **상자**를 먼저 읽습니다 — 🐍 문법 상자(파이썬) · 명령 상자(터미널) · Wireshark 상자 · 개념 상자. 문제 제목 아래 **어디서** 줄이 실습하는 곳(터미널 · Wireshark · VS Code · 보고서)입니다. 막히면 **💡 힌트** → 맨 아래 **「정답」** 순서로 봅니다. ⭐도전은 선택입니다.
+3. 문제 앞의 **상자**를 먼저 읽습니다 — 🐍 문법 상자(파이썬) · 명령 상자(터미널) · Wireshark 상자 · 개념 상자. 문제 제목 아래 **어디서** 줄이 실습하는 곳입니다. `→` 는 하는 순서입니다. 막히면 **💡 힌트** → 맨 아래 **「정답」** 순서로 봅니다. ⭐도전은 선택입니다.
 
 ---
 
@@ -121,7 +121,7 @@ else:
 
 ### ✍️ 문제 5-2 · 직접일까 게이트웨이일까 (`direct_or_gw.py`)
 
-**어디서** — VS Code 에서 `direct_or_gw.py` 를 만들고 → 터미널에서 `python direct_or_gw.py` 로 실행
+**어디서** — VS Code 에서 `direct_or_gw.py` 만들기 → 터미널에서 `python direct_or_gw.py` 실행
 
 PC `10.20.0.10/26` 에서 세 목적지로 보낼 때 **스위치로 직접**인지 **게이트웨이로**인지 판정하시오.
 
@@ -164,7 +164,7 @@ python direct_or_gw.py
 
 ### ✍️ 문제 5-3 · 스위치 흉내 내기 (`switch_sim.py`)
 
-**어디서** — VS Code 에서 `switch_sim.py` 를 만들고 → 터미널에서 `python switch_sim.py` 로 실행
+**어디서** — VS Code 에서 `switch_sim.py` 만들기 → 터미널에서 `python switch_sim.py` 실행
 
 5.3 의 세 단계대로 움직이는 스위치를 완성하시오. **배우기 전과 배운 뒤** 나가는 포트가 어떻게 달라지는지 봅니다.
 
@@ -221,7 +221,7 @@ python switch_sim.py
 
 ### ✍️ 문제 5-4 · 내 PC 의 이웃 명단에서 게이트웨이 찾기
 
-**어디서** — 터미널
+**어디서** — 터미널에서 명령 실행
 
 아래 두 명령을 터미널에 차례로 입력하고, `arp -a` 에 **기본 게이트웨이의 MAC 은 있지만 `8.8.8.8` 은 없는 것**을 확인하시오.
 
@@ -244,7 +244,7 @@ arp -a
 
 ### ✍️ 문제 5-5 · 게이트웨이를 잘못 적은 PC 찾기 (`gw_mistake.py`)
 
-**어디서** — VS Code 에서 `gw_mistake.py` 를 만들고 → 터미널에서 `python gw_mistake.py` 로 실행
+**어디서** — VS Code 에서 `gw_mistake.py` 만들기 → 터미널에서 `python gw_mistake.py` 실행
 
 PC 세 대의 설정 가운데 **게이트웨이가 자기 망 밖에 있는** PC 를 찾으시오.
 
@@ -291,7 +291,7 @@ python gw_mistake.py
 
 ### ⭐ 도전 5-6 · 첫 전달 경로 판정기 (`route_judge.py`, 선택)
 
-**어디서** — VS Code 에서 `route_judge.py` 를 만들고 → 터미널에서 `python route_judge.py` 로 실행
+**어디서** — VS Code 에서 `route_judge.py` 만들기 → 터미널에서 `python route_judge.py` 실행
 
 두 장비의 **VLAN 과 망이 모두 같으면** 「스위치 직접」, 하나라도 다르면 라우터가 있을 때 「게이트웨이 ○로」, 없으면 「통신 불가」를 출력하시오.
 
@@ -431,7 +431,7 @@ print(out)
 
 ### ✍️ 문제 6-2 · 내 PC 의 라우팅 표 보기
 
-**어디서** — 터미널
+**어디서** — 터미널에서 명령 실행
 
 아래를 입력하고 **`0.0.0.0` 으로 시작하는 줄**(기본 경로)의 **게이트웨이** 칸을 찾아, `ipconfig` 의 기본 게이트웨이와 같은지 확인하시오.
 
@@ -453,7 +453,7 @@ route print -4
 
 ### ✍️ 문제 6-3 · 거쳐 가는 길 보기
 
-**어디서** — 터미널
+**어디서** — 터미널에서 명령 실행
 
 아래를 입력하고 **첫 줄(1번)의 주소**가 내 기본 게이트웨이인지 확인하시오. 다섯 칸까지만 봅니다.
 
@@ -475,7 +475,7 @@ tracert -d -h 5 8.8.8.8
 
 ### ✍️ 문제 6-4 · 브로드캐스트는 같은 VLAN 에만 (`vlan_flood.py`)
 
-**어디서** — VS Code 에서 `vlan_flood.py` 를 만들고 → 터미널에서 `python vlan_flood.py` 로 실행
+**어디서** — VS Code 에서 `vlan_flood.py` 만들기 → 터미널에서 `python vlan_flood.py` 실행
 
 포트별 VLAN 이 정해진 스위치에서, **들어온 포트와 같은 VLAN 의 다른 포트**만 고르는 함수를 완성하시오.
 
@@ -524,7 +524,7 @@ python vlan_flood.py
 
 ### ✍️ 문제 6-5 · 라우팅 표에서 길 고르기 (`route_lookup.py`)
 
-**어디서** — VS Code 에서 `route_lookup.py` 를 만들고 → 터미널에서 `python route_lookup.py` 로 실행
+**어디서** — VS Code 에서 `route_lookup.py` 만들기 → 터미널에서 `python route_lookup.py` 실행
 
 목적지마다 **맞는 줄 가운데 CIDR 숫자가 가장 큰 줄**의 다음 홉을 고르시오.
 
@@ -580,7 +580,7 @@ python route_lookup.py
 
 ### ⭐ 도전 6-6 · VLAN 과 서브넷 짝 실수 찾기 (`vlan_pair.py`, 선택)
 
-**어디서** — VS Code 에서 `vlan_pair.py` 를 만들고 → 터미널에서 `python vlan_pair.py` 로 실행
+**어디서** — VS Code 에서 `vlan_pair.py` 만들기 → 터미널에서 `python vlan_pair.py` 실행
 
 VLAN 마다 받은 서브넷 가운데 **다른 VLAN 과 겹치는** 짝을 찾으시오.
 
@@ -685,7 +685,7 @@ print(net.broadcast_address)
 
 ### ✍️ 문제 7-2 · VLAN · 게이트웨이 표 만들기 (`vlan_plan.py`)
 
-**어디서** — VS Code 에서 `vlan_plan.py` 를 만들고 → 터미널에서 `python vlan_plan.py` 로 실행
+**어디서** — VS Code 에서 `vlan_plan.py` 만들기 → 터미널에서 `python vlan_plan.py` 실행
 
 7.1 의 세 부서에 대해 **VLAN · CIDR · 게이트웨이 · 장비에 줄 범위**를 마크다운 표로 출력하시오.
 
@@ -753,7 +753,7 @@ for n in [3, 8, 12, 20]:
 
 ### ✍️ 문제 7-3 · 서버망 10대를 다음 빈 자리에 (`next_block.py`)
 
-**어디서** — VS Code 에서 `next_block.py` 를 만들고 → 터미널에서 `python next_block.py` 로 실행
+**어디서** — VS Code 에서 `next_block.py` 만들기 → 터미널에서 `python next_block.py` 실행
 
 서버 10대가 들어갈 `/28` 을 **보안팀 바로 다음 빈 경계**에 놓고, 네 부서가 **겹치지 않는지** 검증하시오.
 
@@ -808,7 +808,7 @@ python next_block.py
 
 ### ✍️ 문제 7-4 · 라우팅 경로 적기
 
-**어디서** — 명령 없이 생각해서 적습니다 + 보고서 파일
+**어디서** — 명령 없이 생각해서 → 보고서 파일에 적기
 
 7.1 그림을 보고 아래 세 통신이 **어디를 거쳐 가는지** 보고서 4절에 한 줄씩 적으시오. 명령은 입력하지 않습니다.
 
@@ -832,7 +832,7 @@ python next_block.py
 
 ### ✍️ 문제 7-5 · 설계서 완성하고 올리기
 
-**어디서** — 보고서 파일 마무리 → 깃허브(웹 화면 또는 `git push`)
+**어디서** — 보고서 파일 마무리 → 깃허브에 올리기(웹 화면 또는 `git push`)
 
 `day02_subnet_design.md` 의 2절 아래에 이어 붙이고, 괄호를 채운 뒤 깃허브에 올리시오.
 
@@ -868,7 +868,7 @@ python next_block.py
 
 ### ⭐ 도전 7-6 · draw.io 로 구성도 그리기 (선택)
 
-**어디서** — 브라우저(draw.io) + 보고서 파일
+**어디서** — 브라우저의 draw.io 에서 그리기 → 그림을 보고서 파일에 넣기
 
 브라우저에서 **app.diagrams.net**(draw.io · 드로아이오 · 설치 없이 쓰는 그림 도구)을 열어 7.1 그림을 네모와 선으로 그리고, `day02_diagram.png` 로 내보내 보고서 4절에 넣으시오.
 
