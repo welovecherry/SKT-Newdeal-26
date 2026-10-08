@@ -323,10 +323,18 @@ cd network_zt
 
 ![HTTP 요청](http_request.png)
 
-### 쓴 필터
+### 사용한 필터 (7-2 · 7-3)
 
-- 캡처 필터: tcp port 80
-- 표시 필터: tcp.flags.syn == 1 · http · tcp.flags.fin == 1
+> 7-2 · 7-3 에서 걸었던 필터를 다시 보며 적고, 무엇을 보려고 걸었는지 한 마디씩 붙입니다.
+
+- 캡처 필터 — 필터: 
+- 캡처 필터 — 무엇을 보려고: 
+- 표시 필터 ① — 필터: 
+- 표시 필터 ① — 무엇을 보려고: 
+- 표시 필터 ② — 필터: 
+- 표시 필터 ② — 무엇을 보려고: 
+- 표시 필터 ③ — 필터: 
+- 표시 필터 ③ — 무엇을 보려고: 
 ```
 ⚠ <mark style="background:#ffcdd2; color:#1a1a1a; padding:0 4px; border-radius:3px">오늘 적는 것은 모두 이 파일(`day01_packet_analysis.md`) 하나에</mark> 적습니다. 문제마다 「<mark style="background:#ffcdd2; color:#1a1a1a; padding:0 4px; border-radius:3px">적는 곳</mark>」 줄이 이 파일의 어느 절인지 알려 줍니다. 문제마다 소제목이 틀에 다 있으니 <mark style="background:#ffcdd2; color:#1a1a1a; padding:0 4px; border-radius:3px">그 문제 소제목 아래</mark>를 채웁니다.
 
