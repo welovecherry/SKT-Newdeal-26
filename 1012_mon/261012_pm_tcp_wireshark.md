@@ -8,7 +8,7 @@
 | 6교시 | Wireshark 실행 · 첫 캡처 · 화면 읽기 · 필터 | Wireshark (아침 과제 8 에서 설치) |
 | 7교시 | 내 연결을 직접 잡아 보고서로 남기기 | Wireshark · `curl` · 파이썬 |
 
-**오늘 남기는 것:** `network_zt/day01_packet_analysis.md` 완성본(오전의 1번 표 + 오후의 캡처 사진 · 표) — 강의계획서의 1일 차 산출물입니다.
+**오늘 남기는 것:** `network_zt/day01_packet_analysis.md` 완성본(2~7교시 칸 + 7교시의 캡처 사진 · 표) — 강의계획서의 1일 차 산출물입니다.
 
 ---
 
@@ -25,7 +25,7 @@
 
 ### 오늘 시작할 때
 
-0. 오늘 적는 것은 모두 **오전에 만든 `day01_packet_analysis.md` 하나에** 적습니다. 2~5절은 오전에 붙여 넣은 틀에 이미 있습니다 — **빈칸만 채웁니다.** 문제 답은 `## 실습 기록`, 찾아 쓰기는 `## 찾아본 것`. 문제마다 「**적는 곳**」 줄을 봅니다.
+0. 오늘 적는 것은 모두 **오전에 만든 `day01_packet_analysis.md` 하나에** 적습니다. 5 · 6 · 7교시 칸은 오전에 붙여 넣은 틀에 이미 있습니다 — **그 교시 칸의 콜론 뒤만** 채웁니다. 문제마다 「**적는 곳**」 줄을 봅니다.
 1. 오전과 같은 터미널(Git Bash)을 씁니다. 줄 앞에 `$` 가 보이면 됩니다.
 2. `network_zt` 폴더에서 시작합니다 — `cd network_zt`(이미 들어와 있으면 생략).
 3. 이 문서의 화면 예시는 **모양을 보여 주는 예시**입니다. 주소 · 숫자는 내 화면의 값을 읽습니다.
@@ -67,7 +67,7 @@
      │ ──── ACK ─────────────────────▶ │   「알았다」        → 연결 끝
 ```
 
-> **검색해서 채웁니다.** 표의 **[찾아 쓰기]** 칸은 비워 두었습니다. 검색하고 직접 실행해 확인한 뒤, 오늘 보고서 맨 아래 `## 찾아본 것` 에 **내 말로 한 줄씩** 적습니다. 다 적은 뒤 맨 아래 「정답」의 표와 비교합니다.
+> **검색해서 채웁니다.** 표의 **[찾아 쓰기]** 칸은 비워 두었습니다. 검색하고 직접 실행해 확인한 뒤, 오늘 보고서의 그 교시 칸 `- 찾아본 것 —` 줄에 **내 말로** 적습니다. 다 적은 뒤 맨 아래 「정답」의 표와 비교합니다.
 > 검색어 예: `TCP ACK 뜻` · `TCP FIN RST 차이`
 > ⚠ 검색 결과는 영어 · 리눅스 화면이 많습니다. 내 화면(한국어 Windows)의 글자와 짝을 맞춰 읽습니다.
 
@@ -114,6 +114,8 @@ print(flags == "SYN")       # False — 리스트와 글자는 같을 수 없다
 
 <mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — 실행하지 않고 머리로 예상합니다 → 바로 아래 「답 보기」를 펼쳐 맞춰 봅니다
 
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day01_packet_analysis.md` 의 `## 5교시` 칸 — `- 5-1` 로 시작하는 줄
+
 아래 코드를 실행하면 무엇이 보일지 적어 보세요.
 
 ```python
@@ -143,7 +145,7 @@ print(packet["dst_port"])
 
 <mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — 명령 없이 생각해서 답하기 → 보고서에 적기
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day01_packet_analysis.md` 의 `## 실습 기록` 의 `- 5-2:` 줄
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day01_packet_analysis.md` 의 `## 5교시` 칸 — `- 5-2` 로 시작하는 줄
 
 아래 다섯 가지가 TCP 인지 UDP 인지(또는 둘 다 아닌지) 적으시오. 명령은 입력하지 않습니다.
 
@@ -171,7 +173,7 @@ print(packet["dst_port"])
 
 <mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — 명령 없이 생각해서 답하기 → 보고서에 적기
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day01_packet_analysis.md` 의 `## 실습 기록` 의 `- 5-3:` 줄
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day01_packet_analysis.md` 의 `## 5교시` 칸 — `- 5-3` 로 시작하는 줄
 
 뒤섞인 세 패킷의 **올바른 순서**와 **방향**(내 PC → 서버 / 서버 → 내 PC)을 적으시오.
 
@@ -196,6 +198,8 @@ print(packet["dst_port"])
 ### ✍️ 문제 5-4 · 연결 상태를 세기 (`state_count.py`)
 
 <mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — VS Code 에서 `state_count.py` 만들기 → 터미널에서 `python state_count.py` 실행
+
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day01_packet_analysis.md` 의 `## 5교시` 칸 — `- 5-4` 로 시작하는 줄
 
 `netstat` 결과를 옮겨 온 리스트에서 **상태마다 몇 개인지** 세시오. `network_zt` 에 `state_count.py` 를 만들어 붙여 넣고, 번호 주석 아래를 채운 뒤 `python state_count.py` 를 입력합니다.
 
@@ -263,7 +267,7 @@ python state_count.py
 
 <mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — 브라우저에서 같은 사이트를 탭 두 개로 열기 → 터미널에서 명령 실행 → 보고서에 적기
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day01_packet_analysis.md` 의 `## 실습 기록` 의 `- 5-5:` 줄
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day01_packet_analysis.md` 의 `## 5교시` 칸 — `- 5-5` 로 시작하는 줄
 
 브라우저로 같은 사이트를 **탭 두 개**로 연 뒤 `netstat -n` 을 입력하고, 외부 주소가 **같은** 연결 두 줄을 찾아 **무엇이 다른지** 적으시오.
 
@@ -282,6 +286,8 @@ python state_count.py
 ### ⭐ 도전 5-6 · 미니 패킷 필터 (`packet_filter.py`, 선택)
 
 <mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — VS Code 에서 `packet_filter.py` 만들기 → 터미널에서 `python packet_filter.py` 실행
+
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day01_packet_analysis.md` 의 `## 5교시` 칸 — `- ⭐5-6` 로 시작하는 줄
 
 캡처한 패킷 다섯 건에서 **SYN 이 든 것**만, 그리고 **서버 `203.0.113.10` 과 주고받은 것**만 골라 출력하시오. 6교시 Wireshark 필터가 하는 일을 직접 만들어 봅니다.
 
@@ -383,6 +389,8 @@ python packet_filter.py
 
 <mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — 실행하지 않고 머리로 예상합니다 → 바로 아래 「답 보기」를 펼쳐 맞춰 봅니다
 
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day01_packet_analysis.md` 의 `## 6교시` 칸 — `- 6-1` 로 시작하는 줄
+
 Wireshark 필터 칸에 아래 세 가지를 차례로 친다면, 칸이 각각 **무슨 색**이 될지 적어 보세요.
 
 ```
@@ -411,6 +419,8 @@ tcp.port == 443
 
 <mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — Wireshark 화면에서
 
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day01_packet_analysis.md` 의 `## 6교시` 칸 — `- 6-2` 로 시작하는 줄
+
 아침 과제 8 에서 설치한 Wireshark 를 실행해, 첫 화면에서 **인터페이스 목록**이 보이는지 확인하시오.
 
 1. 시작 메뉴에서 **Wireshark** 를 엽니다.
@@ -432,7 +442,7 @@ tcp.port == 443
 
 <mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — Wireshark 화면에서 → 보고서에 적기
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day01_packet_analysis.md` 의 `## 실습 기록` 의 `- 6-3:` 줄
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day01_packet_analysis.md` 의 `## 6교시` 칸 — `- 6-3` 로 시작하는 줄
 
 **그래프가 움직이는 통로**를 더블클릭해 캡처를 시작하고, 브라우저로 사이트 하나를 연 뒤 멈추시오. 상태 줄의 **패킷 수**와 Protocol 열에 보이는 **이름 세 개**를 적으시오.
 
@@ -451,6 +461,8 @@ tcp.port == 443
 ### ✍️ 문제 6-4 · 패킷 하나를 층별로 펼치기
 
 <mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — Wireshark 화면에서
+
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day01_packet_analysis.md` 의 `## 6교시` 칸 — `- 6-4` 로 시작하는 줄
 
 위 칸에서 Protocol 이 `TCP` 인 줄 하나를 누르고, 가운데 칸의 세 줄을 펼쳐 아래 표를 채우시오.
 
@@ -476,7 +488,7 @@ tcp.port == 443
 
 <mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — Wireshark 화면에서 → 보고서에 적기
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day01_packet_analysis.md` 의 `## 실습 기록` 의 `- 6-5:` 줄
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day01_packet_analysis.md` 의 `## 6교시` 칸 — `- 6-5` 로 시작하는 줄
 
 필터 칸에 아래를 **하나씩** 걸고(Enter), 상태 줄의 **표시됨** 숫자를 적으시오. 다음 것을 걸기 전에 칸 오른쪽 **X** 로 지웁니다.
 
@@ -501,6 +513,8 @@ tcp.port == 443
 ### ⭐ 도전 6-6 · 화면에서 찍어 필터 만들기 (선택)
 
 <mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — Wireshark 화면에서
+
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day01_packet_analysis.md` 의 `## 6교시` 칸 — `- ⭐6-6` 로 시작하는 줄
 
 필드 이름을 외우지 않고 필터를 만드시오.
 
@@ -571,6 +585,8 @@ print(f"| {i} | {p['src']} | {p['dst']} | {p['info']} |")
 
 <mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — 실행하지 않고 머리로 예상합니다 → 바로 아래 「답 보기」를 펼쳐 맞춰 봅니다
 
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day01_packet_analysis.md` 의 `## 7교시` 칸 — `- 7-1` 로 시작하는 줄
+
 아래 코드를 실행하면 무엇이 보일지 적어 보세요.
 
 ```python
@@ -599,6 +615,8 @@ for p in packets:
 
 <mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — Wireshark 에서 캡처 시작 → 터미널에서 `curl` 실행 → Wireshark 화면을 사진으로 저장
 
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day01_packet_analysis.md` 의 `## 7교시` 칸 — `- 7-2` 로 시작하는 줄
+
 캡처 필터 `tcp port 80` 으로 캡처를 시작하고, 터미널에서 아래 명령을 입력한 뒤 **3초쯤 기다렸다가** 멈추시오.
 
 ```bash
@@ -623,7 +641,7 @@ curl "http://example.com/?q=network_day1"
 
 <mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — Wireshark 화면에서 → 보고서에 적기
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day01_packet_analysis.md` 의 `## 실습 기록` 의 `- 7-3:` 줄
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day01_packet_analysis.md` 의 `## 7교시` 칸 — `- 7-3` 로 시작하는 줄
 
 7-2 의 캡처에서 아래 둘을 찾으시오.
 
@@ -645,6 +663,8 @@ curl "http://example.com/?q=network_day1"
 ### ✍️ 문제 7-4 · 보고서 표를 코드로 찍기 (`report_table.py`)
 
 <mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — VS Code 에서 `report_table.py` 만들기 → 터미널에서 `python report_table.py` 실행
+
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day01_packet_analysis.md` 의 `## 7교시` 칸 — `- 7-4` 로 시작하는 줄
 
 7-2 에서 찾은 세 줄과 6-4 에서 읽은 헤더 값을 **마크다운 표 두 개**로 출력하시오. `network_zt` 에 `report_table.py` 를 만들어 붙여 넣고, **데이터의 값을 내 화면 값으로 바꾼 뒤** 번호 주석 아래를 채웁니다. `python report_table.py`
 
@@ -699,7 +719,7 @@ python report_table.py
 
 1. 7-1 과 같은 모양입니다.
 2. 바깥은 큰따옴표, 안쪽 키는 작은따옴표입니다.
-3. 출력을 그대로 복사해 보고서 2 · 3절의 「(report_table.py 의 … 표를 붙입니다)」 자리에 붙입니다.
+3. 출력을 그대로 복사해 보고서 7교시 칸 아래 「(7-4 report_table.py 의 … 표를 여기에 붙입니다)」 두 자리에 붙입니다.
 
 ---
 
@@ -707,7 +727,9 @@ python report_table.py
 
 <mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — 보고서 파일 마무리 → 깃허브에 올리기(웹 화면 또는 `git push`)
 
-`day01_packet_analysis.md` 의 **2~5절 빈칸**을 채우고 깃허브에 올리시오. 절 제목과 사진 줄은 오전에 붙여 넣은 틀에 이미 있습니다.
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day01_packet_analysis.md` 의 `## 7교시` 칸 — `- 7-5` 로 시작하는 줄
+
+`day01_packet_analysis.md` 의 **빈 줄**(5 · 6 · 7교시 칸)을 마저 채우고 깃허브에 올리시오. 사진 줄과 표 자리는 오전에 붙여 넣은 틀에 이미 있습니다.
 
 | | |
 |---|---|
@@ -725,9 +747,9 @@ python report_table.py
 
 <mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — 터미널에서 명령 실행 → 보고서에 적기
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day01_packet_analysis.md` 의 `## 실습 기록` 의 `- 7-6:` 줄
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day01_packet_analysis.md` 의 `## 7교시` 칸 — `- 7-6` 로 시작하는 줄
 
-터미널에 아래를 입력하고, **첫 줄의 상태 코드**와 **`Server:` 줄의 값**을 보고서 맨 아래에 적으시오.
+터미널에 아래를 입력하고, **첫 줄의 상태 코드**와 **`Server:` 줄의 값**을 보고서에 적으시오.
 
 ```bash
 curl -I http://example.com
@@ -749,9 +771,9 @@ curl -I http://example.com
 
 <mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — Wireshark 에서 캡처 시작 → 터미널에서 `curl` 실행 → 다른 점을 보고서에 적기
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day01_packet_analysis.md` 의 `## 실습 기록` 의 `- 7-7:` 줄
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day01_packet_analysis.md` 의 `## 7교시` 칸 — `- ⭐7-7` 로 시작하는 줄
 
-캡처 필터를 **`tcp port 443`** 으로 바꿔 같은 방법으로 아래를 잡고, 7-3 의 HTTP 화면과 **무엇이 다른지** 보고서 맨 아래에 한 문장으로 적으시오.
+캡처 필터를 **`tcp port 443`** 으로 바꿔 같은 방법으로 아래를 잡고, 7-3 의 HTTP 화면과 **무엇이 다른지** 보고서에 한 문장으로 적으시오.
 
 ```bash
 curl "https://example.com/?q=network_day1"
@@ -783,7 +805,7 @@ curl "https://example.com/?q=network_day1"
 
 | 확인 | 문제 |
 |---|---|
-| `day01_packet_analysis.md` 의 1~5번 절이 다 찼다 | 오전 · 7-5 |
+| `day01_packet_analysis.md` 의 2~7교시 칸에 빈 줄이 없다(⭐ 제외) | 모든 문제 · 7-5 |
 | 사진 두 장(`handshake.png` · `http_request.png`)이 보고서에 나온다 | 7-2 · 7-3 |
 | 3-way 세 단계를 내 말로 설명할 수 있다 | 5-3 · 7-2 |
 | 깃허브에 올렸다 | 7-5 |
@@ -1096,7 +1118,7 @@ python report_table.py
 
 ### 정답 7-5
 
-보고서 2~5절의 빈칸을 채운 뒤, **터미널(`security-agent-toolkit` 폴더)에 입력합니다.**
+보고서의 빈 줄을 다 채운 뒤, **터미널(`security-agent-toolkit` 폴더)에 입력합니다.**
 
 ```bash
 git status

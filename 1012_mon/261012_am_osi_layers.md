@@ -10,7 +10,7 @@
 | 3교시 | OSI 7계층 ① 아래 세 층 — MAC(맥) 주소와 IP(아이피) 주소 | `ipconfig //all`(아이피컨피그) · `arp -a`(에이알피) |
 | 4교시 | OSI 7계층 ② 위 네 층 — 포트 번호와 지금의 연결 | `netstat`(넷스탯 · network statistics) |
 
-**오전에 남기는 것:** `network_zt/day01_packet_analysis.md` 의 **「1. 내 PC 와 네트워크」** 표. 오후에 Wireshark(와이어샤크 · 오가는 패킷을 붙잡아 보여 주는 프로그램)로 이어 씁니다.
+**오전에 남기는 것:** `network_zt/day01_packet_analysis.md` 의 **2 · 3 · 4교시 칸**. 오후에 Wireshark(와이어샤크 · 오가는 패킷을 붙잡아 보여 주는 프로그램)로 이어 씁니다.
 
 ---
 
@@ -53,85 +53,134 @@ cd network_zt
 1. VS Code 창 **왼쪽 끝의 세로 아이콘 줄**에서 맨 위 **탐색기**(Explorer · 종이 두 장 모양 · `Ctrl + Shift + E`)를 누릅니다. 그 오른쪽에 파일 · 폴더 목록이 열립니다. 이 문서에서 「**왼쪽 목록**」은 이 목록입니다.
 2. 목록 맨 위 `SECURITY-AGENT-TOOLKIT` 아래에서 **`network_zt` 폴더**를 찾아 오른쪽 클릭 › **New File** 을 누릅니다. `network_zt` 가 안 보이면 아침 과제 8 의 4번(새 과목 폴더 만들기)으로 돌아갑니다.
 3. 이름 칸에 `day01_packet_analysis.md` 를 입력하고 Enter 를 누릅니다. `network_zt` 폴더 **안에** 파일이 생겼는지 봅니다.
-4. 아래 **틀 전체**를 붙여 넣습니다. 오늘 쓸 절이 처음부터 다 들어 있습니다 — 오전 · 오후 문제를 풀면서 빈칸만 채웁니다. 사진 두 줄은 오후에 사진을 저장하면 보입니다.
+4. 아래 **틀 전체**를 붙여 넣습니다. 오늘 쓸 2~7교시 칸이 처음부터 다 들어 있습니다 — 오전 · 오후 문제를 풀면서 콜론 뒤만 채웁니다. 사진 두 줄은 오후에 사진을 저장하면 보입니다.
+5. 쓸 때는 보고서 파일을 열고 `Ctrl + K` 를 누른 뒤 `V` 를 누릅니다. 오른쪽에 미리보기가 열려, 왼쪽에 쓰는 것이 바로 보입니다. **각 줄 끝의 콜론(:) 뒤에** 이어 씁니다.
 
 ```markdown
 # Day 1 패킷 분석 보고서 (이름 · 2026-10-12)
 
-## 1. 내 PC 와 네트워크
-(오전 2-2 · 3-2 · 3-3 · 3-4 에서 채웁니다)
+> 문제를 풀 때마다 그 교시 칸에서 **콜론(:) 뒤**에 이어 씁니다. 빈 줄 = 안 푼 문제입니다.
+> ⭐ 줄은 선택이라 비워도 됩니다.
 
-| 항목 | 내 값 | 찾은 명령 |
-|---|---|---|
-| IPv4 주소 |  | ipconfig |
-| MAC 주소(물리적 주소) |  | ipconfig //all |
-| 기본 게이트웨이 |  | ipconfig |
-| 게이트웨이까지 왕복 평균 |  ms | ping |
-| 8.8.8.8 까지 왕복 평균 |  ms | ping |
-| 8.8.8.8 의 TTL |  | ping |
+## 2교시 · ping
 
-## 2. 연결이 열리는 순간 — 3-way handshake
-(오후 7-2 · 7-4 에서 채웁니다)
+- 2-1 예상 ①: 
+- 2-1 예상 ②: 
+- 2-1 예상 ③: 
+- 2-1 답 보기와 맞았나: 
+- 2-2 8.8.8.8 까지 왕복 평균(ms): 
+- 2-2 8.8.8.8 의 TTL: 
+- 2-3 google.com 의 IP: 
+- 2-4 첫째 실패 문구와 뜻: 
+- 2-4 둘째 실패 문구와 뜻: 
+- 2-5 받음 / 보냄: 
+- 2-5 손실(%): 
+- ⭐2-6 출력 첫 줄(선택): 
+- 찾아본 것 — TTL: 
+- 찾아본 것 — 손실: 
+- 찾아본 것 — 평균: 
+- 이 교시에 새로 안 것: 
+
+## 3교시 · IP 와 MAC
+
+- 3-1 예상 — MAC 은 몇째 줄: 
+- 3-1 예상 — IP 는 몇째 줄: 
+- 3-1 예상 — 게이트웨이는 몇째 줄: 
+- 3-2 내 IPv4 주소: 
+- 3-2 기본 게이트웨이: 
+- 3-3 내 MAC 주소(물리적 주소): 
+- 3-4 게이트웨이까지 왕복 평균(ms): 
+- 3-4 8.8.8.8 보다 짧은 이유: 
+- 3-5 게이트웨이의 MAC 주소: 
+- 3-5 그 줄의 유형: 
+- ⭐3-6 출력 첫 줄(선택): 
+- 이 교시에 새로 안 것: 
+
+## 4교시 · 포트
+
+- 4-1 예상: 
+- 4-1 답 보기와 맞았나: 
+- 4-2 외부 주소의 포트 → 서비스 이름: 
+- 4-3 PID → 프로그램 이름: 
+- 4-4 4.1 표에 있는 LISTENING 포트: 
+- 4-5 ① 은 몇 층: 
+- 4-5 ② 는 몇 층: 
+- 4-5 ③ 은 몇 층: 
+- ⭐4-6 출력 첫 줄(선택): 
+- 찾아본 것 — 포트 22: 
+- 찾아본 것 — 포트 3389: 
+- 찾아본 것 — 포트 135 · 445: 
+- 이 교시에 새로 안 것: 
+
+## 5교시 · TCP
+
+- 5-1 예상: 
+- 5-1 답 보기와 맞았나: 
+- 5-2 ① ~ ⑤: 
+- 5-3 순서와 방향: 
+- 5-4 출력: 
+- 5-4 막힌 곳: 
+- 5-5 같은 것: 
+- 5-5 다른 것: 
+- ⭐5-6 [SYN 필터] 아래 줄 번호(선택): 
+- 찾아본 것 — ACK: 
+- 찾아본 것 — FIN: 
+- 찾아본 것 — RST: 
+- 이 교시에 새로 안 것: 
+
+## 6교시 · Wireshark
+
+- 6-1 예상 색 — tcp / tpc / tcp.port == 443: 
+- 6-1 답 보기와 맞았나: 
+- 6-2 내 통로 이름: 
+- 6-3 패킷 수: 
+- 6-3 Protocol 열의 이름 세 개: 
+- 6-4 Ethernet II — Source MAC: 
+- 6-4 IPv4 — Source IP / Destination IP: 
+- 6-4 IPv4 — Time to Live: 
+- 6-4 TCP — Source Port / Destination Port / Flags: 
+- 6-5 dns 표시됨: 
+- 6-5 udp 표시됨: 
+- 6-5 tcp.port == 443 표시됨: 
+- ⭐6-6 ip.dst 와 ip.addr 의 차이(선택): 
+- 이 교시에 새로 안 것: 
+
+## 7교시 · 패킷 분석
+
+- 7-1 예상: 
+- 7-1 답 보기와 맞았나: 
+- 7-2 handshake.png 저장했나: 
+- 7-3 패킷에 보인 검색어: 
+- 7-3 FIN 줄 수와 뜻: 
+- 7-4 아래 두 자리에 표를 붙였나: 
+- 7-5 깃허브에 올렸나: 
+- 7-6 상태 코드: 
+- 7-6 Server: 
+- ⭐7-7 HTTP 와 다른 점(선택): 
+- 이 교시에 새로 안 것: 
+
+### 연결이 열리는 순간 — 3-way handshake
 
 ![3-way handshake](handshake.png)
 
-(report_table.py 의 첫 번째 표를 붙입니다)
+(7-4 report_table.py 의 첫 번째 표를 여기에 붙입니다)
 
-세 줄이 뜻하는 것: 
+- 세 줄이 뜻하는 것: 
 
-## 3. 헤더에서 읽은 값
-(오후 7-4 에서 채웁니다)
+### 헤더에서 읽은 값
 
-(report_table.py 의 두 번째 표를 붙입니다)
+(7-4 report_table.py 의 두 번째 표를 여기에 붙입니다)
 
-## 4. 내용과 작별
-(오후 7-3 에서 채웁니다)
+### 내용과 작별
 
 ![HTTP 요청](http_request.png)
 
-- 패킷에 보인 검색어: 
-- FIN 줄 수:  줄 — 뜻: 
-
-## 5. 쓴 필터
-(오후 7-2 · 7-3 에서 쓴 것)
+### 쓴 필터
 
 - 캡처 필터: tcp port 80
 - 표시 필터: tcp.flags.syn == 1 · http · tcp.flags.fin == 1
-
-## 실습 기록
-(「적는 곳」이 실습 기록인 문제 — 줄 뒤에 이어 씁니다)
-
-- 2-4: 
-- 2-5: 
-- 3-5: 
-- 4-2: 
-- 4-4: 
-- 4-5: 
-- 5-2: 
-- 5-3: 
-- 5-5: 
-- 6-3: 
-- 6-5: 
-- 7-3: 
-- 7-6: 
-- ⭐7-7(선택): 
-
-## 찾아본 것
-(**[찾아 쓰기]** 칸을 내 말로 한 줄씩)
-
-- TTL: 
-- 손실: 
-- 평균: 
-- 포트 22 · 3389 · 135 · 445: 
-- ACK · FIN · RST: 
 ```
-째는 …, 둘째는 …`)
-
-## 찾아본 것
-(**[찾아 쓰기]** 칸을 내 말로 — 예: `- TTL: …`)
-
-```
-⚠ <mark style="background:#ffcdd2; color:#1a1a1a; padding:0 4px; border-radius:3px">오늘 적는 것은 모두 이 파일(`day01_packet_analysis.md`) 하나에</mark> 적습니다. 문제마다 「<mark style="background:#ffcdd2; color:#1a1a1a; padding:0 4px; border-radius:3px">적는 곳</mark>」 줄이 이 파일의 어느 절인지 알려 줍니다. 절은 틀에 다 있으니 <mark style="background:#ffcdd2; color:#1a1a1a; padding:0 4px; border-radius:3px">새로 붙이지 않고 빈칸만</mark> 채웁니다.
+⚠ <mark style="background:#ffcdd2; color:#1a1a1a; padding:0 4px; border-radius:3px">오늘 적는 것은 모두 이 파일(`day01_packet_analysis.md`) 하나에</mark> 적습니다. 문제마다 「<mark style="background:#ffcdd2; color:#1a1a1a; padding:0 4px; border-radius:3px">적는 곳</mark>」 줄이 이 파일의 어느 절인지 알려 줍니다. 교시마다 칸이 틀에 다 있으니 <mark style="background:#ffcdd2; color:#1a1a1a; padding:0 4px; border-radius:3px">그 교시 칸의 콜론 뒤만</mark> 채웁니다.
 
 
 ---
@@ -159,7 +208,7 @@ Ping 8.8.8.8 32바이트 데이터 사용:
     최소 = 33ms, 최대 = 35ms, 평균 = 34ms
 ```
 
-> **검색해서 채웁니다.** 표의 **[찾아 쓰기]** 칸은 비워 두었습니다. 검색하고 직접 실행해 확인한 뒤, 오늘 보고서 맨 아래 `## 찾아본 것` 에 **내 말로 한 줄씩** 적습니다. 다 적은 뒤 맨 아래 「정답」의 표와 비교합니다.
+> **검색해서 채웁니다.** 표의 **[찾아 쓰기]** 칸은 비워 두었습니다. 검색하고 직접 실행해 확인한 뒤, 오늘 보고서의 그 교시 칸 `- 찾아본 것 —` 줄에 **내 말로** 적습니다. 다 적은 뒤 맨 아래 「정답」의 표와 비교합니다.
 > 검색어 예: `ping TTL 뜻` · `ping 패킷 손실` · `ping 왕복 시간 평균`
 > ⚠ 검색 결과는 영어 · 리눅스 화면이 많습니다. 내 화면(한국어 Windows)의 글자와 짝을 맞춰 읽습니다.
 
@@ -197,6 +246,8 @@ ping -t 8.8.8.8       # 멈출 때까지 계속 보낸다 — Ctrl + C 로 멈�
 
 <mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — 실행하지 않고 머리로 예상합니다 → 바로 아래 「답 보기」를 펼쳐 맞춰 봅니다
 
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day01_packet_analysis.md` 의 `## 2교시` 칸 — `- 2-1` 로 시작하는 줄
+
 아래 결과를 보고 **세 가지**를 적어 보세요. 명령은 실행하지 않습니다.
 
 ```
@@ -230,9 +281,9 @@ ping -t 8.8.8.8       # 멈출 때까지 계속 보낸다 — Ctrl + C 로 멈�
 
 <mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — 터미널에서 명령 실행 → 보고서에 적기
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day01_packet_analysis.md` 의 **1절 표**
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day01_packet_analysis.md` 의 `## 2교시` 칸 — `- 2-2` 로 시작하는 줄
 
-터미널에서 `8.8.8.8` 에 `ping` 을 보내고, **평균 왕복 시간**과 **TTL** 을 보고서 표에 적으시오.
+터미널에서 `8.8.8.8` 에 `ping` 을 보내고, **평균 왕복 시간**과 **TTL** 을 보고서에 적으시오.
 
 | | |
 |---|---|
@@ -249,6 +300,8 @@ ping -t 8.8.8.8       # 멈출 때까지 계속 보낸다 — Ctrl + C 로 멈�
 ### ✍️ 문제 2-3 · 이름으로 `ping` 보내기
 
 <mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — 터미널에서 명령 실행
+
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day01_packet_analysis.md` 의 `## 2교시` 칸 — `- 2-3` 로 시작하는 줄
 
 터미널에서 `google.com` 에 `ping` 을 보내고, 첫 줄에서 **이름 옆 대괄호 `[ ]` 안의 숫자**를 찾으시오.
 
@@ -268,7 +321,7 @@ ping -t 8.8.8.8       # 멈출 때까지 계속 보낸다 — Ctrl + C 로 멈�
 
 <mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — 터미널에서 명령 실행 → 보고서에 적기
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day01_packet_analysis.md` 의 `## 실습 기록` 의 `- 2-4:` 줄
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day01_packet_analysis.md` 의 `## 2교시` 칸 — `- 2-4` 로 시작하는 줄
 
 아래 두 명령을 터미널에 차례로 입력하고, **실패 문구가 어떻게 다른지** 한 줄씩 적으시오.
 
@@ -293,7 +346,7 @@ ping 192.0.2.1
 
 <mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — 터미널에서 명령 실행 → 보고서에 적기
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day01_packet_analysis.md` 의 `## 실습 기록` 의 `- 2-5:` 줄
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day01_packet_analysis.md` 의 `## 2교시` 칸 — `- 2-5` 로 시작하는 줄
 
 터미널에서 `8.8.8.8` 에 **열 번** `ping` 을 보내고, 받은 개수와 손실 % 를 적으시오.
 
@@ -312,6 +365,8 @@ ping 192.0.2.1
 ### ⭐ 도전 2-6 · `ping` 결과를 파이썬으로 판정하기 (선택)
 
 <mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — VS Code 에서 `ping_check.py` 만들기 → 터미널에서 `python ping_check.py` 실행
+
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day01_packet_analysis.md` 의 `## 2교시` 칸 — `- ⭐2-6` 로 시작하는 줄
 
 `ping` 결과를 사람이 매번 읽는 대신, 파이썬이 「정상 · 느림 · 실패」를 판정하게 하시오.
 
@@ -411,6 +466,8 @@ python ping_check.py
 
 <mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — 실행하지 않고 머리로 예상합니다 → 바로 아래 「답 보기」를 펼쳐 맞춰 봅니다
 
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day01_packet_analysis.md` 의 `## 3교시` 칸 — `- 3-1` 로 시작하는 줄
+
 아래는 `ipconfig //all` 결과의 일부입니다. ① MAC 주소 ② IP 주소 ③ 기본 게이트웨이가 각각 몇째 줄인지 적어 보세요.
 
 ```
@@ -442,9 +499,9 @@ python ping_check.py
 
 <mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — 터미널에서 명령 실행 → 보고서에 적기
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day01_packet_analysis.md` 의 **1절 표**
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day01_packet_analysis.md` 의 `## 3교시` 칸 — `- 3-2` 로 시작하는 줄
 
-`ipconfig` 를 입력하고, **기본 게이트웨이가 적힌 장치**의 IPv4(아이피 브이포 · 지금 널리 쓰는 IP 주소 형식) 주소와 기본 게이트웨이를 보고서 표에 적으시오.
+`ipconfig` 를 입력하고, **기본 게이트웨이가 적힌 장치**의 IPv4(아이피 브이포 · 지금 널리 쓰는 IP 주소 형식) 주소와 기본 게이트웨이를 보고서에 적으시오.
 
 | | |
 |---|---|
@@ -462,9 +519,9 @@ python ping_check.py
 
 <mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — 터미널에서 명령 실행 → 보고서에 적기
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day01_packet_analysis.md` 의 **1절 표**
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day01_packet_analysis.md` 의 `## 3교시` 칸 — `- 3-3` 로 시작하는 줄
 
-`ipconfig //all` 을 입력하고, 3-2 와 **같은 장치**의 물리적 주소를 보고서 표에 적으시오.
+`ipconfig //all` 을 입력하고, 3-2 와 **같은 장치**의 물리적 주소를 보고서에 적으시오.
 
 | | |
 |---|---|
@@ -482,7 +539,7 @@ python ping_check.py
 
 <mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — 터미널에서 명령 실행 → 보고서에 적기
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day01_packet_analysis.md` 의 **1절 표**
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day01_packet_analysis.md` 의 `## 3교시` 칸 — `- 3-4` 로 시작하는 줄
 
 터미널에서 3-2 에서 찾은 기본 게이트웨이에 `ping` 을 보내고, 평균 왕복 시간을 **2-2 의 `8.8.8.8` 결과와 비교**하시오.
 
@@ -502,7 +559,7 @@ python ping_check.py
 
 <mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — 터미널에서 명령 실행 → 보고서에 적기
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day01_packet_analysis.md` 의 `## 실습 기록` 의 `- 3-5:` 줄
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day01_packet_analysis.md` 의 `## 3교시` 칸 — `- 3-5` 로 시작하는 줄
 
 `arp -a` 를 입력하고, **기본 게이트웨이 IP 의 MAC 주소**와 그 줄의 **유형**을 적으시오.
 
@@ -528,6 +585,8 @@ python ping_check.py
 ### ⭐ 도전 3-6 · 주소 모양으로 IP 와 MAC 구별하기 (선택)
 
 <mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — VS Code 에서 `addr_kind.py` 만들기 → 터미널에서 `python addr_kind.py` 실행
+
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day01_packet_analysis.md` 의 `## 3교시` 칸 — `- ⭐3-6` 로 시작하는 줄
 
 로그에 섞여 들어온 주소가 IP 인지 MAC 인지 파이썬이 가려내게 하시오. `network_zt` 에 `addr_kind.py` 를 만들어 붙여 넣고, 번호 주석 아래를 채운 뒤 `python addr_kind.py` 를 입력합니다.
 
@@ -589,7 +648,7 @@ python addr_kind.py
 
 ### 4.1 관제가 외워 두는 포트
 
-> **검색해서 채웁니다.** 표의 **[찾아 쓰기]** 칸은 비워 두었습니다. 검색하고 직접 실행해 확인한 뒤, 오늘 보고서 맨 아래 `## 찾아본 것` 에 **내 말로 한 줄씩** 적습니다. 다 적은 뒤 맨 아래 「정답」의 표와 비교합니다.
+> **검색해서 채웁니다.** 표의 **[찾아 쓰기]** 칸은 비워 두었습니다. 검색하고 직접 실행해 확인한 뒤, 오늘 보고서의 그 교시 칸 `- 찾아본 것 —` 줄에 **내 말로** 적습니다. 다 적은 뒤 맨 아래 「정답」의 표와 비교합니다.
 > 검색어 예: `22번 포트` · `3389 포트 RDP` · `445 포트 랜섬웨어`
 > ⚠ 검색 결과는 영어 · 리눅스 화면이 많습니다. 내 화면(한국어 Windows)의 글자와 짝을 맞춰 읽습니다.
 
@@ -625,6 +684,8 @@ python addr_kind.py
 
 <mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — 실행하지 않고 머리로 예상합니다 → 바로 아래 「답 보기」를 펼쳐 맞춰 봅니다
 
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day01_packet_analysis.md` 의 `## 4교시` 칸 — `- 4-1` 로 시작하는 줄
+
 아래 파이썬 코드를 실행하면 화면에 무엇이 보일지 적어 보세요.
 
 ```python
@@ -653,7 +714,7 @@ print(PORTS.get(3389, "모름"))
 
 <mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — 터미널에서 명령 실행 → 보고서에 적기
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day01_packet_analysis.md` 의 `## 실습 기록` 의 `- 4-2:` 줄
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day01_packet_analysis.md` 의 `## 4교시` 칸 — `- 4-2` 로 시작하는 줄
 
 `netstat -n` 을 입력하고, `ESTABLISHED`(이스태블리시드 · 연결된 상태) 줄 하나를 골라 **외부 주소의 포트**와 그 포트의 **서비스 이름**(4.1 표)을 적으시오.
 
@@ -680,6 +741,8 @@ print(PORTS.get(3389, "모름"))
 
 <mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — 터미널에서 명령 실행
 
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day01_packet_analysis.md` 의 `## 4교시` 칸 — `- 4-3` 로 시작하는 줄
+
 터미널에 `netstat -ano | grep ESTABLISHED` 를 입력해 4-2 에서 고른 줄의 **PID** 를 찾고, `tasklist | grep PID숫자` 로 그 PID 의 프로그램 이름을 찾으시오. 침해 대응에서 「이 연결은 누가 열었나」를 찾는 순서 그대로입니다.
 
 | | |
@@ -699,7 +762,7 @@ print(PORTS.get(3389, "모름"))
 
 <mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — 터미널에서 명령 실행 → 보고서에 적기
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day01_packet_analysis.md` 의 `## 실습 기록` 의 `- 4-4:` 줄
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day01_packet_analysis.md` 의 `## 4교시` 칸 — `- 4-4` 로 시작하는 줄
 
 내 PC 가 **듣고 있는(LISTENING) 포트**만 골라 보고, 그중 **4.1 표에 있는 포트**를 적으시오.
 
@@ -719,7 +782,7 @@ print(PORTS.get(3389, "모름"))
 
 <mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — 명령 없이 생각해서 답하기 → 보고서에 적기
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day01_packet_analysis.md` 의 `## 실습 기록` 의 `- 4-5:` 줄
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day01_packet_analysis.md` 의 `## 4교시` 칸 — `- 4-5` 로 시작하는 줄
 
 아래 세 증상이 **몇 층 문제일 가능성이 큰지** 3.1 표를 보며 한 줄씩 적으시오. 명령은 입력하지 않습니다.
 
@@ -744,6 +807,8 @@ print(PORTS.get(3389, "모름"))
 ### ⭐ 도전 4-6 · 포트에 이름 붙이기 (선택)
 
 <mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — VS Code 에서 `port_name.py` 만들기 → 터미널에서 `python port_name.py` 실행
+
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day01_packet_analysis.md` 의 `## 4교시` 칸 — `- ⭐4-6` 로 시작하는 줄
 
 `netstat` 에서 본 포트 번호들에 서비스 이름을 붙여 출력하시오. 모르는 포트는 「모름」으로 둡니다. `network_zt` 에 `port_name.py` 를 만들어 붙여 넣고, 채운 뒤 `python port_name.py` 를 입력합니다.
 
@@ -793,16 +858,9 @@ python port_name.py
 
 ---
 
-## 오전 마무리 — 보고서 「1. 내 PC 와 네트워크」 채우기
+## 오전 마무리 — 보고서 2 · 3 · 4교시 칸 확인
 
-`day01_packet_analysis.md` 의 표 여섯 칸이 모두 찼는지 봅니다. 빈 칸은 그 문제로 돌아갑니다.
-
-| 칸 | 문제 |
-|---|---|
-| IPv4 주소 · 기본 게이트웨이 | 3-2 |
-| MAC 주소 | 3-3 |
-| 게이트웨이까지 왕복 평균 | 3-4 |
-| 8.8.8.8 까지 왕복 평균 · TTL | 2-2 |
+`day01_packet_analysis.md` 의 2 · 3 · 4교시 칸에 **빈 줄**이 없는지 봅니다. 빈 줄은 그 문제로 돌아갑니다(⭐ 줄은 비워도 됩니다).
 
 오후에는 **Wireshark** 로 오늘 `ping` · 웹 접속이 실제로 어떤 패킷이었는지 봅니다. 4교시의 `ESTABLISHED` 가 만들어지는 순간 — **3-way handshake**(쓰리웨이 핸드셰이크 · 연결을 시작할 때 주고받는 세 번의 신호)를 찾습니다.
 
