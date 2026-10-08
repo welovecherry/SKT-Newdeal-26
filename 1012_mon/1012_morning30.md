@@ -1,4 +1,4 @@
-# 아침 과제 8 · Wireshark 설치하고 새 과목 폴더 만들기 · `git add .`
+# 아침 과제 8 · Wireshark 설치하고 새 과목 폴더 만들기 · `|` 파이프 · `git add .`
 
 10월 12일 (월) · 아침 과제
 
@@ -87,6 +87,26 @@ pwd
 
 - 결과가 `…/security-agent-toolkit/network_zt` 로 끝나면 됩니다. 앞부분은 사람마다 다릅니다.
 
+**③ 오전 4교시에 쓸 `|`(파이프)를 미리 써 봅니다**
+
+오전 4교시에는 `netstat -an | grep LISTENING` 처럼 명령 두 개를 `|` 로 이어 씁니다. 같은 터미널에서 먼저 해 봅니다.
+
+```
+tasklist
+tasklist | grep Code
+```
+
+- 첫째는 지금 켜진 프로그램 목록이 수백 줄 쏟아집니다.
+- 둘째는 그중 `Code` 가 든 줄(VS Code · `Code.exe`)만 남습니다.
+
+| 기호 · 명령 | 하는 일 |
+|---|---|
+| `\|` (파이프 · pipe) | 앞 명령의 결과를 화면에 내지 않고 **뒤 명령에게 넘깁니다** |
+| `grep 글자` (그렙) | 넘겨받은 결과에서 **그 글자가 든 줄만** 남깁니다 |
+
+- `|` 는 Enter 위의 `₩`(또는 `\`) 키를 **Shift 와 함께** 누르면 나옵니다.
+- `grep` 은 대문자 · 소문자를 가립니다. `tasklist | grep code` 로 치면 한 줄도 안 나옵니다 — 직접 해 봅니다.
+
 ---
 
 ## 5. Wireshark 가 잘 깔렸는지 봅니다
@@ -115,6 +135,7 @@ Wireshark  (Npcap 함께)
 ## 찾아보고 알게 된 것
 Wireshark 는
 Npcap 은
+| (파이프) 는
 
 ## 막힌 것
 
@@ -209,6 +230,7 @@ git push
 ## 8. 확인합니다
 
 - [ ] Wireshark 를 열면 **통로 이름 목록**이 보이고, 그중 하나의 그래프가 움직인다
+- [ ] `tasklist | grep Code` 로 VS Code 줄만 남겨 봤다
 - [ ] `security-agent-toolkit` 안에 `network_zt` 폴더가 `agent_core` · `docs` 와 같은 높이에 있다
 - [ ] `docs/2026-10-12.md` 에 Wireshark 와 Npcap 이 무엇인지 한 줄씩 적혀 있다
 - [ ] `.gitignore` 가 네 줄(`.env` · `.venv` · `.ipynb_checkpoints` · `__pycache__`)이다
