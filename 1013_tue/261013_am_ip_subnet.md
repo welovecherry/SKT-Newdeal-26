@@ -39,15 +39,13 @@
 
 ## 1. 내 PC 가 속한 망
 
-| 항목 | 값 | 찾은 방법 |
-|---|---|---|
-| IPv4 주소 |  | ipconfig |
-| 서브넷 마스크 |  | ipconfig |
-| CIDR |  | 마스크의 1 개수 |
-| 네트워크 주소 |  | my_network.py |
-| 브로드캐스트 주소 |  | my_network.py |
-| 사용 가능 주소 수 |  | my_network.py |
-| 공인 IP (인터넷이 보는 내 주소) |  | curl api.ipify.org |
+- IPv4 주소 (ipconfig): 
+- 서브넷 마스크 (ipconfig): 
+- CIDR (마스크의 1 개수): 
+- 네트워크 주소 (my_network.py): 
+- 브로드캐스트 주소 (my_network.py): 
+- 사용 가능 주소 수 (my_network.py): 
+- 공인 IP — 인터넷이 보는 내 주소 (curl api.ipify.org): 
 
 ## 2. 부서 주소 설계표
 (4교시에 채웁니다)

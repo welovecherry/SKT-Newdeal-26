@@ -464,7 +464,7 @@ tcp.port == 443
 
 <mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day01_packet_analysis.md` 의 `## 6교시` 에서 `### 문제 6-4` 아래
 
-위 칸에서 Protocol 이 `TCP` 인 줄 하나를 누르고, 가운데 칸의 세 줄을 펼쳐 아래 표를 채우시오.
+위 칸에서 Protocol 이 `TCP` 인 줄 하나를 누르고, 가운데 칸의 세 줄을 펼쳐 아래 표의 값을 찾고, 보고서에 적으시오.
 
 | 가운데 칸의 줄 | 층 | 찾을 값 |
 |---|---|---|
