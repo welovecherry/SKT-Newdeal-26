@@ -130,9 +130,6 @@
 
 - `권한 없는 응답:` 줄이 있었나 · 왜: 
 
-### ⭐ 도전 3-6 · DNS 로그에서 TLD 세기 (`tld_count.py`)
-
-- 출력: 
 
 ### 이 교시에 새로 안 것
 
@@ -169,9 +166,6 @@
 - 출력: 
 - 막힌 곳: 
 
-### ⭐ 도전 4-6 · CNAME 을 끝까지 따라가기 (`cname_chain.py`)
-
-- 출력: 
 
 ### 이 교시에 새로 안 것
 
@@ -206,9 +200,6 @@
 - 출력: 
 - 막힌 곳: 
 
-### ⭐ 도전 5-6 · 너무 긴 하위 이름 찾기 (`long_label.py`)
-
-- 출력: 
 
 ### 이 교시에 새로 안 것
 
@@ -240,9 +231,6 @@
 
 - 예외를 넣은 뒤 6-4 결과: 
 
-### ⭐ 도전 6-6 · 문턱값을 바꾸면 (`threshold.py`)
-
-- 출력: 
 
 ### 찾아본 것
 
@@ -281,9 +269,6 @@
 
 - 깃허브에 올렸나: 
 
-### ⭐ 도전 7-6 · 내가 고른 이름으로 시험하기
-
-- 예상과 달랐던 것: 
 
 ### 이 교시에 새로 안 것
 
@@ -317,7 +302,6 @@
 - 놓친 것 (6-3 의 미탐 두 건과 이유):
 - 데이터가 12건뿐이라:
 - 더 넣고 싶은 지표 (예: 등록일 · 같은 PC 의 NXDOMAIN 횟수):
-- ⭐7-6 에서 예상과 달랐던 것: 
 ```
 
 ⚠ <mark style="background:#ffcdd2; color:#1a1a1a; padding:0 4px; border-radius:3px">오늘 적는 것은 모두 이 파일(`day03_dns_analysis.md`) 하나에</mark> 적습니다. 문제마다 「<mark style="background:#ffcdd2; color:#1a1a1a; padding:0 4px; border-radius:3px">적는 곳</mark>」 줄이 이 파일의 어느 칸인지 알려 줍니다. 문제마다 소제목이 틀에 다 있으니 <mark style="background:#ffcdd2; color:#1a1a1a; padding:0 4px; border-radius:3px">그 문제 소제목 아래</mark>를 채웁니다.
@@ -977,79 +961,6 @@ nslookup example.com hera.ns.cloudflare.com
 
 ---
 
-### ⭐ 도전 3-6 · DNS 로그에서 TLD 세기 (`tld_count.py`, 선택)
-
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — VS Code 에서 `tld_count.py` 만들기 → 터미널에서 `python tld_count.py` 실행
-
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day03_dns_analysis.md` 의 `## 3교시` 에서 `### ⭐ 도전 3-6` 아래
-
-DNS 질의 로그에 나온 이름들을 **TLD 별로 몇 번인지** 세시오. 평소 안 쓰는 TLD 가 갑자기 많아지면 확인할 신호입니다.
-
-```python
-# ── 강사용: 정답을 채운 코드입니다 ──
-queries = [                                       # 하루 동안 물어본 이름이라고 가정합니다
-    "www.naver.com", "mail.google.com", "example.com", "www.daum.net",
-    "kxq3vz9a.top", "update.microsoft.com", "p0w8rk2m.top", "news.example.co.kr",
-]
-# 1. 이름마다 맨 끝 조각(TLD)을 꺼내 사전으로 세고, 「com 4」 꼴로 출력하세요
-count = {}                                        # TLD → 횟수
-for name in queries:                              # 이름을 하나씩
-    tld = name.split(".")[-1]                     # 맨 끝 조각
-    count[tld] = count.get(tld, 0) + 1            # 처음 보면 0 에서 시작
-for tld in count:
-    print(tld, count[tld])
-```
-
-**파일을 만들고 실행합니다**
-
-1. VS Code 왼쪽 목록에서 `network_zt` 폴더를 오른쪽 클릭 › **New File** › 이름 `tld_count.py` 를 입력하고 Enter 를 누릅니다.
-2. 위 코드 상자 안을 마우스로 끌어 선택하고 `Ctrl + C` 로 복사해 파일에 붙여 넣은 뒤, 번호 주석 아래를 채웁니다. 저장은 자동입니다.
-3. 터미널에 아래 명령을 입력합니다. 터미널의 줄 위에 `…/network_zt` 가 보여야 합니다. 아니면 먼저 `cd network_zt` 를 입력합니다.
-
-```bash
-python tld_count.py
-```
-맥북: `python3 tld_count.py`
-
-4. 고친 뒤에는 같은 명령을 다시 입력합니다. 터미널에서 **↑(위 화살표)** 를 누르면 방금 입력한 명령이 다시 나옵니다.
-
-| | |
-|---|---|
-| 🎯 나와야 하는 결과 | `com 4` · `net 1` · `top 2` · `kr 1` |
-
-**💡 힌트**
-
-1. TLD 는 `이름.split(".")[-1]` 입니다.
-2. 세기는 12일 5-4 의 `count.get(키, 0) + 1` 입니다.
-3. `.top` 같은 값싼 TLD 는 악성 도메인에 자주 쓰입니다 — 오후에 다시 봅니다.
-
-#### <mark style="display:block; background:#fff59d; color:#1a1a1a; padding:4px 12px; border-radius:4px; text-decoration:underline">정답 3-6</mark>
-
-(코드는 위 문제 칸에 채워 두었습니다.)
-
-💻 **터미널에 입력합니다.** `python tld_count.py`
-
-<mark style="background:#fff59d; color:#1a1a1a; text-decoration:underline; padding:0 4px; border-radius:3px">**결과** — `com 4` · `net 1` · `top 2` · `kr 1`</mark>
-
-**왜** — 이름의 맨 끝 조각이 TLD 입니다. TLD 를 사전의 키로 두고, 볼 때마다 1씩 더합니다.
-
-**자주 틀리는 곳** — `news.example.co.kr` 을 `co.kr` 로 세는 경우가 많습니다. `[-1]` 은 `kr` 하나입니다.
-
-**관제에서는** — 평소 안 보이던 `.top` 같은 TLD 질의가 갑자기 늘면 확인할 신호로 봅니다.
-
-**강사 메모** — 3교시 끝에 시간이 남는 학생만 풀게 합니다. 출력 순서가 `com` · `net` · `top` · `kr` 인 것은 사전이 처음 본 순서대로 키를 두기 때문이라고 짚어 줍니다. 「`.top` 이면 다 악성인가요?」라는 질문에는 「아니요, 평소보다 갑자기 늘었는지를 봅니다」라고 답합니다.
-
-### 3교시 한눈에
-
-| 하려는 일 | 명령 · 코드 |
-|---|---|
-| 이름의 층 | 오른쪽이 위층 — 루트 → TLD → 2단계 → 호스트 |
-| 담당 네임서버 | `nslookup -type=ns 이름` |
-| TLD 담당 | `nslookup -type=ns kr.` — 끝의 점까지 |
-| 원본 답 | `nslookup 이름 담당서버` — `권한 없는 응답` 이 없다 |
-| TLD 꺼내기 | `이름.split(".")[-1]` |
-
----
 
 # <mark style="display:block; background:#c8e6c9; color:#1a1a1a; padding:6px 12px; border-radius:4px">4교시 (12:00–12:50) · DNS 레코드 · TTL · 캐시</mark>
 
@@ -1363,82 +1274,6 @@ python dns_cache.py
 
 ---
 
-### ⭐ 도전 4-6 · CNAME 을 끝까지 따라가기 (`cname_chain.py`, 선택)
-
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — VS Code 에서 `cname_chain.py` 만들기 → 터미널에서 `python cname_chain.py` 실행
-
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day03_dns_analysis.md` 의 `## 4교시` 에서 `### ⭐ 도전 4-6` 아래
-
-레코드 사전에서 이름 하나를 받아 **CNAME 을 따라가 마지막 A 레코드의 IP** 까지 찾고, 거쳐 간 이름을 모두 출력하시오.
-
-```python
-# ── 강사용: 정답을 채운 코드입니다 ──
-records = {
-    "www.shop.test": {"type": "CNAME", "value": "shop.cdn.test"},
-    "shop.cdn.test": {"type": "CNAME", "value": "edge7.cdn.test"},
-    "edge7.cdn.test": {"type": "A", "value": "192.0.2.77"},
-}
-# 1. "www.shop.test" 에서 시작해, CNAME 이면 다음 이름으로 옮기기를 되풀이하고, 거쳐 간 이름을 「 → 」 로 이어 출력한 뒤 마지막 IP 를 출력하세요
-name = "www.shop.test"                            # 시작 이름
-chain = [name]                                    # 거쳐 간 이름들
-while records[name]["type"] == "CNAME":           # 별명인 동안
-    name = records[name]["value"]                 # 진짜 이름으로 옮긴다
-    chain.append(name)
-print(" → ".join(chain))
-print("IP:", records[name]["value"])
-```
-
-**파일을 만들고 실행합니다**
-
-1. VS Code 왼쪽 목록에서 `network_zt` 폴더를 오른쪽 클릭 › **New File** › 이름 `cname_chain.py` 를 입력하고 Enter 를 누릅니다.
-2. 위 코드 상자 안을 마우스로 끌어 선택하고 `Ctrl + C` 로 복사해 파일에 붙여 넣은 뒤, 번호 주석 아래를 채웁니다. 저장은 자동입니다.
-3. 터미널에 아래 명령을 입력합니다. 터미널의 줄 위에 `…/network_zt` 가 보여야 합니다. 아니면 먼저 `cd network_zt` 를 입력합니다.
-
-```bash
-python cname_chain.py
-```
-맥북: `python3 cname_chain.py`
-
-4. 고친 뒤에는 같은 명령을 다시 입력합니다. 터미널에서 **↑(위 화살표)** 를 누르면 방금 입력한 명령이 다시 나옵니다.
-
-| | |
-|---|---|
-| 🎯 나와야 하는 결과 | `www.shop.test → shop.cdn.test → edge7.cdn.test` · `IP: 192.0.2.77` |
-
-**💡 힌트**
-
-1. 바로 위 문법 상자의 `while` 과 같은 모양입니다.
-2. 거쳐 간 이름은 리스트에 `append` 하고, 끝에 `" → ".join(리스트)`.
-3. 4-3 에서 본 `Aliases` 가 이 사슬입니다.
-
-#### <mark style="display:block; background:#fff59d; color:#1a1a1a; padding:4px 12px; border-radius:4px; text-decoration:underline">정답 4-6</mark>
-
-(코드는 위 문제 칸에 채워 두었습니다.)
-
-💻 **터미널에 입력합니다.** `python cname_chain.py`
-
-<mark style="background:#fff59d; color:#1a1a1a; text-decoration:underline; padding:0 4px; border-radius:3px">**결과** — `www.shop.test → shop.cdn.test → edge7.cdn.test` · `IP: 192.0.2.77`</mark>
-
-**왜** — CNAME 이면 값(진짜 이름)으로 옮기고, A 레코드를 만나면 멈춥니다. 4-3 에서 리졸버가 별명을 따라간 방식과 같습니다.
-
-**자주 틀리는 곳** — `chain` 을 빈 리스트로 시작해 첫 이름 `www.shop.test` 가 출력에서 빠지는 경우가 많습니다.
-
-**관제에서는** — 거쳐 간 이름을 모두 남겨야 로그에서 어느 CDN · 어느 회사 서버를 거쳤는지 추적할 수 있습니다.
-
-**강사 메모** — 4교시 끝에 시간이 남는 학생만 풀게 합니다. 실행 뒤 4-3 의 `Aliases:` 줄과 이 출력의 사슬을 나란히 놓고 같은 일이라고 이어 줍니다. 「사슬이 끝나지 않으면 어떻게 되나요?」라는 질문에는 문법 상자 ⚠ 처럼 「a → b → a 면 `while` 이 끝나지 않으니 실무 코드는 횟수 제한을 둡니다」라고 답합니다.
-
-### 4교시 한눈에
-
-| 레코드 | 묻는 법 | 뜻 |
-|---|---|---|
-| A · AAAA | `nslookup 이름` | IPv4 · IPv6 |
-| CNAME | `-type=cname` | 별명 → 진짜 이름 |
-| MX | `-type=mx` | 메일 서버 (숫자 작은 것 먼저) |
-| NS | `-type=ns` | 담당 네임서버 |
-| 캐시 · TTL | `ipconfig //displaydns` | 저장해 둔 답과 남은 초 |
-| 캐시 비우기 | `ipconfig //flushdns` | 저장해 둔 답을 모두 지운다 — 다음 질문부터 새로 묻는다 |
-
----
 
 ## 오전 마무리 — 보고서 2 · 3 · 4교시 칸 확인
 

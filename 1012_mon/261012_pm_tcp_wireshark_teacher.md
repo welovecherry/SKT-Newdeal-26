@@ -256,7 +256,7 @@ python warmup.py
 
 **관제에서는** — `[SYN]` 만 쏟아지고 세 번째 `[ACK]` 가 없으면 포트 스캔 같은 공격을 의심합니다.
 
-**강사 메모** — (다)를 누가 보내는지를 가장 강조합니다. 「세 번째 `[ACK]` 뒤에 바로 데이터가 가나요?」에는 「네, `ESTABLISHED` 가 된 뒤 데이터를 주고받습니다」라고 답합니다. 7-2 에서 이 세 줄을 Wireshark 로 직접 본다고 미리 알려 둡니다.
+**강사 메모** — (다)를 누가 보내는지를 가장 강조합니다. 「세 번째 `[ACK]` 뒤에 바로 데이터가 가나요?」에는 「네, `ESTABLISHED` 가 된 뒤 데이터를 주고받습니다」라고 답합니다. 7-1 에서 이 세 줄을 Wireshark 로 직접 본다고 미리 알려 둡니다.
 
 ---
 
@@ -554,41 +554,12 @@ python packet_filter.py
 
 ---
 
-### ✍️ 문제 6-1 · 필터 칸 색 보기
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — Wireshark 를 실행해(6-2 의 1번) 위쪽 표시 필터 칸에 직접 치기 → 보고서에 적기
-
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day01_packet_analysis.md` 의 `## 6교시` 에서 `### 문제 6-1` 아래
-
-Wireshark 를 실행하고(6-2 의 1번) 위쪽 표시 필터 칸에 아래 세 가지를 하나씩 쳐 보시오. **Enter 는 누르지 않고** 칸이 각각 **무슨 색**이 되는지만 적습니다. 다음 것을 치기 전에 칸을 지웁니다.
-
-```
-tcp
-tpc
-tcp.port == 443
-```
-
-막히면 바로 위 Wireshark 상자의 색 표를 봅니다.
-
-#### <mark style="display:block; background:#fff59d; color:#1a1a1a; padding:4px 12px; border-radius:4px; text-decoration:underline">정답</mark>
-
-<mark style="background:#fff59d; color:#1a1a1a; text-decoration:underline; padding:0 4px; border-radius:3px">**결과** — 초록 · 빨강 · 초록.</mark>
-
-**왜** — Wireshark 는 친 글자를 아는 이름 · 문법과 맞춰 보고 색으로 알려 줍니다. `tpc` 는 없는 이름(오타)이라 빨강입니다. 6-5 에서 직접 쳐 보며 맞춰 봅니다.
-
-**자주 틀리는 곳** — 빨간 칸인 채로 Enter 를 누르면 필터가 걸리지 않습니다. 색부터 보고 Enter 를 누릅니다.
-
-**관제에서는** — 필터를 걸기 전에 칸이 초록인지 보는 습관이, 잘못 걸린 결과를 믿는 실수를 막습니다.
-
-**강사 메모** — 지금 직접 쳐 본 색을 6-5 에서 필터를 걸 때 다시 확인한다고 말합니다. 「노란색은 언제 나오나요?」에는 「문법은 맞지만 생각과 다르게 걸릴 수 있을 때」라고 상자의 표대로 답합니다. 색을 보고 Enter 를 누르는 습관을 여기서 한 번 강조합니다.
-
----
-
-### ✍️ 문제 6-2 · Wireshark 실행하기
+### ✍️ 문제 6-1 · Wireshark 실행하기
 
 <mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — Wireshark 화면에서
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day01_packet_analysis.md` 의 `## 6교시` 에서 `### 문제 6-2` 아래
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day01_packet_analysis.md` 의 `## 6교시` 에서 `### 문제 6-1` 아래
 
 아침 과제 8 에서 설치한 Wireshark 를 실행해, 첫 화면에서 **인터페이스 목록**이 보이는지 확인하시오.
 
@@ -607,7 +578,7 @@ tcp.port == 443
 맥북: 통로는 `en0`(Wi-Fi) 입니다. 첫 화면에 **ChmodBPF** 설치 안내가 보이면 그 링크로 설치해야 캡처가 됩니다(설치 전에는 「권한이 없다」며 0 개가 잡힙니다).
 3. 막히면 손을 듭니다 — 전원이 같이 출발해야 다음 단계가 됩니다.
 
-#### <mark style="display:block; background:#fff59d; color:#1a1a1a; padding:4px 12px; border-radius:4px; text-decoration:underline">정답 6-2</mark>
+#### <mark style="display:block; background:#fff59d; color:#1a1a1a; padding:4px 12px; border-radius:4px; text-decoration:underline">정답 6-1</mark>
 
 시작 메뉴에서 Wireshark 를 실행합니다(설치는 아침 과제 8). 첫 화면 가운데에 통로 이름 목록이 보이면 됩니다.
 
@@ -623,11 +594,11 @@ tcp.port == 443
 
 ---
 
-### ✍️ 문제 6-3 · 첫 캡처
+### ✍️ 문제 6-2 · 첫 캡처
 
 <mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — Wireshark 화면에서 → 보고서에 적기
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day01_packet_analysis.md` 의 `## 6교시` 에서 `### 문제 6-3` 아래
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day01_packet_analysis.md` 의 `## 6교시` 에서 `### 문제 6-2` 아래
 
 **그래프가 움직이는 통로**를 더블클릭해 캡처를 시작하고, 브라우저로 사이트 하나를 연 뒤 멈추시오. 상태 줄의 **패킷 수**와 Protocol 열에 보이는 **이름 세 개**를 적으시오.
 
@@ -641,7 +612,7 @@ tcp.port == 443
 2. 멈추기는 도구 줄의 **빨간 네모**(또는 메뉴 캡처 › 정지 · Capture › Stop).
 3. 사이트 하나만 열었는데 수백 줄인 것이 정상입니다 — 업데이트 · 백신 · 메신저가 쉬지 않고 통신합니다.
 
-#### <mark style="display:block; background:#fff59d; color:#1a1a1a; padding:4px 12px; border-radius:4px; text-decoration:underline">정답 6-3</mark>
+#### <mark style="display:block; background:#fff59d; color:#1a1a1a; padding:4px 12px; border-radius:4px; text-decoration:underline">정답 6-2</mark>
 
 통로 더블클릭 → 브라우저로 사이트 열기 → 빨간 네모. 상태 줄 `패킷: ○○○`, Protocol 열의 `TCP` · `UDP` · `DNS` · `TLSv1.3` 등을 적습니다.
 
@@ -657,11 +628,11 @@ tcp.port == 443
 
 ---
 
-### ✍️ 문제 6-4 · 패킷 하나를 층별로 펼치기
+### ✍️ 문제 6-3 · 패킷 하나를 층별로 펼치기
 
 <mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — Wireshark 화면에서
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day01_packet_analysis.md` 의 `## 6교시` 에서 `### 문제 6-4` 아래
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day01_packet_analysis.md` 의 `## 6교시` 에서 `### 문제 6-3` 아래
 
 위 칸에서 Protocol 이 `TCP` 인 줄 하나를 누르고, 가운데 칸의 세 줄을 펼쳐 아래 표의 값을 찾고, 보고서에 적으시오.
 
@@ -682,7 +653,7 @@ tcp.port == 443
 3. 봉투 안에 봉투가 든 모양 — 5.3 의 「헤더가 여러 겹」을 실물로 보는 것입니다.
 4. `Time to Live` 는 `Internet Protocol Version 4` 를 펼친 안쪽 중간쯤에, `Flags` 는 `Transmission Control Protocol` 안에 `Flags: 0x018 (PSH, ACK)` 꼴로 있습니다 — 괄호 안 이름을 적습니다.
 
-#### <mark style="display:block; background:#fff59d; color:#1a1a1a; padding:4px 12px; border-radius:4px; text-decoration:underline">정답 6-4</mark>
+#### <mark style="display:block; background:#fff59d; color:#1a1a1a; padding:4px 12px; border-radius:4px; text-decoration:underline">정답 6-3</mark>
 
 `Ethernet II` › Source(MAC) · `Internet Protocol Version 4` › Source · Destination · Time to Live · `Transmission Control Protocol` › Source Port · Destination Port · Flags 를 펼쳐 읽습니다.
 
@@ -694,15 +665,15 @@ tcp.port == 443
 
 **관제에서는** — 의심 패킷 하나에서 출발지 IP · 목적지 포트 · 플래그를 이 세 줄로 읽어 누가 어디로 무엇을 했는지 정리합니다.
 
-**강사 메모** — 내 PC 가 보낸 줄(Source 가 내 IPv4 주소)을 고르게 하면 7-4 의 헤더 표에 그대로 옮길 수 있습니다. 「내 PC 가 보낸 줄과 서버가 보낸 줄의 TTL 이 왜 다른가요?」에는 「보낸 쪽이 처음 정한 값에서 거쳐 온 횟수만큼 줄어든 값이라서」라고 답합니다. 포트를 IP 줄에서 찾는 학생이 많으니 층 순서를 한 번 더 짚습니다.
+**강사 메모** — 내 PC 가 보낸 줄(Source 가 내 IPv4 주소)을 고르게 하면 7-3 의 헤더 표에 그대로 옮길 수 있습니다. 「내 PC 가 보낸 줄과 서버가 보낸 줄의 TTL 이 왜 다른가요?」에는 「보낸 쪽이 처음 정한 값에서 거쳐 온 횟수만큼 줄어든 값이라서」라고 답합니다. 포트를 IP 줄에서 찾는 학생이 많으니 층 순서를 한 번 더 짚습니다.
 
 ---
 
-### ✍️ 문제 6-5 · 필터 세 개 걸어 보기
+### ✍️ 문제 6-4 · 필터 세 개 걸어 보기
 
 <mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — Wireshark 화면에서 → 보고서에 적기
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day01_packet_analysis.md` 의 `## 6교시` 에서 `### 문제 6-5` 아래
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day01_packet_analysis.md` 의 `## 6교시` 에서 `### 문제 6-4` 아래
 
 필터 칸에 아래를 **하나씩** 걸고(Enter), 상태 줄의 **표시됨** 숫자를 적으시오. 다음 것을 걸기 전에 칸 오른쪽 **X** 로 지웁니다.
 
@@ -720,9 +691,9 @@ tcp.port == 443
 
 1. 필터 칸은 **패킷 목록 바로 위** `표시 필터 적용` 칸입니다(6.1 화면 길잡이). 필터는 패킷을 지우지 않고 **가립니다.** 그래서 `패킷` 수는 그대로입니다.
 2. `udp` 결과 대부분이 DNS 입니다 — 5.1 표의 「DNS 조회는 UDP」를 눈으로 확인하는 것입니다.
-3. 칸이 빨간색이면 오타입니다. 6-1 의 `tpc` 도 쳐 봅니다.
+3. 칸이 빨간색이면 오타입니다. 일부러 `tpc` 를 쳐서 칸이 빨강이 되는 것도 봅니다.
 
-#### <mark style="display:block; background:#fff59d; color:#1a1a1a; padding:4px 12px; border-radius:4px; text-decoration:underline">정답 6-5</mark>
+#### <mark style="display:block; background:#fff59d; color:#1a1a1a; padding:4px 12px; border-radius:4px; text-decoration:underline">정답 6-4</mark>
 
 필터 칸에 하나씩 입력하고 Enter. 상태 줄의 `표시됨` 숫자를 적고 X 로 지운 뒤 다음 것을 겁니다.
 
@@ -744,11 +715,11 @@ tcp.port == 443
 
 ---
 
-### ⭐ 도전 6-6 · 화면에서 찍어 필터 만들기 (선택)
+### ⭐ 도전 6-5 · 화면에서 찍어 필터 만들기 (선택)
 
 <mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — Wireshark 화면에서
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day01_packet_analysis.md` 의 `## 6교시` 에서 `### ⭐ 도전 6-6` 아래
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day01_packet_analysis.md` 의 `## 6교시` 에서 `### ⭐ 도전 6-5` 아래
 
 필드 이름을 외우지 않고 필터를 만드시오.
 
@@ -766,7 +737,7 @@ tcp.port == 443
 2. Wireshark 상자 맨 아래 ⚠ 줄을 다시 봅니다.
 3. 같은 방법으로 `Destination Port` 를 찍으면 `tcp.port == 443` 이 생깁니다.
 
-#### <mark style="display:block; background:#fff59d; color:#1a1a1a; padding:4px 12px; border-radius:4px; text-decoration:underline">정답 6-6</mark>
+#### <mark style="display:block; background:#fff59d; color:#1a1a1a; padding:4px 12px; border-radius:4px; text-decoration:underline">정답 6-5</mark>
 
 `Destination Address` 오른쪽 클릭 › 필터로 적용 › 선택됨 → 필터 칸이 `ip.dst == 주소` 가 됨 → `ip.dst` 를 `ip.addr` 로 고쳐 Enter.
 
@@ -808,9 +779,9 @@ tcp.port == 443
 | 캡처 필터 (capture filter) | 캡처 필터 | 캡처를 **시작하기 전에** 걸어, 조건에 맞는 패킷만 처음부터 잡는 조건 — `tcp port 80` |
 | HTTP (HyperText Transfer Protocol) | 에이치티티피 | 웹 요청과 응답을 **암호화하지 않고** 주고받는 방식 — 포트 80 |
 | HTTPS | 에이치티티피에스 | HTTP 를 **암호화**해서 주고받는 웹 — 포트 443. 요즘 웹은 거의 다 이것 |
-| TLS (Transport Layer Security) | 티엘에스 | HTTPS 가 쓰는 **암호화 방식**. Wireshark 의 Protocol 열에 `TLSv1.3` 으로 보인다(⭐7-7) |
+| TLS (Transport Layer Security) | 티엘에스 | HTTPS 가 쓰는 **암호화 방식**. Wireshark 의 Protocol 열에 `TLSv1.3` 으로 보인다(⭐7-6) |
 | `curl` | 컬 | 터미널에서 **웹 요청을 보내는** 명령. Windows 에 기본으로 들어 있다 |
-| 상태 코드 | 상태 코드 | 서버가 답 맨 앞에 붙이는 숫자 — `200` 성공 · `404` 없음 (7-6) |
+| 상태 코드 | 상태 코드 | 서버가 답 맨 앞에 붙이는 숫자 — `200` 성공 · `404` 없음 (7-5) |
 
 ### 7.1 잡을 때부터 거르기 — 캡처 필터
 
@@ -842,46 +813,12 @@ print(f"| {i} | {p['src']} | {p['dst']} | {p['info']} |")
 
 ---
 
-### ✍️ 문제 7-1 · 직접 실행해 보기
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — VS Code 에서 `warmup.py` 에 따라 치기 → 터미널에서 `python warmup.py` → 결과와 「왜」를 보고서에 적기
-
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day01_packet_analysis.md` 의 `## 7교시` 에서 `### 문제 7-1` 아래
-
-아래 코드를 `warmup.py` 에 **따라 쳐서** 실행하고, 결과와 「왜 이렇게 나왔는지」 한 줄을 적으시오. `warmup.py` 는 처음 한 번만 `network_zt` 폴더에 New File 로 만들고, 교시마다 내용을 지우고 다시 씁니다.
-
-```python
-packets = [{"info": "[SYN]"}, {"info": "[SYN, ACK]"}, {"info": "[ACK]"}]
-i = 0
-for p in packets:
-    i = i + 1
-    print(f"| {i} | {p['info']} |")
-```
-
-```bash
-python warmup.py
-```
-맥북: `python3 warmup.py`
-
-#### <mark style="display:block; background:#fff59d; color:#1a1a1a; padding:4px 12px; border-radius:4px; text-decoration:underline">정답</mark>
-
-<mark style="background:#fff59d; color:#1a1a1a; text-decoration:underline; padding:0 4px; border-radius:3px">**결과** — `| 1 | [SYN] |` · `| 2 | [SYN, ACK] |` · `| 3 | [ACK] |` 세 줄.</mark>
-
-**왜** — `i = i + 1` 이 `print` 보다 위에 있어서 첫 줄 번호가 1 입니다. 번호는 반복할 때마다 1씩 늘어납니다.
-
-**자주 틀리는 곳** — 첫 줄을 `| 0 | [SYN] |` 로 적기 쉽습니다. 더하기가 출력보다 먼저인지 봅니다.
-
-**관제에서는** — 패킷 값을 손으로 옮기지 않고 코드가 표로 찍게 하면 보고서의 숫자가 틀리지 않습니다.
-
-**강사 메모** — `i = i + 1` 이 `print` 보다 위에 있다는 점을 강조합니다. 바로 이어 「두 줄의 순서를 바꾸면 번호는?」(0 · 1 · 2)을 물어 봅니다. 「f-string 안에서 작은따옴표를 왜 쓰나요?」에는 「바깥이 큰따옴표라 안쪽 키는 작은따옴표로 써야 글자가 끊기지 않는다」고 답합니다.
-
----
-
-### ✍️ 문제 7-2 · 내 HTTP 연결 하나만 잡기
+### ✍️ 문제 7-1 · 내 HTTP 연결 하나만 잡기
 
 <mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — Wireshark 에서 캡처 시작 → 터미널에서 `curl` 실행 → Wireshark 화면을 사진으로 저장
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day01_packet_analysis.md` 의 `## 7교시` 에서 `### 문제 7-2` 아래
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day01_packet_analysis.md` 의 `## 7교시` 에서 `### 문제 7-1` 아래
 
 캡처 필터 `tcp port 80` 으로 캡처를 시작하고, 터미널에서 아래 명령을 입력한 뒤 **3초쯤 기다렸다가** 멈추시오.
 
@@ -902,7 +839,7 @@ curl "http://example.com/?q=network_day1"
 3. 화면 자르기는 `Win + Shift + S`(윈도우 키 + Shift + S · 캡처 도구) → 잘라서 `network_zt` 폴더에 붙여 저장합니다(그림판에 붙여 저장해도 됩니다).
 4. 멈췄는데 한 줄도 없으면: 캡처 필터 칸이 초록이었는지, `curl` 을 캡처가 **돌아가는 동안** 쳤는지 봅니다.
 
-#### <mark style="display:block; background:#fff59d; color:#1a1a1a; padding:4px 12px; border-radius:4px; text-decoration:underline">정답 7-2</mark>
+#### <mark style="display:block; background:#fff59d; color:#1a1a1a; padding:4px 12px; border-radius:4px; text-decoration:underline">정답 7-1</mark>
 
 캡처 › 옵션(`Ctrl + K`) › 통로 선택 › 캡처 필터 `tcp port 80` › 시작. **터미널에 입력합니다.**
 
@@ -924,13 +861,13 @@ curl "http://example.com/?q=network_day1"
 
 ---
 
-### ✍️ 문제 7-3 · 내용과 작별 찾기
+### ✍️ 문제 7-2 · 내용과 작별 찾기
 
 <mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — Wireshark 화면에서 → 보고서에 적기
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day01_packet_analysis.md` 의 `## 7교시` 에서 `### 문제 7-3` 아래
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day01_packet_analysis.md` 의 `## 7교시` 에서 `### 문제 7-2` 아래
 
-7-2 의 캡처에서 아래 둘을 찾으시오.
+7-1 의 캡처에서 아래 둘을 찾으시오.
 
 1. 표시 필터 `http` → `GET /?q=network_day1` 줄을 찾아 **잘라** `http_request.png` 로 저장합니다.
 2. 표시 필터 `tcp.flags.fin == 1` → FIN 이 든 줄이 **몇 줄**인지 적습니다.
@@ -945,7 +882,7 @@ curl "http://example.com/?q=network_day1"
 2. FIN 이 2줄인 것은 5.2 그림의 「나는 다 보냈다」 · 「나도 다 보냈다」 두 번입니다. Info 에는 `[FIN]` 이 아니라 **`[FIN, ACK]`** 로 보입니다.
 3. 줄이 안 보이면 `curl` 을 캡처 중에 다시 입력합니다.
 
-#### <mark style="display:block; background:#fff59d; color:#1a1a1a; padding:4px 12px; border-radius:4px; text-decoration:underline">정답 7-3</mark>
+#### <mark style="display:block; background:#fff59d; color:#1a1a1a; padding:4px 12px; border-radius:4px; text-decoration:underline">정답 7-2</mark>
 
 표시 필터 `http` → `GET /?q=network_day1 HTTP/1.1` 줄을 잘라 `http_request.png`. 표시 필터 `tcp.flags.fin == 1` → FIN 이 든 줄 2줄.
 
@@ -961,22 +898,22 @@ curl "http://example.com/?q=network_day1"
 
 ---
 
-### ✍️ 문제 7-4 · 보고서 표를 코드로 찍기 (`report_table.py`)
+### ✍️ 문제 7-3 · 보고서 표를 코드로 찍기 (`report_table.py`)
 
 <mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — VS Code 에서 `report_table.py` 만들기 → 터미널에서 `python report_table.py` 실행
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day01_packet_analysis.md` 의 `## 7교시` 에서 `### 문제 7-4` 아래
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day01_packet_analysis.md` 의 `## 7교시` 에서 `### 문제 7-3` 아래
 
-7-2 에서 찾은 세 줄과 6-4 에서 읽은 헤더 값을 **마크다운 표 두 개**로 출력하시오. `network_zt` 에 `report_table.py` 를 만들어 붙여 넣고, **데이터의 값을 내 화면 값으로 바꾼 뒤** 번호 주석 아래를 채웁니다. `python report_table.py`
+7-1 에서 찾은 세 줄과 6-3 에서 읽은 헤더 값을 **마크다운 표 두 개**로 출력하시오. `network_zt` 에 `report_table.py` 를 만들어 붙여 넣고, **데이터의 값을 내 화면 값으로 바꾼 뒤** 번호 주석 아래를 채웁니다. `python report_table.py`
 
 ```python
 # ── 강사용: 정답을 채운 코드입니다 ──
-packets = [                                       # 7-2 의 3-way 세 줄
+packets = [                                       # 7-1 의 3-way 세 줄
     {"src": "192.168.0.15", "dst": "203.0.113.10", "info": "[SYN]"},
     {"src": "203.0.113.10", "dst": "192.168.0.15", "info": "[SYN, ACK]"},
     {"src": "192.168.0.15", "dst": "203.0.113.10", "info": "[ACK]"},
 ]
-headers = [                                       # 6-4 · 7-2 에서 읽은 헤더 값
+headers = [                                       # 6-3 · 7-1 에서 읽은 헤더 값
     {"item": "출발지 IP", "value": "192.168.0.15", "where": "IP 헤더 (3층)"},
     {"item": "목적지 IP", "value": "203.0.113.10", "where": "IP 헤더 (3층)"},
     {"item": "TTL", "value": "128", "where": "IP 헤더 (3층)"},
@@ -1021,9 +958,9 @@ python report_table.py
 
 1. 7-1 과 같은 모양입니다.
 2. 바깥은 큰따옴표, 안쪽 키는 작은따옴표입니다.
-3. 출력을 그대로 복사해 보고서 맨 아래 「최종 분석」의 「(7-4 report_table.py 의 … 표를 여기에 붙입니다)」 두 자리에 붙입니다.
+3. 출력을 그대로 복사해 보고서 맨 아래 「최종 분석」의 「(7-3 report_table.py 의 … 표를 여기에 붙입니다)」 두 자리에 붙입니다.
 
-#### <mark style="display:block; background:#fff59d; color:#1a1a1a; padding:4px 12px; border-radius:4px; text-decoration:underline">정답 7-4</mark>
+#### <mark style="display:block; background:#fff59d; color:#1a1a1a; padding:4px 12px; border-radius:4px; text-decoration:underline">정답 7-3</mark>
 
 (코드는 위 문제 칸에 채워 두었습니다.)
 
@@ -1042,15 +979,15 @@ python report_table.py
 
 **관제에서는** — 분석 값을 늘 같은 모양의 표로 남기면 보고서끼리 비교하기 쉽습니다.
 
-**강사 메모** — 값을 바꿀 때 따옴표까지 지워 `SyntaxError` 가 나는 학생이 많으니, 따옴표 안의 글자만 바꾼다고 먼저 말합니다. 「TTL 은 어느 줄의 값을 적나요?」에는 「6-4 처럼 내 PC 가 보낸 줄의 값」이라고 답합니다. 출력된 표를 7-5 에서 그대로 붙인다고 알려 둡니다.
+**강사 메모** — 값을 바꿀 때 따옴표까지 지워 `SyntaxError` 가 나는 학생이 많으니, 따옴표 안의 글자만 바꾼다고 먼저 말합니다. 「TTL 은 어느 줄의 값을 적나요?」에는 「6-3 처럼 내 PC 가 보낸 줄의 값」이라고 답합니다. 출력된 표를 7-4 에서 그대로 붙인다고 알려 둡니다.
 
 ---
 
-### ✍️ 문제 7-5 · 보고서 완성하고 올리기
+### ✍️ 문제 7-4 · 보고서 완성하고 올리기
 
 <mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — 보고서 파일 마무리 → 깃허브에 올리기(웹 화면 또는 `git push`)
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day01_packet_analysis.md` 의 `## 7교시` 에서 `### 문제 7-5` 아래
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day01_packet_analysis.md` 의 `## 7교시` 에서 `### 문제 7-4` 아래
 
 `day01_packet_analysis.md` 의 **빈 칸**(5 · 6 · 7교시와 맨 아래 「최종 분석」)을 마저 채우고 깃허브에 올리시오. 사진 줄과 표 자리는 오전에 붙여 넣은 틀에 이미 있습니다.
 
@@ -1064,7 +1001,7 @@ python report_table.py
 2. 올리기는 10/8 에 배운 순서입니다 — `security-agent-toolkit` 폴더에서 `git add network_zt` → `git commit -m "…"` → `git push`.
 3. `git status` 에 `.env` 가 보이면 멈춥니다.
 
-#### <mark style="display:block; background:#fff59d; color:#1a1a1a; padding:4px 12px; border-radius:4px; text-decoration:underline">정답 7-5</mark>
+#### <mark style="display:block; background:#fff59d; color:#1a1a1a; padding:4px 12px; border-radius:4px; text-decoration:underline">정답 7-4</mark>
 
 보고서의 빈 줄을 다 채운 뒤, **터미널(`security-agent-toolkit` 폴더)에 입력합니다.**
 
@@ -1087,11 +1024,11 @@ git push
 
 ---
 
-### ✍️ 문제 7-6 · 웹 서버에 머리글만 묻기 — `curl -I`
+### ✍️ 문제 7-5 · 웹 서버에 머리글만 묻기 — `curl -I`
 
 <mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — 터미널에서 명령 실행 → 보고서에 적기
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day01_packet_analysis.md` 의 `## 7교시` 에서 `### 문제 7-6` 아래
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day01_packet_analysis.md` 의 `## 7교시` 에서 `### 문제 7-5` 아래
 
 터미널에 아래를 입력하고, **첫 줄의 상태 코드**와 **`Server:` 줄의 값**을 보고서에 적으시오.
 
@@ -1109,7 +1046,7 @@ curl -I http://example.com
 2. 관제에서는 「이 웹 서버가 살아 있나 · 무슨 서버인가」를 볼 때 가장 먼저 씁니다. 화면이 짧아 읽기 쉽습니다.
 3. 상태 코드 `200` 은 9/29 에 배운 「성공」입니다.
 
-#### <mark style="display:block; background:#fff59d; color:#1a1a1a; padding:4px 12px; border-radius:4px; text-decoration:underline">정답 7-6</mark>
+#### <mark style="display:block; background:#fff59d; color:#1a1a1a; padding:4px 12px; border-radius:4px; text-decoration:underline">정답 7-5</mark>
 
 💻 **터미널에 입력합니다.**
 
@@ -1129,13 +1066,13 @@ curl -I http://example.com
 
 ---
 
-### ⭐ 도전 7-7 · 암호화된 연결은 무엇이 다른가 (선택)
+### ⭐ 도전 7-6 · 암호화된 연결은 무엇이 다른가 (선택)
 
 <mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — Wireshark 에서 캡처 시작 → 터미널에서 `curl` 실행 → 다른 점을 보고서에 적기
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day01_packet_analysis.md` 의 `## 7교시` 에서 `### ⭐ 도전 7-7` 아래
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day01_packet_analysis.md` 의 `## 7교시` 에서 `### ⭐ 도전 7-6` 아래
 
-캡처 필터를 **`tcp port 443`** 으로 바꿔 같은 방법으로 아래를 잡고, 7-3 의 HTTP 화면과 **무엇이 다른지** 보고서에 한 문장으로 적으시오.
+캡처 필터를 **`tcp port 443`** 으로 바꿔 같은 방법으로 아래를 잡고, 7-2 의 HTTP 화면과 **무엇이 다른지** 보고서에 한 문장으로 적으시오.
 
 ```bash
 curl "https://example.com/?q=network_day1"
@@ -1151,7 +1088,7 @@ curl "https://example.com/?q=network_day1"
 2. 열리는 순간(3-way)은 암호화 **전**이라 똑같습니다.
 3. 관제 관점: HTTPS 는 내용이 안 보이니 **누구와 · 언제 · 얼마나** 통신했는지를 봅니다.
 
-#### <mark style="display:block; background:#fff59d; color:#1a1a1a; padding:4px 12px; border-radius:4px; text-decoration:underline">정답 7-7</mark>
+#### <mark style="display:block; background:#fff59d; color:#1a1a1a; padding:4px 12px; border-radius:4px; text-decoration:underline">정답 7-6</mark>
 
 캡처 필터 `tcp port 443` 으로 다시 잡고 `curl "https://example.com/?q=network_day1"`. 표시 필터 `tls` 로 보면 `Client Hello` · `Application Data` 만 보이고 검색어는 보이지 않습니다. 보고서에는 예: 「HTTP 는 내용이 그대로 보였지만 HTTPS 는 3-way 뒤의 내용이 암호화돼 검색어가 보이지 않았다」.
 
@@ -1163,7 +1100,7 @@ curl "https://example.com/?q=network_day1"
 
 **관제에서는** — HTTPS 는 내용이 안 보이니 누구와 · 언제 · 얼마나 통신했는지를 봅니다.
 
-**강사 메모** — 3-way 는 같고 그 뒤 내용만 가려진다는 대비를 7-3 화면과 나란히 놓고 강조합니다. 「어느 사이트에 갔는지도 안 보이나요?」에는 「`Client Hello` 를 펼치면 서버 이름 `example.com` 은 보통 보이지만 `?q=network_day1` 은 보이지 않는다」고 답합니다. 선택 문제라 먼저 끝난 학생에게만 권하고, 캡처 필터를 `tcp port 443` 으로 바꿨는지부터 봅니다.
+**강사 메모** — 3-way 는 같고 그 뒤 내용만 가려진다는 대비를 7-2 화면과 나란히 놓고 강조합니다. 「어느 사이트에 갔는지도 안 보이나요?」에는 「`Client Hello` 를 펼치면 서버 이름 `example.com` 은 보통 보이지만 `?q=network_day1` 은 보이지 않는다」고 답합니다. 선택 문제라 먼저 끝난 학생에게만 권하고, 캡처 필터를 `tcp port 443` 으로 바꿨는지부터 봅니다.
 
 ### 7교시 한눈에
 
@@ -1181,10 +1118,10 @@ curl "https://example.com/?q=network_day1"
 
 | 확인 | 문제 |
 |---|---|
-| `day01_packet_analysis.md` 의 2~7교시와 「최종 분석」에 빈 칸이 없다(⭐ 제외) | 모든 문제 · 7-5 |
-| 사진 두 장(`handshake.png` · `http_request.png`)이 보고서에 나온다 | 7-2 · 7-3 |
-| 3-way 세 단계를 내 말로 설명할 수 있다 | 5-3 · 7-2 |
-| 깃허브에 올렸다 | 7-5 |
+| `day01_packet_analysis.md` 의 2~7교시와 「최종 분석」에 빈 칸이 없다(⭐ 제외) | 모든 문제 · 7-4 |
+| 사진 두 장(`handshake.png` · `http_request.png`)이 보고서에 나온다 | 7-1 · 7-2 |
+| 3-way 세 단계를 내 말로 설명할 수 있다 | 5-3 · 7-1 |
+| 깃허브에 올렸다 | 7-4 |
 
 내일(10/13)은 오늘 `ipconfig` 에서 본 `192.168.0.15` · `255.255.255.0` 같은 숫자의 정체 — **IP 주소와 서브넷**을 배웁니다.
 

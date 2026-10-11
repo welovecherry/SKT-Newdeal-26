@@ -89,7 +89,6 @@
 | 타이포스쿼팅 (typosquatting) | 타이포스쿼팅 | 진짜 도메인과 **비슷하게** 만들어 사람을 속이는 사칭 — `nav3r.com` |
 | rcode (response code) | 알코드 | DNS 답의 **결과 코드** — 로그의 「답」 칸 |
 | NOERROR | 노에러 | 「**답이 있었다**」 — 있는 이름 |
-| DNS 터널링 | 디엔에스 터널링 | DNS 질문의 **긴 하위 이름에 데이터를 숨겨** 몰래 내보내는 수법(⭐5-6) |
 
 ### 5.1 의심 도메인을 가르는 지표
 
@@ -434,78 +433,6 @@ python nx_count.py
 
 ---
 
-### ⭐ 도전 5-6 · 너무 긴 하위 이름 찾기 (`long_label.py`, 선택)
-
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — VS Code 에서 `long_label.py` 만들기 → 터미널에서 `python long_label.py` 실행
-
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day03_dns_analysis.md` 의 `## 5교시` 에서 `### ⭐ 도전 5-6` 아래
-
-DNS 질의에 데이터를 몰래 실어 보내는 **DNS 터널링**은 맨 앞 조각이 비정상적으로 깁니다. 맨 앞 조각이 **30글자 이상**인 이름을 찾으시오.
-
-```python
-# ── 강사용: 정답을 채운 코드입니다 ──
-names = [
-    "www.naver.com",
-    "aGVsbG8gd29ybGQgdGhpcyBpcyBzZWNyZXQ.t1.example.com",
-    "update.microsoft.com",
-    "c2VjcmV0X3Bhc3N3b3JkX2Zvcl9hZG1pbl91c2Vy.t1.example.com",
-]
-# 1. 이름마다 맨 앞 조각의 길이를 재서 30 이상이면 「[터널링 의심] 길이 35 : 이름」 꼴로 출력하세요
-for name in names:                                # 이름을 하나씩
-    first = name.split(".")[0]                    # 맨 앞 조각
-    if len(first) >= 30:                          # 비정상적으로 길면
-        print("[터널링 의심] 길이", len(first), ":", name)
-```
-
-**파일을 만들고 실행합니다**
-
-1. VS Code 왼쪽 목록에서 `network_zt` 폴더를 오른쪽 클릭 › **New File** › 이름 `long_label.py` 를 입력하고 Enter 를 누릅니다.
-2. 위 코드 상자 안을 마우스로 끌어 선택하고 `Ctrl + C` 로 복사해 파일에 붙여 넣은 뒤, 번호 주석 아래를 채웁니다. 저장은 자동입니다.
-3. 터미널에 아래 명령을 입력합니다. 터미널의 줄 위에 `…/network_zt` 가 보여야 합니다. 아니면 먼저 `cd network_zt` 를 입력합니다.
-
-```bash
-python long_label.py
-```
-맥북: `python3 long_label.py`
-
-4. 고친 뒤에는 같은 명령을 다시 입력합니다. 터미널에서 **↑(위 화살표)** 를 누르면 방금 입력한 명령이 다시 나옵니다.
-
-| | |
-|---|---|
-| 🎯 나와야 하는 결과 | `[터널링 의심] 길이 35 : aGVsbG8…` · `[터널링 의심] 길이 40 : c2VjcmV0…` 두 줄 |
-
-**💡 힌트**
-
-1. 맨 앞 조각은 `name.split(".")[0]` 입니다.
-2. 이 글자들은 정보를 숨기는 방식(Base64 · 베이스64)으로 바꾼 것이라 뜻 없는 글자처럼 보입니다.
-3. 5.1 표의 「길이」 지표를 맨 앞 조각에 쓴 것입니다.
-
-#### <mark style="display:block; background:#fff59d; color:#1a1a1a; padding:4px 12px; border-radius:4px; text-decoration:underline">정답 5-6</mark>
-
-(코드는 위 문제 칸에 채워 두었습니다.)
-
-💻 **터미널에 입력합니다.** `python long_label.py`
-
-<mark style="background:#fff59d; color:#1a1a1a; text-decoration:underline; padding:0 4px; border-radius:3px">**결과** — `[터널링 의심] 길이 35 : aGVsbG8…` · `[터널링 의심] 길이 40 : c2VjcmV0…` 두 줄</mark>
-
-**왜** — `split(".")[0]` 이 맨 앞 조각을 꺼냅니다. 숨긴 데이터를 실은 조각은 35 · 40 글자로, `www` · `update` 보다 훨씬 깁니다.
-
-**자주 틀리는 곳** — `len(name)` 으로 이름 전체 길이를 재면 뒤의 `.t1.example.com` 까지 세어 35 · 40 이 아닌 더 큰 숫자가 찍힙니다.
-
-**관제에서는** — 한 조각이 비정상적으로 긴 질의가 같은 도메인으로 반복되면 DNS 로 정보를 빼내는 터널링을 의심합니다.
-
-**강사 메모** — 맨 앞 조각을 보는 문제라 5-2 의 `[-2]` 와 반대 방향이라는 점을 짚어 줍니다. 「이 글자들을 풀면 뭐가 나오나요?」 라는 질문에는 「Base64 로 바꾼 글자라 풀면 뜻 있는 문장이 나오지만, 오늘은 길이만 본다」 고 답합니다. 선택 문제이므로 기본 문제를 끝낸 학생에게만 권합니다.
-
-### 5교시 한눈에
-
-| 의심 유형 | 지표 | 코드 |
-|---|---|---|
-| DGA | 길이 · 숫자 · 모음 적음 · 값싼 TLD · NXDOMAIN | `features()` |
-| 사칭 | 숫자를 글자로 바꾸면 진짜와 같다 | `.replace()` 후 `in TRUSTED` |
-| 감염 PC | NXDOMAIN 이 짧은 시간에 여러 번 | PC 별 세기 |
-| 터널링 | 맨 앞 조각이 매우 길다 | `split(".")[0]` 길이 |
-
----
 
 # <mark style="display:block; background:#c8e6c9; color:#1a1a1a; padding:6px 12px; border-radius:4px">6교시 (15:00–15:50) · 점수 규칙 · 맞힘 · 오탐 · 미탐</mark>
 
@@ -552,7 +479,7 @@ python long_label.py
 | 오탐 | 관제 요원이 헛걸음을 하느라 지친다 — 정상 경보를 쫓느라 진짜를 볼 시간이 줄어든다 |
 | 미탐 | 공격을 놓친다 — 경보가 울리지 않으니 아무도 모른다 |
 
-- 문턱값을 **낮추면** 미탐은 줄고 오탐은 늡니다. **높이면** 그 반대입니다(⭐6-6).
+- 문턱값을 **낮추면** 미탐은 줄고 오탐은 늡니다. **높이면** 그 반대입니다.
 
 #### 🐍 문법 상자 · 다른 파일의 함수 불러 쓰기 · `if __name__ == "__main__":`
 
@@ -960,96 +887,6 @@ python dga_score.py
 
 ---
 
-### ⭐ 도전 6-6 · 문턱값을 바꾸면 (`threshold.py`, 선택)
-
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — VS Code 에서 `threshold.py` 만들기 → 터미널에서 `python threshold.py` 실행
-
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day03_dns_analysis.md` 의 `## 6교시` 에서 `### ⭐ 도전 6-6` 아래
-
-6-5 를 고친 `score` 로 문턱값 **2 · 3 · 4** 마다 맞힘 · 오탐 · 미탐을 세어 표로 출력하시오.
-
-```python
-# ── 강사용: 정답을 채운 코드입니다 ──
-from dga_score import score
-
-LOG = [
-    ("www.naver.com", "NOERROR", "정상"), ("mail.google.com", "NOERROR", "정상"),
-    ("update.microsoft.com", "NOERROR", "정상"), ("e6030.a.akamaiedge.net", "NOERROR", "정상"),
-    ("cdn.jsdelivr.net", "NOERROR", "정상"), ("xn--3e0b707e.kr", "NOERROR", "정상"),
-    ("kxq3vz9a.top", "NXDOMAIN", "의심"), ("p0w8rk2mzq.xyz", "NXDOMAIN", "의심"),
-    ("qwrtpzkx7v.com", "NOERROR", "의심"), ("zzx9q2lk.top", "NXDOMAIN", "의심"),
-    ("bnk-secure-login.xyz", "NOERROR", "의심"), ("www.example.com", "NOERROR", "정상"),
-]
-print("| 문턱값 | 맞힘 | 오탐 | 미탐 |")
-print("|---|---|---|---|")
-# 1. 문턱값 2, 3, 4 를 하나씩 꺼내 6-4 처럼 세고, 한 줄씩 표로 출력하세요
-for threshold in [2, 3, 4]:                       # 문턱값을 하나씩
-    hit = 0
-    false_alarm = 0
-    missed = 0
-    for name, rcode, truth in LOG:
-        if score(name, rcode)["points"] >= threshold:
-            judged = "의심"
-        else:
-            judged = "정상"
-        if judged == "의심" and truth == "의심":
-            hit = hit + 1
-        if judged == "의심" and truth == "정상":
-            false_alarm = false_alarm + 1
-        if judged == "정상" and truth == "의심":
-            missed = missed + 1
-    print(f"| {threshold} | {hit} | {false_alarm} | {missed} |")
-```
-
-**파일을 만들고 실행합니다**
-
-1. VS Code 왼쪽 목록에서 `network_zt` 폴더를 오른쪽 클릭 › **New File** › 이름 `threshold.py` 를 입력하고 Enter 를 누릅니다.
-2. 위 코드 상자 안을 마우스로 끌어 선택하고 `Ctrl + C` 로 복사해 파일에 붙여 넣은 뒤, 번호 주석 아래를 채웁니다. 저장은 자동입니다.
-3. 터미널에 아래 명령을 입력합니다. 터미널의 줄 위에 `…/network_zt` 가 보여야 합니다. 아니면 먼저 `cd network_zt` 를 입력합니다.
-
-```bash
-python threshold.py
-```
-맥북: `python3 threshold.py`
-
-4. 고친 뒤에는 같은 명령을 다시 입력합니다. 터미널에서 **↑(위 화살표)** 를 누르면 방금 입력한 명령이 다시 나옵니다.
-
-| | |
-|---|---|
-| 🎯 나와야 하는 결과 | `\| 2 \| 5 \| 0 \| 0 \|` · `\| 3 \| 3 \| 0 \| 2 \|` · `\| 4 \| 3 \| 0 \| 2 \|` |
-
-**💡 힌트**
-
-1. 6-4 의 반복을 문턱값 반복 **안에** 넣습니다. 세는 변수는 문턱값마다 0 에서 시작합니다.
-2. 예외(6-5)를 넣었기 때문에 문턱값 2 에서도 오탐이 0 입니다.
-3. 오늘 데이터에서는 2 가 가장 좋아 보이지만, 데이터 12건으로 정한 값은 믿기 어렵습니다 — 7교시 「한계」에 적습니다.
-
-#### <mark style="display:block; background:#fff59d; color:#1a1a1a; padding:4px 12px; border-radius:4px; text-decoration:underline">정답 6-6</mark>
-
-(코드는 위 문제 칸에 채워 두었습니다.)
-
-💻 **터미널에 입력합니다.** `python threshold.py`
-
-<mark style="background:#fff59d; color:#1a1a1a; text-decoration:underline; padding:0 4px; border-radius:3px">**결과** — `| 2 | 5 | 0 | 0 |` · `| 3 | 3 | 0 | 2 |` · `| 4 | 3 | 0 | 2 |`</mark>
-
-**왜** — 미탐 두 건(`qwrtpzkx7v.com` · `bnk-secure-login.xyz`)이 모두 2점이라 문턱값 2 에서만 잡힙니다. 정상 이름은 예외 덕분에 가장 높은 것이 1점(`akamaiedge`)이라 오탐은 계속 0 입니다.
-
-**자주 틀리는 곳** — `hit = 0` 같은 세 줄을 바깥 `for` 밖에 두면 문턱값마다 숫자가 이어 쌓여 `| 3 | 8 | …` 처럼 나옵니다.
-
-**관제에서는** — 문턱값을 낮추면 미탐은 줄고 오탐이 늘 수 있어, 더 많은 로그로 다시 재 보고 정합니다.
-
-**강사 메모** — 문턱값 2 에서 맞힘 5 · 오탐 0 · 미탐 0 이 나오는 것은 예외를 넣은 뒤 정상 이름이 모두 0 · 1점이기 때문이라는 점을 짚습니다. 「그럼 문턱값을 2 로 바꾸면 되나요?」 라는 질문에는 「12건에서만 맞춘 값이라 다른 로그에서는 오탐이 늘 수 있다」 고 답합니다. 바깥 `for` 안에 세 변수를 0 으로 두는 줄이 있는지 학생 코드에서 먼저 봅니다.
-
-### 6교시 한눈에
-
-| 하려는 일 | 쓰는 것 |
-|---|---|
-| 지표를 점수로 | 규칙마다 `+1` · NXDOMAIN `+2` · 합 ≥ 문턱값 |
-| 규칙을 재기 | 맞힘 · 오탐 · 미탐 |
-| 오탐 줄이기 | 근거 있는 예외 — `xn--` |
-| 문턱값 정하기 | 낮추면 미탐 ↓ 오탐 ↑ |
-
----
 
 # <mark style="display:block; background:#c8e6c9; color:#1a1a1a; padding:6px 12px; border-radius:4px">7교시 (16:00–16:50) · 3일 차 DNS 분석서 완성</mark>
 
@@ -1317,48 +1154,6 @@ git push
 
 ---
 
-### ⭐ 도전 7-6 · 내가 고른 이름으로 시험하기 (선택)
-
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — VS Code 에서 판정 파일의 `LOG` 고치기 → 터미널에서 실행 → 다른 점을 보고서에 적기
-
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day03_dns_analysis.md` 의 `## 7교시` 에서 `### ⭐ 도전 7-6` 아래
-
-평소 자주 쓰는 사이트 이름 **세 개**와, 내가 지어낸 **무작위 이름 두 개**를 `LOG` 에 더해 판정하고, 결과가 예상과 다르면 왜 그런지 보고서 맨 아래 「한계와 다음에 할 일」의 마지막 줄에 적으시오.
-
-| | |
-|---|---|
-| 🎯 나와야 하는 결과 | 다섯 줄이 더해진 판정표와 「예상과 달랐던 것」 한 줄 |
-
-**💡 힌트**
-
-1. 지어낸 이름은 `nslookup` 으로 물어 NXDOMAIN 인지 먼저 확인하고, 그 답을 `rcode` 칸에 적습니다.
-2. 짧은 무작위 이름(예: `qz7.top`)은 점수가 낮게 나올 수 있습니다 — 길이 규칙 때문입니다.
-3. 결과를 보고 규칙을 고치고 싶어지면, 그 생각이 곧 「다음에 할 일」입니다.
-
-#### <mark style="display:block; background:#fff59d; color:#1a1a1a; padding:4px 12px; border-radius:4px; text-decoration:underline">정답 7-6</mark>
-
-자주 쓰는 이름 세 개와 지어낸 이름 두 개를 `nslookup` 으로 물어 `rcode` 를 정한 뒤 `LOG` 에 더해 7-2 를 다시 실행합니다. 예상과 다른 결과(예: 짧은 무작위 이름이 낮은 점수)를 「한계와 다음에 할 일」의 마지막 줄에 적습니다.
-
-<mark style="background:#fff59d; color:#1a1a1a; text-decoration:underline; padding:0 4px; border-radius:3px">**결과** — 다섯 줄이 더해진 판정표와 「예상과 달랐던 것」 한 줄</mark>
-
-**왜** — 같은 `score` 를 새 이름에 돌려 보면 규칙의 빈틈이 드러납니다. 예를 들어 `qz7.top` 같은 짧은 무작위 이름은 길이 · 숫자 규칙에 안 걸려 점수가 낮게 나올 수 있습니다.
-
-**자주 틀리는 곳** — 지어낸 이름의 `rcode` 를 `nslookup` 으로 확인하지 않고 `NOERROR` 로 적으면 NXDOMAIN 2점이 빠져 판정이 달라집니다.
-
-**관제에서는** — 실제 로그에 없던 이름으로 룰을 시험해 보는 것이 룰을 배포하기 전에 빈틈을 찾는 방법입니다.
-
-**강사 메모** — 지어낸 이름은 먼저 `nslookup` 으로 물어 `rcode` 를 정한다는 순서를 강조합니다. 「`qz7.top` 은 NXDOMAIN 이면 몇 점인가요?」 라는 질문에는 「모음 · TLD 1점씩에 NXDOMAIN 2점이 더해져 4점으로 의심이지만, NOERROR 였다면 2점으로 정상이 된다」 고 답합니다. 선택 문제이므로 7-5 까지 올린 학생에게만 권합니다.
-
-### 7교시 한눈에
-
-| 분석서 칸 | 무엇 | 만든 곳 |
-|---|---|---|
-| 2 · 3 · 4교시 칸 | 조회 결과 · 계층 · 레코드 | 오전 |
-| 의심 도메인 판정 | 판정표 · NXDOMAIN · 사칭 · nslookup 확인 | 7-2 · 5-4 · 5-5 · 7-3 |
-| 판단 기준 | 규칙 · 근거 · 결과 숫자 | 7-4 |
-| 한계와 다음에 할 일 | 놓친 것 · 더 넣을 지표 | 7-4 · ⭐7-6 |
-
----
 
 ## 오늘 마무리
 

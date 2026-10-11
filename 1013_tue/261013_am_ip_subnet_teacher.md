@@ -89,9 +89,6 @@
 - 출력: 
 - 막힌 곳: 
 
-### ⭐ 도전 2-6 · 바깥에서 온 실패만 골라내기 (`outside_fail.py`)
-
-- 출력: 
 
 ### 찾아본 것
 
@@ -135,9 +132,6 @@
 - 출력: 
 - 막힌 곳: 
 
-### ⭐ 도전 3-6 · 내 게이트웨이는 내 망 안에 있나 (`gateway_check.py`)
-
-- 출력: 
 
 ### 이 교시에 새로 안 것
 
@@ -162,16 +156,12 @@
 - 출력: 
 - 막힌 곳: 
 
-### 문제 4-4 · 주소가 어느 블록에 들어가나 (`which_block.py`)
 
-- 출력: 
-- 막힌 곳: 
-
-### 문제 4-5 · 설계 검증 — 용량과 겹침 (`plan_check.py`)
+### 문제 4-4 · 설계 검증 — 용량과 겹침 (`plan_check.py`)
 
 - 용량 · 겹침 결과: 
 
-### ⭐ 도전 4-6 · 설계표를 보고서 표로 (`design_table.py`)
+### ⭐ 도전 4-5 · 설계표를 보고서 표로 (`design_table.py`)
 
 - 맨 아래 「부서 주소 설계표」에 표를 붙였나: 
 
@@ -208,9 +198,6 @@
 - 출력: 
 - 막힌 곳: 
 
-### ⭐ 도전 5-6 · 첫 전달 경로 판정기 (`route_judge.py`)
-
-- 출력: 
 
 ### 이 교시에 새로 안 것
 
@@ -247,9 +234,6 @@
 - 출력: 
 - 막힌 곳: 
 
-### ⭐ 도전 6-6 · VLAN 과 서브넷 짝 실수 찾기 (`vlan_pair.py`)
-
-- 출력: 
 
 ### 찾아본 것
 
@@ -285,9 +269,6 @@
 
 - 깃허브에 올렸나: 
 
-### ⭐ 도전 7-6 · draw.io 로 구성도 그리기
-
-- `day02_diagram.png` 를 맨 아래에 넣었나: 
 
 ### 이 교시에 새로 안 것
 
@@ -299,7 +280,7 @@
 
 ### 부서 주소 설계표
 
-(오전 ⭐4-6 design_table.py 의 표를 붙입니다. 못 했으면 4-5 의 세 줄을 적습니다)
+(오전 ⭐4-5 design_table.py 의 표를 붙입니다. 못 했으면 4-4 의 세 줄을 적습니다)
 
 ### VLAN · 게이트웨이 배정
 
@@ -309,9 +290,7 @@
 
 ### 망 구성도와 라우팅 경로
 
-(7.1 의 그림을 복사해 붙이고 서버망을 더합니다. ⭐7-6 을 했으면 아래 사진 줄도 남깁니다)
-
-![망 구성도](day02_diagram.png)
+(7.1 의 그림을 복사해 붙이고 서버망을 더합니다)
 
 - ① 같은 부서:
 - ② 다른 부서:
@@ -319,7 +298,7 @@
 
 ### 검증
 
-- 용량 (오전 4-5):
+- 용량 (오전 4-4):
 - 겹침 (7-3):
 - 내 PC 의 기본 경로 (6-2): 
 ```
@@ -726,92 +705,6 @@ python nat_table.py
 
 ---
 
-### ⭐ 도전 2-6 · 바깥에서 온 실패만 골라내기 (`outside_fail.py`, 선택)
-
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — VS Code 에서 `outside_fail.py` 만들기 → 터미널에서 `python outside_fail.py` 실행
-
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day02_subnet_design.md` 의 `## 2교시` 에서 `### ⭐ 도전 2-6` 아래
-
-로그 다섯 줄에서 **공인 IP 에서 온 로그인 실패**만 골라 출력하시오. 2-3 의 `is_private` 를 그대로 붙여 넣어 씁니다.
-
-```python
-# ── 강사용: 정답을 채운 코드입니다 ──
-def is_private(ip):                               # 2-3 에서 만든 함수
-    parts = ip.split(".")
-    first = int(parts[0])
-    second = int(parts[1])
-    if first == 10:
-        return True
-    if first == 172 and 16 <= second <= 31:
-        return True
-    if first == 192 and second == 168:
-        return True
-    return False
-
-
-logs = [                                          # 로그라고 가정합니다
-    "09:01 FAIL admin from 192.168.10.31",
-    "09:02 FAIL admin from 203.0.113.50",
-    "09:05 OK kim01 from 192.168.10.25",
-    "09:07 FAIL root from 198.51.100.9",
-    "09:09 FAIL guest from 172.20.5.6",
-]
-# 1. 로그를 하나씩 꺼내, "FAIL" 이 들었고 맨 끝 주소가 공인 IP 인 줄만 「[바깥 실패] 줄」 꼴로 출력하세요
-for line in logs:                                 # 로그를 한 줄씩
-    address = line.split()[-1]                    # 맨 끝 칸이 주소
-    if "FAIL" in line and not is_private(address):   # 실패이고 바깥 주소면
-        print("[바깥 실패]", line)
-```
-
-**파일을 만들고 실행합니다**
-
-1. VS Code 왼쪽 목록에서 `network_zt` 폴더를 오른쪽 클릭 › **New File** › 이름 `outside_fail.py` 를 입력하고 Enter 를 누릅니다.
-2. 위 코드 상자 안을 마우스로 끌어 선택하고 `Ctrl + C` 로 복사해 파일에 붙여 넣은 뒤, 번호 주석 아래를 채웁니다. 저장은 자동입니다.
-3. 터미널에 아래 명령을 입력합니다. 터미널의 줄 위에 `…/network_zt` 가 보여야 합니다. 아니면 먼저 `cd network_zt` 를 입력합니다.
-
-```bash
-python outside_fail.py
-```
-맥북: `python3 outside_fail.py`
-
-4. 고친 뒤에는 같은 명령을 다시 입력합니다. 터미널에서 **↑(위 화살표)** 를 누르면 방금 입력한 명령이 다시 나옵니다.
-
-| | |
-|---|---|
-| 🎯 나와야 하는 결과 | `[바깥 실패] 09:02 FAIL admin from 203.0.113.50` · `[바깥 실패] 09:07 FAIL root from 198.51.100.9` |
-
-**💡 힌트**
-
-1. 맨 끝 주소는 `line.split()[-1]` 입니다.
-2. 「사설이 아니다」는 `not is_private(주소)` 입니다.
-3. 안에서 난 실패는 직원의 오타일 가능성이 크고, 바깥에서 온 실패는 먼저 확인할 대상입니다.
-
-#### <mark style="display:block; background:#fff59d; color:#1a1a1a; padding:4px 12px; border-radius:4px; text-decoration:underline">정답 2-6</mark>
-
-(코드는 위 문제 칸에 채워 두었습니다.)
-
-💻 **터미널에 입력합니다.** `python outside_fail.py`
-
-<mark style="background:#fff59d; color:#1a1a1a; text-decoration:underline; padding:0 4px; border-radius:3px">**결과** — `[바깥 실패] 09:02 FAIL admin from 203.0.113.50` · `[바깥 실패] 09:07 FAIL root from 198.51.100.9`</mark>
-
-**왜** — `line.split()[-1]` 로 맨 끝 주소를 꺼내고, `"FAIL" in line and not is_private(address)` 로 실패이면서 공인인 줄만 남깁니다. `172.20.5.6` 은 사설이라 빠집니다.
-
-**자주 틀리는 곳** — `not` 을 빠뜨려 안에서 난 실패(`192.168.10.31` · `172.20.5.6`)를 거꾸로 골라내는 것입니다.
-
-**관제에서는** — 바깥 주소에서 `admin` · `root` 로 로그인 실패가 나면 무차별 대입 시도일 수 있어 먼저 확인합니다.
-
-**강사 메모** — 조건이 두 개(`"FAIL" in line` · `not is_private(address)`)라는 점을 짚고, 09:05 줄은 `OK` 라서, 09:01 · 09:09 줄은 사설이라서 빠진다고 하나씩 확인합니다. 「`172.20.5.6` 은 왜 안 나오나요?」에는 「172.16~31 범위라 사설입니다」라고 답합니다. `192.168.10.31` · `172.20.5.6` 줄이 나오면 `not` 이 빠진 것이고, `NameError` 가 나면 `is_private` 를 붙여 넣지 않은 것입니다.
-
-### 2교시 한눈에
-
-| 하려는 일 | 쓰는 것 |
-|---|---|
-| 마디를 2진수로 | `format(int(part), "08b")` |
-| 사설인지 판정 | 10 · 172.16~31 · 192.168 |
-| 인터넷이 보는 내 주소 | `curl https://api.ipify.org` |
-| 답을 원래 PC 로 | PAT 변환표 — 바깥 포트 → 안의 주소 · 포트 |
-
----
 
 # <mark style="display:block; background:#c8e6c9; color:#1a1a1a; padding:6px 12px; border-radius:4px">3교시 (11:00–11:50) · 서브넷 마스크 · CIDR · 같은 망 판정</mark>
 
@@ -1134,101 +1027,6 @@ python same_network.py
 
 ---
 
-### ⭐ 도전 3-6 · 내 게이트웨이는 내 망 안에 있나 (`gateway_check.py`, 선택)
-
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — VS Code 에서 `gateway_check.py` 만들기 → 터미널에서 `python gateway_check.py` 실행
-
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day02_subnet_design.md` 의 `## 3교시` 에서 `### ⭐ 도전 3-6` 아래
-
-내 IPv4 · CIDR · 기본 게이트웨이로, 게이트웨이가 **내 망 안에** 있는지 확인하시오.
-
-#### 🐍 문법 상자 · 주소가 망 안에 있나 — `in`
-
-```python
-# ── 강사용: 정답을 채운 코드입니다 ──
-import ipaddress
-
-my_ip = "192.168.10.25"
-prefix = 24
-gateway = "192.168.10.1"
-
-# 1. net 에 내 망을 담으세요 (3-4 와 같은 줄)
-net = ipaddress.ip_network(f"{my_ip}/{prefix}", strict=False)   # 내 망
-# 2. 게이트웨이가 net 안에 있는지를 「게이트웨이 192.168.10.1 이 내 망 안에 있나: True」 꼴로 출력하세요
-inside = ipaddress.ip_address(gateway) in net     # 주소 하나가 망 안에 있나
-print(f"게이트웨이 {gateway} 이 내 망 안에 있나: {inside}")
-```
-
-| 쓰는 것 | 뜻 |
-|---|---|
-| `ipaddress.ip_address("주소")` | 주소 **하나** |
-| `주소 in 망` | 그 망 안에 있나 — 1과목 리스트의 `in` 과 같은 모양 |
-
-⚠ 글자 `"192.168.10.1"` 을 그대로 `in net` 하면 `AttributeError` 가 납니다(실측). 꼭 `ip_address()` 로 바꿉니다.
-
-```python
-import ipaddress
-
-# ── 내 값으로 바꿔 적습니다 ──
-my_ip = "192.168.10.25"
-prefix = 24
-gateway = "192.168.10.1"
-# ── 여기까지 ──
-
-# 1. net 에 내 망을 담으세요 (3-4 와 같은 줄)
-# 2. 게이트웨이가 net 안에 있는지를 「게이트웨이 192.168.10.1 이 내 망 안에 있나: True」 꼴로 출력하세요
-```
-
-**파일을 만들고 실행합니다**
-
-1. VS Code 왼쪽 목록에서 `network_zt` 폴더를 오른쪽 클릭 › **New File** › 이름 `gateway_check.py` 를 입력하고 Enter 를 누릅니다.
-2. 위 코드 상자 안을 마우스로 끌어 선택하고 `Ctrl + C` 로 복사해 파일에 붙여 넣은 뒤, 번호 주석 아래를 채웁니다. 저장은 자동입니다.
-3. 터미널에 아래 명령을 입력합니다. 터미널의 줄 위에 `…/network_zt` 가 보여야 합니다. 아니면 먼저 `cd network_zt` 를 입력합니다.
-
-```bash
-python gateway_check.py
-```
-맥북: `python3 gateway_check.py`
-
-4. 고친 뒤에는 같은 명령을 다시 입력합니다. 터미널에서 **↑(위 화살표)** 를 누르면 방금 입력한 명령이 다시 나옵니다.
-
-| | |
-|---|---|
-| 🎯 나와야 하는 결과 | `게이트웨이 192.168.10.1 이 내 망 안에 있나: True` |
-
-**💡 힌트**
-
-1. 게이트웨이는 **같은 망 안**에 있어야 PC 가 바로 찾아갈 수 있습니다.
-2. `False` 가 나오면 마스크나 게이트웨이 설정이 잘못된 것 — 실제 장애 원인 중 하나입니다.
-3. 바로 위 문법 상자의 둘째 줄과 같은 모양입니다.
-
-#### <mark style="display:block; background:#fff59d; color:#1a1a1a; padding:4px 12px; border-radius:4px; text-decoration:underline">정답 3-6</mark>
-
-(코드는 위 문제 칸에 채워 두었습니다.)
-
-💻 **터미널에 입력합니다.** `python gateway_check.py`
-
-<mark style="background:#fff59d; color:#1a1a1a; text-decoration:underline; padding:0 4px; border-radius:3px">**결과** — `게이트웨이 192.168.10.1 이 내 망 안에 있나: True`</mark>
-
-**왜** — `ipaddress.ip_address(gateway) in net` 이 주소 하나가 `192.168.10.0` ~ `192.168.10.255` 안에 있는지 봅니다. 게이트웨이는 같은 망 안에 있어야 PC 가 바로 찾아갑니다.
-
-**자주 틀리는 곳** — 글자 `gateway` 를 그대로 `in net` 해서 `AttributeError` 가 나는 것입니다. `ip_address()` 로 바꿔야 합니다.
-
-**관제에서는** — `False` 가 나오면 마스크나 게이트웨이 설정이 잘못된 것이라, 「인터넷이 안 된다」 장애의 원인을 여기서 찾습니다.
-
-**강사 메모** — 학원 PC 는 `prefix = 16`, `gateway = "192.168.1.1"` 로 바꿔 실행하면 `True` 가 나옵니다. `prefix` 를 24 로 둔 채 셋째 마디가 1 이 아닌 학생은 `False` 가 나오는데, 이것이 「마스크가 틀리면 게이트웨이가 망 밖으로 판정된다」는 좋은 실례입니다. 「`False` 면 제 PC 가 고장인가요?」에는 「코드에 적은 CIDR 이 실제 마스크와 다른 것입니다. `ipconfig` 의 마스크를 다시 봅니다」라고 답합니다.
-
-### 3교시 한눈에
-
-| 하려는 일 | 쓰는 것 |
-|---|---|
-| 마스크 → CIDR | 1 의 개수 — `255.255.255.0` = `/24` |
-| 망 만들기 | `ipaddress.ip_network("주소/CIDR", strict=False)` |
-| 첫 · 마지막 주소 | `.network_address` · `.broadcast_address` |
-| 쓸 수 있는 수 | `.num_addresses - 2` |
-| 같은 망인가 | 망끼리 `==` · 주소는 `ip_address(…) in 망` |
-
----
 
 # <mark style="display:block; background:#c8e6c9; color:#1a1a1a; padding:6px 12px; border-radius:4px">4교시 (12:00–12:50) · 서브네팅 — 부서마다 필요한 만큼 나누기</mark>
 
@@ -1456,72 +1254,12 @@ python flsm.py
 
 ---
 
-### ✍️ 문제 4-4 · 주소가 어느 블록에 들어가나 (`which_block.py`)
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — VS Code 에서 `which_block.py` 만들기 → 터미널에서 `python which_block.py` 실행
-
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day02_subnet_design.md` 의 `## 4교시` 에서 `### 문제 4-4` 아래
-
-주소 네 개가 `/27` 일 때 각각 **어느 망**에 속하는지 출력하시오.
-
-```python
-# ── 강사용: 정답을 채운 코드입니다 ──
-import ipaddress
-
-addresses = ["192.168.50.20", "192.168.50.70", "192.168.50.90", "192.168.50.130"]
-for address in addresses:                         # 주소를 하나씩
-    # 1. net 에 ipaddress.ip_network(f"{address}/27", strict=False) 를 담으세요
-    net = ipaddress.ip_network(f"{address}/27", strict=False)   # 그 주소가 속한 /27 망
-    # 2. f"{address} -> {net}" 을 출력하세요
-    print(f"{address} -> {net}")
-```
-
-**파일을 만들고 실행합니다**
-
-1. VS Code 왼쪽 목록에서 `network_zt` 폴더를 오른쪽 클릭 › **New File** › 이름 `which_block.py` 를 입력하고 Enter 를 누릅니다.
-2. 위 코드 상자 안을 마우스로 끌어 선택하고 `Ctrl + C` 로 복사해 파일에 붙여 넣은 뒤, 번호 주석 아래를 채웁니다. 저장은 자동입니다.
-3. 터미널에 아래 명령을 입력합니다. 터미널의 줄 위에 `…/network_zt` 가 보여야 합니다. 아니면 먼저 `cd network_zt` 를 입력합니다.
-
-```bash
-python which_block.py
-```
-맥북: `python3 which_block.py`
-
-4. 고친 뒤에는 같은 명령을 다시 입력합니다. 터미널에서 **↑(위 화살표)** 를 누르면 방금 입력한 명령이 다시 나옵니다.
-
-| | |
-|---|---|
-| 🎯 나와야 하는 결과 | `192.168.50.20 -> 192.168.50.0/27` · `192.168.50.70 -> 192.168.50.64/27` · `192.168.50.90 -> 192.168.50.64/27` · `192.168.50.130 -> 192.168.50.128/27` |
-
-**💡 힌트**
-
-1. `/27` 은 32칸 블록 — 0 · 32 · 64 · 96 · 128 … 에서 끊깁니다.
-2. `.70` 과 `.90` 은 둘 다 64~95 블록이라 같은 망입니다.
-3. 블록 크기 = 256 − 마스크 마지막 값(224) = 32.
-
-#### <mark style="display:block; background:#fff59d; color:#1a1a1a; padding:4px 12px; border-radius:4px; text-decoration:underline">정답 4-4</mark>
-
-(코드는 위 문제 칸에 채워 두었습니다.)
-
-💻 **터미널에 입력합니다.** `python which_block.py`
-
-<mark style="background:#fff59d; color:#1a1a1a; text-decoration:underline; padding:0 4px; border-radius:3px">**결과** — `192.168.50.20 -> 192.168.50.0/27` · `192.168.50.70 -> 192.168.50.64/27` · `192.168.50.90 -> 192.168.50.64/27` · `192.168.50.130 -> 192.168.50.128/27`</mark>
-
-**왜** — `/27` 은 256 − 224 = 32칸 블록이라 0 · 32 · 64 · 96 · 128 에서 끊기고, `strict=False` 가 주소를 그 블록의 첫 주소로 내려 줍니다. `.70` 과 `.90` 은 둘 다 64~95 입니다.
-
-**자주 틀리는 곳** — `.90` 을 `.96/27` 블록으로 적는 것입니다. 96 은 다음 블록의 시작이고 90 은 아직 64~95 안입니다.
-
-**관제에서는** — 경보에 찍힌 주소를 블록으로 바꾸면 그 주소가 어느 부서 망인지 알아 담당자에게 바로 넘깁니다.
-
-**강사 메모** — 블록 크기 = 256 − 마스크 마지막 값(224) = 32 를 칠판에 적고, 0 · 32 · 64 · 96 · 128 경계를 함께 써 봅니다. 「`strict=False` 를 빼면요?」에는 「주소가 블록의 첫 주소가 아니라서 `ValueError` 가 납니다」라고 답합니다. 끝나면 「`.95` 와 `.96` 은?」을 물어 각각 `.64/27` · `.96/27` 이 나오는지 확인합니다.
-
----
-
-### ✍️ 문제 4-5 · 설계 검증 — 용량과 겹침 (`plan_check.py`)
+### ✍️ 문제 4-4 · 설계 검증 — 용량과 겹침 (`plan_check.py`)
 
 <mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — VS Code 에서 `plan_check.py` 만들기 → 터미널에서 `python plan_check.py` 실행
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day02_subnet_design.md` 의 `## 4교시` 에서 `### 문제 4-5` 아래
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day02_subnet_design.md` 의 `## 4교시` 에서 `### 문제 4-4` 아래
 
 VLSM 설계표가 **부서마다 충분한지**, **서로 겹치지 않는지** 검증하시오.
 
@@ -1571,7 +1309,7 @@ python plan_check.py
 2. 2번은 `.overlaps()` 세 개를 `or` 로 잇습니다.
 3. 개발팀을 `/27` 로 바꿔 실행해 보면 `충분: False` 가 나옵니다 — 이런 실수를 잡는 검사입니다.
 
-#### <mark style="display:block; background:#fff59d; color:#1a1a1a; padding:4px 12px; border-radius:4px; text-decoration:underline">정답 4-5</mark>
+#### <mark style="display:block; background:#fff59d; color:#1a1a1a; padding:4px 12px; border-radius:4px; text-decoration:underline">정답 4-4</mark>
 
 (코드는 위 문제 칸에 채워 두었습니다.)
 
@@ -1589,11 +1327,11 @@ python plan_check.py
 
 ---
 
-### ⭐ 도전 4-6 · 설계표를 보고서 표로 (`design_table.py`, 선택)
+### ⭐ 도전 4-5 · 설계표를 보고서 표로 (`design_table.py`, 선택)
 
 <mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — VS Code 에서 `design_table.py` 만들기 → 터미널에서 `python design_table.py` 실행 → 보고서에 적기
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day02_subnet_design.md` 의 `## 4교시` 에서 `### ⭐ 도전 4-6` 아래
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day02_subnet_design.md` 의 `## 4교시` 에서 `### ⭐ 도전 4-5` 아래
 
 `10.20.0.0/24` 를 받은 회사의 세 부서 배정을 **마크다운 표**로 출력해 보고서 맨 아래 「부서 주소 설계표」 자리에 붙이시오. 첫 호스트 · 마지막 호스트도 적습니다.
 
@@ -1639,7 +1377,7 @@ python design_table.py
 2. 표 한 줄은 어제 7-4 의 f-string 모양입니다.
 3. 출력을 그대로 `day02_subnet_design.md` 맨 아래 「부서 주소 설계표」 자리에 붙입니다.
 
-#### <mark style="display:block; background:#fff59d; color:#1a1a1a; padding:4px 12px; border-radius:4px; text-decoration:underline">정답 4-6</mark>
+#### <mark style="display:block; background:#fff59d; color:#1a1a1a; padding:4px 12px; border-radius:4px; text-decoration:underline">정답 4-5</mark>
 
 (코드는 위 문제 칸에 채워 두었습니다.)
 
@@ -1668,7 +1406,7 @@ python design_table.py
 
 ## 오전 마무리 — 보고서 2 · 3 · 4교시 칸 확인
 
-`day02_subnet_design.md` 의 2 · 3 · 4교시 칸에 **빈 줄**이 없는지 봅니다. 빈 줄은 그 문제로 돌아갑니다(⭐ 줄은 비워도 됩니다). ⭐4-6 을 풀었으면 맨 아래 「부서 주소 설계표」에 표를 붙여 둡니다.
+`day02_subnet_design.md` 의 2 · 3 · 4교시 칸에 **빈 줄**이 없는지 봅니다. 빈 줄은 그 문제로 돌아갑니다(⭐ 줄은 비워도 됩니다). ⭐4-5 을 풀었으면 맨 아래 「부서 주소 설계표」에 표를 붙여 둡니다.
 
 오후에는 이렇게 나눈 망끼리 **어떻게 오가는지** — 스위치 · 라우터 · VLAN 을 배우고 설계서를 완성합니다.
 

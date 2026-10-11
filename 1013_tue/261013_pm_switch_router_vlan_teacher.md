@@ -155,6 +155,24 @@ python warmup.py
 
 ---
 
+#### 🐍 문법 상자 · 주소가 망 안에 있나 — `in`
+
+```python
+import ipaddress
+net = ipaddress.ip_network("192.168.10.0/24")
+print(ipaddress.ip_address("192.168.10.1") in net)
+print(ipaddress.ip_address("192.168.11.1") in net)
+# True
+# False
+```
+
+| 쓰는 것 | 뜻 |
+|---|---|
+| `ipaddress.ip_address("주소")` | 주소 **하나** |
+| `주소 in 망` | 그 망 안에 있나 — 1과목 리스트의 `in` 과 같은 모양 |
+
+⚠ 글자 `"192.168.10.1"` 을 그대로 `in net` 하면 `AttributeError` 가 납니다(실측). 꼭 `ip_address()` 로 바꿉니다.
+
 ### ✍️ 문제 5-2 · 직접일까 게이트웨이일까 (`direct_or_gw.py`)
 
 <mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — VS Code 에서 `direct_or_gw.py` 만들기 → 터미널에서 `python direct_or_gw.py` 실행
@@ -197,7 +215,7 @@ python direct_or_gw.py
 
 **💡 힌트**
 
-1. 주소가 망 안에 있는지는 오전 ⭐3-6 의 `ipaddress.ip_address(dest) in my_net` 입니다.
+1. 주소가 망 안에 있는지는 바로 위 문법 상자의 `ipaddress.ip_address(dest) in my_net` 입니다.
 2. `/26` 이라 `.0 ~ .63` 이 한 망입니다. `.63` 은 브로드캐스트(망 전체에 보내는 주소)지만 같은 망입니다.
 3. 갈래가 둘이라 `if` · `else` 입니다.
 
@@ -408,86 +426,6 @@ python gw_mistake.py
 
 ---
 
-### ⭐ 도전 5-6 · 첫 전달 경로 판정기 (`route_judge.py`, 선택)
-
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — VS Code 에서 `route_judge.py` 만들기 → 터미널에서 `python route_judge.py` 실행
-
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day02_subnet_design.md` 의 `## 5교시` 에서 `### ⭐ 도전 5-6` 아래
-
-두 장비의 **VLAN 과 망이 모두 같으면** 「스위치 직접」, 하나라도 다르면 라우터가 있을 때 「게이트웨이 ○로」, 없으면 「통신 불가」를 출력하시오.
-
-```python
-# ── 강사용: 정답을 채운 코드입니다 ──
-import ipaddress
-
-devices = {
-    "PC0": {"vlan": 10, "ip": "192.168.10.10/26", "gateway": "192.168.10.1"},
-    "PC1": {"vlan": 10, "ip": "192.168.10.20/26", "gateway": "192.168.10.1"},
-    "PC2": {"vlan": 20, "ip": "192.168.10.70/26", "gateway": "192.168.10.65"},
-}
-checks = [("PC0", "PC1", True), ("PC0", "PC2", True), ("PC0", "PC2", False)]   # (출발, 도착, 라우터 있음)
-# 1. checks 를 하나씩 꺼내 판정하고 「PC0 -> PC1 스위치 직접 전달」 꼴로 출력하세요
-for src, dst, has_router in checks:               # 검사를 하나씩
-    a = devices[src]                              # 출발 장비
-    b = devices[dst]                              # 도착 장비
-    same_net = ipaddress.ip_network(a["ip"], strict=False) == ipaddress.ip_network(b["ip"], strict=False)
-    if a["vlan"] == b["vlan"] and same_net:       # VLAN 도 망도 같으면
-        print(f"{src} -> {dst} 스위치 직접 전달")
-    elif has_router:                              # 다르지만 라우터가 있으면
-        print(f"{src} -> {dst} 게이트웨이 {a['gateway']}로 전달")
-    else:                                         # 다르고 라우터도 없으면
-        print(f"{src} -> {dst} 통신 불가")
-```
-
-**파일을 만들고 실행합니다**
-
-1. VS Code 왼쪽 목록에서 `network_zt` 폴더를 오른쪽 클릭 › **New File** › 이름 `route_judge.py` 를 입력하고 Enter 를 누릅니다.
-2. 위 코드 상자 안을 마우스로 끌어 선택하고 `Ctrl + C` 로 복사해 파일에 붙여 넣은 뒤, 번호 주석 아래를 채웁니다. 저장은 자동입니다.
-3. 터미널에 아래 명령을 입력합니다. 터미널의 줄 위에 `…/network_zt` 가 보여야 합니다. 아니면 먼저 `cd network_zt` 를 입력합니다.
-
-```bash
-python route_judge.py
-```
-맥북: `python3 route_judge.py`
-
-4. 고친 뒤에는 같은 명령을 다시 입력합니다. 터미널에서 **↑(위 화살표)** 를 누르면 방금 입력한 명령이 다시 나옵니다.
-
-| | |
-|---|---|
-| 🎯 나와야 하는 결과 | `PC0 -> PC1 스위치 직접 전달` · `PC0 -> PC2 게이트웨이 192.168.10.1로 전달` · `PC0 -> PC2 통신 불가` |
-
-**💡 힌트**
-
-1. 같은 망인지는 `ip_network(…, strict=False)` 두 개를 `==` 로 비교합니다.
-2. 「둘 다 같다」는 `and` 입니다.
-3. 게이트웨이는 **출발지** 장비의 것입니다.
-
-#### <mark style="display:block; background:#fff59d; color:#1a1a1a; padding:4px 12px; border-radius:4px; text-decoration:underline">정답 5-6</mark>
-
-(코드는 위 문제 칸에 채워 두었습니다.)
-
-💻 **터미널에 입력합니다.** `python route_judge.py`
-
-<mark style="background:#fff59d; color:#1a1a1a; text-decoration:underline; padding:0 4px; border-radius:3px">**결과** — `PC0 -> PC1 스위치 직접 전달` · `PC0 -> PC2 게이트웨이 192.168.10.1로 전달` · `PC0 -> PC2 통신 불가`</mark>
-
-**왜** — VLAN 과 망이 둘 다 같아야 스위치가 바로 넘깁니다. 하나라도 다르면 라우터를 거치고, 첫 홉은 출발지 PC0 의 게이트웨이입니다.
-
-**자주 틀리는 곳** — 도착지 PC2 의 게이트웨이 `192.168.10.65` 를 출력합니다.
-
-**관제에서는** — VLAN 사이 통신은 모두 라우터를 지나므로, 부서 사이 접속 기록은 라우터 · 방화벽 로그에서 찾습니다.
-
-**강사 메모** — 다른 망으로 갈 때 첫 홉은 **출발지**의 게이트웨이라는 점을 짚습니다. 「VLAN 만 비교하면 안 되나요?」라는 질문에는 「VLAN 은 다른데 망이 같은 잘못된 설정도 있어서(⭐6-6) 둘 다 봅니다」라고 답합니다. f-string 안의 `a['gateway']` 를 큰따옴표로 쓰면 파이썬 버전에 따라 `SyntaxError` 가 나므로, 학생 화면에서 그 에러가 보이면 작은따옴표로 바꾸게 합니다.
-
-### 5교시 한눈에
-
-| 상황 | 누가 전달 | 목적지 MAC |
-|---|---|---|
-| 같은 망 | 스위치 — MAC 표를 보고 | 상대 PC 의 MAC |
-| 다른 망 | 기본 게이트웨이(라우터) | **게이트웨이의 MAC** |
-| 처음 보는 MAC | 스위치가 플러딩 | — |
-| 게이트웨이가 망 밖 | 아무도 — 밖으로 못 나감 | — |
-
----
 
 # <mark style="display:block; background:#c8e6c9; color:#1a1a1a; padding:6px 12px; border-radius:4px">6교시 (15:00–15:50) · VLAN · 라우팅 표 · 기본 경로</mark>
 
@@ -523,7 +461,7 @@ python route_judge.py
 | 액세스 포트(access port) | PC · 프린터 | **하나**만 |
 | 트렁크 포트(trunk port) | 스위치 ↔ 스위치 · 스위치 ↔ 라우터 | 여러 개를 한 선으로 — 번호표(태그)를 붙여서 |
 
-⚠ 서로 다른 VLAN 에 <mark style="background:#ffcdd2; color:#1a1a1a; padding:0 4px; border-radius:3px">같은 서브넷</mark>을 주면, PC 는 같은 망이라 생각해 게이트웨이로 안 보내고, 스위치는 VLAN 이 달라 막습니다 — 라우터가 있어도 안 됩니다(⭐6-6).
+⚠ 서로 다른 VLAN 에 <mark style="background:#ffcdd2; color:#1a1a1a; padding:0 4px; border-radius:3px">같은 서브넷</mark>을 주면, PC 는 같은 망이라 생각해 게이트웨이로 안 보내고, 스위치는 VLAN 이 달라 막습니다 — 라우터가 있어도 안 됩니다.
 
 ### 6.2 라우팅 표와 기본 경로
 
@@ -829,81 +767,6 @@ python route_lookup.py
 
 ---
 
-### ⭐ 도전 6-6 · VLAN 과 서브넷 짝 실수 찾기 (`vlan_pair.py`, 선택)
-
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — VS Code 에서 `vlan_pair.py` 만들기 → 터미널에서 `python vlan_pair.py` 실행
-
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day02_subnet_design.md` 의 `## 6교시` 에서 `### ⭐ 도전 6-6` 아래
-
-VLAN 마다 받은 서브넷 가운데 **다른 VLAN 과 겹치는** 짝을 찾으시오.
-
-```python
-# ── 강사용: 정답을 채운 코드입니다 ──
-import ipaddress
-
-vlan_subnet = {                                   # VLAN 번호 → 서브넷
-    10: "192.168.10.0/26",
-    20: "192.168.10.0/26",
-    30: "192.168.10.64/27",
-}
-# 1. VLAN 을 둘씩 짝지어(10-20, 10-30, 20-30) 서브넷이 겹치면 「VLAN 10 과 20 이 같은 주소를 씀 — 라우터가 있어도 통신 안 됨」 을 출력하세요
-for a, b in [(10, 20), (10, 30), (20, 30)]:       # 짝을 하나씩
-    net_a = ipaddress.ip_network(vlan_subnet[a])
-    net_b = ipaddress.ip_network(vlan_subnet[b])
-    if net_a.overlaps(net_b):                     # 주소가 겹치면
-        print(f"VLAN {a} 과 {b} 이 같은 주소를 씀 — 라우터가 있어도 통신 안 됨")
-```
-
-**파일을 만들고 실행합니다**
-
-1. VS Code 왼쪽 목록에서 `network_zt` 폴더를 오른쪽 클릭 › **New File** › 이름 `vlan_pair.py` 를 입력하고 Enter 를 누릅니다.
-2. 위 코드 상자 안을 마우스로 끌어 선택하고 `Ctrl + C` 로 복사해 파일에 붙여 넣은 뒤, 번호 주석 아래를 채웁니다. 저장은 자동입니다.
-3. 터미널에 아래 명령을 입력합니다. 터미널의 줄 위에 `…/network_zt` 가 보여야 합니다. 아니면 먼저 `cd network_zt` 를 입력합니다.
-
-```bash
-python vlan_pair.py
-```
-맥북: `python3 vlan_pair.py`
-
-4. 고친 뒤에는 같은 명령을 다시 입력합니다. 터미널에서 **↑(위 화살표)** 를 누르면 방금 입력한 명령이 다시 나옵니다.
-
-| | |
-|---|---|
-| 🎯 나와야 하는 결과 | `VLAN 10 과 20 이 같은 주소를 씀 — 라우터가 있어도 통신 안 됨` 한 줄 |
-
-**💡 힌트**
-
-1. 겹침은 오전 4-5 의 `.overlaps()` 입니다.
-2. 짝은 세 개뿐이라 리스트 `[(10, 20), (10, 30), (20, 30)]` 로 적어 반복해도 됩니다.
-3. 6.1 의 ⚠ 줄이 이 실수의 결과입니다.
-
-#### <mark style="display:block; background:#fff59d; color:#1a1a1a; padding:4px 12px; border-radius:4px; text-decoration:underline">정답 6-6</mark>
-
-(코드는 위 문제 칸에 채워 두었습니다.)
-
-💻 **터미널에 입력합니다.** `python vlan_pair.py`
-
-<mark style="background:#fff59d; color:#1a1a1a; text-decoration:underline; padding:0 4px; border-radius:3px">**결과** — `VLAN 10 과 20 이 같은 주소를 씀 — 라우터가 있어도 통신 안 됨` 한 줄</mark>
-
-**왜** — 같은 서브넷이면 PC 는 같은 망이라 보고 게이트웨이로 안 보내는데, 스위치는 VLAN 이 달라 막습니다. 그래서 VLAN 하나에 서브넷 하나를 짝짓습니다.
-
-**자주 틀리는 곳** — VLAN 30 의 `192.168.10.64/27` 도 겹친다고 적습니다 — `/26` 은 `.0 ~ .63` 이라 `.64` 부터는 겹치지 않습니다.
-
-**관제에서는** — VLAN 끼리 주소가 겹치면 방화벽 규칙에서 주소로 부서를 가를 수 없으므로, 설정 점검 때 겹침부터 찾습니다.
-
-**강사 메모** — 같은 서브넷을 서로 다른 VLAN 에 주면 PC 는 게이트웨이로 안 보내고 스위치는 막는다는, 두 쪽의 판단이 엇갈리는 지점을 짚습니다. 「`.overlaps()` 와 `==` 는 무엇이 다른가요?」라는 질문에는 「`==` 는 완전히 같을 때만, `.overlaps()` 는 주소가 하나라도 겹치면 True 입니다」라고 답합니다. 끝난 학생에게 VLAN 30 을 `192.168.10.32/27` 로 바꾸면 몇 줄이 나오는지 물어 세 줄인지 확인하게 합니다.
-
-### 6교시 한눈에
-
-| 하려는 일 | 쓰는 것 |
-|---|---|
-| 스위치를 여러 망으로 | VLAN — 포트마다 번호 |
-| VLAN 사이를 오가기 | 라우터 · 3층 스위치(라우터 기능이 들어 있는 스위치) |
-| 내 PC 의 길 | `route print -4` — `0.0.0.0` 줄이 기본 경로 |
-| 거쳐 가는 장비 | `tracert -d -h 5 8.8.8.8` — 1번이 게이트웨이 |
-| 길 고르기 | 맞는 줄 중 `prefixlen` 이 가장 큰 줄 |
-
----
 
 # <mark style="display:block; background:#c8e6c9; color:#1a1a1a; padding:6px 12px; border-radius:4px">7교시 (16:00–16:50) · 2일 차 설계서 완성</mark>
 
@@ -922,7 +785,6 @@ python vlan_pair.py
 | 설계서 | 설계서 | 주소 · VLAN · 게이트웨이 · 경로를 **장비에 바로 넣을 수 있게** 적은 문서 |
 | 첫 호스트 | 첫 호스트 | 네트워크 주소 바로 다음 주소. 보통 **게이트웨이**가 쓴다 — `10.20.0.1` |
 | 망 구성도 | 망 구성도 | 라우터 · 스위치 · 부서가 어떻게 이어지는지 그린 **그림** |
-| draw.io | 드로아이오 | 설치 없이 브라우저에서 쓰는 **그림 도구**(⭐7-6) |
 
 ### 7.1 오늘의 회사 — `10.20.0.0/24`
 
@@ -1229,49 +1091,6 @@ git push
 
 ---
 
-### ⭐ 도전 7-6 · draw.io 로 구성도 그리기 (선택)
-
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — 브라우저의 draw.io 에서 그리기 → 그림을 보고서에 넣기
-
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day02_subnet_design.md` 의 `## 7교시` 에서 `### ⭐ 도전 7-6` 아래
-
-브라우저에서 **app.diagrams.net**(draw.io · 드로아이오 · 설치 없이 쓰는 그림 도구)을 열어 7.1 그림을 네모와 선으로 그리고, `day02_diagram.png` 로 `network_zt` 에 저장하시오. 보고서 맨 아래 「망 구성도와 라우팅 경로」에 사진 줄이 이미 있습니다.
-
-| | |
-|---|---|
-| 🎯 나와야 하는 결과 | 라우터 1 · 스위치 1 · 부서 4개와 VLAN 번호 · 게이트웨이 주소가 적힌 그림 |
-
-**💡 힌트**
-
-1. 처음 열면 「Device」 를 고르고 저장 위치는 내 PC 로 합니다.
-2. 내보내기는 메뉴 **파일 › 내보내기 › PNG**(File › Export as › PNG).
-3. 5일 차(10/16)에 같은 도구로 회사 전체 망 구성도를 그립니다. 미리 손에 익혀 둡니다.
-
-#### <mark style="display:block; background:#fff59d; color:#1a1a1a; padding:4px 12px; border-radius:4px; text-decoration:underline">정답 7-6</mark>
-
-app.diagrams.net → 네모(라우터 · 스위치 · 부서 넷)와 선 → 글자로 VLAN · 게이트웨이 → 파일 › 내보내기 › PNG → `day02_diagram.png` 를 `network_zt` 에 저장 → 보고서 맨 아래의 `![망 구성도](day02_diagram.png)` 줄로 보인다.
-
-<mark style="background:#fff59d; color:#1a1a1a; text-decoration:underline; padding:0 4px; border-radius:3px">**결과** — 라우터 1 · 스위치 1 · 부서 4개와 VLAN 번호 · 게이트웨이 주소가 적힌 그림 `day02_diagram.png`</mark>
-
-**왜** — 구성도에 VLAN 과 게이트웨이를 적어 두면 7-4 의 경로를 그림 위에서 그대로 따라갈 수 있습니다.
-
-**자주 틀리는 곳** — 서버망(VLAN 40 · `10.20.0.112/28`)을 빼고 세 부서만 그립니다.
-
-**관제에서는** — 경보가 난 IP 를 구성도에서 찾으면 어느 VLAN 에 있고 어디로 퍼질 수 있는지 바로 봅니다.
-
-**강사 메모** — 선택 문제이므로 7-5 를 올린 학생만 시작하게 하고, 서버망(VLAN 40 · `10.20.0.112/28`)을 빠뜨리지 않았는지 봅니다. 「보고서 미리보기에서 그림이 안 보여요」라는 질문에는 「`day02_diagram.png` 가 보고서와 같은 `network_zt` 폴더에 있는지, 파일 이름 철자가 같은지 확인합니다」라고 답합니다. 시간이 모자라면 7.1 의 글자 그림으로 충분하고, 5일 차(10/16)에 같은 도구를 다시 씁니다.
-
-### 7교시 한눈에
-
-| 설계서 칸 | 무엇 | 만든 곳 |
-|---|---|---|
-| 3교시 3-2 · 3-4 | 내 PC 의 망 | 오전 3교시 |
-| 부서 주소 설계표 | 부서별 CIDR | 오전 4교시 |
-| VLAN · 게이트웨이 배정 | VLAN 번호 · 게이트웨이 | 7-2 · 7-3 |
-| 망 구성도와 라우팅 경로 | 그림 · 세 통신의 경로 | 7-4 · ⭐7-6 |
-| 검증 | 용량 · 겹침 · 기본 경로 | 오전 4-5 · 7-3 · 6-2 |
-
----
 
 ## 오늘 마무리
 
