@@ -494,13 +494,11 @@ netstat -n
 
 <mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day01_packet_analysis.md` 의 `## 6교시` 에서 `### 문제 6-4` 아래
 
-필터 칸에 아래를 **하나씩** 걸고(Enter), 상태 줄의 **표시됨** 숫자를 적으시오. 다음 것을 걸기 전에 칸 오른쪽 **X** 로 지웁니다.
+필터 세 개를 **한 번에 하나씩** 걸어 보고, 걸 때마다 상태 줄의 **표시됨** 숫자를 적으시오. 세 줄을 한 칸에 같이 치지 않습니다.
 
-```
-dns
-udp
-tcp.port == 443
-```
+1. 필터 칸에 `dns` 를 치고 Enter → `표시됨` 숫자를 적고, 칸 오른쪽 **X** 로 지웁니다.
+2. 필터 칸에 `udp` 를 치고 Enter → `표시됨` 숫자를 적고, **X** 로 지웁니다.
+3. 필터 칸에 `tcp.port == 443` 을 치고 Enter → `표시됨` 숫자를 적습니다.
 
 | | |
 |---|---|
@@ -514,13 +512,7 @@ tcp.port == 443
 
 #### <mark style="display:block; background:#fff59d; color:#1a1a1a; padding:4px 12px; border-radius:4px; text-decoration:underline">정답 6-4</mark>
 
-필터 칸에 하나씩 입력하고 Enter. 상태 줄의 `표시됨` 숫자를 적고 X 로 지운 뒤 다음 것을 겁니다.
-
-```
-dns
-udp
-tcp.port == 443
-```
+한 번에 하나씩 겁니다 — `dns` Enter → 숫자 적기 → X → `udp` Enter → 숫자 적기 → X → `tcp.port == 443` Enter → 숫자 적기.
 
 <mark style="background:#fff59d; color:#1a1a1a; text-decoration:underline; padding:0 4px; border-radius:3px">**결과** — 셋 다 `표시됨` 이 `패킷` 보다 작다. `dns` 에서는 Info 열에 방금 연 사이트 이름이 보인다 (숫자는 매번 다름)</mark>
 
