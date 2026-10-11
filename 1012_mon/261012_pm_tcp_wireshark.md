@@ -8,7 +8,7 @@
 | 6교시 | Wireshark 실행 · 첫 캡처 · 화면 읽기 · 필터 | Wireshark (아침 과제 8 에서 설치) |
 | 7교시 | 내 연결을 직접 잡아 보고서로 남기기 | Wireshark · `curl` · 파이썬 |
 
-**오늘 남기는 것:** `network_zt/day01_packet_analysis.md` 완성본(2~7교시 칸 + 7교시의 캡처 사진 · 표) — 강의계획서의 1일 차 산출물입니다.
+**오늘 남기는 것:** `network_zt/day01_packet_analysis.md` 완성본(2~7교시 칸과 맨 아래 「최종 분석」) — 강의계획서의 1일 차 산출물입니다.
 
 > **화면은 이렇게 나눠 씁니다 — 왼쪽은 실습 자료, 오른쪽은 보고서**
 >
@@ -464,7 +464,7 @@ Wireshark는 내 PC를 지나는 패킷을 붙잡아 보여 줍니다. 패킷을
 ### 왜 필요한가
 
 1. 6교시에는 남이 만든 수백 줄 속에서 헤맸습니다. 이번에는 **내가 만든 연결 하나만** 깔끔하게 잡습니다.
-2. 그 연결의 **열리는 순간(3-way) · 내용(HTTP) · 닫히는 순간(FIN)**을 찾아 사진과 값으로 남깁니다.
+2. 그 연결의 **열리는 순간(3-way) · 내용(HTTP) · 닫히는 순간(FIN)**을 찾아 값으로 남깁니다.
 3. 이것이 강의계획서의 1일 차 산출물 `day01_packet_analysis.md` 입니다. 평가 기준은 「3-way 세 단계를 찾았나 · IP 헤더의 출발지 · 목적지 · TTL 을 읽었나 · 필터로 원하는 것만 걸렀나」입니다.
 
 
@@ -494,7 +494,7 @@ Wireshark는 내 PC를 지나는 패킷을 붙잡아 보여 줍니다. 패킷을
 
 ### ✍️ 문제 7-1 · 내 HTTP 연결 하나만 잡기
 
-**할 일** — HTTP 연결만 캡처해 3-way handshake 세 패킷을 찾고, 한 화면에 보이도록 저장합니다.
+**할 일** — HTTP 연결만 캡처해 3-way handshake 세 패킷을 찾고, 세 줄의 신호 순서를 보고서에 적습니다.
 
 **왜 중요한가** — 패킷을 직접 발생시키고 걸러 보면 연결이 시작되는 과정을 확인할 수 있습니다.
 
@@ -518,10 +518,8 @@ curl "http://example.com/?q=network_day1"
 8. **[Wireshark]** 빨간 네모를 눌러 캡처를 멈춥니다.
 9. **[Wireshark]** 표시 필터 칸에 `tcp.flags.syn == 1`을 입력하고 Enter 를 눌러 `[SYN]`과 `[SYN, ACK]` 패킷을 찾습니다.
 10. **[Wireshark]** 필터 칸의 `X`를 눌러 필터를 지우고 세 번째 `[ACK]` 패킷을 찾습니다.
-11. **[화면 캡처 도구]** `Win + Shift + S`를 누르고 드래그해 세 패킷이 한 화면에 보이게 선택합니다.
-12. **[그림판]** 그림판을 열어 `Ctrl + V`를 누르고, `Ctrl + Shift + S`를 눌러 `network_zt/handshake.png`로 저장합니다.
-13. **[보고서]** `day01_packet_analysis.md`의 `## 7교시` › `### 문제 7-1` 아래를 채웁니다.
-   - `handshake.png` 저장 · 세 줄 Info 의 신호 순서:
+11. **[보고서]** `day01_packet_analysis.md`의 `## 7교시` › `### 문제 7-1` 아래를 채웁니다.
+   - 세 줄 Info 의 신호 순서:
 
 
 | | |
@@ -532,14 +530,13 @@ curl "http://example.com/?q=network_day1"
 
 1. 순서: 지금 캡처 중이면 빨간 네모로 먼저 멈춤 → 메뉴 **캡처(C) › 옵션(O)…**(`Ctrl + K`) → 위 목록에서 **`이더넷 2`** 한 줄 클릭 → 창 아래 `선택한 인터페이스에 대한 캡처 필터:` 칸에 `tcp port 80`(칸이 **초록**인지 확인) → 오른쪽 아래 **시작(S)**. 「저장하지 않고 계속」 창이 뜨면 그 단추를 누릅니다.
 2. 캡처가 **돌아가는 동안** `curl` 을 입력해야 잡힙니다.
-3. 캡처한 그림은 그림판에 붙여 넣고 `Ctrl + Shift + S`를 눌러 `network_zt/handshake.png`로 저장합니다.
-4. 멈췄는데 한 줄도 없으면: 캡처 필터 칸이 초록이었는지, `curl` 을 캡처가 **돌아가는 동안** 쳤는지 봅니다.
+3. 멈췄는데 한 줄도 없으면: 캡처 필터 칸이 초록이었는지, `curl` 을 캡처가 **돌아가는 동안** 쳤는지 봅니다.
 
 ---
 
 ### ✍️ 문제 7-2 · HTTP 요청과 연결 종료 찾기
 
-**할 일** — HTTP 요청 줄을 찾아 사진으로 저장하고, FIN 패킷이 몇 줄인지 확인해 보고서에 적습니다.
+**할 일** — HTTP 요청 줄을 찾아 Info 를 읽고, FIN 패킷이 몇 줄인지 확인해 보고서에 적습니다.
 
 **왜 중요한가** — 암호화하지 않은 HTTP에서는 요청한 글자가 패킷에 보입니다. FIN 패킷은 연결을 정상적으로 끝내는 과정에서 나타납니다.
 
@@ -550,11 +547,9 @@ curl "http://example.com/?q=network_day1"
 **순서**
 1. **[Wireshark]** 표시 필터 칸에 `http`를 입력하고 Enter 를 누릅니다.
 2. **[Wireshark]** `GET /?q=network_day1` 줄을 찾습니다.
-3. **[화면 캡처 도구]** `Win + Shift + S`를 누르고 드래그해 요청 줄을 선택합니다.
-4. **[그림판]** 그림판을 열어 `Ctrl + V`를 누르고, `Ctrl + Shift + S`를 눌러 `network_zt/http_request.png`로 저장합니다.
-5. **[Wireshark]** 필터 칸의 `X`를 눌러 지운 뒤 `tcp.flags.fin == 1`을 입력하고 Enter 를 누릅니다.
-6. **[Wireshark]** 패킷 목록에서 FIN 이 든 줄의 개수를 셉니다.
-7. **[보고서]** `day01_packet_analysis.md`의 `## 7교시` › `### 문제 7-2` 아래를 채웁니다.
+3. **[Wireshark]** 필터 칸의 `X`를 눌러 지운 뒤 `tcp.flags.fin == 1`을 입력하고 Enter 를 누릅니다.
+4. **[Wireshark]** 패킷 목록에서 FIN 이 든 줄의 개수를 셉니다.
+5. **[보고서]** `day01_packet_analysis.md`의 `## 7교시` › `### 문제 7-2` 아래를 채웁니다.
    - 요청 줄의 Info · FIN 줄 수:
    - 🔍 내 검색어가 그대로 보인 것은 HTTP 이기 때문입니다. 같은 요청을 HTTPS 로 보냈다면 어떻게 보였을까요?
 
@@ -574,9 +569,9 @@ curl "http://example.com/?q=network_day1"
 
 ### ✍️ 문제 7-3 · 보고서 완성하고 올리기
 
-**할 일** — 보고서와 캡처 사진 두 장을 확인하고, 내 GitHub 저장소의 `network_zt` 폴더에 올립니다.
+**할 일** — 보고서의 빈칸을 다 채우고, 내 GitHub 저장소의 `network_zt` 폴더에 올립니다.
 
-**왜 중요한가** — 분석 결과와 근거 사진을 함께 올려야 다른 사람이 같은 결과를 확인할 수 있습니다.
+**왜 중요한가** — 분석 결과를 값과 함께 남겨야 다른 사람이 같은 결과를 확인할 수 있습니다.
 
 **이 문제에 나오는 말**
 
@@ -584,22 +579,20 @@ curl "http://example.com/?q=network_day1"
 
 **순서**
 1. **[보고서]** `day01_packet_analysis.md`에서 5 · 6 · 7교시와 「최종 분석」의 빈 항목을 채웁니다. 선택 문제는 비워도 됩니다.
-2. **[파일 탐색기]** `network_zt` 폴더에 `day01_packet_analysis.md`, `handshake.png`, `http_request.png` 세 파일이 있는지 확인합니다.
-3. **[브라우저]** GitHub에서 내 `security-agent-toolkit` 저장소를 열고 `network_zt` 폴더로 이동합니다.
-4. **[브라우저]** `Add file`을 누르고 `Upload files`를 선택합니다.
-5. **[브라우저]** 세 파일을 업로드 화면에 끌어 놓습니다.
-6. **[브라우저]** 아래쪽의 `Commit changes`를 눌러 업로드합니다.
-7. **[브라우저]** `network_zt` 폴더에 세 파일이 보이고 보고서의 사진 두 장이 표시되는지 확인합니다.
+2. **[브라우저]** GitHub에서 내 `security-agent-toolkit` 저장소를 열고 `network_zt` 폴더로 이동합니다.
+3. **[브라우저]** `Add file`을 누르고 `Upload files`를 선택합니다.
+4. **[브라우저]** `day01_packet_analysis.md` 를 업로드 화면에 끌어 놓습니다.
+5. **[브라우저]** 아래쪽의 `Commit changes`를 눌러 업로드합니다.
+6. **[브라우저]** `network_zt` 폴더에 보고서가 보이는지 확인합니다.
 
 
 | | |
 |---|---|
-| 🎯 나와야 하는 결과 | 깃허브의 내 저장소 `network_zt` 폴더에 `day01_packet_analysis.md` · `handshake.png` · `http_request.png` 가 보이고, 보고서에 사진 두 장이 나온다 |
+| 🎯 나와야 하는 결과 | 깃허브의 내 저장소 `network_zt` 폴더에 `day01_packet_analysis.md` 가 보이고, 열면 빈칸 없이 채워져 있다 |
 
 **💡 힌트**
 
-1. 사진 줄 `![설명](파일이름)` 은 틀에 이미 있습니다. 사진이 안 보이면 파일 이름과 저장한 폴더(`network_zt`)를 봅니다.
-2. `network_zt` 폴더에서 파일을 여러 개 선택하려면 `Ctrl`을 누른 채 파일을 하나씩 클릭합니다.
+1. 같은 이름의 파일이 이미 있으면 새 파일이 덮어씁니다. 그대로 `Commit changes` 를 누르면 됩니다.
 
 ---
 
@@ -609,7 +602,6 @@ curl "http://example.com/?q=network_day1"
 | 확인 | 문제 |
 |---|---|
 | `day01_packet_analysis.md` 의 2~7교시와 「최종 분석」에 빈 칸이 없다(⭐ 제외) | 모든 문제 · 7-3 |
-| 사진 두 장(`handshake.png` · `http_request.png`)이 보고서에 나온다 | 7-1 · 7-2 |
 | 3-way 세 단계를 내 말로 설명할 수 있다 | 5-3 · 7-1 |
 | 깃허브에 올렸다 | 7-3 |
 
@@ -750,7 +742,7 @@ tcp.port == 443
 curl "http://example.com/?q=network_day1"
 ```
 
-3초 뒤 캡처를 멈추고, 표시 필터 `tcp.flags.syn == 1` 로 `[SYN]` · `[SYN, ACK]` 를 찾습니다. 필터를 지워 바로 다음 `[ACK]` 까지 확인한 뒤, `Win + Shift + S` 로 세 줄을 선택하고 그림판에서 `Ctrl + V` → `Ctrl + Shift + S` 를 눌러 `network_zt/handshake.png` 로 저장합니다.
+3초 뒤 캡처를 멈추고, 표시 필터 `tcp.flags.syn == 1` 로 `[SYN]` · `[SYN, ACK]` 를 찾습니다. 필터를 지워 바로 다음 `[ACK]` 까지 확인하고, 세 줄의 신호 순서를 보고서에 적습니다.
 
 **결과** — Info 열에 `[SYN]` → `[SYN, ACK]` → `[ACK]` 가 차례로, 터미널에는 `<title>Example Domain</title>` 이 든 HTML (줄 번호 · 주소는 매번 다름)
 
@@ -764,7 +756,7 @@ curl "http://example.com/?q=network_day1"
 
 ### 정답 7-2
 
-표시 필터 `http` → `GET /?q=network_day1 HTTP/1.1` 줄을 잘라 `http_request.png`. 표시 필터 `tcp.flags.fin == 1` → FIN 이 든 줄 2줄.
+표시 필터 `http` → `GET /?q=network_day1 HTTP/1.1` 줄의 Info 를 읽습니다. 표시 필터 `tcp.flags.fin == 1` → FIN 이 든 줄 2줄.
 
 **결과** — ① Info 에 `GET /?q=network_day1 HTTP/1.1` — 검색어가 그대로 보인다 ② FIN 줄 2줄(양쪽이 하나씩) (FIN 대신 RST 가 보이는 등 조금 다를 수 있음)
 
@@ -780,15 +772,15 @@ curl "http://example.com/?q=network_day1"
 
 ### 정답 7-3
 
-내 GitHub 저장소의 `network_zt` 폴더에서 **Add file › Upload files**를 선택합니다. 로컬 `network_zt` 폴더의 보고서와 사진 두 장을 올린 뒤 **Commit changes**를 누릅니다.
+내 GitHub 저장소의 `network_zt` 폴더에서 **Add file › Upload files**를 선택합니다. 로컬 `network_zt` 폴더의 `day01_packet_analysis.md` 를 올린 뒤 **Commit changes**를 누릅니다.
 
-**결과** — 깃허브의 내 저장소 `network_zt` 폴더에 `day01_packet_analysis.md` · `handshake.png` · `http_request.png` 가 보이고, 보고서에 사진 두 장이 나온다
+**결과** — 깃허브의 내 저장소 `network_zt` 폴더에 `day01_packet_analysis.md` 가 보이고, 열면 빈칸 없이 채워져 있다
 
-**왜** — `![설명](파일이름)` 은 같은 폴더의 사진을 보고서에 띄웁니다. 그래서 사진 파일도 같은 폴더에 함께 올려야 보입니다.
+**왜** — 웹 화면의 Upload files 는 고른 파일을 그 폴더에 그대로 올립니다. 같은 이름이 있으면 새 파일로 바뀝니다.
 
-**자주 틀리는 곳** — 사진을 `network_zt` 가 아닌 곳에 저장하거나 파일 이름을 다르게 적으면 보고서에 사진이 나오지 않습니다. `git status` 에 `.env` 가 보이면 멈춥니다.
+**자주 틀리는 곳** — `network_zt` 가 아닌 저장소 맨 위에 올리는 실수가 많습니다. `.env` 는 절대 올리지 않습니다.
 
-**관제에서는** — 분석 보고서에 캡처 사진과 사용한 필터를 함께 남겨야 다른 사람이 같은 결과를 다시 확인할 수 있습니다.
+**관제에서는** — 분석 보고서에 확인한 값과 사용한 필터를 함께 남겨야 다른 사람이 같은 결과를 다시 확인할 수 있습니다.
 
 ---
 
