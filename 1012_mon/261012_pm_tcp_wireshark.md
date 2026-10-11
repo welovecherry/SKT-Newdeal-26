@@ -33,11 +33,11 @@
 
 ### 오늘 시작할 때
 
-0. 오늘 적는 것은 모두 **오전에 만든 `day01_packet_analysis.md` 하나에** 적습니다. 5 · 6 · 7교시의 문제 소제목은 오전에 붙여 넣은 틀에 이미 있습니다 — **그 문제 소제목 아래**를 채웁니다. 문제마다 「**적는 곳**」 줄을 봅니다.
+0. 오늘 적는 것은 모두 **오전에 만든 `day01_packet_analysis.md` 하나에** 적습니다. 5 · 6 · 7교시의 문제 소제목은 오전에 붙여 넣은 틀에 이미 있습니다 — **그 문제 소제목 아래**를 채웁니다. 각 문제의 마지막 **[보고서]** 단계에서 보고서에 적을 위치와 항목을 확인합니다.
 1. 오전과 같은 터미널(Git Bash)을 씁니다. 줄 앞에 `$` 가 보이면 됩니다.
 2. `network_zt` 폴더에서 시작합니다 — `cd network_zt`(이미 들어와 있으면 생략).
 3. 이 문서의 화면 예시는 **모양을 보여 주는 예시**입니다. 주소 · 숫자는 내 화면의 값을 읽습니다.
-4. 문제 앞의 **상자**를 먼저 읽습니다 — 🐍 문법 상자(파이썬) · 명령 상자(터미널) · Wireshark 상자 · 개념 상자. 문제 제목 아래 **어디서** 줄이 실습하는 곳입니다. `→` 는 하는 순서입니다. 막히면 **💡 힌트** → 맨 아래 **「정답」** 순서로 봅니다. ⭐도전은 선택입니다.
+4. 문제마다 **할 일 → 왜 중요한가 → 이 문제에 나오는 말 → 순서**를 읽습니다. 순서 앞의 `[창 이름]`을 보고 해당 창에서 적힌 행동을 합니다. 마지막 **[보고서]** 단계에서 답을 적습니다. 문제 앞의 상자는 🐍 문법 상자(파이썬) · 명령 상자(터미널) · Wireshark 상자 · 개념 상자입니다. 막히면 **💡 힌트** → 맨 아래 **「정답」** 순서로 봅니다. ⭐도전은 선택입니다.
 5. 맥북으로 복습할 때는 명령 상자 바로 아래의 **「맥북:」 줄**을 칩니다(없으면 Windows 와 같은 명령). 맥의 결과는 영어이고 모양이 달라 🎯 결과와 글자가 다릅니다 — 같은 값(평균 · TTL · IP · 포트)을 찾으면 됩니다.
 
 ---
@@ -74,17 +74,17 @@ print(flags == "SYN")       # False — 리스트와 글자는 같을 수 없다
 
 ### ✍️ 문제 5-1 · 직접 실행해 보기
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — VS Code 에서 `warmup.py` 에 따라 치기 → 터미널에서 `python warmup.py` → 결과와 「왜」를 보고서에 적기
+**할 일** — `in`과 `==`를 실행해 결과를 비교하고, 결과가 나온 이유를 보고서에 적습니다.
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day01_packet_analysis.md` 의 `## 5교시` 에서 `### 문제 5-1` 아래
-
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**왜 중요한가**</mark> — 패킷의 플래그는 여러 개가 한 리스트에 들어옵니다. 이 차이를 알아야 SYN · FIN 을 골라내는 탐지 코드가 아무것도 못 잡는 실수를 막습니다.
+**왜 중요한가** — 패킷의 플래그는 여러 개가 한 리스트에 들어옵니다. 이 차이를 알아야 SYN · FIN 을 골라내는 탐지 코드가 아무것도 못 잡는 실수를 막습니다.
 
 **이 문제에 나오는 말**
 
-- **플래그 (flag)** — TCP 가 패킷에 켜고 끄는 **표시 한 칸**. 켜진 플래그로 무슨 신호인지 알린다
+- **플래그 (flag)** — TCP 가 패킷에 켜고 끄는 표시 한 칸. 켜진 플래그로 무슨 신호인지 알립니다.
 
-VS Code 에서 `network_zt` 폴더에 `warmup.py` 파일을 만들고, 아래 코드를 입력해 저장합니다. 처음 한 번만 새 파일로 만들고, 교시마다 내용을 지우고 다시 씁니다. 터미널에서 실행한 결과와 「왜 이렇게 나왔는지」 한 줄을 보고서에 적으시오.
+**순서**
+1. **[VS Code]** `network_zt` 폴더에서 `warmup.py`를 엽니다. 파일이 없으면 새로 만듭니다.
+2. **[VS Code]** 아래 코드를 `warmup.py`에 입력하고 저장합니다.
 
 ```python
 packet = {"src_port": 51234, "dst_port": 443, "flags": ["SYN", "ACK"]}
@@ -93,10 +93,11 @@ print(packet["flags"] == "ACK")
 print(packet["dst_port"])
 ```
 
-```bash
-python warmup.py
-```
+3. **[터미널]** `network_zt` 폴더에서 `python warmup.py`를 실행합니다.
+
 맥북: `python3 warmup.py`
+
+4. **[보고서]** `day01_packet_analysis.md`의 `## 5교시`에서 `### 문제 5-1` 아래에 출력 세 줄과 각 결과가 나온 이유를 적습니다.
 
 막히면 바로 위 문법 상자를 다시 봅니다.
 
@@ -133,13 +134,18 @@ python warmup.py
 
 ### ✍️ 문제 5-2 · TCP 일까 UDP 일까
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — 명령 없이 생각해서 답하기 → 보고서에 적기
+**할 일** — 다섯 가지 상황에서 TCP · UDP · ICMP 중 무엇을 쓰는지 구분해 보고서에 적습니다.
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day01_packet_analysis.md` 의 `## 5교시` 에서 `### 문제 5-2` 아래
+**왜 중요한가** — TCP 와 UDP 를 구별해야 Wireshark 의 Protocol 열을 읽고, 6-4 에서 `udp` 필터에 잡힐 패킷을 알 수 있습니다.
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**왜 중요한가**</mark> — TCP 와 UDP 를 구별해야 Wireshark 의 Protocol 열을 읽을 수 있습니다. 6-4 에서 `udp` 필터를 걸 때 무엇이 걸릴지 미리 짐작하는 근거가 됩니다.
+**이 문제에 나오는 말**
 
-아래 다섯 가지가 TCP 인지 UDP 인지(또는 둘 다 아닌지) 적으시오. 명령은 입력하지 않습니다.
+새 용어 없음. 위 TCP · UDP 표를 봅니다.
+
+**순서**
+1. **[이 문서]** 아래 다섯 가지 상황을 하나씩 읽고, 위 TCP · UDP 표와 비교합니다.
+2. **[보고서]** `day01_packet_analysis.md`의 `## 5교시`에서 `### 문제 5-2` 아래에 각 상황이 TCP · UDP · ICMP 중 무엇인지 적습니다.
+
 
 | # | 하는 일 |
 |---|---|
@@ -198,13 +204,18 @@ python warmup.py
 
 ### ✍️ 문제 5-3 · 세 번의 순서 맞히기
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — 명령 없이 생각해서 답하기 → 보고서에 적기
+**할 일** — 섞여 있는 세 패킷을 연결 순서대로 놓고, 각 패킷이 어느 쪽으로 가는지 보고서에 적습니다.
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day01_packet_analysis.md` 의 `## 5교시` 에서 `### 문제 5-3` 아래
+**왜 중요한가** — 연결이 시작되는 순서를 알아야 7교시 Wireshark 에서 정상 연결과 이상한 연결 시도를 구별할 수 있습니다.
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**왜 중요한가**</mark> — 이 순서를 알아야 7-1 에서 Wireshark 로 잡은 줄이 연결의 시작인지 가릴 수 있습니다. 관제에서는 연결이 끝까지 맺어지지 않는 시도가 쌓이면 공격을 의심합니다.
+**이 문제에 나오는 말**
 
-뒤섞인 세 패킷의 **올바른 순서**와 **방향**(내 PC → 서버 / 서버 → 내 PC)을 적으시오.
+새 용어 없음. 위 그림의 SYN · ACK 설명을 봅니다.
+
+**순서**
+1. **[이 문서]** 아래 세 패킷의 표시(`[SYN]`, `[SYN, ACK]`, `[ACK]`)를 읽습니다.
+2. **[보고서]** `day01_packet_analysis.md`의 `## 5교시`에서 `### 문제 5-3` 아래에 패킷 순서와 방향(내 PC → 서버 또는 서버 → 내 PC)을 적습니다.
+
 
 ```
 (가) [ACK]
@@ -242,13 +253,20 @@ python warmup.py
 
 ### ✍️ 문제 5-4 · 같은 서버로 간 두 연결은 무엇이 다른가
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — 브라우저에서 같은 사이트를 탭 두 개로 열기 → 터미널에서 명령 실행 → 보고서에 적기
+**할 일** — 같은 사이트로 열린 연결 두 개를 찾아, 공통점과 다른 점을 보고서에 적습니다.
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day01_packet_analysis.md` 의 `## 5교시` 에서 `### 문제 5-4` 아래
+**왜 중요한가** — 목적지 주소가 같은 연결이 여럿이어도 출발지 포트를 보면 각각을 구별할 수 있습니다.
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**왜 중요한가**</mark> — 관제 로그에서 연결 하나를 정확히 짚으려면 5.4 의 네 값을 모두 봐야 합니다. 같은 서버로 간 연결이 여러 개일 때 어느 것인지 가리는 근거가 됩니다.
+**이 문제에 나오는 말**
 
-브라우저로 같은 사이트를 **탭 두 개**로 연 뒤 `netstat -n` 을 입력하고, 외부 주소가 **같은** 연결 두 줄을 찾아 **무엇이 다른지** 적으시오.
+새 용어 없음. 위의 임시 포트 설명을 봅니다.
+
+**순서**
+1. **[브라우저]** 같은 사이트를 탭 두 개에서 엽니다.
+2. **[터미널]** `netstat -n`을 입력하고 Enter 를 누릅니다.
+3. **[터미널]** 결과에서 외부 주소가 같은 연결 두 줄을 찾고, 로컬 주소의 끝 포트 번호를 비교합니다.
+4. **[보고서]** `day01_packet_analysis.md`의 `## 5교시`에서 `### 문제 5-4` 아래에 같은 점과 다른 점을 적습니다.
+
 
 | | |
 |---|---|
@@ -280,24 +298,27 @@ Wireshark는 내 PC를 지나는 패킷을 붙잡아 보여 줍니다. 패킷을
 
 ### ✍️ 문제 6-1 · Wireshark 실행하기
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — Wireshark 화면에서
+**할 일** — Wireshark에서 캡처할 인터페이스를 골라 그 이름을 보고서에 적습니다.
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day01_packet_analysis.md` 의 `## 6교시` 에서 `### 문제 6-1` 아래
-
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**왜 중요한가**</mark> — Wireshark 가 인터페이스를 보지 못하면 6 · 7교시 실습을 하나도 할 수 없습니다. 지금 확인해야 캡처 단계에서 멈추지 않습니다.
+**왜 중요한가** — 실제로 통신 중인 인터페이스를 골라야 내 PC의 패킷이 화면에 잡힙니다.
 
 **이 문제에 나오는 말**
 
-- **Npcap** (엔피캡) — Wireshark 가 패킷을 실제로 붙잡게 해 주는 **부품**. Wireshark 와 함께 설치한다
+- **인터페이스 (interface)** — Wi-Fi나 이더넷처럼 네트워크에 연결하는 통로
+- **Npcap** — Wireshark가 패킷을 붙잡도록 돕는 프로그램
 
-아침 과제 8 에서 설치한 Wireshark 를 실행해, 첫 화면에서 **인터페이스 목록**이 보이는지 확인하시오.
+**순서**
+1. **[Wireshark]** Wireshark를 실행하고 첫 화면의 「캡처」 목록을 봅니다.
+2. **[Wireshark]** 목록에서 `이더넷 2`를 찾습니다. 학원 Windows PC에서는 보통 이 항목을 사용합니다. 목록이 비어 있으면 강사에게 알립니다.
+3. **[Wireshark]** `이더넷 2` 오른쪽 그래프가 움직이면 그 줄을 한 번 클릭합니다. 그래프가 움직이지 않거나 `이더넷 2`가 없으면 그래프가 움직이는 Wi-Fi 또는 이더넷 줄을 한 번 클릭합니다. 한 번 클릭하면 선택만 되고 캡처는 시작되지 않습니다.
+4. **[보고서]** `day01_packet_analysis.md`의 `## 6교시`에서 `### 문제 6-1` 아래에 선택한 인터페이스 이름을 적습니다.
 
-1. 시작 메뉴에서 **Wireshark** 를 엽니다.
-2. 아침에 설치를 못 끝냈으면 [아침 과제 8](1012_morning30.md) 의 3번을 지금 합니다 — **Windows x64 Installer**, 설치 중 **Install Npcap**(엔피캡 · 패킷을 실제로 붙잡는 부품) 체크는 **꼭 켠 채로**.
+맥북: 인터페이스는 `en0`(Wi-Fi)입니다. 캡처 권한 안내가 보이면 강사에게 알립니다.
+
 
 | | |
 |---|---|
-| 🎯 나와야 하는 결과 | 창 가운데 `Wireshark에 오신 것을 환영합니다`(영어 화면은 `Welcome to Wireshark`) 아래에 **이더넷 · Wi-Fi 같은 인터페이스 이름 목록**. 오른쪽에 작은 그래프가 붙어 있다 (인터페이스 이름과 개수는 PC 마다 다릅니다) |
+| 🎯 나와야 하는 결과 | 창 가운데 `Wireshark에 오신 것을 환영합니다`(영어 화면은 `Welcome to Wireshark`) 아래에 **이더넷 · Wi-Fi 같은 인터페이스 이름 목록**. 학원 Windows PC는 보통 `이더넷 2`이며, 오른쪽 그래프가 움직이는 줄을 한 번 클릭해 선택합니다 (인터페이스 이름과 개수는 PC 마다 다릅니다) |
 
 **💡 힌트**
 
@@ -315,13 +336,23 @@ Wireshark는 내 PC를 지나는 패킷을 붙잡아 보여 줍니다. 패킷을
 
 ### ✍️ 문제 6-2 · 첫 캡처
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — Wireshark 화면에서 → 보고서에 적기
+**할 일** — 선택한 인터페이스로 캡처를 시작하고, 웹사이트를 연 뒤 멈춰 패킷 수와 프로토콜 이름 세 가지를 확인합니다.
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day01_packet_analysis.md` 의 `## 6교시` 에서 `### 문제 6-2` 아래
+**왜 중요한가** — 실제 통신이 패킷 목록에 어떻게 보이는지 확인하고, 다음 문제에서 필터를 적용하기 전의 패킷 수를 기록합니다.
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**왜 중요한가**</mark> — 사이트 하나를 열 때 실제로 몇 개의 패킷과 어떤 종류가 오가는지 숫자로 봅니다. 이 `Packets` 수가 6-4 에서 필터로 얼마나 줄었는지 비교하는 기준이 됩니다.
+**이 문제에 나오는 말**
 
-**그래프가 움직이는 인터페이스**를 더블클릭해 캡처를 시작하고, 브라우저로 사이트 하나를 연 뒤 멈추시오. 화면 맨 아래 오른쪽 끝 상태 줄의 **Packets** 숫자와 Protocol 열에 보이는 **이름 세 개**를 적으시오.
+- **캡처 (capture)** — 내 PC를 오가는 패킷을 Wireshark에 표시하는 것
+- **Protocol** — 패킷이 사용하는 통신 방식의 이름. 예: `TCP`, `UDP`, `DNS`
+
+**순서**
+1. **[Wireshark]** 6-1에서 한 번 클릭해 선택한 인터페이스를 두 번 클릭합니다. 학원 Windows PC에서는 보통 `이더넷 2`입니다.
+2. **[브라우저]** `https://example.com`을 엽니다.
+3. **[Wireshark]** 도구 줄의 빨간 네모를 눌러 캡처를 멈춥니다.
+4. **[Wireshark]** 화면 맨 아래 상태 줄에서 `Packets` 숫자를 확인합니다.
+5. **[Wireshark]** 위쪽 목록의 `Protocol` 열에서 서로 다른 이름 세 가지를 확인합니다.
+6. **[보고서]** `day01_packet_analysis.md`의 `## 6교시`에서 `### 문제 6-2` 아래에 `Packets` 숫자와 프로토콜 이름 세 가지를 적습니다.
+
 
 | | |
 |---|---|
@@ -343,13 +374,21 @@ Wireshark는 내 PC를 지나는 패킷을 붙잡아 보여 줍니다. 패킷을
 
 ### ✍️ 문제 6-3 · 패킷 하나를 층별로 펼치기
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — Wireshark 화면에서
+**할 일** — TCP 패킷 하나의 Ethernet · IPv4 · TCP 항목을 차례로 펼쳐 표에 있는 값을 보고서에 적습니다.
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day01_packet_analysis.md` 의 `## 6교시` 에서 `### 문제 6-3` 아래
+**왜 중요한가** — 관제에서 출발지 · 목적지 IP 와 포트, TTL 을 읽어 통신의 출발과 도착을 확인합니다.
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**왜 중요한가**</mark> — 관제에서 출발지 · 목적지 IP 와 포트를 읽는 곳이 이 칸입니다. 7교시 보고서의 평가 기준인 출발지 · 목적지 · TTL 도 여기서 읽습니다.
+**이 문제에 나오는 말**
 
-위 칸에서 Protocol 이 `TCP` 인 줄 하나를 누르고, 아래 왼쪽 칸의 세 줄을 펼쳐 아래 표의 값을 찾고, 보고서에 적으시오.
+새 용어 없음. 앞의 화면 설명에서 각 항목의 위치를 확인합니다.
+
+**순서**
+1. **[Wireshark]** 위쪽 패킷 목록에서 `Protocol`이 `TCP`인 줄 하나를 클릭합니다.
+2. **[Wireshark]** 아래 왼쪽에서 `Ethernet II` 앞 삼각형을 눌러 펼칩니다.
+3. **[Wireshark]** `Internet Protocol Version 4` 앞 삼각형을 눌러 펼칩니다.
+4. **[Wireshark]** `Transmission Control Protocol` 앞 삼각형을 눌러 펼칩니다.
+5. **[보고서]** `day01_packet_analysis.md`의 `## 6교시`에서 `### 문제 6-3` 아래에 표에 적힌 MAC · IP · TTL · 포트 · Flags 값을 옮겨 적습니다.
+
 
 | 아래 왼쪽 칸(패킷 상세)의 줄 | 층 | 찾을 값 |
 |---|---|---|
@@ -378,17 +417,22 @@ Wireshark는 내 PC를 지나는 패킷을 붙잡아 보여 줍니다. 패킷을
 
 ### ✍️ 문제 6-4 · 필터 세 개 걸어 보기
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — Wireshark 화면에서 → 보고서에 적기
+**할 일** — 표시 필터를 한 번에 하나씩 적용하고, 필터마다 화면에 표시된 패킷 수를 보고서에 적습니다.
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day01_packet_analysis.md` 의 `## 6교시` 에서 `### 문제 6-4` 아래
+**왜 중요한가** — `Displayed` 숫자를 보면 필터가 패킷 목록을 얼마나 좁혔는지 알 수 있습니다.
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**왜 중요한가**</mark> — 화면 맨 아래 오른쪽 `Displayed` 는 필터에 걸린 패킷 수입니다. 이 숫자로 필터가 제대로 걸렸는지 확인하고, 관제에서는 수천 줄을 몇 줄로 좁혔는지 판단합니다.
+**이 문제에 나오는 말**
 
-필터 세 개를 **한 번에 하나씩** 걸어 보고, 걸 때마다 화면 맨 아래 오른쪽 끝 상태 줄의 **Displayed** 숫자를 적으시오. 세 줄을 한 칸에 같이 치지 않습니다.
+새 용어 없음. 표시 필터 칸은 패킷 목록 바로 위에 있습니다.
 
-1. 필터 칸에 `dns` 를 치고 Enter → `Displayed` 숫자를 적고, 칸 오른쪽 **X** 로 지웁니다.
-2. 필터 칸에 `udp` 를 치고 Enter → `Displayed` 숫자를 적고, **X** 로 지웁니다.
-3. 필터 칸에 `tcp.port == 443` 을 치고 Enter → `Displayed` 숫자를 적습니다.
+**순서**
+1. **[Wireshark]** 패킷 목록 바로 위의 표시 필터 칸에 `dns`를 입력하고 Enter 를 누릅니다.
+2. **[Wireshark]** 아래 상태 줄의 `Displayed` 숫자를 확인한 뒤, 필터 칸 오른쪽 `X`를 눌러 지웁니다.
+3. **[Wireshark]** 같은 칸에 `udp`를 입력하고 Enter 를 누릅니다.
+4. **[Wireshark]** `Displayed` 숫자를 확인한 뒤 `X`를 눌러 지웁니다.
+5. **[Wireshark]** 같은 칸에 `tcp.port == 443`을 입력하고 Enter 를 누른 뒤 `Displayed` 숫자를 확인합니다.
+6. **[보고서]** `day01_packet_analysis.md`의 `## 6교시`에서 `### 문제 6-4` 아래에 각 필터의 `Displayed` 숫자를 적습니다.
+
 
 | | |
 |---|---|
@@ -438,19 +482,34 @@ Wireshark는 내 PC를 지나는 패킷을 붙잡아 보여 줍니다. 패킷을
 
 ### ✍️ 문제 7-1 · 내 HTTP 연결 하나만 잡기
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — Wireshark 에서 캡처 시작 → 터미널에서 `curl` 실행 → Wireshark 화면을 사진으로 저장
+**할 일** — HTTP 연결만 캡처해 3-way handshake 세 패킷을 찾고, 한 화면에 보이도록 저장합니다.
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day01_packet_analysis.md` 의 `## 7교시` 에서 `### 문제 7-1` 아래
+**왜 중요한가** — 패킷을 직접 발생시키고 걸러 보면 연결이 시작되는 과정을 확인할 수 있습니다.
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**왜 중요한가**</mark> — 캡처 필터로 내 연결만 잡으면 수백 줄 속에서 헤매지 않고 3-way 세 줄을 바로 찾습니다. 이 사진이 오늘 보고서의 첫 증거입니다.
+**이 문제에 나오는 말**
 
-캡처 필터 `tcp port 80` 으로 캡처를 시작하고, 터미널에서 아래 명령을 입력한 뒤 **3초쯤 기다렸다가** 멈추시오.
+새 용어 없음. 캡처 필터와 표시 필터는 위 설명에 있습니다.
+
+**순서**
+1. **[Wireshark]** 캡처가 진행 중이면 도구 줄의 빨간 네모를 눌러 멈춥니다.
+2. **[Wireshark]** `Ctrl + K`를 눌러 캡처 옵션 창을 엽니다.
+3. **[Wireshark]** 위 인터페이스 목록에서 `이더넷 2`를 선택합니다. 목록에 없으면 6-1에서 고른 인터페이스를 선택합니다.
+4. **[Wireshark]** 창 아래 캡처 필터 칸에 `tcp port 80`을 입력하고 칸이 초록색인지 확인합니다.
+5. **[Wireshark]** 시작을 눌러 캡처를 시작합니다. 「저장하지 않고 계속」 창이 뜨면 그 버튼을 누릅니다.
+6. **[터미널]** 캡처가 시작된 뒤 아래 명령을 입력하고 Enter 를 누릅니다.
 
 ```bash
 curl "http://example.com/?q=network_day1"
 ```
 
-그다음 표시 필터 `tcp.flags.syn == 1` 을 걸어 3-way 의 앞 두 줄을 찾고, 필터를 지운 뒤 세 번째 `[ACK]` 줄까지 찾아 **세 줄을 한 화면에 잘라** `handshake.png` 로 저장하시오.
+7. **[터미널]** 3초 기다립니다.
+8. **[Wireshark]** 빨간 네모를 눌러 캡처를 멈춥니다.
+9. **[Wireshark]** 표시 필터 칸에 `tcp.flags.syn == 1`을 입력하고 Enter 를 눌러 `[SYN]`과 `[SYN, ACK]` 패킷을 찾습니다.
+10. **[Wireshark]** 필터 칸의 `X`를 눌러 필터를 지우고 세 번째 `[ACK]` 패킷을 찾습니다.
+11. **[화면 캡처 도구]** `Win + Shift + S`를 누르고 드래그해 세 패킷이 한 화면에 보이게 선택합니다.
+12. **[그림판]** 그림판을 열어 `Ctrl + V`를 누르고, `Ctrl + Shift + S`를 눌러 `network_zt/handshake.png`로 저장합니다.
+13. **[보고서]** `day01_packet_analysis.md`의 `## 7교시`에서 `### 문제 7-1` 아래에 `handshake.png`를 저장했는지 적습니다.
+
 
 | | |
 |---|---|
@@ -460,23 +519,30 @@ curl "http://example.com/?q=network_day1"
 
 1. 순서: 지금 캡처 중이면 빨간 네모로 먼저 멈춤 → 메뉴 **캡처(C) › 옵션(O)…**(`Ctrl + K`) → 위 목록에서 **`이더넷 2`** 한 줄 클릭 → 창 아래 `선택한 인터페이스에 대한 캡처 필터:` 칸에 `tcp port 80`(칸이 **초록**인지 확인) → 오른쪽 아래 **시작(S)**. 「저장하지 않고 계속」 창이 뜨면 그 단추를 누릅니다.
 2. 캡처가 **돌아가는 동안** `curl` 을 입력해야 잡힙니다.
-3. 화면 자르기는 `Win + Shift + S`(윈도우 키 + Shift + S · 캡처 도구) → 잘라서 `network_zt` 폴더에 붙여 저장합니다(그림판에 붙여 저장해도 됩니다).
+3. 캡처한 그림은 그림판에 붙여 넣고 `Ctrl + Shift + S`를 눌러 `network_zt/handshake.png`로 저장합니다.
 4. 멈췄는데 한 줄도 없으면: 캡처 필터 칸이 초록이었는지, `curl` 을 캡처가 **돌아가는 동안** 쳤는지 봅니다.
 
 ---
 
 ### ✍️ 문제 7-2 · HTTP 요청과 연결 종료 찾기
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — Wireshark 화면에서 → 보고서에 적기
+**할 일** — HTTP 요청 줄을 찾아 사진으로 저장하고, FIN 패킷이 몇 줄인지 확인해 보고서에 적습니다.
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day01_packet_analysis.md` 의 `## 7교시` 에서 `### 문제 7-2` 아래
+**왜 중요한가** — 암호화하지 않은 HTTP에서는 요청한 글자가 패킷에 보입니다. FIN 패킷은 연결을 정상적으로 끝내는 과정에서 나타납니다.
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**왜 중요한가**</mark> — HTTP 패킷에 내가 보낸 글자가 어떻게 남는지 직접 보면 암호화하지 않은 웹 통신을 왜 막는지 알 수 있습니다. FIN 줄은 연결이 정상으로 끝났는지 가리는 근거입니다.
+**이 문제에 나오는 말**
 
-7-1 의 캡처에서 아래 둘을 찾으시오.
+새 용어 없음. HTTP · FIN 은 앞에서 배웠습니다.
 
-1. 표시 필터 `http` → `GET /?q=network_day1` 줄을 찾아 **잘라** `http_request.png` 로 저장합니다.
-2. 표시 필터 `tcp.flags.fin == 1` → FIN 이 든 줄이 **몇 줄**인지 적습니다.
+**순서**
+1. **[Wireshark]** 표시 필터 칸에 `http`를 입력하고 Enter 를 누릅니다.
+2. **[Wireshark]** `GET /?q=network_day1` 줄을 찾습니다.
+3. **[화면 캡처 도구]** `Win + Shift + S`를 누르고 드래그해 요청 줄을 선택합니다.
+4. **[그림판]** 그림판을 열어 `Ctrl + V`를 누르고, `Ctrl + Shift + S`를 눌러 `network_zt/http_request.png`로 저장합니다.
+5. **[Wireshark]** 필터 칸의 `X`를 눌러 지운 뒤 `tcp.flags.fin == 1`을 입력하고 Enter 를 누릅니다.
+6. **[Wireshark]** 패킷 목록에서 FIN 이 든 줄의 개수를 셉니다.
+7. **[보고서]** `day01_packet_analysis.md`의 `## 7교시`에서 `### 문제 7-2` 아래에 요청 줄에 보인 검색어와 FIN 줄 수 및 뜻을 적습니다.
+
 
 | | |
 |---|---|
@@ -493,13 +559,23 @@ curl "http://example.com/?q=network_day1"
 
 ### ✍️ 문제 7-3 · 보고서 완성하고 올리기
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — 보고서 파일 마무리 → 깃허브에 올리기(웹 화면 또는 `git push`)
+**할 일** — 보고서와 캡처 사진 두 장을 확인하고, 내 GitHub 저장소의 `network_zt` 폴더에 올립니다.
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day01_packet_analysis.md` 의 `## 7교시` 에서 `### 문제 7-3` 아래
+**왜 중요한가** — 분석 결과와 근거 사진을 함께 올려야 다른 사람이 같은 결과를 확인할 수 있습니다.
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**왜 중요한가**</mark> — 사진과 값을 한 보고서로 남겨야 다른 사람이 같은 결과를 확인할 수 있습니다. 관제에서도 분석 결과는 근거 사진과 값을 붙인 보고서로 넘깁니다.
+**이 문제에 나오는 말**
 
-`day01_packet_analysis.md` 의 **빈 칸**(5 · 6 · 7교시와 맨 아래 「최종 분석」)을 마저 채우고 깃허브에 올리시오. 사진 줄과 값을 적는 줄은 오전에 붙여 넣은 틀에 이미 있습니다.
+새 용어 없음.
+
+**순서**
+1. **[보고서]** `day01_packet_analysis.md`에서 5 · 6 · 7교시와 「최종 분석」의 빈 항목을 채웁니다. 선택 문제는 비워도 됩니다.
+2. **[파일 탐색기]** `network_zt` 폴더에 `day01_packet_analysis.md`, `handshake.png`, `http_request.png` 세 파일이 있는지 확인합니다.
+3. **[브라우저]** GitHub에서 내 `security-agent-toolkit` 저장소를 열고 `network_zt` 폴더로 이동합니다.
+4. **[브라우저]** `Add file`을 누르고 `Upload files`를 선택합니다.
+5. **[브라우저]** 세 파일을 업로드 화면에 끌어 놓습니다.
+6. **[브라우저]** 아래쪽의 `Commit changes`를 눌러 업로드합니다.
+7. **[브라우저]** `network_zt` 폴더에 세 파일이 보이고 보고서의 사진 두 장이 표시되는지 확인합니다.
+
 
 | | |
 |---|---|
@@ -508,8 +584,7 @@ curl "http://example.com/?q=network_day1"
 **💡 힌트**
 
 1. 사진 줄 `![설명](파일이름)` 은 틀에 이미 있습니다. 사진이 안 보이면 파일 이름과 저장한 폴더(`network_zt`)를 봅니다.
-2. 올리기는 10/8 에 배운 순서입니다 — `security-agent-toolkit` 폴더에서 `git add network_zt` → `git commit -m "…"` → `git push`.
-3. `git status` 에 `.env` 가 보이면 멈춥니다.
+2. `network_zt` 폴더에서 파일을 여러 개 선택하려면 `Ctrl`을 누른 채 파일을 하나씩 클릭합니다.
 
 ---
 
@@ -601,9 +676,9 @@ netstat -n
 
 ### 정답 6-1
 
-시작 메뉴에서 Wireshark 를 실행합니다(설치는 아침 과제 8). 첫 화면 가운데에 인터페이스 이름 목록이 보이면 됩니다.
+시작 메뉴에서 Wireshark 를 실행합니다(설치는 아침 과제 8). 첫 화면에서 `이더넷 2`를 한 번 클릭해 선택합니다. 학원 Windows PC에는 보통 이 항목이 있습니다.
 
-**결과** — `Welcome to Wireshark` 아래에 이더넷 · Wi-Fi 같은 인터페이스 이름 목록, 오른쪽에 작은 그래프 (이름 · 개수는 PC 마다 다름)
+**결과** — `Welcome to Wireshark` 아래에 인터페이스 이름 목록과 오른쪽 그래프. 학원 Windows PC에서는 `이더넷 2`를 한 번 클릭해 선택합니다 (이름 · 개수는 PC 마다 다름)
 
 **왜** — 인터페이스 목록은 Npcap 이 PC 의 인터페이스를 찾아 Wireshark 에 넘겨 줘야 보입니다.
 
@@ -671,7 +746,7 @@ tcp.port == 443
 curl "http://example.com/?q=network_day1"
 ```
 
-3초 뒤 정지 → 표시 필터 `tcp.flags.syn == 1` 로 `[SYN]` · `[SYN, ACK]` 확인 → 필터를 지우고 바로 다음 `[ACK]` 까지 세 줄을 `Win + Shift + S` 로 잘라 `handshake.png` 로 저장.
+3초 뒤 캡처를 멈추고, 표시 필터 `tcp.flags.syn == 1` 로 `[SYN]` · `[SYN, ACK]` 를 찾습니다. 필터를 지워 바로 다음 `[ACK]` 까지 확인한 뒤, `Win + Shift + S` 로 세 줄을 선택하고 그림판에서 `Ctrl + V` → `Ctrl + Shift + S` 를 눌러 `network_zt/handshake.png` 로 저장합니다.
 
 **결과** — Info 열에 `[SYN]` → `[SYN, ACK]` → `[ACK]` 가 차례로, 터미널에는 `<title>Example Domain</title>` 이 든 HTML (줄 번호 · 주소는 매번 다름)
 
@@ -701,14 +776,7 @@ curl "http://example.com/?q=network_day1"
 
 ### 정답 7-3
 
-보고서의 빈 줄을 다 채운 뒤, **터미널(`security-agent-toolkit` 폴더)에 입력합니다.**
-
-```bash
-git status
-git add network_zt
-git commit -m "Add day 1 packet analysis report"
-git push
-```
+내 GitHub 저장소의 `network_zt` 폴더에서 **Add file › Upload files**를 선택합니다. 로컬 `network_zt` 폴더의 보고서와 사진 두 장을 올린 뒤 **Commit changes**를 누릅니다.
 
 **결과** — 깃허브의 내 저장소 `network_zt` 폴더에 `day01_packet_analysis.md` · `handshake.png` · `http_request.png` 가 보이고, 보고서에 사진 두 장이 나온다
 
