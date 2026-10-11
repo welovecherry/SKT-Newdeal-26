@@ -33,10 +33,10 @@
 
 ### 오늘 시작할 때
 
-0. 오늘 적는 것은 모두 **오전에 만든 `day03_dns_analysis.md` 하나에** 적습니다. 5 · 6 · 7교시의 문제 소제목은 오전에 붙여 넣은 틀에 이미 있습니다 — **그 문제 소제목 아래**를 채웁니다. 문제마다 「**적는 곳**」 줄을 봅니다.
+0. **[VS Code]** 오전에 만든 `day03_dns_analysis.md` 를 열고 `## 5교시` 로 내려갑니다 — 5 · 6 · 7교시 칸은 오전에 붙여 넣은 틀에 이미 있습니다.
 1. 오전과 같은 터미널, `network_zt` 폴더에서 합니다.
 2. 오늘 쓰는 의심 도메인은 **수업용으로 지어낸 이름**입니다. 실제로 접속하지 않습니다 — `nslookup` 으로 「있는지」만 봅니다(7-3).
-3. 문제 앞의 **상자**를 먼저 읽습니다 — 🐍 문법 상자(파이썬) · 명령 상자(터미널) · Wireshark 상자 · 개념 상자. 문제 제목 아래 **어디서** 줄이 실습하는 곳입니다. `→` 는 하는 순서입니다. 막히면 **💡 힌트** → 맨 아래 **「정답」** 순서로 봅니다. ⭐도전은 선택입니다.
+3. 문제 앞의 **상자**를 먼저 읽습니다 — 🐍 문법 상자(파이썬) · 명령 상자(터미널) · Wireshark 상자 · 개념 상자. 문제마다 맨 위 **할 일** 이 무엇을 하고 무엇을 적는지 알려 줍니다. **순서** 의 단계 맨 앞 `[VS Code]` · `[터미널]` · `[보고서]` 같은 이름이 그 단계에서 쓰는 창입니다. 막히면 **💡 힌트** → 맨 아래 **「정답」** 순서로 봅니다. ⭐도전은 선택입니다.
 4. 맥북으로 복습할 때는 명령 상자 바로 아래의 **「맥북:」 줄**을 칩니다(없으면 Windows 와 같은 명령). 맥의 결과는 영어이고 모양이 달라 🎯 결과와 글자가 다릅니다 — 같은 값(평균 · TTL · IP · 포트)을 찾으면 됩니다.
 
 ### 오늘 쓰는 DNS 로그
@@ -117,29 +117,32 @@ print("a" in "aeiou", "x" in "aeiou")
 
 ### ✍️ 문제 5-1 · 직접 실행해 보기
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — VS Code 에서 `warmup.py` 에 따라 치기 → 터미널에서 `python warmup.py` → 결과와 「왜」를 보고서에 적기
+**할 일** — 코드 여덟 줄을 실행하고, 나온 결과와 그 이유를 보고서에 적습니다.
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day03_dns_analysis.md` 의 `## 5교시` 에서 `### 문제 5-1` 아래
+**왜 중요한가** — 도메인에서 TLD 앞 조각의 길이와 모음 수를 세는 연습입니다. 6-2 의 점수 함수가 이 두 값으로 규칙 ①·③을 매깁니다.
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**왜 중요한가**</mark> — 도메인에서 TLD 앞 조각의 길이와 모음 수를 세는 연습입니다. 6-2 의 점수 함수가 이 두 값으로 규칙 ①·③을 매깁니다.
+**순서**
 
-아래 코드를 `warmup.py` 에 **따라 쳐서** 실행하고, 결과와 「왜 이렇게 나왔는지」 한 줄을 적으시오. `warmup.py` 는 처음 한 번만 `network_zt` 폴더에 New File 로 만들고, 교시마다 내용을 지우고 다시 씁니다.
-
-```python
-name = "p0w8rk2mzq.xyz"
-parts = name.split(".")
-label = parts[-2]
-vowels = 0
-for ch in label:
-    if ch in "aeiou":
-        vowels = vowels + 1
-print(label, len(label), vowels)
-```
-
-```bash
-python warmup.py
-```
-맥북: `python3 warmup.py`
+1. **[VS Code]** `network_zt` 폴더의 `warmup.py` 를 엽니다. 없으면 New File 로 만들고, 안에 있던 내용은 지웁니다.
+2. **[VS Code]** 아래 코드를 그대로 따라 칩니다.
+   ```python
+   name = "p0w8rk2mzq.xyz"            # 로그에 나온 이름
+   parts = name.split(".")            # 점으로 잘라 조각 리스트로 만든다
+   label = parts[-2]                  # TLD 바로 앞 조각
+   vowels = 0                         # 모음 수를 셀 변수
+   for ch in label:                   # 조각에서 한 자씩 꺼낸다
+       if ch in "aeiou":              # 그 한 자가 모음인가?
+           vowels = vowels + 1        # 모음이면 1 을 더한다
+   print(label, len(label), vowels)   # 조각 · 길이 · 모음 수
+   ```
+3. **[터미널]** 실행합니다.
+   ```bash
+   python warmup.py
+   ```
+   맥북: `python3 warmup.py`
+4. **[보고서]** `day03_dns_analysis.md` 의 `## 5교시` › `### 문제 5-1` 아래에 적습니다.
+   - 결과: 출력된 줄
+   - 왜 그렇게 나왔나: **셋째 값(모음 수)이 그렇게 나온 이유 — 이 조각의 글자를 하나씩 보고, 숫자 `0` 이 모음으로 세어졌는지** — 위 문법 상자와 검색으로 공부한 것을 적습니다
 
 <details><summary>답 보기 — 결과와 「왜」를 적은 뒤에 엽니다</summary>
 
@@ -157,38 +160,35 @@ python warmup.py
 
 ### ✍️ 문제 5-2 · 볼 조각 꺼내기 (`label.py`)
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — VS Code 에서 `label.py` 만들기 → 터미널에서 `python label.py` 실행
+**할 일** — 이름마다 TLD 바로 앞 조각과 TLD 를 꺼내 출력하는 `label.py` 를 완성하고, 출력과 막힌 곳을 보고서에 적습니다.
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day03_dns_analysis.md` 의 `## 5교시` 에서 `### 문제 5-2` 아래
+**왜 중요한가** — 어느 조각을 볼지 정해야 맨 앞 조각만 무작위인 CDN 같은 정상 도메인을 의심으로 잘못 판정하지 않습니다. 6-2 의 점수 함수도 이 두 조각으로 규칙을 매깁니다.
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**왜 중요한가**</mark> — 어느 조각을 볼지 정해야 맨 앞 조각만 무작위인 CDN 같은 정상 도메인을 의심으로 잘못 판정하지 않습니다. 6-2 의 점수 함수도 이 두 조각으로 규칙을 매깁니다.
+**순서**
 
-이름마다 **TLD 바로 앞 조각**과 **TLD** 를 꺼내 출력하시오.
+1. **[탐색기]** `network_zt` 폴더를 오른쪽 클릭 › **New File** › 이름 `label.py` 를 입력하고 Enter 를 누릅니다.
+2. **[VS Code]** 아래 코드를 복사해 `label.py` 에 붙여 넣습니다. 코드 상자 안을 끌어 선택하고 `Ctrl + C` 를 누릅니다.
+   ```python
+   # ── 미리 채워 둔 줄입니다. 고치지 않습니다 ──
+   names = ["www.naver.com", "e6030.a.akamaiedge.net", "kxq3vz9a.top", "bnk-secure-login.xyz"]
+   # ── 여기까지 ──
 
-```python
-# ── 미리 채워 둔 줄입니다. 고치지 않습니다 ──
-names = ["www.naver.com", "e6030.a.akamaiedge.net", "kxq3vz9a.top", "bnk-secure-login.xyz"]
-# ── 여기까지 ──
+   for name in names:                                # 이름을 하나씩
+       parts = name.split(".")                       # 점으로 나눈 조각들
+       # 1. label 에 parts 의 끝에서 둘째(-2)를, tld 에 맨 끝(-1)을 담으세요
 
-for name in names:                                # 이름을 하나씩
-    parts = name.split(".")                       # 점으로 나눈 조각들
-    # 1. label 에 parts 의 끝에서 둘째(-2)를, tld 에 맨 끝(-1)을 담으세요
-
-    print(name, "조각:", label, "TLD:", tld)
-```
-
-**파일을 만들고 실행합니다**
-
-1. VS Code 왼쪽 목록에서 `network_zt` 폴더를 오른쪽 클릭 › **New File** › 이름 `label.py` 를 입력하고 Enter 를 누릅니다.
-2. 위 코드 상자 안을 마우스로 끌어 선택하고 `Ctrl + C` 로 복사해 파일에 붙여 넣은 뒤, 번호 주석 아래를 채웁니다. 저장은 자동입니다.
-3. 터미널에 아래 명령을 입력합니다. 터미널의 줄 위에 `…/network_zt` 가 보여야 합니다. 아니면 먼저 `cd network_zt` 를 입력합니다.
-
-```bash
-python label.py
-```
-맥북: `python3 label.py`
-
-4. 고친 뒤에는 같은 명령을 다시 입력합니다. 터미널에서 **↑(위 화살표)** 를 누르면 방금 입력한 명령이 다시 나옵니다.
+       print(name, "조각:", label, "TLD:", tld)
+   ```
+3. **[VS Code]** 번호 주석 아래를 채웁니다. 저장은 자동입니다.
+4. **[터미널]** 실행합니다. 줄 위에 `…/network_zt` 가 보여야 합니다. 아니면 먼저 `cd network_zt` 를 입력합니다.
+   ```bash
+   python label.py
+   ```
+   맥북: `python3 label.py`
+5. **[터미널]** 고친 뒤에는 **↑(위 화살표)** 를 눌러 같은 명령을 다시 실행합니다.
+6. **[보고서]** `day03_dns_analysis.md` 의 `## 5교시` › `### 문제 5-2` 아래에 적습니다.
+   - 출력: 터미널에 나온 네 줄
+   - 막힌 곳: 막혔던 곳과 어떻게 풀었는지 (없으면 「없음」)
 
 | | |
 |---|---|
@@ -204,45 +204,42 @@ python label.py
 
 ### ✍️ 문제 5-3 · 숫자 수와 모음 비율 (`features.py`)
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — VS Code 에서 `features.py` 만들기 → 터미널에서 `python features.py` 실행
+**할 일** — TLD 앞 조각의 숫자 개수와 모음 비율(모음 수 ÷ 길이)을 계산하는 함수를 `features.py` 에 완성하고, 출력과 막힌 곳을 보고서에 적습니다.
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day03_dns_analysis.md` 의 `## 5교시` 에서 `### 문제 5-3` 아래
+**왜 중요한가** — 숫자 개수와 모음 비율은 사람이 지은 이름과 기계가 만든 DGA 이름을 가르는 지표입니다. 6교시 점수 규칙의 ②·③번이 이 두 값을 씁니다.
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**왜 중요한가**</mark> — 숫자 개수와 모음 비율은 사람이 지은 이름과 기계가 만든 DGA 이름을 가르는 지표입니다. 6교시 점수 규칙의 ②·③번이 이 두 값을 씁니다.
+**순서**
 
-TLD 앞 조각의 **숫자 개수**와 **모음 비율**(모음 수 ÷ 길이)을 계산하는 함수를 완성하시오.
+1. **[탐색기]** `network_zt` 폴더를 오른쪽 클릭 › **New File** › 이름 `features.py` 를 입력하고 Enter 를 누릅니다.
+2. **[VS Code]** 아래 코드를 복사해 `features.py` 에 붙여 넣습니다. 코드 상자 안을 끌어 선택하고 `Ctrl + C` 를 누릅니다.
+   ```python
+   def features(name):                               # 이름 하나의 특징을 사전으로 리턴한다
+       label = name.split(".")[-2]                   # TLD 앞 조각
+       digits = 0
+       vowels = 0
+       for ch in label:                              # 한 자씩
+           # 1. ch 가 숫자면 digits 에 1 을 더하세요
 
-```python
-def features(name):                               # 이름 하나의 특징을 사전으로 리턴한다
-    label = name.split(".")[-2]                   # TLD 앞 조각
-    digits = 0
-    vowels = 0
-    for ch in label:                              # 한 자씩
-        # 1. ch 가 숫자면 digits 에 1 을 더하세요
+           # 2. ch 가 모음(aeiou)이면 vowels 에 1 을 더하세요
 
-        # 2. ch 가 모음(aeiou)이면 vowels 에 1 을 더하세요
-
-    return {"label": label, "len": len(label), "digits": digits, "vowel_ratio": round(vowels / len(label), 2)}
+       return {"label": label, "len": len(label), "digits": digits, "vowel_ratio": round(vowels / len(label), 2)}
 
 
-# ── 미리 채워 둔 줄입니다. 고치지 않습니다 ──
-for name in ["www.naver.com", "kxq3vz9a.top", "xn--3e0b707e.kr"]:
-    print(features(name))
-# ── 여기까지 ──
-```
-
-**파일을 만들고 실행합니다**
-
-1. VS Code 왼쪽 목록에서 `network_zt` 폴더를 오른쪽 클릭 › **New File** › 이름 `features.py` 를 입력하고 Enter 를 누릅니다.
-2. 위 코드 상자 안을 마우스로 끌어 선택하고 `Ctrl + C` 로 복사해 파일에 붙여 넣은 뒤, 번호 주석 아래를 채웁니다. 저장은 자동입니다.
-3. 터미널에 아래 명령을 입력합니다. 터미널의 줄 위에 `…/network_zt` 가 보여야 합니다. 아니면 먼저 `cd network_zt` 를 입력합니다.
-
-```bash
-python features.py
-```
-맥북: `python3 features.py`
-
-4. 고친 뒤에는 같은 명령을 다시 입력합니다. 터미널에서 **↑(위 화살표)** 를 누르면 방금 입력한 명령이 다시 나옵니다.
+   # ── 미리 채워 둔 줄입니다. 고치지 않습니다 ──
+   for name in ["www.naver.com", "kxq3vz9a.top", "xn--3e0b707e.kr"]:
+       print(features(name))
+   # ── 여기까지 ──
+   ```
+3. **[VS Code]** 번호 주석 아래를 채웁니다. 저장은 자동입니다.
+4. **[터미널]** 실행합니다. 줄 위에 `…/network_zt` 가 보여야 합니다. 아니면 먼저 `cd network_zt` 를 입력합니다.
+   ```bash
+   python features.py
+   ```
+   맥북: `python3 features.py`
+5. **[터미널]** 고친 뒤에는 **↑(위 화살표)** 를 눌러 같은 명령을 다시 실행합니다.
+6. **[보고서]** `day03_dns_analysis.md` 의 `## 5교시` › `### 문제 5-3` 아래에 적습니다.
+   - 출력: 터미널에 나온 세 줄
+   - 막힌 곳: 막혔던 곳과 어떻게 풀었는지 (없으면 「없음」)
 
 | | |
 |---|---|
@@ -258,47 +255,44 @@ python features.py
 
 ### ✍️ 문제 5-4 · 사칭 도메인 찾기 (`typosquat.py`)
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — VS Code 에서 `typosquat.py` 만들기 → 터미널에서 `python typosquat.py` 실행
+**할 일** — `0` → `o`, `1` → `l`, `3` → `e` 로 바꿨을 때 믿을 만한 도메인과 똑같아지면 사칭으로 판정하는 `typosquat.py` 를 완성하고, 출력과 막힌 곳을 보고서에 적습니다.
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day03_dns_analysis.md` 의 `## 5교시` 에서 `### 문제 5-4` 아래
-
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**왜 중요한가**</mark> — 진짜 도메인과 한두 글자만 다른 사칭 도메인은 피싱에 자주 쓰입니다. 무작위처럼 보이지 않아 DGA 지표로는 잡기 어려운 이름을 이 규칙으로 따로 찾습니다.
+**왜 중요한가** — 진짜 도메인과 한두 글자만 다른 사칭 도메인은 피싱에 자주 쓰입니다. 무작위처럼 보이지 않아 DGA 지표로는 잡기 어려운 이름을 이 규칙으로 따로 찾습니다.
 
 **이 문제에 나오는 말**
 
 - **타이포스쿼팅 (typosquatting)** — 진짜 도메인과 **비슷하게** 만들어 사람을 속이는 사칭 — `nav3r.com`
 
-`0` → `o`, `1` → `l`, `3` → `e` 로 바꿨을 때 **믿을 만한 도메인과 똑같아지면** 사칭으로 판정하시오.
+**순서**
 
-```python
-# ── 미리 채워 둔 줄입니다. 고치지 않습니다 ──
-TRUSTED = ["naver.com", "google.com", "kbstar.com"]   # 우리 회사가 쓰는 진짜 도메인
-seen = ["nav3r.com", "google.com", "g00gle.com", "kbstar.com", "kb5tar.com"]
-# ── 여기까지 ──
+1. **[탐색기]** `network_zt` 폴더를 오른쪽 클릭 › **New File** › 이름 `typosquat.py` 를 입력하고 Enter 를 누릅니다.
+2. **[VS Code]** 아래 코드를 복사해 `typosquat.py` 에 붙여 넣습니다. 코드 상자 안을 끌어 선택하고 `Ctrl + C` 를 누릅니다.
+   ```python
+   # ── 미리 채워 둔 줄입니다. 고치지 않습니다 ──
+   TRUSTED = ["naver.com", "google.com", "kbstar.com"]   # 우리 회사가 쓰는 진짜 도메인
+   seen = ["nav3r.com", "google.com", "g00gle.com", "kbstar.com", "kb5tar.com"]
+   # ── 여기까지 ──
 
-for name in seen:                                 # 로그에 나온 이름을 하나씩
-    # 1. plain 에 name 의 0 을 o 로, 1 을 l 로, 3 을 e 로 바꾼 글자를 담으세요
+   for name in seen:                                 # 로그에 나온 이름을 하나씩
+       # 1. plain 에 name 의 0 을 o 로, 1 을 l 로, 3 을 e 로 바꾼 글자를 담으세요
 
-    if name in TRUSTED:
-        print("[정상]", name)
-    # 2. 아니고 plain 이 TRUSTED 안에 있으면 「[사칭 의심] nav3r.com → naver.com 흉내」 를 출력하세요
+       if name in TRUSTED:
+           print("[정상]", name)
+       # 2. 아니고 plain 이 TRUSTED 안에 있으면 「[사칭 의심] nav3r.com → naver.com 흉내」 를 출력하세요
 
-    else:
-        print("[모름]", name)
-```
-
-**파일을 만들고 실행합니다**
-
-1. VS Code 왼쪽 목록에서 `network_zt` 폴더를 오른쪽 클릭 › **New File** › 이름 `typosquat.py` 를 입력하고 Enter 를 누릅니다.
-2. 위 코드 상자 안을 마우스로 끌어 선택하고 `Ctrl + C` 로 복사해 파일에 붙여 넣은 뒤, 번호 주석 아래를 채웁니다. 저장은 자동입니다.
-3. 터미널에 아래 명령을 입력합니다. 터미널의 줄 위에 `…/network_zt` 가 보여야 합니다. 아니면 먼저 `cd network_zt` 를 입력합니다.
-
-```bash
-python typosquat.py
-```
-맥북: `python3 typosquat.py`
-
-4. 고친 뒤에는 같은 명령을 다시 입력합니다. 터미널에서 **↑(위 화살표)** 를 누르면 방금 입력한 명령이 다시 나옵니다.
+       else:
+           print("[모름]", name)
+   ```
+3. **[VS Code]** 번호 주석 아래를 채웁니다. 저장은 자동입니다.
+4. **[터미널]** 실행합니다. 줄 위에 `…/network_zt` 가 보여야 합니다. 아니면 먼저 `cd network_zt` 를 입력합니다.
+   ```bash
+   python typosquat.py
+   ```
+   맥북: `python3 typosquat.py`
+5. **[터미널]** 고친 뒤에는 **↑(위 화살표)** 를 눌러 같은 명령을 다시 실행합니다.
+6. **[보고서]** `day03_dns_analysis.md` 의 `## 5교시` › `### 문제 5-4` 아래에 적습니다.
+   - 출력: 터미널에 나온 다섯 줄
+   - 막힌 곳: 막혔던 곳과 어떻게 풀었는지 (없으면 「없음」)
 
 | | |
 |---|---|
@@ -314,49 +308,46 @@ python typosquat.py
 
 ### ✍️ 문제 5-5 · NXDOMAIN 이 쏟아지는 PC 찾기 (`nx_count.py`)
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — VS Code 에서 `nx_count.py` 만들기 → 터미널에서 `python nx_count.py` 실행
+**할 일** — DNS 로그에서 PC 마다 NXDOMAIN 이 몇 번인지 세고, 3번 이상인 PC 를 출력하는 `nx_count.py` 를 완성해 출력과 막힌 곳을 보고서에 적습니다.
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day03_dns_analysis.md` 의 `## 5교시` 에서 `### 문제 5-5` 아래
+**왜 중요한가** — 도메인 하나가 아니라 PC 별로 NXDOMAIN 을 세면 DGA 이름을 연달아 묻는 감염 의심 PC 를 찾을 수 있습니다. 관제에서 어느 PC 를 먼저 점검할지 정하는 기준이 됩니다.
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**왜 중요한가**</mark> — 도메인 하나가 아니라 PC 별로 NXDOMAIN 을 세면 DGA 이름을 연달아 묻는 감염 의심 PC 를 찾을 수 있습니다. 관제에서 어느 PC 를 먼저 점검할지 정하는 기준이 됩니다.
+**순서**
 
-DNS 로그에서 PC 마다 **NXDOMAIN 이 몇 번인지** 세고, **3번 이상**인 PC 를 출력하시오.
+1. **[탐색기]** `network_zt` 폴더를 오른쪽 클릭 › **New File** › 이름 `nx_count.py` 를 입력하고 Enter 를 누릅니다.
+2. **[VS Code]** 아래 코드를 복사해 `nx_count.py` 에 붙여 넣습니다. 코드 상자 안을 끌어 선택하고 `Ctrl + C` 를 누릅니다.
+   ```python
+   # ── 미리 채워 둔 줄입니다. 고치지 않습니다 ──
+   logs = [                                          # (PC 주소, 물어본 이름, 답)
+       ("10.20.0.15", "www.naver.com", "NOERROR"),
+       ("10.20.0.42", "kxq3vz9a.top", "NXDOMAIN"),
+       ("10.20.0.42", "p0w8rk2mzq.xyz", "NXDOMAIN"),
+       ("10.20.0.15", "mail.google.com", "NOERROR"),
+       ("10.20.0.42", "zzx9q2lk.top", "NXDOMAIN"),
+       ("10.20.0.33", "typo-nevar.com", "NXDOMAIN"),
+       ("10.20.0.42", "qwrtpzkx7v.com", "NOERROR"),
+   ]
+   nx = {}                                           # PC 주소 → NXDOMAIN 횟수
+   # ── 여기까지 ──
 
-```python
-# ── 미리 채워 둔 줄입니다. 고치지 않습니다 ──
-logs = [                                          # (PC 주소, 물어본 이름, 답)
-    ("10.20.0.15", "www.naver.com", "NOERROR"),
-    ("10.20.0.42", "kxq3vz9a.top", "NXDOMAIN"),
-    ("10.20.0.42", "p0w8rk2mzq.xyz", "NXDOMAIN"),
-    ("10.20.0.15", "mail.google.com", "NOERROR"),
-    ("10.20.0.42", "zzx9q2lk.top", "NXDOMAIN"),
-    ("10.20.0.33", "typo-nevar.com", "NXDOMAIN"),
-    ("10.20.0.42", "qwrtpzkx7v.com", "NOERROR"),
-]
-nx = {}                                           # PC 주소 → NXDOMAIN 횟수
-# ── 여기까지 ──
-
-for pc, name, rcode in logs:                      # 로그를 한 줄씩
-    # 1. rcode 가 "NXDOMAIN" 이면 nx 의 pc 키를 1 늘리세요 (.get)
+   for pc, name, rcode in logs:                      # 로그를 한 줄씩
+       # 1. rcode 가 "NXDOMAIN" 이면 nx 의 pc 키를 1 늘리세요 (.get)
 
 
-for pc in nx:
-    # 2. 횟수가 3 이상이면 「[확인 필요] 10.20.0.42 NXDOMAIN 3번」 을 출력하세요
+   for pc in nx:
+       # 2. 횟수가 3 이상이면 「[확인 필요] 10.20.0.42 NXDOMAIN 3번」 을 출력하세요
 
-```
-
-**파일을 만들고 실행합니다**
-
-1. VS Code 왼쪽 목록에서 `network_zt` 폴더를 오른쪽 클릭 › **New File** › 이름 `nx_count.py` 를 입력하고 Enter 를 누릅니다.
-2. 위 코드 상자 안을 마우스로 끌어 선택하고 `Ctrl + C` 로 복사해 파일에 붙여 넣은 뒤, 번호 주석 아래를 채웁니다. 저장은 자동입니다.
-3. 터미널에 아래 명령을 입력합니다. 터미널의 줄 위에 `…/network_zt` 가 보여야 합니다. 아니면 먼저 `cd network_zt` 를 입력합니다.
-
-```bash
-python nx_count.py
-```
-맥북: `python3 nx_count.py`
-
-4. 고친 뒤에는 같은 명령을 다시 입력합니다. 터미널에서 **↑(위 화살표)** 를 누르면 방금 입력한 명령이 다시 나옵니다.
+   ```
+3. **[VS Code]** 번호 주석 아래를 채웁니다. 저장은 자동입니다.
+4. **[터미널]** 실행합니다. 줄 위에 `…/network_zt` 가 보여야 합니다. 아니면 먼저 `cd network_zt` 를 입력합니다.
+   ```bash
+   python nx_count.py
+   ```
+   맥북: `python3 nx_count.py`
+5. **[터미널]** 고친 뒤에는 **↑(위 화살표)** 를 눌러 같은 명령을 다시 실행합니다.
+6. **[보고서]** `day03_dns_analysis.md` 의 `## 5교시` › `### 문제 5-5` 아래에 적습니다.
+   - 출력: 터미널에 나온 줄
+   - 막힌 곳: 막혔던 곳과 어떻게 풀었는지 (없으면 「없음」)
 
 | | |
 |---|---|
@@ -443,32 +434,35 @@ from dga_score import score      # 위 파일의 함수를 꺼내 쓴다 — 시
 
 ### ✍️ 문제 6-1 · 직접 실행해 보기
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — VS Code 에서 `warmup.py` 에 따라 치기 → 터미널에서 `python warmup.py` → 결과와 「왜」를 보고서에 적기
+**할 일** — 코드 열한 줄을 실행하고, 나온 결과와 그 이유를 보고서에 적습니다.
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day03_dns_analysis.md` 의 `## 6교시` 에서 `### 문제 6-1` 아래
+**왜 중요한가** — 규칙마다 점수를 더하고 문턱값과 비교하는 방식을 손으로 확인합니다. 6-2 의 점수 함수가 같은 방식으로 규칙 다섯 개를 더합니다.
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**왜 중요한가**</mark> — 규칙마다 점수를 더하고 문턱값과 비교하는 방식을 손으로 확인합니다. 6-2 의 점수 함수가 같은 방식으로 규칙 다섯 개를 더합니다.
+**순서**
 
-아래 코드를 `warmup.py` 에 **따라 쳐서** 실행하고, 결과와 「왜 이렇게 나왔는지」 한 줄을 적으시오. `warmup.py` 는 처음 한 번만 `network_zt` 폴더에 New File 로 만들고, 교시마다 내용을 지우고 다시 씁니다.
-
-```python
-score = 0
-label = "kxq3vz9a"
-tld = "top"
-rcode = "NXDOMAIN"
-if len(label) >= 10:
-    score = score + 1
-if tld in ["top", "xyz", "tk"]:
-    score = score + 1
-if rcode == "NXDOMAIN":
-    score = score + 2
-print(score, score >= 3)
-```
-
-```bash
-python warmup.py
-```
-맥북: `python3 warmup.py`
+1. **[VS Code]** `network_zt` 폴더의 `warmup.py` 를 엽니다. 없으면 New File 로 만들고, 안에 있던 내용은 지웁니다.
+2. **[VS Code]** 아래 코드를 그대로 따라 칩니다.
+   ```python
+   score = 0                          # 합계 점수
+   label = "kxq3vz9a"                 # TLD 앞 조각
+   tld = "top"                        # TLD
+   rcode = "NXDOMAIN"                 # DNS 의 답
+   if len(label) >= 10:               # 조각이 10글자 이상인가?
+       score = score + 1              # 그렇다면 1점
+   if tld in ["top", "xyz", "tk"]:    # 값싼 TLD 인가?
+       score = score + 1              # 그렇다면 1점
+   if rcode == "NXDOMAIN":            # 없는 이름이라는 답인가?
+       score = score + 2              # 그렇다면 2점
+   print(score, score >= 3)           # 합계, 그리고 합계가 문턱값 3 이상인가?
+   ```
+3. **[터미널]** 실행합니다.
+   ```bash
+   python warmup.py
+   ```
+   맥북: `python3 warmup.py`
+4. **[보고서]** `day03_dns_analysis.md` 의 `## 6교시` › `### 문제 6-1` 아래에 적습니다.
+   - 결과: 출력된 줄
+   - 왜 그렇게 나왔나: **규칙마다 몇 점이 더해졌는지 하나씩 따라가 보고, 둘째 값이 그렇게 나온 이유** — 6.1 표와 검색으로 공부한 것을 적습니다
 
 <details><summary>답 보기 — 결과와 「왜」를 적은 뒤에 엽니다</summary>
 
@@ -486,64 +480,61 @@ python warmup.py
 
 ### ✍️ 문제 6-2 · 점수 함수 만들기 (`dga_score.py`)
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — VS Code 에서 `dga_score.py` 만들기 → 터미널에서 `python dga_score.py` 실행
+**할 일** — 6.1 의 규칙대로 점수와 걸린 규칙 이름을 리턴하는 함수를 `dga_score.py` 에 완성하고, 출력과 막힌 곳을 보고서에 적습니다. 비어 있는 두 규칙만 채웁니다.
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day03_dns_analysis.md` 의 `## 6교시` 에서 `### 문제 6-2` 아래
+**왜 중요한가** — 여러 지표를 점수 하나로 모으면 도메인마다 의심 정도를 같은 기준으로 비교할 수 있습니다. 걸린 규칙 이름은 7교시 판정표의 근거 칸이 됩니다.
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**왜 중요한가**</mark> — 여러 지표를 점수 하나로 모으면 도메인마다 의심 정도를 같은 기준으로 비교할 수 있습니다. 걸린 규칙 이름은 7교시 판정표의 근거 칸이 됩니다.
+**순서**
 
-6.1 의 규칙대로 점수와 **걸린 규칙 이름**을 리턴하는 함수를 완성하시오. 비어 있는 두 규칙만 채웁니다.
-
-```python
-CHEAP_TLD = ["top", "xyz", "tk"]                  # 값싼 TLD
-
-
-def score(name, rcode):                           # 이름과 답을 받아 점수 · 이유를 리턴한다
-    parts = name.split(".")
-    label = parts[-2]                             # TLD 앞 조각
-    tld = parts[-1]                               # TLD
-    points = 0                                    # 합계 점수
-    why = []                                      # 걸린 규칙 이름
-    if len(label) >= 10:                          # 규칙 ① 길이
-        points = points + 1
-        why.append("길이")
-    digits = 0
-    vowels = 0
-    for ch in label:                              # 한 자씩 센다
-        if ch in "0123456789":
-            digits = digits + 1
-        if ch in "aeiou":
-            vowels = vowels + 1
-    if digits >= 2:                               # 규칙 ② 숫자
-        points = points + 1
-        why.append("숫자")
-    # 1. 모음 비율(vowels / len(label))이 0.25 미만이면 points 에 1 을 더하고 why 에 "모음" 을 더하세요
-
-    if tld in CHEAP_TLD:                          # 규칙 ④ 값싼 TLD
-        points = points + 1
-        why.append("TLD")
-    # 2. rcode 가 "NXDOMAIN" 이면 points 에 2 를 더하고 why 에 "NXDOMAIN" 을 더하세요
-
-    return {"points": points, "why": why}
+1. **[탐색기]** `network_zt` 폴더를 오른쪽 클릭 › **New File** › 이름 `dga_score.py` 를 입력하고 Enter 를 누릅니다.
+2. **[VS Code]** 아래 코드를 복사해 `dga_score.py` 에 붙여 넣습니다. 코드 상자 안을 끌어 선택하고 `Ctrl + C` 를 누릅니다.
+   ```python
+   CHEAP_TLD = ["top", "xyz", "tk"]                  # 값싼 TLD
 
 
-if __name__ == "__main__":                        # 직접 실행할 때만 시험한다
-    print(score("www.naver.com", "NOERROR"))
-    print(score("kxq3vz9a.top", "NXDOMAIN"))
-```
+   def score(name, rcode):                           # 이름과 답을 받아 점수 · 이유를 리턴한다
+       parts = name.split(".")
+       label = parts[-2]                             # TLD 앞 조각
+       tld = parts[-1]                               # TLD
+       points = 0                                    # 합계 점수
+       why = []                                      # 걸린 규칙 이름
+       if len(label) >= 10:                          # 규칙 ① 길이
+           points = points + 1
+           why.append("길이")
+       digits = 0
+       vowels = 0
+       for ch in label:                              # 한 자씩 센다
+           if ch in "0123456789":
+               digits = digits + 1
+           if ch in "aeiou":
+               vowels = vowels + 1
+       if digits >= 2:                               # 규칙 ② 숫자
+           points = points + 1
+           why.append("숫자")
+       # 1. 모음 비율(vowels / len(label))이 0.25 미만이면 points 에 1 을 더하고 why 에 "모음" 을 더하세요
 
-**파일을 만들고 실행합니다**
+       if tld in CHEAP_TLD:                          # 규칙 ④ 값싼 TLD
+           points = points + 1
+           why.append("TLD")
+       # 2. rcode 가 "NXDOMAIN" 이면 points 에 2 를 더하고 why 에 "NXDOMAIN" 을 더하세요
 
-1. VS Code 왼쪽 목록에서 `network_zt` 폴더를 오른쪽 클릭 › **New File** › 이름 `dga_score.py` 를 입력하고 Enter 를 누릅니다.
-2. 위 코드 상자 안을 마우스로 끌어 선택하고 `Ctrl + C` 로 복사해 파일에 붙여 넣은 뒤, 번호 주석 아래를 채웁니다. 저장은 자동입니다.
-3. 터미널에 아래 명령을 입력합니다. 터미널의 줄 위에 `…/network_zt` 가 보여야 합니다. 아니면 먼저 `cd network_zt` 를 입력합니다.
+       return {"points": points, "why": why}
 
-```bash
-python dga_score.py
-```
-맥북: `python3 dga_score.py`
 
-4. 고친 뒤에는 같은 명령을 다시 입력합니다. 터미널에서 **↑(위 화살표)** 를 누르면 방금 입력한 명령이 다시 나옵니다.
+   if __name__ == "__main__":                        # 직접 실행할 때만 시험한다
+       print(score("www.naver.com", "NOERROR"))
+       print(score("kxq3vz9a.top", "NXDOMAIN"))
+   ```
+3. **[VS Code]** 번호 주석 아래를 채웁니다. 저장은 자동입니다.
+4. **[터미널]** 실행합니다. 줄 위에 `…/network_zt` 가 보여야 합니다. 아니면 먼저 `cd network_zt` 를 입력합니다.
+   ```bash
+   python dga_score.py
+   ```
+   맥북: `python3 dga_score.py`
+5. **[터미널]** 고친 뒤에는 **↑(위 화살표)** 를 눌러 같은 명령을 다시 실행합니다.
+6. **[보고서]** `day03_dns_analysis.md` 의 `## 6교시` › `### 문제 6-2` 아래에 적습니다.
+   - 출력: 터미널에 나온 두 줄
+   - 막힌 곳: 막혔던 곳과 어떻게 풀었는지 (없으면 「없음」)
 
 | | |
 |---|---|
@@ -559,48 +550,44 @@ python dga_score.py
 
 ### ✍️ 문제 6-3 · 로그 12건 판정하기 (`judge.py`)
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — VS Code 에서 `judge.py` 만들기 → 터미널에서 `python judge.py` 실행
+**할 일** — 6-2 의 `score` 를 불러와 로그 12건을 문턱값 3 으로 판정하는 `judge.py` 를 완성하고, 판정이 틀린 줄 세 개를 보고서에 적습니다.
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day03_dns_analysis.md` 의 `## 6교시` 에서 `### 문제 6-3` 아래
+**왜 중요한가** — 만든 규칙을 로그 전체에 걸어 봐야 어느 도메인을 잘못 판정하는지 보입니다. 다른 파일의 함수를 불러 쓰는 방식은 6-4 · 7-2 에서도 씁니다.
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**왜 중요한가**</mark> — 만든 규칙을 로그 전체에 걸어 봐야 어느 도메인을 잘못 판정하는지 보입니다. 다른 파일의 함수를 불러 쓰는 방식은 6-4 · 7-2 에서도 씁니다.
+**순서**
 
-6-2 의 `score` 를 불러와 로그 12건을 **문턱값 3** 으로 판정하시오.
+1. **[탐색기]** `network_zt` 폴더를 오른쪽 클릭 › **New File** › 이름 `judge.py` 를 입력하고 Enter 를 누릅니다.
+2. **[VS Code]** 아래 코드를 복사해 `judge.py` 에 붙여 넣습니다. 코드 상자 안을 끌어 선택하고 `Ctrl + C` 를 누릅니다.
+   ```python
+   from dga_score import score                       # 6-2 의 함수를 꺼내 쓴다
 
-```python
-from dga_score import score                       # 6-2 의 함수를 꺼내 쓴다
+   # ── 미리 채워 둔 줄입니다. 고치지 않습니다 ──
+   LOG = [                                           # (이름, 답, 실제)
+       ("www.naver.com", "NOERROR", "정상"), ("mail.google.com", "NOERROR", "정상"),
+       ("update.microsoft.com", "NOERROR", "정상"), ("e6030.a.akamaiedge.net", "NOERROR", "정상"),
+       ("cdn.jsdelivr.net", "NOERROR", "정상"), ("xn--3e0b707e.kr", "NOERROR", "정상"),
+       ("kxq3vz9a.top", "NXDOMAIN", "의심"), ("p0w8rk2mzq.xyz", "NXDOMAIN", "의심"),
+       ("qwrtpzkx7v.com", "NOERROR", "의심"), ("zzx9q2lk.top", "NXDOMAIN", "의심"),
+       ("bnk-secure-login.xyz", "NOERROR", "의심"), ("www.example.com", "NOERROR", "정상"),
+   ]
+   THRESHOLD = 3                                     # 문턱값
+   # ── 여기까지 ──
 
-# ── 미리 채워 둔 줄입니다. 고치지 않습니다 ──
-LOG = [                                           # (이름, 답, 실제)
-    ("www.naver.com", "NOERROR", "정상"), ("mail.google.com", "NOERROR", "정상"),
-    ("update.microsoft.com", "NOERROR", "정상"), ("e6030.a.akamaiedge.net", "NOERROR", "정상"),
-    ("cdn.jsdelivr.net", "NOERROR", "정상"), ("xn--3e0b707e.kr", "NOERROR", "정상"),
-    ("kxq3vz9a.top", "NXDOMAIN", "의심"), ("p0w8rk2mzq.xyz", "NXDOMAIN", "의심"),
-    ("qwrtpzkx7v.com", "NOERROR", "의심"), ("zzx9q2lk.top", "NXDOMAIN", "의심"),
-    ("bnk-secure-login.xyz", "NOERROR", "의심"), ("www.example.com", "NOERROR", "정상"),
-]
-THRESHOLD = 3                                     # 문턱값
-# ── 여기까지 ──
+   for name, rcode, truth in LOG:                    # 로그를 한 줄씩
+       result = score(name, rcode)
+       # 1. judged 에 result["points"] 가 THRESHOLD 이상이면 "의심", 아니면 "정상" 을 담으세요
 
-for name, rcode, truth in LOG:                    # 로그를 한 줄씩
-    result = score(name, rcode)
-    # 1. judged 에 result["points"] 가 THRESHOLD 이상이면 "의심", 아니면 "정상" 을 담으세요
-
-    print(name, f"{result['points']}점", judged, f"(실제 {truth})")
-```
-
-**파일을 만들고 실행합니다**
-
-1. VS Code 왼쪽 목록에서 `network_zt` 폴더를 오른쪽 클릭 › **New File** › 이름 `judge.py` 를 입력하고 Enter 를 누릅니다.
-2. 위 코드 상자 안을 마우스로 끌어 선택하고 `Ctrl + C` 로 복사해 파일에 붙여 넣은 뒤, 번호 주석 아래를 채웁니다. 저장은 자동입니다.
-3. 터미널에 아래 명령을 입력합니다. 터미널의 줄 위에 `…/network_zt` 가 보여야 합니다. 아니면 먼저 `cd network_zt` 를 입력합니다.
-
-```bash
-python judge.py
-```
-맥북: `python3 judge.py`
-
-4. 고친 뒤에는 같은 명령을 다시 입력합니다. 터미널에서 **↑(위 화살표)** 를 누르면 방금 입력한 명령이 다시 나옵니다.
+       print(name, f"{result['points']}점", judged, f"(실제 {truth})")
+   ```
+3. **[VS Code]** 번호 주석 아래를 채웁니다. 저장은 자동입니다.
+4. **[터미널]** 실행합니다. 줄 위에 `…/network_zt` 가 보여야 합니다. 아니면 먼저 `cd network_zt` 를 입력합니다.
+   ```bash
+   python judge.py
+   ```
+   맥북: `python3 judge.py`
+5. **[터미널]** 고친 뒤에는 **↑(위 화살표)** 를 눌러 같은 명령을 다시 실행합니다.
+6. **[보고서]** `day03_dns_analysis.md` 의 `## 6교시` › `### 문제 6-3` 아래에 적습니다.
+   - 틀린 줄 세 개: 판정과 `(실제 …)` 가 다른 세 줄
 
 | | |
 |---|---|
@@ -616,59 +603,55 @@ python judge.py
 
 ### ✍️ 문제 6-4 · 맞힘 · 오탐 · 미탐 세기 (`evaluate.py`)
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — VS Code 에서 `evaluate.py` 만들기 → 터미널에서 `python evaluate.py` 실행
+**할 일** — 6-3 의 판정을 정답지(실제)와 비교해 맞힘 · 오탐 · 미탐 수를 세는 `evaluate.py` 를 완성하고, 세 숫자를 보고서에 적습니다.
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day03_dns_analysis.md` 의 `## 6교시` 에서 `### 문제 6-4` 아래
+**왜 중요한가** — 규칙의 성능을 맞힘 · 오탐 · 미탐 숫자로 적어 두어야 규칙을 고친 뒤 나아졌는지 비교할 수 있습니다. 관제에서 탐지 규칙을 평가할 때 쓰는 기준입니다.
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**왜 중요한가**</mark> — 규칙의 성능을 맞힘 · 오탐 · 미탐 숫자로 적어 두어야 규칙을 고친 뒤 나아졌는지 비교할 수 있습니다. 관제에서 탐지 규칙을 평가할 때 쓰는 기준입니다.
+**순서**
 
-6-3 의 판정을 **정답지(실제)와 비교해** 맞힘 · 오탐 · 미탐 수를 세시오.
+1. **[탐색기]** `network_zt` 폴더를 오른쪽 클릭 › **New File** › 이름 `evaluate.py` 를 입력하고 Enter 를 누릅니다.
+2. **[VS Code]** 아래 코드를 복사해 `evaluate.py` 에 붙여 넣습니다. 코드 상자 안을 끌어 선택하고 `Ctrl + C` 를 누릅니다.
+   ```python
+   from dga_score import score
 
-```python
-from dga_score import score
+   # ── 미리 채워 둔 줄입니다. 고치지 않습니다 ──
+   LOG = [
+       ("www.naver.com", "NOERROR", "정상"), ("mail.google.com", "NOERROR", "정상"),
+       ("update.microsoft.com", "NOERROR", "정상"), ("e6030.a.akamaiedge.net", "NOERROR", "정상"),
+       ("cdn.jsdelivr.net", "NOERROR", "정상"), ("xn--3e0b707e.kr", "NOERROR", "정상"),
+       ("kxq3vz9a.top", "NXDOMAIN", "의심"), ("p0w8rk2mzq.xyz", "NXDOMAIN", "의심"),
+       ("qwrtpzkx7v.com", "NOERROR", "의심"), ("zzx9q2lk.top", "NXDOMAIN", "의심"),
+       ("bnk-secure-login.xyz", "NOERROR", "의심"), ("www.example.com", "NOERROR", "정상"),
+   ]
+   THRESHOLD = 3
+   hit = 0                                           # 맞힘 — 의심을 의심으로
+   false_alarm = 0                                   # 오탐 — 정상을 의심으로
+   missed = 0                                        # 미탐 — 의심을 정상으로
+   # ── 여기까지 ──
 
-# ── 미리 채워 둔 줄입니다. 고치지 않습니다 ──
-LOG = [
-    ("www.naver.com", "NOERROR", "정상"), ("mail.google.com", "NOERROR", "정상"),
-    ("update.microsoft.com", "NOERROR", "정상"), ("e6030.a.akamaiedge.net", "NOERROR", "정상"),
-    ("cdn.jsdelivr.net", "NOERROR", "정상"), ("xn--3e0b707e.kr", "NOERROR", "정상"),
-    ("kxq3vz9a.top", "NXDOMAIN", "의심"), ("p0w8rk2mzq.xyz", "NXDOMAIN", "의심"),
-    ("qwrtpzkx7v.com", "NOERROR", "의심"), ("zzx9q2lk.top", "NXDOMAIN", "의심"),
-    ("bnk-secure-login.xyz", "NOERROR", "의심"), ("www.example.com", "NOERROR", "정상"),
-]
-THRESHOLD = 3
-hit = 0                                           # 맞힘 — 의심을 의심으로
-false_alarm = 0                                   # 오탐 — 정상을 의심으로
-missed = 0                                        # 미탐 — 의심을 정상으로
-# ── 여기까지 ──
+   for name, rcode, truth in LOG:
+       if score(name, rcode)["points"] >= THRESHOLD:   # 기준을 넘으면 의심
+           judged = "의심"
+       else:
+           judged = "정상"
+       # 1. judged 가 "의심" 이고 truth 가 "의심" 이면 hit 에 1 을 더하세요
 
-for name, rcode, truth in LOG:
-    if score(name, rcode)["points"] >= THRESHOLD:   # 기준을 넘으면 의심
-        judged = "의심"
-    else:
-        judged = "정상"
-    # 1. judged 가 "의심" 이고 truth 가 "의심" 이면 hit 에 1 을 더하세요
+       # 2. judged 가 "의심" 이고 truth 가 "정상" 이면 false_alarm 에 1 을 더하세요
 
-    # 2. judged 가 "의심" 이고 truth 가 "정상" 이면 false_alarm 에 1 을 더하세요
-
-    # 3. judged 가 "정상" 이고 truth 가 "의심" 이면 missed 에 1 을 더하세요
+       # 3. judged 가 "정상" 이고 truth 가 "의심" 이면 missed 에 1 을 더하세요
 
 
-print("맞힘", hit, "· 오탐", false_alarm, "· 미탐", missed)
-```
-
-**파일을 만들고 실행합니다**
-
-1. VS Code 왼쪽 목록에서 `network_zt` 폴더를 오른쪽 클릭 › **New File** › 이름 `evaluate.py` 를 입력하고 Enter 를 누릅니다.
-2. 위 코드 상자 안을 마우스로 끌어 선택하고 `Ctrl + C` 로 복사해 파일에 붙여 넣은 뒤, 번호 주석 아래를 채웁니다. 저장은 자동입니다.
-3. 터미널에 아래 명령을 입력합니다. 터미널의 줄 위에 `…/network_zt` 가 보여야 합니다. 아니면 먼저 `cd network_zt` 를 입력합니다.
-
-```bash
-python evaluate.py
-```
-맥북: `python3 evaluate.py`
-
-4. 고친 뒤에는 같은 명령을 다시 입력합니다. 터미널에서 **↑(위 화살표)** 를 누르면 방금 입력한 명령이 다시 나옵니다.
+   print("맞힘", hit, "· 오탐", false_alarm, "· 미탐", missed)
+   ```
+3. **[VS Code]** 번호 주석 아래를 채웁니다. 저장은 자동입니다.
+4. **[터미널]** 실행합니다. 줄 위에 `…/network_zt` 가 보여야 합니다. 아니면 먼저 `cd network_zt` 를 입력합니다.
+   ```bash
+   python evaluate.py
+   ```
+   맥북: `python3 evaluate.py`
+5. **[터미널]** 고친 뒤에는 **↑(위 화살표)** 를 눌러 같은 명령을 다시 실행합니다.
+6. **[보고서]** `day03_dns_analysis.md` 의 `## 6교시` › `### 문제 6-4` 아래에 적습니다.
+   - 맞힘 · 오탐 · 미탐: 터미널에 나온 세 숫자
 
 | | |
 |---|---|
@@ -684,30 +667,32 @@ python evaluate.py
 
 ### ✍️ 문제 6-5 · 예외 목록으로 오탐 줄이기 (`dga_score.py` 고치기)
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — VS Code 에서 앞 문제의 `dga_score.py` 열어 고치기 → 터미널에서 `python dga_score.py` 실행
+**할 일** — `dga_score.py` 의 `score` 맨 앞에 `xn--` 로 시작하는 조각은 0점으로 리턴하는 줄을 넣고, 6-4 를 다시 실행한 결과를 보고서에 적습니다.
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day03_dns_analysis.md` 의 `## 6교시` 에서 `### 문제 6-5` 아래
-
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**왜 중요한가**</mark> — 근거가 분명한 정상 도메인을 예외로 빼면 오탐이 줄어 관제 담당자가 확인할 경보가 줄어듭니다. 고친 뒤 6-4 를 다시 실행해 효과를 숫자로 확인합니다.
+**왜 중요한가** — 근거가 분명한 정상 도메인을 예외로 빼면 오탐이 줄어 관제 담당자가 확인할 경보가 줄어듭니다. 고친 뒤 6-4 를 다시 실행해 효과를 숫자로 확인합니다.
 
 **이 문제에 나오는 말**
 
 - **예외 목록 (allowlist)** (얼라우리스트) — 근거가 분명한 정상을 규칙에서 **빼 주는** 목록 — `xn--` 로 시작하는 한글 도메인
 
-오탐 `xn--3e0b707e.kr` 은 **한글 도메인**을 영문으로 바꾼 모양(퓨니코드 · Punycode)이라 무작위처럼 보입니다. `dga_score.py` 의 `score` 맨 앞에 **`xn--` 로 시작하는 조각은 0점**으로 돌려보내는 줄을 넣고, 6-4 를 다시 실행하시오.
+오탐 `xn--3e0b707e.kr` 은 **한글 도메인**을 영문으로 바꾼 모양(퓨니코드 · Punycode)이라 무작위처럼 보입니다.
 
-**파일을 만들고 실행합니다**
+**순서**
 
-1. 왼쪽 목록에서 앞 문제에서 만든 `dga_score.py` 를 엽니다.
-2. 아래 힌트대로 `label = parts[-2]` 바로 아래에 예외 두 줄을 넣습니다. 새 코드를 붙여 넣지 않고 **있는 파일을 고칩니다.** 저장은 자동입니다.
-3. 터미널에 아래 명령을 입력합니다. 터미널의 줄 위에 `…/network_zt` 가 보여야 합니다. 아니면 먼저 `cd network_zt` 를 입력합니다.
-
-```bash
-python dga_score.py
-```
-맥북: `python3 dga_score.py`
-
-4. 고친 뒤에는 같은 명령을 다시 입력합니다. 터미널에서 **↑(위 화살표)** 를 누르면 방금 입력한 명령이 다시 나옵니다.
+1. **[VS Code]** 왼쪽 목록에서 앞 문제에서 만든 `dga_score.py` 를 엽니다.
+2. **[VS Code]** `label = parts[-2]` 바로 아래에 예외 두 줄을 넣습니다(💡 힌트 2). 새 코드를 붙여 넣지 않고 **있는 파일을 고칩니다.** 저장은 자동입니다.
+3. **[터미널]** 고친 파일을 실행해 봅니다. 줄 위에 `…/network_zt` 가 보여야 합니다. 아니면 먼저 `cd network_zt` 를 입력합니다.
+   ```bash
+   python dga_score.py
+   ```
+   맥북: `python3 dga_score.py`
+4. **[터미널]** 6-4 를 다시 실행합니다.
+   ```bash
+   python evaluate.py
+   ```
+   맥북: `python3 evaluate.py`
+5. **[보고서]** `day03_dns_analysis.md` 의 `## 6교시` › `### 문제 6-5` 아래에 적습니다.
+   - 예외를 넣은 뒤 6-4 결과: 4번에서 나온 맞힘 · 오탐 · 미탐
 
 | | |
 |---|---|
@@ -752,28 +737,31 @@ print(", ".join([]) == "")
 
 ### ✍️ 문제 7-1 · 직접 실행해 보기
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — VS Code 에서 `warmup.py` 에 따라 치기 → 터미널에서 `python warmup.py` → 결과와 「왜」를 보고서에 적기
+**할 일** — 코드 두 줄을 실행하고, 나온 결과와 그 이유를 보고서에 적습니다.
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day03_dns_analysis.md` 의 `## 7교시` 에서 `### 문제 7-1` 아래
-
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**왜 중요한가**</mark> — 근거 리스트를 글자 한 줄로 이어 마크다운 표의 한 줄로 만드는 연습입니다. 7-2 판정표의 근거 칸이 이 방식으로 채워집니다.
+**왜 중요한가** — 근거 리스트를 글자 한 줄로 이어 마크다운 표의 한 줄로 만드는 연습입니다. 7-2 판정표의 근거 칸이 이 방식으로 채워집니다.
 
 **이 문제에 나오는 말**
 
 - **판정표** — 이름마다 **점수 · 판정 · 근거**를 한 줄씩 적은 표
 - **근거** — 왜 그렇게 판정했는지 — **걸린 규칙 이름**
 
-아래 코드를 `warmup.py` 에 **따라 쳐서** 실행하고, 결과와 「왜 이렇게 나왔는지」 한 줄을 적으시오. `warmup.py` 는 처음 한 번만 `network_zt` 폴더에 New File 로 만들고, 교시마다 내용을 지우고 다시 씁니다.
+**순서**
 
-```python
-result = {"points": 5, "why": ["숫자", "모음", "TLD", "NXDOMAIN"]}
-print(f"| kxq3vz9a.top | {result['points']} | {', '.join(result['why'])} |")
-```
-
-```bash
-python warmup.py
-```
-맥북: `python3 warmup.py`
+1. **[VS Code]** `network_zt` 폴더의 `warmup.py` 를 엽니다. 없으면 New File 로 만들고, 안에 있던 내용은 지웁니다.
+2. **[VS Code]** 아래 코드를 그대로 따라 칩니다.
+   ```python
+   result = {"points": 5, "why": ["숫자", "모음", "TLD", "NXDOMAIN"]}                  # 6-2 의 score 가 리턴하는 모양
+   print(f"| kxq3vz9a.top | {result['points']} | {', '.join(result['why'])} |")   # 이름 · 점수 · 근거를 표 한 줄로
+   ```
+3. **[터미널]** 실행합니다.
+   ```bash
+   python warmup.py
+   ```
+   맥북: `python3 warmup.py`
+4. **[보고서]** `day03_dns_analysis.md` 의 `## 7교시` › `### 문제 7-1` 아래에 적습니다.
+   - 결과: 출력된 줄
+   - 왜 그렇게 나왔나: **셋째 칸(근거)이 어떤 모양으로 찍혔고 왜 그런지 — `', '.join(...)` 이 리스트에 한 일** — 위 문법 상자와 검색으로 공부한 것을 적습니다
 
 <details><summary>답 보기 — 결과와 「왜」를 적은 뒤에 엽니다</summary>
 
@@ -791,51 +779,49 @@ python warmup.py
 
 ### ✍️ 문제 7-2 · 판정표 만들기 (`report_table3.py`)
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — VS Code 에서 `report_table3.py` 만들기 → 터미널에서 `python report_table3.py` 실행 → 보고서에 적기
+**할 일** — 로그 12건의 점수 · 판정 · 근거를 마크다운 표로 출력하는 `report_table3.py` 를 완성하고, 그 표를 보고서 맨 아래 「의심 도메인 판정」 자리에 붙입니다. 근거가 없으면 `-` 로 적습니다.
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day03_dns_analysis.md` 의 `## 7교시` 에서 `### 문제 7-2` 아래
+**왜 중요한가** — 도메인마다 점수 · 판정 · 근거를 한 표로 남기면 다른 분석가가 판정 이유를 바로 확인하고 규칙을 고칠 수 있습니다. 이 표가 오늘 분석서의 「의심 도메인 판정」 칸이 됩니다.
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**왜 중요한가**</mark> — 도메인마다 점수 · 판정 · 근거를 한 표로 남기면 다른 분석가가 판정 이유를 바로 확인하고 규칙을 고칠 수 있습니다. 이 표가 오늘 분석서의 「의심 도메인 판정」 칸이 됩니다.
+**순서**
 
-로그 12건의 **점수 · 판정 · 근거**를 마크다운 표로 출력해 보고서 맨 아래 「의심 도메인 판정」 자리에 붙이시오. 근거가 없으면 `-` 로 적습니다.
+1. **[탐색기]** `network_zt` 폴더를 오른쪽 클릭 › **New File** › 이름 `report_table3.py` 를 입력하고 Enter 를 누릅니다.
+2. **[VS Code]** 아래 코드를 복사해 `report_table3.py` 에 붙여 넣습니다. 코드 상자 안을 끌어 선택하고 `Ctrl + C` 를 누릅니다.
+   ```python
+   from dga_score import score
 
-```python
-from dga_score import score
+   # ── 미리 채워 둔 줄입니다. 고치지 않습니다 ──
+   LOG = [
+       ("www.naver.com", "NOERROR"), ("mail.google.com", "NOERROR"), ("update.microsoft.com", "NOERROR"),
+       ("e6030.a.akamaiedge.net", "NOERROR"), ("cdn.jsdelivr.net", "NOERROR"), ("xn--3e0b707e.kr", "NOERROR"),
+       ("kxq3vz9a.top", "NXDOMAIN"), ("p0w8rk2mzq.xyz", "NXDOMAIN"), ("qwrtpzkx7v.com", "NOERROR"),
+       ("zzx9q2lk.top", "NXDOMAIN"), ("bnk-secure-login.xyz", "NOERROR"), ("www.example.com", "NOERROR"),
+   ]
+   print("| 이름 | 답 | 점수 | 판정 | 근거 |")
+   print("|---|---|---|---|---|")
+   # ── 여기까지 ──
 
-# ── 미리 채워 둔 줄입니다. 고치지 않습니다 ──
-LOG = [
-    ("www.naver.com", "NOERROR"), ("mail.google.com", "NOERROR"), ("update.microsoft.com", "NOERROR"),
-    ("e6030.a.akamaiedge.net", "NOERROR"), ("cdn.jsdelivr.net", "NOERROR"), ("xn--3e0b707e.kr", "NOERROR"),
-    ("kxq3vz9a.top", "NXDOMAIN"), ("p0w8rk2mzq.xyz", "NXDOMAIN"), ("qwrtpzkx7v.com", "NOERROR"),
-    ("zzx9q2lk.top", "NXDOMAIN"), ("bnk-secure-login.xyz", "NOERROR"), ("www.example.com", "NOERROR"),
-]
-print("| 이름 | 답 | 점수 | 판정 | 근거 |")
-print("|---|---|---|---|---|")
-# ── 여기까지 ──
+   for name, rcode in LOG:
+       result = score(name, rcode)
+       if result["points"] >= 3:                     # 문턱값 3
+           judged = "의심"
+       else:
+           judged = "정상"
+       # 1. reason 에 result["why"] 를 ", " 로 이은 글자를 담고, 비어 있으면 "-" 를 담으세요
 
-for name, rcode in LOG:
-    result = score(name, rcode)
-    if result["points"] >= 3:                     # 문턱값 3
-        judged = "의심"
-    else:
-        judged = "정상"
-    # 1. reason 에 result["why"] 를 ", " 로 이은 글자를 담고, 비어 있으면 "-" 를 담으세요
-
-    print(f"| {name} | {rcode} | {result['points']} | {judged} | {reason} |")
-```
-
-**파일을 만들고 실행합니다**
-
-1. VS Code 왼쪽 목록에서 `network_zt` 폴더를 오른쪽 클릭 › **New File** › 이름 `report_table3.py` 를 입력하고 Enter 를 누릅니다.
-2. 위 코드 상자 안을 마우스로 끌어 선택하고 `Ctrl + C` 로 복사해 파일에 붙여 넣은 뒤, 번호 주석 아래를 채웁니다. 저장은 자동입니다.
-3. 터미널에 아래 명령을 입력합니다. 터미널의 줄 위에 `…/network_zt` 가 보여야 합니다. 아니면 먼저 `cd network_zt` 를 입력합니다.
-
-```bash
-python report_table3.py
-```
-맥북: `python3 report_table3.py`
-
-4. 고친 뒤에는 같은 명령을 다시 입력합니다. 터미널에서 **↑(위 화살표)** 를 누르면 방금 입력한 명령이 다시 나옵니다.
+       print(f"| {name} | {rcode} | {result['points']} | {judged} | {reason} |")
+   ```
+3. **[VS Code]** 번호 주석 아래를 채웁니다. 저장은 자동입니다.
+4. **[터미널]** 실행합니다. 줄 위에 `…/network_zt` 가 보여야 합니다. 아니면 먼저 `cd network_zt` 를 입력합니다.
+   ```bash
+   python report_table3.py
+   ```
+   맥북: `python3 report_table3.py`
+5. **[터미널]** 고친 뒤에는 **↑(위 화살표)** 를 눌러 같은 명령을 다시 실행합니다.
+6. **[터미널]** 출력된 표를 `| 이름 |` 줄부터 마지막 줄까지 끌어 선택해 복사합니다.
+7. **[보고서]** 맨 아래 `### 의심 도메인 판정` 의 `(7-2 report_table3.py 의 표를 붙입니다)` 자리에 붙여 넣습니다.
+8. **[보고서]** `day03_dns_analysis.md` 의 `## 7교시` › `### 문제 7-2` 아래에 적습니다.
+   - 맨 아래 「의심 도메인 판정」에 표를 붙였나: 붙였으면 「예」
 
 | | |
 |---|---|
@@ -851,25 +837,30 @@ python report_table3.py
 
 ### ✍️ 문제 7-3 · 판정을 `nslookup` 으로 확인하기
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — 터미널에서 명령 실행 → 화면을 사진으로 저장 → 보고서에 넣기
+**할 일** — 규칙이 「정상」이라고 한 CDN 이름과 지어낸 무작위 이름을 각각 `nslookup` 으로 물어 있는 이름인지 확인하고, 두 답을 보고서에 적고 사진으로 남깁니다.
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day03_dns_analysis.md` 의 `## 7교시` 에서 `### 문제 7-3` 아래
-
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**왜 중요한가**</mark> — 겉모습만으로 내린 판정을 실제 DNS 조회로 한 번 더 확인합니다. 관제에서는 의심 도메인에 접속하지 않고 `nslookup` 으로 존재 여부를 먼저 봅니다.
+**왜 중요한가** — 겉모습만으로 내린 판정을 실제 DNS 조회로 한 번 더 확인합니다. 관제에서는 의심 도메인에 접속하지 않고 `nslookup` 으로 존재 여부를 먼저 봅니다.
 
 **이 문제에 나오는 말**
 
 - **`.invalid`** (닷 인밸리드) — **절대 존재하지 않도록** 정해 둔 TLD. 시험용으로 쓴다
 - **위협 정보 (threat intelligence)** (스레트 인텔리전스) — 알려진 악성 도메인 · IP 를 모아 둔 **정보 · 사이트**
 
-규칙이 「정상」이라고 한 CDN 이름과, 지어낸 무작위 이름을 각각 물어 **있는 이름인지** 확인하시오.
+**순서**
 
-```bash
-nslookup e6030.a.akamaiedge.net
-nslookup qzkx7wp2v.invalid
-```
-
-**사진 남기기** — 결과 화면에서 두 명령의 결과(IP 가 나온 것 · `Non-existent domain`)가 함께 보이게 잘라 `nslookup_check.png` 로 `network_zt` 폴더에 저장하시오. 보고서 `### 문제 7-3` 아래에 사진 줄이 이미 있어서, 파일 이름이 같으면 사진이 보입니다. 자르고 저장하는 법은 10/12 오후 7-2 와 같습니다(`Win + Shift + S`).
+1. **[터미널]** 규칙이 「정상」이라고 한 CDN 이름을 묻습니다.
+   ```bash
+   nslookup e6030.a.akamaiedge.net
+   ```
+2. **[터미널]** 지어낸 무작위 이름을 묻습니다.
+   ```bash
+   nslookup qzkx7wp2v.invalid
+   ```
+3. **[터미널]** `Win + Shift + S` 로 두 명령의 결과(IP 가 나온 것 · `Non-existent domain`)가 함께 보이게 자릅니다. 자르는 법은 10/12 오후 7-2 와 같습니다.
+4. **[탐색기]** 자른 사진을 `nslookup_check.png` 이름으로 `network_zt` 폴더에 저장합니다(그림판에 붙여 저장해도 됩니다). 보고서 `### 문제 7-3` 아래에 사진 줄이 이미 있어서, 파일 이름이 같으면 사진이 보입니다.
+5. **[보고서]** `day03_dns_analysis.md` 의 `## 7교시` › `### 문제 7-3` 아래에 적습니다.
+   - 첫째 (있는 이름) 답: 1번에서 나온 IP
+   - 둘째 (없는 이름) 답: 2번에서 나온 문구
 
 | | |
 |---|---|
@@ -885,13 +876,17 @@ nslookup qzkx7wp2v.invalid
 
 ### ✍️ 문제 7-4 · 판단 기준과 한계 적기
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — 명령 없이 생각해서 → 보고서에 적기
+**할 일** — 보고서 맨 아래 「판단 기준」 · 「한계와 다음에 할 일」 칸을 채웁니다. 칸은 오전에 붙여 넣은 틀에 이미 있습니다. 코드는 쓰지 않습니다.
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day03_dns_analysis.md` 의 `## 7교시` 에서 `### 문제 7-4` 아래
+**왜 중요한가** — 판단 기준과 한계를 적어 두어야 다른 사람이 규칙을 다시 쓰고, 못 잡는 경우를 다른 규칙으로 보완할 수 있습니다. 강의계획서의 평가 기준인 「판단 기준 문서화」가 이 칸입니다.
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**왜 중요한가**</mark> — 판단 기준과 한계를 적어 두어야 다른 사람이 규칙을 다시 쓰고, 못 잡는 경우를 다른 규칙으로 보완할 수 있습니다. 강의계획서의 평가 기준인 「판단 기준 문서화」가 이 칸입니다.
+**순서**
 
-보고서 맨 아래 「판단 기준」 · 「한계와 다음에 할 일」 칸을 채우시오. 칸은 오전에 붙여 넣은 틀에 이미 있습니다. 코드는 쓰지 않습니다.
+1. **[보고서]** 맨 아래 `### 판단 기준` 의 규칙마다 `근거` 뒤에 그 지표가 왜 의심스러운지 적습니다. 5.1 표와 검색으로 공부한 것을 내 말로 적습니다.
+2. **[보고서]** 같은 칸의 `결과 — 맞힘 · 오탐 · 미탐:` 줄에 6교시에 마지막으로 잰 숫자를 적습니다.
+3. **[보고서]** `### 한계와 다음에 할 일` 의 세 줄을 채웁니다.
+4. **[보고서]** `day03_dns_analysis.md` 의 `## 7교시` › `### 문제 7-4` 아래에 적습니다.
+   - 맨 아래 「판단 기준」 · 「한계와 다음에 할 일」을 채웠나: 채웠으면 「예」
 
 | | |
 |---|---|
@@ -907,13 +902,19 @@ nslookup qzkx7wp2v.invalid
 
 ### ✍️ 문제 7-5 · 분석서 완성하고 올리기
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — 보고서 파일 마무리 → 깃허브에 올리기(웹 화면 또는 `git push`)
+**할 일** — `day03_dns_analysis.md` 의 빈 칸(5 · 6 · 7교시와 맨 아래 「최종 분석서」)을 마저 채우고 깃허브에 올립니다.
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day03_dns_analysis.md` 의 `## 7교시` 에서 `### 문제 7-5` 아래
+**왜 중요한가** — 오늘 만든 코드 · 판정표 · 기준을 분석서 한 파일로 남기는 단계입니다. 깃허브에 올린 분석서는 캡스톤에서 다섯 과목 폴더를 합칠 때 다시 씁니다.
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**왜 중요한가**</mark> — 오늘 만든 코드 · 판정표 · 기준을 분석서 한 파일로 남기는 단계입니다. 깃허브에 올린 분석서는 캡스톤에서 다섯 과목 폴더를 합칠 때 다시 씁니다.
+「최종 분석서」의 칸 — 의심 도메인 판정 · 판단 기준 · 한계와 다음에 할 일 — 은 오전에 붙여 넣은 틀에 이미 있습니다.
 
-`day03_dns_analysis.md` 의 **빈 칸**(5 · 6 · 7교시와 맨 아래 「최종 분석서」)을 마저 채우고 깃허브에 올리시오. 「최종 분석서」의 칸 — 의심 도메인 판정 · 판단 기준 · 한계와 다음에 할 일 — 은 오전에 붙여 넣은 틀에 이미 있습니다.
+**순서**
+
+1. **[보고서]** 5 · 6 · 7교시 칸에서 빈 줄을 찾아 채웁니다.
+2. **[보고서]** 맨 아래 「의심 도메인 판정」의 세 줄(5-5 · 5-4 · 7-3)을 채웁니다.
+3. **[보고서]** `## 7교시` › `### 문제 7-5` 아래의 `깃허브에 올렸나:` 에 「예」를 적습니다(올리기 전에 적어 둡니다).
+4. **[터미널]** 보고서와 사진 두 장을 깃허브에 올립니다. 명령은 💡 힌트 3 에 있습니다. 웹 화면으로 올려도 됩니다.
+5. **[브라우저]** 깃허브에서 `network_zt/day03_dns_analysis.md` 를 열어 빈 칸이 없고 사진 두 장이 보이는지 확인합니다.
 
 | | |
 |---|---|

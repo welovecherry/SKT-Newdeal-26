@@ -36,7 +36,7 @@
 1. 어제와 같은 터미널에서 `network_zt` 폴더로 들어갑니다(`cd network_zt`).
 2. 오늘은 **파이썬 파일을 여러 개** 만듭니다. 문제마다 적힌 이름으로 `network_zt` 폴더에 만들고, `python 파일이름.py` 로 실행합니다.
 3. 오늘 쓰는 `ipaddress`(아이피 어드레스)는 파이썬에 **기본으로 들어 있는** 도구(표준 라이브러리)라 설치가 필요 없습니다.
-4. 문제 앞의 **상자**를 먼저 읽습니다 — 🐍 문법 상자(파이썬) · 명령 상자(터미널) · Wireshark 상자 · 개념 상자. 문제 제목 아래 **어디서** 줄이 실습하는 곳입니다. `→` 는 하는 순서입니다. 막히면 **💡 힌트** → 맨 아래 **「정답」** 순서로 봅니다. ⭐도전은 선택입니다.
+4. 문제 앞의 **상자**를 먼저 읽습니다 — 🐍 문법 상자(파이썬) · 명령 상자(터미널) · Wireshark 상자 · 개념 상자. 문제는 **할 일**(무엇을 하고 무엇을 적나) → **순서**(번호 단계)로 되어 있습니다. 단계 맨 앞의 **[VS Code]** · **[터미널]** · **[이 문서]** · **[탐색기]** · **[보고서]** 가 그 단계에서 쓰는 창입니다. 마지막 **[보고서]** 단계가 적는 곳입니다. 막히면 **💡 힌트** → 맨 아래 **「정답」** 순서로 봅니다. ⭐도전은 선택입니다.
 5. 맥북으로 복습할 때는 명령 상자 바로 아래의 **「맥북:」 줄**을 칩니다(없으면 Windows 와 같은 명령). 맥의 결과는 영어이고 모양이 달라 🎯 결과와 글자가 다릅니다 — 같은 값(평균 · TTL · IP · 포트)을 찾으면 됩니다.
 
 ### 오늘의 보고서 파일을 만듭니다
@@ -296,7 +296,7 @@
 - 내 PC 의 기본 경로 (6-2): 
 ```
 
-⚠ <mark style="background:#ffcdd2; color:#1a1a1a; padding:0 4px; border-radius:3px">오늘 적는 것은 모두 이 파일(`day02_subnet_design.md`) 하나에</mark> 적습니다. 문제마다 「<mark style="background:#ffcdd2; color:#1a1a1a; padding:0 4px; border-radius:3px">적는 곳</mark>」 줄이 이 파일의 어느 칸인지 알려 줍니다. 문제마다 소제목이 틀에 다 있으니 <mark style="background:#ffcdd2; color:#1a1a1a; padding:0 4px; border-radius:3px">그 문제 소제목 아래</mark>를 채웁니다.
+⚠ <mark style="background:#ffcdd2; color:#1a1a1a; padding:0 4px; border-radius:3px">오늘 적는 것은 모두 이 파일(`day02_subnet_design.md`) 하나에</mark> 적습니다. 문제마다 마지막 「<mark style="background:#ffcdd2; color:#1a1a1a; padding:0 4px; border-radius:3px">[보고서]</mark>」 단계가 이 파일의 어느 칸인지 알려 줍니다. 문제마다 소제목이 틀에 다 있으니 <mark style="background:#ffcdd2; color:#1a1a1a; padding:0 4px; border-radius:3px">그 문제 소제목 아래</mark>를 채웁니다.
 
 
 ---
@@ -387,24 +387,27 @@ PAT 공유기는 「바깥 포트 40002번 = 안의 `192.168.10.25:51234`」 같
 
 ### ✍️ 문제 2-1 · 직접 실행해 보기
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — VS Code 에서 `warmup.py` 에 따라 치기 → 터미널에서 `python warmup.py` → 결과와 「왜」를 보고서에 적기
+**할 일** — 코드 세 줄을 실행하고, 나온 결과 세 줄과 그 이유를 보고서에 적습니다.
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day02_subnet_design.md` 의 `## 2교시` 에서 `### 문제 2-1` 아래
+**왜 중요한가** — 마디 하나를 여덟 칸 2진수로 바꾸는 이 한 줄을 2-2 에서 네 마디에 되풀이해 IP 주소 32칸을 만듭니다.
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**왜 중요한가**</mark> — 마디 하나를 여덟 칸 2진수로 바꾸는 이 한 줄을 2-2 에서 네 마디에 되풀이해 IP 주소 32칸을 만듭니다.
+**순서**
 
-아래 코드를 `warmup.py` 에 **따라 쳐서** 실행하고, 결과와 「왜 이렇게 나왔는지」 한 줄을 적으시오. `warmup.py` 는 처음 한 번만 `network_zt` 폴더에 New File 로 만들고, 교시마다 내용을 지우고 다시 씁니다.
-
-```python
-print(format(192, "08b"))
-print(format(10, "08b"))
-print(len(format(192, "08b") + format(10, "08b")))
-```
-
-```bash
-python warmup.py
-```
-맥북: `python3 warmup.py`
+1. **[VS Code]** `network_zt` 폴더의 `warmup.py` 를 엽니다. 없으면 New File 로 만들고, 안에 있던 내용은 지웁니다.
+2. **[VS Code]** 아래 코드를 그대로 따라 칩니다.
+   ```python
+   print(format(192, "08b"))                            # 192 를 2진수 여덟 칸 글자로 바꾸면?
+   print(format(10, "08b"))                             # 10 을 2진수 여덟 칸 글자로 바꾸면?
+   print(len(format(192, "08b") + format(10, "08b")))   # 두 글자를 이어 붙이면 몇 칸인가?
+   ```
+3. **[터미널]** 실행합니다.
+   ```bash
+   python warmup.py
+   ```
+   맥북: `python3 warmup.py`
+4. **[보고서]** `day02_subnet_design.md` 의 `## 2교시` › `### 문제 2-1` 아래에 적습니다.
+   - 결과: 출력된 세 줄
+   - 왜 그렇게 나왔나: **10 을 바꾼 둘째 줄의 앞자리가 0 으로 채워진 이유와 셋째 줄 숫자가 나온 이유** — 위 문법 상자 · 2.1 표와 검색으로 공부한 것을 적습니다
 
 막히면 바로 위 문법 상자와 2.1 표를 봅니다.
 
@@ -424,43 +427,42 @@ python warmup.py
 
 ### ✍️ 문제 2-2 · 내 IP 를 32칸으로 펼치기 (`ip_bits.py`)
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — VS Code 에서 `ip_bits.py` 만들기 → 터미널에서 `python ip_bits.py` 실행
+**할 일** — IP 주소를 0과 1 서른두 칸으로 펼치는 함수 `to_bits` 를 완성해 실행하고, 출력을 보고서에 적습니다.
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day02_subnet_design.md` 의 `## 2교시` 에서 `### 문제 2-2` 아래
+**왜 중요한가** — IP 주소를 32칸으로 펼쳐 두어야 3교시에서 서브넷 마스크가 어느 칸까지를 같은 망으로 묶는지 칸끼리 맞대어 볼 수 있습니다.
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**왜 중요한가**</mark> — IP 주소를 32칸으로 펼쳐 두어야 3교시에서 서브넷 마스크가 어느 칸까지를 같은 망으로 묶는지 칸끼리 맞대어 볼 수 있습니다.
+**순서**
 
-IP 주소를 0과 1 서른두 칸으로 펼치는 함수 `to_bits` 를 완성하시오. 마지막 줄의 주소는 **어제 적은 내 IPv4 주소**로 바꿔 한 번 더 실행합니다.
+1. **[VS Code]** 왼쪽 목록에서 `network_zt` 폴더를 오른쪽 클릭 › **New File** › 이름 `ip_bits.py` 를 입력하고 Enter 를 누릅니다.
+2. **[VS Code]** 아래 코드를 복사해 파일에 붙여 넣습니다. 코드 상자 안을 마우스로 끌어 선택하고 `Ctrl + C` 를 누릅니다.
+   ```python
+   def to_bits(ip):                                  # IP 주소를 2진수 32칸 글자로 바꾸는 함수
+       bits = ""                                     # 이어 붙일 빈 글자
+       for part in ip.split("."):                    # 점으로 나눈 마디를 하나씩
+           # 1. bits 뒤에 format(int(part), "08b") 를 이어 붙이세요
 
-```python
-def to_bits(ip):                                  # IP 주소를 2진수 32칸 글자로 바꾸는 함수
-    bits = ""                                     # 이어 붙일 빈 글자
-    for part in ip.split("."):                    # 점으로 나눈 마디를 하나씩
-        # 1. bits 뒤에 format(int(part), "08b") 를 이어 붙이세요
-
-    return bits                                   # 32칸 글자를 리턴한다
+       return bits                                   # 32칸 글자를 리턴한다
 
 
-# ── 미리 채워 둔 줄입니다. 고치지 않습니다 ──
-ip = "192.168.10.25"                              # 내 IPv4 주소로 바꿔 봅니다
-print(ip)
-print(to_bits(ip))
-print("길이:", len(to_bits(ip)))
-# ── 여기까지 ──
-```
-
-**파일을 만들고 실행합니다**
-
-1. VS Code 왼쪽 목록에서 `network_zt` 폴더를 오른쪽 클릭 › **New File** › 이름 `ip_bits.py` 를 입력하고 Enter 를 누릅니다.
-2. 위 코드 상자 안을 마우스로 끌어 선택하고 `Ctrl + C` 로 복사해 파일에 붙여 넣은 뒤, 번호 주석 아래를 채웁니다. 저장은 자동입니다.
-3. 터미널에 아래 명령을 입력합니다. 터미널의 줄 위에 `…/network_zt` 가 보여야 합니다. 아니면 먼저 `cd network_zt` 를 입력합니다.
-
-```bash
-python ip_bits.py
-```
-맥북: `python3 ip_bits.py`
-
-4. 고친 뒤에는 같은 명령을 다시 입력합니다. 터미널에서 **↑(위 화살표)** 를 누르면 방금 입력한 명령이 다시 나옵니다.
+   # ── 미리 채워 둔 줄입니다. 고치지 않습니다 ──
+   ip = "192.168.10.25"                              # 내 IPv4 주소로 바꿔 봅니다
+   print(ip)
+   print(to_bits(ip))
+   print("길이:", len(to_bits(ip)))
+   # ── 여기까지 ──
+   ```
+3. **[VS Code]** 번호 주석 아래를 채웁니다. 저장은 자동입니다.
+4. **[터미널]** 실행합니다. 터미널의 줄 위에 `…/network_zt` 가 보여야 합니다. 아니면 먼저 `cd network_zt` 를 입력합니다.
+   ```bash
+   python ip_bits.py
+   ```
+   맥북: `python3 ip_bits.py`
+5. **[터미널]** 고친 뒤에는 **↑(위 화살표)** 를 눌러 방금 입력한 명령을 다시 실행합니다.
+6. **[VS Code]** `ip = "192.168.10.25"` 줄의 주소를 **어제 적은 내 IPv4 주소**로 바꿉니다.
+7. **[터미널]** **↑** 를 눌러 한 번 더 실행합니다.
+8. **[보고서]** `day02_subnet_design.md` 의 `## 2교시` › `### 문제 2-2` 아래에 적습니다.
+   - 출력: 터미널에 나온 결과
+   - 막힌 곳: 막혔던 곳과 어떻게 풀었는지 (없으면 「없음」)
 
 | | |
 |---|---|
@@ -476,13 +478,9 @@ python ip_bits.py
 
 ### ✍️ 문제 2-3 · 사설 IP 판별기 (`private_ip.py`)
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — VS Code 에서 `private_ip.py` 만들기 → 터미널에서 `python private_ip.py` 실행
+**할 일** — 주소가 사설 IP 인지 판별하는 함수 `is_private` 를 완성해 실행하고, 출력을 보고서에 적습니다. **172 의 함정**에 걸리지 않아야 합니다.
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day02_subnet_design.md` 의 `## 2교시` 에서 `### 문제 2-3` 아래
-
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**왜 중요한가**</mark> — 로그에 찍힌 주소가 사설인지 공인인지로 내부 PC 의 통신인지 외부에서 온 접속인지를 가릅니다. 관제에서 주소를 보면 가장 먼저 하는 판정입니다.
-
-주소가 사설 IP 인지 판별하는 `is_private` 를 완성하시오. **172 의 함정**에 걸리지 않아야 합니다.
+**왜 중요한가** — 로그에 찍힌 주소가 사설인지 공인인지로 내부 PC 의 통신인지 외부에서 온 접속인지를 가릅니다. 관제에서 주소를 보면 가장 먼저 하는 판정입니다.
 
 #### 🐍 문법 상자 · `and` · `or` · 범위 비교
 
@@ -502,41 +500,42 @@ print(second == 10 or second == 20)
 
 ⚠ `first == 172` 만 보면 `172.32.5.6` 까지 사설로 잘못 판정합니다. 둘째 마디도 봐야 합니다.
 
-```python
-def is_private(ip):                               # 사설 IP 면 True 를 리턴하는 함수
-    parts = ip.split(".")                         # 점으로 나눈 마디 네 개
-    first = int(parts[0])                         # 첫 마디(숫자)
-    second = int(parts[1])                        # 둘째 마디(숫자)
-    # 1. first 가 10 이면 True 를 return 하세요
+**순서**
 
-    # 2. first 가 172 이고 second 가 16 이상 31 이하이면 True 를 return 하세요
+1. **[VS Code]** 왼쪽 목록에서 `network_zt` 폴더를 오른쪽 클릭 › **New File** › 이름 `private_ip.py` 를 입력하고 Enter 를 누릅니다.
+2. **[VS Code]** 아래 코드를 복사해 파일에 붙여 넣습니다. 코드 상자 안을 마우스로 끌어 선택하고 `Ctrl + C` 를 누릅니다.
+   ```python
+   def is_private(ip):                               # 사설 IP 면 True 를 리턴하는 함수
+       parts = ip.split(".")                         # 점으로 나눈 마디 네 개
+       first = int(parts[0])                         # 첫 마디(숫자)
+       second = int(parts[1])                        # 둘째 마디(숫자)
+       # 1. first 가 10 이면 True 를 return 하세요
 
-    # 3. first 가 192 이고 second 가 168 이면 True 를 return 하세요
+       # 2. first 가 172 이고 second 가 16 이상 31 이하이면 True 를 return 하세요
 
-    return False                                  # 셋 다 아니면 공인
+       # 3. first 가 192 이고 second 가 168 이면 True 를 return 하세요
+
+       return False                                  # 셋 다 아니면 공인
 
 
-# ── 미리 채워 둔 줄입니다. 고치지 않습니다 ──
-for ip in ["10.0.0.8", "172.20.5.6", "172.32.5.6", "192.168.10.25", "8.8.8.8", "203.0.113.7"]:
-    if is_private(ip):
-        print("[사설]", ip)
-    else:
-        print("[공인]", ip)
-# ── 여기까지 ──
-```
-
-**파일을 만들고 실행합니다**
-
-1. VS Code 왼쪽 목록에서 `network_zt` 폴더를 오른쪽 클릭 › **New File** › 이름 `private_ip.py` 를 입력하고 Enter 를 누릅니다.
-2. 위 코드 상자 안을 마우스로 끌어 선택하고 `Ctrl + C` 로 복사해 파일에 붙여 넣은 뒤, 번호 주석 아래를 채웁니다. 저장은 자동입니다.
-3. 터미널에 아래 명령을 입력합니다. 터미널의 줄 위에 `…/network_zt` 가 보여야 합니다. 아니면 먼저 `cd network_zt` 를 입력합니다.
-
-```bash
-python private_ip.py
-```
-맥북: `python3 private_ip.py`
-
-4. 고친 뒤에는 같은 명령을 다시 입력합니다. 터미널에서 **↑(위 화살표)** 를 누르면 방금 입력한 명령이 다시 나옵니다.
+   # ── 미리 채워 둔 줄입니다. 고치지 않습니다 ──
+   for ip in ["10.0.0.8", "172.20.5.6", "172.32.5.6", "192.168.10.25", "8.8.8.8", "203.0.113.7"]:
+       if is_private(ip):
+           print("[사설]", ip)
+       else:
+           print("[공인]", ip)
+   # ── 여기까지 ──
+   ```
+3. **[VS Code]** 번호 주석 아래를 채웁니다. 저장은 자동입니다.
+4. **[터미널]** 실행합니다. 터미널의 줄 위에 `…/network_zt` 가 보여야 합니다. 아니면 먼저 `cd network_zt` 를 입력합니다.
+   ```bash
+   python private_ip.py
+   ```
+   맥북: `python3 private_ip.py`
+5. **[터미널]** 고친 뒤에는 **↑(위 화살표)** 를 눌러 방금 입력한 명령을 다시 실행합니다.
+6. **[보고서]** `day02_subnet_design.md` 의 `## 2교시` › `### 문제 2-3` 아래에 적습니다.
+   - 출력: 터미널에 나온 결과
+   - 막힌 곳: 막혔던 곳과 어떻게 풀었는지 (없으면 「없음」)
 
 | | |
 |---|---|
@@ -552,17 +551,20 @@ python private_ip.py
 
 ### ✍️ 문제 2-4 · 인터넷이 보는 내 주소
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — 터미널에서 명령 실행 → 보고서에 적기
+**할 일** — 인터넷이 보는 내 주소(공인 IP)를 확인하고, 어제 적은 내 IPv4 주소와 비교해 보고서에 적습니다.
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day02_subnet_design.md` 의 `## 2교시` 에서 `### 문제 2-4` 아래
+**왜 중요한가** — 외부 서버의 로그에는 내 PC 의 IP 가 아니라 이 공인 IP 가 남습니다. 내 PC 의 IP 와 인터넷이 보는 IP 가 어떻게 다른지 직접 확인합니다.
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**왜 중요한가**</mark> — 외부 서버의 로그에는 내 PC 의 IP 가 아니라 이 공인 IP 가 남습니다. 내 PC 의 IP 와 인터넷이 보는 IP 가 어떻게 다른지 직접 확인합니다.
+**순서**
 
-터미널에 아래를 입력해 **인터넷이 보는 내 주소**(공인 IP)를 확인하고, 어제 적은 내 IPv4 주소와 비교해 보고서에 적으시오.
-
-```bash
-curl https://api.ipify.org
-```
+1. **[터미널]** 아래 명령을 입력합니다.
+   ```bash
+   curl https://api.ipify.org
+   ```
+2. **[터미널]** 나온 주소를 어제 `ipconfig` 에서 적은 내 IPv4 주소와 견줍니다.
+3. **[보고서]** `day02_subnet_design.md` 의 `## 2교시` › `### 문제 2-4` 아래에 적습니다.
+   - 공인 IP (curl api.ipify.org): 터미널에 나온 주소
+   - 옆 사람과 같았나 · 왜: 옆 사람의 결과와 견주어 적고, **옆 사람과 같거나 다른 이유와 `ipconfig` 의 내 주소와 다른 이유** — 2.3 과 검색으로 공부한 것을 적습니다
 
 | | |
 |---|---|
@@ -578,44 +580,41 @@ curl https://api.ipify.org
 
 ### ✍️ 문제 2-5 · 공유기의 변환표 따라가기 (`nat_table.py`)
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — VS Code 에서 `nat_table.py` 만들기 → 터미널에서 `python nat_table.py` 실행
+**할 일** — PAT 변환표에서 **바깥 포트 40002번으로 돌아온 답**이 안의 어느 PC 로 가는지 찾는 코드를 완성해 실행하고, 출력을 보고서에 적습니다.
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day02_subnet_design.md` 의 `## 2교시` 에서 `### 문제 2-5` 아래
+**왜 중요한가** — 외부 로그에 공인 IP 와 포트만 남았을 때 안의 어느 PC 가 보낸 것인지 찾으려면 이 변환표에서 포트로 찾아야 합니다.
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**왜 중요한가**</mark> — 외부 로그에 공인 IP 와 포트만 남았을 때 안의 어느 PC 가 보낸 것인지 찾으려면 이 변환표에서 포트로 찾아야 합니다.
+**순서**
 
-PAT 변환표에서 **바깥 포트 40002번으로 돌아온 답**이 안의 어느 PC 로 가는지 찾으시오.
+1. **[VS Code]** 왼쪽 목록에서 `network_zt` 폴더를 오른쪽 클릭 › **New File** › 이름 `nat_table.py` 를 입력하고 Enter 를 누릅니다.
+2. **[VS Code]** 아래 코드를 복사해 파일에 붙여 넣습니다. 코드 상자 안을 마우스로 끌어 선택하고 `Ctrl + C` 를 누릅니다.
+   ```python
+   # ── 미리 채워 둔 줄입니다. 고치지 않습니다 ──
+   PUBLIC_IP = "203.0.113.7"                         # 공유기의 공인 IP
+   nat_table = {                                     # 바깥 포트 → 안의 주소 · 포트
+       40001: {"ip": "192.168.10.10", "port": 51001},
+       40002: {"ip": "192.168.10.25", "port": 51234},
+       40003: {"ip": "192.168.10.31", "port": 50999},
+   }
+   reply_port = 40002                                # 답이 돌아온 바깥 포트
+   # ── 여기까지 ──
 
-```python
-# ── 미리 채워 둔 줄입니다. 고치지 않습니다 ──
-PUBLIC_IP = "203.0.113.7"                         # 공유기의 공인 IP
-nat_table = {                                     # 바깥 포트 → 안의 주소 · 포트
-    40001: {"ip": "192.168.10.10", "port": 51001},
-    40002: {"ip": "192.168.10.25", "port": 51234},
-    40003: {"ip": "192.168.10.31", "port": 50999},
-}
-reply_port = 40002                                # 답이 돌아온 바깥 포트
-# ── 여기까지 ──
+   # 1. inside 라는 변수에 nat_table 에서 reply_port 로 꺼낸 값을 담으세요
 
-# 1. inside 라는 변수에 nat_table 에서 reply_port 로 꺼낸 값을 담으세요
+   print(f"밖: {PUBLIC_IP}:{reply_port}")
+   # 2. f"안: {inside['ip']}:{inside['port']}" 를 출력하세요
 
-print(f"밖: {PUBLIC_IP}:{reply_port}")
-# 2. f"안: {inside['ip']}:{inside['port']}" 를 출력하세요
-
-```
-
-**파일을 만들고 실행합니다**
-
-1. VS Code 왼쪽 목록에서 `network_zt` 폴더를 오른쪽 클릭 › **New File** › 이름 `nat_table.py` 를 입력하고 Enter 를 누릅니다.
-2. 위 코드 상자 안을 마우스로 끌어 선택하고 `Ctrl + C` 로 복사해 파일에 붙여 넣은 뒤, 번호 주석 아래를 채웁니다. 저장은 자동입니다.
-3. 터미널에 아래 명령을 입력합니다. 터미널의 줄 위에 `…/network_zt` 가 보여야 합니다. 아니면 먼저 `cd network_zt` 를 입력합니다.
-
-```bash
-python nat_table.py
-```
-맥북: `python3 nat_table.py`
-
-4. 고친 뒤에는 같은 명령을 다시 입력합니다. 터미널에서 **↑(위 화살표)** 를 누르면 방금 입력한 명령이 다시 나옵니다.
+   ```
+3. **[VS Code]** 번호 주석 아래를 채웁니다. 저장은 자동입니다.
+4. **[터미널]** 실행합니다. 터미널의 줄 위에 `…/network_zt` 가 보여야 합니다. 아니면 먼저 `cd network_zt` 를 입력합니다.
+   ```bash
+   python nat_table.py
+   ```
+   맥북: `python3 nat_table.py`
+5. **[터미널]** 고친 뒤에는 **↑(위 화살표)** 를 눌러 방금 입력한 명령을 다시 실행합니다.
+6. **[보고서]** `day02_subnet_design.md` 의 `## 2교시` › `### 문제 2-5` 아래에 적습니다.
+   - 출력: 터미널에 나온 결과
+   - 막힌 곳: 막혔던 곳과 어떻게 풀었는지 (없으면 「없음」)
 
 | | |
 |---|---|
@@ -690,24 +689,27 @@ print(net.network_address, net.broadcast_address, net.num_addresses)
 
 ### ✍️ 문제 3-1 · 직접 실행해 보기
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — VS Code 에서 `warmup.py` 에 따라 치기 → 터미널에서 `python warmup.py` → 결과와 「왜」를 보고서에 적기
+**할 일** — 코드 세 줄을 실행하고, 나온 결과 두 줄과 그 이유를 보고서에 적습니다.
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day02_subnet_design.md` 의 `## 3교시` 에서 `### 문제 3-1` 아래
+**왜 중요한가** — 마스크 32칸에서 1 과 0 의 개수를 세는 일이 3-3 · 4-2 에서 CIDR 과 주소 수를 계산하는 바탕이 됩니다.
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**왜 중요한가**</mark> — 마스크 32칸에서 1 과 0 의 개수를 세는 일이 3-3 · 4-2 에서 CIDR 과 주소 수를 계산하는 바탕이 됩니다.
+**순서**
 
-아래 코드를 `warmup.py` 에 **따라 쳐서** 실행하고, 결과와 「왜 이렇게 나왔는지」 한 줄을 적으시오. `warmup.py` 는 처음 한 번만 `network_zt` 폴더에 New File 로 만들고, 교시마다 내용을 지우고 다시 씁니다.
-
-```python
-mask = "11111111.11111111.11111111.11000000"
-print(mask.count("1"))
-print(mask.count("0"))
-```
-
-```bash
-python warmup.py
-```
-맥북: `python3 warmup.py`
+1. **[VS Code]** `network_zt` 폴더의 `warmup.py` 를 엽니다. 없으면 New File 로 만들고, 안에 있던 내용은 지웁니다.
+2. **[VS Code]** 아래 코드를 그대로 따라 칩니다.
+   ```python
+   mask = "11111111.11111111.11111111.11000000"   # 서브넷 마스크를 2진수로 펼친 글자
+   print(mask.count("1"))                          # 1 은 몇 개인가?
+   print(mask.count("0"))                          # 0 은 몇 개인가?
+   ```
+3. **[터미널]** 실행합니다.
+   ```bash
+   python warmup.py
+   ```
+   맥북: `python3 warmup.py`
+4. **[보고서]** `day02_subnet_design.md` 의 `## 3교시` › `### 문제 3-1` 아래에 적습니다.
+   - 결과: 출력된 두 줄
+   - 왜 그렇게 나왔나: **두 숫자가 이 마스크의 CIDR 숫자와 주소 수로 어떻게 이어지는지** — 3.1 표와 검색으로 공부한 것을 적습니다
 
 <details><summary>답 보기 — 결과와 「왜」를 적은 뒤에 엽니다</summary>
 
@@ -725,17 +727,24 @@ python warmup.py
 
 ### ✍️ 문제 3-2 · 내 서브넷 마스크를 CIDR 로
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — 터미널에서 명령 실행 → 화면을 사진으로 저장 → 보고서에 적기
+**할 일** — `ipconfig` 로 내 **서브넷 마스크**를 찾아 3.1 표를 보고 **CIDR** 로 바꾸고, 결과 화면 사진과 함께 보고서에 적습니다.
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day02_subnet_design.md` 의 `## 3교시` 에서 `### 문제 3-2` 아래
+**왜 중요한가** — 내 PC 의 CIDR 을 알아야 3-4 에서 내 PC 가 속한 망의 범위를 계산할 수 있습니다. 사진은 7-5 에서 설계서와 함께 올립니다.
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**왜 중요한가**</mark> — 내 PC 의 CIDR 을 알아야 3-4 에서 내 PC 가 속한 망의 범위를 계산할 수 있습니다. 사진은 7-5 에서 설계서와 함께 올립니다.
+**순서**
 
-`ipconfig` 로 내 **서브넷 마스크**를 찾고, 3.1 표를 보고 **CIDR** 로 바꿔 보고서에 적으시오.
-
-맥북: `ipconfig getoption en0 subnet_mask`
-
-**사진 남기기** — 결과 화면에서 `IPv4 주소` · `서브넷 마스크` · `기본 게이트웨이` 세 줄이 보이게 잘라 `ipconfig_mask.png` 로 `network_zt` 폴더에 저장하시오. 보고서 `### 문제 3-2` 아래에 사진 줄이 이미 있어서, 파일 이름이 같으면 사진이 보입니다. 자르고 저장하는 법은 10/12 오후 7-2 와 같습니다(`Win + Shift + S`).
+1. **[터미널]** 아래 명령을 입력합니다.
+   ```bash
+   ipconfig
+   ```
+   맥북: `ipconfig getoption en0 subnet_mask`
+2. **[터미널]** `서브넷 마스크` 줄의 값을 찾습니다.
+3. **[이 문서]** 3.1 표에서 그 마스크의 CIDR 을 찾습니다.
+4. **[터미널]** `Win + Shift + S` 를 눌러 결과 화면에서 `IPv4 주소` · `서브넷 마스크` · `기본 게이트웨이` 세 줄이 보이게 자릅니다. 자르고 저장하는 법은 10/12 오후 7-2 와 같습니다.
+5. **[탐색기]** 잘라 낸 사진을 `ipconfig_mask.png` 라는 이름으로 `network_zt` 폴더에 저장합니다. 보고서 `### 문제 3-2` 아래에 사진 줄이 이미 있어서, 파일 이름이 같으면 사진이 보입니다.
+6. **[보고서]** `day02_subnet_design.md` 의 `## 3교시` › `### 문제 3-2` 아래에 적습니다.
+   - 내 서브넷 마스크: `서브넷 마스크` 줄의 값
+   - CIDR: 3.1 표에서 찾은 `/숫자`
 
 | | |
 |---|---|
@@ -751,36 +760,33 @@ python warmup.py
 
 ### ✍️ 문제 3-3 · CIDR 이 커질 때 주소 수 (`cidr_table.py`)
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — VS Code 에서 `cidr_table.py` 만들기 → 터미널에서 `python cidr_table.py` 실행
+**할 일** — `/24` 부터 `/28` 까지 마스크와 주소 수를 출력하는 코드를 완성해 실행하고, 출력을 보고서에 적습니다.
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day02_subnet_design.md` 의 `## 3교시` 에서 `### 문제 3-3` 아래
+**왜 중요한가** — CIDR 숫자 하나만 보고 방화벽 규칙이 주소 몇 개를 덮는지 가늠할 수 있게 됩니다. 4교시에서 부서마다 망 크기를 고를 때 이 표를 씁니다.
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**왜 중요한가**</mark> — CIDR 숫자 하나만 보고 방화벽 규칙이 주소 몇 개를 덮는지 가늠할 수 있게 됩니다. 4교시에서 부서마다 망 크기를 고를 때 이 표를 씁니다.
+**순서**
 
-`/24` 부터 `/28` 까지 마스크와 주소 수를 출력하시오.
+1. **[VS Code]** 왼쪽 목록에서 `network_zt` 폴더를 오른쪽 클릭 › **New File** › 이름 `cidr_table.py` 를 입력하고 Enter 를 누릅니다.
+2. **[VS Code]** 아래 코드를 복사해 파일에 붙여 넣습니다. 코드 상자 안을 마우스로 끌어 선택하고 `Ctrl + C` 를 누릅니다.
+   ```python
+   import ipaddress                                  # 파이썬에 들어 있는 IP 계산 도구
 
-```python
-import ipaddress                                  # 파이썬에 들어 있는 IP 계산 도구
+   for prefix in range(24, 29):                      # 24, 25, 26, 27, 28
+       # 1. net 이라는 변수에 ipaddress.ip_network(f"192.168.10.0/{prefix}") 를 담으세요
 
-for prefix in range(24, 29):                      # 24, 25, 26, 27, 28
-    # 1. net 이라는 변수에 ipaddress.ip_network(f"192.168.10.0/{prefix}") 를 담으세요
+       # 2. prefix, net.netmask, net.num_addresses 를 한 줄에 출력하세요
 
-    # 2. prefix, net.netmask, net.num_addresses 를 한 줄에 출력하세요
-
-```
-
-**파일을 만들고 실행합니다**
-
-1. VS Code 왼쪽 목록에서 `network_zt` 폴더를 오른쪽 클릭 › **New File** › 이름 `cidr_table.py` 를 입력하고 Enter 를 누릅니다.
-2. 위 코드 상자 안을 마우스로 끌어 선택하고 `Ctrl + C` 로 복사해 파일에 붙여 넣은 뒤, 번호 주석 아래를 채웁니다. 저장은 자동입니다.
-3. 터미널에 아래 명령을 입력합니다. 터미널의 줄 위에 `…/network_zt` 가 보여야 합니다. 아니면 먼저 `cd network_zt` 를 입력합니다.
-
-```bash
-python cidr_table.py
-```
-맥북: `python3 cidr_table.py`
-
-4. 고친 뒤에는 같은 명령을 다시 입력합니다. 터미널에서 **↑(위 화살표)** 를 누르면 방금 입력한 명령이 다시 나옵니다.
+   ```
+3. **[VS Code]** 번호 주석 아래를 채웁니다. 저장은 자동입니다.
+4. **[터미널]** 실행합니다. 터미널의 줄 위에 `…/network_zt` 가 보여야 합니다. 아니면 먼저 `cd network_zt` 를 입력합니다.
+   ```bash
+   python cidr_table.py
+   ```
+   맥북: `python3 cidr_table.py`
+5. **[터미널]** 고친 뒤에는 **↑(위 화살표)** 를 눌러 방금 입력한 명령을 다시 실행합니다.
+6. **[보고서]** `day02_subnet_design.md` 의 `## 3교시` › `### 문제 3-3` 아래에 적습니다.
+   - 출력: 터미널에 나온 결과
+   - 막힌 곳: 막혔던 곳과 어떻게 풀었는지 (없으면 「없음」)
 
 | | |
 |---|---|
@@ -796,40 +802,40 @@ python cidr_table.py
 
 ### ✍️ 문제 3-4 · 내 PC 가 속한 망 계산 (`my_network.py`)
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — VS Code 에서 `my_network.py` 만들기 → 터미널에서 `python my_network.py` 실행 → 보고서에 적기
+**할 일** — **내 IPv4 주소와 CIDR** 로 네트워크 주소 · 브로드캐스트 주소 · 쓸 수 있는 주소 수를 계산해 보고서에 적습니다.
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day02_subnet_design.md` 의 `## 3교시` 에서 `### 문제 3-4` 아래
+**왜 중요한가** — 네트워크 주소와 브로드캐스트 주소를 알면 내 망이 어디부터 어디까지인지 정확히 말할 수 있습니다. 오후 5-5 의 게이트웨이 점검도 이 범위로 판정합니다.
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**왜 중요한가**</mark> — 네트워크 주소와 브로드캐스트 주소를 알면 내 망이 어디부터 어디까지인지 정확히 말할 수 있습니다. 오후 5-5 의 게이트웨이 점검도 이 범위로 판정합니다.
+**순서**
 
-**내 IPv4 주소와 CIDR** 로 네트워크 주소 · 브로드캐스트 주소 · 쓸 수 있는 주소 수를 계산해 보고서에 적으시오.
+1. **[VS Code]** 왼쪽 목록에서 `network_zt` 폴더를 오른쪽 클릭 › **New File** › 이름 `my_network.py` 를 입력하고 Enter 를 누릅니다.
+2. **[VS Code]** 아래 코드를 복사해 파일에 붙여 넣습니다. 코드 상자 안을 마우스로 끌어 선택하고 `Ctrl + C` 를 누릅니다.
+   ```python
+   import ipaddress
 
-```python
-import ipaddress
+   # ── 내 값으로 바꿔 적습니다 ──
+   my_ip = "192.168.10.25"                           # 내 IPv4 주소 (ipconfig)
+   prefix = 24                                       # 3-2 에서 바꾼 CIDR 숫자
+   # ── 여기까지 ──
 
-# ── 내 값으로 바꿔 적습니다 ──
-my_ip = "192.168.10.25"                           # 내 IPv4 주소 (ipconfig)
-prefix = 24                                       # 3-2 에서 바꾼 CIDR 숫자
-# ── 여기까지 ──
+   # 1. net 이라는 변수에 ipaddress.ip_network(f"{my_ip}/{prefix}", strict=False) 를 담으세요
 
-# 1. net 이라는 변수에 ipaddress.ip_network(f"{my_ip}/{prefix}", strict=False) 를 담으세요
+   # 2. "네트워크 주소:", "브로드캐스트 주소:", "사용 가능 주소 수:" 를 각각의 값과 함께 한 줄씩 출력하세요
 
-# 2. "네트워크 주소:", "브로드캐스트 주소:", "사용 가능 주소 수:" 를 각각의 값과 함께 한 줄씩 출력하세요
-
-```
-
-**파일을 만들고 실행합니다**
-
-1. VS Code 왼쪽 목록에서 `network_zt` 폴더를 오른쪽 클릭 › **New File** › 이름 `my_network.py` 를 입력하고 Enter 를 누릅니다.
-2. 위 코드 상자 안을 마우스로 끌어 선택하고 `Ctrl + C` 로 복사해 파일에 붙여 넣은 뒤, 번호 주석 아래를 채웁니다. 저장은 자동입니다.
-3. 터미널에 아래 명령을 입력합니다. 터미널의 줄 위에 `…/network_zt` 가 보여야 합니다. 아니면 먼저 `cd network_zt` 를 입력합니다.
-
-```bash
-python my_network.py
-```
-맥북: `python3 my_network.py`
-
-4. 고친 뒤에는 같은 명령을 다시 입력합니다. 터미널에서 **↑(위 화살표)** 를 누르면 방금 입력한 명령이 다시 나옵니다.
+   ```
+3. **[VS Code]** `# ── 내 값으로 바꿔 적습니다 ──` 아래 두 줄을 내 IPv4 주소(`ipconfig`)와 3-2 에서 바꾼 CIDR 숫자로 바꿉니다.
+4. **[VS Code]** 번호 주석 아래를 채웁니다. 저장은 자동입니다.
+5. **[터미널]** 실행합니다. 터미널의 줄 위에 `…/network_zt` 가 보여야 합니다. 아니면 먼저 `cd network_zt` 를 입력합니다.
+   ```bash
+   python my_network.py
+   ```
+   맥북: `python3 my_network.py`
+6. **[터미널]** 고친 뒤에는 **↑(위 화살표)** 를 눌러 방금 입력한 명령을 다시 실행합니다.
+7. **[보고서]** `day02_subnet_design.md` 의 `## 3교시` › `### 문제 3-4` 아래에 적습니다.
+   - 내 IPv4 주소: `my_ip` 에 넣은 주소
+   - 네트워크 주소: 출력의 `네트워크 주소:` 값
+   - 브로드캐스트 주소: 출력의 `브로드캐스트 주소:` 값
+   - 사용 가능 주소 수: 출력의 `사용 가능 주소 수:` 값
 
 | | |
 |---|---|
@@ -845,42 +851,39 @@ python my_network.py
 
 ### ✍️ 문제 3-5 · 같은 망일까 (`same_network.py`)
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — VS Code 에서 `same_network.py` 만들기 → 터미널에서 `python same_network.py` 실행
+**할 일** — `/26` 일 때 `.70` · `.120` · `.130` 세 주소 가운데 **같은 망끼리** 고르는 코드를 완성해 실행하고, 출력을 보고서에 적습니다.
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day02_subnet_design.md` 의 `## 3교시` 에서 `### 문제 3-5` 아래
+**왜 중요한가** — 앞 세 마디가 같아도 마스크에 따라 다른 망일 수 있음을 계산으로 확인합니다. 오후 5-2 에서 스위치로 바로 보낼지 게이트웨이로 보낼지를 이 판정으로 정합니다.
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**왜 중요한가**</mark> — 앞 세 마디가 같아도 마스크에 따라 다른 망일 수 있음을 계산으로 확인합니다. 오후 5-2 에서 스위치로 바로 보낼지 게이트웨이로 보낼지를 이 판정으로 정합니다.
+**순서**
 
-`/26` 일 때 `.70` · `.120` · `.130` 세 주소 가운데 **같은 망끼리** 고르시오.
+1. **[VS Code]** 왼쪽 목록에서 `network_zt` 폴더를 오른쪽 클릭 › **New File** › 이름 `same_network.py` 를 입력하고 Enter 를 누릅니다.
+2. **[VS Code]** 아래 코드를 복사해 파일에 붙여 넣습니다. 코드 상자 안을 마우스로 끌어 선택하고 `Ctrl + C` 를 누릅니다.
+   ```python
+   import ipaddress
 
-```python
-import ipaddress
+   # ── 미리 채워 둔 줄입니다. 고치지 않습니다 ──
+   a = ipaddress.ip_network("192.168.10.70/26", strict=False)
+   b = ipaddress.ip_network("192.168.10.120/26", strict=False)
+   c = ipaddress.ip_network("192.168.10.130/26", strict=False)
+   print(a, b, c)
+   # ── 여기까지 ──
 
-# ── 미리 채워 둔 줄입니다. 고치지 않습니다 ──
-a = ipaddress.ip_network("192.168.10.70/26", strict=False)
-b = ipaddress.ip_network("192.168.10.120/26", strict=False)
-c = ipaddress.ip_network("192.168.10.130/26", strict=False)
-print(a, b, c)
-# ── 여기까지 ──
+   # 1. a 와 b 가 같은 망인지(a == b) 를 「70과 120: True」 꼴로 출력하세요
 
-# 1. a 와 b 가 같은 망인지(a == b) 를 「70과 120: True」 꼴로 출력하세요
+   # 2. a 와 c 가 같은 망인지를 같은 꼴로 출력하세요
 
-# 2. a 와 c 가 같은 망인지를 같은 꼴로 출력하세요
-
-```
-
-**파일을 만들고 실행합니다**
-
-1. VS Code 왼쪽 목록에서 `network_zt` 폴더를 오른쪽 클릭 › **New File** › 이름 `same_network.py` 를 입력하고 Enter 를 누릅니다.
-2. 위 코드 상자 안을 마우스로 끌어 선택하고 `Ctrl + C` 로 복사해 파일에 붙여 넣은 뒤, 번호 주석 아래를 채웁니다. 저장은 자동입니다.
-3. 터미널에 아래 명령을 입력합니다. 터미널의 줄 위에 `…/network_zt` 가 보여야 합니다. 아니면 먼저 `cd network_zt` 를 입력합니다.
-
-```bash
-python same_network.py
-```
-맥북: `python3 same_network.py`
-
-4. 고친 뒤에는 같은 명령을 다시 입력합니다. 터미널에서 **↑(위 화살표)** 를 누르면 방금 입력한 명령이 다시 나옵니다.
+   ```
+3. **[VS Code]** 번호 주석 아래를 채웁니다. 저장은 자동입니다.
+4. **[터미널]** 실행합니다. 터미널의 줄 위에 `…/network_zt` 가 보여야 합니다. 아니면 먼저 `cd network_zt` 를 입력합니다.
+   ```bash
+   python same_network.py
+   ```
+   맥북: `python3 same_network.py`
+5. **[터미널]** 고친 뒤에는 **↑(위 화살표)** 를 눌러 방금 입력한 명령을 다시 실행합니다.
+6. **[보고서]** `day02_subnet_design.md` 의 `## 3교시` › `### 문제 3-5` 아래에 적습니다.
+   - 출력: 터미널에 나온 결과
+   - 막힌 곳: 막혔던 곳과 어떻게 풀었는지 (없으면 「없음」)
 
 | | |
 |---|---|
@@ -966,25 +969,28 @@ print(a.overlaps(b))
 
 ### ✍️ 문제 4-1 · 직접 실행해 보기
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — VS Code 에서 `warmup.py` 에 따라 치기 → 터미널에서 `python warmup.py` → 결과와 「왜」를 보고서에 적기
+**할 일** — 코드 네 줄을 실행하고, 나온 결과 네 줄과 그 이유를 보고서에 적습니다.
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day02_subnet_design.md` 의 `## 4교시` 에서 `### 문제 4-1` 아래
+**왜 중요한가** — 큰 망을 같은 크기로 나눴을 때 각 블록이 어느 주소에서 시작하는지 봅니다. 4-3 FLSM 이 이 네 블록을 그대로 씁니다.
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**왜 중요한가**</mark> — 큰 망을 같은 크기로 나눴을 때 각 블록이 어느 주소에서 시작하는지 봅니다. 4-3 FLSM 이 이 네 블록을 그대로 씁니다.
+**순서**
 
-아래 코드를 `warmup.py` 에 **따라 쳐서** 실행하고, 결과와 「왜 이렇게 나왔는지」 한 줄을 적으시오. `warmup.py` 는 처음 한 번만 `network_zt` 폴더에 New File 로 만들고, 교시마다 내용을 지우고 다시 씁니다.
-
-```python
-import ipaddress
-parent = ipaddress.ip_network("192.168.50.0/24")
-for sub in parent.subnets(new_prefix=26):
-    print(sub)
-```
-
-```bash
-python warmup.py
-```
-맥북: `python3 warmup.py`
+1. **[VS Code]** `network_zt` 폴더의 `warmup.py` 를 엽니다. 없으면 New File 로 만들고, 안에 있던 내용은 지웁니다.
+2. **[VS Code]** 아래 코드를 그대로 따라 칩니다.
+   ```python
+   import ipaddress                                  # IP 계산 도구를 불러온다
+   parent = ipaddress.ip_network("192.168.50.0/24")  # 나눌 큰 망 /24
+   for sub in parent.subnets(new_prefix=26):         # /26 크기로 나눈 망을 하나씩
+       print(sub)                                    # 나눈 망을 출력
+   ```
+3. **[터미널]** 실행합니다.
+   ```bash
+   python warmup.py
+   ```
+   맥북: `python3 warmup.py`
+4. **[보고서]** `day02_subnet_design.md` 의 `## 4교시` › `### 문제 4-1` 아래에 적습니다.
+   - 결과: 출력된 네 줄
+   - 왜 그렇게 나왔나: **망이 그 개수로 나뉜 이유와 망마다 시작 주소가 그 숫자인 이유** — 위 문법 상자 · 4.1 표와 검색으로 공부한 것을 적습니다
 
 <details><summary>답 보기 — 결과와 「왜」를 적은 뒤에 엽니다</summary>
 
@@ -1002,39 +1008,36 @@ python warmup.py
 
 ### ✍️ 문제 4-2 · 장비 수에 맞는 가장 작은 CIDR (`smallest_prefix.py`)
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — VS Code 에서 `smallest_prefix.py` 만들기 → 터미널에서 `python smallest_prefix.py` 실행
+**할 일** — 장비 수를 받아 **그만큼 담는 가장 작은 망의 CIDR 숫자**를 리턴하는 함수를 완성해 실행하고, 출력을 보고서에 적습니다.
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day02_subnet_design.md` 의 `## 4교시` 에서 `### 문제 4-2` 아래
+**왜 중요한가** — 장비 수에 맞는 가장 작은 망을 골라야 남는 주소를 다음 부서에 줄 수 있습니다. 오후 7-3 의 서버망 크기도 이 방법으로 정합니다.
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**왜 중요한가**</mark> — 장비 수에 맞는 가장 작은 망을 골라야 남는 주소를 다음 부서에 줄 수 있습니다. 오후 7-3 의 서버망 크기도 이 방법으로 정합니다.
+**순서**
 
-장비 수를 받아 **그만큼 담는 가장 작은 망의 CIDR 숫자**를 리턴하는 함수를 완성하시오.
+1. **[VS Code]** 왼쪽 목록에서 `network_zt` 폴더를 오른쪽 클릭 › **New File** › 이름 `smallest_prefix.py` 를 입력하고 Enter 를 누릅니다.
+2. **[VS Code]** 아래 코드를 복사해 파일에 붙여 넣습니다. 코드 상자 안을 마우스로 끌어 선택하고 `Ctrl + C` 를 누릅니다.
+   ```python
+   def smallest_prefix(required):                    # 장비 수를 받아 CIDR 숫자를 리턴한다
+       for host_bits in range(2, 33):                # 호스트 칸을 2칸부터 하나씩 늘려 본다
+           # 1. 2 ** host_bits - 2 가 required 이상이면 32 - host_bits 를 return 하세요
 
-```python
-def smallest_prefix(required):                    # 장비 수를 받아 CIDR 숫자를 리턴한다
-    for host_bits in range(2, 33):                # 호스트 칸을 2칸부터 하나씩 늘려 본다
-        # 1. 2 ** host_bits - 2 가 required 이상이면 32 - host_bits 를 return 하세요
 
 
-
-# ── 미리 채워 둔 줄입니다. 고치지 않습니다 ──
-for name, count in [("보안팀", 10), ("운영팀", 25), ("개발팀", 50)]:
-    print(name, count, f"/{smallest_prefix(count)}")
-# ── 여기까지 ──
-```
-
-**파일을 만들고 실행합니다**
-
-1. VS Code 왼쪽 목록에서 `network_zt` 폴더를 오른쪽 클릭 › **New File** › 이름 `smallest_prefix.py` 를 입력하고 Enter 를 누릅니다.
-2. 위 코드 상자 안을 마우스로 끌어 선택하고 `Ctrl + C` 로 복사해 파일에 붙여 넣은 뒤, 번호 주석 아래를 채웁니다. 저장은 자동입니다.
-3. 터미널에 아래 명령을 입력합니다. 터미널의 줄 위에 `…/network_zt` 가 보여야 합니다. 아니면 먼저 `cd network_zt` 를 입력합니다.
-
-```bash
-python smallest_prefix.py
-```
-맥북: `python3 smallest_prefix.py`
-
-4. 고친 뒤에는 같은 명령을 다시 입력합니다. 터미널에서 **↑(위 화살표)** 를 누르면 방금 입력한 명령이 다시 나옵니다.
+   # ── 미리 채워 둔 줄입니다. 고치지 않습니다 ──
+   for name, count in [("보안팀", 10), ("운영팀", 25), ("개발팀", 50)]:
+       print(name, count, f"/{smallest_prefix(count)}")
+   # ── 여기까지 ──
+   ```
+3. **[VS Code]** 번호 주석 아래를 채웁니다. 저장은 자동입니다.
+4. **[터미널]** 실행합니다. 터미널의 줄 위에 `…/network_zt` 가 보여야 합니다. 아니면 먼저 `cd network_zt` 를 입력합니다.
+   ```bash
+   python smallest_prefix.py
+   ```
+   맥북: `python3 smallest_prefix.py`
+5. **[터미널]** 고친 뒤에는 **↑(위 화살표)** 를 눌러 방금 입력한 명령을 다시 실행합니다.
+6. **[보고서]** `day02_subnet_design.md` 의 `## 4교시` › `### 문제 4-2` 아래에 적습니다.
+   - 출력: 터미널에 나온 결과
+   - 막힌 곳: 막혔던 곳과 어떻게 풀었는지 (없으면 「없음」)
 
 | | |
 |---|---|
@@ -1050,35 +1053,32 @@ python smallest_prefix.py
 
 ### ✍️ 문제 4-3 · 같은 크기로 나누기 — FLSM (`flsm.py`)
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — VS Code 에서 `flsm.py` 만들기 → 터미널에서 `python flsm.py` 실행
+**할 일** — `192.168.50.0/24` 를 `/26` 네 개로 나눠 망마다 **쓸 수 있는 수**를 출력하는 코드를 완성해 실행하고, 출력을 보고서에 적습니다.
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day02_subnet_design.md` 의 `## 4교시` 에서 `### 문제 4-3` 아래
+**왜 중요한가** — 모든 부서에 같은 크기를 주면 빈 주소가 얼마나 남는지 숫자로 확인합니다. 4-4 의 VLSM 설계와 견주는 기준이 됩니다.
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**왜 중요한가**</mark> — 모든 부서에 같은 크기를 주면 빈 주소가 얼마나 남는지 숫자로 확인합니다. 4-4 의 VLSM 설계와 견주는 기준이 됩니다.
+**순서**
 
-`192.168.50.0/24` 를 `/26` 네 개로 나눠, 망마다 **쓸 수 있는 수**를 출력하시오.
+1. **[VS Code]** 왼쪽 목록에서 `network_zt` 폴더를 오른쪽 클릭 › **New File** › 이름 `flsm.py` 를 입력하고 Enter 를 누릅니다.
+2. **[VS Code]** 아래 코드를 복사해 파일에 붙여 넣습니다. 코드 상자 안을 마우스로 끌어 선택하고 `Ctrl + C` 를 누릅니다.
+   ```python
+   import ipaddress
 
-```python
-import ipaddress
+   parent = ipaddress.ip_network("192.168.50.0/24")  # 회사가 받은 전체 주소
+   for sub in parent.subnets(new_prefix=26):         # /26 네 개를 하나씩
+       # 1. sub 와 「사용 가능 62」 처럼 쓸 수 있는 수를 한 줄에 출력하세요
 
-parent = ipaddress.ip_network("192.168.50.0/24")  # 회사가 받은 전체 주소
-for sub in parent.subnets(new_prefix=26):         # /26 네 개를 하나씩
-    # 1. sub 와 「사용 가능 62」 처럼 쓸 수 있는 수를 한 줄에 출력하세요
-
-```
-
-**파일을 만들고 실행합니다**
-
-1. VS Code 왼쪽 목록에서 `network_zt` 폴더를 오른쪽 클릭 › **New File** › 이름 `flsm.py` 를 입력하고 Enter 를 누릅니다.
-2. 위 코드 상자 안을 마우스로 끌어 선택하고 `Ctrl + C` 로 복사해 파일에 붙여 넣은 뒤, 번호 주석 아래를 채웁니다. 저장은 자동입니다.
-3. 터미널에 아래 명령을 입력합니다. 터미널의 줄 위에 `…/network_zt` 가 보여야 합니다. 아니면 먼저 `cd network_zt` 를 입력합니다.
-
-```bash
-python flsm.py
-```
-맥북: `python3 flsm.py`
-
-4. 고친 뒤에는 같은 명령을 다시 입력합니다. 터미널에서 **↑(위 화살표)** 를 누르면 방금 입력한 명령이 다시 나옵니다.
+   ```
+3. **[VS Code]** 번호 주석 아래를 채웁니다. 저장은 자동입니다.
+4. **[터미널]** 실행합니다. 터미널의 줄 위에 `…/network_zt` 가 보여야 합니다. 아니면 먼저 `cd network_zt` 를 입력합니다.
+   ```bash
+   python flsm.py
+   ```
+   맥북: `python3 flsm.py`
+5. **[터미널]** 고친 뒤에는 **↑(위 화살표)** 를 눌러 방금 입력한 명령을 다시 실행합니다.
+6. **[보고서]** `day02_subnet_design.md` 의 `## 4교시` › `### 문제 4-3` 아래에 적습니다.
+   - 출력: 터미널에 나온 결과
+   - 막힌 곳: 막혔던 곳과 어떻게 풀었는지 (없으면 「없음」)
 
 | | |
 |---|---|
@@ -1095,54 +1095,50 @@ python flsm.py
 
 ### ✍️ 문제 4-4 · 설계 검증 — 용량과 겹침 (`plan_check.py`)
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — VS Code 에서 `plan_check.py` 만들기 → 터미널에서 `python plan_check.py` 실행
+**할 일** — VLSM 설계표가 **부서마다 충분한지**, **서로 겹치지 않는지** 검증하는 코드를 완성해 실행하고, 결과를 보고서에 적습니다.
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day02_subnet_design.md` 의 `## 4교시` 에서 `### 문제 4-4` 아래
-
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**왜 중요한가**</mark> — 부서 망이 모자라거나 겹치면 주소 충돌로 통신이 끊기고, 방화벽 규칙이 엉뚱한 부서까지 덮습니다. 오후 7-3 에서 서버망을 더할 때도 같은 검증을 합니다.
+**왜 중요한가** — 부서 망이 모자라거나 겹치면 주소 충돌로 통신이 끊기고, 방화벽 규칙이 엉뚱한 부서까지 덮습니다. 오후 7-3 에서 서버망을 더할 때도 같은 검증을 합니다.
 
 **이 문제에 나오는 말**
 
 - **겹침 (overlap)** (오버랩) — 두 망이 **같은 주소를 함께 가진** 상태 — 설계에서 생기면 안 된다
 
-VLSM 설계표가 **부서마다 충분한지**, **서로 겹치지 않는지** 검증하시오.
+**순서**
 
-```python
-import ipaddress
+1. **[VS Code]** 왼쪽 목록에서 `network_zt` 폴더를 오른쪽 클릭 › **New File** › 이름 `plan_check.py` 를 입력하고 Enter 를 누릅니다.
+2. **[VS Code]** 아래 코드를 복사해 파일에 붙여 넣습니다. 코드 상자 안을 마우스로 끌어 선택하고 `Ctrl + C` 를 누릅니다.
+   ```python
+   import ipaddress
 
-# ── 미리 채워 둔 줄입니다. 고치지 않습니다 ──
-plan = [                                          # (부서, CIDR, 필요한 장비 수)
-    ("개발팀", "192.168.50.0/26", 50),
-    ("운영팀", "192.168.50.64/27", 25),
-    ("보안팀", "192.168.50.96/28", 10),
-]
-networks = []                                     # 겹침 검사용으로 망을 모을 리스트
-# ── 여기까지 ──
+   # ── 미리 채워 둔 줄입니다. 고치지 않습니다 ──
+   plan = [                                          # (부서, CIDR, 필요한 장비 수)
+       ("개발팀", "192.168.50.0/26", 50),
+       ("운영팀", "192.168.50.64/27", 25),
+       ("보안팀", "192.168.50.96/28", 10),
+   ]
+   networks = []                                     # 겹침 검사용으로 망을 모을 리스트
+   # ── 여기까지 ──
 
-for name, cidr, required in plan:                 # 부서를 하나씩
-    net = ipaddress.ip_network(cidr)              # CIDR 을 망으로
-    # 1. ok 라는 변수에 「쓸 수 있는 수가 required 이상인지」 를 담으세요
+   for name, cidr, required in plan:                 # 부서를 하나씩
+       net = ipaddress.ip_network(cidr)              # CIDR 을 망으로
+       # 1. ok 라는 변수에 「쓸 수 있는 수가 required 이상인지」 를 담으세요
 
-    print(name, cidr, "충분:", ok)
-    networks.append(net)                          # 겹침 검사용으로 모은다
+       print(name, cidr, "충분:", ok)
+       networks.append(net)                          # 겹침 검사용으로 모은다
 
-# 2. overlap 에 「앞 둘(networks[0], networks[1])이 겹치거나 networks[1] 과 networks[2] 가 겹치거나 networks[0] 과 networks[2] 가 겹치는지」 를 담으세요
+   # 2. overlap 에 「앞 둘(networks[0], networks[1])이 겹치거나 networks[1] 과 networks[2] 가 겹치거나 networks[0] 과 networks[2] 가 겹치는지」 를 담으세요
 
-print("겹침 있음:", overlap)
-```
-
-**파일을 만들고 실행합니다**
-
-1. VS Code 왼쪽 목록에서 `network_zt` 폴더를 오른쪽 클릭 › **New File** › 이름 `plan_check.py` 를 입력하고 Enter 를 누릅니다.
-2. 위 코드 상자 안을 마우스로 끌어 선택하고 `Ctrl + C` 로 복사해 파일에 붙여 넣은 뒤, 번호 주석 아래를 채웁니다. 저장은 자동입니다.
-3. 터미널에 아래 명령을 입력합니다. 터미널의 줄 위에 `…/network_zt` 가 보여야 합니다. 아니면 먼저 `cd network_zt` 를 입력합니다.
-
-```bash
-python plan_check.py
-```
-맥북: `python3 plan_check.py`
-
-4. 고친 뒤에는 같은 명령을 다시 입력합니다. 터미널에서 **↑(위 화살표)** 를 누르면 방금 입력한 명령이 다시 나옵니다.
+   print("겹침 있음:", overlap)
+   ```
+3. **[VS Code]** 번호 주석 아래를 채웁니다. 저장은 자동입니다.
+4. **[터미널]** 실행합니다. 터미널의 줄 위에 `…/network_zt` 가 보여야 합니다. 아니면 먼저 `cd network_zt` 를 입력합니다.
+   ```bash
+   python plan_check.py
+   ```
+   맥북: `python3 plan_check.py`
+5. **[터미널]** 고친 뒤에는 **↑(위 화살표)** 를 눌러 방금 입력한 명령을 다시 실행합니다.
+6. **[보고서]** `day02_subnet_design.md` 의 `## 4교시` › `### 문제 4-4` 아래에 적습니다.
+   - 용량 · 겹침 결과: 출력된 네 줄
 
 | | |
 |---|---|
@@ -1158,39 +1154,37 @@ python plan_check.py
 
 ### ⭐ 도전 4-5 · 설계표를 보고서 표로 (`design_table.py`, 선택)
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — VS Code 에서 `design_table.py` 만들기 → 터미널에서 `python design_table.py` 실행 → 보고서에 적기
+**할 일** — `10.20.0.0/24` 를 받은 회사의 세 부서 배정을 첫 호스트 · 마지막 호스트까지 **마크다운 표**로 출력해, 보고서 맨 아래 「부서 주소 설계표」에 붙입니다.
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day02_subnet_design.md` 의 `## 4교시` 에서 `### ⭐ 도전 4-5` 아래
+**왜 중요한가** — 계산 결과를 표로 바로 출력하면 손으로 옮기다 생기는 오타가 설계서에 들어가지 않습니다. 오후 7-2 에서 같은 방식으로 VLAN 표를 만듭니다.
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**왜 중요한가**</mark> — 계산 결과를 표로 바로 출력하면 손으로 옮기다 생기는 오타가 설계서에 들어가지 않습니다. 오후 7-2 에서 같은 방식으로 VLAN 표를 만듭니다.
+**순서**
 
-`10.20.0.0/24` 를 받은 회사의 세 부서 배정을 **마크다운 표**로 출력해 보고서 맨 아래 「부서 주소 설계표」 자리에 붙이시오. 첫 호스트 · 마지막 호스트도 적습니다.
+1. **[VS Code]** 왼쪽 목록에서 `network_zt` 폴더를 오른쪽 클릭 › **New File** › 이름 `design_table.py` 를 입력하고 Enter 를 누릅니다.
+2. **[VS Code]** 아래 코드를 복사해 파일에 붙여 넣습니다. 코드 상자 안을 마우스로 끌어 선택하고 `Ctrl + C` 를 누릅니다.
+   ```python
+   import ipaddress
 
-```python
-import ipaddress
-
-assignments = [                                   # (부서, CIDR, 필요한 장비 수)
-    ("개발팀", "10.20.0.0/26", 50),
-    ("운영팀", "10.20.0.64/27", 25),
-    ("보안팀", "10.20.0.96/28", 10),
-]
-print("| 부서 | CIDR | 첫 호스트 | 마지막 호스트 | 사용 가능 | 필요 |")
-print("|---|---|---|---|---|---|")
-# 1. 부서를 하나씩 꺼내 망을 만들고, 첫 호스트(네트워크 주소 + 1)와 마지막 호스트(브로드캐스트 주소 - 1)를 구해 한 줄씩 출력하세요
-```
-
-**파일을 만들고 실행합니다**
-
-1. VS Code 왼쪽 목록에서 `network_zt` 폴더를 오른쪽 클릭 › **New File** › 이름 `design_table.py` 를 입력하고 Enter 를 누릅니다.
-2. 위 코드 상자 안을 마우스로 끌어 선택하고 `Ctrl + C` 로 복사해 파일에 붙여 넣은 뒤, 번호 주석 아래를 채웁니다. 저장은 자동입니다.
-3. 터미널에 아래 명령을 입력합니다. 터미널의 줄 위에 `…/network_zt` 가 보여야 합니다. 아니면 먼저 `cd network_zt` 를 입력합니다.
-
-```bash
-python design_table.py
-```
-맥북: `python3 design_table.py`
-
-4. 고친 뒤에는 같은 명령을 다시 입력합니다. 터미널에서 **↑(위 화살표)** 를 누르면 방금 입력한 명령이 다시 나옵니다.
+   assignments = [                                   # (부서, CIDR, 필요한 장비 수)
+       ("개발팀", "10.20.0.0/26", 50),
+       ("운영팀", "10.20.0.64/27", 25),
+       ("보안팀", "10.20.0.96/28", 10),
+   ]
+   print("| 부서 | CIDR | 첫 호스트 | 마지막 호스트 | 사용 가능 | 필요 |")
+   print("|---|---|---|---|---|---|")
+   # 1. 부서를 하나씩 꺼내 망을 만들고, 첫 호스트(네트워크 주소 + 1)와 마지막 호스트(브로드캐스트 주소 - 1)를 구해 한 줄씩 출력하세요
+   ```
+3. **[VS Code]** 번호 주석 아래를 채웁니다. 저장은 자동입니다.
+4. **[터미널]** 실행합니다. 터미널의 줄 위에 `…/network_zt` 가 보여야 합니다. 아니면 먼저 `cd network_zt` 를 입력합니다.
+   ```bash
+   python design_table.py
+   ```
+   맥북: `python3 design_table.py`
+5. **[터미널]** 고친 뒤에는 **↑(위 화살표)** 를 눌러 방금 입력한 명령을 다시 실행합니다.
+6. **[터미널]** 출력된 표 다섯 줄을 마우스로 끌어 선택하고 `Ctrl + C` 로 복사합니다.
+7. **[보고서]** `## 최종 설계서 — 7교시에 완성합니다` › `### 부서 주소 설계표` 아래에 붙여 넣습니다.
+8. **[보고서]** `day02_subnet_design.md` 의 `## 4교시` › `### ⭐ 도전 4-5` 아래에 적습니다.
+   - 맨 아래 「부서 주소 설계표」에 표를 붙였나: 붙였으면 「예」
 
 | | |
 |---|---|

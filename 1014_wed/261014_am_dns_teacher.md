@@ -43,7 +43,7 @@
 1. 어제와 같은 터미널, `network_zt` 폴더에서 합니다.
 2. 강의계획서에는 `dig`(디그)도 나오지만 **Windows 에는 기본으로 없습니다**(실측). 오늘은 Windows 에 들어 있는 `nslookup` 을 씁니다. 둘은 같은 일을 합니다.
 3. 결과 화면 예시는 **학원 PC(한국어 Windows)에서 보이는 모양**입니다. 주소는 시간 · 장소마다 바뀔 수 있습니다.
-4. 문제 앞의 **상자**를 먼저 읽습니다 — 🐍 문법 상자(파이썬) · 명령 상자(터미널) · Wireshark 상자 · 개념 상자. 문제 제목 아래 **어디서** 줄이 실습하는 곳입니다. `→` 는 하는 순서입니다. 막히면 **💡 힌트** → 맨 아래 **「정답」** 순서로 봅니다. ⭐도전은 선택입니다.
+4. 문제 앞의 **상자**를 먼저 읽습니다 — 🐍 문법 상자(파이썬) · 명령 상자(터미널) · Wireshark 상자 · 개념 상자. 문제마다 맨 위 **할 일** 이 무엇을 하고 무엇을 적는지 알려 줍니다. **순서** 의 단계 맨 앞 `[VS Code]` · `[터미널]` · `[보고서]` 같은 이름이 그 단계에서 쓰는 창입니다. 막히면 **💡 힌트** → 맨 아래 **「정답」** 순서로 봅니다. ⭐도전은 선택입니다.
 5. 맥북으로 복습할 때는 명령 상자 바로 아래의 **「맥북:」 줄**을 칩니다(없으면 Windows 와 같은 명령). 맥의 결과는 영어이고 모양이 달라 🎯 결과와 글자가 다릅니다 — 같은 값(평균 · TTL · IP · 포트)을 찾으면 됩니다.
 
 ### 오늘의 보고서 파일을 만듭니다
@@ -304,7 +304,7 @@
 - 더 넣고 싶은 지표 (예: 등록일 · 같은 PC 의 NXDOMAIN 횟수):
 ```
 
-⚠ <mark style="background:#ffcdd2; color:#1a1a1a; padding:0 4px; border-radius:3px">오늘 적는 것은 모두 이 파일(`day03_dns_analysis.md`) 하나에</mark> 적습니다. 문제마다 「<mark style="background:#ffcdd2; color:#1a1a1a; padding:0 4px; border-radius:3px">적는 곳</mark>」 줄이 이 파일의 어느 칸인지 알려 줍니다. 문제마다 소제목이 틀에 다 있으니 <mark style="background:#ffcdd2; color:#1a1a1a; padding:0 4px; border-radius:3px">그 문제 소제목 아래</mark>를 채웁니다.
+⚠ <mark style="background:#ffcdd2; color:#1a1a1a; padding:0 4px; border-radius:3px">오늘 적는 것은 모두 이 파일(`day03_dns_analysis.md`) 하나에</mark> 적습니다. 문제마다 순서의 마지막 「<mark style="background:#ffcdd2; color:#1a1a1a; padding:0 4px; border-radius:3px">[보고서]</mark>」 단계가 이 파일의 어느 칸인지 알려 줍니다. 문제마다 소제목이 틀에 다 있으니 <mark style="background:#ffcdd2; color:#1a1a1a; padding:0 4px; border-radius:3px">그 문제 소제목 아래</mark>를 채웁니다.
 
 
 ---
@@ -379,25 +379,28 @@ Addresses:  2606:4700:10::ac42:93f3
 
 ### ✍️ 문제 2-1 · 직접 실행해 보기
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — VS Code 에서 `warmup.py` 에 따라 치기 → 터미널에서 `python warmup.py` → 결과와 「왜」를 보고서에 적기
+**할 일** — 코드 네 줄을 실행하고, 나온 결과 두 줄과 그 이유를 보고서에 적습니다.
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day03_dns_analysis.md` 의 `## 2교시` 에서 `### 문제 2-1` 아래
+**왜 중요한가** — 접속 로그의 URL 에서 DNS 가 묻는 도메인 이름만 잘라 내는 연습입니다. 오후 5교시에 도메인을 조각으로 나눠 의심 여부를 따질 때 같은 `split` 을 씁니다.
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**왜 중요한가**</mark> — 접속 로그의 URL 에서 DNS 가 묻는 도메인 이름만 잘라 내는 연습입니다. 오후 5교시에 도메인을 조각으로 나눠 의심 여부를 따질 때 같은 `split` 을 씁니다.
+**순서**
 
-아래 코드를 `warmup.py` 에 **따라 쳐서** 실행하고, 결과와 「왜 이렇게 나왔는지」 한 줄을 적으시오. `warmup.py` 는 처음 한 번만 `network_zt` 폴더에 New File 로 만들고, 교시마다 내용을 지우고 다시 씁니다.
-
-```python
-url = "https://example.com/news/today"
-parts = url.split("/")
-print(parts)
-print(parts[2])
-```
-
-```bash
-python warmup.py
-```
-맥북: `python3 warmup.py`
+1. **[VS Code]** `network_zt` 폴더의 `warmup.py` 를 엽니다. 없으면 New File 로 만들고, 안에 있던 내용은 지웁니다.
+2. **[VS Code]** 아래 코드를 그대로 따라 칩니다.
+   ```python
+   url = "https://example.com/news/today"   # 주소창에 친 URL
+   parts = url.split("/")                   # "/" 를 기준으로 잘라 리스트로 만든다
+   print(parts)                             # 잘린 조각 전체
+   print(parts[2])                          # 리스트의 셋째 칸(번호 2)
+   ```
+3. **[터미널]** 실행합니다.
+   ```bash
+   python warmup.py
+   ```
+   맥북: `python3 warmup.py`
+4. **[보고서]** `day03_dns_analysis.md` 의 `## 2교시` › `### 문제 2-1` 아래에 적습니다.
+   - 결과: 출력된 두 줄
+   - 왜 그렇게 나왔나: **`parts[2]` 에서 도메인 이름이 나온 이유 — 첫째 줄의 칸을 0 번부터 하나씩 세어 보고, `//` 사이에서 무엇이 생겼는지** — 검색과 직접 실행으로 공부한 것을 적습니다
 
 #### <mark style="display:block; background:#fff59d; color:#1a1a1a; padding:4px 12px; border-radius:4px; text-decoration:underline">정답</mark>
 
@@ -415,19 +418,22 @@ python warmup.py
 
 ### ✍️ 문제 2-2 · 이름을 IP 로
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — 터미널에서 명령 실행 → 화면을 사진으로 저장 → 보고서에 적기
+**할 일** — `example.com` 을 `nslookup` 으로 묻고, 쓴 명령과 답의 IPv4 주소를 보고서에 적고, 결과 화면을 사진으로 남깁니다.
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day03_dns_analysis.md` 의 `## 2교시` 에서 `### 문제 2-2` 아래
+**왜 중요한가** — 오늘 DNS 문제는 모두 `nslookup` 결과 화면을 읽고 풉니다. 관제에서는 의심 도메인이 어느 IP 로 연결되는지 이 명령으로 먼저 확인합니다.
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**왜 중요한가**</mark> — 오늘 DNS 문제는 모두 `nslookup` 결과 화면을 읽고 풉니다. 관제에서는 의심 도메인이 어느 IP 로 연결되는지 이 명령으로 먼저 확인합니다.
+**순서**
 
-`example.com` 을 `nslookup` 으로 묻고, 답의 **IPv4 주소**를 보고서에 적으시오.
-
-```bash
-nslookup example.com
-```
-
-**사진 남기기** — 결과 화면에서 `서버:` 줄부터 `Addresses` 의 IP 까지 보이게 잘라 `nslookup_example.png` 로 `network_zt` 폴더에 저장하시오. 보고서 `### 문제 2-2` 아래에 사진 줄이 이미 있어서, 파일 이름이 같으면 사진이 보입니다. 자르고 저장하는 법은 10/12 오후 7-2 와 같습니다(`Win + Shift + S`).
+1. **[터미널]** 아래 명령을 입력합니다.
+   ```bash
+   nslookup example.com
+   ```
+2. **[터미널]** 결과의 `Addresses` 에서 IPv4 주소를 찾습니다.
+3. **[터미널]** `Win + Shift + S` 로 결과 화면을 `서버:` 줄부터 `Addresses` 의 IP 까지 보이게 자릅니다. 자르는 법은 10/12 오후 7-2 와 같습니다.
+4. **[탐색기]** 자른 사진을 `nslookup_example.png` 이름으로 `network_zt` 폴더에 저장합니다(그림판에 붙여 저장해도 됩니다). 보고서 `### 문제 2-2` 아래에 사진 줄이 이미 있어서, 파일 이름이 같으면 사진이 보입니다.
+5. **[보고서]** `day03_dns_analysis.md` 의 `## 2교시` › `### 문제 2-2` 아래에 적습니다.
+   - 명령: 입력한 명령
+   - 답 (IPv4): `Addresses` 에서 찾은 IPv4 주소
 
 | | |
 |---|---|
@@ -461,17 +467,20 @@ nslookup example.com
 
 ### ✍️ 문제 2-3 · 다른 DNS 서버에 묻기
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — 터미널에서 명령 실행 → 보고서에 적기
+**할 일** — 구글 DNS 서버 `8.8.8.8` 에 직접 묻고, 위 두 줄(`서버` · `Address`)이 2-2 와 어떻게 다른지 보고서에 적습니다.
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day03_dns_analysis.md` 의 `## 2교시` 에서 `### 문제 2-3` 아래
+**왜 중요한가** — 물어볼 DNS 서버를 직접 정하면 사내 DNS 서버와 외부 DNS 서버의 답을 비교해 사내 DNS 설정에 문제가 있는지 가려낼 수 있습니다. 3-5 에서 담당 네임서버에 물을 때도 같은 형식을 씁니다.
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**왜 중요한가**</mark> — 물어볼 DNS 서버를 직접 정하면 사내 DNS 서버와 외부 DNS 서버의 답을 비교해 사내 DNS 설정에 문제가 있는지 가려낼 수 있습니다. 3-5 에서 담당 네임서버에 물을 때도 같은 형식을 씁니다.
+**순서**
 
-이번에는 구글 DNS 서버 `8.8.8.8` 에 **직접** 묻고, 위 두 줄(`Server` · `Address`)이 2-2 와 어떻게 다른지 적으시오.
-
-```bash
-nslookup example.com 8.8.8.8
-```
+1. **[터미널]** 아래 명령을 입력합니다. 이름 뒤에 물어볼 DNS 서버 주소를 적었습니다.
+   ```bash
+   nslookup example.com 8.8.8.8
+   ```
+2. **[터미널]** 위 두 줄(`서버` · `Address`)과 아래 답(IPv4)을 2-2 의 화면과 비교합니다.
+3. **[보고서]** `day03_dns_analysis.md` 의 `## 2교시` › `### 문제 2-3` 아래에 적습니다.
+   - 위 두 줄 (서버 · Address): 이번에 나온 두 줄
+   - 답이 2-2 와 같았나: 아래 답(IPv4)이 2-2 와 같았는지
 
 | | |
 |---|---|
@@ -505,13 +514,21 @@ nslookup example.com 8.8.8.8
 
 ### ✍️ 문제 2-4 · 내 PC 는 어느 DNS 서버에 묻나
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — 터미널에서 명령 실행 → 보고서에 적기
+**할 일** — `ipconfig //all` 에서 내 PC 의 DNS 서버 주소를 찾아, 2-2 의 위쪽 `Address` 와 같은지 확인하고 보고서에 적습니다.
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day03_dns_analysis.md` 의 `## 2교시` 에서 `### 문제 2-4` 아래
+**왜 중요한가** — 내 PC 가 어느 DNS 서버를 쓰는지 알아야 「숫자로는 되는데 이름으로 안 되는」 장애에서 점검할 서버를 정할 수 있습니다. 악성 코드가 DNS 서버 설정을 바꿨는지도 이 줄로 확인합니다.
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**왜 중요한가**</mark> — 내 PC 가 어느 DNS 서버를 쓰는지 알아야 「숫자로는 되는데 이름으로 안 되는」 장애에서 점검할 서버를 정할 수 있습니다. 악성 코드가 DNS 서버 설정을 바꿨는지도 이 줄로 확인합니다.
+**순서**
 
-`ipconfig //all` 에서 **DNS 서버** 줄을 찾아, 2-2 의 위쪽 `Address` 와 같은지 확인하고 보고서에 적으시오.
+1. **[터미널]** 아래 명령을 입력합니다.
+   ```bash
+   ipconfig //all
+   ```
+   맥북: `scutil --dns | grep nameserver`
+2. **[터미널]** 기본 게이트웨이가 찬 장치를 찾고, 그 장치의 `DNS 서버` 줄을 읽습니다.
+3. **[터미널]** 그 주소가 2-2 의 위쪽 `Address` 와 같은지 봅니다.
+4. **[보고서]** `day03_dns_analysis.md` 의 `## 2교시` › `### 문제 2-4` 아래에 적습니다.
+   - 내 PC 가 묻는 DNS 서버: `DNS 서버` 줄의 주소와, 2-2 의 위쪽 `Address` 와 같았는지
 
 | | |
 |---|---|
@@ -546,21 +563,24 @@ ipconfig //all
 
 ### ✍️ 문제 2-5 · 없는 이름을 물으면
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — 터미널에서 명령 실행 → 보고서에 적기
+**할 일** — 없는 이름을 `nslookup` 으로 묻고, 쓴 명령과 나온 문구를 보고서에 적습니다.
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day03_dns_analysis.md` 의 `## 2교시` 에서 `### 문제 2-5` 아래
-
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**왜 중요한가**</mark> — 없는 이름에 DNS 가 어떤 답을 주는지 알아야 오후 5-5 에서 NXDOMAIN 이 쏟아지는 PC 를 찾을 수 있습니다. 12일의 `ping` 실패가 DNS 단계에서 난 것인지도 이 답으로 구분합니다.
+**왜 중요한가** — 없는 이름에 DNS 가 어떤 답을 주는지 알아야 오후 5-5 에서 NXDOMAIN 이 쏟아지는 PC 를 찾을 수 있습니다. 12일의 `ping` 실패가 DNS 단계에서 난 것인지도 이 답으로 구분합니다.
 
 **이 문제에 나오는 말**
 
 - **NXDOMAIN** (엔엑스도메인) — 「**그런 이름은 없다**」는 DNS 의 답 — `Non-existent domain`
 
-없는 이름을 묻고, 나온 문구를 보고서에 적으시오. 12일 2-4 의 `ping` 실패와 비교합니다.
+**순서**
 
-```bash
-nslookup abc.nowhere-not-exist.com
-```
+1. **[터미널]** 아래 명령을 입력합니다.
+   ```bash
+   nslookup abc.nowhere-not-exist.com
+   ```
+2. **[터미널]** 나온 문구를 12일 2-4 의 `ping` 실패 문구와 비교합니다.
+3. **[보고서]** `day03_dns_analysis.md` 의 `## 2교시` › `### 문제 2-5` 아래에 적습니다.
+   - 명령: 입력한 명령
+   - 답: 화면에 나온 문구
 
 | | |
 |---|---|
@@ -594,11 +614,9 @@ nslookup abc.nowhere-not-exist.com
 
 ### ⭐ 도전 2-6 · 파이썬으로 이름 묻기 (`dns_lookup.py`, 선택)
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — VS Code 에서 `dns_lookup.py` 만들기 → 터미널에서 `python dns_lookup.py` 실행
+**할 일** — 이름 네 개를 차례로 물어 IP 를 출력하는 `dns_lookup.py` 를 완성하고, 출력을 보고서에 적습니다. 못 찾은 이름은 「찾지 못함」으로 출력합니다.
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day03_dns_analysis.md` 의 `## 2교시` 에서 `### ⭐ 도전 2-6` 아래
-
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**왜 중요한가**</mark> — 로그에 나온 도메인 수십 개를 하나씩 `nslookup` 하지 않고 프로그램으로 한꺼번에 조회할 수 있게 됩니다. 없는 이름에서 멈추지 않게 하는 처리는 자동화 코드에 꼭 들어갑니다.
+**왜 중요한가** — 로그에 나온 도메인 수십 개를 하나씩 `nslookup` 하지 않고 프로그램으로 한꺼번에 조회할 수 있게 됩니다. 없는 이름에서 멈추지 않게 하는 처리는 자동화 코드에 꼭 들어갑니다.
 
 #### 🐍 문법 상자 · `socket.gethostbyname`(소켓 · 파이썬에 들어 있는 네트워크 도구)과 실패 잡기
 
@@ -624,27 +642,25 @@ for name in names:                                # 이름을 하나씩
 
 ⚠ `except` 없이 쓰면 없는 이름 하나에서 프로그램이 멈춥니다. 로그의 도메인을 여러 개 조회할 때는 꼭 잡습니다.
 
-이름 네 개를 차례로 물어 IP 를 출력하고, 못 찾은 이름은 「찾지 못함」으로 출력하시오.
+**순서**
 
-```python
-import socket
+1. **[탐색기]** `network_zt` 폴더를 오른쪽 클릭 › **New File** › 이름 `dns_lookup.py` 를 입력하고 Enter 를 누릅니다.
+2. **[VS Code]** 아래 코드를 복사해 `dns_lookup.py` 에 붙여 넣습니다. 코드 상자 안을 끌어 선택하고 `Ctrl + C` 를 누릅니다.
+   ```python
+   import socket
 
-names = ["example.com", "google.com", "www.naver.com", "abc.nowhere-not-exist.com"]
-# 1. 이름을 하나씩 꺼내 socket.gethostbyname 으로 묻고 「example.com → 104.20.23.154」 꼴로 출력하세요. 못 찾으면 「… → 찾지 못함」
-```
-
-**파일을 만들고 실행합니다**
-
-1. VS Code 왼쪽 목록에서 `network_zt` 폴더를 오른쪽 클릭 › **New File** › 이름 `dns_lookup.py` 를 입력하고 Enter 를 누릅니다.
-2. 위 코드 상자 안을 마우스로 끌어 선택하고 `Ctrl + C` 로 복사해 파일에 붙여 넣은 뒤, 번호 주석 아래를 채웁니다. 저장은 자동입니다.
-3. 터미널에 아래 명령을 입력합니다. 터미널의 줄 위에 `…/network_zt` 가 보여야 합니다. 아니면 먼저 `cd network_zt` 를 입력합니다.
-
-```bash
-python dns_lookup.py
-```
-맥북: `python3 dns_lookup.py`
-
-4. 고친 뒤에는 같은 명령을 다시 입력합니다. 터미널에서 **↑(위 화살표)** 를 누르면 방금 입력한 명령이 다시 나옵니다.
+   names = ["example.com", "google.com", "www.naver.com", "abc.nowhere-not-exist.com"]
+   # 1. 이름을 하나씩 꺼내 socket.gethostbyname 으로 묻고 「example.com → 104.20.23.154」 꼴로 출력하세요. 못 찾으면 「… → 찾지 못함」
+   ```
+3. **[VS Code]** 번호 주석 아래를 채웁니다. 저장은 자동입니다.
+4. **[터미널]** 실행합니다. 줄 위에 `…/network_zt` 가 보여야 합니다. 아니면 먼저 `cd network_zt` 를 입력합니다.
+   ```bash
+   python dns_lookup.py
+   ```
+   맥북: `python3 dns_lookup.py`
+5. **[터미널]** 고친 뒤에는 **↑(위 화살표)** 를 눌러 같은 명령을 다시 실행합니다.
+6. **[보고서]** `day03_dns_analysis.md` 의 `## 2교시` › `### ⭐ 도전 2-6` 아래에 적습니다.
+   - 출력: 터미널에 나온 네 줄
 
 | | |
 |---|---|
@@ -752,25 +768,28 @@ print(list(reversed(parts)))
 
 ### ✍️ 문제 3-1 · 직접 실행해 보기
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — VS Code 에서 `warmup.py` 에 따라 치기 → 터미널에서 `python warmup.py` → 결과와 「왜」를 보고서에 적기
+**할 일** — 코드 네 줄을 실행하고, 나온 결과 두 줄과 그 이유를 보고서에 적습니다.
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day03_dns_analysis.md` 의 `## 3교시` 에서 `### 문제 3-1` 아래
+**왜 중요한가** — 도메인을 오른쪽 조각부터 꺼내는 연습입니다. 오후 5-2 에서 TLD 와 그 앞 조각을 꺼내 의심 도메인을 가를 때 같은 `[-1]` · `[-2]` 를 씁니다.
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**왜 중요한가**</mark> — 도메인을 오른쪽 조각부터 꺼내는 연습입니다. 오후 5-2 에서 TLD 와 그 앞 조각을 꺼내 의심 도메인을 가를 때 같은 `[-1]` · `[-2]` 를 씁니다.
+**순서**
 
-아래 코드를 `warmup.py` 에 **따라 쳐서** 실행하고, 결과와 「왜 이렇게 나왔는지」 한 줄을 적으시오. `warmup.py` 는 처음 한 번만 `network_zt` 폴더에 New File 로 만들고, 교시마다 내용을 지우고 다시 씁니다.
-
-```python
-name = "mail.google.co.kr"
-parts = name.split(".")
-print(parts[-1])
-print(".".join(parts[-2:]))
-```
-
-```bash
-python warmup.py
-```
-맥북: `python3 warmup.py`
+1. **[VS Code]** `network_zt` 폴더의 `warmup.py` 를 엽니다. 없으면 New File 로 만들고, 안에 있던 내용은 지웁니다.
+2. **[VS Code]** 아래 코드를 그대로 따라 칩니다.
+   ```python
+   name = "mail.google.co.kr"       # 이름 하나
+   parts = name.split(".")          # 점으로 잘라 조각 리스트로 만든다
+   print(parts[-1])                 # 맨 끝 조각 하나
+   print(".".join(parts[-2:]))      # 끝에서 두 번째부터 끝까지를 점으로 이은 것
+   ```
+3. **[터미널]** 실행합니다.
+   ```bash
+   python warmup.py
+   ```
+   맥북: `python3 warmup.py`
+4. **[보고서]** `day03_dns_analysis.md` 의 `## 3교시` › `### 문제 3-1` 아래에 적습니다.
+   - 결과: 출력된 두 줄
+   - 왜 그렇게 나왔나: **둘째 줄이 첫째 줄과 다르게 나온 이유 — `[-1]` 과 `[-2:]` 가 각각 무엇을 꺼내는지, 그리고 그 조각이 이름의 어느 층인지** — 위 문법 상자와 검색으로 공부한 것을 적습니다
 
 #### <mark style="display:block; background:#fff59d; color:#1a1a1a; padding:4px 12px; border-radius:4px; text-decoration:underline">정답</mark>
 
@@ -788,45 +807,42 @@ python warmup.py
 
 ### ✍️ 문제 3-2 · 이름을 층으로 펼치기 (`dns_tree.py`)
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — VS Code 에서 `dns_tree.py` 만들기 → 터미널에서 `python dns_tree.py` 실행
+**할 일** — 이름 하나를 받아 루트부터 한 층씩 내려가며 출력하는 `dns_tree.py` 를 완성하고, 출력과 막힌 곳을 보고서에 적습니다.
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day03_dns_analysis.md` 의 `## 3교시` 에서 `### 문제 3-2` 아래
+**왜 중요한가** — 이름이 어느 층을 거쳐 풀리는지 직접 펼쳐 보면, 3-3 · 3-4 에서 담당 네임서버를 물을 때 지금 어느 층을 묻는지 알 수 있습니다.
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**왜 중요한가**</mark> — 이름이 어느 층을 거쳐 풀리는지 직접 펼쳐 보면, 3-3 · 3-4 에서 담당 네임서버를 물을 때 지금 어느 층을 묻는지 알 수 있습니다.
+**순서**
 
-이름 하나를 받아 **루트부터 한 층씩** 내려가며 출력하시오.
+1. **[탐색기]** `network_zt` 폴더를 오른쪽 클릭 › **New File** › 이름 `dns_tree.py` 를 입력하고 Enter 를 누릅니다.
+2. **[VS Code]** 아래 코드를 복사해 `dns_tree.py` 에 붙여 넣습니다. 코드 상자 안을 끌어 선택하고 `Ctrl + C` 를 누릅니다.
+   ```python
+   # ── 강사용: 정답을 채운 코드입니다 ──
+   def show_tree(name):                              # 이름을 위층부터 한 층씩 보여 주는 함수
+       parts = name.split(".")                       # ['www', 'example', 'com']
+       print("루트 (.)")
+       current = ""                                  # 지금까지 만든 이름
+       for label in reversed(parts):                 # com → example → www 차례로
+           # 1. current 가 비어 있으면 current 에 label 을, 아니면 label + "." + current 를 담으세요
+           if current == "":                         # 첫 층(TLD)
+               current = label
+           else:                                     # 그 아래 층은 왼쪽에 붙인다
+               current = label + "." + current
+           print("  →", current)
 
-```python
-# ── 강사용: 정답을 채운 코드입니다 ──
-def show_tree(name):                              # 이름을 위층부터 한 층씩 보여 주는 함수
-    parts = name.split(".")                       # ['www', 'example', 'com']
-    print("루트 (.)")
-    current = ""                                  # 지금까지 만든 이름
-    for label in reversed(parts):                 # com → example → www 차례로
-        # 1. current 가 비어 있으면 current 에 label 을, 아니면 label + "." + current 를 담으세요
-        if current == "":                         # 첫 층(TLD)
-            current = label
-        else:                                     # 그 아래 층은 왼쪽에 붙인다
-            current = label + "." + current
-        print("  →", current)
 
-
-show_tree("www.example.com")
-show_tree("mail.google.co.kr")
-```
-
-**파일을 만들고 실행합니다**
-
-1. VS Code 왼쪽 목록에서 `network_zt` 폴더를 오른쪽 클릭 › **New File** › 이름 `dns_tree.py` 를 입력하고 Enter 를 누릅니다.
-2. 위 코드 상자 안을 마우스로 끌어 선택하고 `Ctrl + C` 로 복사해 파일에 붙여 넣은 뒤, 번호 주석 아래를 채웁니다. 저장은 자동입니다.
-3. 터미널에 아래 명령을 입력합니다. 터미널의 줄 위에 `…/network_zt` 가 보여야 합니다. 아니면 먼저 `cd network_zt` 를 입력합니다.
-
-```bash
-python dns_tree.py
-```
-맥북: `python3 dns_tree.py`
-
-4. 고친 뒤에는 같은 명령을 다시 입력합니다. 터미널에서 **↑(위 화살표)** 를 누르면 방금 입력한 명령이 다시 나옵니다.
+   show_tree("www.example.com")
+   show_tree("mail.google.co.kr")
+   ```
+3. **[VS Code]** 번호 주석 아래를 채웁니다. 저장은 자동입니다.
+4. **[터미널]** 실행합니다. 줄 위에 `…/network_zt` 가 보여야 합니다. 아니면 먼저 `cd network_zt` 를 입력합니다.
+   ```bash
+   python dns_tree.py
+   ```
+   맥북: `python3 dns_tree.py`
+5. **[터미널]** 고친 뒤에는 **↑(위 화살표)** 를 눌러 같은 명령을 다시 실행합니다.
+6. **[보고서]** `day03_dns_analysis.md` 의 `## 3교시` › `### 문제 3-2` 아래에 적습니다.
+   - 출력: 터미널에 나온 줄
+   - 막힌 곳: 막혔던 곳과 어떻게 풀었는지 (없으면 「없음」)
 
 | | |
 |---|---|
@@ -858,17 +874,20 @@ python dns_tree.py
 
 ### ✍️ 문제 3-3 · example.com 의 담당자 찾기
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — 터미널에서 명령 실행 → 보고서에 적기
+**할 일** — `-type=ns` 로 example.com 을 담당하는 네임서버를 묻고, 쓴 명령과 담당 네임서버를 보고서에 적습니다.
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day03_dns_analysis.md` 의 `## 3교시` 에서 `### 문제 3-3` 아래
+**왜 중요한가** — 담당 네임서버를 보면 그 도메인을 어느 DNS 업체가 관리하는지 알 수 있습니다. 담당 네임서버가 갑자기 바뀐 도메인은 공격자가 가로챘는지 의심합니다.
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**왜 중요한가**</mark> — 담당 네임서버를 보면 그 도메인을 어느 DNS 업체가 관리하는지 알 수 있습니다. 담당 네임서버가 갑자기 바뀐 도메인은 공격자가 가로챘는지 의심합니다.
+**순서**
 
-`-type=ns` 로 **example.com 을 담당하는 네임서버**를 묻고, 보고서에 적으시오.
-
-```bash
-nslookup -type=ns example.com
-```
+1. **[터미널]** 아래 명령을 입력합니다.
+   ```bash
+   nslookup -type=ns example.com
+   ```
+2. **[터미널]** `nameserver =` 줄을 찾습니다.
+3. **[보고서]** `day03_dns_analysis.md` 의 `## 3교시` › `### 문제 3-3` 아래에 적습니다.
+   - 명령: 입력한 명령
+   - 담당 네임서버: `nameserver =` 뒤의 이름들
 
 | | |
 |---|---|
@@ -902,17 +921,19 @@ nslookup -type=ns example.com
 
 ### ✍️ 문제 3-4 · TLD 의 담당자 보기
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — 터미널에서 명령 실행
+**할 일** — 한 층 위, `kr` 을 담당하는 네임서버를 묻고 보고서에 적습니다.
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day03_dns_analysis.md` 의 `## 3교시` 에서 `### 문제 3-4` 아래
+**왜 중요한가** — 리졸버가 TLD 담당 서버에게서 도메인의 담당자를 알아낸다는 것을 직접 확인합니다. 3.1 의 질문 순서 가운데 ②번을 실제 서버 이름으로 보는 문제입니다.
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**왜 중요한가**</mark> — 리졸버가 TLD 담당 서버에게서 도메인의 담당자를 알아낸다는 것을 직접 확인합니다. 3.1 의 질문 순서 가운데 ②번을 실제 서버 이름으로 보는 문제입니다.
+**순서**
 
-한 층 위, **`kr` 을 담당하는 네임서버**를 물으시오. 이름 끝의 **점(`.`)까지** 그대로 칩니다.
-
-```bash
-nslookup -type=ns kr.
-```
+1. **[터미널]** 아래 명령을 입력합니다. 이름 끝의 **점(`.`)까지** 그대로 칩니다.
+   ```bash
+   nslookup -type=ns kr.
+   ```
+2. **[터미널]** `kr  nameserver =` 줄을 찾습니다.
+3. **[보고서]** `day03_dns_analysis.md` 의 `## 3교시` › `### 문제 3-4` 아래에 적습니다.
+   - `kr.` 의 네임서버 (두세 개): 위에서부터 두세 개의 이름
 
 | | |
 |---|---|
@@ -944,17 +965,19 @@ nslookup -type=ns kr.
 
 ### ✍️ 문제 3-5 · 담당자에게 직접 물으면
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — 터미널에서 명령 실행
+**할 일** — 3-3 에서 찾은 담당 네임서버에 직접 묻고, `권한 없는 응답:` 줄이 있는지 2-2 와 비교해 보고서에 적습니다.
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day03_dns_analysis.md` 의 `## 3교시` 에서 `### 문제 3-5` 아래
+**왜 중요한가** — 리졸버가 찾아다 준 답과 담당 네임서버의 원본 답을 구분할 수 있게 됩니다. 캐시에 남은 옛 값이 의심될 때 담당 네임서버에 직접 물어 원본과 비교합니다.
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**왜 중요한가**</mark> — 리졸버가 찾아다 준 답과 담당 네임서버의 원본 답을 구분할 수 있게 됩니다. 캐시에 남은 옛 값이 의심될 때 담당 네임서버에 직접 물어 원본과 비교합니다.
+**순서**
 
-3-3 에서 찾은 담당 네임서버에 **직접** 묻고, `권한 없는 응답:` 줄이 있는지 2-2 와 비교하시오.
-
-```bash
-nslookup example.com hera.ns.cloudflare.com
-```
+1. **[터미널]** 아래 명령을 입력합니다. 이번에는 리졸버가 아니라 담당 네임서버에 묻습니다.
+   ```bash
+   nslookup example.com hera.ns.cloudflare.com
+   ```
+2. **[터미널]** `권한 없는 응답:` 줄이 있는지 2-2 의 화면과 비교합니다.
+3. **[보고서]** `day03_dns_analysis.md` 의 `## 3교시` › `### 문제 3-5` 아래에 적습니다.
+   - `권한 없는 응답:` 줄이 있었나 · 왜: 줄이 있었는지, 그리고 **2-2 와 이번 답이 누가 준 답인지에서 어떻게 다른지** — 3.2 표와 검색으로 공부한 것을 적습니다
 
 | | |
 |---|---|
@@ -1052,27 +1075,30 @@ print(name, records[name]["value"])
 
 ### ✍️ 문제 4-1 · 직접 실행해 보기
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — VS Code 에서 `warmup.py` 에 따라 치기 → 터미널에서 `python warmup.py` → 결과와 「왜」를 보고서에 적기
+**할 일** — 코드 여섯 줄을 실행하고, 나온 결과 두 줄과 그 이유를 보고서에 적습니다.
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day03_dns_analysis.md` 의 `## 4교시` 에서 `### 문제 4-1` 아래
+**왜 중요한가** — DNS 레코드를 사전 안의 사전으로 다루는 연습입니다. 4-5 의 캐시 코드도 같은 모양으로 `cache[name]["expire"]` 를 꺼냅니다.
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**왜 중요한가**</mark> — DNS 레코드를 사전 안의 사전으로 다루는 연습입니다. 4-5 의 캐시 코드도 같은 모양으로 `cache[name]["expire"]` 를 꺼냅니다.
+**순서**
 
-아래 코드를 `warmup.py` 에 **따라 쳐서** 실행하고, 결과와 「왜 이렇게 나왔는지」 한 줄을 적으시오. `warmup.py` 는 처음 한 번만 `network_zt` 폴더에 New File 로 만들고, 교시마다 내용을 지우고 다시 씁니다.
-
-```python
-records = {
-    "google.com": {"type": "MX", "value": "smtp.google.com"},
-    "www.naver.com": {"type": "CNAME", "value": "www.naver.com.nheos.com"},
-}
-print(records["google.com"]["value"])
-print(records["www.naver.com"]["type"])
-```
-
-```bash
-python warmup.py
-```
-맥북: `python3 warmup.py`
+1. **[VS Code]** `network_zt` 폴더의 `warmup.py` 를 엽니다. 없으면 New File 로 만들고, 안에 있던 내용은 지웁니다.
+2. **[VS Code]** 아래 코드를 그대로 따라 칩니다.
+   ```python
+   records = {                                                                  # 이름 → 레코드 사전
+       "google.com": {"type": "MX", "value": "smtp.google.com"},                # google.com 의 레코드
+       "www.naver.com": {"type": "CNAME", "value": "www.naver.com.nheos.com"},  # www.naver.com 의 레코드
+   }                                                                            # 사전 끝
+   print(records["google.com"]["value"])     # google.com 레코드의 value 칸
+   print(records["www.naver.com"]["type"])   # www.naver.com 레코드의 type 칸
+   ```
+3. **[터미널]** 실행합니다.
+   ```bash
+   python warmup.py
+   ```
+   맥북: `python3 warmup.py`
+4. **[보고서]** `day03_dns_analysis.md` 의 `## 4교시` › `### 문제 4-1` 아래에 적습니다.
+   - 결과: 출력된 두 줄
+   - 왜 그렇게 나왔나: **두 줄이 각각 안쪽 사전의 어느 칸을 꺼낸 것인지, 그 값이 DNS 레코드에서 무엇을 뜻하는지** — 위 문법 상자 · 4.1 표와 검색으로 공부한 것을 적습니다
 
 #### <mark style="display:block; background:#fff59d; color:#1a1a1a; padding:4px 12px; border-radius:4px; text-decoration:underline">정답</mark>
 
@@ -1088,17 +1114,20 @@ python warmup.py
 
 ### ✍️ 문제 4-2 · 메일은 어디로 가나 — MX
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — 터미널에서 명령 실행 → 보고서에 적기
+**할 일** — `google.com` 의 메일 서버를 묻고, 쓴 명령과 메일 서버를 보고서에 적습니다.
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day03_dns_analysis.md` 의 `## 4교시` 에서 `### 문제 4-2` 아래
+**왜 중요한가** — MX 레코드로 그 도메인의 메일을 받는 서버를 확인할 수 있습니다. 피싱 메일을 분석할 때 보낸 쪽 도메인에 메일 서버가 있는지 이 명령으로 봅니다.
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**왜 중요한가**</mark> — MX 레코드로 그 도메인의 메일을 받는 서버를 확인할 수 있습니다. 피싱 메일을 분석할 때 보낸 쪽 도메인에 메일 서버가 있는지 이 명령으로 봅니다.
+**순서**
 
-`google.com` 의 **메일 서버**를 묻고 보고서에 적으시오.
-
-```bash
-nslookup -type=mx google.com
-```
+1. **[터미널]** 아래 명령을 입력합니다.
+   ```bash
+   nslookup -type=mx google.com
+   ```
+2. **[터미널]** `mail exchanger =` 줄을 찾습니다.
+3. **[보고서]** `day03_dns_analysis.md` 의 `## 4교시` › `### 문제 4-2` 아래에 적습니다.
+   - 명령: 입력한 명령
+   - 메일 서버 (MX): `mail exchanger =` 뒤의 이름
 
 | | |
 |---|---|
@@ -1132,18 +1161,26 @@ nslookup -type=mx google.com
 
 ### ✍️ 문제 4-3 · 별명 따라가기 — CNAME
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — 터미널에서 명령 실행 → 보고서에 적기
+**할 일** — `www.naver.com` 의 CNAME 을 묻고, 이어서 그냥 `nslookup` 해 별명이 몇 단계인지 세어 보고서에 적습니다.
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day03_dns_analysis.md` 의 `## 4교시` 에서 `### 문제 4-3` 아래
+**왜 중요한가** — 큰 사이트가 별명을 여러 단계 거쳐 CDN 이름으로 연결된다는 것을 확인합니다. 오후 5교시에 `akamaiedge` 같은 CDN 이름이 무작위처럼 보여도 정상일 수 있다는 근거가 됩니다.
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**왜 중요한가**</mark> — 큰 사이트가 별명을 여러 단계 거쳐 CDN 이름으로 연결된다는 것을 확인합니다. 오후 5교시에 `akamaiedge` 같은 CDN 이름이 무작위처럼 보여도 정상일 수 있다는 근거가 됩니다.
+**순서**
 
-`www.naver.com` 의 **CNAME** 을 묻고, 이어서 그냥 `nslookup` 해 **별명이 몇 단계**인지 세시오.
-
-```bash
-nslookup -type=cname www.naver.com
-nslookup www.naver.com
-```
+1. **[터미널]** 별명(CNAME)을 묻습니다.
+   ```bash
+   nslookup -type=cname www.naver.com
+   ```
+2. **[터미널]** `canonical name =` 줄을 찾습니다.
+3. **[터미널]** 이번에는 그냥 묻습니다.
+   ```bash
+   nslookup www.naver.com
+   ```
+4. **[터미널]** `Aliases:` 아래의 별명을 세고, `이름:` 줄의 최종 이름을 찾습니다.
+5. **[보고서]** `day03_dns_analysis.md` 의 `## 4교시` › `### 문제 4-3` 아래에 적습니다.
+   - 명령: 입력한 두 명령
+   - 별명 (CNAME): `canonical name =` 뒤의 이름
+   - 최종 이름: 둘째 결과 `이름:` 줄의 이름과, 별명이 몇 단계였는지
 
 | | |
 |---|---|
@@ -1178,29 +1215,46 @@ nslookup www.naver.com
 
 ### ✍️ 문제 4-4 · 내 PC 의 DNS 캐시 보기
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — 터미널에서 명령 실행 → 보고서에 적기
+**할 일** — 터미널에서 DNS 캐시를 보고 · 비우고 · 다시 채워 보며, 세 번 본 결과를 보고서에 적습니다.
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day03_dns_analysis.md` 의 `## 4교시` 에서 `### 문제 4-4` 아래
-
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**왜 중요한가**</mark> — 캐시를 보고 비울 수 있으면 이상한 주소로 계속 접속될 때 PC 에 남은 옛 답이나 오염된 답을 지우고 다시 확인할 수 있습니다. DNS 장애 대응에서 가장 먼저 하는 조치입니다.
-
-터미널에서 캐시를 보고 · 비우고 · 다시 채워 보시오.
-
-1. `ping -n 1 example.com` 으로 한 번 접속해 캐시에 넣고, `ipconfig //displaydns` 로 **`example.com`** 항목의 **TTL**(남은 초)을 적습니다.
-2. `ipconfig //flushdns` 로 캐시를 비우고, `ipconfig //displaydns` 를 다시 입력해 목록이 비었는지 봅니다.
-3. `ping -n 1 example.com` 을 다시 하고 `ipconfig //displaydns` 를 입력해 항목이 돌아왔는지 봅니다.
+**왜 중요한가** — 캐시를 보고 비울 수 있으면 이상한 주소로 계속 접속될 때 PC 에 남은 옛 답이나 오염된 답을 지우고 다시 확인할 수 있습니다. DNS 장애 대응에서 가장 먼저 하는 조치입니다.
 
 ⚠ `nslookup` 은 PC 의 캐시를 거치지 않고 DNS 서버에 바로 묻습니다. 그래서 `nslookup` 으로는 캐시가 채워지지 않습니다. 캐시를 채울 때는 `ping` · 브라우저처럼 보통 프로그램이 쓰는 길로 접속합니다.
 
-```bash
-ping -n 1 example.com
-ipconfig //displaydns
-ipconfig //flushdns
-ipconfig //displaydns
-ping -n 1 example.com
-ipconfig //displaydns
-```
-맥북: `ping -c 1 example.com` → `sudo dscacheutil -flushcache; sudo killall -HUP mDNSResponder`(캐시 비우기 · 맥 암호를 묻습니다) → `ping -c 1 example.com`. 캐시 내용을 보는 `ipconfig //displaydns` 는 맥에 없어서 그 단계는 건너뜁니다.
+**순서**
+
+1. **[터미널]** 한 번 접속해 캐시에 넣습니다.
+   ```bash
+   ping -n 1 example.com
+   ```
+   맥북: `ping -c 1 example.com`
+2. **[터미널]** 캐시를 보고, **`example.com`** 항목의 **TTL**(남은 초)을 찾습니다.
+   ```bash
+   ipconfig //displaydns
+   ```
+   맥북: 캐시 내용을 보는 명령이 맥에 없어서 이 단계는 건너뜁니다.
+3. **[터미널]** 캐시를 비웁니다.
+   ```bash
+   ipconfig //flushdns
+   ```
+   맥북: `sudo dscacheutil -flushcache; sudo killall -HUP mDNSResponder` (맥 암호를 묻습니다)
+4. **[터미널]** 캐시를 다시 보고 목록이 비었는지 봅니다.
+   ```bash
+   ipconfig //displaydns
+   ```
+5. **[터미널]** 다시 접속합니다.
+   ```bash
+   ping -n 1 example.com
+   ```
+   맥북: `ping -c 1 example.com`
+6. **[터미널]** 캐시를 다시 보고 `example.com` 항목이 돌아왔는지 봅니다.
+   ```bash
+   ipconfig //displaydns
+   ```
+7. **[보고서]** `day03_dns_analysis.md` 의 `## 4교시` › `### 문제 4-4` 아래에 적습니다.
+   - example.com 의 TTL: 2번에서 찾은 남은 초
+   - 비운 뒤 목록: 4번에서 본 화면
+   - 다시 ping 한 뒤: 6번에서 본 화면
 
 | | |
 |---|---|
@@ -1240,46 +1294,43 @@ ipconfig //displaydns
 
 ### ✍️ 문제 4-5 · 캐시 흉내 내기 (`dns_cache.py`)
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — VS Code 에서 `dns_cache.py` 만들기 → 터미널에서 `python dns_cache.py` 실행
+**할 일** — TTL 이 지나기 전에는 저장해 둔 답을, 지나면 새로 물은 답을 쓰는 캐시를 `dns_cache.py` 에 완성하고, 출력과 막힌 곳을 보고서에 적습니다.
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day03_dns_analysis.md` 의 `## 4교시` 에서 `### 문제 4-5` 아래
+**왜 중요한가** — TTL 이 지나기 전까지 저장해 둔 답을 쓰는 규칙을 코드로 확인합니다. 담당자가 IP 를 바꿔도 한동안 옛 IP 로 접속되는 이유를 설명할 수 있게 됩니다.
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**왜 중요한가**</mark> — TTL 이 지나기 전까지 저장해 둔 답을 쓰는 규칙을 코드로 확인합니다. 담당자가 IP 를 바꿔도 한동안 옛 IP 로 접속되는 이유를 설명할 수 있게 됩니다.
+**순서**
 
-TTL 이 지나기 전에는 **저장해 둔 답**을, 지나면 **새로 물은 답**을 쓰는 캐시를 완성하시오.
-
-```python
-# ── 강사용: 정답을 채운 코드입니다 ──
-cache = {}                                        # 이름 → {"ip": 주소, "expire": 만료 시각}
-TTL = 300                                         # 답을 300초 동안 쓴다
-answers = {"example.com": "104.20.23.154"}        # 담당자에게 물었다고 가정한 답
-
-
-def resolve(name, now):                           # now 초에 name 을 묻는다
-    # 1. name 이 cache 에 있고 now 가 cache[name]["expire"] 보다 작으면 "캐시 " + 그 IP 를 return 하세요
-    if name in cache and now < cache[name]["expire"]:   # 저장해 둔 답이 아직 유효하면
-        return "캐시 " + cache[name]["ip"]
-    ip = answers[name]                            # 새로 묻는다
-    cache[name] = {"ip": ip, "expire": now + TTL}   # 만료 시각과 함께 저장
-    return "새로 물음 " + ip
+1. **[탐색기]** `network_zt` 폴더를 오른쪽 클릭 › **New File** › 이름 `dns_cache.py` 를 입력하고 Enter 를 누릅니다.
+2. **[VS Code]** 아래 코드를 복사해 `dns_cache.py` 에 붙여 넣습니다. 코드 상자 안을 끌어 선택하고 `Ctrl + C` 를 누릅니다.
+   ```python
+   # ── 강사용: 정답을 채운 코드입니다 ──
+   cache = {}                                        # 이름 → {"ip": 주소, "expire": 만료 시각}
+   TTL = 300                                         # 답을 300초 동안 쓴다
+   answers = {"example.com": "104.20.23.154"}        # 담당자에게 물었다고 가정한 답
 
 
-for t in [0, 100, 299, 300, 450]:
-    print(t, "초:", resolve("example.com", t))
-```
+   def resolve(name, now):                           # now 초에 name 을 묻는다
+       # 1. name 이 cache 에 있고 now 가 cache[name]["expire"] 보다 작으면 "캐시 " + 그 IP 를 return 하세요
+       if name in cache and now < cache[name]["expire"]:   # 저장해 둔 답이 아직 유효하면
+           return "캐시 " + cache[name]["ip"]
+       ip = answers[name]                            # 새로 묻는다
+       cache[name] = {"ip": ip, "expire": now + TTL}   # 만료 시각과 함께 저장
+       return "새로 물음 " + ip
 
-**파일을 만들고 실행합니다**
 
-1. VS Code 왼쪽 목록에서 `network_zt` 폴더를 오른쪽 클릭 › **New File** › 이름 `dns_cache.py` 를 입력하고 Enter 를 누릅니다.
-2. 위 코드 상자 안을 마우스로 끌어 선택하고 `Ctrl + C` 로 복사해 파일에 붙여 넣은 뒤, 번호 주석 아래를 채웁니다. 저장은 자동입니다.
-3. 터미널에 아래 명령을 입력합니다. 터미널의 줄 위에 `…/network_zt` 가 보여야 합니다. 아니면 먼저 `cd network_zt` 를 입력합니다.
-
-```bash
-python dns_cache.py
-```
-맥북: `python3 dns_cache.py`
-
-4. 고친 뒤에는 같은 명령을 다시 입력합니다. 터미널에서 **↑(위 화살표)** 를 누르면 방금 입력한 명령이 다시 나옵니다.
+   for t in [0, 100, 299, 300, 450]:
+       print(t, "초:", resolve("example.com", t))
+   ```
+3. **[VS Code]** 번호 주석 아래를 채웁니다. 저장은 자동입니다.
+4. **[터미널]** 실행합니다. 줄 위에 `…/network_zt` 가 보여야 합니다. 아니면 먼저 `cd network_zt` 를 입력합니다.
+   ```bash
+   python dns_cache.py
+   ```
+   맥북: `python3 dns_cache.py`
+5. **[터미널]** 고친 뒤에는 **↑(위 화살표)** 를 눌러 같은 명령을 다시 실행합니다.
+6. **[보고서]** `day03_dns_analysis.md` 의 `## 4교시` › `### 문제 4-5` 아래에 적습니다.
+   - 출력: 터미널에 나온 다섯 줄
+   - 막힌 곳: 막혔던 곳과 어떻게 풀었는지 (없으면 「없음」)
 
 | | |
 |---|---|

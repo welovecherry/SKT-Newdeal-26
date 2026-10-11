@@ -40,10 +40,10 @@
 
 ### 오늘 시작할 때
 
-0. 오늘 적는 것은 모두 **오전에 만든 `day02_subnet_design.md` 하나에** 적습니다. 5 · 6 · 7교시의 문제 소제목은 오전에 붙여 넣은 틀에 이미 있습니다 — **그 문제 소제목 아래**를 채웁니다. 문제마다 「**적는 곳**」 줄을 봅니다.
+0. **[VS Code]** 오전에 만든 `day02_subnet_design.md` 를 열고 `## 5교시` 로 내려갑니다 — 5 · 6 · 7교시 칸은 오전에 붙여 넣은 틀에 이미 있습니다. 오늘 적는 것은 모두 이 파일 하나에, 문제마다 마지막 **[보고서]** 단계가 가리키는 소제목 아래에 적습니다.
 1. 오전과 같은 터미널, `network_zt` 폴더에서 합니다.
 2. 파이썬 파일은 문제마다 적힌 이름으로 만들고 `python 파일이름.py` 로 실행합니다.
-3. 문제 앞의 **상자**를 먼저 읽습니다 — 🐍 문법 상자(파이썬) · 명령 상자(터미널) · Wireshark 상자 · 개념 상자. 문제 제목 아래 **어디서** 줄이 실습하는 곳입니다. `→` 는 하는 순서입니다. 막히면 **💡 힌트** → 맨 아래 **「정답」** 순서로 봅니다. ⭐도전은 선택입니다.
+3. 문제 앞의 **상자**를 먼저 읽습니다 — 🐍 문법 상자(파이썬) · 명령 상자(터미널) · Wireshark 상자 · 개념 상자. 문제는 **할 일**(무엇을 하고 무엇을 적나) → **순서**(번호 단계)로 되어 있습니다. 단계 맨 앞의 **[VS Code]** · **[터미널]** · **[이 문서]** · **[탐색기]** · **[보고서]** 가 그 단계에서 쓰는 창입니다. 마지막 **[보고서]** 단계가 적는 곳입니다. 막히면 **💡 힌트** → 맨 아래 **「정답」** 순서로 봅니다. ⭐도전은 선택입니다.
 4. 맥북으로 복습할 때는 명령 상자 바로 아래의 **「맥북:」 줄**을 칩니다(없으면 Windows 와 같은 명령). 맥의 결과는 영어이고 모양이 달라 🎯 결과와 글자가 다릅니다 — 같은 값(평균 · TTL · IP · 포트)을 찾으면 됩니다.
 
 ---
@@ -123,27 +123,30 @@ print(out)
 
 ### ✍️ 문제 5-1 · 직접 실행해 보기
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — VS Code 에서 `warmup.py` 에 따라 치기 → 터미널에서 `python warmup.py` → 결과와 「왜」를 보고서에 적기
+**할 일** — 코드 여섯 줄을 실행하고, 나온 결과와 그 이유를 보고서에 적습니다.
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day02_subnet_design.md` 의 `## 5교시` 에서 `### 문제 5-1` 아래
+**왜 중요한가** — 스위치가 MAC 주소 표를 보고 포트 하나로만 보낼지 정하는 판단입니다. 5-3 에서 이 판단을 함수로 만들어 스위치처럼 움직이게 합니다.
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**왜 중요한가**</mark> — 스위치가 MAC 주소 표를 보고 포트 하나로만 보낼지 정하는 판단입니다. 5-3 에서 이 판단을 함수로 만들어 스위치처럼 움직이게 합니다.
+**순서**
 
-아래 코드를 `warmup.py` 에 **따라 쳐서** 실행하고, 결과와 「왜 이렇게 나왔는지」 한 줄을 적으시오. `warmup.py` 는 처음 한 번만 `network_zt` 폴더에 New File 로 만들고, 교시마다 내용을 지우고 다시 씁니다.
-
-```python
-mac_table = {"AA": 1, "BB": 3}
-dest = "BB"
-if dest in mac_table:
-    print("포트", mac_table[dest], "로만")
-else:
-    print("모든 포트로")
-```
-
-```bash
-python warmup.py
-```
-맥북: `python3 warmup.py`
+1. **[VS Code]** `network_zt` 폴더의 `warmup.py` 를 엽니다. 없으면 New File 로 만들고, 안에 있던 내용은 지웁니다.
+2. **[VS Code]** 아래 코드를 그대로 따라 칩니다.
+   ```python
+   mac_table = {"AA": 1, "BB": 3}             # 스위치가 배운 표 — MAC → 포트 번호
+   dest = "BB"                                # 목적지 MAC
+   if dest in mac_table:                      # 목적지가 표에 있나?
+       print("포트", mac_table[dest], "로만")  # 있을 때 — 표에서 dest 로 꺼낸 값을 넣어 출력
+   else:                                      # 없을 때
+       print("모든 포트로")
+   ```
+3. **[터미널]** 실행합니다.
+   ```bash
+   python warmup.py
+   ```
+   맥북: `python3 warmup.py`
+4. **[보고서]** `day02_subnet_design.md` 의 `## 5교시` › `### 문제 5-1` 아래에 적습니다.
+   - 결과: 출력된 한 줄
+   - 왜 그렇게 나왔나: **출력에 `BB` 가 아니라 그 숫자가 나온 이유와 `else` 쪽 줄이 나오지 않은 이유** — 위 문법 상자 · 5.3 과 검색으로 공부한 것을 적습니다
 
 #### <mark style="display:block; background:#fff59d; color:#1a1a1a; padding:4px 12px; border-radius:4px; text-decoration:underline">정답</mark>
 
@@ -179,41 +182,38 @@ print(ipaddress.ip_address("192.168.11.1") in net)
 
 ### ✍️ 문제 5-2 · 직접일까 게이트웨이일까 (`direct_or_gw.py`)
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — VS Code 에서 `direct_or_gw.py` 만들기 → 터미널에서 `python direct_or_gw.py` 실행
+**할 일** — PC `10.20.0.10/26` 에서 세 목적지로 보낼 때 **스위치로 직접**인지 **게이트웨이로**인지 판정하는 코드를 완성해 실행하고, 출력을 보고서에 적습니다.
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day02_subnet_design.md` 의 `## 5교시` 에서 `### 문제 5-2` 아래
+**왜 중요한가** — PC 가 패킷을 보내기 전에 하는 첫 계산입니다. 「다른 부서로만 통신이 안 된다」는 문의를 받으면 이 판정부터 확인합니다.
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**왜 중요한가**</mark> — PC 가 패킷을 보내기 전에 하는 첫 계산입니다. 「다른 부서로만 통신이 안 된다」는 문의를 받으면 이 판정부터 확인합니다.
+**순서**
 
-PC `10.20.0.10/26` 에서 세 목적지로 보낼 때 **스위치로 직접**인지 **게이트웨이로**인지 판정하시오.
+1. **[VS Code]** 왼쪽 목록에서 `network_zt` 폴더를 오른쪽 클릭 › **New File** › 이름 `direct_or_gw.py` 를 입력하고 Enter 를 누릅니다.
+2. **[VS Code]** 아래 코드를 복사해 파일에 붙여 넣습니다. 코드 상자 안을 마우스로 끌어 선택하고 `Ctrl + C` 를 누릅니다.
+   ```python
+   # ── 강사용: 정답을 채운 코드입니다 ──
+   import ipaddress
 
-```python
-# ── 강사용: 정답을 채운 코드입니다 ──
-import ipaddress
+   my_net = ipaddress.ip_network("10.20.0.10/26", strict=False)   # 내 PC 가 속한 망
+   destinations = ["10.20.0.40", "10.20.0.63", "10.20.0.70"]
 
-my_net = ipaddress.ip_network("10.20.0.10/26", strict=False)   # 내 PC 가 속한 망
-destinations = ["10.20.0.40", "10.20.0.63", "10.20.0.70"]
-
-for dest in destinations:                         # 목적지를 하나씩
-    # 1. dest 가 my_net 안에 있으면 「10.20.0.40 스위치로 직접」, 아니면 「… 게이트웨이로」 를 출력하세요
-    if ipaddress.ip_address(dest) in my_net:      # 같은 망이면
-        print(dest, "스위치로 직접")
-    else:                                         # 다른 망이면
-        print(dest, "게이트웨이로")
-```
-
-**파일을 만들고 실행합니다**
-
-1. VS Code 왼쪽 목록에서 `network_zt` 폴더를 오른쪽 클릭 › **New File** › 이름 `direct_or_gw.py` 를 입력하고 Enter 를 누릅니다.
-2. 위 코드 상자 안을 마우스로 끌어 선택하고 `Ctrl + C` 로 복사해 파일에 붙여 넣은 뒤, 번호 주석 아래를 채웁니다. 저장은 자동입니다.
-3. 터미널에 아래 명령을 입력합니다. 터미널의 줄 위에 `…/network_zt` 가 보여야 합니다. 아니면 먼저 `cd network_zt` 를 입력합니다.
-
-```bash
-python direct_or_gw.py
-```
-맥북: `python3 direct_or_gw.py`
-
-4. 고친 뒤에는 같은 명령을 다시 입력합니다. 터미널에서 **↑(위 화살표)** 를 누르면 방금 입력한 명령이 다시 나옵니다.
+   for dest in destinations:                         # 목적지를 하나씩
+       # 1. dest 가 my_net 안에 있으면 「10.20.0.40 스위치로 직접」, 아니면 「… 게이트웨이로」 를 출력하세요
+       if ipaddress.ip_address(dest) in my_net:      # 같은 망이면
+           print(dest, "스위치로 직접")
+       else:                                         # 다른 망이면
+           print(dest, "게이트웨이로")
+   ```
+3. **[VS Code]** 번호 주석 아래를 채웁니다. 저장은 자동입니다.
+4. **[터미널]** 실행합니다. 터미널의 줄 위에 `…/network_zt` 가 보여야 합니다. 아니면 먼저 `cd network_zt` 를 입력합니다.
+   ```bash
+   python direct_or_gw.py
+   ```
+   맥북: `python3 direct_or_gw.py`
+5. **[터미널]** 고친 뒤에는 **↑(위 화살표)** 를 눌러 방금 입력한 명령을 다시 실행합니다.
+6. **[보고서]** `day02_subnet_design.md` 의 `## 5교시` › `### 문제 5-2` 아래에 적습니다.
+   - 출력: 터미널에 나온 결과
+   - 막힌 곳: 막혔던 곳과 어떻게 풀었는지 (없으면 「없음」)
 
 | | |
 |---|---|
@@ -245,52 +245,49 @@ python direct_or_gw.py
 
 ### ✍️ 문제 5-3 · 스위치 흉내 내기 (`switch_sim.py`)
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — VS Code 에서 `switch_sim.py` 만들기 → 터미널에서 `python switch_sim.py` 실행
+**할 일** — 5.3 의 세 단계대로 움직이는 스위치를 완성해 실행하고, 출력을 보고서에 적습니다. **배우기 전과 배운 뒤** 나가는 포트가 어떻게 달라지는지 봅니다.
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day02_subnet_design.md` 의 `## 5교시` 에서 `### 문제 5-3` 아래
+**왜 중요한가** — 스위치가 MAC 을 배우기 전과 배운 뒤 나가는 포트가 어떻게 달라지는지 확인합니다. 관제에서 의심 PC 가 꽂힌 포트를 MAC 주소 표로 찾는 근거가 이 동작입니다.
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**왜 중요한가**</mark> — 스위치가 MAC 을 배우기 전과 배운 뒤 나가는 포트가 어떻게 달라지는지 확인합니다. 관제에서 의심 PC 가 꽂힌 포트를 MAC 주소 표로 찾는 근거가 이 동작입니다.
+**순서**
 
-5.3 의 세 단계대로 움직이는 스위치를 완성하시오. **배우기 전과 배운 뒤** 나가는 포트가 어떻게 달라지는지 봅니다.
-
-```python
-# ── 강사용: 정답을 채운 코드입니다 ──
-PORTS = [1, 2, 3, 4]                              # 스위치의 포트 네 개
-mac_table = {}                                    # 처음엔 아무것도 모른다
-
-
-def receive(in_port, src, dest):                  # 프레임 하나가 in_port 로 들어왔다
-    # 1. mac_table 의 src 키에 in_port 를 담으세요 (출발지를 배운다)
-    mac_table[src] = in_port                      # 이 MAC 은 이 포트에 있다
-    # 2. dest 가 mac_table 에 있으면 [mac_table[dest]] 를 return 하세요
-    if dest in mac_table:                         # 목적지를 안다면
-        return [mac_table[dest]]                  # 그 포트 하나로만
-    out = []                                      # 모르면 플러딩할 포트들
-    for port in PORTS:
-        # 3. port 가 in_port 가 아니면 out 에 더하세요
-        if port != in_port:                       # 들어온 포트는 빼고
-            out.append(port)
-    return out
+1. **[VS Code]** 왼쪽 목록에서 `network_zt` 폴더를 오른쪽 클릭 › **New File** › 이름 `switch_sim.py` 를 입력하고 Enter 를 누릅니다.
+2. **[VS Code]** 아래 코드를 복사해 파일에 붙여 넣습니다. 코드 상자 안을 마우스로 끌어 선택하고 `Ctrl + C` 를 누릅니다.
+   ```python
+   # ── 강사용: 정답을 채운 코드입니다 ──
+   PORTS = [1, 2, 3, 4]                              # 스위치의 포트 네 개
+   mac_table = {}                                    # 처음엔 아무것도 모른다
 
 
-print("AA → BB :", receive(1, "AA", "BB"))       # BB 를 아직 모른다
-print("BB → AA :", receive(3, "BB", "AA"))       # AA 는 1번에서 배웠다
-print("AA → BB :", receive(1, "AA", "BB"))       # 이제 BB 도 안다
-print("표:", mac_table)
-```
+   def receive(in_port, src, dest):                  # 프레임 하나가 in_port 로 들어왔다
+       # 1. mac_table 의 src 키에 in_port 를 담으세요 (출발지를 배운다)
+       mac_table[src] = in_port                      # 이 MAC 은 이 포트에 있다
+       # 2. dest 가 mac_table 에 있으면 [mac_table[dest]] 를 return 하세요
+       if dest in mac_table:                         # 목적지를 안다면
+           return [mac_table[dest]]                  # 그 포트 하나로만
+       out = []                                      # 모르면 플러딩할 포트들
+       for port in PORTS:
+           # 3. port 가 in_port 가 아니면 out 에 더하세요
+           if port != in_port:                       # 들어온 포트는 빼고
+               out.append(port)
+       return out
 
-**파일을 만들고 실행합니다**
 
-1. VS Code 왼쪽 목록에서 `network_zt` 폴더를 오른쪽 클릭 › **New File** › 이름 `switch_sim.py` 를 입력하고 Enter 를 누릅니다.
-2. 위 코드 상자 안을 마우스로 끌어 선택하고 `Ctrl + C` 로 복사해 파일에 붙여 넣은 뒤, 번호 주석 아래를 채웁니다. 저장은 자동입니다.
-3. 터미널에 아래 명령을 입력합니다. 터미널의 줄 위에 `…/network_zt` 가 보여야 합니다. 아니면 먼저 `cd network_zt` 를 입력합니다.
-
-```bash
-python switch_sim.py
-```
-맥북: `python3 switch_sim.py`
-
-4. 고친 뒤에는 같은 명령을 다시 입력합니다. 터미널에서 **↑(위 화살표)** 를 누르면 방금 입력한 명령이 다시 나옵니다.
+   print("AA → BB :", receive(1, "AA", "BB"))       # BB 를 아직 모른다
+   print("BB → AA :", receive(3, "BB", "AA"))       # AA 는 1번에서 배웠다
+   print("AA → BB :", receive(1, "AA", "BB"))       # 이제 BB 도 안다
+   print("표:", mac_table)
+   ```
+3. **[VS Code]** 번호 주석 아래를 채웁니다. 저장은 자동입니다.
+4. **[터미널]** 실행합니다. 터미널의 줄 위에 `…/network_zt` 가 보여야 합니다. 아니면 먼저 `cd network_zt` 를 입력합니다.
+   ```bash
+   python switch_sim.py
+   ```
+   맥북: `python3 switch_sim.py`
+5. **[터미널]** 고친 뒤에는 **↑(위 화살표)** 를 눌러 방금 입력한 명령을 다시 실행합니다.
+6. **[보고서]** `day02_subnet_design.md` 의 `## 5교시` › `### 문제 5-3` 아래에 적습니다.
+   - 출력: 터미널에 나온 결과
+   - 막힌 곳: 막혔던 곳과 어떻게 풀었는지 (없으면 「없음」)
 
 | | |
 |---|---|
@@ -322,19 +319,26 @@ python switch_sim.py
 
 ### ✍️ 문제 5-4 · ARP 캐시에서 게이트웨이 찾기
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — 터미널에서 명령 실행
+**할 일** — 두 명령을 차례로 입력해, `arp -a` 에 **기본 게이트웨이의 MAC 은 있지만 `8.8.8.8` 은 없는 것**을 확인하고 보고서에 적습니다.
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day02_subnet_design.md` 의 `## 5교시` 에서 `### 문제 5-4` 아래
+**왜 중요한가** — 5.2 표의 「목적지 MAC 은 게이트웨이의 MAC」을 내 PC 의 ARP 캐시로 직접 확인합니다. 다른 망 장비의 MAC 을 PC 가 몰라도 통신이 되는 이유가 여기 있습니다.
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**왜 중요한가**</mark> — 5.2 표의 「목적지 MAC 은 게이트웨이의 MAC」을 내 PC 의 ARP 캐시로 직접 확인합니다. 다른 망 장비의 MAC 을 PC 가 몰라도 통신이 되는 이유가 여기 있습니다.
+**순서**
 
-아래 두 명령을 터미널에 차례로 입력하고, `arp -a` 에 **기본 게이트웨이의 MAC 은 있지만 `8.8.8.8` 은 없는 것**을 확인하시오.
-
-```bash
-ping -n 1 8.8.8.8
-arp -a
-```
-맥북: `ping -c 1 8.8.8.8` → `arp -a`
+1. **[터미널]** `8.8.8.8` 로 한 번 보냅니다.
+   ```bash
+   ping -n 1 8.8.8.8
+   ```
+   맥북: `ping -c 1 8.8.8.8`
+2. **[터미널]** ARP 캐시를 봅니다.
+   ```bash
+   arp -a
+   ```
+3. **[터미널]** 내 기본 게이트웨이 IP 줄을 찾아 그 줄의 MAC 주소를 봅니다.
+4. **[터미널]** `8.8.8.8` 줄이 있는지 찾습니다.
+5. **[보고서]** `day02_subnet_design.md` 의 `## 5교시` › `### 문제 5-4` 아래에 적습니다.
+   - 게이트웨이 IP 와 MAC 주소: 찾은 줄의 IP 와 MAC 주소
+   - 8.8.8.8 줄이 있었나 · 왜: 있었는지 적고, **방금 `8.8.8.8` 로 보냈는데도 그 줄이 그렇게 나온 이유** — 5.2 표와 검색으로 공부한 것을 적습니다
 
 | | |
 |---|---|
@@ -370,45 +374,42 @@ arp -a
 
 ### ✍️ 문제 5-5 · 게이트웨이를 잘못 적은 PC 찾기 (`gw_mistake.py`)
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — VS Code 에서 `gw_mistake.py` 만들기 → 터미널에서 `python gw_mistake.py` 실행
+**할 일** — PC 세 대의 설정 가운데 **게이트웨이가 자기 망 밖에 있는** PC 를 찾는 코드를 완성해 실행하고, 출력을 보고서에 적습니다.
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day02_subnet_design.md` 의 `## 5교시` 에서 `### 문제 5-5` 아래
+**왜 중요한가** — 게이트웨이를 망 밖 주소로 적으면 에러 없이 바깥 통신만 끊깁니다. 장애 문의를 받았을 때 설정 몇 줄로 원인을 가려내는 점검입니다.
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**왜 중요한가**</mark> — 게이트웨이를 망 밖 주소로 적으면 에러 없이 바깥 통신만 끊깁니다. 장애 문의를 받았을 때 설정 몇 줄로 원인을 가려내는 점검입니다.
+**순서**
 
-PC 세 대의 설정 가운데 **게이트웨이가 자기 망 밖에 있는** PC 를 찾으시오.
+1. **[VS Code]** 왼쪽 목록에서 `network_zt` 폴더를 오른쪽 클릭 › **New File** › 이름 `gw_mistake.py` 를 입력하고 Enter 를 누릅니다.
+2. **[VS Code]** 아래 코드를 복사해 파일에 붙여 넣습니다. 코드 상자 안을 마우스로 끌어 선택하고 `Ctrl + C` 를 누릅니다.
+   ```python
+   # ── 강사용: 정답을 채운 코드입니다 ──
+   import ipaddress
 
-```python
-# ── 강사용: 정답을 채운 코드입니다 ──
-import ipaddress
+   pcs = [                                           # (이름, IP/CIDR, 기본 게이트웨이)
+       ("PC0", "192.168.10.10/26", "192.168.10.1"),
+       ("PC1", "192.168.10.20/26", "192.168.10.65"),
+       ("PC2", "192.168.10.70/26", "192.168.10.65"),
+   ]
 
-pcs = [                                           # (이름, IP/CIDR, 기본 게이트웨이)
-    ("PC0", "192.168.10.10/26", "192.168.10.1"),
-    ("PC1", "192.168.10.20/26", "192.168.10.65"),
-    ("PC2", "192.168.10.70/26", "192.168.10.65"),
-]
-
-for name, cidr, gw in pcs:                        # PC 를 하나씩
-    net = ipaddress.ip_network(cidr, strict=False)   # 그 PC 가 속한 망
-    # 1. gw 가 net 안에 있으면 「PC0 정상」, 아니면 「PC1 게이트웨이 192.168.10.65 가 망 밖 — 밖으로 못 나감」 을 출력하세요
-    if ipaddress.ip_address(gw) in net:           # 게이트웨이가 같은 망에 있으면
-        print(name, "정상")
-    else:                                         # 망 밖이면
-        print(name, "게이트웨이", gw, "가 망 밖 — 밖으로 못 나감")
-```
-
-**파일을 만들고 실행합니다**
-
-1. VS Code 왼쪽 목록에서 `network_zt` 폴더를 오른쪽 클릭 › **New File** › 이름 `gw_mistake.py` 를 입력하고 Enter 를 누릅니다.
-2. 위 코드 상자 안을 마우스로 끌어 선택하고 `Ctrl + C` 로 복사해 파일에 붙여 넣은 뒤, 번호 주석 아래를 채웁니다. 저장은 자동입니다.
-3. 터미널에 아래 명령을 입력합니다. 터미널의 줄 위에 `…/network_zt` 가 보여야 합니다. 아니면 먼저 `cd network_zt` 를 입력합니다.
-
-```bash
-python gw_mistake.py
-```
-맥북: `python3 gw_mistake.py`
-
-4. 고친 뒤에는 같은 명령을 다시 입력합니다. 터미널에서 **↑(위 화살표)** 를 누르면 방금 입력한 명령이 다시 나옵니다.
+   for name, cidr, gw in pcs:                        # PC 를 하나씩
+       net = ipaddress.ip_network(cidr, strict=False)   # 그 PC 가 속한 망
+       # 1. gw 가 net 안에 있으면 「PC0 정상」, 아니면 「PC1 게이트웨이 192.168.10.65 가 망 밖 — 밖으로 못 나감」 을 출력하세요
+       if ipaddress.ip_address(gw) in net:           # 게이트웨이가 같은 망에 있으면
+           print(name, "정상")
+       else:                                         # 망 밖이면
+           print(name, "게이트웨이", gw, "가 망 밖 — 밖으로 못 나감")
+   ```
+3. **[VS Code]** 번호 주석 아래를 채웁니다. 저장은 자동입니다.
+4. **[터미널]** 실행합니다. 터미널의 줄 위에 `…/network_zt` 가 보여야 합니다. 아니면 먼저 `cd network_zt` 를 입력합니다.
+   ```bash
+   python gw_mistake.py
+   ```
+   맥북: `python3 gw_mistake.py`
+5. **[터미널]** 고친 뒤에는 **↑(위 화살표)** 를 눌러 방금 입력한 명령을 다시 실행합니다.
+6. **[보고서]** `day02_subnet_design.md` 의 `## 5교시` › `### 문제 5-5` 아래에 적습니다.
+   - 출력: 터미널에 나온 결과
+   - 막힌 곳: 막혔던 곳과 어떻게 풀었는지 (없으면 「없음」)
 
 | | |
 |---|---|
@@ -510,28 +511,31 @@ print(a.prefixlen, b.prefixlen)
 
 ### ✍️ 문제 6-1 · 직접 실행해 보기
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — VS Code 에서 `warmup.py` 에 따라 치기 → 터미널에서 `python warmup.py` → 결과와 「왜」를 보고서에 적기
+**할 일** — 코드 일곱 줄을 실행하고, 나온 결과와 그 이유를 보고서에 적습니다.
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day02_subnet_design.md` 의 `## 6교시` 에서 `### 문제 6-1` 아래
+**왜 중요한가** — 브로드캐스트가 어느 포트까지 퍼지는지가 VLAN 번호로 정해지는 것을 봅니다. 6-4 에서 이 조건을 함수로 만듭니다.
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**왜 중요한가**</mark> — 브로드캐스트가 어느 포트까지 퍼지는지가 VLAN 번호로 정해지는 것을 봅니다. 6-4 에서 이 조건을 함수로 만듭니다.
+**순서**
 
-아래 코드를 `warmup.py` 에 **따라 쳐서** 실행하고, 결과와 「왜 이렇게 나왔는지」 한 줄을 적으시오. `warmup.py` 는 처음 한 번만 `network_zt` 폴더에 New File 로 만들고, 교시마다 내용을 지우고 다시 씁니다.
-
-```python
-port_vlan = {1: 10, 2: 10, 3: 20, 4: 20}
-in_port = 3
-out = []
-for port in port_vlan:
-    if port_vlan[port] == port_vlan[in_port] and port != in_port:
-        out.append(port)
-print(out)
-```
-
-```bash
-python warmup.py
-```
-맥북: `python3 warmup.py`
+1. **[VS Code]** `network_zt` 폴더의 `warmup.py` 를 엽니다. 없으면 New File 로 만들고, 안에 있던 내용은 지웁니다.
+2. **[VS Code]** 아래 코드를 그대로 따라 칩니다.
+   ```python
+   port_vlan = {1: 10, 2: 10, 3: 20, 4: 20}       # 포트 → VLAN 번호
+   in_port = 3                                     # 브로드캐스트가 들어온 포트
+   out = []                                        # 퍼질 포트를 모을 리스트
+   for port in port_vlan:                          # 포트를 하나씩
+       if port_vlan[port] == port_vlan[in_port] and port != in_port:   # VLAN 이 같고, 들어온 포트가 아닌가?
+           out.append(port)                        # 조건에 맞는 포트를 더한다
+   print(out)                                      # 모은 포트 목록
+   ```
+3. **[터미널]** 실행합니다.
+   ```bash
+   python warmup.py
+   ```
+   맥북: `python3 warmup.py`
+4. **[보고서]** `day02_subnet_design.md` 의 `## 6교시` › `### 문제 6-1` 아래에 적습니다.
+   - 결과: 출력된 한 줄
+   - 왜 그렇게 나왔나: **들어온 3번 포트와 1 · 2번 포트가 목록에 없는 이유** — 6.1 과 검색으로 공부한 것을 적습니다
 
 #### <mark style="display:block; background:#fff59d; color:#1a1a1a; padding:4px 12px; border-radius:4px; text-decoration:underline">정답</mark>
 
@@ -549,18 +553,21 @@ python warmup.py
 
 ### ✍️ 문제 6-2 · 내 PC 의 라우팅 표 보기
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — 터미널에서 명령 실행
+**할 일** — 내 PC 의 라우팅 표에서 **`0.0.0.0` 으로 시작하는 줄**(기본 경로)의 **게이트웨이** 칸을 찾아, `ipconfig` 의 기본 게이트웨이와 같은지 보고서에 적습니다.
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day02_subnet_design.md` 의 `## 6교시` 에서 `### 문제 6-2` 아래
+**왜 중요한가** — 내 PC 에도 라우팅 표가 있다는 것을 직접 확인합니다. 6.2 표의 「찾아 쓰기」 칸을 채울 때 이 화면의 기본 경로 줄을 근거로 씁니다.
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**왜 중요한가**</mark> — 내 PC 에도 라우팅 표가 있다는 것을 직접 확인합니다. 6.2 표의 「찾아 쓰기」 칸을 채울 때 이 화면의 기본 경로 줄을 근거로 씁니다.
+**순서**
 
-아래를 입력하고 **`0.0.0.0` 으로 시작하는 줄**(기본 경로)의 **게이트웨이** 칸을 찾아, `ipconfig` 의 기본 게이트웨이와 같은지 확인하시오.
-
-```bash
-route print -4
-```
-맥북: `netstat -rn -f inet` (`default` 줄이 기본 경로)
+1. **[터미널]** 아래 명령을 입력합니다.
+   ```bash
+   route print -4
+   ```
+   맥북: `netstat -rn -f inet` (`default` 줄이 기본 경로)
+2. **[터미널]** `활성 경로` 표에서 `0.0.0.0` 으로 시작하는 줄을 찾아 게이트웨이 칸을 봅니다.
+3. **[보고서]** `day02_subnet_design.md` 의 `## 6교시` › `### 문제 6-2` 아래에 적습니다.
+   - `0.0.0.0` 줄의 게이트웨이: 그 줄의 게이트웨이 칸 값
+   - ipconfig 의 기본 게이트웨이와 같았나: `ipconfig` 의 기본 게이트웨이와 견주어 적습니다
 
 | | |
 |---|---|
@@ -595,20 +602,23 @@ route print -4
 
 ### ✍️ 문제 6-3 · 거쳐 가는 경로 보기
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — 터미널에서 명령 실행 → 화면을 사진으로 저장 → 보고서에 넣기
+**할 일** — `8.8.8.8` 까지 거쳐 가는 경로를 다섯 칸까지 보고, **첫 줄(1번)의 주소**가 내 기본 게이트웨이인지 결과 화면 사진과 함께 보고서에 적습니다.
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day02_subnet_design.md` 의 `## 6교시` 에서 `### 문제 6-3` 아래
+**왜 중요한가** — 패킷이 인터넷까지 어떤 라우터를 차례로 지나는지 봅니다. 관제에서는 몇 번째 줄부터 응답이 끊기는지 보고 장애가 난 구간을 좁힙니다.
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**왜 중요한가**</mark> — 패킷이 인터넷까지 어떤 라우터를 차례로 지나는지 봅니다. 관제에서는 몇 번째 줄부터 응답이 끊기는지 보고 장애가 난 구간을 좁힙니다.
+**순서**
 
-아래를 입력하고 **첫 줄(1번)의 주소**가 내 기본 게이트웨이인지 확인하시오. 다섯 칸까지만 봅니다.
-
-```bash
-tracert -d -h 5 8.8.8.8
-```
-맥북: `traceroute -n -m 5 8.8.8.8`
-
-**사진 남기기** — 결과 화면에서 1번 줄부터 마지막 줄까지 보이게 잘라 `tracert.png` 로 `network_zt` 폴더에 저장하시오. 보고서 `### 문제 6-3` 아래에 사진 줄이 이미 있어서, 파일 이름이 같으면 사진이 보입니다. 자르고 저장하는 법은 10/12 오후 7-2 와 같습니다(`Win + Shift + S`).
+1. **[터미널]** 아래 명령을 입력합니다.
+   ```bash
+   tracert -d -h 5 8.8.8.8
+   ```
+   맥북: `traceroute -n -m 5 8.8.8.8`
+2. **[터미널]** 1번 줄 맨 끝의 주소를 봅니다.
+3. **[터미널]** `Win + Shift + S` 를 눌러 결과 화면에서 1번 줄부터 마지막 줄까지 보이게 자릅니다. 자르고 저장하는 법은 10/12 오후 7-2 와 같습니다.
+4. **[탐색기]** 잘라 낸 사진을 `tracert.png` 라는 이름으로 `network_zt` 폴더에 저장합니다. 보고서 `### 문제 6-3` 아래에 사진 줄이 이미 있어서, 파일 이름이 같으면 사진이 보입니다.
+5. **[보고서]** `day02_subnet_design.md` 의 `## 6교시` › `### 문제 6-3` 아래에 적습니다.
+   - 1번 줄의 주소: 1번 줄 맨 끝의 주소
+   - 기본 게이트웨이와 같았나: `ipconfig` 의 기본 게이트웨이와 견주어 적습니다
 
 | | |
 |---|---|
@@ -643,45 +653,42 @@ tracert -d -h 5 8.8.8.8
 
 ### ✍️ 문제 6-4 · 브로드캐스트는 같은 VLAN 에만 (`vlan_flood.py`)
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — VS Code 에서 `vlan_flood.py` 만들기 → 터미널에서 `python vlan_flood.py` 실행
+**할 일** — 포트별 VLAN 이 정해진 스위치에서, **들어온 포트와 같은 VLAN 의 다른 포트**만 고르는 함수를 완성해 실행하고, 출력을 보고서에 적습니다.
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day02_subnet_design.md` 의 `## 6교시` 에서 `### 문제 6-4` 아래
+**왜 중요한가** — VLAN 을 나누면 감염 PC 의 브로드캐스트가 다른 부서 망까지 퍼지지 않습니다. 부서마다 VLAN 을 나누는 보안상의 이유를 코드로 확인합니다.
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**왜 중요한가**</mark> — VLAN 을 나누면 감염 PC 의 브로드캐스트가 다른 부서 망까지 퍼지지 않습니다. 부서마다 VLAN 을 나누는 보안상의 이유를 코드로 확인합니다.
+**순서**
 
-포트별 VLAN 이 정해진 스위치에서, **들어온 포트와 같은 VLAN 의 다른 포트**만 고르는 함수를 완성하시오.
-
-```python
-# ── 강사용: 정답을 채운 코드입니다 ──
-port_vlan = {1: 10, 2: 10, 3: 20, 4: 20, 5: 10}   # 포트 → VLAN 번호
-
-
-def flood_ports(in_port):                         # in_port 로 들어온 브로드캐스트가 퍼질 포트들
-    vlan = port_vlan[in_port]                     # 들어온 포트의 VLAN
-    out = []
-    for port in port_vlan:                        # 포트를 하나씩
-        # 1. port 의 VLAN 이 vlan 과 같고 port 가 in_port 가 아니면 out 에 더하세요
-        if port_vlan[port] == vlan and port != in_port:   # 같은 VLAN 이고 들어온 포트가 아니면
-            out.append(port)
-    return out
+1. **[VS Code]** 왼쪽 목록에서 `network_zt` 폴더를 오른쪽 클릭 › **New File** › 이름 `vlan_flood.py` 를 입력하고 Enter 를 누릅니다.
+2. **[VS Code]** 아래 코드를 복사해 파일에 붙여 넣습니다. 코드 상자 안을 마우스로 끌어 선택하고 `Ctrl + C` 를 누릅니다.
+   ```python
+   # ── 강사용: 정답을 채운 코드입니다 ──
+   port_vlan = {1: 10, 2: 10, 3: 20, 4: 20, 5: 10}   # 포트 → VLAN 번호
 
 
-print("1번에서:", flood_ports(1))
-print("3번에서:", flood_ports(3))
-```
+   def flood_ports(in_port):                         # in_port 로 들어온 브로드캐스트가 퍼질 포트들
+       vlan = port_vlan[in_port]                     # 들어온 포트의 VLAN
+       out = []
+       for port in port_vlan:                        # 포트를 하나씩
+           # 1. port 의 VLAN 이 vlan 과 같고 port 가 in_port 가 아니면 out 에 더하세요
+           if port_vlan[port] == vlan and port != in_port:   # 같은 VLAN 이고 들어온 포트가 아니면
+               out.append(port)
+       return out
 
-**파일을 만들고 실행합니다**
 
-1. VS Code 왼쪽 목록에서 `network_zt` 폴더를 오른쪽 클릭 › **New File** › 이름 `vlan_flood.py` 를 입력하고 Enter 를 누릅니다.
-2. 위 코드 상자 안을 마우스로 끌어 선택하고 `Ctrl + C` 로 복사해 파일에 붙여 넣은 뒤, 번호 주석 아래를 채웁니다. 저장은 자동입니다.
-3. 터미널에 아래 명령을 입력합니다. 터미널의 줄 위에 `…/network_zt` 가 보여야 합니다. 아니면 먼저 `cd network_zt` 를 입력합니다.
-
-```bash
-python vlan_flood.py
-```
-맥북: `python3 vlan_flood.py`
-
-4. 고친 뒤에는 같은 명령을 다시 입력합니다. 터미널에서 **↑(위 화살표)** 를 누르면 방금 입력한 명령이 다시 나옵니다.
+   print("1번에서:", flood_ports(1))
+   print("3번에서:", flood_ports(3))
+   ```
+3. **[VS Code]** 번호 주석 아래를 채웁니다. 저장은 자동입니다.
+4. **[터미널]** 실행합니다. 터미널의 줄 위에 `…/network_zt` 가 보여야 합니다. 아니면 먼저 `cd network_zt` 를 입력합니다.
+   ```bash
+   python vlan_flood.py
+   ```
+   맥북: `python3 vlan_flood.py`
+5. **[터미널]** 고친 뒤에는 **↑(위 화살표)** 를 눌러 방금 입력한 명령을 다시 실행합니다.
+6. **[보고서]** `day02_subnet_design.md` 의 `## 6교시` › `### 문제 6-4` 아래에 적습니다.
+   - 출력: 터미널에 나온 결과
+   - 막힌 곳: 막혔던 곳과 어떻게 풀었는지 (없으면 「없음」)
 
 | | |
 |---|---|
@@ -713,52 +720,49 @@ python vlan_flood.py
 
 ### ✍️ 문제 6-5 · 라우팅 표에서 길 고르기 (`route_lookup.py`)
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — VS Code 에서 `route_lookup.py` 만들기 → 터미널에서 `python route_lookup.py` 실행
+**할 일** — 목적지마다 **맞는 줄 가운데 CIDR 숫자가 가장 큰 줄**의 다음 홉을 고르는 함수를 완성해 실행하고, 출력을 보고서에 적습니다.
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day02_subnet_design.md` 의 `## 6교시` 에서 `### 문제 6-5` 아래
+**왜 중요한가** — 라우터가 맞는 줄 여러 개 가운데 하나를 고르는 규칙을 직접 구현합니다. 이 규칙을 틀리면 내부 망으로 갈 패킷이 기본 경로를 타고 인터넷 쪽으로 나갑니다.
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**왜 중요한가**</mark> — 라우터가 맞는 줄 여러 개 가운데 하나를 고르는 규칙을 직접 구현합니다. 이 규칙을 틀리면 내부 망으로 갈 패킷이 기본 경로를 타고 인터넷 쪽으로 나갑니다.
+**순서**
 
-목적지마다 **맞는 줄 가운데 CIDR 숫자가 가장 큰 줄**의 다음 홉을 고르시오.
+1. **[VS Code]** 왼쪽 목록에서 `network_zt` 폴더를 오른쪽 클릭 › **New File** › 이름 `route_lookup.py` 를 입력하고 Enter 를 누릅니다.
+2. **[VS Code]** 아래 코드를 복사해 파일에 붙여 넣습니다. 코드 상자 안을 마우스로 끌어 선택하고 `Ctrl + C` 를 누릅니다.
+   ```python
+   # ── 강사용: 정답을 채운 코드입니다 ──
+   import ipaddress
 
-```python
-# ── 강사용: 정답을 채운 코드입니다 ──
-import ipaddress
-
-routes = [                                        # (목적지 망, 다음 홉)
-    ("0.0.0.0/0", "인터넷 게이트웨이"),
-    ("192.168.10.0/26", "직접 연결 G0/0"),        # G0/0 · G0/1 은 라우터의 포트 이름
-    ("192.168.10.64/26", "직접 연결 G0/1"),
-]
-
-
-def lookup(dest):                                 # 목적지 주소의 다음 홉을 리턴한다
-    dest = ipaddress.ip_address(dest)
-    best = None                                   # 지금까지 고른 줄
-    for cidr, hop in routes:                      # 표를 한 줄씩
-        net = ipaddress.ip_network(cidr)
-        # 1. dest 가 net 안에 있고, best 가 None 이거나 net.prefixlen 이 best 의 prefixlen 보다 크면 best 에 (net, hop) 을 담으세요
-        if dest in net and (best is None or net.prefixlen > best[0].prefixlen):   # 맞고 더 좁으면
-            best = (net, hop)
-    return best[1]                                # 고른 줄의 다음 홉
+   routes = [                                        # (목적지 망, 다음 홉)
+       ("0.0.0.0/0", "인터넷 게이트웨이"),
+       ("192.168.10.0/26", "직접 연결 G0/0"),        # G0/0 · G0/1 은 라우터의 포트 이름
+       ("192.168.10.64/26", "직접 연결 G0/1"),
+   ]
 
 
-for d in ["192.168.10.20", "192.168.10.70", "8.8.8.8"]:
-    print(d, "→", lookup(d))
-```
+   def lookup(dest):                                 # 목적지 주소의 다음 홉을 리턴한다
+       dest = ipaddress.ip_address(dest)
+       best = None                                   # 지금까지 고른 줄
+       for cidr, hop in routes:                      # 표를 한 줄씩
+           net = ipaddress.ip_network(cidr)
+           # 1. dest 가 net 안에 있고, best 가 None 이거나 net.prefixlen 이 best 의 prefixlen 보다 크면 best 에 (net, hop) 을 담으세요
+           if dest in net and (best is None or net.prefixlen > best[0].prefixlen):   # 맞고 더 좁으면
+               best = (net, hop)
+       return best[1]                                # 고른 줄의 다음 홉
 
-**파일을 만들고 실행합니다**
 
-1. VS Code 왼쪽 목록에서 `network_zt` 폴더를 오른쪽 클릭 › **New File** › 이름 `route_lookup.py` 를 입력하고 Enter 를 누릅니다.
-2. 위 코드 상자 안을 마우스로 끌어 선택하고 `Ctrl + C` 로 복사해 파일에 붙여 넣은 뒤, 번호 주석 아래를 채웁니다. 저장은 자동입니다.
-3. 터미널에 아래 명령을 입력합니다. 터미널의 줄 위에 `…/network_zt` 가 보여야 합니다. 아니면 먼저 `cd network_zt` 를 입력합니다.
-
-```bash
-python route_lookup.py
-```
-맥북: `python3 route_lookup.py`
-
-4. 고친 뒤에는 같은 명령을 다시 입력합니다. 터미널에서 **↑(위 화살표)** 를 누르면 방금 입력한 명령이 다시 나옵니다.
+   for d in ["192.168.10.20", "192.168.10.70", "8.8.8.8"]:
+       print(d, "→", lookup(d))
+   ```
+3. **[VS Code]** 번호 주석 아래를 채웁니다. 저장은 자동입니다.
+4. **[터미널]** 실행합니다. 터미널의 줄 위에 `…/network_zt` 가 보여야 합니다. 아니면 먼저 `cd network_zt` 를 입력합니다.
+   ```bash
+   python route_lookup.py
+   ```
+   맥북: `python3 route_lookup.py`
+5. **[터미널]** 고친 뒤에는 **↑(위 화살표)** 를 눌러 방금 입력한 명령을 다시 실행합니다.
+6. **[보고서]** `day02_subnet_design.md` 의 `## 6교시` › `### 문제 6-5` 아래에 적습니다.
+   - 출력: 터미널에 나온 결과
+   - 막힌 곳: 막혔던 곳과 어떻게 풀었는지 (없으면 「없음」)
 
 | | |
 |---|---|
@@ -822,29 +826,32 @@ python route_lookup.py
 
 ### ✍️ 문제 7-1 · 직접 실행해 보기
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — VS Code 에서 `warmup.py` 에 따라 치기 → 터미널에서 `python warmup.py` → 결과와 「왜」를 보고서에 적기
+**할 일** — 코드 네 줄을 실행하고, 나온 결과 두 줄과 그 이유를 보고서에 적습니다.
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day02_subnet_design.md` 의 `## 7교시` 에서 `### 문제 7-1` 아래
-
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**왜 중요한가**</mark> — 게이트웨이 주소와 브로드캐스트 주소를 코드로 구하는 방법입니다. 7-2 에서 부서마다 이 값을 구해 설계서 표를 만듭니다.
+**왜 중요한가** — 게이트웨이 주소와 브로드캐스트 주소를 코드로 구하는 방법입니다. 7-2 에서 부서마다 이 값을 구해 설계서 표를 만듭니다.
 
 **이 문제에 나오는 말**
 
 - **설계서** — 주소 · VLAN · 게이트웨이 · 경로를 **장비에 바로 넣을 수 있게** 적은 문서
 
-아래 코드를 `warmup.py` 에 **따라 쳐서** 실행하고, 결과와 「왜 이렇게 나왔는지」 한 줄을 적으시오. `warmup.py` 는 처음 한 번만 `network_zt` 폴더에 New File 로 만들고, 교시마다 내용을 지우고 다시 씁니다.
+**순서**
 
-```python
-import ipaddress
-net = ipaddress.ip_network("10.20.0.64/27")
-print(net.network_address + 1)
-print(net.broadcast_address)
-```
-
-```bash
-python warmup.py
-```
-맥북: `python3 warmup.py`
+1. **[VS Code]** `network_zt` 폴더의 `warmup.py` 를 엽니다. 없으면 New File 로 만들고, 안에 있던 내용은 지웁니다.
+2. **[VS Code]** 아래 코드를 그대로 따라 칩니다.
+   ```python
+   import ipaddress                                  # IP 계산 도구를 불러온다
+   net = ipaddress.ip_network("10.20.0.64/27")       # 운영팀 망 /27
+   print(net.network_address + 1)                    # 네트워크 주소 바로 다음 주소는?
+   print(net.broadcast_address)                      # 이 망의 브로드캐스트 주소는?
+   ```
+3. **[터미널]** 실행합니다.
+   ```bash
+   python warmup.py
+   ```
+   맥북: `python3 warmup.py`
+4. **[보고서]** `day02_subnet_design.md` 의 `## 7교시` › `### 문제 7-1` 아래에 적습니다.
+   - 결과: 출력된 두 줄
+   - 왜 그렇게 나왔나: **첫째 줄 주소를 7.1 표에서 누가 쓰는지와 둘째 줄의 마지막 숫자가 그 값인 이유** — 7.1 표와 검색으로 공부한 것을 적습니다
 
 #### <mark style="display:block; background:#fff59d; color:#1a1a1a; padding:4px 12px; border-radius:4px; text-decoration:underline">정답</mark>
 
@@ -862,48 +869,46 @@ python warmup.py
 
 ### ✍️ 문제 7-2 · VLAN · 게이트웨이 표 만들기 (`vlan_plan.py`)
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — VS Code 에서 `vlan_plan.py` 만들기 → 터미널에서 `python vlan_plan.py` 실행 → 보고서에 적기
+**할 일** — 7.1 의 세 부서에 대해 **VLAN · CIDR · 게이트웨이 · 장비에 줄 범위**를 마크다운 표로 출력해, 보고서 맨 아래 「VLAN · 게이트웨이 배정」에 붙입니다.
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day02_subnet_design.md` 의 `## 7교시` 에서 `### 문제 7-2` 아래
+**왜 중요한가** — VLAN · 게이트웨이 · 주소 범위를 한 표로 정리해야 장비를 설정하는 사람이 그대로 옮겨 넣을 수 있습니다. 이 출력이 설계서의 「VLAN · 게이트웨이 배정」 칸이 됩니다.
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**왜 중요한가**</mark> — VLAN · 게이트웨이 · 주소 범위를 한 표로 정리해야 장비를 설정하는 사람이 그대로 옮겨 넣을 수 있습니다. 이 출력이 설계서의 「VLAN · 게이트웨이 배정」 칸이 됩니다.
+**순서**
 
-7.1 의 세 부서에 대해 **VLAN · CIDR · 게이트웨이 · 장비에 줄 범위**를 마크다운 표로 출력하시오.
+1. **[VS Code]** 왼쪽 목록에서 `network_zt` 폴더를 오른쪽 클릭 › **New File** › 이름 `vlan_plan.py` 를 입력하고 Enter 를 누릅니다.
+2. **[VS Code]** 아래 코드를 복사해 파일에 붙여 넣습니다. 코드 상자 안을 마우스로 끌어 선택하고 `Ctrl + C` 를 누릅니다.
+   ```python
+   # ── 강사용: 정답을 채운 코드입니다 ──
+   import ipaddress
 
-```python
-# ── 강사용: 정답을 채운 코드입니다 ──
-import ipaddress
+   plan = [                                          # (부서, CIDR, VLAN)
+       ("개발팀", "10.20.0.0/26", 10),
+       ("운영팀", "10.20.0.64/27", 20),
+       ("보안팀", "10.20.0.96/28", 30),
+   ]
+   print("| 부서 | VLAN | CIDR | 게이트웨이 | 장비에 줄 범위 |")
+   print("|---|---|---|---|---|")
 
-plan = [                                          # (부서, CIDR, VLAN)
-    ("개발팀", "10.20.0.0/26", 10),
-    ("운영팀", "10.20.0.64/27", 20),
-    ("보안팀", "10.20.0.96/28", 30),
-]
-print("| 부서 | VLAN | CIDR | 게이트웨이 | 장비에 줄 범위 |")
-print("|---|---|---|---|---|")
-
-for name, cidr, vlan in plan:                     # 부서를 하나씩
-    net = ipaddress.ip_network(cidr)              # 그 부서의 망
-    # 1. gateway 에 net.network_address + 1 을 담으세요
-    gateway = net.network_address + 1             # 첫 호스트를 게이트웨이로
-    # 2. first 에 gateway + 1, last 에 net.broadcast_address - 1 을 담으세요
-    first = gateway + 1                           # PC 에 줄 첫 주소
-    last = net.broadcast_address - 1              # PC 에 줄 마지막 주소
-    print(f"| {name} | {vlan} | {cidr} | {gateway} | {first} ~ {last} |")
-```
-
-**파일을 만들고 실행합니다**
-
-1. VS Code 왼쪽 목록에서 `network_zt` 폴더를 오른쪽 클릭 › **New File** › 이름 `vlan_plan.py` 를 입력하고 Enter 를 누릅니다.
-2. 위 코드 상자 안을 마우스로 끌어 선택하고 `Ctrl + C` 로 복사해 파일에 붙여 넣은 뒤, 번호 주석 아래를 채웁니다. 저장은 자동입니다.
-3. 터미널에 아래 명령을 입력합니다. 터미널의 줄 위에 `…/network_zt` 가 보여야 합니다. 아니면 먼저 `cd network_zt` 를 입력합니다.
-
-```bash
-python vlan_plan.py
-```
-맥북: `python3 vlan_plan.py`
-
-4. 고친 뒤에는 같은 명령을 다시 입력합니다. 터미널에서 **↑(위 화살표)** 를 누르면 방금 입력한 명령이 다시 나옵니다.
+   for name, cidr, vlan in plan:                     # 부서를 하나씩
+       net = ipaddress.ip_network(cidr)              # 그 부서의 망
+       # 1. gateway 에 net.network_address + 1 을 담으세요
+       gateway = net.network_address + 1             # 첫 호스트를 게이트웨이로
+       # 2. first 에 gateway + 1, last 에 net.broadcast_address - 1 을 담으세요
+       first = gateway + 1                           # PC 에 줄 첫 주소
+       last = net.broadcast_address - 1              # PC 에 줄 마지막 주소
+       print(f"| {name} | {vlan} | {cidr} | {gateway} | {first} ~ {last} |")
+   ```
+3. **[VS Code]** 번호 주석 아래를 채웁니다. 저장은 자동입니다.
+4. **[터미널]** 실행합니다. 터미널의 줄 위에 `…/network_zt` 가 보여야 합니다. 아니면 먼저 `cd network_zt` 를 입력합니다.
+   ```bash
+   python vlan_plan.py
+   ```
+   맥북: `python3 vlan_plan.py`
+5. **[터미널]** 고친 뒤에는 **↑(위 화살표)** 를 눌러 방금 입력한 명령을 다시 실행합니다.
+6. **[터미널]** 출력된 표 다섯 줄을 마우스로 끌어 선택하고 `Ctrl + C` 로 복사합니다.
+7. **[보고서]** `## 최종 설계서 — 7교시에 완성합니다` › `### VLAN · 게이트웨이 배정` 아래에 붙여 넣습니다.
+8. **[보고서]** `day02_subnet_design.md` 의 `## 7교시` › `### 문제 7-2` 아래에 적습니다.
+   - 맨 아래 「VLAN · 게이트웨이 배정」에 표를 붙였나: 붙였으면 「예」
 
 | | |
 |---|---|
@@ -951,57 +956,54 @@ for n in [3, 8, 12, 20]:
 
 ### ✍️ 문제 7-3 · 서버망 10대를 다음 빈 자리에 (`next_block.py`)
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — VS Code 에서 `next_block.py` 만들기 → 터미널에서 `python next_block.py` 실행
+**할 일** — 서버 10대가 들어갈 `/28` 을 **보안팀 바로 다음 빈 경계**에 놓고, 네 부서가 **겹치지 않는지** 검증하는 코드를 완성해 실행하고, 결과를 보고서에 적습니다.
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day02_subnet_design.md` 의 `## 7교시` 에서 `### 문제 7-3` 아래
+**왜 중요한가** — 새 부서를 더할 때 빈 경계를 계산으로 찾고 겹침을 다시 검증해야 기존 부서의 주소와 부딪히지 않습니다.
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**왜 중요한가**</mark> — 새 부서를 더할 때 빈 경계를 계산으로 찾고 겹침을 다시 검증해야 기존 부서의 주소와 부딪히지 않습니다.
+**순서**
 
-서버 10대가 들어갈 `/28` 을 **보안팀 바로 다음 빈 경계**에 놓고, 네 부서가 **겹치지 않는지** 검증하시오.
+1. **[VS Code]** 왼쪽 목록에서 `network_zt` 폴더를 오른쪽 클릭 › **New File** › 이름 `next_block.py` 를 입력하고 Enter 를 누릅니다.
+2. **[VS Code]** 아래 코드를 복사해 파일에 붙여 넣습니다. 코드 상자 안을 마우스로 끌어 선택하고 `Ctrl + C` 를 누릅니다.
+   ```python
+   # ── 강사용: 정답을 채운 코드입니다 ──
+   import ipaddress
 
-```python
-# ── 강사용: 정답을 채운 코드입니다 ──
-import ipaddress
+   used = [                                          # 이미 쓰는 세 부서의 망
+       ipaddress.ip_network("10.20.0.0/26"),
+       ipaddress.ip_network("10.20.0.64/27"),
+       ipaddress.ip_network("10.20.0.96/28"),
+   ]
+   parent = ipaddress.ip_network("10.20.0.0/24")
 
-used = [                                          # 이미 쓰는 세 부서의 망
-    ipaddress.ip_network("10.20.0.0/26"),
-    ipaddress.ip_network("10.20.0.64/27"),
-    ipaddress.ip_network("10.20.0.96/28"),
-]
-parent = ipaddress.ip_network("10.20.0.0/24")
+   server = None
+   for candidate in parent.subnets(new_prefix=28):   # /28 후보를 앞에서부터
+       # 1. candidate 가 used 의 어느 것과도 겹치지 않으면 server 에 담고 반복을 끝내세요(break)
+       hits = 0                                      # 겹치는 부서 수
+       for net in used:
+           if candidate.overlaps(net):
+               hits = hits + 1
+       if hits == 0:                                 # 아무와도 안 겹치면
+           server = candidate
+           break                                     # 처음 빈 자리를 찾았으니 끝
 
-server = None
-for candidate in parent.subnets(new_prefix=28):   # /28 후보를 앞에서부터
-    # 1. candidate 가 used 의 어느 것과도 겹치지 않으면 server 에 담고 반복을 끝내세요(break)
-    hits = 0                                      # 겹치는 부서 수
-    for net in used:
-        if candidate.overlaps(net):
-            hits = hits + 1
-    if hits == 0:                                 # 아무와도 안 겹치면
-        server = candidate
-        break                                     # 처음 빈 자리를 찾았으니 끝
-
-print("서버망:", server)
-overlap = False
-for net in used:                                  # 기존 부서와 하나씩 비교
-    # 2. server 가 net 과 겹치면 overlap 을 True 로 바꾸세요
-    if server.overlaps(net):
-        overlap = True
-print("겹침 있음:", overlap)
-```
-
-**파일을 만들고 실행합니다**
-
-1. VS Code 왼쪽 목록에서 `network_zt` 폴더를 오른쪽 클릭 › **New File** › 이름 `next_block.py` 를 입력하고 Enter 를 누릅니다.
-2. 위 코드 상자 안을 마우스로 끌어 선택하고 `Ctrl + C` 로 복사해 파일에 붙여 넣은 뒤, 번호 주석 아래를 채웁니다. 저장은 자동입니다.
-3. 터미널에 아래 명령을 입력합니다. 터미널의 줄 위에 `…/network_zt` 가 보여야 합니다. 아니면 먼저 `cd network_zt` 를 입력합니다.
-
-```bash
-python next_block.py
-```
-맥북: `python3 next_block.py`
-
-4. 고친 뒤에는 같은 명령을 다시 입력합니다. 터미널에서 **↑(위 화살표)** 를 누르면 방금 입력한 명령이 다시 나옵니다.
+   print("서버망:", server)
+   overlap = False
+   for net in used:                                  # 기존 부서와 하나씩 비교
+       # 2. server 가 net 과 겹치면 overlap 을 True 로 바꾸세요
+       if server.overlaps(net):
+           overlap = True
+   print("겹침 있음:", overlap)
+   ```
+3. **[VS Code]** 번호 주석 아래를 채웁니다. 저장은 자동입니다.
+4. **[터미널]** 실행합니다. 터미널의 줄 위에 `…/network_zt` 가 보여야 합니다. 아니면 먼저 `cd network_zt` 를 입력합니다.
+   ```bash
+   python next_block.py
+   ```
+   맥북: `python3 next_block.py`
+5. **[터미널]** 고친 뒤에는 **↑(위 화살표)** 를 눌러 방금 입력한 명령을 다시 실행합니다.
+6. **[보고서]** `day02_subnet_design.md` 의 `## 7교시` › `### 문제 7-3` 아래에 적습니다.
+   - 서버망 CIDR: 출력의 `서버망:` 값
+   - 겹침: 출력의 `겹침 있음:` 값
 
 | | |
 |---|---|
@@ -1033,23 +1035,27 @@ python next_block.py
 
 ### ✍️ 문제 7-4 · 라우팅 경로 적기
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — 명령 없이 생각해서 → 보고서에 적기
+**할 일** — 7.1 그림을 보고 아래 세 통신이 **어디를 거쳐 가는지** 보고서 맨 아래 「망 구성도와 라우팅 경로」의 ① ② ③ 줄에 적습니다. 명령은 입력하지 않습니다.
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day02_subnet_design.md` 의 `## 7교시` 에서 `### 문제 7-4` 아래
-
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**왜 중요한가**</mark> — 강의계획서의 평가 기준인 「라우팅 경로를 올바르게 식별했는가」를 채우는 문제입니다. 관제에서도 통신이 어느 장비를 지나는지 알아야 어느 장비의 로그를 볼지 정합니다.
+**왜 중요한가** — 강의계획서의 평가 기준인 「라우팅 경로를 올바르게 식별했는가」를 채우는 문제입니다. 관제에서도 통신이 어느 장비를 지나는지 알아야 어느 장비의 로그를 볼지 정합니다.
 
 **이 문제에 나오는 말**
 
 - **망 구성도** — 라우터 · 스위치 · 부서가 어떻게 이어지는지 그린 **그림**
 
-7.1 그림을 보고 아래 세 통신이 **어디를 거쳐 가는지** 보고서 맨 아래 「망 구성도와 라우팅 경로」의 ① ② ③ 줄에 적으시오. 명령은 입력하지 않습니다.
+**순서**
 
-| # | 통신 |
-|---|---|
-| ① | 개발팀 PC `10.20.0.10` → 개발팀 PC `10.20.0.20` |
-| ② | 개발팀 PC `10.20.0.10` → 보안팀 PC `10.20.0.100` |
-| ③ | 운영팀 PC `10.20.0.70` → 인터넷 `8.8.8.8` |
+1. **[이 문서]** 아래 세 통신의 출발지와 목적지가 7.1 표에서 어느 부서 · VLAN 인지 찾습니다.
+
+   | # | 통신 |
+   |---|---|
+   | ① | 개발팀 PC `10.20.0.10` → 개발팀 PC `10.20.0.20` |
+   | ② | 개발팀 PC `10.20.0.10` → 보안팀 PC `10.20.0.100` |
+   | ③ | 운영팀 PC `10.20.0.70` → 인터넷 `8.8.8.8` |
+2. **[이 문서]** 7.1 그림에서 통신마다 지나는 장비를 차례로 따라갑니다.
+3. **[보고서]** `## 최종 설계서 — 7교시에 완성합니다` › `### 망 구성도와 라우팅 경로` 의 ① ② ③ 줄에 지나는 장비를 차례로 적습니다.
+4. **[보고서]** `day02_subnet_design.md` 의 `## 7교시` › `### 문제 7-4` 아래에 적습니다.
+   - 맨 아래 「망 구성도와 라우팅 경로」의 ① ② ③ 을 채웠나: 채웠으면 「예」
 
 | | |
 |---|---|
@@ -1083,13 +1089,17 @@ python next_block.py
 
 ### ✍️ 문제 7-5 · 설계서 완성하고 올리기
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — 보고서 파일 마무리 → 깃허브에 올리기(웹 화면 또는 `git push`)
+**할 일** — `day02_subnet_design.md` 의 **빈 칸**(5 · 6 · 7교시와 맨 아래 「최종 설계서」)을 마저 채우고 깃허브에 올립니다.
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day02_subnet_design.md` 의 `## 7교시` 에서 `### 문제 7-5` 아래
+**왜 중요한가** — 빈 칸 없는 설계서 한 파일이 오늘의 평가 산출물입니다. 깃허브에 올려 두어야 강사가 확인하고, 뒤 과목에서 이 주소표를 다시 열어 볼 수 있습니다.
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**왜 중요한가**</mark> — 빈 칸 없는 설계서 한 파일이 오늘의 평가 산출물입니다. 깃허브에 올려 두어야 강사가 확인하고, 뒤 과목에서 이 주소표를 다시 열어 볼 수 있습니다.
+**순서**
 
-`day02_subnet_design.md` 의 **빈 칸**(5 · 6 · 7교시와 맨 아래 「최종 설계서」)을 마저 채우고 깃허브에 올리시오. 「최종 설계서」의 칸 — 부서 주소 설계표 · VLAN · 게이트웨이 배정 · 망 구성도와 라우팅 경로 · 검증 — 은 오전에 붙여 넣은 틀에 이미 있습니다.
+1. **[보고서]** 5 · 6 · 7교시 칸에 빈 줄이 없는지 보고, 빈 줄은 그 문제로 돌아가 채웁니다.
+2. **[보고서]** `## 최종 설계서 — 7교시에 완성합니다` 의 네 칸 — 부서 주소 설계표 · VLAN · 게이트웨이 배정 · 망 구성도와 라우팅 경로 · 검증 — 을 채웁니다. 칸은 오전에 붙여 넣은 틀에 이미 있습니다.
+3. **[보고서]** `day02_subnet_design.md` 의 `## 7교시` › `### 문제 7-5` 아래에 적습니다.
+   - 깃허브에 올렸나: 「예」 라고 적어 둡니다 — 다음 단계에서 올립니다
+4. **[브라우저]** 깃허브 웹 화면으로 올립니다 — 어제와 같습니다. `git push` 로 올려도 됩니다.
 
 | | |
 |---|---|
@@ -1120,7 +1130,7 @@ git push
 
 **관제에서는** — 설계서가 깃허브에 남아 있으면 사고가 났을 때 원래 설계와 실제 설정을 맞대어 봅니다.
 
-**강사 메모** — `commit` 은 내 PC 기록, `push` 는 깃허브로 보내기라는 차이를 다시 짚습니다. 「`git status` 에 빨간 파일이 나오면 무엇인가요?」라는 질문에는 「아직 `git add` 하지 않은 파일이고, `git add` 뒤 다시 `git status` 를 입력하면 초록으로 바뀝니다」라고 답합니다. 문제의 「어디서」 줄대로 웹 화면으로 올린 학생도 정답으로 보고, 마지막에는 학생 화면에서 깃허브 페이지를 새로 고쳐 「최종 설계서」까지 빈 칸 없이 보이는지 확인합니다.
+**강사 메모** — `commit` 은 내 PC 기록, `push` 는 깃허브로 보내기라는 차이를 다시 짚습니다. 「`git status` 에 빨간 파일이 나오면 무엇인가요?」라는 질문에는 「아직 `git add` 하지 않은 파일이고, `git add` 뒤 다시 `git status` 를 입력하면 초록으로 바뀝니다」라고 답합니다. 문제의 **[브라우저]** 단계대로 웹 화면으로 올린 학생도 정답으로 보고, 마지막에는 학생 화면에서 깃허브 페이지를 새로 고쳐 「최종 설계서」까지 빈 칸 없이 보이는지 확인합니다.
 
 ---
 
