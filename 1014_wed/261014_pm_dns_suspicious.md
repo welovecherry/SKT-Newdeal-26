@@ -188,7 +188,7 @@ python label.py
 TLD 앞 조각의 **숫자 개수**와 **모음 비율**(모음 수 ÷ 길이)을 계산하는 함수를 완성하시오.
 
 ```python
-def features(name):                               # 이름 하나의 특징을 사전으로 돌려준다
+def features(name):                               # 이름 하나의 특징을 사전으로 리턴한다
     label = name.split(".")[-2]                   # TLD 앞 조각
     digits = 0
     vowels = 0
@@ -481,13 +481,13 @@ print(score, score >= 3)
 
 <mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — VS Code 에서 `dga_score.py` 만들기 → 터미널에서 `python dga_score.py` 실행
 
-6.1 의 규칙대로 점수와 **걸린 규칙 이름**을 돌려주는 함수를 완성하시오. 비어 있는 두 규칙만 채웁니다.
+6.1 의 규칙대로 점수와 **걸린 규칙 이름**을 리턴하는 함수를 완성하시오. 비어 있는 두 규칙만 채웁니다.
 
 ```python
 CHEAP_TLD = ["top", "xyz", "tk"]                  # 값싼 TLD
 
 
-def score(name, rcode):                           # 이름과 답을 받아 점수 · 이유를 돌려준다
+def score(name, rcode):                           # 이름과 답을 받아 점수 · 이유를 리턴한다
     parts = name.split(".")
     label = parts[-2]                             # TLD 앞 조각
     tld = parts[-1]                               # TLD
@@ -1035,7 +1035,7 @@ for name in names:                                # 이름을 하나씩
 ### 정답 5-3
 
 ```python
-def features(name):                               # 이름 하나의 특징을 사전으로 돌려준다
+def features(name):                               # 이름 하나의 특징을 사전으로 리턴한다
     label = name.split(".")[-2]                   # TLD 앞 조각
     digits = 0
     vowels = 0
@@ -1166,7 +1166,7 @@ for name in names:                                # 이름을 하나씩
 CHEAP_TLD = ["top", "xyz", "tk"]                  # 값싼 TLD
 
 
-def score(name, rcode):                           # 이름과 답을 받아 점수 · 이유를 돌려준다
+def score(name, rcode):                           # 이름과 답을 받아 점수 · 이유를 리턴한다
     parts = name.split(".")
     label = parts[-2]                             # TLD 앞 조각
     tld = parts[-1]                               # TLD
@@ -1308,7 +1308,7 @@ print("맞힘", hit, "· 오탐", false_alarm, "· 미탐", missed)
 ```python
 CHEAP_TLD = ["top", "xyz", "tk"]                  # 값싼 TLD
 
-def score(name, rcode):                           # 이름과 답을 받아 점수 · 이유를 돌려준다
+def score(name, rcode):                           # 이름과 답을 받아 점수 · 이유를 리턴한다
     parts = name.split(".")
     label = parts[-2]                             # TLD 앞 조각
     if label.startswith("xn--"):                  # 한글 도메인을 영문으로 바꾼 모양이면

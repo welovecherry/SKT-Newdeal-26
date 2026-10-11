@@ -181,7 +181,7 @@ def to_bits(ip):                                  # IP 주소를 2진수 32칸 �
     for part in ip.split("."):                    # 점으로 나눈 마디를 하나씩
         # 1. bits 뒤에 format(int(part), "08b") 를 이어 붙이세요
 
-    return bits                                   # 32칸 글자를 돌려준다
+    return bits                                   # 32칸 글자를 리턴한다
 
 
 # ── 미리 채워 둔 줄입니다. 고치지 않습니다 ──
@@ -242,7 +242,7 @@ print(second == 10 or second == 20)
 ⚠ `first == 172` 만 보면 `172.32.5.6` 까지 사설로 잘못 판정합니다. 둘째 마디도 봐야 합니다.
 
 ```python
-def is_private(ip):                               # 사설 IP 면 True 를 돌려주는 함수
+def is_private(ip):                               # 사설 IP 면 True 를 리턴하는 함수
     parts = ip.split(".")                         # 점으로 나눈 마디 네 개
     first = int(parts[0])                         # 첫 마디(숫자)
     second = int(parts[1])                        # 둘째 마디(숫자)
@@ -812,10 +812,10 @@ for sub in parent.subnets(new_prefix=26):
 
 <mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — VS Code 에서 `smallest_prefix.py` 만들기 → 터미널에서 `python smallest_prefix.py` 실행
 
-장비 수를 받아 **그만큼 담는 가장 작은 망의 CIDR 숫자**를 돌려주는 함수를 완성하시오.
+장비 수를 받아 **그만큼 담는 가장 작은 망의 CIDR 숫자**를 리턴하는 함수를 완성하시오.
 
 ```python
-def smallest_prefix(required):                    # 장비 수를 받아 CIDR 숫자를 돌려준다
+def smallest_prefix(required):                    # 장비 수를 받아 CIDR 숫자를 리턴한다
     for host_bits in range(2, 33):                # 호스트 칸을 2칸부터 하나씩 늘려 본다
         # 1. 2 ** host_bits - 2 가 required 이상이면 32 - host_bits 를 return 하세요
 
@@ -1081,7 +1081,7 @@ def to_bits(ip):                                  # IP 주소를 2진수 32칸 �
     for part in ip.split("."):                    # 점으로 나눈 마디를 하나씩
         # 1. bits 뒤에 format(int(part), "08b") 를 이어 붙이세요
         bits = bits + format(int(part), "08b")    # 마디 하나를 여덟 칸으로 바꿔 붙인다
-    return bits                                   # 32칸 글자를 돌려준다
+    return bits                                   # 32칸 글자를 리턴한다
 
 
 ip = "192.168.10.25"                              # 내 IPv4 주소로 바꿔 봅니다
@@ -1105,7 +1105,7 @@ print("길이:", len(to_bits(ip)))
 ### 정답 2-3
 
 ```python
-def is_private(ip):                               # 사설 IP 면 True 를 돌려주는 함수
+def is_private(ip):                               # 사설 IP 면 True 를 리턴하는 함수
     parts = ip.split(".")                         # 점으로 나눈 마디 네 개
     first = int(parts[0])                         # 첫 마디(숫자)
     second = int(parts[1])                        # 둘째 마디(숫자)
@@ -1357,7 +1357,7 @@ print(f"게이트웨이 {gateway} 이 내 망 안에 있나: {inside}")
 ### 정답 4-2
 
 ```python
-def smallest_prefix(required):                    # 장비 수를 받아 CIDR 숫자를 돌려준다
+def smallest_prefix(required):                    # 장비 수를 받아 CIDR 숫자를 리턴한다
     for host_bits in range(2, 33):                # 호스트 칸을 2칸부터 하나씩 늘려 본다
         # 1. 2 ** host_bits - 2 가 required 이상이면 32 - host_bits 를 return 하세요
         if 2 ** host_bits - 2 >= required:        # 이 칸 수로 충분하면
@@ -1372,7 +1372,7 @@ for name, count in [("보안팀", 10), ("운영팀", 25), ("개발팀", 50)]:
 
 **결과** — `보안팀 10 /28` · `운영팀 25 /27` · `개발팀 50 /26`
 
-**왜** — 호스트 칸을 늘려 가다 `2 ** host_bits - 2` 가 처음으로 장비 수 이상이 되는 칸(10 → 4칸 14 · 25 → 5칸 30 · 50 → 6칸 62)에서 `32 - host_bits` 를 돌려줍니다.
+**왜** — 호스트 칸을 늘려 가다 `2 ** host_bits - 2` 가 처음으로 장비 수 이상이 되는 칸(10 → 4칸 14 · 25 → 5칸 30 · 50 → 6칸 62)에서 `32 - host_bits` 를 리턴합니다.
 
 **자주 틀리는 곳** — `- 2` 를 빼먹어 주소 수로 비교하는 것입니다. 그러면 장비 63 · 64 대도 `/26` 이 나오는데, 실제로는 62 대까지만 들어갑니다.
 

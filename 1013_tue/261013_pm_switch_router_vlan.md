@@ -562,7 +562,7 @@ routes = [                                        # (목적지 망, 다음 홉)
 # ── 여기까지 ──
 
 
-def lookup(dest):                                 # 목적지 주소의 다음 홉을 돌려준다
+def lookup(dest):                                 # 목적지 주소의 다음 홉을 리턴한다
     dest = ipaddress.ip_address(dest)
     best = None                                   # 지금까지 고른 줄
     for cidr, hop in routes:                      # 표를 한 줄씩
@@ -1190,7 +1190,7 @@ routes = [                                        # (목적지 망, 다음 홉)
 ]
 
 
-def lookup(dest):                                 # 목적지 주소의 다음 홉을 돌려준다
+def lookup(dest):                                 # 목적지 주소의 다음 홉을 리턴한다
     dest = ipaddress.ip_address(dest)
     best = None                                   # 지금까지 고른 줄
     for cidr, hop in routes:                      # 표를 한 줄씩

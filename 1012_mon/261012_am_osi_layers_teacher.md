@@ -939,7 +939,7 @@ arp -a
 
 ```python
 # ── 강사용: 정답을 채운 코드입니다 ──
-def kind(address):                                # 주소의 모양을 보고 종류를 돌려주는 함수
+def kind(address):                                # 주소의 모양을 보고 종류를 리턴하는 함수
     # 1. address 를 "." 로 나눈 조각이 4개이면 "IP" 를 return 하세요
     if len(address.split(".")) == 4:              # 점으로 나눠 네 조각이면
         return "IP"
@@ -1304,7 +1304,7 @@ python port_name.py
 
 <mark style="background:#fff59d; color:#1a1a1a; text-decoration:underline; padding:0 4px; border-radius:3px">**결과** — `443 → HTTPS` · `445 → SMB` · `3389 → RDP` · `51234 → 모름` 네 줄입니다.</mark>
 
-**왜** — `PORTS.get(port, "모름")` 은 사전에 키가 있으면 그 이름을, 없으면 `"모름"` 을 돌려줍니다. `51234` 는 사전에 없는 임시 포트입니다.
+**왜** — `PORTS.get(port, "모름")` 은 사전에 키가 있으면 그 이름을, 없으면 `"모름"` 을 리턴합니다. `51234` 는 사전에 없는 임시 포트입니다.
 
 **자주 틀리는 곳** — `PORTS[port]` 로 꺼내면 `51234` 에서 `KeyError` 가 나고 멈춥니다.
 
