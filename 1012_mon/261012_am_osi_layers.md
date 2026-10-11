@@ -76,12 +76,11 @@ cd network_zt
 
 ## 2교시 · ping
 
-### 문제 2-1 · 무엇이 보일까요
+### 문제 2-1 · 결과 화면 읽기
 
-- 예상 — 몇 번 보내서 몇 번 돌아왔나: 
-- 예상 — 손실(%): 
-- 예상 — 평균 왕복 시간(ms): 
-- 답 보기와 맞았나: 
+- 몇 번 보내서 몇 번 돌아왔나: 
+- 손실(%): 
+- 평균 왕복 시간(ms): 
 
 ### 문제 2-2 · 구글 DNS 서버에 `ping` 보내기
 
@@ -120,11 +119,11 @@ cd network_zt
 
 ## 3교시 · IP 와 MAC
 
-### 문제 3-1 · 무엇이 보일까요
+### 문제 3-1 · 결과 화면 읽기
 
-- 예상 — MAC 은 몇째 줄: 
-- 예상 — IP 는 몇째 줄: 
-- 예상 — 게이트웨이는 몇째 줄: 
+- MAC 은 몇째 줄: 
+- IP 는 몇째 줄: 
+- 게이트웨이는 몇째 줄: 
 
 ### 문제 3-2 · 내 IP 주소와 게이트웨이 찾기
 
@@ -157,10 +156,10 @@ cd network_zt
 
 ## 4교시 · 포트
 
-### 문제 4-1 · 무엇이 보일까요
+### 문제 4-1 · 직접 실행해 보기
 
-- 예상: 
-- 답 보기와 맞았나: 
+- 결과: 
+- 왜 그렇게 나왔나: 
 
 ### 문제 4-2 · 지금의 연결 보기 — `netstat -n`
 
@@ -198,10 +197,10 @@ cd network_zt
 
 ## 5교시 · TCP
 
-### 문제 5-1 · 무엇이 보일까요
+### 문제 5-1 · 직접 실행해 보기
 
-- 예상: 
-- 답 보기와 맞았나: 
+- 결과: 
+- 왜 그렇게 나왔나: 
 
 ### 문제 5-2 · TCP 일까 UDP 일까
 
@@ -237,10 +236,9 @@ cd network_zt
 
 ## 6교시 · Wireshark
 
-### 문제 6-1 · 무엇이 보일까요
+### 문제 6-1 · 필터 칸 색 보기
 
-- 예상 색 — tcp / tpc / tcp.port == 443: 
-- 답 보기와 맞았나: 
+- 칸 색 — tcp / tpc / tcp.port == 443: 
 
 ### 문제 6-2 · Wireshark 실행하기
 
@@ -276,10 +274,10 @@ cd network_zt
 
 ## 7교시 · 패킷 분석
 
-### 문제 7-1 · 무엇이 보일까요
+### 문제 7-1 · 직접 실행해 보기
 
-- 예상: 
-- 답 보기와 맞았나: 
+- 결과: 
+- 왜 그렇게 나왔나: 
 
 ### 문제 7-2 · 내 HTTP 연결 하나만 잡기
 
@@ -407,13 +405,13 @@ ping -t 8.8.8.8       # 멈출 때까지 계속 보낸다 — Ctrl + C 로 멈�
 
 ---
 
-### ✍️ 문제 2-1 · 무엇이 보일까요
+### ✍️ 문제 2-1 · 결과 화면 읽기
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — 실행하지 않고 머리로 예상합니다 → 바로 아래 「답 보기」를 펼쳐 맞춰 봅니다
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — 바로 위 표를 보며 아래 예시 화면에서 찾기 → 보고서에 적기
 
 <mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day01_packet_analysis.md` 의 `## 2교시` 에서 `### 문제 2-1` 아래
 
-아래 결과를 보고 **세 가지**를 적어 보세요. 명령은 실행하지 않습니다.
+아래 예시 화면에서 **세 가지**를 찾아 적으시오. 바로 위 2.1 표를 옆에 두고 읽습니다 — 내 PC 에서는 바로 다음 2-2 에서 직접 칩니다.
 
 ```
 1.1.1.1에 대한 Ping 통계:
@@ -428,7 +426,7 @@ ping -t 8.8.8.8       # 멈출 때까지 계속 보낸다 — Ctrl + C 로 멈�
 
 막히면 바로 위 `2.1` 표를 다시 봅니다.
 
-<details><summary>답 보기 — 내 답을 먼저 정한 뒤에 엽니다</summary>
+<details><summary>답 보기 — 다 적은 뒤에 엽니다</summary>
 
 **결과** — 4번 보내서 3번 돌아왔습니다 · 25% 손실 · 평균 47ms.
 
@@ -629,13 +627,13 @@ python ping_check.py
 
 ---
 
-### ✍️ 문제 3-1 · 무엇이 보일까요
+### ✍️ 문제 3-1 · 결과 화면 읽기
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — 실행하지 않고 머리로 예상합니다 → 바로 아래 「답 보기」를 펼쳐 맞춰 봅니다
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — 바로 위 표를 보며 아래 예시 화면에서 찾기 → 보고서에 적기
 
 <mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day01_packet_analysis.md` 의 `## 3교시` 에서 `### 문제 3-1` 아래
 
-아래는 `ipconfig //all` 결과의 일부입니다. ① MAC 주소 ② IP 주소 ③ 기본 게이트웨이가 각각 몇째 줄인지 적어 보세요.
+아래는 `ipconfig //all` 결과의 일부입니다. ① MAC 주소 ② IP 주소 ③ 기본 게이트웨이가 각각 몇째 줄인지 찾아 적으시오. 바로 위 개념 상자의 줄 이름을 보며 읽습니다 — 내 PC 에서는 3-2 · 3-3 에서 직접 칩니다.
 
 ```
 이더넷 어댑터 이더넷:
@@ -648,7 +646,7 @@ python ping_check.py
 
 막히면 바로 위 개념 상자를 다시 봅니다.
 
-<details><summary>답 보기 — 내 답을 먼저 정한 뒤에 엽니다</summary>
+<details><summary>답 보기 — 다 적은 뒤에 엽니다</summary>
 
 **결과** — ① `물리적 주소` 줄 ② `IPv4 주소` 줄 ③ `기본 게이트웨이` 줄.
 
@@ -848,13 +846,13 @@ python addr_kind.py
 
 ---
 
-### ✍️ 문제 4-1 · 무엇이 보일까요
+### ✍️ 문제 4-1 · 직접 실행해 보기
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — 실행하지 않고 머리로 예상합니다 → 바로 아래 「답 보기」를 펼쳐 맞춰 봅니다
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — VS Code 에서 `warmup.py` 에 따라 치기 → 터미널에서 `python warmup.py` → 결과와 「왜」를 보고서에 적기
 
 <mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day01_packet_analysis.md` 의 `## 4교시` 에서 `### 문제 4-1` 아래
 
-아래 파이썬 코드를 실행하면 화면에 무엇이 보일지 적어 보세요.
+아래 코드를 `warmup.py` 에 **따라 쳐서** 실행하고, 결과와 「왜 이렇게 나왔는지」 한 줄을 적으시오. `warmup.py` 는 처음 한 번만 `network_zt` 폴더에 New File 로 만들고, 교시마다 내용을 지우고 다시 씁니다.
 
 ```python
 PORTS = {80: "HTTP", 443: "HTTPS", 53: "DNS"}
@@ -862,9 +860,14 @@ print(PORTS[443])
 print(PORTS.get(3389, "모름"))
 ```
 
+```bash
+python warmup.py
+```
+맥북: `python3 warmup.py`
+
 막히면 바로 위 `4.1` 표와 1과목의 `.get()` 을 떠올립니다.
 
-<details><summary>답 보기 — 내 답을 먼저 정한 뒤에 엽니다</summary>
+<details><summary>답 보기 — 결과와 「왜」를 적은 뒤에 엽니다</summary>
 
 **결과** — `HTTPS` 와 `모름` 두 줄입니다.
 
@@ -1037,7 +1040,7 @@ python port_name.py
 
 # 정답 · 먼저 풀어 본 뒤에 봅니다
 
-출력 예상 문제(2-1 · 3-1 · 4-1)의 답은 문제 바로 아래 「답 보기」에 있습니다. 화면의 숫자 · 주소는 PC 마다 다릅니다.
+교시 첫 문제(2-1 · 3-1 · 4-1)의 답은 문제 바로 아래 「답 보기」에 있습니다. 화면의 숫자 · 주소는 PC 마다 다릅니다.
 
 ---
 

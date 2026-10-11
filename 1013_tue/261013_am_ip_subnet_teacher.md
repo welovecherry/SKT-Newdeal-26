@@ -146,17 +146,24 @@ PAT 공유기는 「바깥 포트 40002번 = 안의 `192.168.10.25:51234`」 같
 
 ---
 
-### ✍️ 문제 2-1 · 무엇이 보일까요
+### ✍️ 문제 2-1 · 직접 실행해 보기
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — 실행하지 않고 머리로 예상합니다
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — VS Code 에서 `warmup.py` 에 따라 치기 → 터미널에서 `python warmup.py` → 결과와 「왜」를 보고서에 적기
 
-아래 코드를 실행하면 무엇이 보일지 적어 보세요.
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day02_subnet_design.md` 의 `## 실습 기록` 에 `- 2-1: …` 한 줄
+
+아래 코드를 `warmup.py` 에 **따라 쳐서** 실행하고, 결과와 「왜 이렇게 나왔는지」 한 줄을 적으시오. `warmup.py` 는 처음 한 번만 `network_zt` 폴더에 New File 로 만들고, 교시마다 내용을 지우고 다시 씁니다.
 
 ```python
 print(format(192, "08b"))
 print(format(10, "08b"))
 print(len(format(192, "08b") + format(10, "08b")))
 ```
+
+```bash
+python warmup.py
+```
+맥북: `python3 warmup.py`
 
 막히면 바로 위 문법 상자와 2.1 표를 봅니다.
 
@@ -584,17 +591,24 @@ print(net.network_address, net.broadcast_address, net.num_addresses)
 
 ---
 
-### ✍️ 문제 3-1 · 무엇이 보일까요
+### ✍️ 문제 3-1 · 직접 실행해 보기
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — 실행하지 않고 머리로 예상합니다
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — VS Code 에서 `warmup.py` 에 따라 치기 → 터미널에서 `python warmup.py` → 결과와 「왜」를 보고서에 적기
 
-아래 코드를 실행하면 무엇이 보일지 적어 보세요.
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day02_subnet_design.md` 의 `## 실습 기록` 에 `- 3-1: …` 한 줄
+
+아래 코드를 `warmup.py` 에 **따라 쳐서** 실행하고, 결과와 「왜 이렇게 나왔는지」 한 줄을 적으시오. `warmup.py` 는 처음 한 번만 `network_zt` 폴더에 New File 로 만들고, 교시마다 내용을 지우고 다시 씁니다.
 
 ```python
 mask = "11111111.11111111.11111111.11000000"
 print(mask.count("1"))
 print(mask.count("0"))
 ```
+
+```bash
+python warmup.py
+```
+맥북: `python3 warmup.py`
 
 #### <mark style="display:block; background:#fff59d; color:#1a1a1a; padding:4px 12px; border-radius:4px; text-decoration:underline">정답</mark>
 
@@ -986,11 +1000,13 @@ print(a.overlaps(b))
 
 ---
 
-### ✍️ 문제 4-1 · 무엇이 보일까요
+### ✍️ 문제 4-1 · 직접 실행해 보기
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — 실행하지 않고 머리로 예상합니다
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — VS Code 에서 `warmup.py` 에 따라 치기 → 터미널에서 `python warmup.py` → 결과와 「왜」를 보고서에 적기
 
-아래 코드를 실행하면 무엇이 보일지 적어 보세요.
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day02_subnet_design.md` 의 `## 실습 기록` 에 `- 4-1: …` 한 줄
+
+아래 코드를 `warmup.py` 에 **따라 쳐서** 실행하고, 결과와 「왜 이렇게 나왔는지」 한 줄을 적으시오. `warmup.py` 는 처음 한 번만 `network_zt` 폴더에 New File 로 만들고, 교시마다 내용을 지우고 다시 씁니다.
 
 ```python
 import ipaddress
@@ -998,6 +1014,11 @@ parent = ipaddress.ip_network("192.168.50.0/24")
 for sub in parent.subnets(new_prefix=26):
     print(sub)
 ```
+
+```bash
+python warmup.py
+```
+맥북: `python3 warmup.py`
 
 #### <mark style="display:block; background:#fff59d; color:#1a1a1a; padding:4px 12px; border-radius:4px; text-decoration:underline">정답</mark>
 

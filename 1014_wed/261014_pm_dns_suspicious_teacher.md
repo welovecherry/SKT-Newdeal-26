@@ -114,11 +114,13 @@ print("a" in "aeiou", "x" in "aeiou")
 
 ---
 
-### ✍️ 문제 5-1 · 무엇이 보일까요
+### ✍️ 문제 5-1 · 직접 실행해 보기
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — 실행하지 않고 머리로 예상합니다
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — VS Code 에서 `warmup.py` 에 따라 치기 → 터미널에서 `python warmup.py` → 결과와 「왜」를 보고서에 적기
 
-아래 코드를 실행하면 무엇이 보일지 적어 보세요.
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day03_dns_analysis.md` 의 `## 실습 기록` 에 `- 5-1: …` 한 줄
+
+아래 코드를 `warmup.py` 에 **따라 쳐서** 실행하고, 결과와 「왜 이렇게 나왔는지」 한 줄을 적으시오. `warmup.py` 는 처음 한 번만 `network_zt` 폴더에 New File 로 만들고, 교시마다 내용을 지우고 다시 씁니다.
 
 ```python
 name = "p0w8rk2mzq.xyz"
@@ -130,6 +132,11 @@ for ch in label:
         vowels = vowels + 1
 print(label, len(label), vowels)
 ```
+
+```bash
+python warmup.py
+```
+맥북: `python3 warmup.py`
 
 #### <mark style="display:block; background:#fff59d; color:#1a1a1a; padding:4px 12px; border-radius:4px; text-decoration:underline">정답</mark>
 
@@ -535,11 +542,13 @@ from dga_score import score      # 위 파일의 함수를 꺼내 쓴다 — 시
 
 ---
 
-### ✍️ 문제 6-1 · 무엇이 보일까요
+### ✍️ 문제 6-1 · 직접 실행해 보기
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — 실행하지 않고 머리로 예상합니다
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — VS Code 에서 `warmup.py` 에 따라 치기 → 터미널에서 `python warmup.py` → 결과와 「왜」를 보고서에 적기
 
-아래 코드를 실행하면 무엇이 보일지 적어 보세요.
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day03_dns_analysis.md` 의 `## 실습 기록` 에 `- 6-1: …` 한 줄
+
+아래 코드를 `warmup.py` 에 **따라 쳐서** 실행하고, 결과와 「왜 이렇게 나왔는지」 한 줄을 적으시오. `warmup.py` 는 처음 한 번만 `network_zt` 폴더에 New File 로 만들고, 교시마다 내용을 지우고 다시 씁니다.
 
 ```python
 score = 0
@@ -554,6 +563,11 @@ if rcode == "NXDOMAIN":
     score = score + 2
 print(score, score >= 3)
 ```
+
+```bash
+python warmup.py
+```
+맥북: `python3 warmup.py`
 
 #### <mark style="display:block; background:#fff59d; color:#1a1a1a; padding:4px 12px; border-radius:4px; text-decoration:underline">정답</mark>
 
@@ -1020,16 +1034,23 @@ print(", ".join([]) == "")
 
 ---
 
-### ✍️ 문제 7-1 · 무엇이 보일까요
+### ✍️ 문제 7-1 · 직접 실행해 보기
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — 실행하지 않고 머리로 예상합니다
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — VS Code 에서 `warmup.py` 에 따라 치기 → 터미널에서 `python warmup.py` → 결과와 「왜」를 보고서에 적기
 
-아래 코드를 실행하면 무엇이 보일지 적어 보세요.
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day03_dns_analysis.md` 의 `## 실습 기록` 에 `- 7-1: …` 한 줄
+
+아래 코드를 `warmup.py` 에 **따라 쳐서** 실행하고, 결과와 「왜 이렇게 나왔는지」 한 줄을 적으시오. `warmup.py` 는 처음 한 번만 `network_zt` 폴더에 New File 로 만들고, 교시마다 내용을 지우고 다시 씁니다.
 
 ```python
 result = {"points": 5, "why": ["숫자", "모음", "TLD", "NXDOMAIN"]}
 print(f"| kxq3vz9a.top | {result['points']} | {', '.join(result['why'])} |")
 ```
+
+```bash
+python warmup.py
+```
+맥북: `python3 warmup.py`
 
 #### <mark style="display:block; background:#fff59d; color:#1a1a1a; padding:4px 12px; border-radius:4px; text-decoration:underline">정답</mark>
 

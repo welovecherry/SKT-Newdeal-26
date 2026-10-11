@@ -107,11 +107,13 @@ print(out)
 
 ---
 
-### ✍️ 문제 5-1 · 무엇이 보일까요
+### ✍️ 문제 5-1 · 직접 실행해 보기
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — 실행하지 않고 머리로 예상합니다
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — VS Code 에서 `warmup.py` 에 따라 치기 → 터미널에서 `python warmup.py` → 결과와 「왜」를 보고서에 적기
 
-아래 코드를 실행하면 무엇이 보일지 적어 보세요.
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day02_subnet_design.md` 의 `## 실습 기록` 에 `- 5-1: …` 한 줄
+
+아래 코드를 `warmup.py` 에 **따라 쳐서** 실행하고, 결과와 「왜 이렇게 나왔는지」 한 줄을 적으시오. `warmup.py` 는 처음 한 번만 `network_zt` 폴더에 New File 로 만들고, 교시마다 내용을 지우고 다시 씁니다.
 
 ```python
 mac_table = {"AA": 1, "BB": 3}
@@ -121,6 +123,11 @@ if dest in mac_table:
 else:
     print("모든 포트로")
 ```
+
+```bash
+python warmup.py
+```
+맥북: `python3 warmup.py`
 
 #### <mark style="display:block; background:#fff59d; color:#1a1a1a; padding:4px 12px; border-radius:4px; text-decoration:underline">정답</mark>
 
@@ -517,11 +524,13 @@ print(a.prefixlen, b.prefixlen)
 
 ---
 
-### ✍️ 문제 6-1 · 무엇이 보일까요
+### ✍️ 문제 6-1 · 직접 실행해 보기
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — 실행하지 않고 머리로 예상합니다
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — VS Code 에서 `warmup.py` 에 따라 치기 → 터미널에서 `python warmup.py` → 결과와 「왜」를 보고서에 적기
 
-아래 코드를 실행하면 무엇이 보일지 적어 보세요.
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day02_subnet_design.md` 의 `## 실습 기록` 에 `- 6-1: …` 한 줄
+
+아래 코드를 `warmup.py` 에 **따라 쳐서** 실행하고, 결과와 「왜 이렇게 나왔는지」 한 줄을 적으시오. `warmup.py` 는 처음 한 번만 `network_zt` 폴더에 New File 로 만들고, 교시마다 내용을 지우고 다시 씁니다.
 
 ```python
 port_vlan = {1: 10, 2: 10, 3: 20, 4: 20}
@@ -532,6 +541,11 @@ for port in port_vlan:
         out.append(port)
 print(out)
 ```
+
+```bash
+python warmup.py
+```
+맥북: `python3 warmup.py`
 
 #### <mark style="display:block; background:#fff59d; color:#1a1a1a; padding:4px 12px; border-radius:4px; text-decoration:underline">정답</mark>
 
@@ -875,11 +889,13 @@ python vlan_pair.py
 
 ---
 
-### ✍️ 문제 7-1 · 무엇이 보일까요
+### ✍️ 문제 7-1 · 직접 실행해 보기
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — 실행하지 않고 머리로 예상합니다
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — VS Code 에서 `warmup.py` 에 따라 치기 → 터미널에서 `python warmup.py` → 결과와 「왜」를 보고서에 적기
 
-아래 코드를 실행하면 무엇이 보일지 적어 보세요.
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day02_subnet_design.md` 의 `## 실습 기록` 에 `- 7-1: …` 한 줄
+
+아래 코드를 `warmup.py` 에 **따라 쳐서** 실행하고, 결과와 「왜 이렇게 나왔는지」 한 줄을 적으시오. `warmup.py` 는 처음 한 번만 `network_zt` 폴더에 New File 로 만들고, 교시마다 내용을 지우고 다시 씁니다.
 
 ```python
 import ipaddress
@@ -887,6 +903,11 @@ net = ipaddress.ip_network("10.20.0.64/27")
 print(net.network_address + 1)
 print(net.broadcast_address)
 ```
+
+```bash
+python warmup.py
+```
+맥북: `python3 warmup.py`
 
 #### <mark style="display:block; background:#fff59d; color:#1a1a1a; padding:4px 12px; border-radius:4px; text-decoration:underline">정답</mark>
 

@@ -119,13 +119,13 @@ print(flags == "SYN")       # False — 리스트와 글자는 같을 수 없다
 
 ---
 
-### ✍️ 문제 5-1 · 무엇이 보일까요
+### ✍️ 문제 5-1 · 직접 실행해 보기
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — 실행하지 않고 머리로 예상합니다 → 바로 아래 「답 보기」를 펼쳐 맞춰 봅니다
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — VS Code 에서 `warmup.py` 에 따라 치기 → 터미널에서 `python warmup.py` → 결과와 「왜」를 보고서에 적기
 
 <mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day01_packet_analysis.md` 의 `## 5교시` 에서 `### 문제 5-1` 아래
 
-아래 코드를 실행하면 무엇이 보일지 적어 보세요.
+아래 코드를 `warmup.py` 에 **따라 쳐서** 실행하고, 결과와 「왜 이렇게 나왔는지」 한 줄을 적으시오. `warmup.py` 는 처음 한 번만 `network_zt` 폴더에 New File 로 만들고, 교시마다 내용을 지우고 다시 씁니다.
 
 ```python
 packet = {"src_port": 51234, "dst_port": 443, "flags": ["SYN", "ACK"]}
@@ -134,9 +134,14 @@ print(packet["flags"] == "ACK")
 print(packet["dst_port"])
 ```
 
+```bash
+python warmup.py
+```
+맥북: `python3 warmup.py`
+
 막히면 바로 위 문법 상자를 다시 봅니다.
 
-<details><summary>답 보기 — 내 답을 먼저 정한 뒤에 엽니다</summary>
+<details><summary>답 보기 — 결과와 「왜」를 적은 뒤에 엽니다</summary>
 
 **결과** — `True` · `False` · `443` 세 줄.
 
@@ -412,13 +417,13 @@ python packet_filter.py
 
 ---
 
-### ✍️ 문제 6-1 · 무엇이 보일까요
+### ✍️ 문제 6-1 · 필터 칸 색 보기
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — 실행하지 않고 머리로 예상합니다 → 바로 아래 「답 보기」를 펼쳐 맞춰 봅니다
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — Wireshark 를 실행해(6-2 의 1번) 위쪽 표시 필터 칸에 직접 치기 → 보고서에 적기
 
 <mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day01_packet_analysis.md` 의 `## 6교시` 에서 `### 문제 6-1` 아래
 
-Wireshark 필터 칸에 아래 세 가지를 차례로 친다면, 칸이 각각 **무슨 색**이 될지 적어 보세요.
+Wireshark 를 실행하고(6-2 의 1번) 위쪽 표시 필터 칸에 아래 세 가지를 하나씩 쳐 보시오. **Enter 는 누르지 않고** 칸이 각각 **무슨 색**이 되는지만 적습니다. 다음 것을 치기 전에 칸을 지웁니다.
 
 ```
 tcp
@@ -428,7 +433,7 @@ tcp.port == 443
 
 막히면 바로 위 Wireshark 상자의 색 표를 봅니다.
 
-<details><summary>답 보기 — 내 답을 먼저 정한 뒤에 엽니다</summary>
+<details><summary>답 보기 — 다 적은 뒤에 엽니다</summary>
 
 **결과** — 초록 · 빨강 · 초록.
 
@@ -611,13 +616,13 @@ print(f"| {i} | {p['src']} | {p['dst']} | {p['info']} |")
 
 ---
 
-### ✍️ 문제 7-1 · 무엇이 보일까요
+### ✍️ 문제 7-1 · 직접 실행해 보기
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — 실행하지 않고 머리로 예상합니다 → 바로 아래 「답 보기」를 펼쳐 맞춰 봅니다
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — VS Code 에서 `warmup.py` 에 따라 치기 → 터미널에서 `python warmup.py` → 결과와 「왜」를 보고서에 적기
 
 <mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day01_packet_analysis.md` 의 `## 7교시` 에서 `### 문제 7-1` 아래
 
-아래 코드를 실행하면 무엇이 보일지 적어 보세요.
+아래 코드를 `warmup.py` 에 **따라 쳐서** 실행하고, 결과와 「왜 이렇게 나왔는지」 한 줄을 적으시오. `warmup.py` 는 처음 한 번만 `network_zt` 폴더에 New File 로 만들고, 교시마다 내용을 지우고 다시 씁니다.
 
 ```python
 packets = [{"info": "[SYN]"}, {"info": "[SYN, ACK]"}, {"info": "[ACK]"}]
@@ -627,7 +632,12 @@ for p in packets:
     print(f"| {i} | {p['info']} |")
 ```
 
-<details><summary>답 보기 — 내 답을 먼저 정한 뒤에 엽니다</summary>
+```bash
+python warmup.py
+```
+맥북: `python3 warmup.py`
+
+<details><summary>답 보기 — 결과와 「왜」를 적은 뒤에 엽니다</summary>
 
 **결과** — `| 1 | [SYN] |` · `| 2 | [SYN, ACK] |` · `| 3 | [ACK] |` 세 줄.
 
@@ -848,7 +858,7 @@ curl "https://example.com/?q=network_day1"
 
 # 정답 · 먼저 풀어 본 뒤에 봅니다
 
-출력 예상 문제(5-1 · 6-1 · 7-1)의 답은 문제 바로 아래 「답 보기」에 있습니다. 화면의 주소 · 숫자는 PC 마다 다릅니다.
+교시 첫 문제(5-1 · 6-1 · 7-1)의 답은 문제 바로 아래 「답 보기」에 있습니다. 화면의 주소 · 숫자는 PC 마다 다릅니다.
 
 ---
 

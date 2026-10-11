@@ -100,11 +100,13 @@ print(out)
 
 ---
 
-### ✍️ 문제 5-1 · 무엇이 보일까요
+### ✍️ 문제 5-1 · 직접 실행해 보기
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — 실행하지 않고 머리로 예상합니다 → 바로 아래 「답 보기」를 펼쳐 맞춰 봅니다
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — VS Code 에서 `warmup.py` 에 따라 치기 → 터미널에서 `python warmup.py` → 결과와 「왜」를 보고서에 적기
 
-아래 코드를 실행하면 무엇이 보일지 적어 보세요.
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day02_subnet_design.md` 의 `## 실습 기록` 에 `- 5-1: …` 한 줄
+
+아래 코드를 `warmup.py` 에 **따라 쳐서** 실행하고, 결과와 「왜 이렇게 나왔는지」 한 줄을 적으시오. `warmup.py` 는 처음 한 번만 `network_zt` 폴더에 New File 로 만들고, 교시마다 내용을 지우고 다시 씁니다.
 
 ```python
 mac_table = {"AA": 1, "BB": 3}
@@ -115,7 +117,12 @@ else:
     print("모든 포트로")
 ```
 
-<details><summary>답 보기 — 내 답을 먼저 정한 뒤에 엽니다</summary>
+```bash
+python warmup.py
+```
+맥북: `python3 warmup.py`
+
+<details><summary>답 보기 — 결과와 「왜」를 적은 뒤에 엽니다</summary>
 
 **결과** — `포트 3 로만`
 
@@ -414,11 +421,13 @@ print(a.prefixlen, b.prefixlen)
 
 ---
 
-### ✍️ 문제 6-1 · 무엇이 보일까요
+### ✍️ 문제 6-1 · 직접 실행해 보기
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — 실행하지 않고 머리로 예상합니다 → 바로 아래 「답 보기」를 펼쳐 맞춰 봅니다
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — VS Code 에서 `warmup.py` 에 따라 치기 → 터미널에서 `python warmup.py` → 결과와 「왜」를 보고서에 적기
 
-아래 코드를 실행하면 무엇이 보일지 적어 보세요.
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day02_subnet_design.md` 의 `## 실습 기록` 에 `- 6-1: …` 한 줄
+
+아래 코드를 `warmup.py` 에 **따라 쳐서** 실행하고, 결과와 「왜 이렇게 나왔는지」 한 줄을 적으시오. `warmup.py` 는 처음 한 번만 `network_zt` 폴더에 New File 로 만들고, 교시마다 내용을 지우고 다시 씁니다.
 
 ```python
 port_vlan = {1: 10, 2: 10, 3: 20, 4: 20}
@@ -430,7 +439,12 @@ for port in port_vlan:
 print(out)
 ```
 
-<details><summary>답 보기 — 내 답을 먼저 정한 뒤에 엽니다</summary>
+```bash
+python warmup.py
+```
+맥북: `python3 warmup.py`
+
+<details><summary>답 보기 — 결과와 「왜」를 적은 뒤에 엽니다</summary>
 
 **결과** — `[4]`
 
@@ -680,11 +694,13 @@ python vlan_pair.py
 
 ---
 
-### ✍️ 문제 7-1 · 무엇이 보일까요
+### ✍️ 문제 7-1 · 직접 실행해 보기
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — 실행하지 않고 머리로 예상합니다 → 바로 아래 「답 보기」를 펼쳐 맞춰 봅니다
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — VS Code 에서 `warmup.py` 에 따라 치기 → 터미널에서 `python warmup.py` → 결과와 「왜」를 보고서에 적기
 
-아래 코드를 실행하면 무엇이 보일지 적어 보세요.
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day02_subnet_design.md` 의 `## 실습 기록` 에 `- 7-1: …` 한 줄
+
+아래 코드를 `warmup.py` 에 **따라 쳐서** 실행하고, 결과와 「왜 이렇게 나왔는지」 한 줄을 적으시오. `warmup.py` 는 처음 한 번만 `network_zt` 폴더에 New File 로 만들고, 교시마다 내용을 지우고 다시 씁니다.
 
 ```python
 import ipaddress
@@ -693,7 +709,12 @@ print(net.network_address + 1)
 print(net.broadcast_address)
 ```
 
-<details><summary>답 보기 — 내 답을 먼저 정한 뒤에 엽니다</summary>
+```bash
+python warmup.py
+```
+맥북: `python3 warmup.py`
+
+<details><summary>답 보기 — 결과와 「왜」를 적은 뒤에 엽니다</summary>
 
 **결과** — `10.20.0.65` · `10.20.0.95`
 
@@ -940,7 +961,7 @@ python next_block.py
 
 # 정답 · 먼저 풀어 본 뒤에 봅니다
 
-출력 예상 문제(5-1 · 6-1 · 7-1)의 답은 문제 바로 아래 「답 보기」에 있습니다. 화면의 주소는 PC 마다 다릅니다.
+교시 첫 문제(5-1 · 6-1 · 7-1)의 답은 문제 바로 아래 「답 보기」에 있습니다. 화면의 주소는 PC 마다 다릅니다.
 
 ---
 

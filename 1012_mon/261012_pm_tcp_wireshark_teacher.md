@@ -124,13 +124,13 @@ print(flags == "SYN")       # False — 리스트와 글자는 같을 수 없다
 
 ---
 
-### ✍️ 문제 5-1 · 무엇이 보일까요
+### ✍️ 문제 5-1 · 직접 실행해 보기
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — 실행하지 않고 머리로 예상합니다
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — VS Code 에서 `warmup.py` 에 따라 치기 → 터미널에서 `python warmup.py` → 결과와 「왜」를 보고서에 적기
 
 <mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day01_packet_analysis.md` 의 `## 5교시` 에서 `### 문제 5-1` 아래
 
-아래 코드를 실행하면 무엇이 보일지 적어 보세요.
+아래 코드를 `warmup.py` 에 **따라 쳐서** 실행하고, 결과와 「왜 이렇게 나왔는지」 한 줄을 적으시오. `warmup.py` 는 처음 한 번만 `network_zt` 폴더에 New File 로 만들고, 교시마다 내용을 지우고 다시 씁니다.
 
 ```python
 packet = {"src_port": 51234, "dst_port": 443, "flags": ["SYN", "ACK"]}
@@ -138,6 +138,11 @@ print("ACK" in packet["flags"])
 print(packet["flags"] == "ACK")
 print(packet["dst_port"])
 ```
+
+```bash
+python warmup.py
+```
+맥북: `python3 warmup.py`
 
 막히면 바로 위 문법 상자를 다시 봅니다.
 
@@ -523,13 +528,13 @@ python packet_filter.py
 
 ---
 
-### ✍️ 문제 6-1 · 무엇이 보일까요
+### ✍️ 문제 6-1 · 필터 칸 색 보기
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — 실행하지 않고 머리로 예상합니다
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — Wireshark 를 실행해(6-2 의 1번) 위쪽 표시 필터 칸에 직접 치기 → 보고서에 적기
 
 <mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day01_packet_analysis.md` 의 `## 6교시` 에서 `### 문제 6-1` 아래
 
-Wireshark 필터 칸에 아래 세 가지를 차례로 친다면, 칸이 각각 **무슨 색**이 될지 적어 보세요.
+Wireshark 를 실행하고(6-2 의 1번) 위쪽 표시 필터 칸에 아래 세 가지를 하나씩 쳐 보시오. **Enter 는 누르지 않고** 칸이 각각 **무슨 색**이 되는지만 적습니다. 다음 것을 치기 전에 칸을 지웁니다.
 
 ```
 tcp
@@ -549,7 +554,7 @@ tcp.port == 443
 
 **관제에서는** — 필터를 걸기 전에 칸이 초록인지 보는 습관이, 잘못 걸린 결과를 믿는 실수를 막습니다.
 
-**강사 메모** — 지금은 예상만 하고, 6-5 에서 직접 쳐서 맞춰 본다고 말합니다. 「노란색은 언제 나오나요?」에는 「문법은 맞지만 생각과 다르게 걸릴 수 있을 때」라고 상자의 표대로 답합니다. 색을 보고 Enter 를 누르는 습관을 여기서 한 번 강조합니다.
+**강사 메모** — 지금 직접 쳐 본 색을 6-5 에서 필터를 걸 때 다시 확인한다고 말합니다. 「노란색은 언제 나오나요?」에는 「문법은 맞지만 생각과 다르게 걸릴 수 있을 때」라고 상자의 표대로 답합니다. 색을 보고 Enter 를 누르는 습관을 여기서 한 번 강조합니다.
 
 ---
 
@@ -798,13 +803,13 @@ print(f"| {i} | {p['src']} | {p['dst']} | {p['info']} |")
 
 ---
 
-### ✍️ 문제 7-1 · 무엇이 보일까요
+### ✍️ 문제 7-1 · 직접 실행해 보기
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — 실행하지 않고 머리로 예상합니다
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — VS Code 에서 `warmup.py` 에 따라 치기 → 터미널에서 `python warmup.py` → 결과와 「왜」를 보고서에 적기
 
 <mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day01_packet_analysis.md` 의 `## 7교시` 에서 `### 문제 7-1` 아래
 
-아래 코드를 실행하면 무엇이 보일지 적어 보세요.
+아래 코드를 `warmup.py` 에 **따라 쳐서** 실행하고, 결과와 「왜 이렇게 나왔는지」 한 줄을 적으시오. `warmup.py` 는 처음 한 번만 `network_zt` 폴더에 New File 로 만들고, 교시마다 내용을 지우고 다시 씁니다.
 
 ```python
 packets = [{"info": "[SYN]"}, {"info": "[SYN, ACK]"}, {"info": "[ACK]"}]
@@ -813,6 +818,11 @@ for p in packets:
     i = i + 1
     print(f"| {i} | {p['info']} |")
 ```
+
+```bash
+python warmup.py
+```
+맥북: `python3 warmup.py`
 
 #### <mark style="display:block; background:#fff59d; color:#1a1a1a; padding:4px 12px; border-radius:4px; text-decoration:underline">정답</mark>
 
