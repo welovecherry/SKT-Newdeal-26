@@ -403,6 +403,8 @@ ping -t 8.8.8.8       # 멈출 때까지 계속 보낸다 — Ctrl + C 로 멈�
 
 <mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day01_packet_analysis.md` 의 `## 2교시` 에서 `### 문제 2-1` 아래
 
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**왜 중요한가**</mark> — `ping` 통계의 보냄 · 받음 · 손실 · 평균을 읽을 줄 알아야 「인터넷이 느려요」 신고를 숫자로 판단할 수 있습니다.
+
 아래는 **다른 사람이 `ping 1.1.1.1` 을 쳤을 때 마지막에 나온 화면**입니다. 이 화면에서 숫자를 찾아 아래 질문 세 개에 답하시오. 내 PC 에서 직접 치는 것은 바로 다음 문제 2-2 입니다.
 
 ```
@@ -440,6 +442,8 @@ ping -t 8.8.8.8       # 멈출 때까지 계속 보낸다 — Ctrl + C 로 멈�
 
 <mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day01_packet_analysis.md` 의 `## 2교시` 에서 `### 문제 2-2` 아래
 
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**왜 중요한가**</mark> — 정상일 때의 왕복 시간과 TTL 을 내 PC 에서 직접 재 둡니다. 이 숫자가 3-4 에서 게이트웨이 결과와 비교하는 기준이 됩니다.
+
 터미널에서 `8.8.8.8` 에 `ping` 을 보내고, **평균 왕복 시간**과 **TTL** 을 보고서에 적으시오.
 
 | | |
@@ -460,6 +464,8 @@ ping -t 8.8.8.8       # 멈출 때까지 계속 보낸다 — Ctrl + C 로 멈�
 
 <mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day01_packet_analysis.md` 의 `## 2교시` 에서 `### 문제 2-3` 아래
 
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**왜 중요한가**</mark> — 관제 로그에는 이름보다 IP 주소가 남는 경우가 많습니다. 이름이 어떤 IP 로 바뀌는지 직접 보는 것이 10/14 DNS 수업의 출발점입니다.
+
 터미널에서 `google.com` 에 `ping` 을 보내고, 첫 줄에서 **이름 옆 대괄호 `[ ]` 안의 숫자**를 찾으시오.
 
 | | |
@@ -479,6 +485,8 @@ ping -t 8.8.8.8       # 멈출 때까지 계속 보낸다 — Ctrl + C 로 멈�
 <mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — 터미널에서 명령 실행 → 보고서에 적기
 
 <mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day01_packet_analysis.md` 의 `## 2교시` 에서 `### 문제 2-4` 아래
+
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**왜 중요한가**</mark> — 실패 문구가 다르면 원인이 있는 단계도 다릅니다. 4교시 4-5 에서 이 차이로 몇 층 문제인지 좁힙니다.
 
 아래 두 명령을 터미널에 차례로 입력하고, **실패 문구가 어떻게 다른지** 한 줄씩 적으시오.
 
@@ -506,6 +514,8 @@ ping 192.0.2.1
 
 <mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day01_packet_analysis.md` 의 `## 2교시` 에서 `### 문제 2-5` 아래
 
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**왜 중요한가**</mark> — 네 번만 보내면 가끔 생기는 손실이 잘 보이지 않습니다. 횟수를 늘려 재는 것이 「가끔 끊겨요」 신고를 확인하는 방법입니다.
+
 터미널에서 `8.8.8.8` 에 **열 번** `ping` 을 보내고, 받은 개수와 손실 % 를 적으시오.
 
 | | |
@@ -525,6 +535,8 @@ ping 192.0.2.1
 <mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — VS Code 에서 `ping_check.py` 만들기 → 터미널에서 `python ping_check.py` 실행
 
 <mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day01_packet_analysis.md` 의 `## 2교시` 에서 `### ⭐ 도전 2-6` 아래
+
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**왜 중요한가**</mark> — 서버가 수십 대면 `ping` 결과를 사람이 다 읽을 수 없습니다. 기준값으로 정상 · 느림 · 실패를 나누는 것이 자동 감시 스크립트가 하는 일입니다.
 
 `ping` 결과를 사람이 매번 읽는 대신, 파이썬이 「정상 · 느림 · 실패」를 판정하게 하시오.
 
@@ -641,6 +653,8 @@ python ping_check.py
 
 <mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day01_packet_analysis.md` 의 `## 3교시` 에서 `### 문제 3-1` 아래
 
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**왜 중요한가**</mark> — `ipconfig` 결과에는 점으로 나뉜 값이 여러 줄 나옵니다. 줄 이름으로 IP · MAC · 게이트웨이를 가려 읽어야 3-2 · 3-3 에서 내 PC 값을 바로 찾습니다.
+
 아래는 **다른 사람의 PC 에서 `ipconfig //all` 을 쳤을 때 나온 화면의 일부**입니다. 이 화면에서 주소 세 개를 찾아 적으시오. 내 PC 에서 직접 치는 것은 3-2 · 3-3 입니다.
 
 ```
@@ -680,6 +694,8 @@ python ping_check.py
 
 <mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day01_packet_analysis.md` 의 `## 3교시` 에서 `### 문제 3-2` 아래
 
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**왜 중요한가**</mark> — 내 IP 와 게이트웨이는 장애 신고를 받으면 가장 먼저 확인하는 값입니다. 오후 6-3 에서 Wireshark 의 Source IP 가 내 PC 인지 가릴 때도 씁니다.
+
 `ipconfig` 를 입력하고, **기본 게이트웨이가 적힌 장치**의 IPv4(아이피 브이포 · 지금 널리 쓰는 IP 주소 형식) 주소와 기본 게이트웨이를 보고서에 적으시오.
 
 | | |
@@ -699,6 +715,8 @@ python ping_check.py
 <mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — 터미널에서 명령 실행 → 보고서에 적기
 
 <mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day01_packet_analysis.md` 의 `## 3교시` 에서 `### 문제 3-3` 아래
+
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**왜 중요한가**</mark> — MAC 주소는 같은 망 안에서 장비를 구별하는 값입니다. 오후 6-3 에서 Wireshark 의 `Ethernet II` 줄에 나오는 주소와 맞춰 봅니다.
 
 `ipconfig //all` 을 입력하고, 3-2 와 **같은 장치**의 물리적 주소를 보고서에 적으시오.
 
@@ -720,6 +738,8 @@ python ping_check.py
 
 <mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day01_packet_analysis.md` 의 `## 3교시` 에서 `### 문제 3-4` 아래
 
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**왜 중요한가**</mark> — 게이트웨이까지 닿는지 보면 문제가 우리 망 안인지 바깥인지 나눌 수 있습니다. 4-5 에서 증상으로 층을 좁힐 때 이 결과를 씁니다.
+
 터미널에서 3-2 에서 찾은 기본 게이트웨이에 `ping` 을 보내고, 평균 왕복 시간을 **2-2 의 `8.8.8.8` 결과와 비교**하시오.
 
 | | |
@@ -739,6 +759,8 @@ python ping_check.py
 <mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — 터미널에서 명령 실행 → 보고서에 적기
 
 <mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day01_packet_analysis.md` 의 `## 3교시` 에서 `### 문제 3-5` 아래
+
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**왜 중요한가**</mark> — ARP 캐시는 IP 와 MAC 을 잇는 표입니다. 게이트웨이 줄의 MAC 주소가 평소와 다르면 같은 망의 다른 장비가 게이트웨이로 위장하는 공격을 의심합니다.
 
 `arp -a` 를 입력하고, **기본 게이트웨이 IP 의 MAC 주소**와 그 줄의 **유형**을 적으시오.
 
@@ -766,6 +788,8 @@ python ping_check.py
 <mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — VS Code 에서 `addr_kind.py` 만들기 → 터미널에서 `python addr_kind.py` 실행
 
 <mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day01_packet_analysis.md` 의 `## 3교시` 에서 `### ⭐ 도전 3-6` 아래
+
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**왜 중요한가**</mark> — 로그에는 IP 와 MAC 이 한 칸에 섞여 들어오기도 합니다. 모양으로 종류를 가르는 함수는 로그를 자동으로 분류할 때 씁니다.
 
 로그에 섞여 들어온 주소가 IP 인지 MAC 인지 파이썬이 가려내게 하시오. `network_zt` 에 `addr_kind.py` 를 만들어 붙여 넣고, 번호 주석 아래를 채운 뒤 `python addr_kind.py` 를 입력합니다.
 
@@ -880,6 +904,8 @@ python addr_kind.py
 
 <mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day01_packet_analysis.md` 의 `## 4교시` 에서 `### 문제 4-1` 아래
 
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**왜 중요한가**</mark> — 포트 번호로 서비스 이름을 찾는 사전은 4-2 · 4-4 에서 `netstat` 결과를 읽을 때와 ⭐4-6 에서 다시 씁니다. 표에 없는 포트를 다루는 법도 여기서 익힙니다.
+
 아래 코드를 `warmup.py` 에 **따라 쳐서** 실행하고, 결과와 「왜 이렇게 나왔는지」 한 줄을 적으시오. `warmup.py` 는 처음 한 번만 `network_zt` 폴더에 New File 로 만들고, 교시마다 내용을 지우고 다시 씁니다.
 
 ```python
@@ -915,6 +941,8 @@ python warmup.py
 
 <mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day01_packet_analysis.md` 의 `## 4교시` 에서 `### 문제 4-2` 아래
 
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**왜 중요한가**</mark> — 외부 포트를 보면 내 PC 가 지금 어떤 서비스와 통신하는지 알 수 있습니다. 관제는 이 목록에서 예상하지 못한 포트로 나간 연결을 찾습니다.
+
 `netstat -n` 을 입력하고, `ESTABLISHED`(이스태블리시드 · 연결된 상태) 줄 하나를 골라 **외부 주소의 포트**와 그 포트의 **서비스 이름**(4.1 표)을 적으시오.
 
 ```
@@ -942,6 +970,8 @@ python warmup.py
 
 <mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day01_packet_analysis.md` 의 `## 4교시` 에서 `### 문제 4-3` 아래
 
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**왜 중요한가**</mark> — 수상한 연결을 찾으면 다음 질문은 「어느 프로그램이 열었나」입니다. PID 로 프로그램 이름까지 찾는 것이 침해 대응에서 악성 프로그램을 짚는 순서입니다.
+
 터미널에 `netstat -ano | grep ESTABLISHED` 를 입력해 4-2 에서 고른 줄의 **PID** 를 찾고, `tasklist | grep PID숫자` 로 그 PID 의 프로그램 이름을 찾으시오. 침해 대응에서 「이 연결은 누가 열었나」를 찾는 순서 그대로입니다.
 
 | | |
@@ -963,6 +993,8 @@ python warmup.py
 
 <mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day01_packet_analysis.md` 의 `## 4교시` 에서 `### 문제 4-4` 아래
 
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**왜 중요한가**</mark> — LISTENING 포트는 외부에서 접속을 시도할 수 있는 포트입니다. 필요 없는 포트가 열려 있는지 보는 것이 PC 보안 점검의 첫 단계입니다.
+
 내 PC 가 **듣고 있는(LISTENING) 포트**만 골라 보고, 그중 **4.1 표에 있는 포트**를 적으시오.
 
 | | |
@@ -982,6 +1014,8 @@ python warmup.py
 <mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — 명령 없이 생각해서 답하기 → 보고서에 적기
 
 <mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day01_packet_analysis.md` 의 `## 4교시` 에서 `### 문제 4-5` 아래
+
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**왜 중요한가**</mark> — 장애 신고는 「안 돼요」 한마디로 옵니다. 확인한 결과로 층을 좁히면 원인을 찾을 범위가 줄고, 어느 담당에게 넘길지 정할 수 있습니다.
 
 아래 세 증상이 **몇 층 문제일 가능성이 큰지** 3.1 표를 보며 한 줄씩 적으시오. 명령은 입력하지 않습니다.
 
@@ -1008,6 +1042,8 @@ python warmup.py
 <mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — VS Code 에서 `port_name.py` 만들기 → 터미널에서 `python port_name.py` 실행
 
 <mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day01_packet_analysis.md` 의 `## 4교시` 에서 `### ⭐ 도전 4-6` 아래
+
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**왜 중요한가**</mark> — `netstat` 에서 본 포트 번호를 매번 표에서 찾지 않아도 됩니다. 이름이 없는 포트만 따로 골라 확인하는 것이 관제의 첫 거르기입니다.
 
 `netstat` 에서 본 포트 번호들에 서비스 이름을 붙여 출력하시오. 모르는 포트는 「모름」으로 둡니다. `network_zt` 에 `port_name.py` 를 만들어 붙여 넣고, 채운 뒤 `python port_name.py` 를 입력합니다.
 

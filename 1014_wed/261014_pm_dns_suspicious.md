@@ -125,6 +125,8 @@ print("a" in "aeiou", "x" in "aeiou")
 
 <mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day03_dns_analysis.md` 의 `## 5교시` 에서 `### 문제 5-1` 아래
 
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**왜 중요한가**</mark> — 도메인에서 TLD 앞 조각의 길이와 모음 수를 세는 연습입니다. 6-2 의 점수 함수가 이 두 값으로 규칙 ①·③을 매깁니다.
+
 아래 코드를 `warmup.py` 에 **따라 쳐서** 실행하고, 결과와 「왜 이렇게 나왔는지」 한 줄을 적으시오. `warmup.py` 는 처음 한 번만 `network_zt` 폴더에 New File 로 만들고, 교시마다 내용을 지우고 다시 씁니다.
 
 ```python
@@ -162,6 +164,8 @@ python warmup.py
 <mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — VS Code 에서 `label.py` 만들기 → 터미널에서 `python label.py` 실행
 
 <mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day03_dns_analysis.md` 의 `## 5교시` 에서 `### 문제 5-2` 아래
+
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**왜 중요한가**</mark> — 어느 조각을 볼지 정해야 맨 앞 조각만 무작위인 CDN 같은 정상 도메인을 의심으로 잘못 판정하지 않습니다. 6-2 의 점수 함수도 이 두 조각으로 규칙을 매깁니다.
 
 이름마다 **TLD 바로 앞 조각**과 **TLD** 를 꺼내 출력하시오.
 
@@ -207,6 +211,8 @@ python label.py
 <mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — VS Code 에서 `features.py` 만들기 → 터미널에서 `python features.py` 실행
 
 <mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day03_dns_analysis.md` 의 `## 5교시` 에서 `### 문제 5-3` 아래
+
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**왜 중요한가**</mark> — 숫자 개수와 모음 비율은 사람이 지은 이름과 기계가 만든 DGA 이름을 가르는 지표입니다. 6교시 점수 규칙의 ②·③번이 이 두 값을 씁니다.
 
 TLD 앞 조각의 **숫자 개수**와 **모음 비율**(모음 수 ÷ 길이)을 계산하는 함수를 완성하시오.
 
@@ -260,6 +266,8 @@ python features.py
 
 <mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day03_dns_analysis.md` 의 `## 5교시` 에서 `### 문제 5-4` 아래
 
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**왜 중요한가**</mark> — 진짜 도메인과 한두 글자만 다른 사칭 도메인은 피싱에 자주 쓰입니다. 무작위처럼 보이지 않아 DGA 지표로는 잡기 어려운 이름을 이 규칙으로 따로 찾습니다.
+
 `0` → `o`, `1` → `l`, `3` → `e` 로 바꿨을 때 **믿을 만한 도메인과 똑같아지면** 사칭으로 판정하시오.
 
 ```python
@@ -309,6 +317,8 @@ python typosquat.py
 <mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — VS Code 에서 `nx_count.py` 만들기 → 터미널에서 `python nx_count.py` 실행
 
 <mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day03_dns_analysis.md` 의 `## 5교시` 에서 `### 문제 5-5` 아래
+
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**왜 중요한가**</mark> — 도메인 하나가 아니라 PC 별로 NXDOMAIN 을 세면 DGA 이름을 연달아 묻는 감염 의심 PC 를 찾을 수 있습니다. 관제에서 어느 PC 를 먼저 점검할지 정하는 기준이 됩니다.
 
 DNS 로그에서 PC 마다 **NXDOMAIN 이 몇 번인지** 세고, **3번 이상**인 PC 를 출력하시오.
 
@@ -438,6 +448,8 @@ from dga_score import score      # 위 파일의 함수를 꺼내 쓴다 — 시
 
 <mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day03_dns_analysis.md` 의 `## 6교시` 에서 `### 문제 6-1` 아래
 
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**왜 중요한가**</mark> — 규칙마다 점수를 더하고 문턱값과 비교하는 방식을 손으로 확인합니다. 6-2 의 점수 함수가 같은 방식으로 규칙 다섯 개를 더합니다.
+
 아래 코드를 `warmup.py` 에 **따라 쳐서** 실행하고, 결과와 「왜 이렇게 나왔는지」 한 줄을 적으시오. `warmup.py` 는 처음 한 번만 `network_zt` 폴더에 New File 로 만들고, 교시마다 내용을 지우고 다시 씁니다.
 
 ```python
@@ -478,6 +490,8 @@ python warmup.py
 <mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — VS Code 에서 `dga_score.py` 만들기 → 터미널에서 `python dga_score.py` 실행
 
 <mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day03_dns_analysis.md` 의 `## 6교시` 에서 `### 문제 6-2` 아래
+
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**왜 중요한가**</mark> — 여러 지표를 점수 하나로 모으면 도메인마다 의심 정도를 같은 기준으로 비교할 수 있습니다. 걸린 규칙 이름은 7교시 판정표의 근거 칸이 됩니다.
 
 6.1 의 규칙대로 점수와 **걸린 규칙 이름**을 리턴하는 함수를 완성하시오. 비어 있는 두 규칙만 채웁니다.
 
@@ -550,6 +564,8 @@ python dga_score.py
 
 <mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day03_dns_analysis.md` 의 `## 6교시` 에서 `### 문제 6-3` 아래
 
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**왜 중요한가**</mark> — 만든 규칙을 로그 전체에 걸어 봐야 어느 도메인을 잘못 판정하는지 보입니다. 다른 파일의 함수를 불러 쓰는 방식은 6-4 · 7-2 에서도 씁니다.
+
 6-2 의 `score` 를 불러와 로그 12건을 **문턱값 3** 으로 판정하시오.
 
 ```python
@@ -604,6 +620,8 @@ python judge.py
 <mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — VS Code 에서 `evaluate.py` 만들기 → 터미널에서 `python evaluate.py` 실행
 
 <mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day03_dns_analysis.md` 의 `## 6교시` 에서 `### 문제 6-4` 아래
+
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**왜 중요한가**</mark> — 규칙의 성능을 맞힘 · 오탐 · 미탐 숫자로 적어 두어야 규칙을 고친 뒤 나아졌는지 비교할 수 있습니다. 관제에서 탐지 규칙을 평가할 때 쓰는 기준입니다.
 
 6-3 의 판정을 **정답지(실제)와 비교해** 맞힘 · 오탐 · 미탐 수를 세시오.
 
@@ -670,6 +688,8 @@ python evaluate.py
 <mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — VS Code 에서 앞 문제의 `dga_score.py` 열어 고치기 → 터미널에서 `python dga_score.py` 실행
 
 <mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day03_dns_analysis.md` 의 `## 6교시` 에서 `### 문제 6-5` 아래
+
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**왜 중요한가**</mark> — 근거가 분명한 정상 도메인을 예외로 빼면 오탐이 줄어 관제 담당자가 확인할 경보가 줄어듭니다. 고친 뒤 6-4 를 다시 실행해 효과를 숫자로 확인합니다.
 
 오탐 `xn--3e0b707e.kr` 은 **한글 도메인**을 영문으로 바꾼 모양(퓨니코드 · Punycode)이라 무작위처럼 보입니다. `dga_score.py` 의 `score` 맨 앞에 **`xn--` 로 시작하는 조각은 0점**으로 돌려보내는 줄을 넣고, 6-4 를 다시 실행하시오.
 
@@ -743,6 +763,8 @@ print(", ".join([]) == "")
 
 <mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day03_dns_analysis.md` 의 `## 7교시` 에서 `### 문제 7-1` 아래
 
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**왜 중요한가**</mark> — 근거 리스트를 글자 한 줄로 이어 마크다운 표의 한 줄로 만드는 연습입니다. 7-2 판정표의 근거 칸이 이 방식으로 채워집니다.
+
 아래 코드를 `warmup.py` 에 **따라 쳐서** 실행하고, 결과와 「왜 이렇게 나왔는지」 한 줄을 적으시오. `warmup.py` 는 처음 한 번만 `network_zt` 폴더에 New File 로 만들고, 교시마다 내용을 지우고 다시 씁니다.
 
 ```python
@@ -774,6 +796,8 @@ python warmup.py
 <mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — VS Code 에서 `report_table3.py` 만들기 → 터미널에서 `python report_table3.py` 실행 → 보고서에 적기
 
 <mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day03_dns_analysis.md` 의 `## 7교시` 에서 `### 문제 7-2` 아래
+
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**왜 중요한가**</mark> — 도메인마다 점수 · 판정 · 근거를 한 표로 남기면 다른 분석가가 판정 이유를 바로 확인하고 규칙을 고칠 수 있습니다. 이 표가 오늘 분석서의 「의심 도메인 판정」 칸이 됩니다.
 
 로그 12건의 **점수 · 판정 · 근거**를 마크다운 표로 출력해 보고서 맨 아래 「의심 도메인 판정」 자리에 붙이시오. 근거가 없으면 `-` 로 적습니다.
 
@@ -833,6 +857,8 @@ python report_table3.py
 
 <mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day03_dns_analysis.md` 의 `## 7교시` 에서 `### 문제 7-3` 아래
 
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**왜 중요한가**</mark> — 겉모습만으로 내린 판정을 실제 DNS 조회로 한 번 더 확인합니다. 관제에서는 의심 도메인에 접속하지 않고 `nslookup` 으로 존재 여부를 먼저 봅니다.
+
 규칙이 「정상」이라고 한 CDN 이름과, 지어낸 무작위 이름을 각각 물어 **있는 이름인지** 확인하시오.
 
 ```bash
@@ -860,6 +886,8 @@ nslookup qzkx7wp2v.invalid
 
 <mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day03_dns_analysis.md` 의 `## 7교시` 에서 `### 문제 7-4` 아래
 
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**왜 중요한가**</mark> — 판단 기준과 한계를 적어 두어야 다른 사람이 규칙을 다시 쓰고, 못 잡는 경우를 다른 규칙으로 보완할 수 있습니다. 강의계획서의 평가 기준인 「판단 기준 문서화」가 이 칸입니다.
+
 보고서 맨 아래 「판단 기준」 · 「한계와 다음에 할 일」 칸을 채우시오. 칸은 오전에 붙여 넣은 틀에 이미 있습니다. 코드는 쓰지 않습니다.
 
 | | |
@@ -879,6 +907,8 @@ nslookup qzkx7wp2v.invalid
 <mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — 보고서 파일 마무리 → 깃허브에 올리기(웹 화면 또는 `git push`)
 
 <mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day03_dns_analysis.md` 의 `## 7교시` 에서 `### 문제 7-5` 아래
+
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**왜 중요한가**</mark> — 오늘 만든 코드 · 판정표 · 기준을 분석서 한 파일로 남기는 단계입니다. 깃허브에 올린 분석서는 캡스톤에서 다섯 과목 폴더를 합칠 때 다시 씁니다.
 
 `day03_dns_analysis.md` 의 **빈 칸**(5 · 6 · 7교시와 맨 아래 「최종 분석서」)을 마저 채우고 깃허브에 올리시오. 「최종 분석서」의 칸 — 의심 도메인 판정 · 판단 기준 · 한계와 다음에 할 일 — 은 오전에 붙여 넣은 틀에 이미 있습니다.
 

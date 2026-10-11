@@ -125,6 +125,8 @@ print(out)
 
 <mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day02_subnet_design.md` 의 `## 5교시` 에서 `### 문제 5-1` 아래
 
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**왜 중요한가**</mark> — 스위치가 MAC 주소 표를 보고 포트 하나로만 보낼지 정하는 판단입니다. 5-3 에서 이 판단을 함수로 만들어 스위치처럼 움직이게 합니다.
+
 아래 코드를 `warmup.py` 에 **따라 쳐서** 실행하고, 결과와 「왜 이렇게 나왔는지」 한 줄을 적으시오. `warmup.py` 는 처음 한 번만 `network_zt` 폴더에 New File 로 만들고, 교시마다 내용을 지우고 다시 씁니다.
 
 ```python
@@ -178,6 +180,8 @@ print(ipaddress.ip_address("192.168.11.1") in net)
 <mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — VS Code 에서 `direct_or_gw.py` 만들기 → 터미널에서 `python direct_or_gw.py` 실행
 
 <mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day02_subnet_design.md` 의 `## 5교시` 에서 `### 문제 5-2` 아래
+
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**왜 중요한가**</mark> — PC 가 패킷을 보내기 전에 하는 첫 계산입니다. 「다른 부서로만 통신이 안 된다」는 문의를 받으면 이 판정부터 확인합니다.
 
 PC `10.20.0.10/26` 에서 세 목적지로 보낼 때 **스위치로 직접**인지 **게이트웨이로**인지 판정하시오.
 
@@ -242,6 +246,8 @@ python direct_or_gw.py
 <mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — VS Code 에서 `switch_sim.py` 만들기 → 터미널에서 `python switch_sim.py` 실행
 
 <mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day02_subnet_design.md` 의 `## 5교시` 에서 `### 문제 5-3` 아래
+
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**왜 중요한가**</mark> — 스위치가 MAC 을 배우기 전과 배운 뒤 나가는 포트가 어떻게 달라지는지 확인합니다. 관제에서 의심 PC 가 꽂힌 포트를 MAC 주소 표로 찾는 근거가 이 동작입니다.
 
 5.3 의 세 단계대로 움직이는 스위치를 완성하시오. **배우기 전과 배운 뒤** 나가는 포트가 어떻게 달라지는지 봅니다.
 
@@ -318,6 +324,8 @@ python switch_sim.py
 
 <mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day02_subnet_design.md` 의 `## 5교시` 에서 `### 문제 5-4` 아래
 
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**왜 중요한가**</mark> — 5.2 표의 「목적지 MAC 은 게이트웨이의 MAC」을 내 PC 의 ARP 캐시로 직접 확인합니다. 다른 망 장비의 MAC 을 PC 가 몰라도 통신이 되는 이유가 여기 있습니다.
+
 아래 두 명령을 터미널에 차례로 입력하고, `arp -a` 에 **기본 게이트웨이의 MAC 은 있지만 `8.8.8.8` 은 없는 것**을 확인하시오.
 
 ```bash
@@ -363,6 +371,8 @@ arp -a
 <mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — VS Code 에서 `gw_mistake.py` 만들기 → 터미널에서 `python gw_mistake.py` 실행
 
 <mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day02_subnet_design.md` 의 `## 5교시` 에서 `### 문제 5-5` 아래
+
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**왜 중요한가**</mark> — 게이트웨이를 망 밖 주소로 적으면 에러 없이 바깥 통신만 끊깁니다. 장애 문의를 받았을 때 설정 몇 줄로 원인을 가려내는 점검입니다.
 
 PC 세 대의 설정 가운데 **게이트웨이가 자기 망 밖에 있는** PC 를 찾으시오.
 
@@ -503,6 +513,8 @@ print(a.prefixlen, b.prefixlen)
 
 <mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day02_subnet_design.md` 의 `## 6교시` 에서 `### 문제 6-1` 아래
 
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**왜 중요한가**</mark> — 브로드캐스트가 어느 포트까지 퍼지는지가 VLAN 번호로 정해지는 것을 봅니다. 6-4 에서 이 조건을 함수로 만듭니다.
+
 아래 코드를 `warmup.py` 에 **따라 쳐서** 실행하고, 결과와 「왜 이렇게 나왔는지」 한 줄을 적으시오. `warmup.py` 는 처음 한 번만 `network_zt` 폴더에 New File 로 만들고, 교시마다 내용을 지우고 다시 씁니다.
 
 ```python
@@ -539,6 +551,8 @@ python warmup.py
 <mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — 터미널에서 명령 실행
 
 <mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day02_subnet_design.md` 의 `## 6교시` 에서 `### 문제 6-2` 아래
+
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**왜 중요한가**</mark> — 내 PC 에도 라우팅 표가 있다는 것을 직접 확인합니다. 6.2 표의 「찾아 쓰기」 칸을 채울 때 이 화면의 기본 경로 줄을 근거로 씁니다.
 
 아래를 입력하고 **`0.0.0.0` 으로 시작하는 줄**(기본 경로)의 **게이트웨이** 칸을 찾아, `ipconfig` 의 기본 게이트웨이와 같은지 확인하시오.
 
@@ -583,6 +597,8 @@ route print -4
 <mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — 터미널에서 명령 실행 → 화면을 사진으로 저장 → 보고서에 넣기
 
 <mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day02_subnet_design.md` 의 `## 6교시` 에서 `### 문제 6-3` 아래
+
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**왜 중요한가**</mark> — 패킷이 인터넷까지 어떤 라우터를 차례로 지나는지 봅니다. 관제에서는 몇 번째 줄부터 응답이 끊기는지 보고 장애가 난 구간을 좁힙니다.
 
 아래를 입력하고 **첫 줄(1번)의 주소**가 내 기본 게이트웨이인지 확인하시오. 다섯 칸까지만 봅니다.
 
@@ -629,6 +645,8 @@ tracert -d -h 5 8.8.8.8
 <mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — VS Code 에서 `vlan_flood.py` 만들기 → 터미널에서 `python vlan_flood.py` 실행
 
 <mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day02_subnet_design.md` 의 `## 6교시` 에서 `### 문제 6-4` 아래
+
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**왜 중요한가**</mark> — VLAN 을 나누면 감염 PC 의 브로드캐스트가 다른 부서 망까지 퍼지지 않습니다. 부서마다 VLAN 을 나누는 보안상의 이유를 코드로 확인합니다.
 
 포트별 VLAN 이 정해진 스위치에서, **들어온 포트와 같은 VLAN 의 다른 포트**만 고르는 함수를 완성하시오.
 
@@ -697,6 +715,8 @@ python vlan_flood.py
 <mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — VS Code 에서 `route_lookup.py` 만들기 → 터미널에서 `python route_lookup.py` 실행
 
 <mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day02_subnet_design.md` 의 `## 6교시` 에서 `### 문제 6-5` 아래
+
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**왜 중요한가**</mark> — 라우터가 맞는 줄 여러 개 가운데 하나를 고르는 규칙을 직접 구현합니다. 이 규칙을 틀리면 내부 망으로 갈 패킷이 기본 경로를 타고 인터넷 쪽으로 나갑니다.
 
 목적지마다 **맞는 줄 가운데 CIDR 숫자가 가장 큰 줄**의 다음 홉을 고르시오.
 
@@ -811,6 +831,8 @@ python route_lookup.py
 
 <mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day02_subnet_design.md` 의 `## 7교시` 에서 `### 문제 7-1` 아래
 
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**왜 중요한가**</mark> — 게이트웨이 주소와 브로드캐스트 주소를 코드로 구하는 방법입니다. 7-2 에서 부서마다 이 값을 구해 설계서 표를 만듭니다.
+
 아래 코드를 `warmup.py` 에 **따라 쳐서** 실행하고, 결과와 「왜 이렇게 나왔는지」 한 줄을 적으시오. `warmup.py` 는 처음 한 번만 `network_zt` 폴더에 New File 로 만들고, 교시마다 내용을 지우고 다시 씁니다.
 
 ```python
@@ -844,6 +866,8 @@ python warmup.py
 <mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — VS Code 에서 `vlan_plan.py` 만들기 → 터미널에서 `python vlan_plan.py` 실행 → 보고서에 적기
 
 <mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day02_subnet_design.md` 의 `## 7교시` 에서 `### 문제 7-2` 아래
+
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**왜 중요한가**</mark> — VLAN · 게이트웨이 · 주소 범위를 한 표로 정리해야 장비를 설정하는 사람이 그대로 옮겨 넣을 수 있습니다. 이 출력이 설계서의 「VLAN · 게이트웨이 배정」 칸이 됩니다.
 
 7.1 의 세 부서에 대해 **VLAN · CIDR · 게이트웨이 · 장비에 줄 범위**를 마크다운 표로 출력하시오.
 
@@ -932,6 +956,8 @@ for n in [3, 8, 12, 20]:
 
 <mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day02_subnet_design.md` 의 `## 7교시` 에서 `### 문제 7-3` 아래
 
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**왜 중요한가**</mark> — 새 부서를 더할 때 빈 경계를 계산으로 찾고 겹침을 다시 검증해야 기존 부서의 주소와 부딪히지 않습니다.
+
 서버 10대가 들어갈 `/28` 을 **보안팀 바로 다음 빈 경계**에 놓고, 네 부서가 **겹치지 않는지** 검증하시오.
 
 ```python
@@ -1012,6 +1038,8 @@ python next_block.py
 
 <mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day02_subnet_design.md` 의 `## 7교시` 에서 `### 문제 7-4` 아래
 
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**왜 중요한가**</mark> — 강의계획서의 평가 기준인 「라우팅 경로를 올바르게 식별했는가」를 채우는 문제입니다. 관제에서도 통신이 어느 장비를 지나는지 알아야 어느 장비의 로그를 볼지 정합니다.
+
 7.1 그림을 보고 아래 세 통신이 **어디를 거쳐 가는지** 보고서 맨 아래 「망 구성도와 라우팅 경로」의 ① ② ③ 줄에 적으시오. 명령은 입력하지 않습니다.
 
 | # | 통신 |
@@ -1055,6 +1083,8 @@ python next_block.py
 <mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — 보고서 파일 마무리 → 깃허브에 올리기(웹 화면 또는 `git push`)
 
 <mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day02_subnet_design.md` 의 `## 7교시` 에서 `### 문제 7-5` 아래
+
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**왜 중요한가**</mark> — 빈 칸 없는 설계서 한 파일이 오늘의 평가 산출물입니다. 깃허브에 올려 두어야 강사가 확인하고, 뒤 과목에서 이 주소표를 다시 열어 볼 수 있습니다.
 
 `day02_subnet_design.md` 의 **빈 칸**(5 · 6 · 7교시와 맨 아래 「최종 설계서」)을 마저 채우고 깃허브에 올리시오. 「최종 설계서」의 칸 — 부서 주소 설계표 · VLAN · 게이트웨이 배정 · 망 구성도와 라우팅 경로 · 검증 — 은 오전에 붙여 넣은 틀에 이미 있습니다.
 

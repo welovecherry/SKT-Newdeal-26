@@ -394,6 +394,8 @@ PAT 공유기는 「바깥 포트 40002번 = 안의 `192.168.10.25:51234`」 같
 
 <mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day02_subnet_design.md` 의 `## 2교시` 에서 `### 문제 2-1` 아래
 
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**왜 중요한가**</mark> — 마디 하나를 여덟 칸 2진수로 바꾸는 이 한 줄을 2-2 에서 네 마디에 되풀이해 IP 주소 32칸을 만듭니다.
+
 아래 코드를 `warmup.py` 에 **따라 쳐서** 실행하고, 결과와 「왜 이렇게 나왔는지」 한 줄을 적으시오. `warmup.py` 는 처음 한 번만 `network_zt` 폴더에 New File 로 만들고, 교시마다 내용을 지우고 다시 씁니다.
 
 ```python
@@ -428,6 +430,8 @@ python warmup.py
 <mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — VS Code 에서 `ip_bits.py` 만들기 → 터미널에서 `python ip_bits.py` 실행
 
 <mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day02_subnet_design.md` 의 `## 2교시` 에서 `### 문제 2-2` 아래
+
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**왜 중요한가**</mark> — IP 주소를 32칸으로 펼쳐 두어야 3교시에서 서브넷 마스크가 어느 칸까지를 같은 망으로 묶는지 칸끼리 맞대어 볼 수 있습니다.
 
 IP 주소를 0과 1 서른두 칸으로 펼치는 함수 `to_bits` 를 완성하시오. 마지막 줄의 주소는 **어제 적은 내 IPv4 주소**로 바꿔 한 번 더 실행합니다.
 
@@ -493,6 +497,8 @@ python ip_bits.py
 <mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — VS Code 에서 `private_ip.py` 만들기 → 터미널에서 `python private_ip.py` 실행
 
 <mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day02_subnet_design.md` 의 `## 2교시` 에서 `### 문제 2-3` 아래
+
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**왜 중요한가**</mark> — 로그에 찍힌 주소가 사설인지 공인인지로 내부 PC 의 통신인지 외부에서 온 접속인지를 가릅니다. 관제에서 주소를 보면 가장 먼저 하는 판정입니다.
 
 주소가 사설 IP 인지 판별하는 `is_private` 를 완성하시오. **172 의 함정**에 걸리지 않아야 합니다.
 
@@ -601,6 +607,8 @@ python private_ip.py
 
 <mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day02_subnet_design.md` 의 `## 2교시` 에서 `### 문제 2-4` 아래
 
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**왜 중요한가**</mark> — 외부 서버의 로그에는 내 PC 의 IP 가 아니라 이 공인 IP 가 남습니다. 내 PC 의 IP 와 인터넷이 보는 IP 가 어떻게 다른지 직접 확인합니다.
+
 터미널에 아래를 입력해 **인터넷이 보는 내 주소**(공인 IP)를 확인하고, 어제 적은 내 IPv4 주소와 비교해 보고서에 적으시오.
 
 ```bash
@@ -644,6 +652,8 @@ curl https://api.ipify.org
 <mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — VS Code 에서 `nat_table.py` 만들기 → 터미널에서 `python nat_table.py` 실행
 
 <mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day02_subnet_design.md` 의 `## 2교시` 에서 `### 문제 2-5` 아래
+
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**왜 중요한가**</mark> — 외부 로그에 공인 IP 와 포트만 남았을 때 안의 어느 PC 가 보낸 것인지 찾으려면 이 변환표에서 포트로 찾아야 합니다.
 
 PAT 변환표에서 **바깥 포트 40002번으로 돌아온 답**이 안의 어느 PC 로 가는지 찾으시오.
 
@@ -774,6 +784,8 @@ print(net.network_address, net.broadcast_address, net.num_addresses)
 
 <mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day02_subnet_design.md` 의 `## 3교시` 에서 `### 문제 3-1` 아래
 
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**왜 중요한가**</mark> — 마스크 32칸에서 1 과 0 의 개수를 세는 일이 3-3 · 4-2 에서 CIDR 과 주소 수를 계산하는 바탕이 됩니다.
+
 아래 코드를 `warmup.py` 에 **따라 쳐서** 실행하고, 결과와 「왜 이렇게 나왔는지」 한 줄을 적으시오. `warmup.py` 는 처음 한 번만 `network_zt` 폴더에 New File 로 만들고, 교시마다 내용을 지우고 다시 씁니다.
 
 ```python
@@ -806,6 +818,8 @@ python warmup.py
 <mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — 터미널에서 명령 실행 → 화면을 사진으로 저장 → 보고서에 적기
 
 <mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day02_subnet_design.md` 의 `## 3교시` 에서 `### 문제 3-2` 아래
+
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**왜 중요한가**</mark> — 내 PC 의 CIDR 을 알아야 3-4 에서 내 PC 가 속한 망의 범위를 계산할 수 있습니다. 사진은 7-5 에서 설계서와 함께 올립니다.
 
 `ipconfig` 로 내 **서브넷 마스크**를 찾고, 3.1 표를 보고 **CIDR** 로 바꿔 보고서에 적으시오.
 
@@ -844,6 +858,8 @@ python warmup.py
 <mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — VS Code 에서 `cidr_table.py` 만들기 → 터미널에서 `python cidr_table.py` 실행
 
 <mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day02_subnet_design.md` 의 `## 3교시` 에서 `### 문제 3-3` 아래
+
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**왜 중요한가**</mark> — CIDR 숫자 하나만 보고 방화벽 규칙이 주소 몇 개를 덮는지 가늠할 수 있게 됩니다. 4교시에서 부서마다 망 크기를 고를 때 이 표를 씁니다.
 
 `/24` 부터 `/28` 까지 마스크와 주소 수를 출력하시오.
 
@@ -904,6 +920,8 @@ python cidr_table.py
 <mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — VS Code 에서 `my_network.py` 만들기 → 터미널에서 `python my_network.py` 실행 → 보고서에 적기
 
 <mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day02_subnet_design.md` 의 `## 3교시` 에서 `### 문제 3-4` 아래
+
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**왜 중요한가**</mark> — 네트워크 주소와 브로드캐스트 주소를 알면 내 망이 어디부터 어디까지인지 정확히 말할 수 있습니다. 오후 5-5 의 게이트웨이 점검도 이 범위로 판정합니다.
 
 **내 IPv4 주소와 CIDR** 로 네트워크 주소 · 브로드캐스트 주소 · 쓸 수 있는 주소 수를 계산해 보고서에 적으시오.
 
@@ -968,6 +986,8 @@ python my_network.py
 <mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — VS Code 에서 `same_network.py` 만들기 → 터미널에서 `python same_network.py` 실행
 
 <mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day02_subnet_design.md` 의 `## 3교시` 에서 `### 문제 3-5` 아래
+
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**왜 중요한가**</mark> — 앞 세 마디가 같아도 마스크에 따라 다른 망일 수 있음을 계산으로 확인합니다. 오후 5-2 에서 스위치로 바로 보낼지 게이트웨이로 보낼지를 이 판정으로 정합니다.
 
 `/26` 일 때 `.70` · `.120` · `.130` 세 주소 가운데 **같은 망끼리** 고르시오.
 
@@ -1105,6 +1125,8 @@ print(a.overlaps(b))
 
 <mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day02_subnet_design.md` 의 `## 4교시` 에서 `### 문제 4-1` 아래
 
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**왜 중요한가**</mark> — 큰 망을 같은 크기로 나눴을 때 각 블록이 어느 주소에서 시작하는지 봅니다. 4-3 FLSM 이 이 네 블록을 그대로 씁니다.
+
 아래 코드를 `warmup.py` 에 **따라 쳐서** 실행하고, 결과와 「왜 이렇게 나왔는지」 한 줄을 적으시오. `warmup.py` 는 처음 한 번만 `network_zt` 폴더에 New File 로 만들고, 교시마다 내용을 지우고 다시 씁니다.
 
 ```python
@@ -1138,6 +1160,8 @@ python warmup.py
 <mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — VS Code 에서 `smallest_prefix.py` 만들기 → 터미널에서 `python smallest_prefix.py` 실행
 
 <mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day02_subnet_design.md` 의 `## 4교시` 에서 `### 문제 4-2` 아래
+
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**왜 중요한가**</mark> — 장비 수에 맞는 가장 작은 망을 골라야 남는 주소를 다음 부서에 줄 수 있습니다. 오후 7-3 의 서버망 크기도 이 방법으로 정합니다.
 
 장비 수를 받아 **그만큼 담는 가장 작은 망의 CIDR 숫자**를 리턴하는 함수를 완성하시오.
 
@@ -1201,6 +1225,8 @@ python smallest_prefix.py
 
 <mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day02_subnet_design.md` 의 `## 4교시` 에서 `### 문제 4-3` 아래
 
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**왜 중요한가**</mark> — 모든 부서에 같은 크기를 주면 빈 주소가 얼마나 남는지 숫자로 확인합니다. 4-4 의 VLSM 설계와 견주는 기준이 됩니다.
+
 `192.168.50.0/24` 를 `/26` 네 개로 나눠, 망마다 **쓸 수 있는 수**를 출력하시오.
 
 ```python
@@ -1260,6 +1286,8 @@ python flsm.py
 <mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — VS Code 에서 `plan_check.py` 만들기 → 터미널에서 `python plan_check.py` 실행
 
 <mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day02_subnet_design.md` 의 `## 4교시` 에서 `### 문제 4-4` 아래
+
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**왜 중요한가**</mark> — 부서 망이 모자라거나 겹치면 주소 충돌로 통신이 끊기고, 방화벽 규칙이 엉뚱한 부서까지 덮습니다. 오후 7-3 에서 서버망을 더할 때도 같은 검증을 합니다.
 
 VLSM 설계표가 **부서마다 충분한지**, **서로 겹치지 않는지** 검증하시오.
 
@@ -1332,6 +1360,8 @@ python plan_check.py
 <mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — VS Code 에서 `design_table.py` 만들기 → 터미널에서 `python design_table.py` 실행 → 보고서에 적기
 
 <mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day02_subnet_design.md` 의 `## 4교시` 에서 `### ⭐ 도전 4-5` 아래
+
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**왜 중요한가**</mark> — 계산 결과를 표로 바로 출력하면 손으로 옮기다 생기는 오타가 설계서에 들어가지 않습니다. 오후 7-2 에서 같은 방식으로 VLAN 표를 만듭니다.
 
 `10.20.0.0/24` 를 받은 회사의 세 부서 배정을 **마크다운 표**로 출력해 보고서 맨 아래 「부서 주소 설계표」 자리에 붙이시오. 첫 호스트 · 마지막 호스트도 적습니다.
 

@@ -144,6 +144,8 @@ print(flags == "SYN")       # False — 리스트와 글자는 같을 수 없다
 
 <mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day01_packet_analysis.md` 의 `## 5교시` 에서 `### 문제 5-1` 아래
 
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**왜 중요한가**</mark> — 패킷의 플래그는 여러 개가 한 리스트에 들어옵니다. 이 차이를 알아야 SYN · FIN 을 골라내는 탐지 코드가 아무것도 못 잡는 실수를 막습니다.
+
 아래 코드를 `warmup.py` 에 **따라 쳐서** 실행하고, 결과와 「왜 이렇게 나왔는지」 한 줄을 적으시오. `warmup.py` 는 처음 한 번만 `network_zt` 폴더에 New File 로 만들고, 교시마다 내용을 지우고 다시 씁니다.
 
 ```python
@@ -179,6 +181,8 @@ python warmup.py
 <mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — 명령 없이 생각해서 답하기 → 보고서에 적기
 
 <mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day01_packet_analysis.md` 의 `## 5교시` 에서 `### 문제 5-2` 아래
+
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**왜 중요한가**</mark> — TCP 와 UDP 를 구별해야 Wireshark 의 Protocol 열을 읽을 수 있습니다. 6-4 에서 `udp` 필터를 걸 때 무엇이 걸릴지 미리 짐작하는 근거가 됩니다.
 
 아래 다섯 가지가 TCP 인지 UDP 인지(또는 둘 다 아닌지) 적으시오. 명령은 입력하지 않습니다.
 
@@ -228,6 +232,8 @@ python warmup.py
 
 <mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day01_packet_analysis.md` 의 `## 5교시` 에서 `### 문제 5-3` 아래
 
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**왜 중요한가**</mark> — 이 순서를 알아야 7-1 에서 Wireshark 로 잡은 줄이 연결의 시작인지 가릴 수 있습니다. 관제에서는 연결이 끝까지 맺어지지 않는 시도가 쌓이면 공격을 의심합니다.
+
 뒤섞인 세 패킷의 **올바른 순서**와 **방향**(내 PC → 서버 / 서버 → 내 PC)을 적으시오.
 
 ```
@@ -266,6 +272,8 @@ python warmup.py
 <mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — 브라우저에서 같은 사이트를 탭 두 개로 열기 → 터미널에서 명령 실행 → 보고서에 적기
 
 <mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day01_packet_analysis.md` 의 `## 5교시` 에서 `### 문제 5-4` 아래
+
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**왜 중요한가**</mark> — 관제 로그에서 연결 하나를 정확히 짚으려면 5.3 의 네 값을 모두 봐야 합니다. 같은 서버로 간 연결이 여러 개일 때 어느 것인지 가리는 근거가 됩니다.
 
 브라우저로 같은 사이트를 **탭 두 개**로 연 뒤 `netstat -n` 을 입력하고, 외부 주소가 **같은** 연결 두 줄을 찾아 **무엇이 다른지** 적으시오.
 
@@ -380,6 +388,8 @@ netstat -n
 
 <mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day01_packet_analysis.md` 의 `## 6교시` 에서 `### 문제 6-1` 아래
 
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**왜 중요한가**</mark> — Wireshark 가 인터페이스를 보지 못하면 6 · 7교시 실습을 하나도 할 수 없습니다. 지금 확인해야 캡처 단계에서 멈추지 않습니다.
+
 아침 과제 8 에서 설치한 Wireshark 를 실행해, 첫 화면에서 **인터페이스 목록**이 보이는지 확인하시오.
 
 1. 시작 메뉴에서 **Wireshark** 를 엽니다.
@@ -419,6 +429,8 @@ netstat -n
 
 <mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day01_packet_analysis.md` 의 `## 6교시` 에서 `### 문제 6-2` 아래
 
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**왜 중요한가**</mark> — 사이트 하나를 열 때 실제로 몇 개의 패킷과 어떤 종류가 오가는지 숫자로 봅니다. 이 `Packets` 수가 6-4 에서 필터로 얼마나 줄었는지 비교하는 기준이 됩니다.
+
 **그래프가 움직이는 인터페이스**를 더블클릭해 캡처를 시작하고, 브라우저로 사이트 하나를 연 뒤 멈추시오. 화면 맨 아래 오른쪽 끝 상태 줄의 **Packets** 숫자와 Protocol 열에 보이는 **이름 세 개**를 적으시오.
 
 | | |
@@ -452,6 +464,8 @@ netstat -n
 <mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — Wireshark 화면에서
 
 <mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day01_packet_analysis.md` 의 `## 6교시` 에서 `### 문제 6-3` 아래
+
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**왜 중요한가**</mark> — 관제에서 출발지 · 목적지 IP 와 포트를 읽는 곳이 이 칸입니다. 7교시 보고서의 평가 기준인 출발지 · 목적지 · TTL 도 여기서 읽습니다.
 
 위 칸에서 Protocol 이 `TCP` 인 줄 하나를 누르고, 아래 왼쪽 칸의 세 줄을 펼쳐 아래 표의 값을 찾고, 보고서에 적으시오.
 
@@ -493,6 +507,8 @@ netstat -n
 <mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — Wireshark 화면에서 → 보고서에 적기
 
 <mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day01_packet_analysis.md` 의 `## 6교시` 에서 `### 문제 6-4` 아래
+
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**왜 중요한가**</mark> — 화면 맨 아래 오른쪽 `Displayed` 는 필터에 걸린 패킷 수입니다. 이 숫자로 필터가 제대로 걸렸는지 확인하고, 관제에서는 수천 줄을 몇 줄로 좁혔는지 판단합니다.
 
 필터 세 개를 **한 번에 하나씩** 걸어 보고, 걸 때마다 화면 맨 아래 오른쪽 끝 상태 줄의 **Displayed** 숫자를 적으시오. 세 줄을 한 칸에 같이 치지 않습니다.
 
@@ -569,6 +585,8 @@ netstat -n
 
 <mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day01_packet_analysis.md` 의 `## 7교시` 에서 `### 문제 7-1` 아래
 
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**왜 중요한가**</mark> — 캡처 필터로 내 연결만 잡으면 수백 줄 속에서 헤매지 않고 3-way 세 줄을 바로 찾습니다. 이 사진이 오늘 보고서의 첫 증거입니다.
+
 캡처 필터 `tcp port 80` 으로 캡처를 시작하고, 터미널에서 아래 명령을 입력한 뒤 **3초쯤 기다렸다가** 멈추시오.
 
 ```bash
@@ -616,6 +634,8 @@ curl "http://example.com/?q=network_day1"
 
 <mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day01_packet_analysis.md` 의 `## 7교시` 에서 `### 문제 7-2` 아래
 
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**왜 중요한가**</mark> — HTTP 패킷에 내가 보낸 글자가 어떻게 남는지 직접 보면 암호화하지 않은 웹 통신을 왜 막는지 알 수 있습니다. FIN 줄은 연결이 정상으로 끝났는지 가리는 근거입니다.
+
 7-1 의 캡처에서 아래 둘을 찾으시오.
 
 1. 표시 필터 `http` → `GET /?q=network_day1` 줄을 찾아 **잘라** `http_request.png` 로 저장합니다.
@@ -653,6 +673,8 @@ curl "http://example.com/?q=network_day1"
 <mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — 보고서 파일 마무리 → 깃허브에 올리기(웹 화면 또는 `git push`)
 
 <mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day01_packet_analysis.md` 의 `## 7교시` 에서 `### 문제 7-3` 아래
+
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**왜 중요한가**</mark> — 사진과 값을 한 보고서로 남겨야 다른 사람이 같은 결과를 확인할 수 있습니다. 관제에서도 분석 결과는 근거 사진과 값을 붙인 보고서로 넘깁니다.
 
 `day01_packet_analysis.md` 의 **빈 칸**(5 · 6 · 7교시와 맨 아래 「최종 분석」)을 마저 채우고 깃허브에 올리시오. 사진 줄과 값을 적는 줄은 오전에 붙여 넣은 틀에 이미 있습니다.
 
