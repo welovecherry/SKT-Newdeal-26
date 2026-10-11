@@ -60,7 +60,7 @@ cd network_zt
 
 ### 0.3 문제를 푸는 법
 
-1. 문제 앞의 **상자**를 먼저 읽습니다 — 🐍 문법 상자(파이썬) · 명령 상자(터미널) · Wireshark 상자 · 개념 상자. 문제 제목 아래 **어디서** 줄이 실습하는 곳입니다. `→` 는 하는 순서입니다.
+1. 문제마다 **할 일 → 왜 중요한가 → 이 문제에 나오는 말 → 순서**를 읽습니다. 순서의 `[창 이름]`을 보고 지금 할 일을 어디서 하는지 확인합니다. 마지막 `[보고서]` 단계에서 보고서에 적습니다. 문제 앞의 상자는 🐍 문법 상자(파이썬) · 명령 상자(터미널) · Wireshark 상자 · 개념 상자입니다.
 2. 「💻 **터미널에 입력합니다.**」 아래의 명령은 터미널에 그대로 입력하고 Enter 를 누릅니다.
 3. 막히면 **💡 힌트**를 보고, 그래도 막히면 문서 맨 아래 **「정답」**을 봅니다.
 4. ⭐도전은 안 풀고 넘어가도 됩니다.
@@ -71,7 +71,7 @@ cd network_zt
 2. 목록 맨 위 `SECURITY-AGENT-TOOLKIT` 아래에서 **`network_zt` 폴더**를 찾아 오른쪽 클릭 › **New File** 을 누릅니다. `network_zt` 가 안 보이면 아침 과제 8 의 4번(새 과목 폴더 만들기)으로 돌아갑니다.
 3. 이름 칸에 `day01_packet_analysis.md` 를 입력하고 Enter 를 누릅니다. `network_zt` 폴더 **안에** 파일이 생겼는지 봅니다.
 4. 아래 **틀 전체**를 붙여 넣습니다. 교시마다 **문제 소제목**(`### 문제 2-1 · …`)이 처음부터 다 들어 있습니다 — 문제를 풀면 그 소제목 아래를 채웁니다. 사진 두 줄은 오후에 사진을 저장하면 보입니다.
-5. 쓸 때는 보고서 파일을 열고 `Ctrl + K` 를 누른 뒤 `V` 를 누릅니다. 오른쪽에 미리보기가 열려, 왼쪽에 쓰는 것이 바로 보입니다. 콜론(:) 뒤에 쓰고, **길어지면 다음 줄에 이어 써도 됩니다** — 한 줄로 줄일 필요는 없습니다.
+5. 쓸 때는 보고서 파일을 열고 `Ctrl + K` 를 누른 뒤 `V` 를 누릅니다. 오른쪽에 미리보기가 열려, 왼쪽에 쓰는 것이 바로 보입니다. 콜론(:) 뒤에 내가 공부한 내용을 적습니다.
 
 ```markdown
 # Day 1 패킷 분석 보고서 (이름 · 2026-10-12)
@@ -85,42 +85,42 @@ cd network_zt
 
 ### 문제 2-1 · 결과 화면 읽기
 
-- 몇 번 보내서 몇 번 돌아왔나: 
-- 손실(%): 
-- 평균 왕복 시간(ms): 
+- 몇 번 보내서 몇 번 돌아왔나:
+- 손실(%):
+- 평균 왕복 시간(ms):
 
 ### 문제 2-2 · 구글 DNS 서버에 `ping` 보내기
 
-- 8.8.8.8 까지 왕복 평균(ms): 
-- 8.8.8.8 의 TTL: 
+- 8.8.8.8 까지 왕복 평균(ms):
+- 8.8.8.8 의 TTL:
 
 ### 문제 2-3 · 이름으로 `ping` 보내기
 
-- google.com 의 IP: 
+- google.com 의 IP:
 
 ### 문제 2-4 · 두 가지 실패를 구별하기
 
-- 첫째 실패 문구와 뜻: 
-- 둘째 실패 문구와 뜻: 
+- 첫째 실패 문구와 뜻:
+- 둘째 실패 문구와 뜻:
 
 ### 문제 2-5 · 열 번 보내서 손실 보기
 
-- 받음 / 보냄: 
-- 손실(%): 
+- 받음 / 보냄:
+- 손실(%):
 
 ### ⭐ 도전 2-6 · `ping` 결과를 파이썬으로 판정하기
 
-- 출력 첫 줄: 
+- 출력 첫 줄:
 
 ### 찾아본 것
 
-- TTL: 
-- 손실: 
-- 평균: 
+- TTL:
+- 손실:
+- 평균:
 
 ### 이 교시에 새로 안 것
 
-- 
+- 오늘 새로 알게 된 점:
 
 ---
 
@@ -128,36 +128,36 @@ cd network_zt
 
 ### 문제 3-1 · 결과 화면 읽기
 
-- MAC 주소: 
-- IP 주소: 
-- 기본 게이트웨이: 
+- MAC 주소:
+- IP 주소:
+- 기본 게이트웨이:
 
 ### 문제 3-2 · 내 IP 주소와 게이트웨이 찾기
 
-- 내 IPv4 주소: 
-- 기본 게이트웨이: 
+- 내 IPv4 주소:
+- 기본 게이트웨이:
 
 ### 문제 3-3 · 내 MAC 주소 찾기
 
-- 내 MAC 주소(물리적 주소): 
+- 내 MAC 주소(물리적 주소):
 
 ### 문제 3-4 · 게이트웨이까지 `ping`
 
-- 게이트웨이까지 왕복 평균(ms): 
-- 8.8.8.8 보다 짧은 이유: 
+- 게이트웨이까지 왕복 평균(ms):
+- 8.8.8.8 보다 짧은 이유:
 
 ### 문제 3-5 · ARP 캐시 보기 — `arp -a`
 
-- 게이트웨이의 MAC 주소: 
-- 그 줄의 유형: 
+- 게이트웨이의 MAC 주소:
+- 그 줄의 유형:
 
 ### ⭐ 도전 3-6 · 주소 모양으로 IP 와 MAC 구별하기
 
-- 출력 첫 줄: 
+- 출력 첫 줄:
 
 ### 이 교시에 새로 안 것
 
-- 
+- 오늘 새로 알게 된 점:
 
 ---
 
@@ -165,41 +165,44 @@ cd network_zt
 
 ### 문제 4-1 · 직접 실행해 보기
 
-- 결과: 
-- 왜 그렇게 나왔나: 
+- 결과:
+- 왜 그렇게 나왔나:
 
 ### 문제 4-2 · 지금의 연결 보기 — `netstat -n`
 
-- 외부 주소의 포트 → 서비스 이름: 
+- 외부 주소의 포트 → 서비스 이름:
 
 ### 문제 4-3 · 그 연결은 어느 프로그램의 것인가
 
-- PID → 프로그램 이름: 
+- PID → 프로그램 이름:
 
 ### 문제 4-4 · 내 PC 의 LISTENING 포트 찾기
 
-- 4.1 표에 있는 LISTENING 포트: 
+- 4.1 표에 있는 LISTENING 포트:
 
 ### 문제 4-5 · 증상으로 층 좁히기
 
-- ① 은 몇 층: 
-- ② 는 몇 층: 
-- ③ 은 몇 층: 
+- ① 의심되는 층:
+- ① 판단 근거:
+- ② 의심되는 층:
+- ② 판단 근거:
+- ③ 의심되는 층:
+- ③ 판단 근거:
 
 ### ⭐ 도전 4-6 · 포트에 이름 붙이기
 
-- 출력 첫 줄: 
+- 출력 첫 줄:
 
 ### 찾아본 것
 
-- 포트 22: 
-- 포트 3389: 
-- 포트 135: 
-- 포트 445: 
+- 포트 22:
+- 포트 3389:
+- 포트 135:
+- 포트 445:
 
 ### 이 교시에 새로 안 것
 
-- 
+- 오늘 새로 알게 된 점:
 
 ---
 
@@ -207,31 +210,31 @@ cd network_zt
 
 ### 문제 5-1 · 직접 실행해 보기
 
-- 결과: 
-- 왜 그렇게 나왔나: 
+- 결과:
+- 왜 그렇게 나왔나:
 
 ### 문제 5-2 · TCP 일까 UDP 일까
 
-- ① ~ ⑤: 
+- ① ~ ⑤:
 
 ### 문제 5-3 · 세 번의 순서 맞히기
 
-- 순서와 방향: 
+- 순서와 방향:
 
 
 ### 문제 5-4 · 같은 서버로 간 두 연결은 무엇이 다른가
 
-- 같은 것: 
-- 다른 것: 
+- 같은 것:
+- 다른 것:
 
 
 ### 찾아본 것
 
-- RST — FIN 과 무엇이 다른가 · 언제 보이나: 
+- RST — FIN 과 무엇이 다른가 · 언제 보이나:
 
 ### 이 교시에 새로 안 것
 
-- 
+- 오늘 새로 알게 된 점:
 
 ---
 
@@ -240,30 +243,30 @@ cd network_zt
 
 ### 문제 6-1 · Wireshark 실행하기
 
-- 내 인터페이스 이름: 
+- 내 인터페이스 이름:
 
 ### 문제 6-2 · 첫 캡처
 
-- 패킷 수: 
-- Protocol 열의 이름 세 개: 
+- 패킷 수:
+- Protocol 열의 이름 세 개:
 
 ### 문제 6-3 · 패킷 하나를 층별로 펼치기
 
-- Ethernet II — Source MAC: 
-- IPv4 — Source IP / Destination IP: 
-- IPv4 — Time to Live: 
-- TCP — Source Port / Destination Port / Flags: 
+- Ethernet II — Source MAC:
+- IPv4 — Source IP / Destination IP:
+- IPv4 — Time to Live:
+- TCP — Source Port / Destination Port / Flags:
 
 ### 문제 6-4 · 필터 세 개 걸어 보기
 
-- dns Displayed: 
-- udp Displayed: 
-- tcp.port == 443 Displayed: 
+- dns Displayed:
+- udp Displayed:
+- tcp.port == 443 Displayed:
 
 
 ### 이 교시에 새로 안 것
 
-- 
+- 오늘 새로 알게 된 점:
 
 ---
 
@@ -272,22 +275,22 @@ cd network_zt
 
 ### 문제 7-1 · 내 HTTP 연결 하나만 잡기
 
-- handshake.png 저장했나: 
+- handshake.png 저장했나:
 
 ### 문제 7-2 · HTTP 요청과 연결 종료 찾기
 
-- 패킷에 보인 검색어: 
-- FIN 줄 수와 뜻: 
+- 패킷에 보인 검색어:
+- FIN 줄 수와 뜻:
 
 
 ### 문제 7-3 · 보고서 완성하고 올리기
 
-- 깃허브에 올렸나: 
+- 깃허브에 올렸나:
 
 
 ### 이 교시에 새로 안 것
 
-- 
+- 오늘 새로 알게 된 점:
 
 ---
 
@@ -297,18 +300,18 @@ cd network_zt
 
 ![3-way handshake](handshake.png)
 
-- ① 줄 — Source → Destination · Info: 
-- ② 줄 — Source → Destination · Info: 
-- ③ 줄 — Source → Destination · Info: 
-- 세 줄이 뜻하는 것: 
+- ① 줄 — Source → Destination · Info:
+- ② 줄 — Source → Destination · Info:
+- ③ 줄 — Source → Destination · Info:
+- 세 줄이 뜻하는 것:
 
 ### 헤더에서 읽은 값 (6-3)
 
-- 출발지 IP (3층): 
-- 목적지 IP (3층): 
-- Time to Live (3층): 
-- 출발지 포트 · 목적지 포트 (4층): 
-- Flags (4층): 
+- 출발지 IP (3층):
+- 목적지 IP (3층):
+- Time to Live (3층):
+- 출발지 포트 · 목적지 포트 (4층):
+- Flags (4층):
 
 ### HTTP 요청과 연결 종료
 
@@ -316,18 +319,18 @@ cd network_zt
 
 ### 사용한 필터 (7-1 · 7-2)
 
-> 7-1 · 7-2 에서 걸었던 필터를 다시 보며 적고, 무엇을 보려고 걸었는지 한 마디씩 붙입니다.
+> 7-1 · 7-2 에서 걸었던 필터와, 각 필터로 어떤 패킷을 보려고 했는지 함께 설명합니다.
 
-- 캡처 필터 — 필터: 
-- 캡처 필터 — 무엇을 보려고: 
-- 표시 필터 ① — 필터: 
-- 표시 필터 ① — 무엇을 보려고: 
-- 표시 필터 ② — 필터: 
-- 표시 필터 ② — 무엇을 보려고: 
-- 표시 필터 ③ — 필터: 
-- 표시 필터 ③ — 무엇을 보려고: 
+- 캡처 필터 — 필터:
+- 캡처 필터 — 무엇을 보려고:
+- 표시 필터 ① — 필터:
+- 표시 필터 ① — 무엇을 보려고:
+- 표시 필터 ② — 필터:
+- 표시 필터 ② — 무엇을 보려고:
+- 표시 필터 ③ — 필터:
+- 표시 필터 ③ — 무엇을 보려고:
 ```
-⚠ <mark style="background:#ffcdd2; color:#1a1a1a; padding:0 4px; border-radius:3px">오늘 적는 것은 모두 이 파일(`day01_packet_analysis.md`) 하나에</mark> 적습니다. 문제마다 「<mark style="background:#ffcdd2; color:#1a1a1a; padding:0 4px; border-radius:3px">적는 곳</mark>」 줄이 이 파일의 어느 절인지 알려 줍니다. 문제마다 소제목이 틀에 다 있으니 <mark style="background:#ffcdd2; color:#1a1a1a; padding:0 4px; border-radius:3px">그 문제 소제목 아래</mark>를 채웁니다.
+⚠ <mark style="background:#ffcdd2; color:#1a1a1a; padding:0 4px; border-radius:3px">오늘 적는 것은 모두 이 파일(`day01_packet_analysis.md`) 하나에</mark> 적습니다. 문제마다 마지막 **[보고서]** 단계에 적을 위치가 나옵니다. 각 문제의 소제목은 틀에 다 있으니 <mark style="background:#ffcdd2; color:#1a1a1a; padding:0 4px; border-radius:3px">그 소제목 아래</mark>를 채웁니다.
 
 
 ---
@@ -400,13 +403,17 @@ ping -t 8.8.8.8       # 멈출 때까지 계속 보낸다 — Ctrl + C 로 멈�
 
 ### ✍️ 문제 2-1 · 결과 화면 읽기
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — 이 문서의 예시 화면을 보고 → 보고서에 적기 (명령은 치지 않습니다)
+**할 일** — 예시 ping 결과에서 보낸 횟수 · 받은 횟수 · 손실률 · 평균 왕복 시간을 찾아 보고서에 기록합니다.
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day01_packet_analysis.md` 의 `## 2교시` 에서 `### 문제 2-1` 아래
+**왜 중요한가** — `ping` 통계의 보냄 · 받음 · 손실 · 평균을 읽을 줄 알아야 「인터넷이 느려요」 신고를 숫자로 판단할 수 있습니다.
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**왜 중요한가**</mark> — `ping` 통계의 보냄 · 받음 · 손실 · 평균을 읽을 줄 알아야 「인터넷이 느려요」 신고를 숫자로 판단할 수 있습니다.
+**이 문제에 나오는 말**
 
-아래는 **다른 사람이 `ping 1.1.1.1` 을 쳤을 때 마지막에 나온 화면**입니다. 이 화면에서 숫자를 찾아 아래 질문 세 개에 답하시오. 내 PC 에서 직접 치는 것은 바로 다음 문제 2-2 입니다.
+새 용어 없음.
+
+**순서**
+1. **[이 문서]** 아래 예시 화면과 질문 표에서 네 값을 찾습니다.
+2. **[보고서]** `day01_packet_analysis.md`의 `## 2교시`에서 `### 문제 2-1` 아래에 보낸 횟수 · 받은 횟수 · 손실률 · 평균 왕복 시간을 적습니다.
 
 ```
 1.1.1.1에 대한 Ping 통계:
@@ -439,13 +446,18 @@ ping -t 8.8.8.8       # 멈출 때까지 계속 보낸다 — Ctrl + C 로 멈�
 
 ### ✍️ 문제 2-2 · 구글 DNS 서버에 `ping` 보내기
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — 터미널에서 명령 실행 → 보고서에 적기
+**할 일** — 내 PC에서 `8.8.8.8`에 ping을 보내 평균 왕복 시간과 TTL을 확인해 보고서에 기록합니다.
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day01_packet_analysis.md` 의 `## 2교시` 에서 `### 문제 2-2` 아래
+**왜 중요한가** — 정상일 때의 왕복 시간과 TTL 을 내 PC 에서 직접 재 둡니다. 이 숫자가 3-4 에서 게이트웨이 결과와 비교하는 기준이 됩니다.
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**왜 중요한가**</mark> — 정상일 때의 왕복 시간과 TTL 을 내 PC 에서 직접 재 둡니다. 이 숫자가 3-4 에서 게이트웨이 결과와 비교하는 기준이 됩니다.
+**이 문제에 나오는 말**
 
-터미널에서 `8.8.8.8` 에 `ping` 을 보내고, **평균 왕복 시간**과 **TTL** 을 보고서에 적으시오.
+새 용어 없음.
+
+**순서**
+1. **[터미널]** `ping 8.8.8.8`을 입력합니다.
+2. **[터미널]** 결과에서 평균 왕복 시간과 응답 줄의 TTL을 찾습니다.
+3. **[보고서]** `day01_packet_analysis.md`의 `## 2교시`에서 `### 문제 2-2` 아래에 평균 왕복 시간과 TTL 값을 적습니다.
 
 | | |
 |---|---|
@@ -480,13 +492,18 @@ ping 8.8.8.8
 
 ### ✍️ 문제 2-3 · 이름으로 `ping` 보내기
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — 터미널에서 명령 실행
+**할 일** — `google.com`에 ping을 보내 첫 줄에 나온 IP 주소를 확인해 보고서에 기록합니다.
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day01_packet_analysis.md` 의 `## 2교시` 에서 `### 문제 2-3` 아래
+**왜 중요한가** — 관제 로그에는 이름보다 IP 주소가 남는 경우가 많습니다. 이름이 어떤 IP 로 바뀌는지 직접 보는 것이 10/14 DNS 수업의 출발점입니다.
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**왜 중요한가**</mark> — 관제 로그에는 이름보다 IP 주소가 남는 경우가 많습니다. 이름이 어떤 IP 로 바뀌는지 직접 보는 것이 10/14 DNS 수업의 출발점입니다.
+**이 문제에 나오는 말**
 
-터미널에서 `google.com` 에 `ping` 을 보내고, 첫 줄에서 **이름 옆 대괄호 `[ ]` 안의 숫자**를 찾으시오.
+새 용어 없음.
+
+**순서**
+1. **[터미널]** `ping google.com`을 입력합니다.
+2. **[터미널]** 첫 줄에서 이름 옆 대괄호 안의 IP 주소를 찾습니다.
+3. **[보고서]** `day01_packet_analysis.md`의 `## 2교시`에서 `### 문제 2-3` 아래에 대괄호 안의 IP 주소를 적습니다.
 
 | | |
 |---|---|
@@ -521,13 +538,18 @@ ping google.com
 
 ### ✍️ 문제 2-4 · 두 가지 실패를 구별하기
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — 터미널에서 명령 실행 → 보고서에 적기
+**할 일** — 이름을 찾지 못한 경우와 주소에서 응답이 오지 않은 경우를 각각 실행해, 실패 문구와 차이를 기록합니다.
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day01_packet_analysis.md` 의 `## 2교시` 에서 `### 문제 2-4` 아래
+**왜 중요한가** — 실패 문구가 다르면 원인이 있는 단계도 다릅니다. 4교시 4-5 에서 이 차이로 몇 층 문제인지 좁힙니다.
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**왜 중요한가**</mark> — 실패 문구가 다르면 원인이 있는 단계도 다릅니다. 4교시 4-5 에서 이 차이로 몇 층 문제인지 좁힙니다.
+**이 문제에 나오는 말**
 
-아래 두 명령을 터미널에 차례로 입력하고, **실패 문구가 어떻게 다른지** 한 줄씩 적으시오.
+새 용어 없음.
+
+**순서**
+1. **[터미널]** 아래 첫 번째 명령을 입력하고 결과를 확인합니다.
+2. **[터미널]** 아래 두 번째 명령을 입력하고 결과를 확인합니다.
+3. **[보고서]** `day01_packet_analysis.md`의 `## 2교시`에서 `### 문제 2-4` 아래에 두 실패 문구와 각각 어디에서 멈춘 것인지를 적습니다.
 
 ```bash
 ping abc.nowhere-not-exist
@@ -569,13 +591,18 @@ ping 192.0.2.1
 
 ### ✍️ 문제 2-5 · 열 번 보내서 손실 보기
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — 터미널에서 명령 실행 → 보고서에 적기
+**할 일** — `8.8.8.8`에 ping을 열 번 보내고, 받은 횟수와 손실률을 보고서에 기록합니다.
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day01_packet_analysis.md` 의 `## 2교시` 에서 `### 문제 2-5` 아래
+**왜 중요한가** — 네 번만 보내면 가끔 생기는 손실이 잘 보이지 않습니다. 횟수를 늘려 재는 것이 「가끔 끊겨요」 신고를 확인하는 방법입니다.
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**왜 중요한가**</mark> — 네 번만 보내면 가끔 생기는 손실이 잘 보이지 않습니다. 횟수를 늘려 재는 것이 「가끔 끊겨요」 신고를 확인하는 방법입니다.
+**이 문제에 나오는 말**
 
-터미널에서 `8.8.8.8` 에 **열 번** `ping` 을 보내고, 받은 개수와 손실 % 를 적으시오.
+새 용어 없음.
+
+**순서**
+1. **[터미널]** `ping -n 10 8.8.8.8`을 입력합니다.
+2. **[터미널]** 결과에서 보낸 횟수 · 받은 횟수 · 손실률을 확인합니다.
+3. **[보고서]** `day01_packet_analysis.md`의 `## 2교시`에서 `### 문제 2-5` 아래에 받은 횟수와 손실률을 적습니다.
 
 | | |
 |---|---|
@@ -610,17 +637,22 @@ ping -n 10 8.8.8.8
 
 ### ⭐ 도전 2-6 · `ping` 결과를 파이썬으로 판정하기 (선택)
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — VS Code 에서 `ping_check.py` 만들기 → 터미널에서 `python ping_check.py` 실행
+**할 일** — 준비된 ping 결과를 기준으로 정상 · 느림 · 실패를 구분하는 파이썬 코드를 완성해 실행합니다.
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day01_packet_analysis.md` 의 `## 2교시` 에서 `### ⭐ 도전 2-6` 아래
+**왜 중요한가** — 서버가 수십 대면 `ping` 결과를 사람이 다 읽을 수 없습니다. 기준값으로 정상 · 느림 · 실패를 나누는 것이 자동 감시 스크립트가 하는 일입니다.
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**왜 중요한가**</mark> — 서버가 수십 대면 `ping` 결과를 사람이 다 읽을 수 없습니다. 기준값으로 정상 · 느림 · 실패를 나누는 것이 자동 감시 스크립트가 하는 일입니다.
+**이 문제에 나오는 말**
 
-`ping` 결과를 사람이 매번 읽는 대신, 파이썬이 「정상 · 느림 · 실패」를 판정하게 하시오.
+- **임계값 (`LIMIT`)** — 이 값을 넘으면 결과를 느리다고 판단하는 기준
+- **`None`** — 응답이 없어 왕복 시간이 기록되지 않은 상태
 
-1. `network_zt` 폴더에 `ping_check.py` 를 만들고 아래를 붙여 넣습니다.
-2. 번호 주석 아래를 채웁니다.
-3. 터미널에 `python ping_check.py` 를 입력합니다.
+**순서**
+1. **[VS Code]** `network_zt` 폴더에 `ping_check.py`를 만듭니다.
+2. **[VS Code]** 아래 코드를 파일에 붙여 넣습니다.
+3. **[VS Code]** 번호 주석 아래를 채웁니다.
+4. **[터미널]** `network_zt` 폴더에서 `python ping_check.py`를 실행합니다.
+5. **[보고서]** `day01_packet_analysis.md`의 `## 2교시`에서 `### 문제 2-6` 아래에 출력의 첫 줄을 적습니다.
+
 
 ```python
 # ── 강사용: 정답을 채운 코드입니다 ──
@@ -643,19 +675,6 @@ for r in results:                                 # 결과를 하나씩 꺼낸�
     else:                                         # 그 밖은 정상
         print(f"[정상] {r['target']} {r['ms']}ms")
 ```
-
-**파일을 만들고 실행합니다**
-
-1. VS Code 왼쪽 목록에서 `network_zt` 폴더를 오른쪽 클릭 › **New File** › 이름 `ping_check.py` 를 입력하고 Enter 를 누릅니다.
-2. 위 코드 상자 안을 마우스로 끌어 선택하고 `Ctrl + C` 로 복사해 파일에 붙여 넣은 뒤, 번호 주석 아래를 채웁니다. 저장은 자동입니다.
-3. 터미널에 아래 명령을 입력합니다. 터미널의 줄 위에 `…/network_zt` 가 보여야 합니다. 아니면 먼저 `cd network_zt` 를 입력합니다.
-
-```bash
-python ping_check.py
-```
-맥북: `python3 ping_check.py`
-
-4. 고친 뒤에는 같은 명령을 다시 입력합니다. 터미널에서 **↑(위 화살표)** 를 누르면 방금 입력한 명령이 다시 나옵니다.
 
 | | |
 |---|---|
@@ -746,17 +765,17 @@ python ping_check.py
 
 ### ✍️ 문제 3-1 · 결과 화면 읽기
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — 이 문서의 예시 화면을 보고 → 보고서에 적기 (명령은 치지 않습니다)
+**할 일** — 예시 `ipconfig //all` 화면에서 IPv4 주소 · MAC 주소 · 기본 게이트웨이를 찾아 보고서에 기록합니다.
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day01_packet_analysis.md` 의 `## 3교시` 에서 `### 문제 3-1` 아래
-
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**왜 중요한가**</mark> — `ipconfig` 결과에는 점으로 나뉜 값이 여러 줄 나옵니다. 줄 이름으로 IP · MAC · 게이트웨이를 가려 읽어야 3-2 · 3-3 에서 내 PC 값을 바로 찾습니다.
+**왜 중요한가** — `ipconfig` 결과에는 점으로 나뉜 값이 여러 줄 나옵니다. 줄 이름으로 IP · MAC · 게이트웨이를 가려 읽어야 3-2 · 3-3 에서 내 PC 값을 바로 찾습니다.
 
 **이 문제에 나오는 말**
 
 - **서브넷 마스크 (subnet mask)** — IP 주소에서 어디까지가 「같은 망」인지 정하는 값 — 오늘은 이름만, 10/13 에 배움
 
-아래는 **다른 사람의 PC 에서 `ipconfig //all` 을 쳤을 때 나온 화면의 일부**입니다. 이 화면에서 주소 세 개를 찾아 적으시오. 내 PC 에서 직접 치는 것은 3-2 · 3-3 입니다.
+**순서**
+1. **[이 문서]** 아래 예시 화면에서 주소 항목을 찾습니다.
+2. **[보고서]** `day01_packet_analysis.md`의 `## 3교시`에서 `### 문제 3-1` 아래에 IPv4 주소 · MAC 주소 · 기본 게이트웨이를 적습니다.
 
 ```
 이더넷 어댑터 이더넷:
@@ -791,13 +810,18 @@ python ping_check.py
 
 ### ✍️ 문제 3-2 · 내 IP 주소와 게이트웨이 찾기
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — 터미널에서 명령 실행 → 보고서에 적기
+**할 일** — 내 PC에서 기본 게이트웨이가 적힌 네트워크 장치의 IPv4 주소와 기본 게이트웨이를 확인해 보고서에 기록합니다.
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day01_packet_analysis.md` 의 `## 3교시` 에서 `### 문제 3-2` 아래
+**왜 중요한가** — 내 IP 와 게이트웨이는 장애 신고를 받으면 가장 먼저 확인하는 값입니다. 오후 6-3 에서 Wireshark 의 Source IP 가 내 PC 인지 가릴 때도 씁니다.
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**왜 중요한가**</mark> — 내 IP 와 게이트웨이는 장애 신고를 받으면 가장 먼저 확인하는 값입니다. 오후 6-3 에서 Wireshark 의 Source IP 가 내 PC 인지 가릴 때도 씁니다.
+**이 문제에 나오는 말**
 
-`ipconfig` 를 입력하고, **기본 게이트웨이가 적힌 장치**의 IPv4(아이피 브이포 · 지금 널리 쓰는 IP 주소 형식) 주소와 기본 게이트웨이를 보고서에 적으시오.
+- **IPv4** — 점으로 나뉜 네 덩어리로 표시하는 IP 주소 형식
+
+**순서**
+1. **[터미널]** `ipconfig`를 입력합니다.
+2. **[터미널]** 기본 게이트웨이가 적힌 네트워크 장치에서 IPv4 주소와 기본 게이트웨이를 찾습니다.
+3. **[보고서]** `day01_packet_analysis.md`의 `## 3교시`에서 `### 문제 3-2` 아래에 IPv4 주소와 기본 게이트웨이를 적습니다.
 
 | | |
 |---|---|
@@ -832,13 +856,18 @@ ipconfig
 
 ### ✍️ 문제 3-3 · 내 MAC 주소 찾기
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — 터미널에서 명령 실행 → 보고서에 적기
+**할 일** — 3-2에서 찾은 장치와 같은 장치의 물리적 주소(MAC 주소)를 확인해 보고서에 기록합니다.
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day01_packet_analysis.md` 의 `## 3교시` 에서 `### 문제 3-3` 아래
+**왜 중요한가** — MAC 주소는 같은 망 안에서 장비를 구별하는 값입니다. 오후 6-3 에서 Wireshark 의 `Ethernet II` 줄에 나오는 주소와 맞춰 봅니다.
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**왜 중요한가**</mark> — MAC 주소는 같은 망 안에서 장비를 구별하는 값입니다. 오후 6-3 에서 Wireshark 의 `Ethernet II` 줄에 나오는 주소와 맞춰 봅니다.
+**이 문제에 나오는 말**
 
-`ipconfig //all` 을 입력하고, 3-2 와 **같은 장치**의 물리적 주소를 보고서에 적으시오.
+새 용어 없음.
+
+**순서**
+1. **[터미널]** `ipconfig //all`을 입력합니다.
+2. **[터미널]** 3-2에서 확인한 장치를 찾아 그 아래 `물리적 주소`를 확인합니다.
+3. **[보고서]** `day01_packet_analysis.md`의 `## 3교시`에서 `### 문제 3-3` 아래에 물리적 주소를 적습니다.
 
 | | |
 |---|---|
@@ -873,13 +902,18 @@ ipconfig //all
 
 ### ✍️ 문제 3-4 · 게이트웨이까지 `ping`
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — 터미널에서 명령 실행 → 보고서에 적기
+**할 일** — 기본 게이트웨이에 ping을 보내 평균 왕복 시간을 재고, 8.8.8.8에 보낸 결과와 비교합니다.
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day01_packet_analysis.md` 의 `## 3교시` 에서 `### 문제 3-4` 아래
+**왜 중요한가** — 게이트웨이까지 닿는지 보면 문제가 우리 망 안인지 바깥인지 나눌 수 있습니다. 4-5 에서 증상으로 층을 좁힐 때 이 결과를 씁니다.
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**왜 중요한가**</mark> — 게이트웨이까지 닿는지 보면 문제가 우리 망 안인지 바깥인지 나눌 수 있습니다. 4-5 에서 증상으로 층을 좁힐 때 이 결과를 씁니다.
+**이 문제에 나오는 말**
 
-터미널에서 3-2 에서 찾은 기본 게이트웨이에 `ping` 을 보내고, 평균 왕복 시간을 **2-2 의 `8.8.8.8` 결과와 비교**하시오.
+새 용어 없음.
+
+**순서**
+1. **[터미널]** 3-2에서 확인한 기본 게이트웨이 주소에 `ping`을 보냅니다.
+2. **[터미널]** 결과에서 평균 왕복 시간을 찾습니다.
+3. **[보고서]** `day01_packet_analysis.md`의 `## 3교시`에서 `### 문제 3-4` 아래에 평균 왕복 시간과 8.8.8.8 결과를 비교한 내용을 적습니다.
 
 | | |
 |---|---|
@@ -914,13 +948,19 @@ ping 192.168.0.1
 
 ### ✍️ 문제 3-5 · ARP 캐시 보기 — `arp -a`
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — 터미널에서 명령 실행 → 보고서에 적기
+**할 일** — ARP 표에서 기본 게이트웨이 IP에 대응하는 MAC 주소와 그 항목의 유형을 확인해 보고서에 기록합니다.
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day01_packet_analysis.md` 의 `## 3교시` 에서 `### 문제 3-5` 아래
+**왜 중요한가** — ARP 캐시는 IP 와 MAC 을 잇는 표입니다. 게이트웨이 줄의 MAC 주소가 평소와 다르면 같은 망의 다른 장비가 게이트웨이로 위장하는 공격을 의심합니다.
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**왜 중요한가**</mark> — ARP 캐시는 IP 와 MAC 을 잇는 표입니다. 게이트웨이 줄의 MAC 주소가 평소와 다르면 같은 망의 다른 장비가 게이트웨이로 위장하는 공격을 의심합니다.
+**이 문제에 나오는 말**
 
-`arp -a` 를 입력하고, **기본 게이트웨이 IP 의 MAC 주소**와 그 줄의 **유형**을 적으시오.
+- **ARP 캐시** — IP 주소와 MAC 주소의 대응을 PC가 잠시 저장해 둔 표
+- **동적** — 같은 망에 물어본 뒤 알아낸 항목
+
+**순서**
+1. **[터미널]** `arp -a`를 입력합니다.
+2. **[터미널]** 기본 게이트웨이 IP와 같은 줄에서 물리적 주소와 유형을 찾습니다.
+3. **[보고서]** `day01_packet_analysis.md`의 `## 3교시`에서 `### 문제 3-5` 아래에 게이트웨이의 MAC 주소와 유형을 적습니다.
 
 ```
 인터페이스: 192.168.0.15 --- 0x9
@@ -961,13 +1001,20 @@ arp -a
 
 ### ⭐ 도전 3-6 · 주소 모양으로 IP 와 MAC 구별하기 (선택)
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — VS Code 에서 `addr_kind.py` 만들기 → 터미널에서 `python addr_kind.py` 실행
+**할 일** — 주소 문자열의 모양을 검사해 IP인지 MAC인지 분류하는 파이썬 코드를 완성해 실행합니다.
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day01_packet_analysis.md` 의 `## 3교시` 에서 `### ⭐ 도전 3-6` 아래
+**왜 중요한가** — 로그에는 IP 와 MAC 이 한 칸에 섞여 들어오기도 합니다. 모양으로 종류를 가르는 함수는 로그를 자동으로 분류할 때 씁니다.
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**왜 중요한가**</mark> — 로그에는 IP 와 MAC 이 한 칸에 섞여 들어오기도 합니다. 모양으로 종류를 가르는 함수는 로그를 자동으로 분류할 때 씁니다.
+**이 문제에 나오는 말**
 
-로그에 섞여 들어온 주소가 IP 인지 MAC 인지 파이썬이 가려내게 하시오. `network_zt` 에 `addr_kind.py` 를 만들어 붙여 넣고, 번호 주석 아래를 채운 뒤 `python addr_kind.py` 를 입력합니다.
+새 용어 없음.
+
+**순서**
+1. **[VS Code]** `network_zt` 폴더에 `addr_kind.py`를 만듭니다.
+2. **[VS Code]** 아래 코드를 파일에 붙여 넣습니다.
+3. **[VS Code]** 번호 주석 아래를 채웁니다.
+4. **[터미널]** `network_zt` 폴더에서 `python addr_kind.py`를 실행합니다.
+5. **[보고서]** `day01_packet_analysis.md`의 `## 3교시`에서 `### 문제 3-6` 아래에 출력의 첫 줄을 적습니다.
 
 ```python
 # ── 강사용: 정답을 채운 코드입니다 ──
@@ -981,23 +1028,9 @@ def kind(address):                                # 주소의 모양을 보고 �
     # 3. 둘 다 아니면 "모름" 을 return 하세요
     return "모름"                                  # 둘 다 아니면
 
-
 for a in ["192.168.0.15", "a8-5e-45-01-2b-3c", "ff-ff-ff-ff-ff-ff", "192.168.0"]:
     print(kind(a), a)                             # 종류와 주소를 한 줄에
 ```
-
-**파일을 만들고 실행합니다**
-
-1. VS Code 왼쪽 목록에서 `network_zt` 폴더를 오른쪽 클릭 › **New File** › 이름 `addr_kind.py` 를 입력하고 Enter 를 누릅니다.
-2. 위 코드 상자 안을 마우스로 끌어 선택하고 `Ctrl + C` 로 복사해 파일에 붙여 넣은 뒤, 번호 주석 아래를 채웁니다. 저장은 자동입니다.
-3. 터미널에 아래 명령을 입력합니다. 터미널의 줄 위에 `…/network_zt` 가 보여야 합니다. 아니면 먼저 `cd network_zt` 를 입력합니다.
-
-```bash
-python addr_kind.py
-```
-맥북: `python3 addr_kind.py`
-
-4. 고친 뒤에는 같은 명령을 다시 입력합니다. 터미널에서 **↑(위 화살표)** 를 누르면 방금 입력한 명령이 다시 나옵니다.
 
 | | |
 |---|---|
@@ -1092,13 +1125,20 @@ python addr_kind.py
 
 ### ✍️ 문제 4-1 · 직접 실행해 보기
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — VS Code 에서 `warmup.py` 에 따라 치기 → 터미널에서 `python warmup.py` → 결과와 「왜」를 보고서에 적기
+**할 일** — 준비된 포트 사전 코드에서 HTTPS 포트와 사전에 없는 포트의 결과를 확인하고, 이유를 보고서에 적습니다.
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day01_packet_analysis.md` 의 `## 4교시` 에서 `### 문제 4-1` 아래
+**왜 중요한가** — 포트 번호로 서비스 이름을 찾는 사전은 4-2 · 4-4 에서 `netstat` 결과를 읽을 때와 ⭐4-6 에서 다시 씁니다. 표에 없는 포트를 다루는 법도 여기서 익힙니다.
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**왜 중요한가**</mark> — 포트 번호로 서비스 이름을 찾는 사전은 4-2 · 4-4 에서 `netstat` 결과를 읽을 때와 ⭐4-6 에서 다시 씁니다. 표에 없는 포트를 다루는 법도 여기서 익힙니다.
+**이 문제에 나오는 말**
 
-아래 코드를 `warmup.py` 에 **따라 쳐서** 실행하고, 결과와 「왜 이렇게 나왔는지」 한 줄을 적으시오. `warmup.py` 는 처음 한 번만 `network_zt` 폴더에 New File 로 만들고, 교시마다 내용을 지우고 다시 씁니다.
+새 용어 없음.
+
+**순서**
+1. **[VS Code]** `network_zt` 폴더에 `warmup.py`가 있는지 확인합니다. 없으면 새 파일로 만듭니다.
+2. **[VS Code]** 아래 코드를 `warmup.py`에 입력합니다.
+3. **[VS Code]** `warmup.py`를 저장합니다.
+4. **[터미널]** `network_zt` 폴더에서 `python warmup.py`를 실행합니다.
+5. **[보고서]** `day01_packet_analysis.md`의 `## 4교시`에서 `### 문제 4-1` 아래에 출력과 결과가 나온 이유를 적습니다.
 
 ```python
 PORTS = {80: "HTTP", 443: "HTTPS", 53: "DNS"}
@@ -1129,17 +1169,19 @@ python warmup.py
 
 ### ✍️ 문제 4-2 · 지금의 연결 보기 — `netstat -n`
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — 터미널에서 명령 실행 → 보고서에 적기
+**할 일** — 현재 연결 목록에서 ESTABLISHED 상태인 연결 하나를 찾아 외부 포트와 서비스 이름을 확인해 보고서에 기록합니다.
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day01_packet_analysis.md` 의 `## 4교시` 에서 `### 문제 4-2` 아래
-
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**왜 중요한가**</mark> — 외부 포트를 보면 내 PC 가 지금 어떤 서비스와 통신하는지 알 수 있습니다. 관제는 이 목록에서 예상하지 못한 포트로 나간 연결을 찾습니다.
+**왜 중요한가** — 외부 포트를 보면 내 PC 가 지금 어떤 서비스와 통신하는지 알 수 있습니다. 관제는 이 목록에서 예상하지 못한 포트로 나간 연결을 찾습니다.
 
 **이 문제에 나오는 말**
 
 - **ESTABLISHED** (이스태블리시드) — 상대와 **연결되어 대화 중**인 상태
 
-`netstat -n` 을 입력하고, `ESTABLISHED`(이스태블리시드 · 연결된 상태) 줄 하나를 골라 **외부 주소의 포트**와 그 포트의 **서비스 이름**(4.1 표)을 적으시오.
+**순서**
+1. **[터미널]** `netstat -n`을 입력합니다.
+2. **[터미널]** `ESTABLISHED` 상태인 줄 하나를 고르고 외부 주소의 포트 번호를 확인합니다.
+3. **[이 문서]** 4.1 포트 표에서 해당 포트의 서비스 이름을 찾습니다.
+4. **[보고서]** `day01_packet_analysis.md`의 `## 4교시`에서 `### 문제 4-2` 아래에 외부 포트와 서비스 이름을 적습니다.
 
 ```
 활성 연결
@@ -1181,13 +1223,19 @@ netstat -n
 
 ### ✍️ 문제 4-3 · 그 연결은 어느 프로그램의 것인가
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — 터미널에서 명령 실행
+**할 일** — 4-2에서 고른 연결의 PID를 찾고, 그 PID를 사용하는 프로그램 이름을 확인해 보고서에 기록합니다.
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day01_packet_analysis.md` 의 `## 4교시` 에서 `### 문제 4-3` 아래
+**왜 중요한가** — 수상한 연결을 찾으면 다음 질문은 「어느 프로그램이 열었나」입니다. PID 로 프로그램 이름까지 찾는 것이 침해 대응에서 악성 프로그램을 짚는 순서입니다.
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**왜 중요한가**</mark> — 수상한 연결을 찾으면 다음 질문은 「어느 프로그램이 열었나」입니다. PID 로 프로그램 이름까지 찾는 것이 침해 대응에서 악성 프로그램을 짚는 순서입니다.
+**이 문제에 나오는 말**
 
-터미널에 `netstat -ano | grep ESTABLISHED` 를 입력해 4-2 에서 고른 줄의 **PID** 를 찾고, `tasklist | grep PID숫자` 로 그 PID 의 프로그램 이름을 찾으시오. 침해 대응에서 「이 연결은 누가 열었나」를 찾는 순서 그대로입니다.
+- **PID (Process ID)** — 실행 중인 프로그램에 붙은 번호
+- **`tasklist`** — 실행 중인 프로그램과 PID를 보여 주는 명령
+
+**순서**
+1. **[터미널]** `netstat -ano | grep ESTABLISHED`를 입력해 4-2에서 고른 연결의 PID를 찾습니다.
+2. **[터미널]** `tasklist | grep PID숫자`에서 `PID숫자`를 실제 번호로 바꿔 입력합니다.
+3. **[보고서]** `day01_packet_analysis.md`의 `## 4교시`에서 `### 문제 4-3` 아래에 PID와 프로그램 이름을 적습니다.
 
 | | |
 |---|---|
@@ -1224,13 +1272,19 @@ tasklist | grep 1234
 
 ### ✍️ 문제 4-4 · 내 PC 의 LISTENING 포트 찾기
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — 터미널에서 명령 실행 → 보고서에 적기
+**할 일** — 내 PC에서 LISTENING 상태인 포트를 찾아 4.1 표에 있는 번호를 보고서에 기록합니다.
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day01_packet_analysis.md` 의 `## 4교시` 에서 `### 문제 4-4` 아래
+**왜 중요한가** — LISTENING 포트는 외부에서 접속을 시도할 수 있는 포트입니다. 필요 없는 포트가 열려 있는지 보는 것이 PC 보안 점검의 첫 단계입니다.
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**왜 중요한가**</mark> — LISTENING 포트는 외부에서 접속을 시도할 수 있는 포트입니다. 필요 없는 포트가 열려 있는지 보는 것이 PC 보안 점검의 첫 단계입니다.
+**이 문제에 나오는 말**
 
-내 PC 가 **듣고 있는(LISTENING) 포트**만 골라 보고, 그중 **4.1 표에 있는 포트**를 적으시오.
+새 용어 없음.
+
+**순서**
+1. **[터미널]** `netstat -an | grep LISTENING`을 입력합니다.
+2. **[터미널]** 결과에서 LISTENING 상태인 줄의 포트 번호를 확인합니다.
+3. **[이 문서]** 4.1 포트 표와 번호를 대조합니다.
+4. **[보고서]** `day01_packet_analysis.md`의 `## 4교시`에서 `### 문제 4-4` 아래에 4.1 표에 있는 포트 번호를 적습니다.
 
 | | |
 |---|---|
@@ -1265,13 +1319,17 @@ netstat -an | grep LISTENING
 
 ### ✍️ 문제 4-5 · 증상으로 층 좁히기
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — 명령 없이 생각해서 답하기 → 보고서에 적기
+**할 일** — 세 가지 네트워크 증상에서 어느 OSI 계층에 문제가 생겼을 가능성이 큰지 판단해 보고서에 설명합니다.
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day01_packet_analysis.md` 의 `## 4교시` 에서 `### 문제 4-5` 아래
+**왜 중요한가** — 장애 신고는 「안 돼요」 한마디로 옵니다. 확인한 결과로 층을 좁히면 원인을 찾을 범위가 줄고, 어느 담당에게 넘길지 정할 수 있습니다.
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**왜 중요한가**</mark> — 장애 신고는 「안 돼요」 한마디로 옵니다. 확인한 결과로 층을 좁히면 원인을 찾을 범위가 줄고, 어느 담당에게 넘길지 정할 수 있습니다.
+**이 문제에 나오는 말**
 
-아래 세 증상이 **몇 층 문제일 가능성이 큰지** 3.1 표를 보며 한 줄씩 적으시오. 명령은 입력하지 않습니다.
+새 용어 없음.
+
+**순서**
+1. **[이 문서]** 아래 증상과 3.1 OSI 표를 함께 봅니다.
+2. **[보고서]** `day01_packet_analysis.md`의 `## 4교시`에서 `### 문제 4-5` 아래에 각 증상에서 의심되는 계층과 판단 근거를 적습니다.
 
 | 증상 | 확인한 것 |
 |---|---|
@@ -1311,13 +1369,20 @@ netstat -an | grep LISTENING
 
 ### ⭐ 도전 4-6 · 포트에 이름 붙이기 (선택)
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — VS Code 에서 `port_name.py` 만들기 → 터미널에서 `python port_name.py` 실행
+**할 일** — 준비된 포트 목록에 서비스 이름을 붙이고, 모르는 포트는 「모름」으로 출력하는 파이썬 코드를 완성해 실행합니다.
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day01_packet_analysis.md` 의 `## 4교시` 에서 `### ⭐ 도전 4-6` 아래
+**왜 중요한가** — `netstat` 에서 본 포트 번호를 매번 표에서 찾지 않아도 됩니다. 이름이 없는 포트만 따로 골라 확인하는 것이 관제의 첫 거르기입니다.
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**왜 중요한가**</mark> — `netstat` 에서 본 포트 번호를 매번 표에서 찾지 않아도 됩니다. 이름이 없는 포트만 따로 골라 확인하는 것이 관제의 첫 거르기입니다.
+**이 문제에 나오는 말**
 
-`netstat` 에서 본 포트 번호들에 서비스 이름을 붙여 출력하시오. 모르는 포트는 「모름」으로 둡니다. `network_zt` 에 `port_name.py` 를 만들어 붙여 넣고, 채운 뒤 `python port_name.py` 를 입력합니다.
+새 용어 없음.
+
+**순서**
+1. **[VS Code]** `network_zt` 폴더에 `port_name.py`를 만듭니다.
+2. **[VS Code]** 아래 코드를 파일에 붙여 넣습니다.
+3. **[VS Code]** 번호 주석 아래를 채웁니다.
+4. **[터미널]** `network_zt` 폴더에서 `python port_name.py`를 실행합니다.
+5. **[보고서]** `day01_packet_analysis.md`의 `## 4교시`에서 `### 문제 4-6` 아래에 출력의 첫 줄을 적습니다.
 
 ```python
 # ── 강사용: 정답을 채운 코드입니다 ──
@@ -1330,19 +1395,6 @@ for port in seen:                                 # 포트를 하나씩 꺼낸�
     # 2. f"{port} → {name}" 을 출력하세요
     print(f"{port} → {name}")
 ```
-
-**파일을 만들고 실행합니다**
-
-1. VS Code 왼쪽 목록에서 `network_zt` 폴더를 오른쪽 클릭 › **New File** › 이름 `port_name.py` 를 입력하고 Enter 를 누릅니다.
-2. 위 코드 상자 안을 마우스로 끌어 선택하고 `Ctrl + C` 로 복사해 파일에 붙여 넣은 뒤, 번호 주석 아래를 채웁니다. 저장은 자동입니다.
-3. 터미널에 아래 명령을 입력합니다. 터미널의 줄 위에 `…/network_zt` 가 보여야 합니다. 아니면 먼저 `cd network_zt` 를 입력합니다.
-
-```bash
-python port_name.py
-```
-맥북: `python3 port_name.py`
-
-4. 고친 뒤에는 같은 명령을 다시 입력합니다. 터미널에서 **↑(위 화살표)** 를 누르면 방금 입력한 명령이 다시 나옵니다.
 
 | | |
 |---|---|
