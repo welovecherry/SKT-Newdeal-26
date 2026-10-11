@@ -260,113 +260,12 @@ python warmup.py
 
 ---
 
-### ✍️ 문제 5-4 · 연결 상태를 세기 (`state_count.py`)
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — VS Code 에서 `state_count.py` 만들기 → 터미널에서 `python state_count.py` 실행
-
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day01_packet_analysis.md` 의 `## 5교시` 에서 `### 문제 5-4` 아래
-
-`netstat` 결과를 옮겨 온 리스트에서 **상태마다 몇 개인지** 세시오. `network_zt` 에 `state_count.py` 를 만들어 붙여 넣고, 번호 주석 아래를 채운 뒤 `python state_count.py` 를 입력합니다.
-
-#### 🐍 문법 상자 · 사전으로 세기 `count.get(키, 0) + 1`
-
-```python
-# ── 강사용: 정답을 채운 코드입니다 ──
-conns = [                                         # netstat -n 의 상태 칸을 옮겨 왔다고 가정합니다
-    {"peer": "203.0.113.10:443", "state": "ESTABLISHED"},
-    {"peer": "198.51.100.7:443", "state": "ESTABLISHED"},
-    {"peer": "203.0.113.10:443", "state": "TIME_WAIT"},
-    {"peer": "192.0.2.53:53", "state": "TIME_WAIT"},
-    {"peer": "198.51.100.20:443", "state": "SYN_SENT"},
-]
-count = {}                                        # 상태마다 센 수를 담을 빈 사전
-
-for c in conns:                                   # 연결을 하나씩 꺼낸다
-    # 1. count 의 c["state"] 키에 지금까지 센 수 + 1 을 담으세요 (.get 을 씁니다)
-    count[c["state"]] = count.get(c["state"], 0) + 1   # 처음 보는 상태면 0 에서 시작
-
-for state in count:                               # 센 상태를 하나씩
-    print(state, count[state])                    # 상태와 개수
-```
-
-| 쓰는 것 | 뜻 |
-|---|---|
-| `count.get(s, 0)` | 지금까지 센 수. 처음 보는 키면 `0` |
-| `count[s] = … + 1` | 하나 더해서 다시 담는다 (1과목 9/23) |
-
-⚠ `count[s] = count[s] + 1` 로 쓰면 처음 보는 키에서 `KeyError` 가 납니다.
-
-```python
-# ── 미리 채워 둔 줄입니다. 고치지 않습니다 ──
-conns = [                                         # netstat -n 의 상태 칸을 옮겨 왔다고 가정합니다
-    {"peer": "203.0.113.10:443", "state": "ESTABLISHED"},
-    {"peer": "198.51.100.7:443", "state": "ESTABLISHED"},
-    {"peer": "203.0.113.10:443", "state": "TIME_WAIT"},
-    {"peer": "192.0.2.53:53", "state": "TIME_WAIT"},
-    {"peer": "198.51.100.20:443", "state": "SYN_SENT"},
-]
-count = {}                                        # 상태마다 센 수를 담을 빈 사전
-# ── 여기까지 ──
-
-for c in conns:                                   # 연결을 하나씩 꺼낸다
-    # 1. count 의 c["state"] 키에 지금까지 센 수 + 1 을 담으세요 (.get 을 씁니다)
-
-
-for state in count:                               # 센 상태를 하나씩
-    print(state, count[state])                    # 상태와 개수
-```
-
-**파일을 만들고 실행합니다**
-
-1. VS Code 왼쪽 목록에서 `network_zt` 폴더를 오른쪽 클릭 › **New File** › 이름 `state_count.py` 를 입력하고 Enter 를 누릅니다.
-2. 위 코드 상자 안을 마우스로 끌어 선택하고 `Ctrl + C` 로 복사해 파일에 붙여 넣은 뒤, 번호 주석 아래를 채웁니다. 저장은 자동입니다.
-3. 터미널에 아래 명령을 입력합니다. 터미널의 줄 위에 `…/network_zt` 가 보여야 합니다. 아니면 먼저 `cd network_zt` 를 입력합니다.
-
-```bash
-python state_count.py
-```
-맥북: `python3 state_count.py`
-
-4. 고친 뒤에는 같은 명령을 다시 입력합니다. 터미널에서 **↑(위 화살표)** 를 누르면 방금 입력한 명령이 다시 나옵니다.
-
-| | |
-|---|---|
-| 🎯 나와야 하는 결과 | `ESTABLISHED 2` · `TIME_WAIT 2` · `SYN_SENT 1` |
-
-**💡 힌트**
-
-1. 바로 위 문법 상자의 셋째 줄과 같은 모양입니다.
-2. 키는 `c["state"]` 입니다.
-3. `SYN_SENT`(신 센트)는 SYN 을 보내고 답을 기다리는 중 — 이게 많이 쌓이면 상대가 응답하지 않는 것입니다.
-
-#### <mark style="display:block; background:#fff59d; color:#1a1a1a; padding:4px 12px; border-radius:4px; text-decoration:underline">정답 5-4</mark>
-
-(코드는 위 문제 칸에 채워 두었습니다.)
-
-💻 **터미널에 입력합니다.**
-
-```bash
-python state_count.py
-```
-맥북: `python3 state_count.py`
-
-<mark style="background:#fff59d; color:#1a1a1a; text-decoration:underline; padding:0 4px; border-radius:3px">**결과** — `ESTABLISHED 2` · `TIME_WAIT 2` · `SYN_SENT 1`</mark>
-
-**왜** — `count.get(키, 0)` 은 처음 보는 상태면 `0` 을 주므로, 상태가 나올 때마다 지금까지 센 수에 1 을 더해 다시 담습니다.
-
-**자주 틀리는 곳** — `.get` 없이 `count[c["state"]] + 1` 로 쓰면 처음 보는 상태에서 `KeyError` 가 납니다.
-
-**관제에서는** — `SYN_SENT` 가 많이 쌓이면 상대가 응답하지 않는 것이라, 상태별 개수를 먼저 세어 봅니다.
-
-**강사 메모** — 「왜 `ESTABLISHED` 부터 나오나요?」에는 「사전은 처음 넣은 키 순서대로 꺼낸다」고 답합니다. 학생 화면에서는 1번 줄이 `for` 안으로 들여쓰기 됐는지 봅니다. 들여쓰기가 빠지면 `for` 안이 비어 `IndentationError` 가 납니다.
-
----
-
-### ✍️ 문제 5-5 · 같은 서버로 간 두 연결은 무엇이 다른가
+### ✍️ 문제 5-4 · 같은 서버로 간 두 연결은 무엇이 다른가
 
 <mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — 브라우저에서 같은 사이트를 탭 두 개로 열기 → 터미널에서 명령 실행 → 보고서에 적기
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day01_packet_analysis.md` 의 `## 5교시` 에서 `### 문제 5-5` 아래
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day01_packet_analysis.md` 의 `## 5교시` 에서 `### 문제 5-4` 아래
 
 브라우저로 같은 사이트를 **탭 두 개**로 연 뒤 `netstat -n` 을 입력하고, 외부 주소가 **같은** 연결 두 줄을 찾아 **무엇이 다른지** 적으시오.
 
@@ -380,7 +279,7 @@ python state_count.py
 2. 줄이 너무 많으면 `netstat -n | grep 443` 으로 443 줄만 봅니다.
 3. 같은 줄이 안 보이면 탭을 하나 더 열고 다시 입력합니다.
 
-#### <mark style="display:block; background:#fff59d; color:#1a1a1a; padding:4px 12px; border-radius:4px; text-decoration:underline">정답 5-5</mark>
+#### <mark style="display:block; background:#fff59d; color:#1a1a1a; padding:4px 12px; border-radius:4px; text-decoration:underline">정답 5-4</mark>
 
 💻 **터미널에 입력합니다.**
 
@@ -401,92 +300,6 @@ netstat -n
 
 ---
 
-### ⭐ 도전 5-6 · 미니 패킷 필터 (`packet_filter.py`, 선택)
-
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — VS Code 에서 `packet_filter.py` 만들기 → 터미널에서 `python packet_filter.py` 실행
-
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day01_packet_analysis.md` 의 `## 5교시` 에서 `### ⭐ 도전 5-6` 아래
-
-캡처한 패킷 다섯 건에서 **SYN 이 든 것**만, 그리고 **서버 `203.0.113.10` 과 주고받은 것**만 골라 출력하시오. 6교시 Wireshark 필터가 하는 일을 직접 만들어 봅니다.
-
-```python
-# ── 강사용: 정답을 채운 코드입니다 ──
-SERVER = "203.0.113.10"                           # 살펴볼 서버
-packets = [                                       # 캡처한 패킷이라고 가정합니다
-    {"no": 12, "src": "192.168.0.15", "dst": "203.0.113.10", "flags": ["SYN"]},
-    {"no": 13, "src": "203.0.113.10", "dst": "192.168.0.15", "flags": ["SYN", "ACK"]},
-    {"no": 14, "src": "192.168.0.15", "dst": "203.0.113.10", "flags": ["ACK"]},
-    {"no": 15, "src": "192.168.0.15", "dst": "198.51.100.7", "flags": ["ACK"]},
-    {"no": 16, "src": "192.168.0.15", "dst": "203.0.113.10", "flags": ["FIN", "ACK"]},
-]
-
-print("[SYN 필터]")
-for p in packets:                                 # 패킷을 하나씩
-    # 1. p["flags"] 안에 "SYN" 이 있으면 f"{p['no']} {p['src']} → {p['dst']} {p['flags']}" 를 출력하세요
-    if "SYN" in p["flags"]:                       # 플래그 리스트 안에 SYN 이 있으면
-        print(f"{p['no']} {p['src']} → {p['dst']} {p['flags']}")
-
-print("[서버 대화 필터]")
-for p in packets:
-    # 2. p["src"] 가 SERVER 이거나 p["dst"] 가 SERVER 이면 같은 모양으로 출력하세요
-    if p["src"] == SERVER or p["dst"] == SERVER:  # 보낸 쪽이든 받은 쪽이든 그 서버면
-        print(f"{p['no']} {p['src']} → {p['dst']} {p['flags']}")
-```
-
-**파일을 만들고 실행합니다**
-
-1. VS Code 왼쪽 목록에서 `network_zt` 폴더를 오른쪽 클릭 › **New File** › 이름 `packet_filter.py` 를 입력하고 Enter 를 누릅니다.
-2. 위 코드 상자 안을 마우스로 끌어 선택하고 `Ctrl + C` 로 복사해 파일에 붙여 넣은 뒤, 번호 주석 아래를 채웁니다. 저장은 자동입니다.
-3. 터미널에 아래 명령을 입력합니다. 터미널의 줄 위에 `…/network_zt` 가 보여야 합니다. 아니면 먼저 `cd network_zt` 를 입력합니다.
-
-```bash
-python packet_filter.py
-```
-맥북: `python3 packet_filter.py`
-
-4. 고친 뒤에는 같은 명령을 다시 입력합니다. 터미널에서 **↑(위 화살표)** 를 누르면 방금 입력한 명령이 다시 나옵니다.
-
-| | |
-|---|---|
-| 🎯 나와야 하는 결과 | `[SYN 필터]` 아래 12 · 13 두 줄, `[서버 대화 필터]` 아래 12 · 13 · 14 · 16 네 줄 |
-
-**💡 힌트**
-
-1. 리스트 안에 있는지는 `in` 입니다(문법 상자).
-2. 「이거나」는 `or` 입니다.
-3. 6교시의 Wireshark 필터 `tcp.flags.syn == 1` 과 `ip.addr == 주소` 가 이 두 반복과 같은 일을 합니다.
-
-#### <mark style="display:block; background:#fff59d; color:#1a1a1a; padding:4px 12px; border-radius:4px; text-decoration:underline">정답 5-6</mark>
-
-(코드는 위 문제 칸에 채워 두었습니다.)
-
-💻 **터미널에 입력합니다.**
-
-```bash
-python packet_filter.py
-```
-맥북: `python3 packet_filter.py`
-
-<mark style="background:#fff59d; color:#1a1a1a; text-decoration:underline; padding:0 4px; border-radius:3px">**결과** — `[SYN 필터]` 아래 12 · 13 두 줄, `[서버 대화 필터]` 아래 12 · 13 · 14 · 16 네 줄</mark>
-
-**왜** — 13번의 `["SYN", "ACK"]` 에도 SYN 이 들어 있어 `in` 이 잡습니다. 서버 필터는 보낸 쪽 · 받은 쪽을 둘 다 보므로 서버가 보낸 13번도 남습니다.
-
-**자주 틀리는 곳** — `p["flags"] == ["SYN"]` 이나 `p["dst"] == SERVER` 만 쓰면 13번이 빠집니다.
-
-**관제에서는** — Wireshark 의 `tcp.flags.syn == 1` · `ip.addr == 주소` 도 같은 조건으로 수많은 패킷에서 한 서버의 대화만 남깁니다.
-
-**강사 메모** — 선택 문제라 먼저 끝난 학생만 풀게 하고, 다 같이 볼 때는 두 필터의 줄 수(2줄 · 4줄)만 맞춰 봅니다. 「Wireshark 처럼 `&&` · `||` 를 써도 되나요?」에는 「파이썬은 `and` · `or`, Wireshark 표시 필터는 `&&` · `||`」라고 답합니다. 13번이 두 필터에 모두 남는 이유를 학생 입으로 말하게 합니다.
-
-### 5교시 한눈에
-
-| 하려는 일 | 쓰는 것 |
-|---|---|
-| 연결을 맺는다 | SYN → SYN, ACK → ACK (3-way handshake) |
-| 연결을 끝낸다 | FIN · ACK 두 쌍(네 번) · 급히 끊으면 RST |
-| 연결 하나를 가리킨다 | 출발지 IP · 출발지 포트 · 목적지 IP · 목적지 포트 |
-| 플래그가 있는지 본다 | `"SYN" in flags` |
-
----
 
 # <mark style="display:block; background:#c8e6c9; color:#1a1a1a; padding:6px 12px; border-radius:4px">6교시 (15:00–15:50) · Wireshark 실행 · 첫 캡처 · 필터</mark>
 
@@ -665,7 +478,7 @@ python packet_filter.py
 
 **관제에서는** — 의심 패킷 하나에서 출발지 IP · 목적지 포트 · 플래그를 이 세 줄로 읽어 누가 어디로 무엇을 했는지 정리합니다.
 
-**강사 메모** — 내 PC 가 보낸 줄(Source 가 내 IPv4 주소)을 고르게 하면 7-3 의 헤더 표에 그대로 옮길 수 있습니다. 「내 PC 가 보낸 줄과 서버가 보낸 줄의 TTL 이 왜 다른가요?」에는 「보낸 쪽이 처음 정한 값에서 거쳐 온 횟수만큼 줄어든 값이라서」라고 답합니다. 포트를 IP 줄에서 찾는 학생이 많으니 층 순서를 한 번 더 짚습니다.
+**강사 메모** — 내 PC 가 보낸 줄(Source 가 내 IPv4 주소)을 고르게 하면 맨 아래 「헤더에서 읽은 값」 줄에 그대로 옮겨 적을 수 있습니다. 「내 PC 가 보낸 줄과 서버가 보낸 줄의 TTL 이 왜 다른가요?」에는 「보낸 쪽이 처음 정한 값에서 거쳐 온 횟수만큼 줄어든 값이라서」라고 답합니다. 포트를 IP 줄에서 찾는 학생이 많으니 층 순서를 한 번 더 짚습니다.
 
 ---
 
@@ -715,59 +528,13 @@ tcp.port == 443
 
 ---
 
-### ⭐ 도전 6-5 · 화면에서 찍어 필터 만들기 (선택)
-
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — Wireshark 화면에서
-
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day01_packet_analysis.md` 의 `## 6교시` 에서 `### ⭐ 도전 6-5` 아래
-
-필드 이름을 외우지 않고 필터를 만드시오.
-
-1. 필터를 지우고 `TCP` 줄 하나를 고릅니다.
-2. 가운데 칸 `Internet Protocol Version 4` › **Destination Address** 줄을 오른쪽 클릭 › **필터로 적용 › 선택됨**(Apply as Filter › Selected).
-3. 필터 칸에 생긴 `ip.dst == …` 를 `ip.addr == …` 로 고쳐 Enter.
-
-| | |
-|---|---|
-| 🎯 나와야 하는 결과 | `ip.dst` 일 때는 나가는 줄만, `ip.addr` 로 고치면 **오고 간 줄이 모두** 남는다 |
-
-**💡 힌트**
-
-1. 출발지 줄을 골랐다면 `ip.src` 가 생깁니다.
-2. Wireshark 상자 맨 아래 ⚠ 줄을 다시 봅니다.
-3. 같은 방법으로 `Destination Port` 를 찍으면 `tcp.port == 443` 이 생깁니다.
-
-#### <mark style="display:block; background:#fff59d; color:#1a1a1a; padding:4px 12px; border-radius:4px; text-decoration:underline">정답 6-5</mark>
-
-`Destination Address` 오른쪽 클릭 › 필터로 적용 › 선택됨 → 필터 칸이 `ip.dst == 주소` 가 됨 → `ip.dst` 를 `ip.addr` 로 고쳐 Enter.
-
-<mark style="background:#fff59d; color:#1a1a1a; text-decoration:underline; padding:0 4px; border-radius:3px">**결과** — `ip.dst` 일 때는 나가는 줄만, `ip.addr` 로 고치면 오고 간 줄이 모두 남는다</mark>
-
-**왜** — `ip.dst` 는 목적지 칸만 보고, `ip.addr` 는 출발지 · 목적지 둘 중 하나라도 그 주소면 남깁니다.
-
-**자주 틀리는 곳** — `ip.dst` 결과만 보고 서버가 답을 안 했다고 판단하기 쉽습니다. 서버가 보낸 답은 출발지가 그 주소라 `ip.dst` 에 걸리지 않습니다.
-
-**관제에서는** — 의심 IP 하나를 조사할 때 `ip.addr == 주소` 로 그 IP 와 오간 대화 전체를 봅니다.
-
-**강사 메모** — 「`ip.addr == 주소` 와 `ip.src == 주소 || ip.dst == 주소` 는 같나요?」에는 「같은 줄이 남는다」고 답합니다. `ip.dst` 와 `ip.addr` 일 때의 `표시됨` 숫자를 나란히 적게 하면 차이가 바로 보입니다. 선택 문제라 7교시 시작을 늦추지 않습니다.
-
-### 6교시 한눈에
-
-| 하려는 일 | Wireshark 에서 |
-|---|---|
-| 캡처 시작 · 멈춤 | 인터페이스 더블클릭 · 빨간 네모 |
-| 층별로 보기 | 가운데 칸의 `Ethernet II` · `Internet Protocol Version 4` · `Transmission Control Protocol` |
-| 종류만 남기기 | `tcp` · `udp` · `dns` |
-| 값으로 남기기 | `tcp.port == 443` · `ip.addr == 주소` · `tcp.flags.syn == 1` |
-
----
 
 # <mark style="display:block; background:#c8e6c9; color:#1a1a1a; padding:6px 12px; border-radius:4px">7교시 (16:00–16:50) · 내 연결을 잡아 보고서로 남기기</mark>
 
 ### 왜 필요한가
 
 1. 6교시에는 남이 만든 수백 줄 속에서 헤맸습니다. 이번에는 **내가 만든 연결 하나만** 깔끔하게 잡습니다.
-2. 그 연결의 **열리는 순간(3-way) · 내용(HTTP) · 닫히는 순간(FIN)**을 찾아 사진과 표로 남깁니다.
+2. 그 연결의 **열리는 순간(3-way) · 내용(HTTP) · 닫히는 순간(FIN)**을 찾아 사진과 값으로 남깁니다.
 3. 이것이 강의계획서의 1일 차 산출물 `day01_packet_analysis.md` 입니다. 평가 기준은 「3-way 세 단계를 찾았나 · IP 헤더의 출발지 · 목적지 · TTL 을 읽었나 · 필터로 원하는 것만 걸렀나」입니다.
 
 #### 7교시에 나오는 말
@@ -779,9 +546,9 @@ tcp.port == 443
 | 캡처 필터 (capture filter) | 캡처 필터 | 캡처를 **시작하기 전에** 걸어, 조건에 맞는 패킷만 처음부터 잡는 조건 — `tcp port 80` |
 | HTTP (HyperText Transfer Protocol) | 에이치티티피 | 웹 요청과 응답을 **암호화하지 않고** 주고받는 방식 — 포트 80 |
 | HTTPS | 에이치티티피에스 | HTTP 를 **암호화**해서 주고받는 웹 — 포트 443. 요즘 웹은 거의 다 이것 |
-| TLS (Transport Layer Security) | 티엘에스 | HTTPS 가 쓰는 **암호화 방식**. Wireshark 의 Protocol 열에 `TLSv1.3` 으로 보인다(⭐7-6) |
+| TLS (Transport Layer Security) | 티엘에스 | HTTPS 가 쓰는 **암호화 방식**. Wireshark 의 Protocol 열에 `TLSv1.3` 으로 보인다(6-2 첫 캡처) |
 | `curl` | 컬 | 터미널에서 **웹 요청을 보내는** 명령. Windows 에 기본으로 들어 있다 |
-| 상태 코드 | 상태 코드 | 서버가 답 맨 앞에 붙이는 숫자 — `200` 성공 · `404` 없음 (7-5) |
+| 상태 코드 | 상태 코드 | 서버가 답 맨 앞에 붙이는 숫자 — `200` 성공 · `404` 없음 — 7-2 의 `HTTP/1.1 200 OK` |
 
 ### 7.1 잡을 때부터 거르기 — 캡처 필터
 
@@ -794,22 +561,6 @@ tcp.port == 443
 ⚠ 두 칸의 문법이 다릅니다. 캡처 필터 칸에 `tcp.port == 80` 을 치면 빨간색이 됩니다.
 
 **왜 80번인가:** 80 은 암호화하지 않는 HTTP 입니다. 내용이 그대로 보여서 「잡은 것이 맞는지」 확인하기 좋습니다. 브라우저는 `http` 를 `https`(443, 암호화)로 바꿔 버리므로, 요청은 터미널의 **`curl`**(컬 · 터미널에서 웹 요청을 보내는 도구)로 보냅니다.
-
-#### 🐍 문법 상자 · f-string(에프 스트링)으로 마크다운(Markdown · `#` · `|` 로 모양을 내는 글 형식) 표 한 줄 만들기
-
-```python
-i = 1
-p = {"src": "192.168.0.15", "dst": "203.0.113.10", "info": "[SYN]"}
-print(f"| {i} | {p['src']} | {p['dst']} | {p['info']} |")
-# | 1 | 192.168.0.15 | 203.0.113.10 | [SYN] |
-```
-
-| 쓰는 것 | 뜻 |
-|---|---|
-| `\|` 로 칸을 나눈 한 줄 | 마크다운 표의 한 줄 (1과목 10/7) |
-| `{p['src']}` | f-string 안에서 사전 값 꺼내기 — 바깥 큰따옴표, 안쪽 작은따옴표 |
-
-⚠ 손으로 옮겨 적으면 숫자 하나가 틀리기 쉽습니다. 값만 적어 두고 <mark style="background:#ffcdd2; color:#1a1a1a; padding:0 4px; border-radius:3px">표 모양은 코드가 찍게</mark> 합니다.
 
 ---
 
@@ -898,98 +649,14 @@ curl "http://example.com/?q=network_day1"
 
 ---
 
-### ✍️ 문제 7-3 · 보고서 표를 코드로 찍기 (`report_table.py`)
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — VS Code 에서 `report_table.py` 만들기 → 터미널에서 `python report_table.py` 실행
-
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day01_packet_analysis.md` 의 `## 7교시` 에서 `### 문제 7-3` 아래
-
-7-1 에서 찾은 세 줄과 6-3 에서 읽은 헤더 값을 **마크다운 표 두 개**로 출력하시오. `network_zt` 에 `report_table.py` 를 만들어 붙여 넣고, **데이터의 값을 내 화면 값으로 바꾼 뒤** 번호 주석 아래를 채웁니다. `python report_table.py`
-
-```python
-# ── 강사용: 정답을 채운 코드입니다 ──
-packets = [                                       # 7-1 의 3-way 세 줄
-    {"src": "192.168.0.15", "dst": "203.0.113.10", "info": "[SYN]"},
-    {"src": "203.0.113.10", "dst": "192.168.0.15", "info": "[SYN, ACK]"},
-    {"src": "192.168.0.15", "dst": "203.0.113.10", "info": "[ACK]"},
-]
-headers = [                                       # 6-3 · 7-1 에서 읽은 헤더 값
-    {"item": "출발지 IP", "value": "192.168.0.15", "where": "IP 헤더 (3층)"},
-    {"item": "목적지 IP", "value": "203.0.113.10", "where": "IP 헤더 (3층)"},
-    {"item": "TTL", "value": "128", "where": "IP 헤더 (3층)"},
-    {"item": "출발지 포트", "value": "51234", "where": "TCP 헤더 (4층)"},
-    {"item": "목적지 포트", "value": "80", "where": "TCP 헤더 (4층)"},
-]
-
-print("| 순서 | Source | Destination | Info |")
-print("|---|---|---|---|")
-i = 0                                             # 순서 번호
-for p in packets:                                 # 3-way 세 줄을 하나씩
-    # 1. i 에 1 을 더하고, f"| {i} | {p['src']} | {p['dst']} | {p['info']} |" 를 출력하세요
-    i = i + 1                                     # 번호를 하나 늘린다
-    print(f"| {i} | {p['src']} | {p['dst']} | {p['info']} |")
-
-print()
-print("| 항목 | 값 | 어느 헤더 |")
-print("|---|---|---|")
-for h in headers:                                 # 헤더 값을 하나씩
-    # 2. f"| {h['item']} | {h['value']} | {h['where']} |" 를 출력하세요
-    print(f"| {h['item']} | {h['value']} | {h['where']} |")
-```
-
-**파일을 만들고 실행합니다**
-
-1. VS Code 왼쪽 목록에서 `network_zt` 폴더를 오른쪽 클릭 › **New File** › 이름 `report_table.py` 를 입력하고 Enter 를 누릅니다.
-2. 위 코드 상자 안을 마우스로 끌어 선택하고 `Ctrl + C` 로 복사해 파일에 붙여 넣은 뒤, 번호 주석 아래를 채웁니다. 저장은 자동입니다.
-3. 터미널에 아래 명령을 입력합니다. 터미널의 줄 위에 `…/network_zt` 가 보여야 합니다. 아니면 먼저 `cd network_zt` 를 입력합니다.
-
-```bash
-python report_table.py
-```
-맥북: `python3 report_table.py`
-
-4. 고친 뒤에는 같은 명령을 다시 입력합니다. 터미널에서 **↑(위 화살표)** 를 누르면 방금 입력한 명령이 다시 나옵니다.
-
-| | |
-|---|---|
-| 🎯 나와야 하는 결과 | `\| 1 \| 192.168.0.15 \| 203.0.113.10 \| [SYN] \|` 로 시작하는 표 하나와 `\| 출발지 IP \| … \| IP 헤더 (3층) \|` 로 시작하는 표 하나 — 값은 내 화면의 값 |
-
-**💡 힌트**
-
-1. 7-1 과 같은 모양입니다.
-2. 바깥은 큰따옴표, 안쪽 키는 작은따옴표입니다.
-3. 출력을 그대로 복사해 보고서 맨 아래 「최종 분석」의 「(7-3 report_table.py 의 … 표를 여기에 붙입니다)」 두 자리에 붙입니다.
-
-#### <mark style="display:block; background:#fff59d; color:#1a1a1a; padding:4px 12px; border-radius:4px; text-decoration:underline">정답 7-3</mark>
-
-(코드는 위 문제 칸에 채워 두었습니다.)
-
-💻 **터미널에 입력합니다.**
-
-```bash
-python report_table.py
-```
-맥북: `python3 report_table.py`
-
-<mark style="background:#fff59d; color:#1a1a1a; text-decoration:underline; padding:0 4px; border-radius:3px">**결과** — `| 1 | 192.168.0.15 | 203.0.113.10 | [SYN] |` 로 시작하는 표 하나와 `| 출발지 IP | … | IP 헤더 (3층) |` 로 시작하는 표 하나 — 값은 내 화면의 값</mark>
-
-**왜** — f-string 이 사전 값을 `|` 칸 사이에 끼워 표 한 줄을 만들고, 반복이 패킷 · 헤더마다 그 줄을 찍습니다.
-
-**자주 틀리는 곳** — 데이터를 예시 값(`192.168.0.15` 등) 그대로 두고 실행하기 쉽습니다. 내 화면 값으로 바꾼 뒤 실행합니다.
-
-**관제에서는** — 분석 값을 늘 같은 모양의 표로 남기면 보고서끼리 비교하기 쉽습니다.
-
-**강사 메모** — 값을 바꿀 때 따옴표까지 지워 `SyntaxError` 가 나는 학생이 많으니, 따옴표 안의 글자만 바꾼다고 먼저 말합니다. 「TTL 은 어느 줄의 값을 적나요?」에는 「6-3 처럼 내 PC 가 보낸 줄의 값」이라고 답합니다. 출력된 표를 7-4 에서 그대로 붙인다고 알려 둡니다.
-
----
-
-### ✍️ 문제 7-4 · 보고서 완성하고 올리기
+### ✍️ 문제 7-3 · 보고서 완성하고 올리기
 
 <mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — 보고서 파일 마무리 → 깃허브에 올리기(웹 화면 또는 `git push`)
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day01_packet_analysis.md` 의 `## 7교시` 에서 `### 문제 7-4` 아래
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day01_packet_analysis.md` 의 `## 7교시` 에서 `### 문제 7-3` 아래
 
-`day01_packet_analysis.md` 의 **빈 칸**(5 · 6 · 7교시와 맨 아래 「최종 분석」)을 마저 채우고 깃허브에 올리시오. 사진 줄과 표 자리는 오전에 붙여 넣은 틀에 이미 있습니다.
+`day01_packet_analysis.md` 의 **빈 칸**(5 · 6 · 7교시와 맨 아래 「최종 분석」)을 마저 채우고 깃허브에 올리시오. 사진 줄과 값을 적는 줄은 오전에 붙여 넣은 틀에 이미 있습니다.
 
 | | |
 |---|---|
@@ -1001,7 +668,7 @@ python report_table.py
 2. 올리기는 10/8 에 배운 순서입니다 — `security-agent-toolkit` 폴더에서 `git add network_zt` → `git commit -m "…"` → `git push`.
 3. `git status` 에 `.env` 가 보이면 멈춥니다.
 
-#### <mark style="display:block; background:#fff59d; color:#1a1a1a; padding:4px 12px; border-radius:4px; text-decoration:underline">정답 7-4</mark>
+#### <mark style="display:block; background:#fff59d; color:#1a1a1a; padding:4px 12px; border-radius:4px; text-decoration:underline">정답 7-3</mark>
 
 보고서의 빈 줄을 다 채운 뒤, **터미널(`security-agent-toolkit` 폴더)에 입력합니다.**
 
@@ -1024,104 +691,16 @@ git push
 
 ---
 
-### ✍️ 문제 7-5 · 웹 서버에 머리글만 묻기 — `curl -I`
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — 터미널에서 명령 실행 → 보고서에 적기
-
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day01_packet_analysis.md` 의 `## 7교시` 에서 `### 문제 7-5` 아래
-
-터미널에 아래를 입력하고, **첫 줄의 상태 코드**와 **`Server:` 줄의 값**을 보고서에 적으시오.
-
-```bash
-curl -I http://example.com
-```
-
-| | |
-|---|---|
-| 🎯 나와야 하는 결과 | 첫 줄 `HTTP/1.1 200 OK`, 아래에 `Server: cloudflare` 같은 줄 — 본문(HTML)은 나오지 않는다 (값은 바뀔 수 있습니다) |
-
-**💡 힌트**
-
-1. `-I` 는 대문자 i 입니다. 웹 페이지 본문 없이 **머리글(헤더)만** 받아 옵니다.
-2. 관제에서는 「이 웹 서버가 살아 있나 · 무슨 서버인가」를 볼 때 가장 먼저 씁니다. 화면이 짧아 읽기 쉽습니다.
-3. 상태 코드 `200` 은 9/29 에 배운 「성공」입니다.
-
-#### <mark style="display:block; background:#fff59d; color:#1a1a1a; padding:4px 12px; border-radius:4px; text-decoration:underline">정답 7-5</mark>
-
-💻 **터미널에 입력합니다.**
-
-```bash
-curl -I http://example.com
-```
-
-<mark style="background:#fff59d; color:#1a1a1a; text-decoration:underline; padding:0 4px; border-radius:3px">**결과** — 첫 줄 `HTTP/1.1 200 OK`, 아래에 `Server: cloudflare` 같은 줄 — 본문(HTML)은 나오지 않는다 (값은 바뀔 수 있음)</mark>
-
-**왜** — `-I` 는 본문 없이 머리글(헤더)만 받아 옵니다. `200` 이 상태 코드(성공), `Server:` 줄의 값이 서버가 밝힌 서버 종류입니다.
-
-**자주 틀리는 곳** — 소문자 `-i` 를 쓰면 머리글 뒤에 본문 HTML 까지 길게 나옵니다.
-
-**관제에서는** — 「이 웹 서버가 살아 있나 · 무슨 서버인가」를 볼 때 가장 먼저 씁니다.
-
-**강사 메모** — `-I` 가 대문자 i 라는 점을 화면에 크게 보여 줍니다. 「`Server:` 값이 예시와 달라요」에는 「값은 바뀔 수 있고, 첫 줄의 상태 코드가 핵심」이라고 답합니다. 반 전체에 「`200` 은 무슨 뜻이었나요?」(9/29 의 성공)를 물어 확인합니다.
-
----
-
-### ⭐ 도전 7-6 · 암호화된 연결은 무엇이 다른가 (선택)
-
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — Wireshark 에서 캡처 시작 → 터미널에서 `curl` 실행 → 다른 점을 보고서에 적기
-
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day01_packet_analysis.md` 의 `## 7교시` 에서 `### ⭐ 도전 7-6` 아래
-
-캡처 필터를 **`tcp port 443`** 으로 바꿔 같은 방법으로 아래를 잡고, 7-2 의 HTTP 화면과 **무엇이 다른지** 보고서에 한 문장으로 적으시오.
-
-```bash
-curl "https://example.com/?q=network_day1"
-```
-
-| | |
-|---|---|
-| 🎯 나와야 하는 결과 | 3-way 는 똑같이 보이지만, 그 뒤가 `TLSv1.3` · `Application Data` 로만 보이고 **검색어 `network_day1` 은 어디에도 안 보인다** |
-
-**💡 힌트**
-
-1. 표시 필터 `tls` 로 남겨 봅니다.
-2. 열리는 순간(3-way)은 암호화 **전**이라 똑같습니다.
-3. 관제 관점: HTTPS 는 내용이 안 보이니 **누구와 · 언제 · 얼마나** 통신했는지를 봅니다.
-
-#### <mark style="display:block; background:#fff59d; color:#1a1a1a; padding:4px 12px; border-radius:4px; text-decoration:underline">정답 7-6</mark>
-
-캡처 필터 `tcp port 443` 으로 다시 잡고 `curl "https://example.com/?q=network_day1"`. 표시 필터 `tls` 로 보면 `Client Hello` · `Application Data` 만 보이고 검색어는 보이지 않습니다. 보고서에는 예: 「HTTP 는 내용이 그대로 보였지만 HTTPS 는 3-way 뒤의 내용이 암호화돼 검색어가 보이지 않았다」.
-
-<mark style="background:#fff59d; color:#1a1a1a; text-decoration:underline; padding:0 4px; border-radius:3px">**결과** — 3-way 는 똑같이 보이지만, 그 뒤가 `TLSv1.3` · `Application Data` 로만 보이고 검색어 `network_day1` 은 어디에도 안 보인다</mark>
-
-**왜** — 3-way 는 암호화 전에 일어나서 똑같습니다. 그 뒤 내용은 TLS 가 암호화해 주소 뒤의 `?q=network_day1` 까지 가려집니다.
-
-**자주 틀리는 곳** — 캡처 필터를 `tcp port 80` 그대로 두면 443 연결이 하나도 잡히지 않습니다.
-
-**관제에서는** — HTTPS 는 내용이 안 보이니 누구와 · 언제 · 얼마나 통신했는지를 봅니다.
-
-**강사 메모** — 3-way 는 같고 그 뒤 내용만 가려진다는 대비를 7-2 화면과 나란히 놓고 강조합니다. 「어느 사이트에 갔는지도 안 보이나요?」에는 「`Client Hello` 를 펼치면 서버 이름 `example.com` 은 보통 보이지만 `?q=network_day1` 은 보이지 않는다」고 답합니다. 선택 문제라 먼저 끝난 학생에게만 권하고, 캡처 필터를 `tcp port 443` 으로 바꿨는지부터 봅니다.
-
-### 7교시 한눈에
-
-| 장면 | 필터 | 보이는 것 |
-|---|---|---|
-| 열림 | `tcp.flags.syn == 1` | `[SYN]` · `[SYN, ACK]` (+ 다음 `[ACK]`) |
-| 내용 | `http` | `GET /?q=…` — HTTP 는 글자가 그대로 |
-| 닫힘 | `tcp.flags.fin == 1` | FIN 두 줄 |
-| 처음부터 거르기 | 캡처 필터 `tcp port 80` | 내 연결만 스무 줄 안팎 |
-| 서버가 살아 있나 | `curl -I 주소` | 상태 코드 첫 줄과 `Server:` — 본문 없이 |
-
----
 
 ## 오늘 마무리
 
 | 확인 | 문제 |
 |---|---|
-| `day01_packet_analysis.md` 의 2~7교시와 「최종 분석」에 빈 칸이 없다(⭐ 제외) | 모든 문제 · 7-4 |
+| `day01_packet_analysis.md` 의 2~7교시와 「최종 분석」에 빈 칸이 없다(⭐ 제외) | 모든 문제 · 7-3 |
 | 사진 두 장(`handshake.png` · `http_request.png`)이 보고서에 나온다 | 7-1 · 7-2 |
 | 3-way 세 단계를 내 말로 설명할 수 있다 | 5-3 · 7-1 |
-| 깃허브에 올렸다 | 7-4 |
+| 깃허브에 올렸다 | 7-3 |
 
 내일(10/13)은 오늘 `ipconfig` 에서 본 `192.168.0.15` · `255.255.255.0` 같은 숫자의 정체 — **IP 주소와 서브넷**을 배웁니다.
 
