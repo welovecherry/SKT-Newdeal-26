@@ -240,28 +240,46 @@ cd network_zt
 
 ## 6교시 · Wireshark
 
+### 실습 1 · 캡처하고 통신 방향 읽기
 
-### 문제 6-1 · Wireshark 실행하기
+#### 문제 6-1 · Wireshark 실행하기
 
 - 내 인터페이스 이름:
 
-### 문제 6-2 · 첫 캡처
+#### 문제 6-2 · 캡처한 통신의 방향 읽기
 
-- 패킷 수:
+- 전체 패킷 수:
 - Protocol 열의 이름 세 개:
+- 요청 패킷 — Source / Destination / Source Port / Destination Port:
+- 응답 패킷 — Source / Destination / Source Port / Destination Port:
+- 어느 줄이 요청이고 어느 줄이 응답인가?:
 
-### 문제 6-3 · 패킷 하나를 층별로 펼치기
+### 실습 2 · 패킷 내용을 해석하고 필터로 확인하기
+
+#### 문제 6-3 · 패킷 하나를 층별로 펼치기
 
 - Ethernet II — Source MAC:
 - IPv4 — Source IP / Destination IP:
 - IPv4 — Time to Live:
 - TCP — Source Port / Destination Port / Flags:
 
-### 문제 6-4 · 필터 세 개 걸어 보기
+#### 문제 6-4 · 필터 결과와 뜻 비교하기
 
-- dns Displayed:
-- udp Displayed:
-- tcp.port == 443 Displayed:
+- 전체 Packets:
+- dns — Displayed:
+- dns — 고른 패킷의 Info:
+- udp — Displayed:
+- udp — 고른 패킷의 Source Port → Destination Port:
+- tcp.port == 443 — Displayed:
+- tcp.port == 443 — 고른 패킷의 Source Port → Destination Port:
+- 질문: `dns` 필터는 어떤 패킷을 표시하나요?
+  - 답과 내가 고른 패킷에서 확인한 근거:
+- 질문: `udp` 필터는 어떤 패킷을 표시하나요?
+  - 답과 내가 고른 패킷에서 확인한 근거:
+- 질문: `tcp.port == 443` 필터는 어떤 패킷을 표시하나요?
+  - 답과 내가 고른 패킷에서 확인한 근거:
+- Packets와 Displayed는 어떤 차이가 있나요?
+- 이번 실습에서 새로 알게 된 점:
 
 
 ### 이 교시에 새로 안 것
@@ -368,7 +386,11 @@ Ping 8.8.8.8 32바이트 데이터 사용:
     최소 = 33ms, 최대 = 35ms, 평균 = 34ms
 ```
 
-> 학생 문서에서는 아래 표의 일부 칸이 **[찾아 쓰기]** 로 비어 있습니다. 강사용에는 채운 표를 둡니다.
+> 학생은 아래 질문을 한 번에 하나씩 검색합니다. 답은 보고서에 자기 말로 적습니다.
+> - TTL은 어떤 값을 나타내나요?
+> - 라우터를 지날 때 TTL 값은 어떻게 바뀌나요?
+> - `ping` 손실률은 보낸 패킷 수와 받은 패킷 수를 어떻게 비교하나요?
+> - 평균 왕복 시간은 무엇을 나타내나요?
 
 | 보이는 것 | 뜻 |
 |---|---|
@@ -1092,7 +1114,13 @@ python addr_kind.py
 - **LISTENING** (리스닝) — 내 PC 가 연결 요청을 **기다리며 열어 둔** 상태
 - **PID (Process ID)** (피아이디) — 실행 중인 **프로그램마다 붙는 번호**
 
-> 학생 문서에서는 아래 표의 일부 칸이 **[찾아 쓰기]** 로 비어 있습니다. 강사용에는 채운 표를 둡니다.
+> 학생은 아래 질문을 한 번에 하나씩 검색합니다. 답은 보고서에 자기 말로 적습니다.
+> - 포트 22는 어떤 서비스에 쓰이나요?
+> - 포트 3389는 어떤 서비스에 쓰이나요?
+> - 포트 3389가 인터넷에 열려 있으면 어떤 위험이 있나요?
+> - 포트 135는 Windows의 어떤 기능에 쓰이나요?
+> - 포트 445는 Windows의 어떤 기능에 쓰이나요?
+> - 어떤 랜섬웨어가 포트 445를 이용해 퍼졌나요?
 
 | 포트 | 서비스 | 쓰임 |
 |---|---|---|
