@@ -249,9 +249,9 @@ cd network_zt
 
 ### 문제 6-4 · 필터 세 개 걸어 보기
 
-- dns 표시됨: 
-- udp 표시됨: 
-- tcp.port == 443 표시됨: 
+- dns Displayed: 
+- udp Displayed: 
+- tcp.port == 443 Displayed: 
 
 
 ### 이 교시에 새로 안 것
