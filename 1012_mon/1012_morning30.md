@@ -49,6 +49,8 @@
 | Windows Arm64 Installer | ❌ | ARM 칩을 쓰는 일부 노트북용 |
 | Windows x64 PortableApps | ❌ | 설치 없이 쓰는 판 — 패킷을 붙잡는 부품(Npcap)이 같이 깔리지 않는다 |
 
+> 🍎 **맥북을 쓰는 사람** — **macOS Arm Disk Image**(M1 이후 맥) 또는 **macOS Intel Disk Image**(그 전 맥)를 받습니다. 받은 `.dmg` 를 열고 Wireshark 아이콘을 **Applications**(응용 프로그램) 폴더로 끌어 놓으면 설치 끝입니다. 아래 ② 는 건너뜁니다.
+
 **② 받은 파일을 실행합니다**
 
 1. 내려받은 `Wireshark-…-x64.exe` 를 엽니다.
@@ -118,6 +120,14 @@ tasklist | grep Code
 |---|---|
 | 창 가운데 `Wireshark에 오신 것을 환영합니다`(영어 화면은 `Welcome to Wireshark`) 아래에 **이더넷 · Wi-Fi 같은 통로 이름 목록** | 목록이 비어 있으면 Npcap 이 빠진 것입니다. 설치 파일을 다시 실행해 `Install Npcap` 을 켭니다 |
 | 이름 오른쪽에 **작은 그래프**가 움직인다 | 움직이는 줄이 지금 쓰는 통로입니다. 학원 PC 는 `이더넷 2` 입니다 |
+
+> 🍎 **맥북을 쓰는 사람** — Wireshark 에는 패킷을 붙잡을 권한(ChmodBPF · 맥의 Npcap 같은 것)이 따로 필요합니다. **지금 꼭 해 둡니다.** 안 하면 오후에 캡처를 누르자마자 `You do not have permission to capture` 창이 뜹니다.
+>
+> 1. 첫 화면 위쪽의 「You can fix this by **installing ChmodBPF**.」 에서 **installing ChmodBPF** 링크를 누릅니다.
+> 2. 설치 창에서 **계속** → **설치** 를 누르고 맥 비밀번호를 입력합니다.
+> 3. Wireshark 를 **⌘Q** 로 완전히 끄고 다시 엽니다. 위쪽 문구가 사라졌으면 끝입니다. 그대로 있으면 맥을 재시동합니다.
+>
+> 맥에서 쓰는 통로는 보통 **`Wi-Fi: en0`** 입니다.
 
 **캡처는 아직 누르지 않습니다.** 오후 6교시에 함께 합니다. 확인했으면 Wireshark 를 닫습니다.
 
