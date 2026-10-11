@@ -49,6 +49,8 @@ cd network_zt
 
 > 화면의 숫자 · 주소는 **PC 마다 다릅니다.** 이 문서의 화면 예시는 모양을 보여 주는 예시입니다. 내 화면의 값을 읽어 적습니다.
 
+> 맥북으로 복습할 때는 명령 상자 바로 아래의 **「맥북:」 줄**을 칩니다(없으면 Windows 와 같은 명령). 맥의 결과는 영어이고 모양이 달라 🎯 결과와 글자가 다릅니다 — 같은 값(평균 · TTL · IP · 포트)을 찾으면 됩니다.
+
 ### 0.3 문제를 푸는 법
 
 1. 문제 앞의 **상자**를 먼저 읽습니다 — 🐍 문법 상자(파이썬) · 명령 상자(터미널) · Wireshark 상자 · 개념 상자. 문제 제목 아래 **어디서** 줄이 실습하는 곳입니다. `→` 는 하는 순서입니다.
@@ -393,6 +395,7 @@ ping 8.8.8.8          # 4번 보내고 끝난다
 ping -n 10 8.8.8.8    # 10번 보낸다
 ping -t 8.8.8.8       # 멈출 때까지 계속 보낸다 — Ctrl + C 로 멈춘다
 ```
+맥북: `ping -c 4 8.8.8.8` → `ping -c 10 8.8.8.8` → `ping 8.8.8.8`(멈출 때까지 — `Ctrl + C`)
 
 | 쓰는 것 | 뜻 |
 |---|---|
@@ -491,6 +494,7 @@ ping -t 8.8.8.8       # 멈출 때까지 계속 보낸다 — Ctrl + C 로 멈�
 ping abc.nowhere-not-exist
 ping 192.0.2.1
 ```
+맥북: `ping -c 4 abc.nowhere-not-exist` → `ping -c 4 192.0.2.1`
 
 | | |
 |---|---|
@@ -565,6 +569,7 @@ for r in results:                                 # 결과를 하나씩 꺼낸�
 ```bash
 python ping_check.py
 ```
+맥북: `python3 ping_check.py`
 
 4. 고친 뒤에는 같은 명령을 다시 입력합니다. 터미널에서 **↑(위 화살표)** 를 누르면 방금 입력한 명령이 다시 나옵니다.
 
@@ -777,6 +782,7 @@ for a in ["192.168.0.15", "a8-5e-45-01-2b-3c", "ff-ff-ff-ff-ff-ff", "192.168.0"]
 ```bash
 python addr_kind.py
 ```
+맥북: `python3 addr_kind.py`
 
 4. 고친 뒤에는 같은 명령을 다시 입력합니다. 터미널에서 **↑(위 화살표)** 를 누르면 방금 입력한 명령이 다시 나옵니다.
 
@@ -996,6 +1002,7 @@ for port in seen:                                 # 포트를 하나씩 꺼낸�
 ```bash
 python port_name.py
 ```
+맥북: `python3 port_name.py`
 
 4. 고친 뒤에는 같은 명령을 다시 입력합니다. 터미널에서 **↑(위 화살표)** 를 누르면 방금 입력한 명령이 다시 나옵니다.
 
@@ -1066,6 +1073,7 @@ python port_name.py
 ```bash
 ping 8.8.8.8
 ```
+맥북: `ping -c 4 8.8.8.8`
 
 **결과** — `8.8.8.8의 응답:` 네 줄이 나옵니다. 맨 아래 `평균 = ○○ms` 의 숫자와 `응답:` 줄 끝의 `TTL=○○○` 을 보고서에 적습니다.
 
@@ -1084,6 +1092,7 @@ ping 8.8.8.8
 ```bash
 ping google.com
 ```
+맥북: `ping -c 4 google.com`
 
 **결과** — 첫 줄 `Ping google.com [○○○.○○○.○.○] 32바이트 데이터 사용:` 의 대괄호 안이 google.com 의 IP 주소입니다.
 
@@ -1103,6 +1112,7 @@ ping google.com
 ping abc.nowhere-not-exist
 ping 192.0.2.1
 ```
+맥북: `ping -c 4 abc.nowhere-not-exist` → `ping -c 4 192.0.2.1`
 
 **결과** — 첫째는 `Ping 요청에서 abc.nowhere-not-exist 호스트를 찾을 수 없습니다.` 한 줄, 둘째는 `요청 시간이 만료되었습니다.` 네 줄입니다.
 
@@ -1121,6 +1131,7 @@ ping 192.0.2.1
 ```bash
 ping -n 10 8.8.8.8
 ```
+맥북: `ping -c 10 8.8.8.8`
 
 **결과** — `패킷: 보냄 = 10, 받음 = ○○, 손실 = ○ (○% 손실)` 줄을 읽습니다. 학원망이 붐비지 않으면 `받음 = 10, 손실 = 0 (0% 손실)` 입니다.
 
@@ -1160,6 +1171,7 @@ for r in results:                                 # 결과를 하나씩 꺼낸�
 ```bash
 python ping_check.py
 ```
+맥북: `python3 ping_check.py`
 
 **결과** — `[정상] 8.8.8.8 34ms` · `[느림] 1.1.1.1 120ms` · `[실패] 192.0.2.1 응답 없음` 세 줄입니다.
 
@@ -1178,6 +1190,7 @@ python ping_check.py
 ```bash
 ipconfig
 ```
+맥북: `ifconfig en0` (IP 는 `inet` 줄) · `route -n get default` (게이트웨이는 `gateway` 줄)
 
 **결과** — `IPv4 주소 . . . : ○○○.○○○.○.○○` 와 `기본 게이트웨이 . . . : ○○○.○○○.○.○`. 기본 게이트웨이 칸이 비어 있지 않은 장치의 두 값을 적습니다.
 
@@ -1196,6 +1209,7 @@ ipconfig
 ```bash
 ipconfig //all
 ```
+맥북: `ifconfig en0` (MAC 주소는 `ether` 줄)
 
 **결과** — 3-2 와 같은 장치 이름 아래의 `물리적 주소 . . . : ○○-○○-○○-○○-○○-○○` 를 적습니다.
 
@@ -1214,6 +1228,7 @@ ipconfig //all
 ```bash
 ping 192.168.0.1
 ```
+맥북: `ping -c 4 192.168.0.1`
 
 **결과** — 게이트웨이 평균은 보통 `1~5ms` 로, 2-2 의 `8.8.8.8` 평균보다 훨씬 작게 나옵니다.
 
@@ -1266,6 +1281,7 @@ for a in ["192.168.0.15", "a8-5e-45-01-2b-3c", "ff-ff-ff-ff-ff-ff", "192.168.0"]
 ```bash
 python addr_kind.py
 ```
+맥북: `python3 addr_kind.py`
 
 **결과** — `IP 192.168.0.15` · `MAC a8-5e-45-01-2b-3c` · `MAC ff-ff-ff-ff-ff-ff` · `모름 192.168.0` 네 줄입니다.
 
@@ -1284,6 +1300,7 @@ python addr_kind.py
 ```bash
 netstat -n
 ```
+맥북: `netstat -an -p tcp` (포트는 주소 끝 마지막 점 뒤의 숫자)
 
 **결과** — `ESTABLISHED` 줄의 `외부 주소` 에서 `:` 뒤 숫자를 읽고, 4.1 표에서 서비스 이름을 찾습니다. 예: `443` 이면 `HTTPS` 입니다.
 
@@ -1303,6 +1320,7 @@ netstat -n
 netstat -ano | grep ESTABLISHED
 tasklist | grep 1234
 ```
+맥북: `lsof -i -n -P | grep ESTABLISHED` (첫 칸이 프로그램 이름, 둘째 칸이 PID) → `ps -p 1234`
 
 **결과** — 첫 줄로 4-2 의 줄을 찾아 맨 끝 숫자(PID)를 읽고, 둘째 줄의 `1234` 자리에 그 숫자를 넣습니다. 나온 줄의 첫 칸(예: `chrome.exe` · `msedge.exe`)이 프로그램 이름입니다.
 
@@ -1321,6 +1339,7 @@ tasklist | grep 1234
 ```bash
 netstat -an | grep LISTENING
 ```
+맥북: `netstat -an -p tcp | grep LISTEN`
 
 **결과** — `TCP    0.0.0.0:135 … LISTENING` · `TCP    0.0.0.0:445 … LISTENING` 꼴의 줄에서 4.1 표에 있는 포트(135 · 445 등)를 적습니다. 다른 번호가 더 있어도 정상입니다.
 
@@ -1368,6 +1387,7 @@ for port in seen:                                 # 포트를 하나씩 꺼낸�
 ```bash
 python port_name.py
 ```
+맥북: `python3 port_name.py`
 
 **결과** — `443 → HTTPS` · `445 → SMB` · `3389 → RDP` · `51234 → 모름` 네 줄입니다.
 

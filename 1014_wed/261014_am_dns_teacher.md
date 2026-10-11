@@ -44,6 +44,7 @@
 2. 강의계획서에는 `dig`(디그)도 나오지만 **Windows 에는 기본으로 없습니다**(실측). 오늘은 Windows 에 들어 있는 `nslookup` 을 씁니다. 둘은 같은 일을 합니다.
 3. 결과 화면 예시는 **학원 PC(한국어 Windows)에서 보이는 모양**입니다. 주소는 시간 · 장소마다 바뀔 수 있습니다.
 4. 문제 앞의 **상자**를 먼저 읽습니다 — 🐍 문법 상자(파이썬) · 명령 상자(터미널) · Wireshark 상자 · 개념 상자. 문제 제목 아래 **어디서** 줄이 실습하는 곳입니다. `→` 는 하는 순서입니다. 막히면 **💡 힌트** → 맨 아래 **「정답」** 순서로 봅니다. ⭐도전은 선택입니다.
+5. 맥북으로 복습할 때는 명령 상자 바로 아래의 **「맥북:」 줄**을 칩니다(없으면 Windows 와 같은 명령). 맥의 결과는 영어이고 모양이 달라 🎯 결과와 글자가 다릅니다 — 같은 값(평균 · TTL · IP · 포트)을 찾으면 됩니다.
 
 ### 오늘의 보고서 파일을 만듭니다
 
@@ -282,6 +283,7 @@ nslookup example.com 8.8.8.8
 ```bash
 ipconfig //all
 ```
+맥북: `scutil --dns | grep nameserver`
 
 <mark style="background:#fff59d; color:#1a1a1a; text-decoration:underline; padding:0 4px; border-radius:3px">**결과** — `DNS 서버 . . . . : ○○○.○○○.○.○` 의 주소가 2-2 의 위쪽 `Address` 와 같습니다(값은 PC 마다 다릅니다).</mark>
 
@@ -383,6 +385,7 @@ names = ["example.com", "google.com", "www.naver.com", "abc.nowhere-not-exist.co
 ```bash
 python dns_lookup.py
 ```
+맥북: `python3 dns_lookup.py`
 
 4. 고친 뒤에는 같은 명령을 다시 입력합니다. 터미널에서 **↑(위 화살표)** 를 누르면 방금 입력한 명령이 다시 나옵니다.
 
@@ -539,6 +542,7 @@ show_tree("mail.google.co.kr")
 ```bash
 python dns_tree.py
 ```
+맥북: `python3 dns_tree.py`
 
 4. 고친 뒤에는 같은 명령을 다시 입력합니다. 터미널에서 **↑(위 화살표)** 를 누르면 방금 입력한 명령이 다시 나옵니다.
 
@@ -720,6 +724,7 @@ for tld in count:
 ```bash
 python tld_count.py
 ```
+맥북: `python3 tld_count.py`
 
 4. 고친 뒤에는 같은 명령을 다시 입력합니다. 터미널에서 **↑(위 화살표)** 를 누르면 방금 입력한 명령이 다시 나옵니다.
 
@@ -946,6 +951,7 @@ ipconfig //displaydns
 ping -n 1 example.com
 ipconfig //displaydns
 ```
+맥북: `ping -c 1 example.com` → `sudo dscacheutil -flushcache; sudo killall -HUP mDNSResponder`(캐시 비우기 · 맥 암호를 묻습니다) → `ping -c 1 example.com`. 캐시 내용을 보는 `ipconfig //displaydns` 는 맥에 없어서 그 단계는 건너뜁니다.
 
 | | |
 |---|---|
@@ -969,6 +975,7 @@ ipconfig //displaydns
 ping -n 1 example.com
 ipconfig //displaydns
 ```
+맥북: `ping -c 1 example.com` → `sudo dscacheutil -flushcache; sudo killall -HUP mDNSResponder`(캐시 비우기 · 맥 암호를 묻습니다) → `ping -c 1 example.com`. 캐시 내용을 보는 `ipconfig //displaydns` 는 맥에 없어서 그 단계는 건너뜁니다.
 
 <mark style="background:#fff59d; color:#1a1a1a; text-decoration:underline; padding:0 4px; border-radius:3px">**결과** — 처음에는 `example.com` 아래 `TTL(Time To Live) . : ○○○` 이 보입니다. `//flushdns` 뒤에는 `DNS 확인자 캐시를 플러시했습니다.` 가 나오고, 다시 본 목록은 `Windows IP 구성` 한 줄뿐입니다. `ping` 으로 다시 접속하면 `example.com` 항목이 다시 생깁니다.</mark>
 
@@ -1017,6 +1024,7 @@ for t in [0, 100, 299, 300, 450]:
 ```bash
 python dns_cache.py
 ```
+맥북: `python3 dns_cache.py`
 
 4. 고친 뒤에는 같은 명령을 다시 입력합니다. 터미널에서 **↑(위 화살표)** 를 누르면 방금 입력한 명령이 다시 나옵니다.
 
@@ -1080,6 +1088,7 @@ print("IP:", records[name]["value"])
 ```bash
 python cname_chain.py
 ```
+맥북: `python3 cname_chain.py`
 
 4. 고친 뒤에는 같은 명령을 다시 입력합니다. 터미널에서 **↑(위 화살표)** 를 누르면 방금 입력한 명령이 다시 나옵니다.
 

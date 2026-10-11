@@ -95,6 +95,7 @@ pwd
 tasklist
 tasklist | grep Code
 ```
+맥북: `ps aux` → `ps aux | grep Code`
 
 - 첫째는 지금 켜진 프로그램 목록이 수백 줄 쏟아집니다.
 - 둘째는 그중 `Code` 가 든 줄(VS Code · `Code.exe`)만 남습니다.

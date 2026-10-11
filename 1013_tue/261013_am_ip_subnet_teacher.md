@@ -44,6 +44,7 @@
 2. 오늘은 **파이썬 파일을 여러 개** 만듭니다. 문제마다 적힌 이름으로 `network_zt` 폴더에 만들고, `python 파일이름.py` 로 실행합니다.
 3. 오늘 쓰는 `ipaddress`(아이피 어드레스)는 파이썬에 **기본으로 들어 있는** 도구(표준 라이브러리)라 설치가 필요 없습니다.
 4. 문제 앞의 **상자**를 먼저 읽습니다 — 🐍 문법 상자(파이썬) · 명령 상자(터미널) · Wireshark 상자 · 개념 상자. 문제 제목 아래 **어디서** 줄이 실습하는 곳입니다. `→` 는 하는 순서입니다. 막히면 **💡 힌트** → 맨 아래 **「정답」** 순서로 봅니다. ⭐도전은 선택입니다.
+5. 맥북으로 복습할 때는 명령 상자 바로 아래의 **「맥북:」 줄**을 칩니다(없으면 Windows 와 같은 명령). 맥의 결과는 영어이고 모양이 달라 🎯 결과와 글자가 다릅니다 — 같은 값(평균 · TTL · IP · 포트)을 찾으면 됩니다.
 
 ### 오늘의 보고서 파일을 만듭니다
 
@@ -204,6 +205,7 @@ print("길이:", len(to_bits(ip)))
 ```bash
 python ip_bits.py
 ```
+맥북: `python3 ip_bits.py`
 
 4. 고친 뒤에는 같은 명령을 다시 입력합니다. 터미널에서 **↑(위 화살표)** 를 누르면 방금 입력한 명령이 다시 나옵니다.
 
@@ -308,6 +310,7 @@ for ip in ["10.0.0.8", "172.20.5.6", "172.32.5.6", "192.168.10.25", "8.8.8.8", "
 ```bash
 python private_ip.py
 ```
+맥북: `python3 private_ip.py`
 
 4. 고친 뒤에는 같은 명령을 다시 입력합니다. 터미널에서 **↑(위 화살표)** 를 누르면 방금 입력한 명령이 다시 나옵니다.
 
@@ -415,6 +418,7 @@ print(f"안: {inside['ip']}:{inside['port']}")
 ```bash
 python nat_table.py
 ```
+맥북: `python3 nat_table.py`
 
 4. 고친 뒤에는 같은 명령을 다시 입력합니다. 터미널에서 **↑(위 화살표)** 를 누르면 방금 입력한 명령이 다시 나옵니다.
 
@@ -490,6 +494,7 @@ for line in logs:                                 # 로그를 한 줄씩
 ```bash
 python outside_fail.py
 ```
+맥북: `python3 outside_fail.py`
 
 4. 고친 뒤에는 같은 명령을 다시 입력합니다. 터미널에서 **↑(위 화살표)** 를 누르면 방금 입력한 명령이 다시 나옵니다.
 
@@ -613,6 +618,8 @@ print(mask.count("0"))
 
 `ipconfig` 로 내 **서브넷 마스크**를 찾고, 3.1 표를 보고 **CIDR** 로 바꿔 보고서 1절에 적으시오.
 
+맥북: `ipconfig getoption en0 subnet_mask`
+
 **사진 남기기** — 결과 화면에서 `IPv4 주소` · `서브넷 마스크` · `기본 게이트웨이` 세 줄이 보이게 잘라 `ipconfig_mask.png` 로 `network_zt` 폴더에 저장하고, `## 실습 기록` 에 `- 3-2: ![내 망](ipconfig_mask.png)` 한 줄을 넣으시오. 자르고 저장하는 법은 10/12 오후 7-2 와 같습니다(`Win + Shift + S`).
 
 | | |
@@ -667,6 +674,7 @@ for prefix in range(24, 29):                      # 24, 25, 26, 27, 28
 ```bash
 python cidr_table.py
 ```
+맥북: `python3 cidr_table.py`
 
 4. 고친 뒤에는 같은 명령을 다시 입력합니다. 터미널에서 **↑(위 화살표)** 를 누르면 방금 입력한 명령이 다시 나옵니다.
 
@@ -730,6 +738,7 @@ print("사용 가능 주소 수:", net.num_addresses - 2)
 ```bash
 python my_network.py
 ```
+맥북: `python3 my_network.py`
 
 4. 고친 뒤에는 같은 명령을 다시 입력합니다. 터미널에서 **↑(위 화살표)** 를 누르면 방금 입력한 명령이 다시 나옵니다.
 
@@ -791,6 +800,7 @@ print("70과 130:", a == c)                        # 130 은 128~191
 ```bash
 python same_network.py
 ```
+맥북: `python3 same_network.py`
 
 4. 고친 뒤에는 같은 명령을 다시 입력합니다. 터미널에서 **↑(위 화살표)** 를 누르면 방금 입력한 명령이 다시 나옵니다.
 
@@ -874,6 +884,7 @@ gateway = "192.168.10.1"
 ```bash
 python gateway_check.py
 ```
+맥북: `python3 gateway_check.py`
 
 4. 고친 뒤에는 같은 명령을 다시 입력합니다. 터미널에서 **↑(위 화살표)** 를 누르면 방금 입력한 명령이 다시 나옵니다.
 
@@ -1030,6 +1041,7 @@ for name, count in [("보안팀", 10), ("운영팀", 25), ("개발팀", 50)]:
 ```bash
 python smallest_prefix.py
 ```
+맥북: `python3 smallest_prefix.py`
 
 4. 고친 뒤에는 같은 명령을 다시 입력합니다. 터미널에서 **↑(위 화살표)** 를 누르면 방금 입력한 명령이 다시 나옵니다.
 
@@ -1086,6 +1098,7 @@ for sub in parent.subnets(new_prefix=26):         # /26 네 개를 하나씩
 ```bash
 python flsm.py
 ```
+맥북: `python3 flsm.py`
 
 4. 고친 뒤에는 같은 명령을 다시 입력합니다. 터미널에서 **↑(위 화살표)** 를 누르면 방금 입력한 명령이 다시 나옵니다.
 
@@ -1144,6 +1157,7 @@ for address in addresses:                         # 주소를 하나씩
 ```bash
 python which_block.py
 ```
+맥북: `python3 which_block.py`
 
 4. 고친 뒤에는 같은 명령을 다시 입력합니다. 터미널에서 **↑(위 화살표)** 를 누르면 방금 입력한 명령이 다시 나옵니다.
 
@@ -1213,6 +1227,7 @@ print("겹침 있음:", overlap)
 ```bash
 python plan_check.py
 ```
+맥북: `python3 plan_check.py`
 
 4. 고친 뒤에는 같은 명령을 다시 입력합니다. 터미널에서 **↑(위 화살표)** 를 누르면 방금 입력한 명령이 다시 나옵니다.
 
@@ -1280,6 +1295,7 @@ for name, cidr, required in assignments:          # 부서를 하나씩
 ```bash
 python design_table.py
 ```
+맥북: `python3 design_table.py`
 
 4. 고친 뒤에는 같은 명령을 다시 입력합니다. 터미널에서 **↑(위 화살표)** 를 누르면 방금 입력한 명령이 다시 나옵니다.
 

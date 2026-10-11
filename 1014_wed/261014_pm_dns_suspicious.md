@@ -37,6 +37,7 @@
 1. 오전과 같은 터미널, `network_zt` 폴더에서 합니다.
 2. 오늘 쓰는 의심 도메인은 **수업용으로 지어낸 이름**입니다. 실제로 접속하지 않습니다 — `nslookup` 으로 「있는지」만 봅니다(7-3).
 3. 문제 앞의 **상자**를 먼저 읽습니다 — 🐍 문법 상자(파이썬) · 명령 상자(터미널) · Wireshark 상자 · 개념 상자. 문제 제목 아래 **어디서** 줄이 실습하는 곳입니다. `→` 는 하는 순서입니다. 막히면 **💡 힌트** → 맨 아래 **「정답」** 순서로 봅니다. ⭐도전은 선택입니다.
+4. 맥북으로 복습할 때는 명령 상자 바로 아래의 **「맥북:」 줄**을 칩니다(없으면 Windows 와 같은 명령). 맥의 결과는 영어이고 모양이 달라 🎯 결과와 글자가 다릅니다 — 같은 값(평균 · TTL · IP · 포트)을 찾으면 됩니다.
 
 ### 오늘 쓰는 DNS 로그
 
@@ -164,6 +165,7 @@ for name in names:                                # 이름을 하나씩
 ```bash
 python label.py
 ```
+맥북: `python3 label.py`
 
 4. 고친 뒤에는 같은 명령을 다시 입력합니다. 터미널에서 **↑(위 화살표)** 를 누르면 방금 입력한 명령이 다시 나옵니다.
 
@@ -213,6 +215,7 @@ for name in ["www.naver.com", "kxq3vz9a.top", "xn--3e0b707e.kr"]:
 ```bash
 python features.py
 ```
+맥북: `python3 features.py`
 
 4. 고친 뒤에는 같은 명령을 다시 입력합니다. 터미널에서 **↑(위 화살표)** 를 누르면 방금 입력한 명령이 다시 나옵니다.
 
@@ -260,6 +263,7 @@ for name in seen:                                 # 로그에 나온 이름을 �
 ```bash
 python typosquat.py
 ```
+맥북: `python3 typosquat.py`
 
 4. 고친 뒤에는 같은 명령을 다시 입력합니다. 터미널에서 **↑(위 화살표)** 를 누르면 방금 입력한 명령이 다시 나옵니다.
 
@@ -313,6 +317,7 @@ for pc in nx:
 ```bash
 python nx_count.py
 ```
+맥북: `python3 nx_count.py`
 
 4. 고친 뒤에는 같은 명령을 다시 입력합니다. 터미널에서 **↑(위 화살표)** 를 누르면 방금 입력한 명령이 다시 나옵니다.
 
@@ -353,6 +358,7 @@ names = [
 ```bash
 python long_label.py
 ```
+맥북: `python3 long_label.py`
 
 4. 고친 뒤에는 같은 명령을 다시 입력합니다. 터미널에서 **↑(위 화살표)** 를 누르면 방금 입력한 명령이 다시 나옵니다.
 
@@ -524,6 +530,7 @@ if __name__ == "__main__":                        # 직접 실행할 때만 시�
 ```bash
 python dga_score.py
 ```
+맥북: `python3 dga_score.py`
 
 4. 고친 뒤에는 같은 명령을 다시 입력합니다. 터미널에서 **↑(위 화살표)** 를 누르면 방금 입력한 명령이 다시 나옵니다.
 
@@ -576,6 +583,7 @@ for name, rcode, truth in LOG:                    # 로그를 한 줄씩
 ```bash
 python judge.py
 ```
+맥북: `python3 judge.py`
 
 4. 고친 뒤에는 같은 명령을 다시 입력합니다. 터미널에서 **↑(위 화살표)** 를 누르면 방금 입력한 명령이 다시 나옵니다.
 
@@ -639,6 +647,7 @@ print("맞힘", hit, "· 오탐", false_alarm, "· 미탐", missed)
 ```bash
 python evaluate.py
 ```
+맥북: `python3 evaluate.py`
 
 4. 고친 뒤에는 같은 명령을 다시 입력합니다. 터미널에서 **↑(위 화살표)** 를 누르면 방금 입력한 명령이 다시 나옵니다.
 
@@ -669,6 +678,7 @@ python evaluate.py
 ```bash
 python dga_score.py
 ```
+맥북: `python3 dga_score.py`
 
 4. 고친 뒤에는 같은 명령을 다시 입력합니다. 터미널에서 **↑(위 화살표)** 를 누르면 방금 입력한 명령이 다시 나옵니다.
 
@@ -715,6 +725,7 @@ print("|---|---|---|---|")
 ```bash
 python threshold.py
 ```
+맥북: `python3 threshold.py`
 
 4. 고친 뒤에는 같은 명령을 다시 입력합니다. 터미널에서 **↑(위 화살표)** 를 누르면 방금 입력한 명령이 다시 나옵니다.
 
@@ -833,6 +844,7 @@ for name, rcode in LOG:
 ```bash
 python report_table3.py
 ```
+맥북: `python3 report_table3.py`
 
 4. 고친 뒤에는 같은 명령을 다시 입력합니다. 터미널에서 **↑(위 화살표)** 를 누르면 방금 입력한 명령이 다시 나옵니다.
 
@@ -1338,6 +1350,7 @@ if __name__ == "__main__":                        # 직접 실행할 때만 시�
 ```bash
 python dga_score.py
 ```
+맥북: `python3 dga_score.py`
 
 **결과** — 6-4 를 다시 실행하면 `맞힘 3 · 오탐 0 · 미탐 2`
 

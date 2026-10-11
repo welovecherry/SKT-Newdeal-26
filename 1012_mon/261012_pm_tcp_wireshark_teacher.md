@@ -45,6 +45,7 @@
 2. `network_zt` 폴더에서 시작합니다 — `cd network_zt`(이미 들어와 있으면 생략).
 3. 이 문서의 화면 예시는 **모양을 보여 주는 예시**입니다. 주소 · 숫자는 내 화면의 값을 읽습니다.
 4. 문제 앞의 **상자**를 먼저 읽습니다 — 🐍 문법 상자(파이썬) · 명령 상자(터미널) · Wireshark 상자 · 개념 상자. 문제 제목 아래 **어디서** 줄이 실습하는 곳입니다. `→` 는 하는 순서입니다. 막히면 **💡 힌트** → 맨 아래 **「정답」** 순서로 봅니다. ⭐도전은 선택입니다.
+5. 맥북으로 복습할 때는 명령 상자 바로 아래의 **「맥북:」 줄**을 칩니다(없으면 Windows 와 같은 명령). 맥의 결과는 영어이고 모양이 달라 🎯 결과와 글자가 다릅니다 — 같은 값(평균 · TTL · IP · 포트)을 찾으면 됩니다.
 
 ---
 
@@ -305,6 +306,7 @@ for state in count:                               # 센 상태를 하나씩
 ```bash
 python state_count.py
 ```
+맥북: `python3 state_count.py`
 
 4. 고친 뒤에는 같은 명령을 다시 입력합니다. 터미널에서 **↑(위 화살표)** 를 누르면 방금 입력한 명령이 다시 나옵니다.
 
@@ -327,6 +329,7 @@ python state_count.py
 ```bash
 python state_count.py
 ```
+맥북: `python3 state_count.py`
 
 <mark style="background:#fff59d; color:#1a1a1a; text-decoration:underline; padding:0 4px; border-radius:3px">**결과** — `ESTABLISHED 2` · `TIME_WAIT 2` · `SYN_SENT 1`</mark>
 
@@ -365,6 +368,7 @@ python state_count.py
 ```bash
 netstat -n
 ```
+맥북: `netstat -an -p tcp` (포트는 주소 끝 마지막 점 뒤의 숫자)
 
 <mark style="background:#fff59d; color:#1a1a1a; text-decoration:underline; padding:0 4px; border-radius:3px">**결과** — 외부 주소(목적지 IP · 포트)는 같고 로컬 주소 끝의 포트(임시 포트)만 다르다 — 예: `192.168.0.15:51234` 와 `192.168.0.15:51240`</mark>
 
@@ -419,6 +423,7 @@ for p in packets:
 ```bash
 python packet_filter.py
 ```
+맥북: `python3 packet_filter.py`
 
 4. 고친 뒤에는 같은 명령을 다시 입력합니다. 터미널에서 **↑(위 화살표)** 를 누르면 방금 입력한 명령이 다시 나옵니다.
 
@@ -441,6 +446,7 @@ python packet_filter.py
 ```bash
 python packet_filter.py
 ```
+맥북: `python3 packet_filter.py`
 
 <mark style="background:#fff59d; color:#1a1a1a; text-decoration:underline; padding:0 4px; border-radius:3px">**결과** — `[SYN 필터]` 아래 12 · 13 두 줄, `[서버 대화 필터]` 아래 12 · 13 · 14 · 16 네 줄</mark>
 
@@ -934,6 +940,7 @@ for h in headers:                                 # 헤더 값을 하나씩
 ```bash
 python report_table.py
 ```
+맥북: `python3 report_table.py`
 
 4. 고친 뒤에는 같은 명령을 다시 입력합니다. 터미널에서 **↑(위 화살표)** 를 누르면 방금 입력한 명령이 다시 나옵니다.
 
@@ -956,6 +963,7 @@ python report_table.py
 ```bash
 python report_table.py
 ```
+맥북: `python3 report_table.py`
 
 <mark style="background:#fff59d; color:#1a1a1a; text-decoration:underline; padding:0 4px; border-radius:3px">**결과** — `| 1 | 192.168.0.15 | 203.0.113.10 | [SYN] |` 로 시작하는 표 하나와 `| 출발지 IP | … | IP 헤더 (3층) |` 로 시작하는 표 하나 — 값은 내 화면의 값</mark>
 

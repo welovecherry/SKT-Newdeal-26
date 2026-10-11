@@ -37,6 +37,7 @@
 1. 오전과 같은 터미널, `network_zt` 폴더에서 합니다.
 2. 파이썬 파일은 문제마다 적힌 이름으로 만들고 `python 파일이름.py` 로 실행합니다.
 3. 문제 앞의 **상자**를 먼저 읽습니다 — 🐍 문법 상자(파이썬) · 명령 상자(터미널) · Wireshark 상자 · 개념 상자. 문제 제목 아래 **어디서** 줄이 실습하는 곳입니다. `→` 는 하는 순서입니다. 막히면 **💡 힌트** → 맨 아래 **「정답」** 순서로 봅니다. ⭐도전은 선택입니다.
+4. 맥북으로 복습할 때는 명령 상자 바로 아래의 **「맥북:」 줄**을 칩니다(없으면 Windows 와 같은 명령). 맥의 결과는 영어이고 모양이 달라 🎯 결과와 글자가 다릅니다 — 같은 값(평균 · TTL · IP · 포트)을 찾으면 됩니다.
 
 ---
 
@@ -156,6 +157,7 @@ for dest in destinations:                         # 목적지를 하나씩
 ```bash
 python direct_or_gw.py
 ```
+맥북: `python3 direct_or_gw.py`
 
 4. 고친 뒤에는 같은 명령을 다시 입력합니다. 터미널에서 **↑(위 화살표)** 를 누르면 방금 입력한 명령이 다시 나옵니다.
 
@@ -213,6 +215,7 @@ print("표:", mac_table)
 ```bash
 python switch_sim.py
 ```
+맥북: `python3 switch_sim.py`
 
 4. 고친 뒤에는 같은 명령을 다시 입력합니다. 터미널에서 **↑(위 화살표)** 를 누르면 방금 입력한 명령이 다시 나옵니다.
 
@@ -238,6 +241,7 @@ python switch_sim.py
 ping -n 1 8.8.8.8
 arp -a
 ```
+맥북: `ping -c 1 8.8.8.8` → `arp -a`
 
 | | |
 |---|---|
@@ -283,6 +287,7 @@ for name, cidr, gw in pcs:                        # PC 를 하나씩
 ```bash
 python gw_mistake.py
 ```
+맥북: `python3 gw_mistake.py`
 
 4. 고친 뒤에는 같은 명령을 다시 입력합니다. 터미널에서 **↑(위 화살표)** 를 누르면 방금 입력한 명령이 다시 나옵니다.
 
@@ -325,6 +330,7 @@ checks = [("PC0", "PC1", True), ("PC0", "PC2", True), ("PC0", "PC2", False)]   #
 ```bash
 python route_judge.py
 ```
+맥북: `python3 route_judge.py`
 
 4. 고친 뒤에는 같은 명령을 다시 입력합니다. 터미널에서 **↑(위 화살표)** 를 누르면 방금 입력한 명령이 다시 나옵니다.
 
@@ -447,6 +453,7 @@ print(out)
 ```bash
 route print -4
 ```
+맥북: `netstat -rn -f inet` (`default` 줄이 기본 경로)
 
 | | |
 |---|---|
@@ -471,6 +478,7 @@ route print -4
 ```bash
 tracert -d -h 5 8.8.8.8
 ```
+맥북: `traceroute -n -m 5 8.8.8.8`
 
 **사진 남기기** — 결과 화면에서 1번 줄부터 마지막 줄까지 보이게 잘라 `tracert.png` 로 `network_zt` 폴더에 저장하고, `## 실습 기록` 에 `- 6-3: ![거쳐 가는 길](tracert.png)` 한 줄을 넣으시오. 자르고 저장하는 법은 10/12 오후 7-2 와 같습니다(`Win + Shift + S`).
 
@@ -520,6 +528,7 @@ print("3번에서:", flood_ports(3))
 ```bash
 python vlan_flood.py
 ```
+맥북: `python3 vlan_flood.py`
 
 4. 고친 뒤에는 같은 명령을 다시 입력합니다. 터미널에서 **↑(위 화살표)** 를 누르면 방금 입력한 명령이 다시 나옵니다.
 
@@ -576,6 +585,7 @@ for d in ["192.168.10.20", "192.168.10.70", "8.8.8.8"]:
 ```bash
 python route_lookup.py
 ```
+맥북: `python3 route_lookup.py`
 
 4. 고친 뒤에는 같은 명령을 다시 입력합니다. 터미널에서 **↑(위 화살표)** 를 누르면 방금 입력한 명령이 다시 나옵니다.
 
@@ -617,6 +627,7 @@ vlan_subnet = {                                   # VLAN 번호 → 서브넷
 ```bash
 python vlan_pair.py
 ```
+맥북: `python3 vlan_pair.py`
 
 4. 고친 뒤에는 같은 명령을 다시 입력합니다. 터미널에서 **↑(위 화살표)** 를 누르면 방금 입력한 명령이 다시 나옵니다.
 
@@ -735,6 +746,7 @@ for name, cidr, vlan in plan:                     # 부서를 하나씩
 ```bash
 python vlan_plan.py
 ```
+맥북: `python3 vlan_plan.py`
 
 4. 고친 뒤에는 같은 명령을 다시 입력합니다. 터미널에서 **↑(위 화살표)** 를 누르면 방금 입력한 명령이 다시 나옵니다.
 
@@ -806,6 +818,7 @@ print("겹침 있음:", overlap)
 ```bash
 python next_block.py
 ```
+맥북: `python3 next_block.py`
 
 4. 고친 뒤에는 같은 명령을 다시 입력합니다. 터미널에서 **↑(위 화살표)** 를 누르면 방금 입력한 명령이 다시 나옵니다.
 
@@ -1015,6 +1028,7 @@ print("표:", mac_table)
 ping -n 1 8.8.8.8
 arp -a
 ```
+맥북: `ping -c 1 8.8.8.8` → `arp -a`
 
 **결과** — 기본 게이트웨이 IP(예: `192.168.○.1`) 줄에 물리적 주소가 있고, `8.8.8.8` 줄은 **없습니다**.
 
@@ -1101,6 +1115,7 @@ for src, dst, has_router in checks:               # 검사를 하나씩
 ```bash
 route print -4
 ```
+맥북: `netstat -rn -f inet` (`default` 줄이 기본 경로)
 
 **결과** — `활성 경로` 표의 `0.0.0.0          0.0.0.0     192.168.○.1   192.168.○.○○   25` 꼴의 줄 — 셋째 칸(게이트웨이)이 `ipconfig` 의 기본 게이트웨이와 같습니다.
 
@@ -1119,6 +1134,7 @@ route print -4
 ```bash
 tracert -d -h 5 8.8.8.8
 ```
+맥북: `traceroute -n -m 5 8.8.8.8`
 
 **결과** — `1    <1 ms    <1 ms    <1 ms  192.168.○.1` — `1` 번 줄의 주소가 내 기본 게이트웨이입니다. 그 뒤 줄들은 학원 · 통신사의 라우터입니다.
 
