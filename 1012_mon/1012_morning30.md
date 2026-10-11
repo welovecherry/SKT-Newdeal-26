@@ -118,8 +118,8 @@ tasklist | grep Code
 
 | 나와야 하는 것 | 안 나오면 |
 |---|---|
-| 창 가운데 `Wireshark에 오신 것을 환영합니다`(영어 화면은 `Welcome to Wireshark`) 아래에 **이더넷 · Wi-Fi 같은 통로 이름 목록** | 목록이 비어 있으면 Npcap 이 빠진 것입니다. 설치 파일을 다시 실행해 `Install Npcap` 을 켭니다 |
-| 이름 오른쪽에 **작은 그래프**가 움직인다 | 움직이는 줄이 지금 쓰는 통로입니다. 학원 PC 는 `이더넷 2` 입니다 |
+| 창 가운데 `Wireshark에 오신 것을 환영합니다`(영어 화면은 `Welcome to Wireshark`) 아래에 **이더넷 · Wi-Fi 같은 인터페이스 이름 목록** | 목록이 비어 있으면 Npcap 이 빠진 것입니다. 설치 파일을 다시 실행해 `Install Npcap` 을 켭니다 |
+| 이름 오른쪽에 **작은 그래프**가 움직인다 | 움직이는 줄이 지금 쓰는 인터페이스입니다. 학원 PC 는 `이더넷 2` 입니다 |
 
 > 🍎 **맥북을 쓰는 사람** — Wireshark 에는 패킷을 붙잡을 권한(ChmodBPF · 맥의 Npcap 같은 것)이 따로 필요합니다. **지금 꼭 해 둡니다.** 안 하면 오후에 캡처를 누르자마자 `You do not have permission to capture` 창이 뜹니다.
 >
@@ -127,7 +127,7 @@ tasklist | grep Code
 > 2. 설치 창에서 **계속** → **설치** 를 누르고 맥 비밀번호를 입력합니다.
 > 3. Wireshark 를 **⌘Q** 로 완전히 끄고 다시 엽니다. 위쪽 문구가 사라졌으면 끝입니다. 그대로 있으면 맥을 재시동합니다.
 >
-> 맥에서 쓰는 통로는 보통 **`Wi-Fi: en0`** 입니다.
+> 맥에서 쓰는 인터페이스는 보통 **`Wi-Fi: en0`** 입니다.
 
 **캡처는 아직 누르지 않습니다.** 오후 6교시에 함께 합니다. 확인했으면 Wireshark 를 닫습니다.
 
@@ -240,7 +240,7 @@ git push
 
 ## 8. 확인합니다
 
-- [ ] Wireshark 를 열면 **통로 이름 목록**이 보이고, 그중 하나의 그래프가 움직인다
+- [ ] Wireshark 를 열면 **인터페이스 이름 목록**이 보이고, 그중 하나의 그래프가 움직인다
 - [ ] `tasklist | grep Code` 로 VS Code 줄만 남겨 봤다
 - [ ] `security-agent-toolkit` 안에 `network_zt` 폴더가 `agent_core` · `docs` 와 같은 높이에 있다
 - [ ] `docs/2026-10-12.md` 에 Wireshark 와 Npcap 이 무엇인지 한 줄씩 적혀 있다

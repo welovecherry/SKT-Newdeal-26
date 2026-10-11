@@ -3,7 +3,7 @@
 > **강사용 · 학생에게 나눠 주지 않습니다.** 모든 문제 바로 아래에 「정답」과 해설이 있습니다. 찾아 쓰기 표는 채워 두었습니다.
 >
 > **수업 전에 확인할 것**
-> 1. Wireshark 가 설치돼 있는지(학원 PC 10/6 실측 — 통로 이름은 `이더넷 2`)
+> 1. Wireshark 가 설치돼 있는지(학원 PC 10/6 실측 — 인터페이스 이름은 `이더넷 2`)
 > 2. `curl http://example.com` 이 되는지(학원망에서 HTTP 차단 없음 — 10/6 실측)
 > 3. 사진 저장(`Win + Shift + S`) 위치 — `network_zt` 폴더
 
@@ -503,7 +503,7 @@ python packet_filter.py
 | 말 | 읽는 법 | 쉬운 뜻 |
 |---|---|---|
 | 캡처 (capture) | 캡처 | 내 PC 를 지나는 패킷을 **복사해 붙잡아 두는** 것 |
-| 인터페이스 (interface) | 인터페이스 | 내 PC 가 바깥과 통신하는 **통로**(네트워크 어댑터) — 오전 `ipconfig` 의 이더넷 · Wi-Fi. 학원 PC 는 `이더넷 2` |
+| 인터페이스 (interface) | 인터페이스 | 내 PC 의 **네트워크 어댑터** 하나하나 — 오전 `ipconfig` 의 이더넷 · Wi-Fi. 학원 PC 는 `이더넷 2` |
 | Npcap | 엔피캡 | Wireshark 가 패킷을 실제로 붙잡게 해 주는 **부품**. Wireshark 와 함께 설치한다 |
 | 헤더 (header) | 헤더 | 패킷 앞에 붙는 **주소 · 번호 정보**. 층마다 하나씩 붙는다(오전 캡슐화) |
 | 표시 필터 (display filter) | 디스플레이 필터 | 잡은 패킷 가운데 **조건에 맞는 것만 화면에 남기는** 조건 — `tcp.port == 443` |
@@ -525,8 +525,8 @@ python packet_filter.py
 
 | 찾는 것 | 어디에 · 어떻게 생겼나 |
 |---|---|
-| 통로(인터페이스) 목록 | 첫 화면 `Wireshark에 오신 것을 환영합니다` 아래 「캡처」 목록. 이름 오른쪽에 물결 그래프가 붙어 있고, 학원 PC 는 **`이더넷 2`** 입니다 |
-| 캡처 시작 | 통로 이름을 **더블클릭**, 또는 도구 줄 맨 왼쪽 **파란 상어 지느러미** 단추(패킷 캡처 시작) |
+| 인터페이스 목록 | 첫 화면 `Wireshark에 오신 것을 환영합니다` 아래 「캡처」 목록. 이름 오른쪽에 트래픽 그래프가 붙어 있고, 학원 PC 는 **`이더넷 2`** 입니다 |
+| 캡처 시작 | 인터페이스 이름을 **더블클릭**, 또는 도구 줄 맨 왼쪽 **파란 상어 지느러미** 단추(패킷 캡처 시작) |
 | 캡처 정지 | 도구 줄의 **빨간 네모**(캡처 정지) |
 | 다시 시작 | 도구 줄의 **초록 지느러미**(현재 캡처 다시 시작). 「저장하지 않고 계속」 단추가 있는 창이 뜨면 그 단추를 누릅니다 — 연습 캡처는 저장하지 않아도 됩니다 |
 | 표시 필터 칸 | **패킷 목록 바로 위**의 긴 칸. 비어 있으면 회색 글자로 `표시 필터 적용 … <Ctrl-/>` 이 보입니다 |
@@ -568,27 +568,27 @@ python packet_filter.py
 
 | | |
 |---|---|
-| 🎯 나와야 하는 결과 | 창 가운데 `Wireshark에 오신 것을 환영합니다`(영어 화면은 `Welcome to Wireshark`) 아래에 **이더넷 · Wi-Fi 같은 통로 이름 목록**. 오른쪽에 작은 그래프가 붙어 있다 (통로 이름과 개수는 PC 마다 다릅니다) |
+| 🎯 나와야 하는 결과 | 창 가운데 `Wireshark에 오신 것을 환영합니다`(영어 화면은 `Welcome to Wireshark`) 아래에 **이더넷 · Wi-Fi 같은 인터페이스 이름 목록**. 오른쪽에 작은 그래프가 붙어 있다 (인터페이스 이름과 개수는 PC 마다 다릅니다) |
 
 **💡 힌트**
 
 1. 「관리자 권한으로 실행할까요?」 창이 뜨면 **예**를 누릅니다.
 2. 목록이 비어 있으면 Npcap 이 빠진 것입니다. 설치 파일을 다시 실행해 Npcap 을 체크합니다.
 
-맥북: 통로는 `en0`(Wi-Fi) 입니다. 첫 화면에 **ChmodBPF** 설치 안내가 보이면 그 링크로 설치해야 캡처가 됩니다(설치 전에는 「권한이 없다」며 0 개가 잡힙니다).
+맥북: 인터페이스는 `en0`(Wi-Fi) 입니다. 첫 화면에 **ChmodBPF** 설치 안내가 보이면 그 링크로 설치해야 캡처가 됩니다(설치 전에는 「권한이 없다」며 0 개가 잡힙니다).
 3. 막히면 손을 듭니다 — 전원이 같이 출발해야 다음 단계가 됩니다.
 
 #### <mark style="display:block; background:#fff59d; color:#1a1a1a; padding:4px 12px; border-radius:4px; text-decoration:underline">정답 6-1</mark>
 
-시작 메뉴에서 Wireshark 를 실행합니다(설치는 아침 과제 8). 첫 화면 가운데에 통로 이름 목록이 보이면 됩니다.
+시작 메뉴에서 Wireshark 를 실행합니다(설치는 아침 과제 8). 첫 화면 가운데에 인터페이스 이름 목록이 보이면 됩니다.
 
-<mark style="background:#fff59d; color:#1a1a1a; text-decoration:underline; padding:0 4px; border-radius:3px">**결과** — `Welcome to Wireshark` 아래에 이더넷 · Wi-Fi 같은 통로 이름 목록, 오른쪽에 작은 그래프 (이름 · 개수는 PC 마다 다름)</mark>
+<mark style="background:#fff59d; color:#1a1a1a; text-decoration:underline; padding:0 4px; border-radius:3px">**결과** — `Welcome to Wireshark` 아래에 이더넷 · Wi-Fi 같은 인터페이스 이름 목록, 오른쪽에 작은 그래프 (이름 · 개수는 PC 마다 다름)</mark>
 
-**왜** — 통로 목록은 Npcap 이 PC 의 통로를 찾아 Wireshark 에 넘겨 줘야 보입니다.
+**왜** — 인터페이스 목록은 Npcap 이 PC 의 인터페이스를 찾아 Wireshark 에 넘겨 줘야 보입니다.
 
 **자주 틀리는 곳** — 설치 때 **Install Npcap** 체크를 끄면 목록이 비어 있습니다. 설치 파일을 다시 실행해 체크합니다.
 
-**관제에서는** — 어느 통로를 잡느냐에 따라 보이는 통신이 달라지므로 통로 목록부터 확인합니다.
+**관제에서는** — 어느 인터페이스를 잡느냐에 따라 보이는 통신이 달라지므로 인터페이스 목록부터 확인합니다.
 
 **강사 메모** — 전원이 이 화면까지 와야 다음 문제를 할 수 있으니, 시작 후 2~3분 안에 돌면서 목록이 비어 있는 화면을 먼저 찾습니다. 「이름이 여러 개인데 어느 것을 고르나요?」에는 「학원 PC 는 `이더넷 2`, 그래프가 움직이는 줄」이라고 답합니다. 목록이 비어 있으면 Npcap 을 체크해 다시 설치하게 합니다.
 
@@ -600,7 +600,7 @@ python packet_filter.py
 
 <mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day01_packet_analysis.md` 의 `## 6교시` 에서 `### 문제 6-2` 아래
 
-**그래프가 움직이는 통로**를 더블클릭해 캡처를 시작하고, 브라우저로 사이트 하나를 연 뒤 멈추시오. 상태 줄의 **패킷 수**와 Protocol 열에 보이는 **이름 세 개**를 적으시오.
+**그래프가 움직이는 인터페이스**를 더블클릭해 캡처를 시작하고, 브라우저로 사이트 하나를 연 뒤 멈추시오. 상태 줄의 **패킷 수**와 Protocol 열에 보이는 **이름 세 개**를 적으시오.
 
 | | |
 |---|---|
@@ -608,19 +608,19 @@ python packet_filter.py
 
 **💡 힌트**
 
-1. 인터페이스(interface · 통로)는 내 PC 가 바깥과 통신하는 길입니다. 지금 통신이 흐르는 줄만 그래프가 움직입니다. 학원 PC 는 **`이더넷 2`** 입니다.
+1. 인터페이스(interface)는 내 PC 의 네트워크 어댑터입니다. 지금 통신이 흐르는 줄만 그래프가 움직입니다. 학원 PC 는 **`이더넷 2`** 입니다.
 2. 멈추기는 도구 줄의 **빨간 네모**(또는 메뉴 캡처 › 정지 · Capture › Stop).
 3. 사이트 하나만 열었는데 수백 줄인 것이 정상입니다 — 업데이트 · 백신 · 메신저가 쉬지 않고 통신합니다.
 
 #### <mark style="display:block; background:#fff59d; color:#1a1a1a; padding:4px 12px; border-radius:4px; text-decoration:underline">정답 6-2</mark>
 
-통로 더블클릭 → 브라우저로 사이트 열기 → 빨간 네모. 상태 줄 `패킷: ○○○`, Protocol 열의 `TCP` · `UDP` · `DNS` · `TLSv1.3` 등을 적습니다.
+인터페이스 더블클릭 → 브라우저로 사이트 열기 → 빨간 네모. 상태 줄 `패킷: ○○○`, Protocol 열의 `TCP` · `UDP` · `DNS` · `TLSv1.3` 등을 적습니다.
 
 <mark style="background:#fff59d; color:#1a1a1a; text-decoration:underline; padding:0 4px; border-radius:3px">**결과** — `패킷: ○○○` (0 이 아님)과 `TCP` · `UDP` · `DNS` · `TLSv1.3` 같은 이름 (매번 다름)</mark>
 
 **왜** — 사이트 하나를 열어도 DNS 조회(UDP) · 연결(TCP) · 암호화된 내용(TLS)이 이어지고, 업데이트 · 메신저 같은 다른 프로그램의 통신도 함께 잡힙니다.
 
-**자주 틀리는 곳** — 그래프가 움직이지 않는 통로를 고르면 패킷이 0 입니다. 그래프가 움직이는 통로를 더블클릭합니다.
+**자주 틀리는 곳** — 그래프가 움직이지 않는 인터페이스를 고르면 패킷이 0 입니다. 그래프가 움직이는 인터페이스를 더블클릭합니다.
 
 **관제에서는** — 아무것도 안 해도 쌓이는 평소 통신을 알아야 그와 다른 이상한 통신을 구별합니다.
 
@@ -650,7 +650,7 @@ python packet_filter.py
 
 1. 줄 앞의 삼각형(▸)을 누르면 펼쳐집니다.
 2. 내 PC 가 보낸 패킷이면 Source IP 가 오전에 적은 내 IPv4 주소입니다.
-3. 봉투 안에 봉투가 든 모양 — 5.3 의 「헤더가 여러 겹」을 실물로 보는 것입니다.
+3. 층마다 헤더가 하나씩 붙은 모양 — 5.3 의 「헤더가 여러 겹」을 실물로 보는 것입니다.
 4. `Time to Live` 는 `Internet Protocol Version 4` 를 펼친 안쪽 중간쯤에, `Flags` 는 `Transmission Control Protocol` 안에 `Flags: 0x018 (PSH, ACK)` 꼴로 있습니다 — 괄호 안 이름을 적습니다.
 
 #### <mark style="display:block; background:#fff59d; color:#1a1a1a; padding:4px 12px; border-radius:4px; text-decoration:underline">정답 6-3</mark>
@@ -755,7 +755,7 @@ tcp.port == 443
 
 | 하려는 일 | Wireshark 에서 |
 |---|---|
-| 캡처 시작 · 멈춤 | 통로 더블클릭 · 빨간 네모 |
+| 캡처 시작 · 멈춤 | 인터페이스 더블클릭 · 빨간 네모 |
 | 층별로 보기 | 가운데 칸의 `Ethernet II` · `Internet Protocol Version 4` · `Transmission Control Protocol` |
 | 종류만 남기기 | `tcp` · `udp` · `dns` |
 | 값으로 남기기 | `tcp.port == 443` · `ip.addr == 주소` · `tcp.flags.syn == 1` |
@@ -841,7 +841,7 @@ curl "http://example.com/?q=network_day1"
 
 #### <mark style="display:block; background:#fff59d; color:#1a1a1a; padding:4px 12px; border-radius:4px; text-decoration:underline">정답 7-1</mark>
 
-캡처 › 옵션(`Ctrl + K`) › 통로 선택 › 캡처 필터 `tcp port 80` › 시작. **터미널에 입력합니다.**
+캡처 › 옵션(`Ctrl + K`) › 인터페이스 선택 › 캡처 필터 `tcp port 80` › 시작. **터미널에 입력합니다.**
 
 ```bash
 curl "http://example.com/?q=network_day1"
@@ -857,11 +857,11 @@ curl "http://example.com/?q=network_day1"
 
 **관제에서는** — 첫 `[SYN]` 의 Source 를 보면 누가 먼저 연결을 청했는지 알 수 있습니다.
 
-**강사 메모** — 오늘 가장 많이 막히는 문제라 시간을 넉넉히 잡고, 캡처 필터는 캡처 › 옵션(`Ctrl + K`) 창에서 통로 `이더넷 2` 를 고른 뒤 넣는다는 점을 화면으로 먼저 보여 줍니다. 「`[SYN]` 이 여러 개 보여요」에는 「`curl` 을 여러 번 입력하면 연결마다 3-way 가 생기니 출발지 포트가 같은 세 줄을 고른다」고 답합니다. 돌면서 캡처 필터 칸이 초록색인지, 캡처가 돌아가는 동안 `curl` 을 입력했는지를 봅니다.
+**강사 메모** — 오늘 가장 많이 막히는 문제라 시간을 넉넉히 잡고, 캡처 필터는 캡처 › 옵션(`Ctrl + K`) 창에서 인터페이스 `이더넷 2` 를 고른 뒤 넣는다는 점을 화면으로 먼저 보여 줍니다. 「`[SYN]` 이 여러 개 보여요」에는 「`curl` 을 여러 번 입력하면 연결마다 3-way 가 생기니 출발지 포트가 같은 세 줄을 고른다」고 답합니다. 돌면서 캡처 필터 칸이 초록색인지, 캡처가 돌아가는 동안 `curl` 을 입력했는지를 봅니다.
 
 ---
 
-### ✍️ 문제 7-2 · 내용과 작별 찾기
+### ✍️ 문제 7-2 · HTTP 요청과 연결 종료 찾기
 
 <mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — Wireshark 화면에서 → 보고서에 적기
 
