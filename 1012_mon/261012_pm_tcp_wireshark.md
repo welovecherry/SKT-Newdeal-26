@@ -272,9 +272,11 @@ python warmup.py
 | 칸 | 보여 주는 것 | 오늘 보는 것 |
 |---|---|---|
 | **위** — 패킷 목록 | 잡힌 패킷 한 줄씩. No · Time · Source · Destination · Protocol · Info | Protocol 이 `TCP` 인 줄, Info 의 `[SYN]` |
-| **가운데** — 패킷 상세 | 고른 패킷의 헤더를 **층 순서대로** 펼침 | `Ethernet II`(이더넷 투 · 2층 MAC 주소) · `Internet Protocol Version 4`(IPv4 · 3층 IP 주소 · TTL 남은 거쳐 갈 횟수) · `Transmission Control Protocol`(TCP · 4층 포트 · 플래그) |
-| **아래** — 바이트 | 실제 0과 1을 16진수(0~9 · A~F 로 세는 수)로 | 오늘은 보지 않음 |
+| **아래 왼쪽** — 패킷 상세 | 고른 패킷의 헤더를 **층 순서대로** 펼침 | `Ethernet II`(이더넷 투 · 2층 MAC 주소) · `Internet Protocol Version 4`(IPv4 · 3층 IP 주소 · TTL 남은 거쳐 갈 횟수) · `Transmission Control Protocol`(TCP · 4층 포트 · 플래그) |
+| **아래 오른쪽** — 바이트 | 실제 0과 1을 16진수(0~9 · A~F 로 세는 수)로 | 오늘은 보지 않음 |
 | 맨 아래 상태 줄 | `패킷: 1234 · 표시됨: 56` (영문 `Packets` · `Displayed`) | 필터를 걸면 **표시됨**만 줄어든다 |
+
+기본 배치는 **위 하나 · 아래 둘(왼쪽 상세 · 오른쪽 바이트)**입니다. PC 설정에 따라 세 칸이 위아래로 쌓여 보일 수도 있지만, 칸의 역할은 같습니다.
 
 #### Wireshark 상자 · 화면 길잡이 — 어디를 누르나
 
@@ -363,9 +365,9 @@ python warmup.py
 
 <mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day01_packet_analysis.md` 의 `## 6교시` 에서 `### 문제 6-3` 아래
 
-위 칸에서 Protocol 이 `TCP` 인 줄 하나를 누르고, 가운데 칸의 세 줄을 펼쳐 아래 표의 값을 찾고, 보고서에 적으시오.
+위 칸에서 Protocol 이 `TCP` 인 줄 하나를 누르고, 아래 왼쪽 칸의 세 줄을 펼쳐 아래 표의 값을 찾고, 보고서에 적으시오.
 
-| 가운데 칸의 줄 | 층 | 찾을 값 |
+| 아래 왼쪽 칸(패킷 상세)의 줄 | 층 | 찾을 값 |
 |---|---|---|
 | `Ethernet II` | 2 | Source 의 MAC 주소 |
 | `Internet Protocol Version 4` | 3 | Source · Destination 의 IP, **Time to Live** |
@@ -637,7 +639,7 @@ netstat -n
 
 `Ethernet II` › Source(MAC) · `Internet Protocol Version 4` › Source · Destination · Time to Live · `Transmission Control Protocol` › Source Port · Destination Port · Flags 를 펼쳐 읽습니다.
 
-**결과** — 가운데 칸이 2층 `Ethernet II` → 3층 `Internet Protocol Version 4` → 4층 `Transmission Control Protocol` 순서로 쌓여 있고 표의 칸이 모두 찬다 (값은 PC 마다 다름)
+**결과** — 아래 왼쪽 칸이 2층 `Ethernet II` → 3층 `Internet Protocol Version 4` → 4층 `Transmission Control Protocol` 순서로 쌓여 있고 표의 칸이 모두 찬다 (값은 PC 마다 다름)
 
 **왜** — 보낼 때 층마다 헤더를 하나씩 붙이므로, 패킷 하나에 MAC(2층) · IP 와 TTL(3층) · 포트와 플래그(4층)가 겹쳐 들어 있습니다.
 
