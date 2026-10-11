@@ -163,10 +163,9 @@ print(packet["dst_port"])
 
 맥북: `python3 warmup.py`
 
-4. **[보고서]** `day01_packet_analysis.md`의 `## 5교시` › `### 문제 5-1` 아래 질문에 답합니다.
-   - 출력 세 줄은 무엇인가요?
-   - 둘째 줄이 첫째 줄과 다르게 나온 이유는 무엇인가요?
-   - 탐지 코드에서 플래그를 `==` 로 검사하면 어떤 일이 생기나요?
+4. **[보고서]** `day01_packet_analysis.md`의 `## 5교시` › `### 문제 5-1` 아래를 채웁니다.
+   - 출력 세 줄:
+   - 탐지 코드에서 플래그를 `==` 로 검사하면 어떤 일이 생기나요? 둘째 줄을 근거로 설명합니다.
 
 막히면 바로 위 문법 상자를 다시 봅니다.
 
@@ -196,12 +195,9 @@ print(packet["dst_port"])
 
 **순서**
 1. **[이 문서]** 아래 다섯 가지 상황을 하나씩 읽고, 위 TCP · UDP 표와 비교합니다.
-2. **[보고서]** `day01_packet_analysis.md`의 `## 5교시` › `### 문제 5-2` 아래 질문에 답합니다.
-   - ① 카카오톡으로 사진 파일 보내기는 TCP · UDP · ICMP 중 무엇인가요? 이유도 적습니다.
-   - ② 유튜브 실시간 방송 보기는 무엇인가요? 이유도 적습니다.
-   - ③ `requests.post` 로 LLM 부르기는 무엇인가요? 이유도 적습니다.
-   - ④ `google.com` 의 IP 를 묻기(DNS 조회)는 무엇인가요? 이유도 적습니다.
-   - ⑤ `ping 8.8.8.8` 은 무엇인가요? 이유도 적습니다.
+2. **[보고서]** `day01_packet_analysis.md`의 `## 5교시` › `### 문제 5-2` 아래를 채웁니다.
+   - ① ~ ⑤ 가 각각 TCP · UDP · ICMP 중 무엇인지:
+   - ① 사진 파일 보내기가 TCP 인 이유는 무엇인가요?
 
 
 | # | 하는 일 |
@@ -256,11 +252,9 @@ print(packet["dst_port"])
 
 **순서**
 1. **[이 문서]** 아래 세 패킷의 표시(`[SYN]`, `[SYN, ACK]`, `[ACK]`)를 읽습니다.
-2. **[보고서]** `day01_packet_analysis.md`의 `## 5교시` › `### 문제 5-3` 아래 질문에 답합니다.
-   - 첫 번째 패킷은 (가) · (나) · (다) 중 무엇이고, 어느 쪽에서 어느 쪽으로 가나요?
-   - 두 번째 패킷은 무엇이고, 어느 쪽에서 어느 쪽으로 가나요?
-   - 세 번째 패킷은 무엇이고, 어느 쪽에서 어느 쪽으로 가나요?
-   - 🔍 핵심 질문 — 연결을 맺을 때는 세 번인데, 끝낼 때는 왜 네 번인가요?
+2. **[보고서]** `day01_packet_analysis.md`의 `## 5교시` › `### 문제 5-3` 아래를 채웁니다.
+   - 세 패킷의 순서와 방향:
+   - 🔍 연결을 맺을 때는 세 번인데, 끝낼 때는 왜 네 번인가요?
 
 
 ```
@@ -308,11 +302,9 @@ print(packet["dst_port"])
 1. **[브라우저]** 같은 사이트를 탭 두 개에서 엽니다.
 2. **[터미널]** `netstat -n`을 입력하고 Enter 를 누릅니다.
 3. **[터미널]** 결과에서 외부 주소가 같은 연결 두 줄을 찾고, 로컬 주소의 끝 포트 번호를 비교합니다.
-4. **[보고서]** `day01_packet_analysis.md`의 `## 5교시` › `### 문제 5-4` 아래 질문에 답합니다.
-   - 찾은 두 연결의 로컬 주소와 외부 주소는 무엇인가요?
-   - 두 연결에서 같은 것은 무엇인가요?
-   - 두 연결에서 다른 것은 무엇인가요?
-   - 같은 서버로 간 두 연결을 무엇으로 구별할 수 있나요?
+4. **[보고서]** `day01_packet_analysis.md`의 `## 5교시` › `### 문제 5-4` 아래를 채웁니다.
+   - 두 연결에서 같은 것 · 다른 것:
+   - 같은 서버로 간 두 연결을 무엇으로 구별하나요?
 
 
 | | |
@@ -433,9 +425,8 @@ netstat -n
 1. **[Wireshark]** Wireshark를 실행하고 첫 화면의 「캡처」 목록을 봅니다.
 2. **[Wireshark]** 목록에서 `이더넷 2`를 찾습니다. 학원 Windows PC에서는 보통 이 항목을 사용합니다. 목록이 비어 있으면 강사에게 알립니다.
 3. **[Wireshark]** `이더넷 2` 오른쪽 그래프가 움직이면 그 줄을 한 번 클릭합니다. 그래프가 움직이지 않거나 `이더넷 2`가 없으면 그래프가 움직이는 Wi-Fi 또는 이더넷 줄을 한 번 클릭합니다. 한 번 클릭하면 선택만 되고 캡처는 시작되지 않습니다.
-4. **[보고서]** `day01_packet_analysis.md`의 `## 6교시` › `#### 문제 6-1` 아래 질문에 답합니다.
-   - 고른 인터페이스 이름은 무엇인가요?
-   - 그 인터페이스를 고른 이유는 무엇인가요?
+4. **[보고서]** `day01_packet_analysis.md`의 `## 6교시` › `#### 문제 6-1` 아래를 채웁니다.
+   - 고른 인터페이스 이름:
 
 맥북: 인터페이스는 `en0`(Wi-Fi)입니다. 캡처 권한 안내가 보이면 강사에게 알립니다.
 
@@ -486,12 +477,9 @@ netstat -n
 3. **[Wireshark]** 패킷이 쌓이면 도구 줄의 빨간 네모를 눌러 캡처를 멈춥니다.
 4. **[Wireshark]** 아래 상태 줄에서 `Packets` 숫자를 확인하고, 위쪽 `Protocol` 열에서 서로 다른 이름 세 가지를 찾습니다.
 5. **[Wireshark]** `Info` 열에서 `숫자 → 443`으로 표시된 웹 연결 패킷 한 줄과 `443 → 숫자`인 한 줄을 찾습니다. 숫자는 이 연결에서 내 PC가 쓰는 임시 포트입니다. 두 줄의 Source와 Destination도 확인합니다.
-6. **[보고서]** `day01_packet_analysis.md`의 `## 6교시` › `#### 문제 6-2` 아래 질문에 답합니다.
-   - 화면 맨 아래 오른쪽 `Packets` 숫자는 몇 개인가요?
-   - `Protocol` 열에서 찾은 서로 다른 이름 세 개는 무엇인가요?
-   - `숫자 → 443` 줄의 Source · Destination · Source Port · Destination Port 는 무엇인가요?
-   - `443 → 숫자` 줄의 Source · Destination · Source Port · Destination Port 는 무엇인가요?
-   - 두 줄 가운데 어느 줄이 요청이고 어느 줄이 응답인가요? 그렇게 판단한 이유는 무엇인가요?
+6. **[보고서]** `day01_packet_analysis.md`의 `## 6교시` › `#### 문제 6-2` 아래를 채웁니다.
+   - `Packets` 숫자 · Protocol 열의 이름 세 개:
+   - `숫자 → 443` 과 `443 → 숫자` 가운데 어느 줄이 요청인가요? 그렇게 판단한 이유는 무엇인가요?
 
 | | |
 |---|---|
@@ -537,12 +525,8 @@ netstat -n
 2. **[Wireshark]** 아래 왼쪽에서 `Ethernet II` 앞 삼각형을 눌러 펼칩니다.
 3. **[Wireshark]** `Internet Protocol Version 4` 앞 삼각형을 눌러 펼칩니다.
 4. **[Wireshark]** `Transmission Control Protocol` 앞 삼각형을 눌러 펼칩니다.
-5. **[보고서]** `day01_packet_analysis.md`의 `## 6교시` › `#### 문제 6-3` 아래 질문에 답합니다.
-   - `Ethernet II` 안의 Source MAC 주소는 무엇인가요?
-   - `Internet Protocol Version 4` 안의 Source IP 와 Destination IP 는 무엇인가요?
-   - `Time to Live` 값은 얼마인가요?
-   - `Transmission Control Protocol` 안의 Source Port 와 Destination Port 는 무엇인가요?
-   - `Flags` 괄호 안에 적힌 이름은 무엇인가요?
+5. **[보고서]** `day01_packet_analysis.md`의 `## 6교시` › `#### 문제 6-3` 아래를 채웁니다.
+   - Source MAC · Source IP / Destination IP · Time to Live · Source Port / Destination Port · Flags:
    - 이 패킷은 내 PC 가 보낸 것인가요, 받은 것인가요? 어떻게 알았나요?
 
 
@@ -591,24 +575,12 @@ netstat -n
 - **Displayed** — 필터 조건에 맞아 현재 화면에 표시된 패킷 수
 
 **순서**
-1. **[Wireshark]** 패킷 목록 바로 위의 표시 필터 칸에 `dns`를 입력하고 Enter 를 누릅니다. `Packets`와 `Displayed`를 적고, 목록에서 한 줄을 골라 `Info` 내용을 적습니다.
-2. **[Wireshark]** 필터 칸 오른쪽 `X`를 눌러 지운 뒤 `udp`를 입력합니다. 두 숫자를 적고, 목록에서 한 줄을 클릭해 아래 왼쪽 `User Datagram Protocol`을 펼쳐 Source Port와 Destination Port를 적습니다.
-3. **[Wireshark]** 필터 칸의 `X`를 눌러 지운 뒤 `tcp.port == 443`을 입력합니다. 두 숫자를 적고, 목록에서 한 줄을 클릭해 아래 왼쪽 `Transmission Control Protocol`을 펼쳐 Source Port와 Destination Port를 적습니다.
-4. **[브라우저]** 다음 질문을 한 번에 하나씩 검색합니다.
-   - `dns` 필터는 어떤 패킷을 표시하나요?
-   - `udp` 필터는 어떤 패킷을 표시하나요?
-   - `tcp.port == 443` 필터는 어떤 패킷을 표시하나요?
-5. **[보고서]** `day01_packet_analysis.md`의 `## 6교시` › `#### 문제 6-4` 아래 질문에 답합니다.
-   - 필터를 걸기 전 전체 `Packets` 는 몇 개인가요?
-   - `dns` 필터를 걸었을 때 `Displayed` 는 몇 개인가요?
-   - `dns` 결과에서 고른 한 줄의 Info 는 무엇인가요?
-   - `udp` 필터를 걸었을 때 `Displayed` 는 몇 개인가요?
-   - `udp` 결과에서 고른 한 줄의 Source Port 와 Destination Port 는 무엇인가요?
-   - `tcp.port == 443` 필터를 걸었을 때 `Displayed` 는 몇 개인가요?
-   - `tcp.port == 443` 결과에서 고른 한 줄의 Source Port 와 Destination Port 는 무엇인가요?
-   - `dns` 필터는 어떤 패킷을 보여 주나요? 고른 줄에서 확인한 근거도 적습니다.
-   - `udp` 필터는 어떤 패킷을 보여 주나요? 고른 줄에서 확인한 근거도 적습니다.
-   - `tcp.port == 443` 필터는 어떤 패킷을 보여 주나요? 고른 줄에서 확인한 근거도 적습니다.
+1. **[Wireshark]** 필터를 걸기 전에 화면 맨 아래 오른쪽 `Packets` 숫자를 봅니다.
+2. **[Wireshark]** 패킷 목록 바로 위의 표시 필터 칸에 `dns`를 입력하고 Enter 를 누릅니다. 맨 아래 오른쪽 `Displayed` 숫자를 봅니다.
+3. **[Wireshark]** 필터 칸 오른쪽 `X`를 눌러 지운 뒤 `udp`를 입력하고 Enter. `Displayed` 숫자를 봅니다.
+4. **[Wireshark]** 필터 칸의 `X`를 눌러 지운 뒤 `tcp.port == 443`을 입력하고 Enter. `Displayed` 숫자를 봅니다.
+5. **[보고서]** `day01_packet_analysis.md`의 `## 6교시` › `#### 문제 6-4` 아래를 채웁니다.
+   - 전체 `Packets` · `dns` · `udp` · `tcp.port == 443` 의 `Displayed`:
    - 필터를 걸어도 `Packets` 는 그대로인데 `Displayed` 만 바뀌는 이유는 무엇인가요?
 
 | | |
@@ -633,7 +605,7 @@ netstat -n
 
 **관제에서는** — 포트 필터로 후보 패킷을 좁힌 뒤 Source·Destination과 응용 계층 정보를 함께 확인합니다.
 
-**강사 메모** — 다음 세 질문을 한 번에 하나씩 검색하게 합니다: 「`dns` 필터는 어떤 패킷을 표시하나요?」, 「`udp` 필터는 어떤 패킷을 표시하나요?」, 「`tcp.port == 443` 필터는 어떤 패킷을 표시하나요?」 보고서에는 답만 옮기지 않고 각 필터 결과에서 직접 고른 패킷의 Info 또는 Source Port·Destination Port를 근거로 붙이게 합니다. `Packets`는 캡처 전체 수이고 `Displayed`는 현재 필터와 일치한 수입니다. `tcp.port == 443`은 출발지 또는 목적지 포트가 443인 TCP 패킷을 고르며, 포트 번호만으로 통신 내용을 확정할 수는 없습니다.
+**강사 메모** — 돌면서 학생 화면 맨 아래 오른쪽 `Packets` 숫자는 그대로이고 `Displayed` 만 바뀌는지 확인합니다. 「`dns` 와 `udp` 숫자가 거의 같은 이유」를 반 전체에 물어, UDP 대부분이 DNS 조회라는 점을 5.2 표와 이어 줍니다. `tcp.port == 443`은 출발지 또는 목적지 포트가 443인 TCP 패킷을 고르며, 포트 번호만으로 통신 내용을 확정할 수는 없습니다.
 
 ---
 
@@ -698,10 +670,8 @@ curl "http://example.com/?q=network_day1"
 10. **[Wireshark]** 필터 칸의 `X`를 눌러 필터를 지우고 세 번째 `[ACK]` 패킷을 찾습니다.
 11. **[화면 캡처 도구]** `Win + Shift + S`를 누르고 드래그해 세 패킷이 한 화면에 보이게 선택합니다.
 12. **[그림판]** 그림판을 열어 `Ctrl + V`를 누르고, `Ctrl + Shift + S`를 눌러 `network_zt/handshake.png`로 저장합니다.
-13. **[보고서]** `day01_packet_analysis.md`의 `## 7교시` › `### 문제 7-1` 아래 질문에 답합니다.
-   - `handshake.png` 를 `network_zt` 폴더에 저장했나요?
-   - 사진 속 세 줄의 Info 에 보이는 신호는 차례로 무엇인가요?
-   - 캡처를 시작하기 전에 `tcp port 80` 을 넣었더니 어떤 패킷만 잡혔나요?
+13. **[보고서]** `day01_packet_analysis.md`의 `## 7교시` › `### 문제 7-1` 아래를 채웁니다.
+   - `handshake.png` 저장 · 세 줄 Info 의 신호 순서:
 
 
 | | |
@@ -754,13 +724,9 @@ curl "http://example.com/?q=network_day1"
 4. **[그림판]** 그림판을 열어 `Ctrl + V`를 누르고, `Ctrl + Shift + S`를 눌러 `network_zt/http_request.png`로 저장합니다.
 5. **[Wireshark]** 필터 칸의 `X`를 눌러 지운 뒤 `tcp.flags.fin == 1`을 입력하고 Enter 를 누릅니다.
 6. **[Wireshark]** 패킷 목록에서 FIN 이 든 줄의 개수를 셉니다.
-7. **[보고서]** `day01_packet_analysis.md`의 `## 7교시` › `### 문제 7-2` 아래 질문에 답합니다.
-   - `http` 필터로 찾은 요청 줄의 Info 에는 무엇이 적혀 있나요?
-   - 내가 `curl` 로 보낸 검색어 `network_day1` 이 패킷에 그대로 보인 이유는 무엇인가요?
-   - `http_request.png` 를 `network_zt` 폴더에 저장했나요?
-   - FIN 이 든 줄은 몇 줄인가요?
-   - FIN 줄이 그만큼 나온 이유는 무엇인가요? 5.3 그림의 「끝내는 네 번」과 비교해 설명합니다.
-   - 🔍 핵심 질문 — 내 검색어가 그대로 보인 것은 HTTP 이기 때문입니다. 같은 요청을 HTTPS 로 보냈다면 어떻게 보였을까요?
+7. **[보고서]** `day01_packet_analysis.md`의 `## 7교시` › `### 문제 7-2` 아래를 채웁니다.
+   - 요청 줄의 Info · FIN 줄 수:
+   - 🔍 내 검색어가 그대로 보인 것은 HTTP 이기 때문입니다. 같은 요청을 HTTPS 로 보냈다면 어떻게 보였을까요?
 
 
 | | |
