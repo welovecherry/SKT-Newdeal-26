@@ -128,9 +128,9 @@ cd network_zt
 
 ### 문제 3-1 · 결과 화면 읽기
 
-- MAC 은 몇째 줄: 
-- IP 는 몇째 줄: 
-- 게이트웨이는 몇째 줄: 
+- MAC 주소: 
+- IP 주소: 
+- 기본 게이트웨이: 
 
 ### 문제 3-2 · 내 IP 주소와 게이트웨이 찾기
 
@@ -412,11 +412,11 @@ ping -t 8.8.8.8       # 멈출 때까지 계속 보낸다 — Ctrl + C 로 멈�
 
 ### ✍️ 문제 2-1 · 결과 화면 읽기
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — 바로 위 표를 보며 아래 예시 화면에서 찾기 → 보고서에 적기
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — 이 문서의 예시 화면을 보고 → 보고서에 적기 (명령은 치지 않습니다)
 
 <mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day01_packet_analysis.md` 의 `## 2교시` 에서 `### 문제 2-1` 아래
 
-아래 예시 화면에서 **세 가지**를 찾아 적으시오. 바로 위 2.1 표를 옆에 두고 읽습니다 — 내 PC 에서는 바로 다음 2-2 에서 직접 칩니다.
+아래는 **다른 사람이 `ping 1.1.1.1` 을 쳤을 때 마지막에 나온 화면**입니다. 이 화면에서 숫자를 찾아 아래 질문 세 개에 답하시오. 내 PC 에서 직접 치는 것은 바로 다음 문제 2-2 입니다.
 
 ```
 1.1.1.1에 대한 Ping 통계:
@@ -425,11 +425,13 @@ ping -t 8.8.8.8       # 멈출 때까지 계속 보낸다 — Ctrl + C 로 멈�
     최소 = 41ms, 최대 = 58ms, 평균 = 47ms
 ```
 
-1. 몇 번 보내서 몇 번 돌아왔나요?
-2. 손실은 몇 % 인가요?
-3. 평균 왕복 시간은 몇 ms 인가요?
+| 질문 | 화면에서 볼 곳 |
+|---|---|
+| 1. 몇 번 보내서, 몇 번 돌아왔나요? | `보냄 =` 뒤의 숫자 · `받음 =` 뒤의 숫자 |
+| 2. 손실은 몇 % 인가요? | 괄호 `( )` 안의 숫자 |
+| 3. 평균 왕복 시간은 몇 ms 인가요? | `평균 =` 뒤의 숫자 |
 
-막히면 바로 위 `2.1` 표를 다시 봅니다.
+뜻을 모르는 말은 바로 위 2.1 표에 있습니다.
 
 #### <mark style="display:block; background:#fff59d; color:#1a1a1a; padding:4px 12px; border-radius:4px; text-decoration:underline">정답</mark>
 
@@ -734,11 +736,11 @@ python ping_check.py
 
 ### ✍️ 문제 3-1 · 결과 화면 읽기
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — 바로 위 표를 보며 아래 예시 화면에서 찾기 → 보고서에 적기
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — 이 문서의 예시 화면을 보고 → 보고서에 적기 (명령은 치지 않습니다)
 
 <mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day01_packet_analysis.md` 의 `## 3교시` 에서 `### 문제 3-1` 아래
 
-아래는 `ipconfig //all` 결과의 일부입니다. ① MAC 주소 ② IP 주소 ③ 기본 게이트웨이가 각각 몇째 줄인지 찾아 적으시오. 바로 위 개념 상자의 줄 이름을 보며 읽습니다 — 내 PC 에서는 3-2 · 3-3 에서 직접 칩니다.
+아래는 **다른 사람의 PC 에서 `ipconfig //all` 을 쳤을 때 나온 화면의 일부**입니다. 이 화면에서 주소 세 개를 찾아 적으시오. 내 PC 에서 직접 치는 것은 3-2 · 3-3 입니다.
 
 ```
 이더넷 어댑터 이더넷:
@@ -749,11 +751,17 @@ python ping_check.py
    기본 게이트웨이 . . . . . . . . . : 192.168.0.1
 ```
 
-막히면 바로 위 개념 상자를 다시 봅니다.
+| 찾을 것 | 화면에서 볼 줄 |
+|---|---|
+| ① MAC 주소 | `물리적 주소` 줄 — `-` 로 나뉜 여섯 덩어리 |
+| ② IP 주소 | `IPv4 주소` 줄 — 점으로 나뉜 네 덩어리 |
+| ③ 기본 게이트웨이 | `기본 게이트웨이` 줄 |
+
+`서브넷 마스크` 줄도 점 네 덩어리지만 IP 주소가 아닙니다. 뜻을 모르는 말은 바로 위 개념 상자에 있습니다.
 
 #### <mark style="display:block; background:#fff59d; color:#1a1a1a; padding:4px 12px; border-radius:4px; text-decoration:underline">정답</mark>
 
-<mark style="background:#fff59d; color:#1a1a1a; text-decoration:underline; padding:0 4px; border-radius:3px">**결과** — ① `물리적 주소` 줄 ② `IPv4 주소` 줄 ③ `기본 게이트웨이` 줄.</mark>
+<mark style="background:#fff59d; color:#1a1a1a; text-decoration:underline; padding:0 4px; border-radius:3px">**결과** — ① MAC 주소 `A4-B1-C2-D3-E4-F5` ② IP 주소 `192.168.0.15` ③ 기본 게이트웨이 `192.168.0.1`.</mark>
 
 **왜** — 모양으로 가립니다. MAC 주소는 `-` 로 나뉜 16진수 6덩어리, IP 주소는 점으로 나뉜 숫자 4덩어리입니다. 게이트웨이는 우리 망에서 바깥 인터넷으로 나가는 장비(보통 공유기)의 IP 주소입니다.
 
