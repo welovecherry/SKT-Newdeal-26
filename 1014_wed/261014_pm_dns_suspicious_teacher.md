@@ -40,7 +40,7 @@
 
 ### 오늘 시작할 때
 
-0. 오늘 적는 것은 모두 **오전에 만든 `day03_dns_analysis.md` 하나에** 이어서 적습니다 — 문제 답은 `## 실습 기록`, 찾아 쓰기는 `## 찾아본 것`, 새 절은 `## 실습 기록` **위에** 붙입니다. 문제마다 「**적는 곳**」 줄을 봅니다.
+0. 오늘 적는 것은 모두 **오전에 만든 `day03_dns_analysis.md` 하나에** 적습니다. 5 · 6 · 7교시의 문제 소제목은 오전에 붙여 넣은 틀에 이미 있습니다 — **그 문제 소제목 아래**를 채웁니다. 문제마다 「**적는 곳**」 줄을 봅니다.
 1. 오전과 같은 터미널, `network_zt` 폴더에서 합니다.
 2. 오늘 쓰는 의심 도메인은 **수업용으로 지어낸 이름**입니다. 실제로 접속하지 않습니다 — `nslookup` 으로 「있는지」만 봅니다(7-3).
 3. 문제 앞의 **상자**를 먼저 읽습니다 — 🐍 문법 상자(파이썬) · 명령 상자(터미널) · Wireshark 상자 · 개념 상자. 문제 제목 아래 **어디서** 줄이 실습하는 곳입니다. `→` 는 하는 순서입니다. 막히면 **💡 힌트** → 맨 아래 **「정답」** 순서로 봅니다. ⭐도전은 선택입니다.
@@ -77,6 +77,19 @@
 1. 악성 코드가 고정된 이름 하나만 쓰면 그 이름을 막으면 끝납니다. 그래서 공격자는 **이름을 매일 수백 개씩 자동으로 만들어** 그중 하나만 실제로 등록해 둡니다. 이것이 **DGA**(디지에이 · Domain Generation Algorithm · 도메인 생성 알고리즘)입니다.
 2. 감염된 PC 는 그 이름들을 차례로 물어봅니다. 대부분 없는 이름이라 **NXDOMAIN 이 쏟아집니다.**
 3. 또 하나는 **사칭**입니다 — `naver.com` 을 `nav3r.com` 처럼 비슷하게 만들어 사람을 속입니다(타이포스쿼팅 · typosquatting).
+
+#### 5교시에 나오는 말
+
+문제를 풀다 모르는 말이 나오면 여기로 돌아옵니다.
+
+| 말 | 읽는 법 | 쉬운 뜻 |
+|---|---|---|
+| DGA (Domain Generation Algorithm) | 디지에이 | 악성 코드가 도메인 이름을 **매일 수백 개씩 자동으로** 만드는 방식 — `kxq3vz9a.top` |
+| C2 서버 (Command and Control) | 씨투 서버 | 공격자가 감염된 PC 에 **명령을 내리는** 서버 |
+| 타이포스쿼팅 (typosquatting) | 타이포스쿼팅 | 진짜 도메인과 **비슷하게** 만들어 사람을 속이는 사칭 — `nav3r.com` |
+| rcode (response code) | 알코드 | DNS 답의 **결과 코드** — 로그의 「답」 칸 |
+| NOERROR | 노에러 | 「**답이 있었다**」 — 있는 이름 |
+| DNS 터널링 | 디엔에스 터널링 | DNS 질문의 **긴 하위 이름에 데이터를 숨겨** 몰래 내보내는 수법(⭐5-6) |
 
 ### 5.1 의심 도메인을 가르는 지표
 
@@ -118,7 +131,7 @@ print("a" in "aeiou", "x" in "aeiou")
 
 <mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — VS Code 에서 `warmup.py` 에 따라 치기 → 터미널에서 `python warmup.py` → 결과와 「왜」를 보고서에 적기
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day03_dns_analysis.md` 의 `## 실습 기록` 에 `- 5-1: …` 한 줄
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day03_dns_analysis.md` 의 `## 5교시` 에서 `### 문제 5-1` 아래
 
 아래 코드를 `warmup.py` 에 **따라 쳐서** 실행하고, 결과와 「왜 이렇게 나왔는지」 한 줄을 적으시오. `warmup.py` 는 처음 한 번만 `network_zt` 폴더에 New File 로 만들고, 교시마다 내용을 지우고 다시 씁니다.
 
@@ -155,6 +168,8 @@ python warmup.py
 ### ✍️ 문제 5-2 · 볼 조각 꺼내기 (`label.py`)
 
 <mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — VS Code 에서 `label.py` 만들기 → 터미널에서 `python label.py` 실행
+
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day03_dns_analysis.md` 의 `## 5교시` 에서 `### 문제 5-2` 아래
 
 이름마다 **TLD 바로 앞 조각**과 **TLD** 를 꺼내 출력하시오.
 
@@ -214,6 +229,8 @@ python label.py
 ### ✍️ 문제 5-3 · 숫자 수와 모음 비율 (`features.py`)
 
 <mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — VS Code 에서 `features.py` 만들기 → 터미널에서 `python features.py` 실행
+
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day03_dns_analysis.md` 의 `## 5교시` 에서 `### 문제 5-3` 아래
 
 TLD 앞 조각의 **숫자 개수**와 **모음 비율**(모음 수 ÷ 길이)을 계산하는 함수를 완성하시오.
 
@@ -282,6 +299,8 @@ python features.py
 
 <mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — VS Code 에서 `typosquat.py` 만들기 → 터미널에서 `python typosquat.py` 실행
 
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day03_dns_analysis.md` 의 `## 5교시` 에서 `### 문제 5-4` 아래
+
 `0` → `o`, `1` → `l`, `3` → `e` 로 바꿨을 때 **믿을 만한 도메인과 똑같아지면** 사칭으로 판정하시오.
 
 ```python
@@ -345,6 +364,8 @@ python typosquat.py
 ### ✍️ 문제 5-5 · NXDOMAIN 이 쏟아지는 PC 찾기 (`nx_count.py`)
 
 <mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — VS Code 에서 `nx_count.py` 만들기 → 터미널에서 `python nx_count.py` 실행
+
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day03_dns_analysis.md` 의 `## 5교시` 에서 `### 문제 5-5` 아래
 
 DNS 로그에서 PC 마다 **NXDOMAIN 이 몇 번인지** 세고, **3번 이상**인 PC 를 출력하시오.
 
@@ -416,6 +437,8 @@ python nx_count.py
 ### ⭐ 도전 5-6 · 너무 긴 하위 이름 찾기 (`long_label.py`, 선택)
 
 <mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — VS Code 에서 `long_label.py` 만들기 → 터미널에서 `python long_label.py` 실행
+
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day03_dns_analysis.md` 의 `## 5교시` 에서 `### ⭐ 도전 5-6` 아래
 
 DNS 질의에 데이터를 몰래 실어 보내는 **DNS 터널링**은 맨 앞 조각이 비정상적으로 깁니다. 맨 앞 조각이 **30글자 이상**인 이름을 찾으시오.
 
@@ -492,6 +515,17 @@ python long_label.py
 2. 어떤 규칙도 완벽하지 않습니다. **정상을 의심으로 잘못 고르는 것(오탐)**과 **의심을 놓치는 것(미탐)**을 숫자로 재야 합니다.
 3. 관제 실무의 탐지 룰도 이렇게 만들고, 재고, 고칩니다. 1과목 9/29 의 탐지 룰이 이 일의 시작이었습니다.
 
+#### 6교시에 나오는 말
+
+문제를 풀다 모르는 말이 나오면 여기로 돌아옵니다.
+
+| 말 | 읽는 법 | 쉬운 뜻 |
+|---|---|---|
+| 문턱값 (threshold) | 스레숄드 | 점수 합이 **이 값 이상이면 의심**으로 판정하는 기준 — `3` |
+| 오탐 (false positive) | 폴스 포지티브 | 뜻은 6.2 표에서 **직접 찾아 씁니다** |
+| 미탐 (false negative) | 폴스 네거티브 | 뜻은 6.2 표에서 **직접 찾아 씁니다** |
+| 예외 목록 (allowlist) | 얼라우리스트 | 근거가 분명한 정상을 규칙에서 **빼 주는** 목록 — `xn--` 로 시작하는 한글 도메인 |
+
 ### 6.1 점수 규칙
 
 | 규칙 | 점수 |
@@ -546,7 +580,7 @@ from dga_score import score      # 위 파일의 함수를 꺼내 쓴다 — 시
 
 <mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — VS Code 에서 `warmup.py` 에 따라 치기 → 터미널에서 `python warmup.py` → 결과와 「왜」를 보고서에 적기
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day03_dns_analysis.md` 의 `## 실습 기록` 에 `- 6-1: …` 한 줄
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day03_dns_analysis.md` 의 `## 6교시` 에서 `### 문제 6-1` 아래
 
 아래 코드를 `warmup.py` 에 **따라 쳐서** 실행하고, 결과와 「왜 이렇게 나왔는지」 한 줄을 적으시오. `warmup.py` 는 처음 한 번만 `network_zt` 폴더에 New File 로 만들고, 교시마다 내용을 지우고 다시 씁니다.
 
@@ -586,6 +620,8 @@ python warmup.py
 ### ✍️ 문제 6-2 · 점수 함수 만들기 (`dga_score.py`)
 
 <mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — VS Code 에서 `dga_score.py` 만들기 → 터미널에서 `python dga_score.py` 실행
+
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day03_dns_analysis.md` 의 `## 6교시` 에서 `### 문제 6-2` 아래
 
 6.1 의 규칙대로 점수와 **걸린 규칙 이름**을 리턴하는 함수를 완성하시오. 비어 있는 두 규칙만 채웁니다.
 
@@ -677,6 +713,8 @@ python dga_score.py
 
 <mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — VS Code 에서 `judge.py` 만들기 → 터미널에서 `python judge.py` 실행
 
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day03_dns_analysis.md` 의 `## 6교시` 에서 `### 문제 6-3` 아래
+
 6-2 의 `score` 를 불러와 로그 12건을 **문턱값 3** 으로 판정하시오.
 
 ```python
@@ -747,6 +785,8 @@ python judge.py
 ### ✍️ 문제 6-4 · 맞힘 · 오탐 · 미탐 세기 (`evaluate.py`)
 
 <mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — VS Code 에서 `evaluate.py` 만들기 → 터미널에서 `python evaluate.py` 실행
+
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day03_dns_analysis.md` 의 `## 6교시` 에서 `### 문제 6-4` 아래
 
 6-3 의 판정을 **정답지(실제)와 비교해** 맞힘 · 오탐 · 미탐 수를 세시오.
 
@@ -829,6 +869,8 @@ python evaluate.py
 ### ✍️ 문제 6-5 · 예외 목록으로 오탐 줄이기 (`dga_score.py` 고치기)
 
 <mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — VS Code 에서 앞 문제의 `dga_score.py` 열어 고치기 → 터미널에서 `python dga_score.py` 실행
+
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day03_dns_analysis.md` 의 `## 6교시` 에서 `### 문제 6-5` 아래
 
 오탐 `xn--3e0b707e.kr` 은 **한글 도메인**을 영문으로 바꾼 모양(퓨니코드 · Punycode)이라 무작위처럼 보입니다. `dga_score.py` 의 `score` 맨 앞에 **`xn--` 로 시작하는 조각은 0점**으로 돌려보내는 줄을 넣고, 6-4 를 다시 실행하시오.
 
@@ -921,6 +963,8 @@ python dga_score.py
 ### ⭐ 도전 6-6 · 문턱값을 바꾸면 (`threshold.py`, 선택)
 
 <mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — VS Code 에서 `threshold.py` 만들기 → 터미널에서 `python threshold.py` 실행
+
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day03_dns_analysis.md` 의 `## 6교시` 에서 `### ⭐ 도전 6-6` 아래
 
 6-5 를 고친 `score` 로 문턱값 **2 · 3 · 4** 마다 맞힘 · 오탐 · 미탐을 세어 표로 출력하시오.
 
@@ -1015,6 +1059,17 @@ python threshold.py
 2. 강의계획서의 평가 기준이 바로 「합리적 근거」와 「판단 기준 문서화」입니다.
 3. 마지막으로 판정이 맞는지 `nslookup` 으로 한 번 더 확인합니다.
 
+#### 7교시에 나오는 말
+
+문제를 풀다 모르는 말이 나오면 여기로 돌아옵니다.
+
+| 말 | 읽는 법 | 쉬운 뜻 |
+|---|---|---|
+| 판정표 | 판정표 | 이름마다 **점수 · 판정 · 근거**를 한 줄씩 적은 표 |
+| 근거 | 근거 | 왜 그렇게 판정했는지 — **걸린 규칙 이름** |
+| `.invalid` | 닷 인밸리드 | **절대 존재하지 않도록** 정해 둔 TLD. 시험용으로 쓴다 |
+| 위협 정보 (threat intelligence) | 스레트 인텔리전스 | 알려진 악성 도메인 · IP 를 모아 둔 **정보 · 사이트** |
+
 #### 🐍 문법 상자 · 리스트를 글자로 잇기 `", ".join()`
 
 ```python
@@ -1038,7 +1093,7 @@ print(", ".join([]) == "")
 
 <mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — VS Code 에서 `warmup.py` 에 따라 치기 → 터미널에서 `python warmup.py` → 결과와 「왜」를 보고서에 적기
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day03_dns_analysis.md` 의 `## 실습 기록` 에 `- 7-1: …` 한 줄
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day03_dns_analysis.md` 의 `## 7교시` 에서 `### 문제 7-1` 아래
 
 아래 코드를 `warmup.py` 에 **따라 쳐서** 실행하고, 결과와 「왜 이렇게 나왔는지」 한 줄을 적으시오. `warmup.py` 는 처음 한 번만 `network_zt` 폴더에 New File 로 만들고, 교시마다 내용을 지우고 다시 씁니다.
 
@@ -1070,9 +1125,9 @@ python warmup.py
 
 <mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — VS Code 에서 `report_table3.py` 만들기 → 터미널에서 `python report_table3.py` 실행 → 보고서에 적기
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day03_dns_analysis.md` 의 **3절**
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day03_dns_analysis.md` 의 `## 7교시` 에서 `### 문제 7-2` 아래
 
-로그 12건의 **점수 · 판정 · 근거**를 마크다운 표로 출력해 보고서 3절에 붙이시오. 근거가 없으면 `-` 로 적습니다.
+로그 12건의 **점수 · 판정 · 근거**를 마크다운 표로 출력해 보고서 맨 아래 「의심 도메인 판정」 자리에 붙이시오. 근거가 없으면 `-` 로 적습니다.
 
 ```python
 # ── 강사용: 정답을 채운 코드입니다 ──
@@ -1145,7 +1200,7 @@ python report_table3.py
 
 <mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — 터미널에서 명령 실행 → 화면을 사진으로 저장 → 보고서에 넣기
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day03_dns_analysis.md` 의 `## 실습 기록` 에 사진 한 줄
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day03_dns_analysis.md` 의 `## 7교시` 에서 `### 문제 7-3` 아래
 
 규칙이 「정상」이라고 한 CDN 이름과, 지어낸 무작위 이름을 각각 물어 **있는 이름인지** 확인하시오.
 
@@ -1154,7 +1209,7 @@ nslookup e6030.a.akamaiedge.net
 nslookup qzkx7wp2v.invalid
 ```
 
-**사진 남기기** — 결과 화면에서 두 명령의 결과(IP 가 나온 것 · `Non-existent domain`)가 함께 보이게 잘라 `nslookup_check.png` 로 `network_zt` 폴더에 저장하고, `## 실습 기록` 에 `- 7-3: ![있는 이름 · 없는 이름](nslookup_check.png)` 한 줄을 넣으시오. 자르고 저장하는 법은 10/12 오후 7-2 와 같습니다(`Win + Shift + S`).
+**사진 남기기** — 결과 화면에서 두 명령의 결과(IP 가 나온 것 · `Non-existent domain`)가 함께 보이게 잘라 `nslookup_check.png` 로 `network_zt` 폴더에 저장하시오. 보고서 `### 문제 7-3` 아래에 사진 줄이 이미 있어서, 파일 이름이 같으면 사진이 보입니다. 자르고 저장하는 법은 10/12 오후 7-2 와 같습니다(`Win + Shift + S`).
 
 | | |
 |---|---|
@@ -1191,28 +1246,9 @@ nslookup qzkx7wp2v.invalid
 
 <mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — 명령 없이 생각해서 → 보고서에 적기
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day03_dns_analysis.md` 의 **4절**
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day03_dns_analysis.md` 의 `## 7교시` 에서 `### 문제 7-4` 아래
 
-보고서 4절에 아래 틀을 붙여 채우시오. 코드는 쓰지 않습니다.
-
-```markdown
-## 4. 판단 기준
-
-- TLD 앞 조각 10글자 이상 (+1) — 근거(왜 의심스러운지): 
-- 숫자 2개 이상 (+1) — 근거: 
-- 모음 비율 0.25 미만 (+1) — 근거: 
-- 값싼 TLD — top · xyz · tk (+1) — 근거: 
-- NXDOMAIN (+2) — 근거: 
-- 예외 — xn-- 로 시작 (0점) — 근거: 한글 도메인을 영문으로 바꾼 모양
-
-- 문턱값: 3 (합이 3 이상이면 의심)
-- 결과: 맞힘 (  ) · 오탐 (  ) · 미탐 (  )
-
-## 5. 한계와 다음에 할 일
-- 놓친 것: (6-3 의 미탐 두 건과 이유)
-- 데이터가 12건뿐이라: (한 줄)
-- 더 넣고 싶은 지표: (예: 등록일 · 같은 PC 의 NXDOMAIN 횟수)
-```
+보고서 맨 아래 「판단 기준」 · 「한계와 다음에 할 일」 칸을 채우시오. 칸은 오전에 붙여 넣은 틀에 이미 있습니다. 코드는 쓰지 않습니다.
 
 | | |
 |---|---|
@@ -1226,7 +1262,7 @@ nslookup qzkx7wp2v.invalid
 
 #### <mark style="display:block; background:#fff59d; color:#1a1a1a; padding:4px 12px; border-radius:4px; text-decoration:underline">정답 7-4</mark>
 
-보고서 4 · 5절의 예 — 근거: 「길이 — 사람이 지은 이름은 짧고 뜻이 있다」, 「NXDOMAIN — DGA 는 대부분 등록하지 않은 이름을 묻는다」. 결과: 맞힘 3 · 오탐 0 · 미탐 2. 한계: 「`qwrtpzkx7v.com` 은 실제로 등록돼 NOERROR 라 2점에 그쳤다 · `bnk-secure-login.xyz` 는 사칭이라 DGA 규칙으로 못 잡는다 · 12건으로 정한 문턱값은 믿기 어렵다」.
+보고서 「판단 기준」 · 「한계」의 예 — 근거: 「길이 — 사람이 지은 이름은 짧고 뜻이 있다」, 「NXDOMAIN — DGA 는 대부분 등록하지 않은 이름을 묻는다」. 결과: 맞힘 3 · 오탐 0 · 미탐 2. 한계: 「`qwrtpzkx7v.com` 은 실제로 등록돼 NOERROR 라 2점에 그쳤다 · `bnk-secure-login.xyz` 는 사칭이라 DGA 규칙으로 못 잡는다 · 12건으로 정한 문턱값은 믿기 어렵다」.
 
 <mark style="background:#fff59d; color:#1a1a1a; text-decoration:underline; padding:0 4px; border-radius:3px">**결과** — 근거 줄이 모두 찼고, 결과 · 한계가 숫자와 함께 적혀 있습니다. 결과는 예외를 넣은 뒤 숫자인 `맞힘 3 · 오탐 0 · 미탐 2` 입니다.</mark>
 
@@ -1244,24 +1280,17 @@ nslookup qzkx7wp2v.invalid
 
 <mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — 보고서 파일 마무리 → 깃허브에 올리기(웹 화면 또는 `git push`)
 
-`day03_dns_analysis.md` 에 아래 3절을 4절 **앞에** 넣고 채운 뒤 깃허브에 올리시오.
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day03_dns_analysis.md` 의 `## 7교시` 에서 `### 문제 7-5` 아래
 
-```markdown
-## 3. 의심 도메인 판정
-(report_table3.py 의 표를 붙입니다)
-
-- NXDOMAIN 이 많은 PC: (5-5 결과)
-- 사칭 의심: (5-4 결과)
-- nslookup 확인: (7-3 결과 두 줄)
-```
+`day03_dns_analysis.md` 의 **빈 칸**(5 · 6 · 7교시와 맨 아래 「최종 분석서」)을 마저 채우고 깃허브에 올리시오. 「최종 분석서」의 칸 — 의심 도메인 판정 · 판단 기준 · 한계와 다음에 할 일 — 은 오전에 붙여 넣은 틀에 이미 있습니다.
 
 | | |
 |---|---|
-| 🎯 나와야 하는 결과 | 깃허브의 `network_zt/day03_dns_analysis.md` 에 1~5절과 사진 두 장(`nslookup_example.png` · `nslookup_check.png`)이 모두 보인다 |
+| 🎯 나와야 하는 결과 | 깃허브의 `network_zt/day03_dns_analysis.md` 에 빈 칸 없는 2~7교시 칸 · 「최종 분석서」와 사진 두 장(`nslookup_example.png` · `nslookup_check.png`)이 보인다 |
 
 **💡 힌트**
 
-1. 절 순서는 1 조회 결과 → 2 계층 → 3 판정 → 4 기준 → 5 한계입니다.
+1. 「의심 도메인 판정」의 세 줄(5-5 · 5-4 · 7-3)은 위 교시 칸에 적은 것을 옮겨 적습니다.
 2. 표는 코드가 낸 것을 그대로 붙입니다.
 3. 올리기는 `git add network_zt` → `git commit -m "…"` → `git push`.
 
@@ -1276,15 +1305,15 @@ git commit -m "Add day 3 DNS analysis"
 git push
 ```
 
-<mark style="background:#fff59d; color:#1a1a1a; text-decoration:underline; padding:0 4px; border-radius:3px">**결과** — 깃허브의 `network_zt/day03_dns_analysis.md` 에 1~5절과 사진 두 장(`nslookup_example.png` · `nslookup_check.png`)이 모두 보입니다.</mark>
+<mark style="background:#fff59d; color:#1a1a1a; text-decoration:underline; padding:0 4px; border-radius:3px">**결과** — 깃허브의 `network_zt/day03_dns_analysis.md` 에 빈 칸 없는 2~7교시 칸 · 「최종 분석서」와 사진 두 장(`nslookup_example.png` · `nslookup_check.png`)이 보입니다.</mark>
 
 **왜** — `git add network_zt` 가 과목 폴더의 바뀐 파일을 담고, `commit` 이 기록하고, `push` 가 깃허브로 올립니다. 그래서 `security-agent-toolkit` 폴더에서 실행합니다.
 
-**자주 틀리는 곳** — 3절을 4절 **뒤에** 붙여 절 순서가 1 · 2 · 4 · 5 · 3 이 되는 경우가 많습니다. 3절은 4절 앞에 넣습니다.
+**자주 틀리는 곳** — 표를 「의심 도메인 판정」이 아닌 다른 칸에 붙이거나, 7교시 칸의 확인 줄을 비워 두는 경우가 많습니다.
 
 **관제에서는** — 판정표와 판단 기준을 한 문서로 남겨 두어야 다음 근무자가 같은 기준으로 이어서 봅니다.
 
-**강사 메모** — 명령은 `network_zt` 가 아니라 `security-agent-toolkit` 폴더에서 친다는 점을 실행 전에 확인시킵니다. 「`git push` 가 안 돼요」 라는 질문에는 「웹 화면(Add file › Upload files)으로 `day03_dns_analysis.md` 를 올려도 된다」 고 답합니다. 끝난 학생에게는 깃허브 화면에서 1~5절이 순서대로 보이는지 직접 열어 보게 합니다.
+**강사 메모** — 명령은 `network_zt` 가 아니라 `security-agent-toolkit` 폴더에서 친다는 점을 실행 전에 확인시킵니다. 「`git push` 가 안 돼요」 라는 질문에는 「웹 화면(Add file › Upload files)으로 `day03_dns_analysis.md` 를 올려도 된다」 고 답합니다. 끝난 학생에게는 깃허브 화면에서 「최종 분석서」까지 빈 칸 없이 보이는지 직접 열어 보게 합니다.
 
 ---
 
@@ -1292,9 +1321,9 @@ git push
 
 <mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — VS Code 에서 판정 파일의 `LOG` 고치기 → 터미널에서 실행 → 다른 점을 보고서에 적기
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day03_dns_analysis.md` 의 **5절**
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day03_dns_analysis.md` 의 `## 7교시` 에서 `### ⭐ 도전 7-6` 아래
 
-평소 자주 쓰는 사이트 이름 **세 개**와, 내가 지어낸 **무작위 이름 두 개**를 `LOG` 에 더해 판정하고, 결과가 예상과 다르면 왜 그런지 보고서 5절에 한 줄 적으시오.
+평소 자주 쓰는 사이트 이름 **세 개**와, 내가 지어낸 **무작위 이름 두 개**를 `LOG` 에 더해 판정하고, 결과가 예상과 다르면 왜 그런지 보고서 맨 아래 「한계와 다음에 할 일」의 마지막 줄에 적으시오.
 
 | | |
 |---|---|
@@ -1308,7 +1337,7 @@ git push
 
 #### <mark style="display:block; background:#fff59d; color:#1a1a1a; padding:4px 12px; border-radius:4px; text-decoration:underline">정답 7-6</mark>
 
-자주 쓰는 이름 세 개와 지어낸 이름 두 개를 `nslookup` 으로 물어 `rcode` 를 정한 뒤 `LOG` 에 더해 7-2 를 다시 실행합니다. 예상과 다른 결과(예: 짧은 무작위 이름이 낮은 점수)를 5절에 한 줄 적습니다.
+자주 쓰는 이름 세 개와 지어낸 이름 두 개를 `nslookup` 으로 물어 `rcode` 를 정한 뒤 `LOG` 에 더해 7-2 를 다시 실행합니다. 예상과 다른 결과(예: 짧은 무작위 이름이 낮은 점수)를 「한계와 다음에 할 일」의 마지막 줄에 적습니다.
 
 <mark style="background:#fff59d; color:#1a1a1a; text-decoration:underline; padding:0 4px; border-radius:3px">**결과** — 다섯 줄이 더해진 판정표와 「예상과 달랐던 것」 한 줄</mark>
 
@@ -1322,12 +1351,12 @@ git push
 
 ### 7교시 한눈에
 
-| 보고서 절 | 무엇 | 만든 곳 |
+| 분석서 칸 | 무엇 | 만든 곳 |
 |---|---|---|
-| 1 · 2 | 조회 결과 · 계층 | 오전 |
-| 3 | 의심 도메인 판정표 | 7-2 · 5-4 · 5-5 · 7-3 |
-| 4 | 판단 기준 | 7-4 |
-| 5 | 한계와 다음에 할 일 | 7-4 · ⭐7-6 |
+| 2 · 3 · 4교시 칸 | 조회 결과 · 계층 · 레코드 | 오전 |
+| 의심 도메인 판정 | 판정표 · NXDOMAIN · 사칭 · nslookup 확인 | 7-2 · 5-4 · 5-5 · 7-3 |
+| 판단 기준 | 규칙 · 근거 · 결과 숫자 | 7-4 |
+| 한계와 다음에 할 일 | 놓친 것 · 더 넣을 지표 | 7-4 · ⭐7-6 |
 
 ---
 
@@ -1337,6 +1366,6 @@ git push
 |---|---|
 | DGA · 사칭 · 터널링의 지표를 말할 수 있다 | 5교시 |
 | 오탐과 미탐의 차이를 숫자로 설명할 수 있다 | 6-4 |
-| 분석서 1~5절이 깃허브에 있다 | 7-5 |
+| 분석서의 빈 칸이 다 차서 깃허브에 있다 | 7-5 |
 
 ---

@@ -33,7 +33,7 @@
 
 ### 오늘 시작할 때
 
-0. 오늘 적는 것은 모두 **오전에 만든 `day02_subnet_design.md` 하나에** 이어서 적습니다 — 문제 답은 `## 실습 기록`, 찾아 쓰기는 `## 찾아본 것`, 새 절은 `## 실습 기록` **위에** 붙입니다. 문제마다 「**적는 곳**」 줄을 봅니다.
+0. 오늘 적는 것은 모두 **오전에 만든 `day02_subnet_design.md` 하나에** 적습니다. 5 · 6 · 7교시의 문제 소제목은 오전에 붙여 넣은 틀에 이미 있습니다 — **그 문제 소제목 아래**를 채웁니다. 문제마다 「**적는 곳**」 줄을 봅니다.
 1. 오전과 같은 터미널, `network_zt` 폴더에서 합니다.
 2. 파이썬 파일은 문제마다 적힌 이름으로 만들고 `python 파일이름.py` 로 실행합니다.
 3. 문제 앞의 **상자**를 먼저 읽습니다 — 🐍 문법 상자(파이썬) · 명령 상자(터미널) · Wireshark 상자 · 개념 상자. 문제 제목 아래 **어디서** 줄이 실습하는 곳입니다. `→` 는 하는 순서입니다. 막히면 **💡 힌트** → 맨 아래 **「정답」** 순서로 봅니다. ⭐도전은 선택입니다.
@@ -48,6 +48,18 @@
 1. PC 는 패킷을 보내기 전에 **목적지가 같은 망인지**부터 계산합니다. 같으면 스위치로 바로, 다르면 **기본 게이트웨이**로 보냅니다.
 2. 관제에서 「같은 층 PC 끼리는 되는데 다른 부서로만 안 된다」 같은 문의는 대부분 이 갈림길에서 생깁니다.
 3. 게이트웨이를 다른 망 주소로 잘못 적으면 **선이 멀쩡해도** 밖으로 못 나갑니다. 조용한 장애의 대표입니다.
+
+#### 5교시에 나오는 말
+
+문제를 풀다 모르는 말이 나오면 여기로 돌아옵니다.
+
+| 말 | 읽는 법 | 쉬운 뜻 |
+|---|---|---|
+| 다음 홉 (next hop) | 넥스트 홉 | 지금 장비가 패킷을 **바로 넘겨줄 이웃 장비**. PC 의 다음 홉은 기본 게이트웨이 |
+| 프레임 (frame) | 프레임 | 2계층에서 주고받는 데이터 묶음 — 앞에 MAC 주소가 적혀 있다 |
+| MAC 주소 표 (MAC address table) | 맥 주소 테이블 | 스위치가 기억하는 「**이 MAC 은 몇 번 포트**」 표 |
+| 플러딩 (flooding) | 플러딩 | 목적지 MAC 을 모를 때 **들어온 포트를 뺀 모든 포트로** 복사해 보내는 것 |
+| 스위치 포트 | 스위치 포트 | 스위치에 **랜선을 꽂는 구멍**. 10/12 의 포트 번호(프로그램을 가리키는 번호)와 이름만 같다 |
 
 ### 5.1 두 장비가 하는 일
 
@@ -104,7 +116,7 @@ print(out)
 
 <mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — VS Code 에서 `warmup.py` 에 따라 치기 → 터미널에서 `python warmup.py` → 결과와 「왜」를 보고서에 적기
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day02_subnet_design.md` 의 `## 실습 기록` 에 `- 5-1: …` 한 줄
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day02_subnet_design.md` 의 `## 5교시` 에서 `### 문제 5-1` 아래
 
 아래 코드를 `warmup.py` 에 **따라 쳐서** 실행하고, 결과와 「왜 이렇게 나왔는지」 한 줄을 적으시오. `warmup.py` 는 처음 한 번만 `network_zt` 폴더에 New File 로 만들고, 교시마다 내용을 지우고 다시 씁니다.
 
@@ -139,6 +151,8 @@ python warmup.py
 ### ✍️ 문제 5-2 · 직접일까 게이트웨이일까 (`direct_or_gw.py`)
 
 <mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — VS Code 에서 `direct_or_gw.py` 만들기 → 터미널에서 `python direct_or_gw.py` 실행
+
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day02_subnet_design.md` 의 `## 5교시` 에서 `### 문제 5-2` 아래
 
 PC `10.20.0.10/26` 에서 세 목적지로 보낼 때 **스위치로 직접**인지 **게이트웨이로**인지 판정하시오.
 
@@ -183,6 +197,8 @@ python direct_or_gw.py
 ### ✍️ 문제 5-3 · 스위치 흉내 내기 (`switch_sim.py`)
 
 <mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — VS Code 에서 `switch_sim.py` 만들기 → 터미널에서 `python switch_sim.py` 실행
+
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day02_subnet_design.md` 의 `## 5교시` 에서 `### 문제 5-3` 아래
 
 5.3 의 세 단계대로 움직이는 스위치를 완성하시오. **배우기 전과 배운 뒤** 나가는 포트가 어떻게 달라지는지 봅니다.
 
@@ -242,6 +258,8 @@ python switch_sim.py
 
 <mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — 터미널에서 명령 실행
 
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day02_subnet_design.md` 의 `## 5교시` 에서 `### 문제 5-4` 아래
+
 아래 두 명령을 터미널에 차례로 입력하고, `arp -a` 에 **기본 게이트웨이의 MAC 은 있지만 `8.8.8.8` 은 없는 것**을 확인하시오.
 
 ```bash
@@ -265,6 +283,8 @@ arp -a
 ### ✍️ 문제 5-5 · 게이트웨이를 잘못 적은 PC 찾기 (`gw_mistake.py`)
 
 <mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — VS Code 에서 `gw_mistake.py` 만들기 → 터미널에서 `python gw_mistake.py` 실행
+
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day02_subnet_design.md` 의 `## 5교시` 에서 `### 문제 5-5` 아래
 
 PC 세 대의 설정 가운데 **게이트웨이가 자기 망 밖에 있는** PC 를 찾으시오.
 
@@ -313,6 +333,8 @@ python gw_mistake.py
 ### ⭐ 도전 5-6 · 첫 전달 경로 판정기 (`route_judge.py`, 선택)
 
 <mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — VS Code 에서 `route_judge.py` 만들기 → 터미널에서 `python route_judge.py` 실행
+
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day02_subnet_design.md` 의 `## 5교시` 에서 `### ⭐ 도전 5-6` 아래
 
 두 장비의 **VLAN 과 망이 모두 같으면** 「스위치 직접」, 하나라도 다르면 라우터가 있을 때 「게이트웨이 ○로」, 없으면 「통신 불가」를 출력하시오.
 
@@ -370,6 +392,19 @@ python route_judge.py
 2. VLAN 이 다르면 **같은 스위치에 꽂혀 있어도** 직접 못 주고받습니다. 개발팀 PC 가 감염돼도 보안팀 망으로 바로 퍼지지 않습니다.
 3. VLAN 사이를 오가려면 라우터가 필요하고, 라우터는 **라우팅 표**를 보고 길을 고릅니다. 내 PC 에도 라우팅 표가 있습니다.
 
+#### 6교시에 나오는 말
+
+문제를 풀다 모르는 말이 나오면 여기로 돌아옵니다.
+
+| 말 | 읽는 법 | 쉬운 뜻 |
+|---|---|---|
+| LAN (Local Area Network) | 랜 | 건물 안의 **가까운 망** |
+| VLAN (Virtual LAN) | 브이랜 | 스위치 포트마다 번호를 정해 **스위치 하나를 여러 망으로** 나눈 것 |
+| 트렁크 포트 (trunk port) | 트렁크 포트 | VLAN **여러 개를 한 선으로** 나르는 포트 — 스위치 ↔ 라우터 |
+| 라우팅 표 (routing table) | 라우팅 테이블 | 「**이 망으로 가려면 다음 홉은 누구**」를 적은 표. 라우터와 내 PC 에 있다 |
+| 기본 경로 (default route) | 디폴트 라우트 | `0.0.0.0/0` 줄. 무엇에 쓰이는지는 6.2 표에서 **직접 찾아 씁니다** |
+| 메트릭 (metric) | 메트릭 | 경로의 **비용** 숫자. 같은 목적지에 줄이 둘이면 작은 쪽을 쓴다 |
+
 ### 6.1 VLAN 과 서브넷
 
 | | 서브넷 | VLAN(Virtual LAN · 가상 랜) |
@@ -387,7 +422,7 @@ python route_judge.py
 
 ### 6.2 라우팅 표와 기본 경로
 
-> **검색해서 채웁니다.** 표의 **[찾아 쓰기]** 칸은 비워 두었습니다. 검색하고 직접 실행해 확인한 뒤, 오늘 보고서 맨 아래 `## 찾아본 것` 에 **내 말로 한 줄씩** 적습니다. 다 적은 뒤 맨 아래 「정답」의 표와 비교합니다.
+> **검색해서 채웁니다.** 표의 **[찾아 쓰기]** 칸은 비워 두었습니다. 검색하고 직접 실행해 확인한 뒤, 오늘 보고서의 그 교시 `### 찾아본 것` 아래에 **내 말로** 적습니다. 다 적은 뒤 맨 아래 「정답」의 표와 비교합니다.
 > 검색어 예: `라우팅 테이블 기본 경로` · `default route 0.0.0.0/0`
 > ⚠ 검색 결과는 영어 · 리눅스 화면이 많습니다. 내 화면(한국어 Windows)의 글자와 짝을 맞춰 읽습니다.
 
@@ -425,7 +460,7 @@ print(a.prefixlen, b.prefixlen)
 
 <mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — VS Code 에서 `warmup.py` 에 따라 치기 → 터미널에서 `python warmup.py` → 결과와 「왜」를 보고서에 적기
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day02_subnet_design.md` 의 `## 실습 기록` 에 `- 6-1: …` 한 줄
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day02_subnet_design.md` 의 `## 6교시` 에서 `### 문제 6-1` 아래
 
 아래 코드를 `warmup.py` 에 **따라 쳐서** 실행하고, 결과와 「왜 이렇게 나왔는지」 한 줄을 적으시오. `warmup.py` 는 처음 한 번만 `network_zt` 폴더에 New File 로 만들고, 교시마다 내용을 지우고 다시 씁니다.
 
@@ -462,6 +497,8 @@ python warmup.py
 
 <mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — 터미널에서 명령 실행
 
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day02_subnet_design.md` 의 `## 6교시` 에서 `### 문제 6-2` 아래
+
 아래를 입력하고 **`0.0.0.0` 으로 시작하는 줄**(기본 경로)의 **게이트웨이** 칸을 찾아, `ipconfig` 의 기본 게이트웨이와 같은지 확인하시오.
 
 ```bash
@@ -485,7 +522,7 @@ route print -4
 
 <mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — 터미널에서 명령 실행 → 화면을 사진으로 저장 → 보고서에 넣기
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day02_subnet_design.md` 의 `## 실습 기록` 에 사진 한 줄
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day02_subnet_design.md` 의 `## 6교시` 에서 `### 문제 6-3` 아래
 
 아래를 입력하고 **첫 줄(1번)의 주소**가 내 기본 게이트웨이인지 확인하시오. 다섯 칸까지만 봅니다.
 
@@ -494,7 +531,7 @@ tracert -d -h 5 8.8.8.8
 ```
 맥북: `traceroute -n -m 5 8.8.8.8`
 
-**사진 남기기** — 결과 화면에서 1번 줄부터 마지막 줄까지 보이게 잘라 `tracert.png` 로 `network_zt` 폴더에 저장하고, `## 실습 기록` 에 `- 6-3: ![거쳐 가는 길](tracert.png)` 한 줄을 넣으시오. 자르고 저장하는 법은 10/12 오후 7-2 와 같습니다(`Win + Shift + S`).
+**사진 남기기** — 결과 화면에서 1번 줄부터 마지막 줄까지 보이게 잘라 `tracert.png` 로 `network_zt` 폴더에 저장하시오. 보고서 `### 문제 6-3` 아래에 사진 줄이 이미 있어서, 파일 이름이 같으면 사진이 보입니다. 자르고 저장하는 법은 10/12 오후 7-2 와 같습니다(`Win + Shift + S`).
 
 | | |
 |---|---|
@@ -511,6 +548,8 @@ tracert -d -h 5 8.8.8.8
 ### ✍️ 문제 6-4 · 브로드캐스트는 같은 VLAN 에만 (`vlan_flood.py`)
 
 <mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — VS Code 에서 `vlan_flood.py` 만들기 → 터미널에서 `python vlan_flood.py` 실행
+
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day02_subnet_design.md` 의 `## 6교시` 에서 `### 문제 6-4` 아래
 
 포트별 VLAN 이 정해진 스위치에서, **들어온 포트와 같은 VLAN 의 다른 포트**만 고르는 함수를 완성하시오.
 
@@ -561,6 +600,8 @@ python vlan_flood.py
 ### ✍️ 문제 6-5 · 라우팅 표에서 길 고르기 (`route_lookup.py`)
 
 <mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — VS Code 에서 `route_lookup.py` 만들기 → 터미널에서 `python route_lookup.py` 실행
+
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day02_subnet_design.md` 의 `## 6교시` 에서 `### 문제 6-5` 아래
 
 목적지마다 **맞는 줄 가운데 CIDR 숫자가 가장 큰 줄**의 다음 홉을 고르시오.
 
@@ -619,6 +660,8 @@ python route_lookup.py
 
 <mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — VS Code 에서 `vlan_pair.py` 만들기 → 터미널에서 `python vlan_pair.py` 실행
 
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day02_subnet_design.md` 의 `## 6교시` 에서 `### ⭐ 도전 6-6` 아래
+
 VLAN 마다 받은 서브넷 가운데 **다른 VLAN 과 겹치는** 짝을 찾으시오.
 
 ```python
@@ -675,6 +718,17 @@ python vlan_pair.py
 2. 설계서는 사람이 읽는 문서입니다. 「개발팀 PC 가 보안팀 서버로 갈 때 어디를 거치나」를 **경로로 적을 수 있어야** 합니다.
 3. 마지막으로 용량 · 겹침을 다시 검증하고 올립니다.
 
+#### 7교시에 나오는 말
+
+문제를 풀다 모르는 말이 나오면 여기로 돌아옵니다.
+
+| 말 | 읽는 법 | 쉬운 뜻 |
+|---|---|---|
+| 설계서 | 설계서 | 주소 · VLAN · 게이트웨이 · 경로를 **장비에 바로 넣을 수 있게** 적은 문서 |
+| 첫 호스트 | 첫 호스트 | 네트워크 주소 바로 다음 주소. 보통 **게이트웨이**가 쓴다 — `10.20.0.1` |
+| 망 구성도 | 망 구성도 | 라우터 · 스위치 · 부서가 어떻게 이어지는지 그린 **그림** |
+| draw.io | 드로아이오 | 설치 없이 브라우저에서 쓰는 **그림 도구**(⭐7-6) |
+
 ### 7.1 오늘의 회사 — `10.20.0.0/24`
 
 | 부서 | 장비 | CIDR | VLAN | 게이트웨이 (첫 호스트) |
@@ -698,7 +752,7 @@ python vlan_pair.py
 
 <mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — VS Code 에서 `warmup.py` 에 따라 치기 → 터미널에서 `python warmup.py` → 결과와 「왜」를 보고서에 적기
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day02_subnet_design.md` 의 `## 실습 기록` 에 `- 7-1: …` 한 줄
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day02_subnet_design.md` 의 `## 7교시` 에서 `### 문제 7-1` 아래
 
 아래 코드를 `warmup.py` 에 **따라 쳐서** 실행하고, 결과와 「왜 이렇게 나왔는지」 한 줄을 적으시오. `warmup.py` 는 처음 한 번만 `network_zt` 폴더에 New File 로 만들고, 교시마다 내용을 지우고 다시 씁니다.
 
@@ -732,7 +786,7 @@ python warmup.py
 
 <mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — VS Code 에서 `vlan_plan.py` 만들기 → 터미널에서 `python vlan_plan.py` 실행 → 보고서에 적기
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day02_subnet_design.md` 의 **3절**
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day02_subnet_design.md` 의 `## 7교시` 에서 `### 문제 7-2` 아래
 
 7.1 의 세 부서에 대해 **VLAN · CIDR · 게이트웨이 · 장비에 줄 범위**를 마크다운 표로 출력하시오.
 
@@ -779,7 +833,7 @@ python vlan_plan.py
 
 1. 게이트웨이는 첫 호스트를 씁니다(7-1).
 2. 게이트웨이가 첫 주소를 쓰니, PC 는 그다음부터입니다.
-3. 출력을 보고서 3절에 붙입니다.
+3. 출력을 보고서 맨 아래 「VLAN · 게이트웨이 배정」 자리에 붙입니다.
 
 #### 🐍 문법 상자 · 반복을 일찍 끝내는 `break`
 
@@ -802,6 +856,8 @@ for n in [3, 8, 12, 20]:
 ### ✍️ 문제 7-3 · 서버망 10대를 다음 빈 자리에 (`next_block.py`)
 
 <mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — VS Code 에서 `next_block.py` 만들기 → 터미널에서 `python next_block.py` 실행
+
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day02_subnet_design.md` 의 `## 7교시` 에서 `### 문제 7-3` 아래
 
 서버 10대가 들어갈 `/28` 을 **보안팀 바로 다음 빈 경계**에 놓고, 네 부서가 **겹치지 않는지** 검증하시오.
 
@@ -859,9 +915,9 @@ python next_block.py
 
 <mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — 명령 없이 생각해서 → 보고서에 적기
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day02_subnet_design.md` 의 **4절**
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day02_subnet_design.md` 의 `## 7교시` 에서 `### 문제 7-4` 아래
 
-7.1 그림을 보고 아래 세 통신이 **어디를 거쳐 가는지** 보고서 4절에 한 줄씩 적으시오. 명령은 입력하지 않습니다.
+7.1 그림을 보고 아래 세 통신이 **어디를 거쳐 가는지** 보고서 맨 아래 「망 구성도와 라우팅 경로」의 ① ② ③ 줄에 적으시오. 명령은 입력하지 않습니다.
 
 | # | 통신 |
 |---|---|
@@ -885,29 +941,13 @@ python next_block.py
 
 <mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — 보고서 파일 마무리 → 깃허브에 올리기(웹 화면 또는 `git push`)
 
-`day02_subnet_design.md` 의 2절 아래에 이어 붙이고, 괄호를 채운 뒤 깃허브에 올리시오.
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day02_subnet_design.md` 의 `## 7교시` 에서 `### 문제 7-5` 아래
 
-```markdown
-## 3. VLAN · 게이트웨이 배정
-(vlan_plan.py 의 표를 붙입니다)
-- 서버망: (7-3 결과) · VLAN 40 · 게이트웨이 (첫 호스트)
-
-## 4. 망 구성도와 라우팅 경로
-(7.1 의 그림을 복사해 붙이고 서버망을 더합니다)
-
-- ① 같은 부서: (7-4 ①)
-- ② 다른 부서: (7-4 ②)
-- ③ 인터넷: (7-4 ③)
-
-## 5. 검증
-- 용량: (오전 4-5 결과)
-- 겹침: (7-3 결과)
-- 내 PC 의 기본 경로: (6-2 의 0.0.0.0 줄의 게이트웨이)
-```
+`day02_subnet_design.md` 의 **빈 칸**(5 · 6 · 7교시와 맨 아래 「최종 설계서」)을 마저 채우고 깃허브에 올리시오. 「최종 설계서」의 칸 — 부서 주소 설계표 · VLAN · 게이트웨이 배정 · 망 구성도와 라우팅 경로 · 검증 — 은 오전에 붙여 넣은 틀에 이미 있습니다.
 
 | | |
 |---|---|
-| 🎯 나와야 하는 결과 | 깃허브의 `network_zt/day02_subnet_design.md` 에 1~5절과 사진 두 장(`ipconfig_mask.png` · `tracert.png`)이 모두 보인다 |
+| 🎯 나와야 하는 결과 | 깃허브의 `network_zt/day02_subnet_design.md` 에 빈 칸 없는 2~7교시 칸 · 「최종 설계서」와 사진 두 장(`ipconfig_mask.png` · `tracert.png`)이 보인다 |
 
 **💡 힌트**
 
@@ -921,9 +961,9 @@ python next_block.py
 
 <mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**어디서**</mark> — 브라우저의 draw.io 에서 그리기 → 그림을 보고서에 넣기
 
-<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day02_subnet_design.md` 의 **4절**
+<mark style="background:#bbdefb; color:#1a1a1a; padding:0 4px; border-radius:3px">**적는 곳**</mark> — `day02_subnet_design.md` 의 `## 7교시` 에서 `### ⭐ 도전 7-6` 아래
 
-브라우저에서 **app.diagrams.net**(draw.io · 드로아이오 · 설치 없이 쓰는 그림 도구)을 열어 7.1 그림을 네모와 선으로 그리고, `day02_diagram.png` 로 내보내 보고서 4절에 넣으시오.
+브라우저에서 **app.diagrams.net**(draw.io · 드로아이오 · 설치 없이 쓰는 그림 도구)을 열어 7.1 그림을 네모와 선으로 그리고, `day02_diagram.png` 로 `network_zt` 에 저장하시오. 보고서 맨 아래 「망 구성도와 라우팅 경로」에 사진 줄이 이미 있습니다.
 
 | | |
 |---|---|
@@ -937,13 +977,13 @@ python next_block.py
 
 ### 7교시 한눈에
 
-| 설계서 절 | 무엇 | 만든 곳 |
+| 설계서 칸 | 무엇 | 만든 곳 |
 |---|---|---|
-| 1 | 내 PC 의 망 | 오전 3교시 |
-| 2 | 부서 주소 설계 | 오전 4교시 |
-| 3 | VLAN · 게이트웨이 | 7-2 · 7-3 |
-| 4 | 구성도 · 라우팅 경로 | 7-4 |
-| 5 | 검증 | 오전 4-5 · 7-3 · 6-2 |
+| 3교시 3-2 · 3-4 | 내 PC 의 망 | 오전 3교시 |
+| 부서 주소 설계표 | 부서별 CIDR | 오전 4교시 |
+| VLAN · 게이트웨이 배정 | VLAN 번호 · 게이트웨이 | 7-2 · 7-3 |
+| 망 구성도와 라우팅 경로 | 그림 · 세 통신의 경로 | 7-4 · ⭐7-6 |
+| 검증 | 용량 · 겹침 · 기본 경로 | 오전 4-5 · 7-3 · 6-2 |
 
 ---
 
@@ -953,7 +993,7 @@ python next_block.py
 |---|---|
 | 같은 망이면 스위치, 다른 망이면 게이트웨이 — 이유를 말할 수 있다 | 5-2 · 5-4 |
 | 내 PC 의 기본 경로를 `route print` 에서 찾았다 | 6-2 |
-| 설계서 1~5절이 깃허브에 있다 | 7-5 |
+| 설계서의 빈 칸이 다 차서 깃허브에 있다 | 7-5 |
 
 내일(10/14)은 이름을 IP 로 바꿔 주는 **DNS** 를 배웁니다. 어제 `ping google.com` 의 대괄호 속 주소가 어디서 왔는지 밝힙니다.
 
@@ -1367,7 +1407,7 @@ print("겹침 있음:", overlap)
 
 ### 정답 7-5
 
-보고서 3~5절을 채운 뒤, **터미널(`security-agent-toolkit` 폴더)에 입력합니다.**
+보고서의 빈 칸을 다 채운 뒤, **터미널(`security-agent-toolkit` 폴더)에 입력합니다.**
 
 ```bash
 git status
@@ -1376,7 +1416,7 @@ git commit -m "Add day 2 subnet design"
 git push
 ```
 
-**결과** — 깃허브의 `network_zt/day02_subnet_design.md` 에 1~5절과 사진 두 장(`ipconfig_mask.png` · `tracert.png`)이 모두 보입니다.
+**결과** — 깃허브의 `network_zt/day02_subnet_design.md` 에 빈 칸 없는 2~7교시 칸 · 「최종 설계서」와 사진 두 장(`ipconfig_mask.png` · `tracert.png`)이 보입니다.
 
 **왜** — `commit` 은 내 PC 에만 기록하고, `push` 까지 해야 깃허브에 올라갑니다.
 
@@ -1388,7 +1428,7 @@ git push
 
 ### 정답 ⭐7-6
 
-app.diagrams.net → 네모(라우터 · 스위치 · 부서 넷)와 선 → 글자로 VLAN · 게이트웨이 → 파일 › 내보내기 › PNG → `day02_diagram.png` 를 `network_zt` 에 저장 → 보고서 4절에 `![망 구성도](day02_diagram.png)`.
+app.diagrams.net → 네모(라우터 · 스위치 · 부서 넷)와 선 → 글자로 VLAN · 게이트웨이 → 파일 › 내보내기 › PNG → `day02_diagram.png` 를 `network_zt` 에 저장 → 보고서 맨 아래의 `![망 구성도](day02_diagram.png)` 줄로 보인다.
 
 **결과** — 라우터 1 · 스위치 1 · 부서 4개와 VLAN 번호 · 게이트웨이 주소가 적힌 그림 `day02_diagram.png`
 
