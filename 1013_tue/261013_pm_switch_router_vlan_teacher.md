@@ -261,10 +261,11 @@ import ipaddress                                    # import 로 파이썬에 �
 
 net = ipaddress.ip_network("192.168.10.0/24")       # 「주소/CIDR」 글자를 망 객체로 바꿔 net 에 담는다
 
-# ipaddress.ip_address() 는 주소 글자를 주소 객체로 바꿔 리턴한다.
-# 주소 in 망 은 주소가 그 망 안에 있으면 True 가 된다. 192.168.10.1 을 검사한 결과를 출력한다
-print(ipaddress.ip_address("192.168.10.1") in net)
-print(ipaddress.ip_address("192.168.11.1") in net)  # 192.168.11.1 을 같은 방법으로 검사한 결과를 출력한다
+addr1 = ipaddress.ip_address("192.168.10.1")  # ip_address() 는 주소 글자를 주소 객체로 바꿔 리턴한다. 그 객체를 addr1 에 담는다
+addr2 = ipaddress.ip_address("192.168.11.1")  # 192.168.11.1 도 주소 객체로 바꿔 addr2 에 담는다
+
+print(addr1 in net)                           # 주소 in 망 은 주소가 그 망 안에 있으면 True 가 된다. addr1 을 검사한 결과를 출력한다
+print(addr2 in net)                           # addr2 를 같은 방법으로 검사한 결과를 출력한다
 
 # True
 # False
@@ -1046,11 +1047,13 @@ print(a.prefixlen, b.prefixlen)        # .prefixlen 은 망의 CIDR 숫자다. �
    # ── 여기까지 ──
 
    usable = server.num_addresses - 2                     # 전체 주소 수에서 2 를 빼 서버망의 쓸 수 있는 수를 usable 에 담는다
-   print("서버망", server, "쓸 수 있는 수", usable, "충분:", usable >= 10)  # 서버망 · 쓸 수 있는 수 · 10대가 들어가는지를 한 줄에 출력한다
+   enough = usable >= 10                                    # 쓸 수 있는 수가 10 이상이면 True, 아니면 False 를 enough 에 담는다
+   print("서버망", server, "쓸 수 있는 수", usable, "충분:", enough)  # 서버망 · 쓸 수 있는 수 · 10대가 들어가는지를 한 줄에 출력한다
 
    for name, cidr in used:                               # used 의 튜플을 하나씩 꺼내 name 과 cidr 에 나눠 담아 반복한다
-       # .overlaps() 는 두 망이 주소를 하나라도 같이 쓰면 True 를 리턴한다. 서버망과 이 부서 망이 겹치는지 출력한다
-       print(name, cidr, "와 겹침:", server.overlaps(ipaddress.ip_network(cidr)))
+       net = ipaddress.ip_network(cidr)     # 이 부서의 CIDR 글자를 망 객체로 바꿔 net 에 담는다
+       overlap = server.overlaps(net)       # .overlaps() 는 두 망이 주소를 하나라도 같이 쓰면 True 를 리턴한다. 그 결과를 overlap 에 담는다
+       print(name, cidr, "와 겹침:", overlap)  # 부서 · CIDR · 서버망과 겹치는지를 한 줄에 출력한다
    ```
 4. **[터미널]** 먼저 그대로 실행해 봅니다. 처음 값 `192.168.50.0/28` 이 어느 부서와 겹치는지 봅니다.
    ```bash

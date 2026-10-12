@@ -62,7 +62,8 @@
 ```python
 print(format(5, "08b"))        # format(숫자, "08b") 는 숫자를 앞자리를 0 으로 채운 8자리 2진수 글자로 바꾼다. 5 를 바꿔 출력한다
 print(format(255, "08b"))      # 255 를 8자리 2진수 글자로 바꿔 출력한다. 255 는 8비트로 나타낼 수 있는 가장 큰 수다
-print(len(format(25, "08b")))  # len() 은 글자 수를 리턴한다. 25 를 바꾼 8자리 2진수 글자의 글자 수를 출력한다
+bits = format(25, "08b")       # 25 를 8자리 2진수 글자로 바꿔 변수 bits 에 담는다
+print(len(bits))               # len() 은 글자 수를 리턴한다. bits 의 글자 수를 출력한다
 
 # 00000101
 # 11111111
@@ -90,11 +91,13 @@ print(len(format(25, "08b")))  # len() 은 글자 수를 리턴한다. 25 를 �
 1. **[VS Code]** `network_zt` 폴더의 `warmup.py` 를 엽니다. 없으면 New File 로 만들고, 안에 있던 내용은 지웁니다.
 2. **[VS Code]** 아래 코드를 그대로 따라 칩니다.
    ```python
-   print(format(192, "08b"))  # 192 를 앞자리를 0 으로 채운 8자리 2진수 글자로 바꿔 출력한다
-   print(format(10, "08b"))   # 10 을 앞자리를 0 으로 채운 8자리 2진수 글자로 바꿔 출력한다
+   bits1 = format(192, "08b")  # 192 를 앞자리를 0 으로 채운 8자리 2진수 글자로 바꿔 bits1 에 담는다
+   bits2 = format(10, "08b")   # 10 을 앞자리를 0 으로 채운 8자리 2진수 글자로 바꿔 bits2 에 담는다
+   print(bits1)                # bits1 을 출력한다
+   print(bits2)                # bits2 를 출력한다
 
-   # + 는 두 글자를 이어 붙인다. 이어 붙인 글자의 글자 수를 len() 으로 세어 출력한다
-   print(len(format(192, "08b") + format(10, "08b")))
+   both = bits1 + bits2        # + 는 두 글자를 이어 붙인다. 이어 붙인 16자리 글자를 both 에 담는다
+   print(len(both))            # len() 은 글자 수를 리턴한다. both 의 글자 수를 출력한다
    ```
 3. **[터미널]** 실행합니다.
    ```bash
@@ -136,15 +139,17 @@ print(len(format(25, "08b")))  # len() 은 글자 수를 리턴한다. 25 를 �
    def to_bits(ip):                  # def 로 함수 to_bits 를 만든다. IP 주소 글자 ip 를 받아 32비트 2진수 글자를 리턴한다
        bits = ""                     # 2진수 글자를 이어 붙일 변수 bits 를 빈 글자로 시작한다
        for part in ip.split("."):    # .split(".") 은 글자를 점에서 나눈 리스트를 리턴한다. 마디를 하나씩 part 에 담아 반복한다
-           # 1. bits 뒤에 format(int(part), "08b") 를 이어 붙이세요
-           # int() 로 마디 글자를 숫자로 바꾸고, format() 으로 8자리 2진수 글자로 바꿔 bits 뒤에 이어 붙인다
-           bits = bits + format(int(part), "08b")
+           # 1. int() 로 part 를 숫자로 바꿔 number 에 담으세요
+           number = int(part)                   # int() 는 글자를 숫자로 바꿔 리턴한다. 마디 글자 part 를 숫자로 바꿔 number 에 담는다
+           # 2. bits 뒤에 format(number, "08b") 를 이어 붙이세요
+           bits = bits + format(number, "08b")  # number 를 8자리 2진수 글자로 바꿔 bits 뒤에 이어 붙인다
        return bits                   # 32비트 2진수 글자가 된 bits 를 리턴한다
 
    ip = "192.168.10.25"              # 변수 ip 에 IPv4 주소 글자를 담는다. 내 IPv4 주소로 바꿔 실행한다
    print(ip)                         # 원래 IP 주소 글자를 출력한다
-   print(to_bits(ip))                # to_bits() 를 불러 리턴한 32비트 2진수 글자를 출력한다
-   print("길이:", len(to_bits(ip)))  # len() 은 글자 수를 리턴한다. 2진수 글자의 글자 수를 출력해 32자리가 맞는지 확인한다
+   result = to_bits(ip)              # to_bits() 를 불러 리턴한 32비트 2진수 글자를 result 에 담는다
+   print(result)                     # 32비트 2진수 글자를 출력한다
+   print("길이:", len(result))         # len() 은 글자 수를 리턴한다. result 의 글자 수를 출력해 32자리가 맞는지 확인한다
    ```
 3. **[VS Code]** 번호 주석 아래를 채웁니다.
 4. **[터미널]** 실행합니다. 터미널의 줄 위에 `…/network_zt` 가 보여야 합니다. 아니면 먼저 `cd network_zt` 를 입력합니다.
@@ -176,7 +181,7 @@ print(len(format(25, "08b")))  # len() 은 글자 수를 리턴한다. 25 를 �
 
 <mark style="background:#fff59d; color:#1a1a1a; text-decoration:underline; padding:0 4px; border-radius:3px">**결과** — `11000000101010000000101000011001` 과 `길이: 32`</mark>
 
-**왜** — 마디 네 개를 `format(int(part), "08b")` 로 8비트씩 바꿔 이어 붙이므로 8 × 4 = 32자리가 됩니다.
+**왜** — 마디 네 개를 `int()` 로 숫자로 바꾸고 `format(number, "08b")` 로 8비트씩 바꿔 이어 붙이므로 8 × 4 = 32자리가 됩니다.
 
 **자주 틀리는 곳** — `"b"` 만 써서 `10` 이 `1010` 네 자리가 되면 길이가 32 보다 짧게 나옵니다.
 
@@ -653,8 +658,9 @@ print(net.network_address, net.broadcast_address, net.num_addresses)
    # .broadcast_address 는 망의 마지막 주소다. ③ 브로드캐스트 주소를 출력한다
    print("③ 브로드캐스트 주소:", net.broadcast_address)
 
-   # 주소에 1 을 더하면 바로 다음 주소, 1 을 빼면 바로 앞 주소가 된다. ④ 장비에 줄 수 있는 첫 주소와 마지막 주소를 출력한다
-   print("④ 장비에 줄 수 있는 주소:", net.network_address + 1, "~", net.broadcast_address - 1)
+   first = net.network_address + 1              # 주소에 1 을 더하면 바로 다음 주소가 된다. 장비에 줄 수 있는 첫 주소를 first 에 담는다
+   last = net.broadcast_address - 1             # 주소에서 1 을 빼면 바로 앞 주소가 된다. 장비에 줄 수 있는 마지막 주소를 last 에 담는다
+   print("④ 장비에 줄 수 있는 주소:", first, "~", last)  # ④ 첫 주소와 마지막 주소를 출력한다
 
    # .num_addresses 는 전체 주소 수다. 네트워크 · 브로드캐스트 주소 2개를 빼서 ④ 쓸 수 있는 수를 출력한다
    print("④ 쓸 수 있는 수:", net.num_addresses - 2)
@@ -864,8 +870,9 @@ net = ipaddress.ip_network("192.168.50.64/27")  # 블록 192.168.50.64/27 을 �
 print(net.num_addresses)                        # .num_addresses 는 그 망의 전체 주소 수다. 주소 수를 출력한다
 print(net.num_addresses - 2)                    # 네트워크 · 브로드캐스트 주소 2개를 빼서 쓸 수 있는 수를 출력한다
 
-# 네트워크 주소에 1 을 더한 주소와 브로드캐스트 주소에서 1 을 뺀 주소를 장비에 줄 수 있는 범위로 출력한다
-print(net.network_address + 1, "~", net.broadcast_address - 1)
+first = net.network_address + 1   # 네트워크 주소에 1 을 더해 장비에 줄 수 있는 첫 주소를 first 에 담는다
+last = net.broadcast_address - 1  # 브로드캐스트 주소에서 1 을 빼 장비에 줄 수 있는 마지막 주소를 last 에 담는다
+print(first, "~", last)           # 장비에 줄 수 있는 범위를 출력한다
 
 # 32
 # 30
