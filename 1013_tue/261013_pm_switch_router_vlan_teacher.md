@@ -62,13 +62,13 @@
 #### 🐍 문법 상자 · 사전에 키가 있나 · 리스트에 하나씩 더하기
 
 ```python
-mac_table = {"AA": 1}
-print("AA" in mac_table, "BB" in mac_table)
-out = []
-for port in [1, 2, 3, 4]:
-    if port != 1:
-        out.append(port)
-print(out)
+mac_table = {"AA": 1}                        # 딕셔너리 = 키(MAC) → 값(포트 번호)
+print("AA" in mac_table, "BB" in mac_table)  # 키 in 딕셔너리 = 그 키가 있으면 True
+out = []                                     # 빈 리스트를 만든다
+for port in [1, 2, 3, 4]:                    # 포트 번호를 하나씩 꺼내 반복
+    if port != 1:                            # != = 같지 않으면 True
+        out.append(port)                     # .append() = 리스트 끝에 하나 더한다
+print(out)                                   # 모은 리스트를 출력
 # True False
 # [2, 3, 4]
 ```
@@ -103,7 +103,7 @@ print(out)
    if dest in mac_table:                      # 목적지가 표에 있나?
        print("포트", mac_table[dest], "로만")  # 있을 때 — 표에서 dest 로 꺼낸 값을 넣어 출력
    else:                                      # 없을 때
-       print("모든 포트로")
+       print("모든 포트로")                   # 없을 때 출력
    ```
 3. **[터미널]** 실행합니다.
    ```bash
@@ -156,16 +156,16 @@ print(out)
        if dest in mac_table:                         # 목적지를 안다면
            return [mac_table[dest]]                  # 그 포트 하나로만
        out = []                                      # 모르면 플러딩할 포트들
-       for port in PORTS:
+       for port in PORTS:                            # 포트 번호를 하나씩 꺼내 반복
            # 3. port 가 in_port 가 아니면 out 에 더하세요
            if port != in_port:                       # 들어온 포트는 빼고
-               out.append(port)
-       return out
+               out.append(port)                      # .append() = 리스트 끝에 하나 더한다
+       return out                                    # 모은 포트 리스트를 리턴한다
 
    print("AA → BB :", receive(1, "AA", "BB"))       # BB 를 아직 모른다
    print("BB → AA :", receive(3, "BB", "AA"))       # AA 는 1번에서 배웠다
    print("AA → BB :", receive(1, "AA", "BB"))       # 이제 BB 도 안다
-   print("표:", mac_table)
+   print("표:", mac_table)                           # 지금까지 배운 표(딕셔너리)를 출력
    ```
 3. **[VS Code]** 번호 주석 아래를 채웁니다. 저장은 자동입니다.
 4. **[터미널]** 실행합니다. 터미널의 줄 위에 `…/network_zt` 가 보여야 합니다. 아니면 먼저 `cd network_zt` 를 입력합니다.
@@ -227,10 +227,11 @@ PC `192.168.10.10/26` 이 다른 망의 서버 `192.168.10.70` 으로 보낼 때
 #### 🐍 문법 상자 · 주소가 망 안에 있나 — `in`
 
 ```python
-import ipaddress
-net = ipaddress.ip_network("192.168.10.0/24")
+import ipaddress                                    # import = 파이썬에 들어 있는 IP 계산 도구를 불러온다
+net = ipaddress.ip_network("192.168.10.0/24")       # 글자를 망 객체로
+# ip_address() = 글자를 주소 객체로 — 주소 in 망 = 그 망 안이면 True
 print(ipaddress.ip_address("192.168.10.1") in net)
-print(ipaddress.ip_address("192.168.11.1") in net)
+print(ipaddress.ip_address("192.168.11.1") in net)  # 다른 주소로 같은 검사
 # True
 # False
 ```
@@ -260,17 +261,17 @@ print(ipaddress.ip_address("192.168.11.1") in net)
 2. **[VS Code]** 아래 코드를 복사해 파일에 붙여 넣습니다. 코드 상자 안을 마우스로 끌어 선택하고 `Ctrl + C` 를 누릅니다.
    ```python
    # ── 강사용: 정답을 채운 코드입니다 ──
-   import ipaddress
+   import ipaddress                                  # import = 파이썬에 들어 있는 IP 계산 도구를 불러온다
 
    my_net = ipaddress.ip_network("10.20.0.10/26", strict=False)   # 내 PC 가 속한 망
-   destinations = ["10.20.0.40", "10.20.0.63", "10.20.0.70"]
+   destinations = ["10.20.0.40", "10.20.0.63", "10.20.0.70"]  # 검사할 목적지 주소 리스트
 
    for dest in destinations:                         # 목적지를 하나씩
        # 1. dest 가 my_net 안에 있으면 「10.20.0.40 스위치로 직접」, 아니면 「… 게이트웨이로」 를 출력하세요
        if ipaddress.ip_address(dest) in my_net:      # 같은 망이면
-           print(dest, "스위치로 직접")
+           print(dest, "스위치로 직접")              # 같은 망일 때 출력
        else:                                         # 다른 망이면
-           print(dest, "게이트웨이로")
+           print(dest, "게이트웨이로")               # 다른 망일 때 출력
    ```
 3. **[VS Code]** 번호 주석 아래를 채웁니다. 저장은 자동입니다.
 4. **[터미널]** 실행합니다. 터미널의 줄 위에 `…/network_zt` 가 보여야 합니다. 아니면 먼저 `cd network_zt` 를 입력합니다.
@@ -385,21 +386,21 @@ arp -a
 2. **[VS Code]** 아래 코드를 복사해 파일에 붙여 넣습니다. 코드 상자 안을 마우스로 끌어 선택하고 `Ctrl + C` 를 누릅니다.
    ```python
    # ── 강사용: 정답을 채운 코드입니다 ──
-   import ipaddress
+   import ipaddress                                  # import = 파이썬에 들어 있는 IP 계산 도구를 불러온다
 
    pcs = [                                           # (이름, IP/CIDR, 기본 게이트웨이)
-       ("PC0", "192.168.10.10/26", "192.168.10.1"),
-       ("PC1", "192.168.10.20/26", "192.168.10.65"),
-       ("PC2", "192.168.10.70/26", "192.168.10.65"),
-   ]
+       ("PC0", "192.168.10.10/26", "192.168.10.1"),  # 튜플 하나 = (이름, IP/CIDR, 게이트웨이)
+       ("PC1", "192.168.10.20/26", "192.168.10.65"),  # 같은 꼴의 튜플
+       ("PC2", "192.168.10.70/26", "192.168.10.65"),  # 같은 꼴의 튜플
+   ]                                                 # 리스트를 닫는다
 
    for name, cidr, gw in pcs:                        # PC 를 하나씩
        net = ipaddress.ip_network(cidr, strict=False)   # 그 PC 가 속한 망
        # 1. gw 가 net 안에 있으면 「PC0 정상」, 아니면 「PC1 게이트웨이 192.168.10.65 가 망 밖 — 밖으로 못 나감」 을 출력하세요
        if ipaddress.ip_address(gw) in net:           # 게이트웨이가 같은 망에 있으면
-           print(name, "정상")
+           print(name, "정상")                       # 게이트웨이가 망 안일 때 출력
        else:                                         # 망 밖이면
-           print(name, "게이트웨이", gw, "가 망 밖 — 밖으로 못 나감")
+           print(name, "게이트웨이", gw, "가 망 밖 — 밖으로 못 나감")  # 게이트웨이가 망 밖일 때 출력
    ```
 3. **[VS Code]** 번호 주석 아래를 채웁니다. 저장은 자동입니다.
 4. **[터미널]** 실행합니다. 터미널의 줄 위에 `…/network_zt` 가 보여야 합니다. 아니면 먼저 `cd network_zt` 를 입력합니다.
@@ -548,15 +549,15 @@ arp -a
 
    def flood_ports(in_port):                         # in_port 로 들어온 브로드캐스트가 퍼질 포트들
        vlan = port_vlan[in_port]                     # 들어온 포트의 VLAN
-       out = []
+       out = []                                      # 빈 리스트를 만든다
        for port in port_vlan:                        # 포트를 하나씩
            # 1. port 의 VLAN 이 vlan 과 같고 port 가 in_port 가 아니면 out 에 더하세요
            if port_vlan[port] == vlan and port != in_port:   # 같은 VLAN 이고 들어온 포트가 아니면
-               out.append(port)
-       return out
+               out.append(port)                      # .append() = 리스트 끝에 하나 더한다
+       return out                                    # 모은 포트 리스트를 리턴한다
 
-   print("1번에서:", flood_ports(1))
-   print("3번에서:", flood_ports(3))
+   print("1번에서:", flood_ports(1))                 # 1번 포트로 들어왔을 때 함수가 리턴한 리스트를 출력
+   print("3번에서:", flood_ports(3))                 # 3번 포트로 들어왔을 때
    ```
 3. **[VS Code]** 번호 주석 아래를 채웁니다. 저장은 자동입니다.
 4. **[터미널]** 실행합니다. 터미널의 줄 위에 `…/network_zt` 가 보여야 합니다. 아니면 먼저 `cd network_zt` 를 입력합니다.
@@ -733,12 +734,12 @@ tracert -d -h 5 8.8.8.8
 #### 🐍 문법 상자 · `.prefixlen` — CIDR 숫자 꺼내기
 
 ```python
-import ipaddress
-a = ipaddress.ip_network("0.0.0.0/0")
-b = ipaddress.ip_network("192.168.10.64/26")
-dest = ipaddress.ip_address("192.168.10.70")
-print(dest in a, dest in b)
-print(a.prefixlen, b.prefixlen)
+import ipaddress                              # import = 파이썬에 들어 있는 IP 계산 도구를 불러온다
+a = ipaddress.ip_network("0.0.0.0/0")         # /0 = 모든 주소를 품는 망
+b = ipaddress.ip_network("192.168.10.64/26")  # .64 ~ .127 인 /26 망
+dest = ipaddress.ip_address("192.168.10.70")  # ip_address() = 글자를 주소 객체로
+print(dest in a, dest in b)                   # 주소 in 망 = 그 망 안이면 True — 두 망을 한 번에 검사
+print(a.prefixlen, b.prefixlen)               # .prefixlen = 망의 CIDR 숫자 — 클수록 좁은 망
 # True True
 # 0 26
 ```
@@ -768,26 +769,26 @@ print(a.prefixlen, b.prefixlen)
 2. **[VS Code]** 아래 코드를 복사해 파일에 붙여 넣습니다. 코드 상자 안을 마우스로 끌어 선택하고 `Ctrl + C` 를 누릅니다.
    ```python
    # ── 강사용: 정답을 채운 코드입니다 ──
-   import ipaddress
+   import ipaddress                                  # import = 파이썬에 들어 있는 IP 계산 도구를 불러온다
 
    routes = [                                        # (목적지 망, 다음 홉)
-       ("0.0.0.0/0", "인터넷 게이트웨이"),
+       ("0.0.0.0/0", "인터넷 게이트웨이"),           # 튜플 하나 = (목적지 망, 다음 홉)
        ("192.168.10.0/26", "직접 연결 G0/0"),        # G0/0 · G0/1 은 라우터의 포트 이름
-       ("192.168.10.64/26", "직접 연결 G0/1"),
-   ]
+       ("192.168.10.64/26", "직접 연결 G0/1"),       # 같은 꼴의 튜플
+   ]                                                 # 리스트를 닫는다
 
    def lookup(dest):                                 # 목적지 주소의 다음 홉을 리턴한다
-       dest = ipaddress.ip_address(dest)
+       dest = ipaddress.ip_address(dest)             # 글자를 주소 객체로 바꿔 같은 이름에 다시 담는다
        best = None                                   # 지금까지 고른 줄
        for cidr, hop in routes:                      # 표를 한 줄씩
-           net = ipaddress.ip_network(cidr)
+           net = ipaddress.ip_network(cidr)          # 글자를 망 객체로
            # 1. dest 가 net 안에 있고, best 가 None 이거나 net.prefixlen 이 best 의 prefixlen 보다 크면 best 에 (net, hop) 을 담으세요
            if dest in net and (best is None or net.prefixlen > best[0].prefixlen):   # 맞고 더 좁으면
-               best = (net, hop)
+               best = (net, hop)                     # (망, 다음 홉) 튜플로 지금까지 고른 줄을 바꾼다
        return best[1]                                # 고른 줄의 다음 홉
 
-   for d in ["192.168.10.20", "192.168.10.70", "8.8.8.8"]:
-       print(d, "→", lookup(d))
+   for d in ["192.168.10.20", "192.168.10.70", "8.8.8.8"]:  # 목적지 주소를 하나씩 꺼내 반복
+       print(d, "→", lookup(d))                      # 주소와 함수가 리턴한 다음 홉을 출력
    ```
 3. **[VS Code]** 번호 주석 아래를 채웁니다. 저장은 자동입니다.
 4. **[터미널]** 실행합니다. 터미널의 줄 위에 `…/network_zt` 가 보여야 합니다. 아니면 먼저 `cd network_zt` 를 입력합니다.
@@ -926,13 +927,13 @@ print(a.prefixlen, b.prefixlen)
 2. **[VS Code]** 아래 코드를 복사해 파일에 붙여 넣습니다. 코드 상자 안을 마우스로 끌어 선택하고 `Ctrl + C` 를 누릅니다.
    ```python
    # ── 강사용: 정답을 채운 코드입니다 ──
-   import ipaddress
+   import ipaddress                                  # import = 파이썬에 들어 있는 IP 계산 도구를 불러온다
 
    plan = [                                          # (부서, CIDR, VLAN)
-       ("개발팀", "10.20.0.0/26", 10),
-       ("운영팀", "10.20.0.64/27", 20),
-       ("보안팀", "10.20.0.96/28", 30),
-   ]
+       ("개발팀", "10.20.0.0/26", 10),               # 튜플 하나 = (부서, CIDR, VLAN 번호)
+       ("운영팀", "10.20.0.64/27", 20),              # 같은 꼴의 튜플
+       ("보안팀", "10.20.0.96/28", 30),              # 같은 꼴의 튜플
+   ]                                                 # 리스트를 닫는다
 
    for name, cidr, vlan in plan:                     # 부서를 하나씩
        net = ipaddress.ip_network(cidr)              # 그 부서의 망
@@ -941,6 +942,7 @@ print(a.prefixlen, b.prefixlen)
        # 2. first 에 gateway + 1, last 에 net.broadcast_address - 1 을 담으세요
        first = gateway + 1                           # PC 에 줄 첫 주소
        last = net.broadcast_address - 1              # PC 에 줄 마지막 주소
+       # f-string 하나에 부서 · VLAN · 망 · 게이트웨이 · 범위를 넣어 출력
        print(f"{name} VLAN {vlan} {cidr} 게이트웨이 {gateway} 범위 {first} ~ {last}")
    ```
 3. **[VS Code]** 번호 주석 아래를 채웁니다. 저장은 자동입니다.
@@ -984,10 +986,10 @@ print(a.prefixlen, b.prefixlen)
 #### 🐍 문법 상자 · 반복을 일찍 끝내는 `break`
 
 ```python
-for n in [3, 8, 12, 20]:
-    if n > 10:
-        print("처음 10 넘는 수:", n)
-        break
+for n in [3, 8, 12, 20]:              # 숫자를 앞에서부터 하나씩 꺼내 반복
+    if n > 10:                        # 10 보다 크면 아래 줄 실행
+        print("처음 10 넘는 수:", n)  # 찾은 수를 출력
+        break                         # break = 반복을 바로 끝낸다 — 뒤의 20 은 보지 않는다
 # 처음 10 넘는 수: 12
 ```
 
@@ -1015,33 +1017,33 @@ for n in [3, 8, 12, 20]:
 2. **[VS Code]** 아래 코드를 복사해 파일에 붙여 넣습니다. 코드 상자 안을 마우스로 끌어 선택하고 `Ctrl + C` 를 누릅니다.
    ```python
    # ── 강사용: 정답을 채운 코드입니다 ──
-   import ipaddress
+   import ipaddress                                  # import = 파이썬에 들어 있는 IP 계산 도구를 불러온다
 
    used = [                                          # 이미 쓰는 세 부서의 망
-       ipaddress.ip_network("10.20.0.0/26"),
-       ipaddress.ip_network("10.20.0.64/27"),
-       ipaddress.ip_network("10.20.0.96/28"),
-   ]
-   parent = ipaddress.ip_network("10.20.0.0/24")
+       ipaddress.ip_network("10.20.0.0/26"),         # 리스트 안에 망 객체를 바로 넣는다
+       ipaddress.ip_network("10.20.0.64/27"),        # 같은 꼴의 망 객체
+       ipaddress.ip_network("10.20.0.96/28"),        # 같은 꼴의 망 객체
+   ]                                                 # 리스트를 닫는다
+   parent = ipaddress.ip_network("10.20.0.0/24")     # 후보를 고를 전체 망 /24
 
-   server = None
+   server = None                                     # None = 아직 아무것도 안 담았다는 표시
    for candidate in parent.subnets(new_prefix=28):   # /28 후보를 앞에서부터
        # 1. candidate 가 used 의 어느 것과도 겹치지 않으면 server 에 담고 반복을 끝내세요(break)
        hits = 0                                      # 겹치는 부서 수
-       for net in used:
-           if candidate.overlaps(net):
-               hits = hits + 1
+       for net in used:                              # 기존 부서 망을 하나씩 꺼내 반복
+           if candidate.overlaps(net):               # .overlaps() = 후보가 그 망과 겹치면 True
+               hits = hits + 1                       # 겹친 수를 1 늘린다
        if hits == 0:                                 # 아무와도 안 겹치면
-           server = candidate
+           server = candidate                        # 안 겹치는 후보를 서버망으로 담는다
            break                                     # 처음 빈 자리를 찾았으니 끝
 
-   print("서버망:", server)
-   overlap = False
+   print("서버망:", server)                          # 고른 서버망을 출력
+   overlap = False                                   # 처음엔 False 로 두고 반복에서 바꾼다
    for net in used:                                  # 기존 부서와 하나씩 비교
        # 2. server 가 net 과 겹치면 overlap 을 True 로 바꾸세요
-       if server.overlaps(net):
-           overlap = True
-   print("겹침 있음:", overlap)
+       if server.overlaps(net):                      # 서버망이 그 망과 겹치면 True
+           overlap = True                            # 겹침을 찾았다고 표시
+   print("겹침 있음:", overlap)                      # 겹침 판정을 출력
    ```
 3. **[VS Code]** 번호 주석 아래를 채웁니다. 저장은 자동입니다.
 4. **[터미널]** 실행합니다. 터미널의 줄 위에 `…/network_zt` 가 보여야 합니다. 아니면 먼저 `cd network_zt` 를 입력합니다.
