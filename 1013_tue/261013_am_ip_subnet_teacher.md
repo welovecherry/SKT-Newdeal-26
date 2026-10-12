@@ -60,9 +60,9 @@
 #### 🐍 문법 상자 · `format(숫자, "08b")` — 8비트 2진수로
 
 ```python
-print(format(5, "08b"))        # 5 를 2진수 여덟 칸 글자로 바꿔 출력 — "08b" = 0 으로 채운 8칸 2진수
-print(format(255, "08b"))      # 255 → 여덟 칸이 전부 1
-print(len(format(25, "08b")))  # len() = 글자 수 — 여덟 칸이니 8
+print(format(5, "08b"))        # format(숫자, "08b") 는 숫자를 앞자리를 0 으로 채운 8자리 2진수 글자로 바꾼다. 5 를 바꿔 출력한다
+print(format(255, "08b"))      # 255 를 8자리 2진수 글자로 바꿔 출력한다. 255 는 8비트로 나타낼 수 있는 가장 큰 수다
+print(len(format(25, "08b")))  # len() 은 글자 수를 리턴한다. 25 를 바꾼 8자리 2진수 글자의 글자 수를 출력한다
 # 00000101
 # 11111111
 # 8
@@ -89,9 +89,10 @@ print(len(format(25, "08b")))  # len() = 글자 수 — 여덟 칸이니 8
 1. **[VS Code]** `network_zt` 폴더의 `warmup.py` 를 엽니다. 없으면 New File 로 만들고, 안에 있던 내용은 지웁니다.
 2. **[VS Code]** 아래 코드를 그대로 따라 칩니다.
    ```python
-   print(format(192, "08b"))                            # 192 를 2진수 여덟 칸 글자로 바꾸면?
-   print(format(10, "08b"))                             # 10 을 2진수 여덟 칸 글자로 바꾸면?
-   print(len(format(192, "08b") + format(10, "08b")))   # 두 글자를 이어 붙이면 몇 칸인가?
+   print(format(192, "08b"))  # 192 를 앞자리를 0 으로 채운 8자리 2진수 글자로 바꿔 출력한다
+   print(format(10, "08b"))   # 10 을 앞자리를 0 으로 채운 8자리 2진수 글자로 바꿔 출력한다
+   # + 는 두 글자를 이어 붙인다. 이어 붙인 글자의 글자 수를 len() 으로 세어 출력한다
+   print(len(format(192, "08b") + format(10, "08b")))
    ```
 3. **[터미널]** 실행합니다.
    ```bash
@@ -130,17 +131,18 @@ print(len(format(25, "08b")))  # len() = 글자 수 — 여덟 칸이니 8
 2. **[VS Code]** 아래 코드를 복사해 파일에 붙여 넣습니다. 코드 상자 안을 마우스로 끌어 선택하고 `Ctrl + C` 를 누릅니다.
    ```python
    # ── 강사용: 정답을 채운 코드입니다 ──
-   def to_bits(ip):                                  # IP 주소를 2진수 32칸 글자로 바꾸는 함수
-       bits = ""                                     # 이어 붙일 빈 글자
-       for part in ip.split("."):                    # 점으로 나눈 마디를 하나씩
+   def to_bits(ip):                  # def 로 함수 to_bits 를 만든다. IP 주소 글자 ip 를 받아 32비트 2진수 글자를 리턴한다
+       bits = ""                     # 2진수 글자를 이어 붙일 변수 bits 를 빈 글자로 시작한다
+       for part in ip.split("."):    # .split(".") 은 글자를 점에서 나눈 리스트를 리턴한다. 마디를 하나씩 part 에 담아 반복한다
            # 1. bits 뒤에 format(int(part), "08b") 를 이어 붙이세요
-           bits = bits + format(int(part), "08b")    # 마디 하나를 여덟 칸으로 바꿔 붙인다
-       return bits                                   # 32칸 글자를 리턴한다
+           # int() 로 마디 글자를 숫자로 바꾸고, format() 으로 8자리 2진수 글자로 바꿔 bits 뒤에 이어 붙인다
+           bits = bits + format(int(part), "08b")
+       return bits                   # 32비트 2진수 글자가 된 bits 를 리턴한다
 
-   ip = "192.168.10.25"                              # 내 IPv4 주소로 바꿔 봅니다
-   print(ip)                                         # 원래 IP 주소 글자를 출력
-   print(to_bits(ip))                                # 함수를 불러 리턴한 32칸 글자를 출력
-   print("길이:", len(to_bits(ip)))                  # len() = 글자 수 — 32칸이 맞는지 확인
+   ip = "192.168.10.25"              # 변수 ip 에 IPv4 주소 글자를 담는다. 내 IPv4 주소로 바꿔 실행한다
+   print(ip)                         # 원래 IP 주소 글자를 출력한다
+   print(to_bits(ip))                # to_bits() 를 불러 리턴한 32비트 2진수 글자를 출력한다
+   print("길이:", len(to_bits(ip)))  # len() 은 글자 수를 리턴한다. 2진수 글자의 글자 수를 출력해 32자리가 맞는지 확인한다
    ```
 3. **[VS Code]** 번호 주석 아래를 채웁니다.
 4. **[터미널]** 실행합니다. 터미널의 줄 위에 `…/network_zt` 가 보여야 합니다. 아니면 먼저 `cd network_zt` 를 입력합니다.
@@ -209,9 +211,10 @@ print(len(format(25, "08b")))  # len() = 글자 수 — 여덟 칸이니 8
 #### 🐍 문법 상자 · `and` · `or` · 범위 비교
 
 ```python
-second = 20                        # 변수 second 에 숫자 20 을 담는다
-print(16 <= second <= 31)          # True — 16 이상 31 이하
-print(second == 10 or second == 20)  # or = 둘 중 하나만 True 여도 True
+second = 20                # 변수 second 에 숫자 20 을 담는다
+print(16 <= second <= 31)  # a <= x <= b 는 x 가 a 이상 b 이하일 때 True 가 된다. second 를 검사한 결과를 출력한다
+# or 는 양쪽 조건 중 하나라도 True 이면 True 가 된다. second 가 10 이거나 20 인지 검사한 결과를 출력한다
+print(second == 10 or second == 20)
 # True
 # True
 ```
@@ -238,27 +241,31 @@ print(second == 10 or second == 20)  # or = 둘 중 하나만 True 여도 True
 2. **[VS Code]** 아래 코드를 복사해 파일에 붙여 넣습니다. 코드 상자 안을 마우스로 끌어 선택하고 `Ctrl + C` 를 누릅니다.
    ```python
    # ── 강사용: 정답을 채운 코드입니다 ──
-   def is_private(ip):                               # 사설 IP 면 True 를 리턴하는 함수
-       parts = ip.split(".")                         # 점으로 나눈 마디 네 개
-       first = int(parts[0])                         # 첫 마디(숫자)
-       second = int(parts[1])                        # 둘째 마디(숫자)
+   # def 로 함수 is_private 를 만든다. IP 주소 글자 ip 가 사설 IP 이면 True, 아니면 False 를 리턴한다
+   def is_private(ip):
+       parts = ip.split(".")    # .split(".") 은 글자를 점에서 나눈 리스트를 리턴한다. 마디 네 개가 담긴 리스트를 parts 에 담는다
+       first = int(parts[0])    # parts[0] 은 리스트의 첫째 값이다. int() 로 숫자로 바꿔 first 에 담는다
+       second = int(parts[1])   # parts[1] 은 리스트의 둘째 값이다. int() 로 숫자로 바꿔 second 에 담는다
        # 1. first 가 10 이면 True 를 return 하세요
-       if first == 10:                               # 10.x.x.x
-           return True                               # True 를 리턴하고 함수를 끝낸다
+       if first == 10:          # 첫 마디가 10 이면 10.0.0.0/8 사설 대역이다
+           return True          # True 를 리턴하고 함수를 끝낸다
        # 2. first 가 172 이고 second 가 16 이상 31 이하이면 True 를 return 하세요
-       if first == 172 and 16 <= second <= 31:       # 172.16 ~ 172.31 만
-           return True                               # True 를 리턴하고 함수를 끝낸다
+       # and 는 양쪽 조건이 모두 True 일 때만 True 가 된다. 172.16 ~ 172.31 로 시작하면 172.16.0.0/12 사설 대역이다
+       if first == 172 and 16 <= second <= 31:
+           return True          # True 를 리턴하고 함수를 끝낸다
        # 3. first 가 192 이고 second 가 168 이면 True 를 return 하세요
-       if first == 192 and second == 168:            # 192.168.x.x
-           return True                               # True 를 리턴하고 함수를 끝낸다
-       return False                                  # 셋 다 아니면 공인
+       # 192.168 로 시작하면 192.168.0.0/16 사설 대역이다
+       if first == 192 and second == 168:
+           return True          # True 를 리턴하고 함수를 끝낸다
+       return False             # 앞의 if 세 개에서 리턴하지 않았으면 공인 IP 이므로 False 를 리턴한다
 
-   # for … in 리스트 = 주소를 하나씩 꺼내 반복
+   # for 변수 in 리스트: 는 리스트의 값을 앞에서부터 하나씩 변수에 담아 아래 줄을 반복한다.
+   # 주소 여섯 개를 하나씩 ip 에 담는다
    for ip in ["10.0.0.8", "172.20.5.6", "172.32.5.6", "192.168.10.25", "8.8.8.8", "203.0.113.7"]:
-       if is_private(ip):                            # 함수가 True 를 리턴하면 아래 줄 실행
-           print("[사설]", ip)                       # 사설일 때 출력
-       else:                                         # else = 위 조건이 False 일 때
-           print("[공인]", ip)                       # 공인일 때 출력
+       if is_private(ip):       # if 는 조건이 True 일 때만 아래 줄을 실행한다. is_private() 가 True 를 리턴하면 실행한다
+           print("[사설]", ip)  # 사설 IP 일 때 [사설] 표시와 주소를 출력한다
+       else:                    # else 는 위 if 의 조건이 False 일 때 아래 줄을 실행한다
+           print("[공인]", ip)  # 공인 IP 일 때 [공인] 표시와 주소를 출력한다
    ```
 3. **[VS Code]** 번호 주석 아래를 채웁니다.
 4. **[터미널]** 실행합니다. 터미널의 줄 위에 `…/network_zt` 가 보여야 합니다. 아니면 먼저 `cd network_zt` 를 입력합니다.
@@ -441,9 +448,9 @@ curl https://api.ipify.org
 1. **[VS Code]** `network_zt` 폴더의 `warmup.py` 를 엽니다. 없으면 New File 로 만들고, 안에 있던 내용은 지웁니다.
 2. **[VS Code]** 아래 코드를 그대로 따라 칩니다.
    ```python
-   mask = "11111111.11111111.11111111.11000000"   # 서브넷 마스크를 2진수로 펼친 글자
-   print(mask.count("1"))                          # 1 은 몇 개인가?
-   print(mask.count("0"))                          # 0 은 몇 개인가?
+   mask = "11111111.11111111.11111111.11000000"  # 서브넷 마스크를 32비트 2진수로 펼친 글자를 변수 mask 에 담는다
+   print(mask.count("1"))                        # .count("1") 은 글자 안에 "1" 이 몇 번 나오는지 리턴한다. 그 개수를 출력한다
+   print(mask.count("0"))                        # .count("0") 은 글자 안에 "0" 이 몇 번 나오는지 리턴한다. 그 개수를 출력한다
    ```
 3. **[터미널]** 실행합니다.
    ```bash
@@ -521,11 +528,13 @@ curl https://api.ipify.org
 #### 🐍 문법 상자 · `ipaddress` 로 망 계산하기
 
 ```python
-import ipaddress  # import = 파이썬에 들어 있는 IP 계산 도구를 불러온다
-# ip_network() = 글자를 망 객체로 — strict=False 면 호스트 주소도 받는다
+import ipaddress  # import 로 파이썬에 들어 있는 IP 계산 모듈 ipaddress 를 불러온다
+# ipaddress.ip_network() 는 「주소/CIDR」 글자를 망 객체로 바꿔 리턴한다.
+# strict=False 를 주면 호스트 주소를 넣어도 그 주소가 속한 망을 리턴한다. 그 망을 net 에 담는다
 net = ipaddress.ip_network("192.168.10.70/26", strict=False)
-print(net)        # 망을 「네트워크 주소/CIDR」 꼴로 출력
-# .network_address · .broadcast_address · .num_addresses = 망의 첫 주소 · 끝 주소 · 주소 수
+print(net)        # 망 객체를 출력하면 「네트워크 주소/CIDR」 꼴의 글자로 나온다
+# .network_address 는 망의 첫 주소, .broadcast_address 는 마지막 주소, .num_addresses 는 전체 주소 수다.
+# 세 값을 한 줄에 출력한다
 print(net.network_address, net.broadcast_address, net.num_addresses)
 # 192.168.10.64/26
 # 192.168.10.64 192.168.10.127 64
@@ -555,17 +564,19 @@ print(net.network_address, net.broadcast_address, net.num_addresses)
 2. **[VS Code]** 아래 코드를 복사해 파일에 붙여 넣습니다. 코드 상자 안을 마우스로 끌어 선택하고 `Ctrl + C` 를 누릅니다.
    ```python
    # ── 강사용: 정답을 채운 코드입니다 ──
-   import ipaddress                                  # import = 파이썬에 들어 있는 IP 계산 도구를 불러온다
+   import ipaddress                                    # import 로 파이썬에 들어 있는 IP 계산 모듈 ipaddress 를 불러온다
 
-   my_ip = "192.168.10.25"                           # 내 IPv4 주소 (ipconfig)
-   prefix = 24                                       # 3-2 에서 바꾼 CIDR 숫자
+   # 변수 my_ip 에 내 IPv4 주소 글자를 담는다. ipconfig 로 확인한 주소로 바꾼다
+   my_ip = "192.168.10.25"
+   prefix = 24                                         # 변수 prefix 에 CIDR 숫자를 담는다. 3-2 에서 바꾼 숫자로 바꾼다
 
    # 1. net 이라는 변수에 ipaddress.ip_network(f"{my_ip}/{prefix}", strict=False) 를 담으세요
-   net = ipaddress.ip_network(f"{my_ip}/{prefix}", strict=False)   # 내 주소가 속한 망
+   # f-string 으로 「주소/CIDR」 글자를 만들고, 그 주소가 속한 망 객체를 net 에 담는다
+   net = ipaddress.ip_network(f"{my_ip}/{prefix}", strict=False)
    # 2. "네트워크 주소:", "브로드캐스트 주소:", "사용 가능 주소 수:" 를 각각의 값과 함께 한 줄씩 출력하세요
-   print("네트워크 주소:", net.network_address)      # .network_address = 망의 첫 주소
-   print("브로드캐스트 주소:", net.broadcast_address)  # .broadcast_address = 망의 마지막 주소
-   print("사용 가능 주소 수:", net.num_addresses - 2)  # 전체 주소 수에서 네트워크 · 브로드캐스트 둘을 뺀다
+   print("네트워크 주소:", net.network_address)        # .network_address 는 망의 첫 주소다. 네트워크 주소를 출력한다
+   print("브로드캐스트 주소:", net.broadcast_address)  # .broadcast_address 는 망의 마지막 주소다. 브로드캐스트 주소를 출력한다
+   print("사용 가능 주소 수:", net.num_addresses - 2)  # 전체 주소 수에서 네트워크 · 브로드캐스트 주소 2 개를 빼서 출력한다
    ```
 3. **[VS Code]** `# ── 내 값으로 바꿔 적습니다 ──` 아래 두 줄을 내 IPv4 주소(`ipconfig`)와 3-2 에서 바꾼 CIDR 숫자로 바꿉니다.
 4. **[VS Code]** 번호 주석 아래를 채웁니다.
@@ -619,17 +630,19 @@ print(net.network_address, net.broadcast_address, net.num_addresses)
 2. **[VS Code]** 아래 코드를 복사해 파일에 붙여 넣습니다. 코드 상자 안을 마우스로 끌어 선택하고 `Ctrl + C` 를 누릅니다.
    ```python
    # ── 강사용: 정답을 채운 코드입니다 ──
-   import ipaddress                                  # import = 파이썬에 들어 있는 IP 계산 도구를 불러온다
+   # import 로 파이썬에 들어 있는 IP 계산 모듈 ipaddress 를 불러온다
+   import ipaddress
 
-   a = ipaddress.ip_network("192.168.10.70/26", strict=False)  # 주소 .70 이 속한 /26 망 객체
-   b = ipaddress.ip_network("192.168.10.120/26", strict=False)  # 주소 .120 이 속한 /26 망 객체
-   c = ipaddress.ip_network("192.168.10.130/26", strict=False)  # 주소 .130 이 속한 /26 망 객체
-   print(a, b, c)                                    # 세 망을 한 줄에 출력
+   a = ipaddress.ip_network("192.168.10.70/26", strict=False)   # 주소 .70 이 속한 /26 망 객체를 a 에 담는다
+   b = ipaddress.ip_network("192.168.10.120/26", strict=False)  # 주소 .120 이 속한 /26 망 객체를 b 에 담는다
+   c = ipaddress.ip_network("192.168.10.130/26", strict=False)  # 주소 .130 이 속한 /26 망 객체를 c 에 담는다
+   print(a, b, c)                                               # 세 망을 한 줄에 출력한다
 
    # 1. a 와 b 가 같은 망인지(a == b) 를 「70과 120: True」 꼴로 출력하세요
-   print("70과 120:", a == b)                        # 둘 다 64~127
+   # == 는 두 망이 같으면 True 가 된다. .70 과 .120 은 둘 다 .64 ~ .127 망에 속한다
+   print("70과 120:", a == b)
    # 2. a 와 c 가 같은 망인지를 같은 꼴로 출력하세요
-   print("70과 130:", a == c)                        # 130 은 128~191
+   print("70과 130:", a == c)                                   # .130 은 .128 ~ .191 망에 속하므로 a 와 다른 망이다
    ```
 3. **[VS Code]** 번호 주석 아래를 채웁니다.
 4. **[터미널]** 실행합니다. 터미널의 줄 위에 `…/network_zt` 가 보여야 합니다. 아니면 먼저 `cd network_zt` 를 입력합니다.
@@ -723,10 +736,11 @@ print(net.network_address, net.broadcast_address, net.num_addresses)
 #### 🐍 문법 상자 · `**` 거듭제곱 · `.subnets()`
 
 ```python
-import ipaddress                                  # import = 파이썬에 들어 있는 IP 계산 도구를 불러온다
-print(2 ** 6 - 2)                                 # ** = 거듭제곱 — 2 의 6제곱에서 2 를 뺀 값 출력
-parent = ipaddress.ip_network("192.168.50.0/24")  # 나눌 큰 망 /24 를 망 객체로
-# .subnets(new_prefix=26) = /26 으로 나눈 망들 — list() 로 모아 len() 으로 개수
+import ipaddress                                  # import 로 파이썬에 들어 있는 IP 계산 모듈 ipaddress 를 불러온다
+print(2 ** 6 - 2)                                 # ** 는 거듭제곱이다. 2 의 6제곱에서 2 를 뺀 값을 출력한다
+parent = ipaddress.ip_network("192.168.50.0/24")  # 나눌 전체 망 192.168.50.0/24 를 망 객체로 바꿔 parent 에 담는다
+# .subnets(new_prefix=26) 은 망을 /26 크기로 나눈 망을 하나씩 리턴한다.
+# list() 로 리스트에 모으고 len() 으로 개수를 세어 출력한다
 print(len(list(parent.subnets(new_prefix=26))))
 # 62
 # 4
@@ -752,10 +766,11 @@ print(len(list(parent.subnets(new_prefix=26))))
 1. **[VS Code]** `network_zt` 폴더의 `warmup.py` 를 엽니다. 없으면 New File 로 만들고, 안에 있던 내용은 지웁니다.
 2. **[VS Code]** 아래 코드를 그대로 따라 칩니다.
    ```python
-   import ipaddress                                  # IP 계산 도구를 불러온다
-   parent = ipaddress.ip_network("192.168.50.0/24")  # 나눌 큰 망 /24
-   for sub in parent.subnets(new_prefix=26):         # /26 크기로 나눈 망을 하나씩
-       print(sub)                                    # 나눈 망을 출력
+   import ipaddress                                  # import 로 파이썬에 들어 있는 IP 계산 모듈 ipaddress 를 불러온다
+   parent = ipaddress.ip_network("192.168.50.0/24")  # 나눌 전체 망 192.168.50.0/24 를 망 객체로 바꿔 parent 에 담는다
+   # .subnets(new_prefix=26) 은 /26 크기로 나눈 망을 하나씩 리턴한다. 그 망을 sub 에 담아 반복한다
+   for sub in parent.subnets(new_prefix=26):
+       print(sub)                                    # 나눈 망을 출력한다
    ```
 3. **[터미널]** 실행합니다.
    ```bash
@@ -794,14 +809,19 @@ print(len(list(parent.subnets(new_prefix=26))))
 2. **[VS Code]** 아래 코드를 복사해 파일에 붙여 넣습니다. 코드 상자 안을 마우스로 끌어 선택하고 `Ctrl + C` 를 누릅니다.
    ```python
    # ── 강사용: 정답을 채운 코드입니다 ──
-   def smallest_prefix(required):                    # 장비 수를 받아 CIDR 숫자를 리턴한다
-       for host_bits in range(2, 33):                # 호스트 칸을 2칸부터 하나씩 늘려 본다
+   # def 로 함수 smallest_prefix 를 만든다. 필요한 장비 수 required 를 받아 CIDR 숫자를 리턴한다
+   def smallest_prefix(required):
+       # range(2, 33) 은 2 부터 32 까지의 수를 차례로 만든다. 호스트 비트 수를 2 부터 하나씩 늘려 host_bits 에 담는다
+       for host_bits in range(2, 33):
            # 1. 2 ** host_bits - 2 가 required 이상이면 32 - host_bits 를 return 하세요
-           if 2 ** host_bits - 2 >= required:        # 이 칸 수로 충분하면
-               return 32 - host_bits                 # 나머지가 네트워크 칸 = CIDR 숫자
+           # host_bits 개의 비트로 만들 수 있는 주소 수에서 2 를 뺀 값이 required 이상이면 아래 줄을 실행한다
+           if 2 ** host_bits - 2 >= required:
+               return 32 - host_bits  # 32비트에서 호스트 비트를 뺀 나머지가 네트워크 비트 수, 곧 CIDR 숫자다. 그 값을 리턴한다
 
-   for name, count in [("보안팀", 10), ("운영팀", 25), ("개발팀", 50)]:  # (이름, 수) 묶음을 하나씩 꺼내 두 변수에 나눠 담는다
-       print(name, count, f"/{smallest_prefix(count)}")  # 함수가 리턴한 CIDR 숫자 앞에 / 를 붙여 출력
+   # (이름, 장비 수) 튜플을 하나씩 꺼내 name 과 count 두 변수에 나눠 담아 반복한다
+   for name, count in [("보안팀", 10), ("운영팀", 25), ("개발팀", 50)]:
+       # f"…" 는 {} 안의 값을 글자에 넣는다. 함수가 리턴한 CIDR 숫자 앞에 / 를 붙여 출력한다
+       print(name, count, f"/{smallest_prefix(count)}")
    ```
 3. **[VS Code]** 번호 주석 아래를 채웁니다.
 4. **[터미널]** 실행합니다. 터미널의 줄 위에 `…/network_zt` 가 보여야 합니다. 아니면 먼저 `cd network_zt` 를 입력합니다.
@@ -853,12 +873,14 @@ print(len(list(parent.subnets(new_prefix=26))))
 2. **[VS Code]** 아래 코드를 복사해 파일에 붙여 넣습니다. 코드 상자 안을 마우스로 끌어 선택하고 `Ctrl + C` 를 누릅니다.
    ```python
    # ── 강사용: 정답을 채운 코드입니다 ──
-   import ipaddress                                  # import = 파이썬에 들어 있는 IP 계산 도구를 불러온다
+   import ipaddress                                  # import 로 파이썬에 들어 있는 IP 계산 모듈 ipaddress 를 불러온다
 
-   parent = ipaddress.ip_network("192.168.50.0/24")  # 회사가 받은 전체 주소
-   for sub in parent.subnets(new_prefix=26):         # /26 네 개를 하나씩
+   parent = ipaddress.ip_network("192.168.50.0/24")  # 나눌 전체 망 192.168.50.0/24 를 망 객체로 바꿔 parent 에 담는다
+   # .subnets(new_prefix=26) 은 /26 크기로 나눈 망을 하나씩 리턴한다. 그 망을 sub 에 담아 반복한다
+   for sub in parent.subnets(new_prefix=26):
        # 1. sub 와 「사용 가능 62」 처럼 쓸 수 있는 수를 한 줄에 출력하세요
-       print(sub, "사용 가능", sub.num_addresses - 2)  # 망과 「전체 - 2」 를 한 줄에 출력
+       # 망과, 전체 주소 수에서 2 를 뺀 사용 가능 주소 수를 한 줄에 출력한다
+       print(sub, "사용 가능", sub.num_addresses - 2)
    ```
 3. **[VS Code]** 번호 주석 아래를 채웁니다.
 4. **[터미널]** 실행합니다. 터미널의 줄 위에 `…/network_zt` 가 보여야 합니다. 아니면 먼저 `cd network_zt` 를 입력합니다.
@@ -917,10 +939,11 @@ print(len(list(parent.subnets(new_prefix=26))))
 #### 🐍 문법 상자 · `.overlaps()` — 두 망이 겹치나
 
 ```python
-import ipaddress                              # import = 파이썬에 들어 있는 IP 계산 도구를 불러온다
-a = ipaddress.ip_network("192.168.50.0/26")   # .0 부터 시작하는 /26 망 객체
-b = ipaddress.ip_network("192.168.50.32/27")  # .32 부터 시작하는 /27 망 객체
-print(a.overlaps(b))                          # .overlaps() = 두 망이 주소를 하나라도 같이 쓰면 True
+import ipaddress                              # import 로 파이썬에 들어 있는 IP 계산 모듈 ipaddress 를 불러온다
+a = ipaddress.ip_network("192.168.50.0/26")   # 192.168.50.0/26 망 객체를 a 에 담는다. .0 부터 .63 까지다
+b = ipaddress.ip_network("192.168.50.32/27")  # 192.168.50.32/27 망 객체를 b 에 담는다. .32 부터 .63 까지다
+# .overlaps() 는 두 망이 주소를 하나라도 같이 쓰면 True 를 리턴한다. 그 결과를 출력한다
+print(a.overlaps(b))
 # True
 ```
 
@@ -942,26 +965,29 @@ print(a.overlaps(b))                          # .overlaps() = 두 망이 주소�
 2. **[VS Code]** 아래 코드를 복사해 파일에 붙여 넣습니다. 코드 상자 안을 마우스로 끌어 선택하고 `Ctrl + C` 를 누릅니다.
    ```python
    # ── 강사용: 정답을 채운 코드입니다 ──
-   import ipaddress                                  # import = 파이썬에 들어 있는 IP 계산 도구를 불러온다
+   import ipaddress                         # import 로 파이썬에 들어 있는 IP 계산 모듈 ipaddress 를 불러온다
 
-   plan = [                                          # (부서, CIDR, 필요한 장비 수)
-       ("개발팀", "192.168.50.0/26", 50),            # 튜플 하나 = (부서, CIDR, 장비 수)
-       ("운영팀", "192.168.50.64/27", 25),           # 같은 꼴의 튜플
-       ("보안팀", "192.168.50.96/28", 10),           # 같은 꼴의 튜플
-   ]                                                 # 리스트를 닫는다
-   networks = []                                     # 겹침 검사용으로 망을 모을 리스트
+   plan = [                                 # 리스트 plan 에 (부서, CIDR, 필요한 장비 수) 튜플을 담는다
+       ("개발팀", "192.168.50.0/26", 50),   # 튜플 하나는 (부서, CIDR, 필요한 장비 수) 순서로 값을 묶는다
+       ("운영팀", "192.168.50.64/27", 25),  # 같은 순서로 묶은 운영팀 튜플이다
+       ("보안팀", "192.168.50.96/28", 10),  # 같은 순서로 묶은 보안팀 튜플이다
+   ]                                        # 리스트를 닫는다
+   networks = []                            # 겹침 검사에 쓸 망 객체를 모을 빈 리스트를 만든다
 
-   for name, cidr, required in plan:                 # 부서를 하나씩
-       net = ipaddress.ip_network(cidr)              # CIDR 을 망으로
+   for name, cidr, required in plan:        # plan 의 튜플을 하나씩 꺼내 name · cidr · required 세 변수에 나눠 담아 반복한다
+       net = ipaddress.ip_network(cidr)     # 글자 cidr 를 망 객체로 바꿔 net 에 담는다
        # 1. ok 라는 변수에 「쓸 수 있는 수가 required 이상인지」 를 담으세요
-       ok = net.num_addresses - 2 >= required        # 장비를 다 담을 수 있나
-       print(name, cidr, "충분:", ok)                # 부서 · CIDR · 판정을 한 줄에 출력
-       networks.append(net)                          # 겹침 검사용으로 모은다
+       # 전체 주소 수에서 네트워크 · 브로드캐스트 주소 2 개를 뺀 수가 required 이상이면 ok 에 True 가 담긴다
+       ok = net.num_addresses - 2 >= required
+       print(name, cidr, "충분:", ok)       # 부서 · CIDR · 판정 결과를 한 줄에 출력한다
+       # .append() 는 리스트 끝에 값을 하나 더한다. 겹침 검사에 쓰도록 net 을 networks 에 더한다
+       networks.append(net)
 
-   # 2. overlap 에 「앞 둘(networks[0], networks[1])이 겹치거나 networks[1] 과 networks[2] 가 겹치거나 networks[0] 과 networks[2] 가 겹치는지」 를 담으세요
-   # 세 쌍 중 하나라도 .overlaps() 가 True 면 overlap 은 True
+   # 2. overlap 에 「(networks[0], networks[1]) · (networks[1], networks[2]) · (networks[0], networks[2])
+   #    세 쌍 중 하나라도 겹치는지」 를 True 나 False 로 담으세요
+   # 세 쌍을 .overlaps() 로 검사하고 or 로 묶는다. 하나라도 True 이면 overlap 에 True 가 담긴다
    overlap = networks[0].overlaps(networks[1]) or networks[1].overlaps(networks[2]) or networks[0].overlaps(networks[2])
-   print("겹침 있음:", overlap)                      # 겹침 판정을 출력
+   print("겹침 있음:", overlap)             # 겹침 판정 결과를 출력한다
    ```
 3. **[VS Code]** 번호 주석 아래를 채웁니다.
 4. **[터미널]** 실행합니다. 터미널의 줄 위에 `…/network_zt` 가 보여야 합니다. 아니면 먼저 `cd network_zt` 를 입력합니다.
