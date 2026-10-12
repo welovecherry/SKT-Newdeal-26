@@ -77,13 +77,17 @@
 
 ```python
 mac_table = {"AA": 1}      # 딕셔너리는 {키: 값} 짝을 담는다. 키 "AA"(MAC 주소)에 값 1(포트 번호)을 담는다
+
 # 키 in 딕셔너리 는 그 키가 있으면 True, 없으면 False 가 된다. 두 키를 검사한 결과를 출력한다
 print("AA" in mac_table, "BB" in mac_table)
+
 out = []                   # 포트 번호를 모을 빈 리스트 out 을 만든다
 for port in [1, 2, 3, 4]:  # 리스트의 포트 번호를 하나씩 port 에 담아 반복한다
     if port != 1:          # != 는 두 값이 같지 않으면 True 가 된다. port 가 1 이 아니면 아래 줄을 실행한다
         out.append(port)   # .append() 는 리스트 끝에 값을 하나 더한다. port 를 out 에 더한다
+
 print(out)                 # 모은 리스트를 출력한다
+
 # True False
 # [2, 3, 4]
 ```
@@ -254,11 +258,14 @@ AA → BB : [3]
 
 ```python
 import ipaddress                                    # import 로 파이썬에 들어 있는 IP 계산 모듈 ipaddress 를 불러온다
+
 net = ipaddress.ip_network("192.168.10.0/24")       # 「주소/CIDR」 글자를 망 객체로 바꿔 net 에 담는다
+
 # ipaddress.ip_address() 는 주소 글자를 주소 객체로 바꿔 리턴한다.
 # 주소 in 망 은 주소가 그 망 안에 있으면 True 가 된다. 192.168.10.1 을 검사한 결과를 출력한다
 print(ipaddress.ip_address("192.168.10.1") in net)
 print(ipaddress.ip_address("192.168.11.1") in net)  # 192.168.11.1 을 같은 방법으로 검사한 결과를 출력한다
+
 # True
 # False
 ```
@@ -288,6 +295,7 @@ print(ipaddress.ip_address("192.168.11.1") in net)  # 192.168.11.1 을 같은 �
    # ① 내 망을 정한다. 내 PC 주소 192.168.50.10 이 속한 /26 망 객체를 my_net 에 담는다
    my_net = ipaddress.ip_network("192.168.50.10/26", strict=False)
    print("내 망:", my_net)                                            # 내 망을 「네트워크 주소/CIDR」 꼴로 출력한다
+
    for dest in ["192.168.50.40", "192.168.50.63", "192.168.50.70"]:  # 목적지 주소 글자 세 개를 하나씩 dest 에 담아 반복한다
        # ② 목적지 주소 글자를 주소 객체로 바꿔 my_net 안에 있는지 검사한다. 안에 있으면 아래 줄을 실행한다
        if ipaddress.ip_address(dest) in my_net:
@@ -499,6 +507,7 @@ arp -a
        # VLAN 번호가 들어온 포트와 같고, 들어온 포트 자신이 아니면 아래 줄을 실행한다
        if port_vlan[port] == port_vlan[in_port] and port != in_port:
            out.append(port)                  # .append() 는 리스트 끝에 값을 하나 더한다. port 를 out 에 더한다
+
    print(out)                                # 모은 리스트를 출력한다
    ```
 3. **[터미널]** 실행합니다.
@@ -744,13 +753,17 @@ tracert -d -h 5 8.8.8.8
 
 ```python
 import ipaddress                       # import 로 파이썬에 들어 있는 IP 계산 모듈 ipaddress 를 불러온다
+
 a = ipaddress.ip_network("0.0.0.0/0")  # /0 은 네트워크 비트가 0 개라 모든 주소를 포함하는 망이다. 그 망 객체를 a 에 담는다
+
 # .0 부터 .63 까지인 /26 망 객체를 b 에 담는다
 b = ipaddress.ip_network("192.168.50.0/26")
+
 # ip_address() 는 주소 글자를 주소 객체로 바꿔 리턴한다. 그 객체를 dest 에 담는다
 dest = ipaddress.ip_address("192.168.50.20")
 print(dest in a, dest in b)            # 주소 in 망 은 주소가 그 망 안에 있으면 True 가 된다. 두 망을 검사한 결과를 한 줄에 출력한다
 print(a.prefixlen, b.prefixlen)        # .prefixlen 은 망의 CIDR 숫자다. 두 값을 출력한다
+
 # True True
 # 0 26
 ```
@@ -1034,6 +1047,7 @@ print(a.prefixlen, b.prefixlen)        # .prefixlen 은 망의 CIDR 숫자다. �
 
    usable = server.num_addresses - 2                     # 전체 주소 수에서 2 를 빼 서버망의 쓸 수 있는 수를 usable 에 담는다
    print("서버망", server, "쓸 수 있는 수", usable, "충분:", usable >= 10)  # 서버망 · 쓸 수 있는 수 · 10대가 들어가는지를 한 줄에 출력한다
+
    for name, cidr in used:                               # used 의 튜플을 하나씩 꺼내 name 과 cidr 에 나눠 담아 반복한다
        # .overlaps() 는 두 망이 주소를 하나라도 같이 쓰면 True 를 리턴한다. 서버망과 이 부서 망이 겹치는지 출력한다
        print(name, cidr, "와 겹침:", server.overlaps(ipaddress.ip_network(cidr)))

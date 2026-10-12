@@ -56,6 +56,7 @@
 print(format(5, "08b"))        # format(숫자, "08b") 는 숫자를 앞자리를 0 으로 채운 8자리 2진수 글자로 바꾼다. 5 를 바꿔 출력한다
 print(format(255, "08b"))      # 255 를 8자리 2진수 글자로 바꿔 출력한다. 255 는 8비트로 나타낼 수 있는 가장 큰 수다
 print(len(format(25, "08b")))  # len() 은 글자 수를 리턴한다. 25 를 바꾼 8자리 2진수 글자의 글자 수를 출력한다
+
 # 00000101
 # 11111111
 # 8
@@ -84,6 +85,7 @@ print(len(format(25, "08b")))  # len() 은 글자 수를 리턴한다. 25 를 �
    ```python
    print(format(192, "08b"))  # 192 를 앞자리를 0 으로 채운 8자리 2진수 글자로 바꿔 출력한다
    print(format(10, "08b"))   # 10 을 앞자리를 0 으로 채운 8자리 2진수 글자로 바꿔 출력한다
+
    # + 는 두 글자를 이어 붙인다. 이어 붙인 글자의 글자 수를 len() 으로 세어 출력한다
    print(len(format(192, "08b") + format(10, "08b")))
    ```
@@ -177,8 +179,10 @@ print(len(format(25, "08b")))  # len() 은 글자 수를 리턴한다. 25 를 �
 ```python
 second = 20                # 변수 second 에 숫자 20 을 담는다
 print(16 <= second <= 31)  # a <= x <= b 는 x 가 a 이상 b 이하일 때 True 가 된다. second 를 검사한 결과를 출력한다
+
 # or 는 양쪽 조건 중 하나라도 True 이면 True 가 된다. second 가 10 이거나 20 인지 검사한 결과를 출력한다
 print(second == 10 or second == 20)
+
 # True
 # True
 ```
@@ -358,8 +362,10 @@ PAT 공유기는 「공인 IP 쪽 포트 40002번 = 내부망 `192.168.10.25:512
 ```python
 print(format(255, "08b"))                     # format(숫자, "08b") 는 숫자를 8자리 2진수 글자로 바꿔 리턴한다. 255 를 2진수로 출력한다
 print(format(0, "08b"))                       # 같은 방법으로 0 을 8자리 2진수 글자로 바꿔 출력한다
+
 mask = "11111111.11111111.11111111.00000000"  # 255.255.255.0 을 32비트 2진수로 펼친 글자를 변수 mask 에 담는다
 print(mask.count("1"))                        # .count("1") 은 글자 안에 "1" 이 몇 번 나오는지 리턴한다. 1 의 개수를 출력한다
+
 # 11111111
 # 00000000
 # 24
@@ -483,14 +489,17 @@ print(mask.count("1"))                        # .count("1") 은 글자 안에 "1
 
 ```python
 import ipaddress     # import 로 파이썬에 들어 있는 IP 계산 모듈 ipaddress 를 불러온다
+
 # ipaddress.ip_network() 는 「주소/CIDR」 글자를 망 객체로 바꿔 리턴한다.
 # strict=False 를 주면 망의 첫 주소가 아닌 주소를 넣어도 그 주소가 속한 망을 리턴한다. 그 망을 net 에 담는다
 net = ipaddress.ip_network("192.168.10.25/24", strict=False)
 print(net)           # 망 객체를 출력하면 「네트워크 주소/CIDR」 꼴의 글자로 나온다
 print(net.netmask)   # .netmask 는 그 망의 서브넷 마스크다. 마스크를 출력한다
+
 # .network_address 는 망의 첫 주소, .broadcast_address 는 마지막 주소, .num_addresses 는 전체 주소 수다.
 # 세 값을 한 줄에 출력한다
 print(net.network_address, net.broadcast_address, net.num_addresses)
+
 # 192.168.10.0/24
 # 255.255.255.0
 # 192.168.10.0 192.168.10.255 256
@@ -528,14 +537,19 @@ print(net.network_address, net.broadcast_address, net.num_addresses)
 
    # f-string 으로 「주소/CIDR」 글자를 만들고, strict=False 로 그 주소가 속한 망 객체를 만들어 net 에 담는다
    net = ipaddress.ip_network(f"{my_ip}/{prefix}", strict=False)
+
    # .netmask 는 그 망의 서브넷 마스크다. ① 마스크를 출력한다
    print("① 서브넷 마스크:", net.netmask)
+
    # .network_address 는 망의 첫 주소다. ③ 네트워크 주소를 출력한다
    print("③ 네트워크 주소:", net.network_address)
+
    # .broadcast_address 는 망의 마지막 주소다. ③ 브로드캐스트 주소를 출력한다
    print("③ 브로드캐스트 주소:", net.broadcast_address)
+
    # 주소에 1 을 더하면 바로 다음 주소, 1 을 빼면 바로 앞 주소가 된다. ④ 장비에 줄 수 있는 첫 주소와 마지막 주소를 출력한다
    print("④ 장비에 줄 수 있는 주소:", net.network_address + 1, "~", net.broadcast_address - 1)
+
    # .num_addresses 는 전체 주소 수다. 네트워크 · 브로드캐스트 주소 2개를 빼서 ④ 쓸 수 있는 수를 출력한다
    print("④ 쓸 수 있는 수:", net.num_addresses - 2)
    ```
@@ -578,6 +592,7 @@ print(net.network_address, net.broadcast_address, net.num_addresses)
 
    # ── 미리 채워 둔 줄입니다. 고치지 않습니다 ──
    my_ip = "192.168.10.25"                       # 기준이 되는 PC 주소 글자를 변수 my_ip 에 담는다
+
    # for 로 비교할 주소 세 개를 하나씩 other 에 담아 아래 줄을 반복한다
    for other in ["192.168.10.1", "192.168.10.200", "192.168.20.25"]:
        print(other, same_net_24(my_ip, other))  # 비교한 주소와 함수가 리턴한 판정을 한 줄에 출력한다
@@ -651,10 +666,13 @@ print(net.network_address, net.broadcast_address, net.num_addresses)
 
 ```python
 import ipaddress                                  # import 로 파이썬에 들어 있는 IP 계산 모듈 ipaddress 를 불러온다
+
 parent = ipaddress.ip_network("192.168.50.0/24")  # 나눌 전체 망 192.168.50.0/24 를 망 객체로 바꿔 parent 에 담는다
+
 # .subnets(new_prefix=25) 는 망을 /25 크기로 나눈 작은 망을 앞에서부터 하나씩 리턴한다. 그 망을 sub 에 담아 반복한다
 for sub in parent.subnets(new_prefix=25):
     print(sub)                                    # 나눈 작은 망을 「네트워크 주소/CIDR」 꼴로 출력한다
+
 # 192.168.50.0/25
 # 192.168.50.128/25
 ```
@@ -679,7 +697,9 @@ for sub in parent.subnets(new_prefix=25):
 2. **[VS Code]** 아래 코드를 그대로 따라 칩니다.
    ```python
    import ipaddress                                  # import 로 파이썬에 들어 있는 IP 계산 모듈 ipaddress 를 불러온다
+
    parent = ipaddress.ip_network("192.168.50.0/24")  # 나눌 전체 망 192.168.50.0/24 를 망 객체로 바꿔 parent 에 담는다
+
    # .subnets(new_prefix=26) 은 /26 크기로 나눈 망을 앞에서부터 하나씩 리턴한다. 그 망을 sub 에 담아 반복한다
    for sub in parent.subnets(new_prefix=26):
        print(sub)                                    # 나눈 망을 출력한다
@@ -763,11 +783,14 @@ for sub in parent.subnets(new_prefix=25):
 
 ```python
 import ipaddress                                # import 로 파이썬에 들어 있는 IP 계산 모듈 ipaddress 를 불러온다
+
 net = ipaddress.ip_network("192.168.50.64/27")  # 블록 192.168.50.64/27 을 망 객체로 바꿔 net 에 담는다
 print(net.num_addresses)                        # .num_addresses 는 그 망의 전체 주소 수다. 주소 수를 출력한다
 print(net.num_addresses - 2)                    # 네트워크 · 브로드캐스트 주소 2개를 빼서 쓸 수 있는 수를 출력한다
+
 # 네트워크 주소에 1 을 더한 주소와 브로드캐스트 주소에서 1 을 뺀 주소를 장비에 줄 수 있는 범위로 출력한다
 print(net.network_address + 1, "~", net.broadcast_address - 1)
+
 # 32
 # 30
 # 192.168.50.65 ~ 192.168.50.94
@@ -795,6 +818,7 @@ print(net.network_address + 1, "~", net.broadcast_address - 1)
    import ipaddress                                  # import 로 파이썬에 들어 있는 IP 계산 모듈 ipaddress 를 불러온다
 
    parent = ipaddress.ip_network("192.168.50.0/24")  # 나눌 전체 망 192.168.50.0/24 를 망 객체로 바꿔 parent 에 담는다
+
    # .subnets(new_prefix=26) 은 /26 크기로 나눈 망을 앞에서부터 하나씩 리턴한다. 그 망을 sub 에 담아 반복한다
    for sub in parent.subnets(new_prefix=26):
        first = sub.network_address + 1               # 네트워크 주소에 1 을 더해 장비에 줄 수 있는 첫 주소를 first 에 담는다
@@ -843,11 +867,13 @@ print(net.network_address + 1, "~", net.broadcast_address - 1)
 
 ```python
 import ipaddress                              # import 로 파이썬에 들어 있는 IP 계산 모듈 ipaddress 를 불러온다
+
 a = ipaddress.ip_network("192.168.50.0/26")   # 192.168.50.0/26 망 객체를 a 에 담는다. 이 망은 .0 부터 .63 까지다
 b = ipaddress.ip_network("192.168.50.32/27")  # 192.168.50.32/27 망 객체를 b 에 담는다. 이 망은 .32 부터 .63 까지다
 c = ipaddress.ip_network("192.168.50.64/27")  # 192.168.50.64/27 망 객체를 c 에 담는다. 이 망은 .64 부터 .95 까지다
 print(a.overlaps(b))                          # .overlaps() 는 두 망이 주소를 하나라도 같이 쓰면 True 를 리턴한다. a 와 b 의 결과를 출력한다
 print(a.overlaps(c))                          # 같은 방법으로 a 와 c 가 주소를 하나라도 같이 쓰는지 출력한다
+
 # True
 # False
 ```
@@ -1124,6 +1150,7 @@ def same_net_24(ip1, ip2):
     return parts1[:3] == parts2[:3]
 
 my_ip = "192.168.10.25"                       # 기준이 되는 PC 주소 글자를 변수 my_ip 에 담는다
+
 # for 로 비교할 주소 세 개를 하나씩 other 에 담아 아래 줄을 반복한다
 for other in ["192.168.10.1", "192.168.10.200", "192.168.20.25"]:
     print(other, same_net_24(my_ip, other))  # 비교한 주소와 함수가 리턴한 판정을 한 줄에 출력한다
