@@ -133,7 +133,7 @@ print(len(bits))               # len() 은 글자 수를 리턴한다. bits 의 
 **순서**
 
 1. **[VS Code]** 왼쪽 목록에서 `network_zt` 폴더를 오른쪽 클릭 › **New File** › 이름 `ip_bits.py` 를 입력하고 Enter 를 누릅니다.
-2. **[VS Code]** 아래 코드를 복사해 파일에 붙여 넣습니다. 코드 상자 안을 마우스로 끌어 선택하고 `Ctrl + C` 를 누릅니다.
+2. **[VS Code]** 아래 코드를 파일에 붙여 넣고, **줄마다 주석을 읽어** 각 줄이 무엇을 하는지 먼저 이해합니다. 코드 상자 안을 마우스로 끌어 선택하고 `Ctrl + C` 로 복사합니다.
    ```python
    # ── 강사용: 정답을 채운 코드입니다 ──
    def to_bits(ip):                  # def 로 함수 to_bits 를 만든다. IP 주소 글자 ip 를 받아 32비트 2진수 글자를 리턴한다
@@ -151,7 +151,7 @@ print(len(bits))               # len() 은 글자 수를 리턴한다. bits 의 
    print(result)                     # 32비트 2진수 글자를 출력한다
    print("길이:", len(result))         # len() 은 글자 수를 리턴한다. result 의 글자 수를 출력해 32자리가 맞는지 확인한다
    ```
-3. **[VS Code]** 번호 주석 아래를 채웁니다.
+3. **[VS Code]** 번호 주석(`# 1.` · `# 2.` …)이 시키는 일을 그 바로 아래 줄에 코드로 씁니다.
 4. **[터미널]** 실행합니다. 터미널의 줄 위에 `…/network_zt` 가 보여야 합니다. 아니면 먼저 `cd network_zt` 를 입력합니다.
    ```bash
    python ip_bits.py
@@ -247,7 +247,7 @@ print(second == 10 or second == 20)
 **순서**
 
 1. **[VS Code]** 왼쪽 목록에서 `network_zt` 폴더를 오른쪽 클릭 › **New File** › 이름 `private_ip.py` 를 입력하고 Enter 를 누릅니다.
-2. **[VS Code]** 아래 코드를 복사해 파일에 붙여 넣습니다. 코드 상자 안을 마우스로 끌어 선택하고 `Ctrl + C` 를 누릅니다.
+2. **[VS Code]** 아래 코드를 파일에 붙여 넣고, **줄마다 주석을 읽어** 각 줄이 무엇을 하는지 먼저 이해합니다. 코드 상자 안을 마우스로 끌어 선택하고 `Ctrl + C` 로 복사합니다.
    ```python
    # ── 강사용: 정답을 채운 코드입니다 ──
    # def 로 함수 is_private 를 만든다. IP 주소 글자 ip 가 사설 IP 이면 True, 아니면 False 를 리턴한다
@@ -276,7 +276,7 @@ print(second == 10 or second == 20)
        else:                    # else 는 위 if 의 조건이 False 일 때 아래 줄을 실행한다
            print("[공인]", ip)  # 공인 IP 일 때 [공인] 표시와 주소를 출력한다
    ```
-3. **[VS Code]** 번호 주석 아래를 채웁니다.
+3. **[VS Code]** 번호 주석(`# 1.` · `# 2.` …)이 시키는 일을 그 바로 아래 줄에 코드로 씁니다.
 4. **[터미널]** 실행합니다. 터미널의 줄 위에 `…/network_zt` 가 보여야 합니다. 아니면 먼저 `cd network_zt` 를 입력합니다.
    ```bash
    python private_ip.py
@@ -637,7 +637,7 @@ print(net.network_address, net.broadcast_address, net.num_addresses)
 **순서**
 
 1. **[VS Code]** 왼쪽 목록에서 `network_zt` 폴더를 오른쪽 클릭 › **New File** › 이름 `my_network.py` 를 입력하고 Enter 를 누릅니다.
-2. **[VS Code]** 아래 코드를 복사해 파일에 붙여 넣습니다. 코드 상자 안을 마우스로 끌어 선택하고 `Ctrl + C` 를 누릅니다.
+2. **[VS Code]** 아래 코드를 파일에 붙여 넣고, 실행하기 전에 **줄마다 주석을 읽어** 각 줄이 무엇을 하는지 이해합니다. 코드 상자 안을 마우스로 끌어 선택하고 `Ctrl + C` 로 복사합니다.
    ```python
    import ipaddress         # import 로 파이썬에 들어 있는 IP 계산 모듈 ipaddress 를 불러온다
 
@@ -935,7 +935,7 @@ print(a.overlaps(c))                          # 같은 방법으로 a 와 c 가 
 **순서**
 
 1. **[VS Code]** 왼쪽 목록에서 `network_zt` 폴더를 오른쪽 클릭 › **New File** › 이름 `plan_check.py` 를 입력하고 Enter 를 누릅니다.
-2. **[VS Code]** 아래 코드를 복사해 파일에 붙여 넣습니다. 코드 상자 안을 마우스로 끌어 선택하고 `Ctrl + C` 를 누릅니다.
+2. **[VS Code]** 아래 코드를 파일에 붙여 넣고, 실행하기 전에 **줄마다 주석을 읽어** 각 줄이 무엇을 하는지 이해합니다. 코드 상자 안을 마우스로 끌어 선택하고 `Ctrl + C` 로 복사합니다.
    ```python
    import ipaddress                                 # import 로 파이썬에 들어 있는 IP 계산 모듈 ipaddress 를 불러온다
 

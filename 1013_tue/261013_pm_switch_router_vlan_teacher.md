@@ -154,7 +154,7 @@ print(out)                 # 모은 리스트를 출력한다
 **순서**
 
 1. **[VS Code]** 왼쪽 목록에서 `network_zt` 폴더를 오른쪽 클릭 › **New File** › 이름 `switch_sim.py` 를 입력하고 Enter 를 누릅니다.
-2. **[VS Code]** 아래 코드를 복사해 파일에 붙여 넣습니다. 코드 상자 안을 마우스로 끌어 선택하고 `Ctrl + C` 를 누릅니다. 고칠 곳은 없습니다.
+2. **[VS Code]** 아래 코드를 파일에 붙여 넣고, 실행하기 전에 **줄마다 주석을 읽어** 각 줄이 무엇을 하는지 이해합니다. 코드 상자 안을 마우스로 끌어 선택하고 `Ctrl + C` 로 복사합니다. 고칠 곳은 없습니다.
    ```python
    PORTS = [1, 2, 3, 4]                        # 스위치의 포트 번호 네 개를 리스트 PORTS 에 담는다
    mac_table = {}                              # 빈 딕셔너리로 시작한다. 스위치는 처음에 어느 MAC 주소도 모른다
@@ -289,7 +289,7 @@ print(addr2 in net)                           # addr2 를 같은 방법으로 �
 **순서**
 
 1. **[VS Code]** 왼쪽 목록에서 `network_zt` 폴더를 오른쪽 클릭 › **New File** › 이름 `direct_or_gw.py` 를 입력하고 Enter 를 누릅니다.
-2. **[VS Code]** 아래 코드를 복사해 파일에 붙여 넣습니다. 코드 상자 안을 마우스로 끌어 선택하고 `Ctrl + C` 를 누릅니다.
+2. **[VS Code]** 아래 코드를 파일에 붙여 넣고, 실행하기 전에 **줄마다 주석을 읽어** 각 줄이 무엇을 하는지 이해합니다. 코드 상자 안을 마우스로 끌어 선택하고 `Ctrl + C` 로 복사합니다.
    ```python
    import ipaddress                                                   # import 로 파이썬에 들어 있는 IP 계산 모듈 ipaddress 를 불러온다
 
@@ -787,7 +787,7 @@ print(a.prefixlen, b.prefixlen)        # .prefixlen 은 망의 CIDR 숫자다. �
 **순서**
 
 1. **[VS Code]** 왼쪽 목록에서 `network_zt` 폴더를 오른쪽 클릭 › **New File** › 이름 `route_lookup.py` 를 입력하고 Enter 를 누릅니다.
-2. **[VS Code]** 아래 코드를 복사해 파일에 붙여 넣습니다. 코드 상자 안을 마우스로 끌어 선택하고 `Ctrl + C` 를 누릅니다.
+2. **[VS Code]** 아래 코드를 파일에 붙여 넣고, 실행하기 전에 **줄마다 주석을 읽어** 각 줄이 무엇을 하는지 이해합니다. 코드 상자 안을 마우스로 끌어 선택하고 `Ctrl + C` 로 복사합니다.
    ```python
    import ipaddress                                  # import 로 파이썬에 들어 있는 IP 계산 모듈 ipaddress 를 불러온다
 
@@ -940,7 +940,7 @@ print(a.prefixlen, b.prefixlen)        # .prefixlen 은 망의 CIDR 숫자다. �
 **순서**
 
 1. **[VS Code]** 왼쪽 목록에서 `network_zt` 폴더를 오른쪽 클릭 › **New File** › 이름 `vlan_plan.py` 를 입력하고 Enter 를 누릅니다.
-2. **[VS Code]** 아래 코드를 복사해 파일에 붙여 넣습니다. 코드 상자 안을 마우스로 끌어 선택하고 `Ctrl + C` 를 누릅니다. 고칠 곳은 없습니다.
+2. **[VS Code]** 아래 코드를 파일에 붙여 넣고, 실행하기 전에 **줄마다 주석을 읽어** 각 줄이 무엇을 하는지 이해합니다. 코드 상자 안을 마우스로 끌어 선택하고 `Ctrl + C` 로 복사합니다. 고칠 곳은 없습니다.
    ```python
    import ipaddress                         # import 로 파이썬에 들어 있는 IP 계산 모듈 ipaddress 를 불러온다
 
@@ -1032,7 +1032,7 @@ print(a.prefixlen, b.prefixlen)        # .prefixlen 은 망의 CIDR 숫자다. �
 
 1. **[이 문서]** 7.2 의 ① ~ ③ 을 서버망 10대에 해 봅니다. ② 의 「마지막 부서」는 이제 보안팀입니다.
 2. **[VS Code]** 왼쪽 목록에서 `network_zt` 폴더를 오른쪽 클릭 › **New File** › 이름 `server_check.py` 를 입력하고 Enter 를 누릅니다.
-3. **[VS Code]** 아래 코드를 복사해 파일에 붙여 넣습니다. 코드 상자 안을 마우스로 끌어 선택하고 `Ctrl + C` 를 누릅니다.
+3. **[VS Code]** 아래 코드를 파일에 붙여 넣고, 실행하기 전에 **줄마다 주석을 읽어** 각 줄이 무엇을 하는지 이해합니다. 코드 상자 안을 마우스로 끌어 선택하고 `Ctrl + C` 로 복사합니다.
    ```python
    import ipaddress                                      # import 로 파이썬에 들어 있는 IP 계산 모듈 ipaddress 를 불러온다
 
