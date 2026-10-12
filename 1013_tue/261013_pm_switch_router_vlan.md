@@ -164,6 +164,32 @@
 
 ⚠ `mac_table["BB"]` 처럼 <mark style="background:#ffcdd2; color:#1a1a1a; padding:0 4px; border-radius:3px">없는 키를 바로 꺼내면 `KeyError`</mark> 입니다. 먼저 `in` 으로 확인합니다.
 
+#### 🐍 문법 상자 · 딕셔너리 `{}` · `d[키] = 값` · `키 in d` — MAC 주소 표 만들기
+
+딕셔너리는 **키**와 **값**을 함께 담습니다. `키 in 딕셔너리` 로 키가 있는지 먼저 확인한 뒤 `딕셔너리[키]` 로 값을 꺼냅니다.
+
+```python
+mac_table = {}                    # {} 는 빈 딕셔너리다. 여기에 키와 값을 함께 담는다
+mac_table["CC"] = 2               # 딕셔너리[키] = 값 으로 키 CC 에 값 2 를 넣는다
+print(mac_table)                  # 딕셔너리 전체를 출력한다
+
+print("CC" in mac_table)          # 키 in 딕셔너리 는 그 키가 있으면 True 다. CC 가 있으므로 True 를 출력한다
+print("DD" in mac_table)          # DD 는 넣은 적이 없으므로 False 를 출력한다
+print(mac_table["CC"])            # 딕셔너리[키] 로 키 CC 의 값을 꺼내 출력한다
+
+# {'CC': 2}
+# True
+# False
+# 2
+```
+
+| 쓰는 것 | 뜻 |
+|---|---|
+| `{}` | 빈 딕셔너리를 만든다 |
+| `d["CC"] = 2` | 키 `"CC"` 에 값 `2` 를 넣는다. 키가 이미 있으면 값을 바꾼다 |
+| `"CC" in d` | 키 `"CC"` 가 있으면 `True`, 없으면 `False` |
+| `d["CC"]` | 키 `"CC"` 의 값을 꺼낸다. 없는 키면 `KeyError` |
+
 ---
 
 ### ✍️ 문제 5-2 · 스위치의 MAC 주소 표 읽기
@@ -344,6 +370,71 @@
 
 - 목적지가 들어가는 **회사 망 줄**(위 세 줄)이 있으면 그 줄로 보냅니다.
 - 회사 망 줄에 하나도 맞지 않으면 **기본 경로 `0.0.0.0/0` 줄**로 인터넷 쪽 라우터에 보냅니다.
+
+#### 🐍 문법 상자 · 튜플 리스트 · `for 변수1, 변수2 in 리스트:` — 라우팅 표 줄 꺼내기
+
+튜플은 `( , )` 처럼 괄호로 묶은 값 여러 개입니다. 리스트에 튜플을 넣고 `for 변수1, 변수2 in 리스트:` 로 쓰면 튜플의 값을 차례로 두 변수에 나눠 담습니다.
+
+```python
+routes = [("192.168.10.0/24", "VLAN 10"),   # 리스트 안에 튜플을 넣는다. 튜플 하나가 (목적지 망, 다음 홉) 한 줄이다
+          ("192.168.20.0/24", "VLAN 20")]   # 둘째 튜플을 넣고 리스트를 닫는다
+
+for net, hop in routes:                     # 튜플을 하나씩 꺼내 첫 번째 값은 net, 두 번째 값은 hop 에 나눠 담아 반복한다
+    print(net, "→", hop)                    # 목적지 망과 다음 홉을 출력한다
+
+# 192.168.10.0/24 → VLAN 10
+# 192.168.20.0/24 → VLAN 20
+```
+
+| 쓰는 것 | 뜻 |
+|---|---|
+| `("192.168.10.0/24", "VLAN 10")` | 튜플. 괄호로 묶은 값 두 개 |
+| `for net, hop in routes:` | 튜플마다 첫 번째 값을 `net`, 두 번째 값을 `hop` 에 담아 반복한다 |
+
+#### 🐍 문법 상자 · `ipaddress.ip_address()` · `주소 in 망` — 주소가 망에 들어 있는지
+
+`import` 와 `ip_network()` 는 오전 3.4 아래 문법 상자에서 봤습니다. `ip_address()` 는 주소 하나를 **주소 객체**로 만들고, `주소 in 망` 은 그 주소가 망에 들어 있으면 `True` 입니다.
+
+```python
+import ipaddress                                   # import 로 IP 계산 모듈 ipaddress 를 불러온다
+
+net = ipaddress.ip_network("192.168.30.0/24")      # 보안팀 망을 망 객체로 만들어 net 에 담는다
+pc = ipaddress.ip_address("192.168.30.5")          # ip_address() 는 주소 글자로 주소 객체를 만들어 리턴한다. 그 객체를 pc 에 담는다
+web = ipaddress.ip_address("8.8.8.8")              # 8.8.8.8 도 주소 객체로 만들어 web 에 담는다
+
+print(pc in net)                                   # 주소 in 망 은 주소가 그 망에 들어 있으면 True 다. pc 는 들어 있으므로 True 를 출력한다
+print(web in net)                                  # web 은 보안팀 망에 들어 있지 않으므로 False 를 출력한다
+
+# True
+# False
+```
+
+| 쓰는 것 | 뜻 |
+|---|---|
+| `ipaddress.ip_address("주소")` | 주소 하나를 나타내는 주소 객체를 리턴한다 |
+| `주소 in 망` | 주소가 그 망에 들어 있으면 `True`, 아니면 `False` |
+
+#### 🐍 문법 상자 · `found = False` → `found = True` — 찾았는지 적어 두는 변수
+
+반복 전에 `False` 를 담아 두고, 찾으면 `True` 로 바꿉니다. 반복이 끝난 뒤 이 값을 보면 한 번이라도 찾았는지 알 수 있습니다.
+
+```python
+found = False                     # 아직 찾지 못했으므로 found 를 False 로 시작한다
+
+for vlan in [10, 20, 30]:         # VLAN 번호를 하나씩 vlan 에 담아 반복한다
+    if vlan == 30:                # vlan 이 30 이면 아래 줄을 실행한다
+        found = True              # 찾았으므로 found 를 True 로 바꾼다
+
+print(found)                      # 반복이 끝난 뒤 found 의 값을 출력한다. 30 을 찾았으므로 True 다
+
+# True
+```
+
+| 쓰는 것 | 뜻 |
+|---|---|
+| `found = False` | 반복 전에 「아직 못 찾음」으로 시작한다 |
+| `found = True` | `if` 아래에서 찾았을 때만 바꾼다 |
+| `if found == False:` | 반복이 끝나도 한 번도 못 찾았으면 아래 줄을 실행한다 |
 
 ---
 
