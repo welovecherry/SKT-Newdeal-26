@@ -126,10 +126,6 @@ print("a" in "aeiou", "x" in "aeiou")
 
 **왜 중요한가** — 도메인에서 TLD 앞 조각의 길이와 모음 수를 세는 연습입니다. 6-2 의 점수 함수가 이 두 값으로 규칙 ①·③을 매깁니다.
 
-**이 문제에 나오는 말**
-
-새 용어 없음.
-
 **순서**
 1. **[VS Code]** `network_zt` 폴더의 `warmup.py` 를 엽니다. 안에 있던 내용은 지웁니다.
 2. **[VS Code]** 아래 코드를 `warmup.py` 에 그대로 따라 칩니다.
@@ -173,10 +169,6 @@ print("a" in "aeiou", "x" in "aeiou")
 **할 일** — 이름마다 TLD 바로 앞 조각과 TLD 를 꺼내 출력하는 `label.py` 를 완성해 실행하고, CDN 이름 줄의 결과를 보고서에 적습니다.
 
 **왜 중요한가** — 어느 조각을 볼지 정해야 맨 앞 조각만 무작위인 CDN 같은 정상 도메인을 의심으로 잘못 판정하지 않습니다. 6-2 의 점수 함수도 이 두 조각으로 규칙을 매깁니다.
-
-**이 문제에 나오는 말**
-
-새 용어 없음.
 
 **순서**
 1. **[VS Code]** `network_zt` 폴더에 `label.py` 를 만듭니다.
@@ -261,7 +253,6 @@ python label.py
            if ch in "aeiou":
                vowels = vowels + 1
        return {"label": label, "len": len(label), "digits": digits, "vowel_ratio": round(vowels / len(label), 2)}
-
 
    for name in ["www.naver.com", "kxq3vz9a.top", "xn--3e0b707e.kr"]:
        print(features(name))
@@ -386,10 +377,6 @@ python typosquat.py
 
 **왜 중요한가** — 도메인 하나가 아니라 PC 별로 NXDOMAIN 을 세면 DGA 이름을 연달아 묻는 감염 의심 PC 를 찾을 수 있습니다. 관제에서 어느 PC 를 먼저 점검할지 정하는 기준이 됩니다.
 
-**이 문제에 나오는 말**
-
-새 용어 없음. NXDOMAIN 이 많은 이유는 5.1 표의 「답」 줄에 있습니다.
-
 **순서**
 1. **[VS Code]** `network_zt` 폴더에 `nx_count.py` 를 만듭니다.
 2. **[VS Code]** 아래 코드를 파일에 붙여 넣습니다.
@@ -490,10 +477,6 @@ python nx_count.py
 
 **왜 중요한가** — 규칙마다 점수를 더하고 문턱값과 비교하는 방식을 손으로 확인합니다. 6-2 의 점수 함수가 같은 방식으로 규칙 다섯 개를 더합니다.
 
-**이 문제에 나오는 말**
-
-새 용어 없음.
-
 **순서**
 1. **[VS Code]** `network_zt` 폴더의 `warmup.py` 를 엽니다. 안에 있던 내용은 지웁니다.
 2. **[VS Code]** 아래 코드를 `warmup.py` 에 그대로 따라 칩니다.
@@ -567,17 +550,12 @@ from dga_score import score      # 위 파일의 함수를 꺼내 쓴다 — 시
 
 **왜 중요한가** — 여러 지표를 점수 하나로 모으면 도메인마다 의심 정도를 같은 기준으로 비교할 수 있습니다. 걸린 규칙 이름은 7교시 판정표의 근거 칸이 됩니다.
 
-**이 문제에 나오는 말**
-
-새 용어 없음.
-
 **순서**
 1. **[VS Code]** `network_zt` 폴더에 `dga_score.py` 를 만듭니다.
 2. **[VS Code]** 아래 코드를 파일에 붙여 넣습니다.
    ```python
    # ── 강사용: 정답을 채운 코드입니다 ──
    CHEAP_TLD = ["top", "xyz", "tk"]                  # 값싼 TLD
-
 
    def score(name, rcode):                           # 이름과 답을 받아 점수 · 이유를 리턴한다
        parts = name.split(".")                       # 점으로 나눈 조각들
@@ -610,7 +588,6 @@ from dga_score import score      # 위 파일의 함수를 꺼내 쓴다 — 시
            points = points + 2
            why.append("NXDOMAIN")
        return {"points": points, "why": why}
-
 
    if __name__ == "__main__":                        # 직접 실행할 때만 시험한다
        print(score("www.naver.com", "NOERROR"))
@@ -663,10 +640,6 @@ python dga_score.py
 **할 일** — 6-2 의 `score` 를 불러와 로그 12건을 문턱값 3 으로 판정하는 `judge.py` 를 완성해 실행하고, 판정이 틀린 줄 세 개를 보고서에 적습니다.
 
 **왜 중요한가** — 만든 규칙을 로그 전체에 걸어 봐야 어느 도메인을 잘못 판정하는지 보입니다. 다른 파일의 함수를 불러 쓰는 방식은 6-4 · 7-2 에서도 씁니다.
-
-**이 문제에 나오는 말**
-
-새 용어 없음.
 
 **순서**
 1. **[VS Code]** `network_zt` 폴더에 `judge.py` 를 만듭니다. `dga_score.py` 와 같은 폴더입니다.
@@ -768,10 +741,6 @@ python judge.py
 **할 일** — 6-3 의 판정을 정답지(실제)와 비교해 맞힘 · 오탐 · 미탐 수를 세는 `evaluate.py` 를 완성해 실행하고, 세 숫자를 보고서에 적습니다.
 
 **왜 중요한가** — 규칙의 성능을 맞힘 · 오탐 · 미탐 숫자로 적어 두어야 규칙을 고친 뒤 나아졌는지 비교할 수 있습니다. 관제에서 탐지 규칙을 평가할 때 쓰는 기준입니다.
-
-**이 문제에 나오는 말**
-
-새 용어 없음. 바로 위 6.3 표를 봅니다.
 
 **순서**
 1. **[VS Code]** `network_zt` 폴더에 `evaluate.py` 를 만듭니다.
@@ -898,7 +867,6 @@ python evaluate.py
 ```python
 CHEAP_TLD = ["top", "xyz", "tk"]                  # 값싼 TLD
 
-
 def score(name, rcode):                           # 이름과 답을 받아 점수 · 이유를 리턴한다
     parts = name.split(".")                       # 점으로 나눈 조각들
     label = parts[-2]                             # TLD 앞 조각
@@ -930,7 +898,6 @@ def score(name, rcode):                           # 이름과 답을 받아 점�
         points = points + 2
         why.append("NXDOMAIN")
     return {"points": points, "why": why}
-
 
 if __name__ == "__main__":                        # 직접 실행할 때만 시험한다
     print(score("www.naver.com", "NOERROR"))
@@ -997,10 +964,6 @@ print(", ".join([]) == "")
 
 **왜 중요한가** — 근거 리스트를 글자 한 줄로 이어 마크다운 표의 한 줄로 만드는 연습입니다. 7-2 판정표의 근거 칸이 이 방식으로 채워집니다.
 
-**이 문제에 나오는 말**
-
-새 용어 없음.
-
 **순서**
 1. **[VS Code]** `network_zt` 폴더의 `warmup.py` 를 엽니다. 안에 있던 내용은 지웁니다.
 2. **[VS Code]** 아래 코드를 `warmup.py` 에 그대로 따라 칩니다.
@@ -1038,10 +1001,6 @@ print(", ".join([]) == "")
 **할 일** — 로그 12건의 점수 · 판정 · 근거를 마크다운 표로 출력하는 `report_table3.py` 를 완성해 실행하고, 그 표를 보고서 맨 아래 「1. 의심 도메인 판정」에 붙입니다. 근거가 없으면 `-` 로 적습니다.
 
 **왜 중요한가** — 도메인마다 점수 · 판정 · 근거를 한 표로 남기면 다른 분석가가 판정 이유를 바로 확인하고 규칙을 고칠 수 있습니다. 이 표가 오늘 분석서의 「의심 도메인 판정」 칸이 됩니다.
-
-**이 문제에 나오는 말**
-
-새 용어 없음. 판정표 · 근거는 7.1 에 있습니다.
 
 **순서**
 1. **[VS Code]** `network_zt` 폴더에 `report_table3.py` 를 만듭니다.
@@ -1174,10 +1133,6 @@ nslookup qzkx7wp2v.invalid
 **할 일** — 보고서 맨 아래 「최종 분석서」의 판단 기준 · 한계를 포함해 빈칸을 다 채우고, 터미널의 git 명령으로 내 GitHub 저장소의 `network_zt` 폴더에 올립니다.
 
 **왜 중요한가** — 판단 기준과 한계를 적어 두어야 다른 사람이 규칙을 다시 쓰고, 못 잡는 경우를 다른 규칙으로 보완할 수 있습니다. 강의계획서의 평가 기준인 「판단 기준 문서화」가 이 칸입니다. 올리기 전에 `git status` 로 무엇이 골라지는지 먼저 보아야 `.env` 같은 비밀 파일이 깃허브에 올라가지 않습니다.
-
-**이 문제에 나오는 말**
-
-새 용어 없음.
 
 **순서**
 1. **[보고서]** `day03_dns_analysis.md` 맨 아래 `## 최종 분석서` 의 `### 2. 판단 기준` · `### 3. 규칙의 한계` · `### 4. 오늘 하루 정리` 를 채웁니다. 6교시 · 7-3 에 적은 답을 다시 봅니다.
