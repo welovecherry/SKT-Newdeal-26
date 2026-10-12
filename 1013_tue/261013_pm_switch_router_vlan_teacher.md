@@ -1074,7 +1074,7 @@ print(a.prefixlen, b.prefixlen)        # .prefixlen 은 망의 CIDR 숫자다. �
 
 1. 보안팀 `192.168.50.96/28` 이 끝나는 주소는 오전 4.2 그림에 있습니다.
 2. ③ 에서 나누어떨어지지 않으면 다음 16 의 배수로 올립니다.
-3. 겹치면 생기는 일은 오전 4.3 표의 「틀리면 생기는 일」 칸에 있습니다.
+3. 겹치면 생기는 일은 오전 4.3 의 「겹침」 설명에 있습니다.
 
 #### <mark style="display:block; background:#fff59d; color:#1a1a1a; padding:4px 12px; border-radius:4px; text-decoration:underline">정답 7-2</mark>
 
