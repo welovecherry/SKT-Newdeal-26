@@ -225,8 +225,7 @@ print(ipaddress.ip_address("192.168.11.1") in net)  # 다른 주소로 같은 �
 1. **[VS Code]** 왼쪽 목록에서 `network_zt` 폴더를 오른쪽 클릭 › **New File** › 이름 `direct_or_gw.py` 를 입력하고 Enter 를 누릅니다.
 2. **[VS Code]** 아래 코드를 복사해 파일에 붙여 넣습니다. 코드 상자 안을 마우스로 끌어 선택하고 `Ctrl + C` 를 누릅니다.
    ```python
-   # import = 파이썬에 들어 있는 IP 계산 도구를 불러온다
-   import ipaddress
+   import ipaddress  # import = 파이썬에 들어 있는 IP 계산 도구를 불러온다
 
    # ── 미리 채워 둔 줄입니다. 고치지 않습니다 ──
    my_net = ipaddress.ip_network("10.20.0.10/26", strict=False)   # 내 PC 가 속한 망
