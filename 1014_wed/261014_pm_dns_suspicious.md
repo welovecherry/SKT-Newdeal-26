@@ -120,8 +120,8 @@ print("a" in "aeiou", "x" in "aeiou")
 **왜 중요한가** — 도메인에서 TLD 앞 조각의 길이와 모음 수를 세는 연습입니다. 6-2 의 점수 함수가 이 두 값으로 규칙 ①·③을 매깁니다.
 
 **순서**
-1. **[VS Code]** `network_zt` 폴더의 `warmup.py` 를 엽니다. 안에 있던 내용은 지웁니다.
-2. **[VS Code]** 아래 코드를 `warmup.py` 에 그대로 따라 칩니다.
+1. **[VS Code]** 왼쪽 목록에서 `network_zt` 폴더를 오른쪽 클릭 › **New File** › 이름 `warmup_5_1.py` 를 입력하고 Enter 를 누릅니다.
+2. **[VS Code]** 아래 코드를 `warmup_5_1.py` 에 그대로 따라 칩니다.
    ```python
    name = "p0w8rk2mzq.xyz"            # 로그에 나온 이름
    parts = name.split(".")            # 점으로 잘라 조각 리스트로 만든다
@@ -132,11 +132,11 @@ print("a" in "aeiou", "x" in "aeiou")
            vowels = vowels + 1        # 모음이면 1 을 더한다
    print(label, len(label), vowels)   # 조각 · 길이 · 모음 수
    ```
-3. **[터미널]** `network_zt` 폴더에서 `python warmup.py` 를 실행합니다.
+3. **[터미널]** `network_zt` 폴더에서 `python warmup_5_1.py` 를 실행합니다.
    ```bash
-   python warmup.py
+   python warmup_5_1.py
    ```
-   맥북: `python3 warmup.py`
+   맥북: `python3 warmup_5_1.py`
 4. **[보고서]** `day03_dns_analysis.md` 의 `## 5교시` › `### 문제 5-1` 아래를 채웁니다.
    - 출력:
    - 셋째 값(모음 수)이 그렇게 나온 이유는 무엇인가요? 조각의 글자를 하나씩 보고, 숫자 `0` 이 모음으로 세어졌는지 설명합니다.
@@ -362,8 +362,8 @@ print("a" in "aeiou", "x" in "aeiou")
 **왜 중요한가** — 규칙마다 점수를 더하고 문턱값과 비교하는 방식을 손으로 확인합니다. 6-2 의 점수 함수가 같은 방식으로 규칙 다섯 개를 더합니다.
 
 **순서**
-1. **[VS Code]** `network_zt` 폴더의 `warmup.py` 를 엽니다. 안에 있던 내용은 지웁니다.
-2. **[VS Code]** 아래 코드를 `warmup.py` 에 그대로 따라 칩니다.
+1. **[VS Code]** 왼쪽 목록에서 `network_zt` 폴더를 오른쪽 클릭 › **New File** › 이름 `warmup_6_1.py` 를 입력하고 Enter 를 누릅니다.
+2. **[VS Code]** 아래 코드를 `warmup_6_1.py` 에 그대로 따라 칩니다.
    ```python
    score = 0                          # 합계 점수
    label = "kxq3vz9a"                 # TLD 앞 조각
@@ -377,11 +377,11 @@ print("a" in "aeiou", "x" in "aeiou")
        score = score + 2              # 그렇다면 2점
    print(score, score >= 3)           # 합계, 그리고 합계가 문턱값 3 이상인가?
    ```
-3. **[터미널]** `network_zt` 폴더에서 `python warmup.py` 를 실행합니다.
+3. **[터미널]** `network_zt` 폴더에서 `python warmup_6_1.py` 를 실행합니다.
    ```bash
-   python warmup.py
+   python warmup_6_1.py
    ```
-   맥북: `python3 warmup.py`
+   맥북: `python3 warmup_6_1.py`
 4. **[보고서]** `day03_dns_analysis.md` 의 `## 6교시` › `### 문제 6-1` 아래를 채웁니다.
    - 출력:
    - 규칙마다 몇 점이 더해졌나요? 둘째 값이 그렇게 나온 이유를 설명합니다.
@@ -693,17 +693,17 @@ print(", ".join([]) == "")
 **왜 중요한가** — 근거 리스트를 글자 한 줄로 이어 마크다운 표의 한 줄로 만드는 연습입니다. 7-2 판정표의 근거 칸이 이 방식으로 채워집니다.
 
 **순서**
-1. **[VS Code]** `network_zt` 폴더의 `warmup.py` 를 엽니다. 안에 있던 내용은 지웁니다.
-2. **[VS Code]** 아래 코드를 `warmup.py` 에 그대로 따라 칩니다.
+1. **[VS Code]** 왼쪽 목록에서 `network_zt` 폴더를 오른쪽 클릭 › **New File** › 이름 `warmup_7_1.py` 를 입력하고 Enter 를 누릅니다.
+2. **[VS Code]** 아래 코드를 `warmup_7_1.py` 에 그대로 따라 칩니다.
    ```python
    result = {"points": 5, "why": ["숫자", "모음", "TLD", "NXDOMAIN"]}                  # 6-2 의 score 가 리턴하는 모양
    print(f"| kxq3vz9a.top | {result['points']} | {', '.join(result['why'])} |")   # 이름 · 점수 · 근거를 표 한 줄로
    ```
-3. **[터미널]** `network_zt` 폴더에서 `python warmup.py` 를 실행합니다.
+3. **[터미널]** `network_zt` 폴더에서 `python warmup_7_1.py` 를 실행합니다.
    ```bash
-   python warmup.py
+   python warmup_7_1.py
    ```
-   맥북: `python3 warmup.py`
+   맥북: `python3 warmup_7_1.py`
 4. **[보고서]** `day03_dns_analysis.md` 의 `## 7교시` › `### 문제 7-1` 아래를 채웁니다.
    - 출력:
    - 셋째 칸(근거)은 어떤 모양으로 찍혔나요? `', '.join(...)` 이 리스트에 한 일을 설명합니다.

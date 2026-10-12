@@ -88,7 +88,7 @@ print(len(bits))               # len() 은 글자 수를 리턴한다. bits 의 
 
 **순서**
 
-1. **[VS Code]** `network_zt` 폴더의 `warmup.py` 를 엽니다. 없으면 New File 로 만들고, 안에 있던 내용은 지웁니다.
+1. **[VS Code]** 왼쪽 목록에서 `network_zt` 폴더를 오른쪽 클릭 › **New File** › 이름 `warmup_2_1.py` 를 입력하고 Enter 를 누릅니다.
 2. **[VS Code]** 아래 코드를 그대로 따라 칩니다.
    ```python
    bits1 = format(192, "08b")  # 192 를 앞자리를 0 으로 채운 8자리 2진수 글자로 바꿔 bits1 에 담는다
@@ -101,9 +101,9 @@ print(len(bits))               # len() 은 글자 수를 리턴한다. bits 의 
    ```
 3. **[터미널]** 실행합니다.
    ```bash
-   python warmup.py
+   python warmup_2_1.py
    ```
-   맥북: `python3 warmup.py`
+   맥북: `python3 warmup_2_1.py`
 4. **[보고서]** `day02_subnet_design.md`의 `## 2교시` › `### 문제 2-1` 아래를 채웁니다.
    - 출력 세 줄:
    - 둘째 줄의 앞자리가 0 으로 채워진 이유와 셋째 줄의 숫자가 나온 이유는 무엇인가요?
@@ -740,7 +740,7 @@ curl https://api.ipify.org
 
 **순서**
 
-1. **[VS Code]** `network_zt` 폴더의 `warmup.py` 를 엽니다. 없으면 New File 로 만들고, 안에 있던 내용은 지웁니다.
+1. **[VS Code]** 왼쪽 목록에서 `network_zt` 폴더를 오른쪽 클릭 › **New File** › 이름 `warmup_4_1.py` 를 입력하고 Enter 를 누릅니다.
 2. **[VS Code]** 아래 코드를 그대로 따라 칩니다. 줄마다 주석을 읽어 각 줄이 무엇을 하는지 먼저 이해합니다.
    ```python
    import ipaddress                                  # import 로 파이썬에 들어 있는 IP 계산 모듈 ipaddress 를 불러온다
@@ -753,9 +753,9 @@ curl https://api.ipify.org
    ```
 3. **[터미널]** 실행합니다.
    ```bash
-   python warmup.py
+   python warmup_4_1.py
    ```
-   맥북: `python3 warmup.py`
+   맥북: `python3 warmup_4_1.py`
 4. **[이 문서]** 출력 두 줄을 4.1 의 `/25` 표 「블록」 열과 맞춰 보고, 블록마다 범위를 읽습니다.
 5. **[보고서]** `day02_subnet_design.md`의 `## 4교시` › `### 문제 4-1` 아래를 채웁니다.
    - 출력 두 줄 · 블록마다 범위:

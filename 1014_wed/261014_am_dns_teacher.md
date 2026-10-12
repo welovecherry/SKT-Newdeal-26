@@ -341,19 +341,19 @@
 **왜 중요한가** — 접속 로그의 URL 에서 DNS 가 묻는 도메인 이름만 잘라 내는 연습입니다. 오후 5교시에 도메인을 조각으로 나눠 의심 여부를 따질 때 같은 `split` 을 씁니다.
 
 **순서**
-1. **[VS Code]** `network_zt` 폴더의 `warmup.py` 를 엽니다. 없으면 새 파일로 만들고, 안에 있던 내용은 지웁니다.
-2. **[VS Code]** 아래 코드를 `warmup.py` 에 그대로 따라 칩니다.
+1. **[VS Code]** 왼쪽 목록에서 `network_zt` 폴더를 오른쪽 클릭 › **New File** › 이름 `warmup_2_1.py` 를 입력하고 Enter 를 누릅니다.
+2. **[VS Code]** 아래 코드를 `warmup_2_1.py` 에 그대로 따라 칩니다.
    ```python
    url = "https://example.com/news/today"   # 주소창에 친 URL
    parts = url.split("/")                   # "/" 를 기준으로 잘라 리스트로 만든다
    print(parts)                             # 잘린 조각 전체
    print(parts[2])                          # 리스트의 셋째 칸(번호 2)
    ```
-3. **[터미널]** `network_zt` 폴더에서 `python warmup.py` 를 실행합니다.
+3. **[터미널]** `network_zt` 폴더에서 `python warmup_2_1.py` 를 실행합니다.
    ```bash
-   python warmup.py
+   python warmup_2_1.py
    ```
-   맥북: `python3 warmup.py`
+   맥북: `python3 warmup_2_1.py`
 4. **[보고서]** `day03_dns_analysis.md` 의 `## 2교시` › `### 문제 2-1` 아래를 채웁니다.
    - 출력 두 줄:
    - `parts[2]` 에서 도메인 이름이 나온 이유는 무엇인가요? 첫째 줄의 칸을 0 번부터 세어 보고, `//` 사이에서 무엇이 생겼는지 설명합니다.
@@ -725,19 +725,19 @@ print(list(reversed(parts)))
 **왜 중요한가** — 도메인을 오른쪽 조각부터 꺼내는 연습입니다. 오후 5-2 에서 TLD 와 그 앞 조각을 꺼내 의심 도메인을 가를 때 같은 `[-1]` · `[-2]` 를 씁니다.
 
 **순서**
-1. **[VS Code]** `network_zt` 폴더의 `warmup.py` 를 엽니다. 안에 있던 내용은 지웁니다.
-2. **[VS Code]** 아래 코드를 `warmup.py` 에 그대로 따라 칩니다.
+1. **[VS Code]** 왼쪽 목록에서 `network_zt` 폴더를 오른쪽 클릭 › **New File** › 이름 `warmup_3_1.py` 를 입력하고 Enter 를 누릅니다.
+2. **[VS Code]** 아래 코드를 `warmup_3_1.py` 에 그대로 따라 칩니다.
    ```python
    name = "mail.google.co.kr"       # 이름 하나
    parts = name.split(".")          # 점으로 잘라 조각 리스트로 만든다
    print(parts[-1])                 # 맨 끝 조각 하나
    print(".".join(parts[-2:]))      # 끝에서 두 번째부터 끝까지를 점으로 이은 것
    ```
-3. **[터미널]** `network_zt` 폴더에서 `python warmup.py` 를 실행합니다.
+3. **[터미널]** `network_zt` 폴더에서 `python warmup_3_1.py` 를 실행합니다.
    ```bash
-   python warmup.py
+   python warmup_3_1.py
    ```
-   맥북: `python3 warmup.py`
+   맥북: `python3 warmup_3_1.py`
 4. **[보고서]** `day03_dns_analysis.md` 의 `## 3교시` › `### 문제 3-1` 아래를 채웁니다.
    - 출력 두 줄:
    - 둘째 줄이 첫째 줄과 다르게 나온 이유는 무엇인가요? `[-1]` 과 `[-2:]` 가 각각 무엇을 꺼냈고, 그 조각이 이름의 어느 층인지 설명합니다.
@@ -1034,8 +1034,8 @@ print(name, records[name]["value"])
 **왜 중요한가** — DNS 레코드를 사전 안의 사전으로 다루는 연습입니다. 4-5 의 캐시 코드도 같은 모양으로 `cache[name]["expire"]` 를 꺼냅니다.
 
 **순서**
-1. **[VS Code]** `network_zt` 폴더의 `warmup.py` 를 엽니다. 안에 있던 내용은 지웁니다.
-2. **[VS Code]** 아래 코드를 `warmup.py` 에 그대로 따라 칩니다.
+1. **[VS Code]** 왼쪽 목록에서 `network_zt` 폴더를 오른쪽 클릭 › **New File** › 이름 `warmup_4_1.py` 를 입력하고 Enter 를 누릅니다.
+2. **[VS Code]** 아래 코드를 `warmup_4_1.py` 에 그대로 따라 칩니다.
    ```python
    records = {                                                                  # 이름 → 레코드 사전
        "google.com": {"type": "MX", "value": "smtp.google.com"},                # google.com 의 레코드
@@ -1044,11 +1044,11 @@ print(name, records[name]["value"])
    print(records["google.com"]["value"])     # google.com 레코드의 value 칸
    print(records["www.naver.com"]["type"])   # www.naver.com 레코드의 type 칸
    ```
-3. **[터미널]** `network_zt` 폴더에서 `python warmup.py` 를 실행합니다.
+3. **[터미널]** `network_zt` 폴더에서 `python warmup_4_1.py` 를 실행합니다.
    ```bash
-   python warmup.py
+   python warmup_4_1.py
    ```
-   맥북: `python3 warmup.py`
+   맥북: `python3 warmup_4_1.py`
 4. **[보고서]** `day03_dns_analysis.md` 의 `## 4교시` › `### 문제 4-1` 아래를 채웁니다.
    - 출력 두 줄:
    - 두 줄은 각각 안쪽 사전의 어느 칸을 꺼낸 것이고, 그 값은 DNS 레코드에서 무엇을 뜻하나요?
