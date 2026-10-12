@@ -1147,9 +1147,9 @@ for n in [3, 8, 12, 20]:
 
 ### ✍️ 문제 7-5 · 설계서 완성하고 올리기
 
-**할 일** — 보고서의 빈칸을 다 채우고, 내 GitHub 저장소의 `network_zt` 폴더에 올립니다.
+**할 일** — 보고서의 빈칸을 다 채우고, 터미널의 git 명령으로 내 GitHub 저장소의 `network_zt` 폴더에 올립니다.
 
-**왜 중요한가** — 빈칸 없는 설계서 한 파일이 오늘의 평가 산출물입니다. 깃허브에 올려 두어야 강사가 확인하고, 뒤 과목에서 이 주소 설계를 다시 열어 볼 수 있습니다.
+**왜 중요한가** — 빈칸 없는 설계서 한 파일이 오늘의 평가 산출물입니다. 깃허브에 올려 두어야 강사가 확인하고, 뒤 과목에서 이 주소 설계를 다시 열어 볼 수 있습니다. 올리기 전에 `git status` 로 무엇이 골라지는지 먼저 보아야 `.env` 같은 비밀 파일이 깃허브에 올라가지 않습니다.
 
 **이 문제에 나오는 말**
 
@@ -1157,33 +1157,54 @@ for n in [3, 8, 12, 20]:
 
 **순서**
 1. **[보고서]** `day02_subnet_design.md`에서 5 · 6 · 7교시와 「최종 설계서」의 빈 항목을 채웁니다. 선택 문제는 비워도 됩니다.
-2. **[브라우저]** GitHub에서 내 `security-agent-toolkit` 저장소를 열고 `network_zt` 폴더로 이동합니다.
-3. **[브라우저]** `Add file`을 누르고 `Upload files`를 선택합니다.
-4. **[브라우저]** `day02_subnet_design.md` 를 업로드 화면에 끌어 놓습니다.
-5. **[브라우저]** 아래쪽의 `Commit changes`를 눌러 업로드합니다.
-6. **[브라우저]** `network_zt` 폴더에 설계서가 보이는지 확인합니다.
+2. **[터미널]** `security-agent-toolkit` 폴더로 옮깁니다. 터미널이 `network_zt` 에 있으면 `cd ..` 를 입력합니다.
+   ```bash
+   cd ..
+   ```
+3. **[터미널]** 무엇이 바뀌었는지 먼저 봅니다. 빨간 목록에 `.env` 나 `.venv` 가 보이면 멈추고 강사를 부릅니다.
+   ```bash
+   git status
+   ```
+4. **[터미널]** 바뀐 것을 한 번에 고릅니다.
+   ```bash
+   git add .
+   ```
+5. **[터미널]** 기록하고 올립니다.
+   ```bash
+   git commit -m "Add day 2 subnet design report"
+   git push
+   ```
+6. **[브라우저]** 깃허브의 내 저장소를 새로 고쳐 `network_zt` 폴더에 설계서가 보이는지 확인합니다.
 
 | | |
 |---|---|
-| 🎯 나와야 하는 결과 | 깃허브의 내 저장소 `network_zt` 폴더에 `day02_subnet_design.md` 가 보이고, 열면 빈칸 없이 채워져 있다 |
+| 🎯 나와야 하는 결과 | `git push` 뒤 깃허브의 내 저장소 `network_zt` 폴더에 `day02_subnet_design.md` 가 보이고, 열면 빈칸 없이 채워져 있다 |
 
 **💡 힌트**
 
-1. 같은 이름의 파일이 이미 있으면 새 파일이 덮어씁니다. 그대로 `Commit changes` 를 누르면 됩니다.
+1. 빨간 목록에 `.env` 가 보이면 멈춥니다 — 아침 과제 7번에서 본 것과 같습니다. `.gitignore` 를 확인하고 강사를 부릅니다.
+2. `git push` 가 거절(`rejected`)되면 강사를 부릅니다.
 
 #### <mark style="display:block; background:#fff59d; color:#1a1a1a; padding:4px 12px; border-radius:4px; text-decoration:underline">정답 7-5</mark>
 
-내 GitHub 저장소의 `network_zt` 폴더에서 **Add file › Upload files**를 선택합니다. 로컬 `network_zt` 폴더의 `day02_subnet_design.md` 를 올린 뒤 **Commit changes**를 누릅니다.
+`security-agent-toolkit` 폴더에서 터미널에 입력합니다. `git status` 결과에 `.env` · `.venv` 가 없는 것을 본 뒤 나머지를 입력합니다.
+
+```bash
+git status
+git add .
+git commit -m "Add day 2 subnet design report"
+git push
+```
 
 <mark style="background:#fff59d; color:#1a1a1a; text-decoration:underline; padding:0 4px; border-radius:3px">**결과** — 깃허브의 내 저장소 `network_zt` 폴더에 `day02_subnet_design.md` 가 보이고, 열면 빈칸 없이 채워져 있다</mark>
 
-**왜** — 웹 화면의 Upload files 는 고른 파일을 그 폴더에 그대로 올립니다. 같은 이름이 있으면 새 파일로 바뀝니다.
+**왜** — `git add .` 는 `.gitignore` 에 적힌 것을 빼고 지금 폴더 아래 바뀐 것을 전부 고릅니다. 그래서 고르기 전에 `git status` 로 `.env` 가 목록에 없는지 먼저 봅니다.
 
-**자주 틀리는 곳** — `network_zt` 가 아닌 저장소 맨 위에 올리는 실수가 많습니다. `.env` 는 절대 올리지 않습니다.
+**자주 틀리는 곳** — `git status` 를 건너뛰고 `git add .` 부터 하면 `.env` 가 섞여도 모릅니다. `git commit` 만 하고 `git push` 를 빠뜨리면 깃허브에 안 보입니다.
 
 **관제에서는** — 설계서가 깃허브에 남아 있으면 사고가 났을 때 원래 설계와 실제 설정을 맞대어 봅니다.
 
-**강사 메모** — 어제(10/12 7-3)와 같은 웹 화면 **Add file › Upload files** 로 올립니다 — `git` 명령은 아직 배우지 않았습니다. 「고쳐서 다시 올려도 되나요?」라는 질문에는 「같은 이름으로 올리면 새 파일로 바뀝니다」라고 답합니다. 마지막에는 학생 화면에서 깃허브 페이지를 새로 고쳐 「최종 설계서」까지 빈 칸 없이 보이는지 확인합니다.
+**강사 메모** — `git add .` 전에 `git status` 로 `.env` 를 확인하는 것을 가장 강조합니다. 어제(10/12 7-3)와 같은 순서입니다. 「고쳐서 다시 올려도 되나요?」라는 질문에는 「파일을 고친 뒤 `git add .` · `git commit` · `git push` 를 다시 하면 새 내용으로 바뀝니다」라고 답합니다. 마지막에는 학생 화면에서 깃허브 페이지를 새로 고쳐 「최종 설계서」까지 빈 칸 없이 보이는지 확인합니다.
 
 ---
 
