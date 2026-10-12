@@ -526,6 +526,32 @@ print(found)                      # 반복이 끝난 뒤 found 의 값을 출력
 
 ---
 
+#### 🐍 문법 상자 · 오전 3-2 의 문법 다시 보기 — f-string · `strict=False` · 망 객체
+
+7-1 코드는 오전 3-2 와 같은 문법을 씁니다. 처음 보는 것은 없고, 잊었으면 아래만 다시 봅니다.
+
+```python
+import ipaddress                  # import 로 파이썬에 들어 있는 IP 계산 모듈 ipaddress 를 불러온다
+
+ip = "192.168.20.7"               # 변수 ip 에 운영팀 PC 주소 글자를 담는다
+cidr = f"{ip}/24"                 # f-string 은 {} 안의 변수 값을 글자에 넣는다. 「주소/CIDR」 글자를 만들어 cidr 에 담는다
+net = ipaddress.ip_network(cidr, strict=False)  # strict=False 로 그 주소가 속한 망 객체를 만들어 net 에 담는다
+
+print(cidr)                       # 만든 「주소/CIDR」 글자를 출력한다
+print(net.network_address)        # 망 객체의 네트워크 주소를 출력한다
+
+# 192.168.20.7/24
+# 192.168.20.0
+```
+
+| 쓰는 것 | 뜻 |
+|---|---|
+| `f"{ip}/24"` | f-string — `{}` 안의 변수 값을 글자에 넣는다 |
+| `ipaddress.ip_network("주소/CIDR", strict=False)` | 그 주소가 속한 **망 객체**를 만든다. `strict=False` 는 망의 첫 주소가 아니어도 받아 준다는 뜻 |
+| `.netmask` · `.network_address` · `.broadcast_address` | 망 객체의 서브넷 마스크 · 네트워크 주소 · 브로드캐스트 주소 |
+
+---
+
 ### ✍️ 문제 7-1 · 새 주소로 다시 풀기
 
 **할 일** — 오늘 배운 세 가지(사설 · 공인 판정, 망 범위, 같은 망 판정)를 새 회사 PC 주소 `172.16.8.40/24` 로 한 번 더 풉니다. **새 파일** `warmup_7_1.py` 를 만들어 코드를 붙여 넣고 실행합니다.
