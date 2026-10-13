@@ -27,7 +27,7 @@
 | 1 | `www.naver.com` | NOERROR | 정상 |
 | 2 | `mail.google.com` | NOERROR | 정상 |
 | 3 | `update.microsoft.com` | NOERROR | 정상 |
-| 4 | `e6030.a.akamaiedge.net` | NOERROR | 정상 — CDN 이름(오전 4-3) |
+| 4 | `e6030.a.akamaiedge.net` | NOERROR | 정상 — CDN 이름(오전 4-1) |
 | 5 | `cdn.jsdelivr.net` | NOERROR | 정상 |
 | 6 | `xn--3e0b707e.kr` | NOERROR | 정상 — 한글 도메인을 영문으로 바꾼 모양 |
 | 7 | `kxq3vz9a.top` | **NXDOMAIN** | 의심 |
@@ -37,7 +37,7 @@
 | 11 | `bnk-secure-login.xyz` | NOERROR | 의심 — 은행 사칭 |
 | 12 | `www.example.com` | NOERROR | 정상 |
 
-- **rcode**(알코드 · response code) — DNS 답의 **결과 코드**. `NOERROR`(노에러) = 답이 있었다 · `NXDOMAIN` = 그런 이름이 없다(오전 2-4).
+- **rcode**(알코드 · response code) — DNS 답의 **결과 코드**. `NOERROR`(노에러) = 답이 있었다 · `NXDOMAIN` = 그런 이름이 없다(오전 2-2).
 - 「실제」 칸은 나중에 규칙이 맞았는지 채점하는 **정답지**입니다. 규칙은 이 칸을 보지 않습니다.
 
 ---
@@ -65,7 +65,7 @@
 | TLD(맨 끝 이름) | `.com` · `.net` · `.kr` | 값싼 `.top` · `.xyz` · `.tk` 가 많다 | 한꺼번에 싸게 등록 |
 | 답 | NOERROR | **NXDOMAIN 이 많다** | 대부분 등록하지 않은 이름 |
 
-**어느 부분을 볼까:** `e6030.a.akamaiedge.net` 처럼 정상 서비스도 맨 앞 조각은 무작위로 보입니다(오전 4-3 의 CDN). 그래서 오늘은 **TLD 바로 앞 조각**(2단계 이름 — `akamaiedge` · `naver` · `kxq3vz9a`)을 봅니다.
+**어느 부분을 볼까:** `e6030.a.akamaiedge.net` 처럼 정상 서비스도 맨 앞 조각은 무작위로 보입니다(오전 4-1 의 CDN). 그래서 오늘은 **TLD 바로 앞 조각**(2단계 이름 — `akamaiedge` · `naver` · `kxq3vz9a`)을 봅니다.
 
 #### 🐍 문법 상자 · 글자를 하나씩 보며 세기
 
