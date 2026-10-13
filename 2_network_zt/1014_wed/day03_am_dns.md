@@ -6,11 +6,11 @@
 
 **오늘 받은 파일 두 개를 `network_zt` 폴더로 옮깁니다.**
 
-- `261014_am_dns.md` (이 파일) — 실습 안내. 읽기만 합니다.
-- `day03_dns_analysis_am.md` — **오전 보고서.** 2 · 3 · 4교시 답을 여기에 적습니다. 오후에는 오후 안내 문서와 오후 보고서를 따로 받습니다.
+- `day03_am_dns.md` (이 파일) — 실습 안내. 읽기만 합니다.
+- `day03_am_report.md` — **오전 보고서.** 2 · 3 · 4교시 답을 여기에 적습니다. 오후에는 오후 안내 문서와 오후 보고서를 따로 받습니다.
 
 1. **[VS Code]** 이 파일을 열고 `Ctrl + Shift + V` 를 누릅니다. 실습 안내가 미리보기로 열립니다 — 이 탭이 왼쪽입니다.
-2. **[VS Code]** 왼쪽 목록에서 `day03_dns_analysis_am.md` 를 오른쪽 클릭 › **Open to the Side** 를 누릅니다. 보고서가 오른쪽에 열립니다. 질문마다 `쓸 내용:` 을 보고 `답:` 뒤에 씁니다.
+2. **[VS Code]** 왼쪽 목록에서 `day03_am_report.md` 를 오른쪽 클릭 › **Open to the Side** 를 누릅니다. 보고서가 오른쪽에 열립니다. 질문마다 `쓸 내용:` 을 보고 `답:` 뒤에 씁니다.
 3. **[터미널]** Git Bash 에서 `cd network_zt` 를 입력합니다(이미 들어와 있으면 생략).
 4. 문제는 **할 일 → 순서** 대로 합니다. 순서 앞의 `[창 이름]` 이 지금 쓸 창입니다. 막히면 💡 힌트 → 문서 맨 아래 「정답」.
 
@@ -106,7 +106,7 @@ Addresses:  2606:4700:10::ac42:93f3
    ```bash
    nslookup example.com 8.8.8.8
    ```
-4. **[보고서]** `day03_dns_analysis_am.md` 의 `## 2교시` › `### 문제 2-1` 아래를 채웁니다.
+4. **[보고서]** `day03_am_report.md` 의 `## 2교시` › `### 문제 2-1` 아래를 채웁니다.
    - (가-1) 처음 `nslookup example.com` 을 쳤을 때, 내가 물어본 DNS 서버의 주소와 example.com 의 IPv4 주소를 적어 주세요.
    - (가-2) `nslookup example.com 8.8.8.8` 을 쳤을 때, 맨 위 `서버` 줄에 나온 이름과 example.com 의 IPv4 주소를 적어 주세요.
    - (나) 🔍 화면 위쪽 `Address` 와 아래쪽 `Addresses` 는 각각 무엇의 주소일까요? 두 화면을 비교해서 적어 주세요.
@@ -195,7 +195,7 @@ print(type(ip))                           # type() 은 값의 종류를 리턴�
    ```bash
    nslookup abc.nowhere-not-exist.com
    ```
-8. **[보고서]** `day03_dns_analysis_am.md` 의 `## 2교시` › `### 문제 2-2` 아래를 채웁니다.
+8. **[보고서]** `day03_am_report.md` 의 `## 2교시` › `### 문제 2-2` 아래를 채웁니다.
    - (가-1) `day03_2-2_url_example.py` 를 실행했을 때 나온 두 줄을 그대로 옮겨 적어 주세요.
    - (가-2) `day03_2-2_url_nowhere.py` 의 맨 마지막 줄에 나온 에러 이름과, 같은 이름을 `nslookup` 했을 때 나온 문구를 적어 주세요.
    - (나-1) `parts[2]` 를 꺼냈더니 도메인 이름이 나왔습니다. 왜 번호 2 칸에 도메인 이름이 있을까요?
@@ -356,7 +356,7 @@ print(parts)                       # 원래 리스트를 다시 출력한다. re
    ```bash
    nslookup -type=ns example.com
    ```
-8. **[보고서]** `day03_dns_analysis_am.md` 의 `## 3교시` › `### 문제 3-1` 아래를 채웁니다.
+8. **[보고서]** `day03_am_report.md` 의 `## 3교시` › `### 문제 3-1` 아래를 채웁니다.
    - (가-1) `day03_3-1_labels_kr.py`(`mail.google.co.kr`)를 실행했을 때 나온 세 줄을 그대로 옮겨 적어 주세요.
    - (가-2) `nslookup -type=ns example.com` 에서 `nameserver =` 뒤에 나온 이름을 모두 적고, 몇 개였는지도 적어 주세요.
    - (나) 두 번째 파일의 둘째 줄은 `google.co.kr` 이 아니라 `co.kr` 로 나왔습니다. 왜 그럴까요?
@@ -403,7 +403,7 @@ print(parts)                       # 원래 리스트를 다시 출력한다. re
    ```bash
    nslookup example.com hera.ns.cloudflare.com
    ```
-3. **[보고서]** `day03_dns_analysis_am.md` 의 `## 3교시` › `### 문제 3-2` 아래를 채웁니다.
+3. **[보고서]** `day03_am_report.md` 의 `## 3교시` › `### 문제 3-2` 아래를 채웁니다.
    - (가-1) `nslookup example.com`(리졸버에 물은 화면)에 `권한 없는 응답:` 줄이 있었는지, 그리고 IPv4 주소를 적어 주세요.
    - (가-2) 권한 있는 네임서버에 직접 물은 화면에 `권한 없는 응답:` 줄이 있었는지, 그리고 IPv4 주소를 적어 주세요.
    - (나-1) 🔍 두 화면에서 `권한 없는 응답:` 줄이 한쪽에만 나온 이유는 무엇일까요?
@@ -479,7 +479,7 @@ print(parts)                       # 원래 리스트를 다시 출력한다. re
    nslookup www.naver.com
    ```
 4. **[터미널]** `이름:` 줄의 최종 이름(정식 이름)과 `Aliases:` 줄의 별칭을 찾습니다. Windows 는 `Aliases:` 에 내가 친 `www.naver.com` 이 나옵니다.
-5. **[보고서]** `day03_dns_analysis_am.md` 의 `## 4교시` › `### 문제 4-1` 아래를 채웁니다.
+5. **[보고서]** `day03_am_report.md` 의 `## 4교시` › `### 문제 4-1` 아래를 채웁니다.
    - (가-1) `nslookup -type=mx google.com` 에서 메일 서버 이름(`mail exchanger =` 뒤)과 우선순위 숫자(`MX preference`)를 적어 주세요.
    - (가-2) `nslookup www.naver.com` 에서 `Aliases:` 줄의 이름과 `이름:` 줄의 최종 이름을 적어 주세요.
    - (나-1) MX 레코드는 왜 IP 가 아니라 서버 이름으로 답할까요? 그 서버의 IP 는 어떻게 알아낼까요?
@@ -594,7 +594,7 @@ print(300 <= saved_at + ttl)  # a <= b 는 a 가 b 보다 작거나 같으면 Tr
     python day03_4-2_ttl_60.py
     ```
     맥북: `python3 day03_4-2_ttl_60.py`
-11. **[보고서]** `day03_dns_analysis_am.md` 의 `## 4교시` › `### 문제 4-2` 아래를 채웁니다.
+11. **[보고서]** `day03_am_report.md` 의 `## 4교시` › `### 문제 4-2` 아래를 채웁니다.
     - (가-1) `ipconfig //displaydns` 에서 본 `example.com` 의 TTL 숫자와, `//flushdns` 뒤에 그 항목이 남아 있었는지 적어 주세요.
     - (가-2) `day03_4-2_ttl_60.py`(`ttl = 60`)를 실행했을 때 나온 네 줄을 그대로 옮겨 적어 주세요.
     - (나) 첫 파일과 두 번째 파일에서 100초 줄의 결과가 다릅니다. 왜 그럴까요?
@@ -612,7 +612,7 @@ print(300 <= saved_at + ttl)  # a <= b 는 a 가 b 보다 작거나 같으면 Tr
 
 ## 오전 마무리 — 보고서 2 · 3 · 4교시 칸 확인
 
-`day03_dns_analysis_am.md` 의 2 · 3 · 4교시 칸에 **빈 줄**이 없는지 봅니다. 빈 줄은 그 문제로 돌아갑니다.
+`day03_am_report.md` 의 2 · 3 · 4교시 칸에 **빈 줄**이 없는지 봅니다. 빈 줄은 그 문제로 돌아갑니다.
 
 오후에는 DNS 로그에서 **수상한 도메인**을 골라내는 규칙을 만들고, 판단 기준을 문서로 남깁니다.
 

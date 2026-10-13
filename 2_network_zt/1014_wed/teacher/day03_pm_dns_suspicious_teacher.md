@@ -11,7 +11,7 @@
 
 ## 시작하기
 
-1. **[VS Code]** 이 파일(`261014_pm_dns_suspicious.md`)을 `network_zt` 폴더로 옮기고 `Ctrl + Shift + V` 로 엽니다 — 왼쪽.
+1. **[VS Code]** 이 파일(`day03_pm_dns_suspicious.md`)을 `network_zt` 폴더로 옮기고 `Ctrl + Shift + V` 로 엽니다 — 왼쪽.
 2. **[VS Code]** 오전에 받은 보고서 `day03_dns_analysis.md` 를 오른쪽 클릭 › **Open to the Side** — 오른쪽. 5 · 6 · 7교시 항목과 맨 아래 「최종 분석서」를 채웁니다.
 3. **[터미널]** Git Bash 에서 `cd network_zt` 를 입력합니다(이미 들어와 있으면 생략).
 4. 문제는 **할 일 → 순서** 대로 합니다. 막히면 💡 힌트 → 문서 맨 아래 「정답」.

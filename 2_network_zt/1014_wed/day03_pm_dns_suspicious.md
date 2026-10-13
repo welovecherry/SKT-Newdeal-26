@@ -6,11 +6,11 @@
 
 **오후에 받은 파일 두 개를 `network_zt` 폴더로 옮깁니다.**
 
-- `261014_pm_dns_suspicious.md` (이 파일) — 오후 실습 안내. 읽기만 합니다.
-- `day03_dns_analysis_pm.md` — **오후 보고서.** 5 · 6 · 7교시 답과 맨 아래 「최종 분석서」를 여기에 적습니다.
+- `day03_pm_dns_suspicious.md` (이 파일) — 오후 실습 안내. 읽기만 합니다.
+- `day03_pm_report.md` — **오후 보고서.** 5 · 6 · 7교시 답과 맨 아래 「최종 분석서」를 여기에 적습니다.
 
 1. **[VS Code]** 이 파일을 열고 `Ctrl + Shift + V` 로 엽니다 — 왼쪽.
-2. **[VS Code]** `day03_dns_analysis_pm.md` 를 오른쪽 클릭 › **Open to the Side** — 오른쪽. 질문마다 `쓸 내용:` 을 보고 `답:` 뒤에 씁니다.
+2. **[VS Code]** `day03_pm_report.md` 를 오른쪽 클릭 › **Open to the Side** — 오른쪽. 질문마다 `쓸 내용:` 을 보고 `답:` 뒤에 씁니다.
 3. **[터미널]** Git Bash 에서 `cd network_zt` 를 입력합니다(이미 들어와 있으면 생략).
 4. 문제는 **할 일 → 순서** 대로 합니다. 막히면 💡 힌트 → 문서 맨 아래 「정답」.
 
@@ -117,7 +117,7 @@
    python day03_5-1_count_naver.py
    ```
    맥북: `python3 day03_5-1_count_naver.py`
-7. **[보고서]** `day03_dns_analysis_pm.md` 의 `## 5교시` › `### 문제 5-1` 아래를 채웁니다.
+7. **[보고서]** `day03_pm_report.md` 의 `## 5교시` › `### 문제 5-1` 아래를 채웁니다.
    - (가-1) `day03_5-1_count_dga.py` 를 실행했을 때 나온 한 줄을 그대로 옮겨 적어 주세요.
    - (가-2) `day03_5-1_count_naver.py`(`www.naver.com`)를 실행했을 때 나온 한 줄을 그대로 옮겨 적어 주세요.
    - (나) 두 출력에서 숫자 수와 모음 수가 크게 다릅니다. 왜 이런 차이가 날까요?
@@ -199,7 +199,7 @@ print(nx)                                              # 키마다 센 횟수가
    python day03_5-2_nx_count.py
    ```
    맥북: `python3 day03_5-2_nx_count.py`
-4. **[보고서]** `day03_dns_analysis_pm.md` 의 `## 5교시` › `### 문제 5-2` 아래를 채웁니다.
+4. **[보고서]** `day03_pm_report.md` 의 `## 5교시` › `### 문제 5-2` 아래를 채웁니다.
    - (가) `day03_5-2_nx_count.py` 의 출력을 그대로 옮겨 적고, 감염이 의심되는 PC 주소를 하나 적어 주세요.
    - (나-1) `10.20.0.33` 도 NXDOMAIN 을 받았는데, 왜 감염으로 보기 어려울까요?
    - (나-2) `10.20.0.42` 는 NXDOMAIN 을 세 번 받은 뒤, 마지막에 `qwrtpzkx7v.com` 을 물었을 때는 NOERROR 를 받았습니다. 이게 왜 위험할까요?
@@ -289,7 +289,7 @@ print(nx)                                              # 키마다 센 횟수가
    python day03_6-1_score_bank.py
    ```
    맥북: `python3 day03_6-1_score_bank.py`
-7. **[보고서]** `day03_dns_analysis_pm.md` 의 `## 6교시` › `### 문제 6-1` 아래를 채웁니다.
+7. **[보고서]** `day03_pm_report.md` 의 `## 6교시` › `### 문제 6-1` 아래를 채웁니다.
    - (가-1) `day03_6-1_score_dga.py` 를 실행했을 때 나온 한 줄을 그대로 옮겨 적어 주세요.
    - (가-2) `day03_6-1_score_bank.py`(`bnk-secure-login.xyz`)를 실행했을 때 나온 한 줄을 그대로 옮겨 적어 주세요.
    - (나-1) 첫 파일의 점수는 규칙 ① ② ③ 에서 각각 몇 점씩 받아서 나온 걸까요?
@@ -394,7 +394,7 @@ print(nx)                                              # 키마다 센 횟수가
    python day03_6-2_judge_th1.py
    ```
    맥북: `python3 day03_6-2_judge_th1.py`
-7. **[보고서]** `day03_dns_analysis_pm.md` 의 `## 6교시` › `### 문제 6-2` 아래를 채웁니다.
+7. **[보고서]** `day03_pm_report.md` 의 `## 6교시` › `### 문제 6-2` 아래를 채웁니다.
    - (가-1) 첫 파일(임계값 3)의 표에서 `판정` 과 `실제` 가 다른 이름을 모두 적어 주세요.
    - (가-2) 두 번째 파일(임계값 1)의 표에서 `판정` 과 `실제` 가 다른 이름을 모두 적어 주세요.
    - (나-1) 🔍 (가-1) 과 (가-2) 에서 틀린 이름들은 각각 오탐일까요, 미탐일까요?
@@ -444,7 +444,7 @@ print(nx)                                              # 키마다 센 횟수가
    ```bash
    nslookup qzkx7wp2v.invalid
    ```
-3. **[보고서]** `day03_dns_analysis_pm.md` 의 `## 7교시` › `### 문제 7-1` 아래를 채웁니다.
+3. **[보고서]** `day03_pm_report.md` 의 `## 7교시` › `### 문제 7-1` 아래를 채웁니다.
    - (가) `e6030.a.akamaiedge.net` 을 물었을 때 나온 주소와, `qzkx7wp2v.invalid` 를 물었을 때 나온 문구를 적어 주세요.
    - (나) 첫째 이름은 앞부분이 무작위처럼 보이는데도 응답이 왔습니다. 왜 그럴까요?
    - (다-1) 🔍 의심 도메인을 확인할 때, 왜 브라우저로 직접 들어가 보지 않고 `nslookup` 으로만 물어볼까요?
@@ -475,7 +475,7 @@ print(nx)                                              # 키마다 센 횟수가
    ```bash
    git status
    ```
-5. **[보고서]** `day03_dns_analysis_pm.md` 의 `## 7교시` › `### 문제 7-2` 아래를 채웁니다. 올리기 전에 채워야 깃허브에 빈칸 없이 올라갑니다.
+5. **[보고서]** `day03_pm_report.md` 의 `## 7교시` › `### 문제 7-2` 아래를 채웁니다. 올리기 전에 채워야 깃허브에 빈칸 없이 올라갑니다.
    - (가) `git status` 를 쳤을 때 빨간 목록에 줄이 몇 개였는지, 그 가운데 `.env` · `.venv` 가 있었는지 적어 주세요.
    - (나) `git status` 를 보지 않고 `git add .` 를 해서 `.env` 파일이 깃허브에 올라가면, 어떤 일이 생길 수 있을까요?
 6. **[터미널]** 바뀐 것을 한 번에 고르고, 기록하고 올립니다.
@@ -497,7 +497,7 @@ print(nx)                                              # 키마다 센 횟수가
 
 | 확인 | 문제 |
 |---|---|
-| `day03_dns_analysis_am.md` · `day03_dns_analysis_pm.md` 에 빈 칸이 없다 | 모든 문제 · 7-2 |
+| `day03_am_report.md` · `day03_pm_report.md` 에 빈 칸이 없다 | 모든 문제 · 7-2 |
 | DGA · 사칭 · NXDOMAIN 이 많은 PC 의 지표를 말할 수 있다 | 5교시 |
 | 오탐과 미탐의 차이와 임계값을 바꿀 때의 변화를 설명할 수 있다 | 6-2 |
 | 깃허브에 올렸다 | 7-2 |
@@ -624,7 +624,7 @@ git commit -m "Add day 3 DNS analysis report"
 git push
 ```
 
-**결과** — 빨간 목록에 `network_zt/` 아래 오늘 만든 파일(`day03_dns_analysis_am.md` · `day03_dns_analysis_pm.md` · `day03_5-1_count_dga.py` 등)이 보이고 `.env` 는 없습니다. 깃허브 `network_zt` 폴더에 보고서 두 개가 보입니다.
+**결과** — 빨간 목록에 `network_zt/` 아래 오늘 만든 파일(`day03_am_report.md` · `day03_pm_report.md` · `day03_5-1_count_dga.py` 등)이 보이고 `.env` 는 없습니다. 깃허브 `network_zt` 폴더에 보고서 두 개가 보입니다.
 
 **왜** — `git add .` 는 `.gitignore` 에 적힌 것을 빼고 지금 폴더 아래 바뀐 파일을 한꺼번에 고릅니다. `.gitignore` 가 빠졌거나 잘못돼 있으면 `.env` 도 골라지고, 깃허브에 올라가면 다른 사람이 그 안의 API 키로 내 계정을 쓸 수 있어 키를 폐기해야 합니다.
 
