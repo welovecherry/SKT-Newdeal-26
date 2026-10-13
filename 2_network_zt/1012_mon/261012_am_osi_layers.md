@@ -63,6 +63,7 @@ cd network_zt
 
 1. VS Code 왼쪽 목록에서 `day01_packet_analysis_am.md` 를 오른쪽 클릭 › **Open to the Side**(옆에서 열기)를 누릅니다. 보고서가 **오른쪽** 칸에 열립니다.
 2. 쓴 모양을 보고 싶으면 오른쪽 칸에서 `Ctrl + K` 를 누른 뒤 `V` 를 누릅니다. 값은 콜론(:) 뒤에, 생각하는 질문은 `답:` 뒤에 적습니다.
+
 ⚠ <mark style="background:#ffcdd2; color:#1a1a1a; padding:0 4px; border-radius:3px">오늘 적는 것은 모두 이 파일(`day01_packet_analysis_am.md`) 하나에</mark> 적습니다. 문제마다 마지막 **[보고서]** 단계에 적을 위치가 나옵니다. 각 문제의 소제목은 틀에 다 있으니 <mark style="background:#ffcdd2; color:#1a1a1a; padding:0 4px; border-radius:3px">그 소제목 아래</mark>를 채웁니다.
 
 ---
