@@ -79,7 +79,7 @@
 
 **순서**
 
-1. **[VS Code]** 왼쪽 목록에서 `network_zt` 폴더를 오른쪽 클릭 › **New File** › 이름 `5-1_count_dga.py` 를 입력하고 Enter 를 누릅니다.
+1. **[VS Code]** 왼쪽 목록에서 `network_zt` 폴더를 오른쪽 클릭 › **New File** › 이름 `day03_5-1_count_dga.py` 를 입력하고 Enter 를 누릅니다.
 2. **[VS Code]** 아래 코드 상자 안을 마우스로 끌어 선택하고 `Ctrl + C` 로 복사해 파일에 붙여 넣습니다. 실행하기 전에 **줄마다 주석을 읽어** 각 줄이 무엇을 하는지 이해합니다.
    ```python
    name = "p0w8rk2mzq.xyz"                   # 로그에 나온 도메인 이름을 name 에 담는다
@@ -95,10 +95,10 @@
    ```
 3. **[터미널]** 실행합니다. 터미널의 줄 위에 `…/network_zt` 가 보여야 합니다. 아니면 먼저 `cd network_zt` 를 입력합니다.
    ```bash
-   python 5-1_count_dga.py
+   python day03_5-1_count_dga.py
    ```
-   맥북: `python3 5-1_count_dga.py`
-4. **[VS Code]** 왼쪽 목록에서 `network_zt` 폴더를 오른쪽 클릭 › **New File** › 이름 `5-1_count_naver.py` 를 입력하고 Enter 를 누릅니다.
+   맥북: `python3 day03_5-1_count_dga.py`
+4. **[VS Code]** 왼쪽 목록에서 `network_zt` 폴더를 오른쪽 클릭 › **New File** › 이름 `day03_5-1_count_naver.py` 를 입력하고 Enter 를 누릅니다.
 5. **[VS Code]** 아래 코드를 파일에 붙여 넣고, 실행하기 전에 바뀐 줄(주석에 「달라진 줄」이라고 적힌 줄)을 첫 파일과 비교합니다.
    ```python
    name = "www.naver.com"                    # 달라진 줄: 정상 도메인 이름으로 바꿨다. 첫 파일은 p0w8rk2mzq.xyz 였다
@@ -114,12 +114,12 @@
    ```
 6. **[터미널]** 실행합니다.
    ```bash
-   python 5-1_count_naver.py
+   python day03_5-1_count_naver.py
    ```
-   맥북: `python3 5-1_count_naver.py`
+   맥북: `python3 day03_5-1_count_naver.py`
 7. **[보고서]** `day03_dns_analysis_pm.md` 의 `## 5교시` › `### 문제 5-1` 아래를 채웁니다.
-   - (가-1) `5-1_count_dga.py` 를 실행했을 때 나온 한 줄을 그대로 옮겨 적어 주세요.
-   - (가-2) `5-1_count_naver.py`(`www.naver.com`)를 실행했을 때 나온 한 줄을 그대로 옮겨 적어 주세요.
+   - (가-1) `day03_5-1_count_dga.py` 를 실행했을 때 나온 한 줄을 그대로 옮겨 적어 주세요.
+   - (가-2) `day03_5-1_count_naver.py`(`www.naver.com`)를 실행했을 때 나온 한 줄을 그대로 옮겨 적어 주세요.
    - (나) 두 출력에서 숫자 수와 모음 수가 크게 다릅니다. 왜 이런 차이가 날까요?
    - (다-1) 🔍 공격자는 왜 도메인 이름 하나를 계속 쓰지 않고, DGA 로 매일 수백 개씩 새로 만들까요?
    - (다-2) 5.1 표의 지표 가운데, 정상 도메인인데도 의심으로 잘못 고를 수 있는 지표는 무엇일까요? 하나를 고르고 예를 들어 주세요.
@@ -179,7 +179,7 @@ print(nx)                                              # 키마다 센 횟수가
 
 **순서**
 
-1. **[VS Code]** 왼쪽 목록에서 `network_zt` 폴더를 오른쪽 클릭 › **New File** › 이름 `5-2_nx_count.py` 를 입력하고 Enter 를 누릅니다.
+1. **[VS Code]** 왼쪽 목록에서 `network_zt` 폴더를 오른쪽 클릭 › **New File** › 이름 `day03_5-2_nx_count.py` 를 입력하고 Enter 를 누릅니다.
 2. **[VS Code]** 아래 코드를 파일에 붙여 넣고, 실행하기 전에 **줄마다 주석을 읽어** 각 줄이 무엇을 하는지 이해합니다.
    ```python
    logs = [("10.20.0.15", "www.naver.com", "NOERROR"),    # DNS 로그를 (PC 주소, 물어본 이름, 응답) 튜플의 리스트로 만든다
@@ -196,11 +196,11 @@ print(nx)                                              # 키마다 센 횟수가
    ```
 3. **[터미널]** 실행합니다.
    ```bash
-   python 5-2_nx_count.py
+   python day03_5-2_nx_count.py
    ```
-   맥북: `python3 5-2_nx_count.py`
+   맥북: `python3 day03_5-2_nx_count.py`
 4. **[보고서]** `day03_dns_analysis_pm.md` 의 `## 5교시` › `### 문제 5-2` 아래를 채웁니다.
-   - (가) `5-2_nx_count.py` 의 출력을 그대로 옮겨 적고, 감염이 의심되는 PC 주소를 하나 적어 주세요.
+   - (가) `day03_5-2_nx_count.py` 의 출력을 그대로 옮겨 적고, 감염이 의심되는 PC 주소를 하나 적어 주세요.
    - (나-1) `10.20.0.33` 도 NXDOMAIN 을 받았는데, 왜 감염으로 보기 어려울까요?
    - (나-2) `10.20.0.42` 는 NXDOMAIN 을 세 번 받은 뒤, 마지막에 `qwrtpzkx7v.com` 을 물었을 때는 NOERROR 를 받았습니다. 이게 왜 위험할까요?
    - (다-1) 🔍 DGA 에 감염된 PC 에서는 왜 NXDOMAIN 이 많이 나올까요?
@@ -249,7 +249,7 @@ print(nx)                                              # 키마다 센 횟수가
 
 **순서**
 
-1. **[VS Code]** 왼쪽 목록에서 `network_zt` 폴더를 오른쪽 클릭 › **New File** › 이름 `6-1_score_dga.py` 를 입력하고 Enter 를 누릅니다.
+1. **[VS Code]** 왼쪽 목록에서 `network_zt` 폴더를 오른쪽 클릭 › **New File** › 이름 `day03_6-1_score_dga.py` 를 입력하고 Enter 를 누릅니다.
 2. **[VS Code]** 아래 코드를 파일에 붙여 넣고, 실행하기 전에 **줄마다 주석을 읽어** 각 줄이 무엇을 하는지 이해합니다.
    ```python
    name = "p0w8rk2mzq.xyz"                # 점수를 매길 도메인 이름을 name 에 담는다
@@ -266,10 +266,10 @@ print(nx)                                              # 키마다 센 횟수가
    ```
 3. **[터미널]** 실행합니다.
    ```bash
-   python 6-1_score_dga.py
+   python day03_6-1_score_dga.py
    ```
-   맥북: `python3 6-1_score_dga.py`
-4. **[VS Code]** 왼쪽 목록에서 `network_zt` 폴더를 오른쪽 클릭 › **New File** › 이름 `6-1_score_bank.py` 를 입력하고 Enter 를 누릅니다.
+   맥북: `python3 day03_6-1_score_dga.py`
+4. **[VS Code]** 왼쪽 목록에서 `network_zt` 폴더를 오른쪽 클릭 › **New File** › 이름 `day03_6-1_score_bank.py` 를 입력하고 Enter 를 누릅니다.
 5. **[VS Code]** 아래 코드를 파일에 붙여 넣고, 바뀐 줄(주석에 「달라진 줄」이라고 적힌 줄)을 첫 파일과 비교합니다.
    ```python
    name = "bnk-secure-login.xyz"          # 달라진 줄: 은행을 사칭한 이름으로 바꿨다. 첫 파일은 p0w8rk2mzq.xyz 였다
@@ -286,12 +286,12 @@ print(nx)                                              # 키마다 센 횟수가
    ```
 6. **[터미널]** 실행합니다.
    ```bash
-   python 6-1_score_bank.py
+   python day03_6-1_score_bank.py
    ```
-   맥북: `python3 6-1_score_bank.py`
+   맥북: `python3 day03_6-1_score_bank.py`
 7. **[보고서]** `day03_dns_analysis_pm.md` 의 `## 6교시` › `### 문제 6-1` 아래를 채웁니다.
-   - (가-1) `6-1_score_dga.py` 를 실행했을 때 나온 한 줄을 그대로 옮겨 적어 주세요.
-   - (가-2) `6-1_score_bank.py`(`bnk-secure-login.xyz`)를 실행했을 때 나온 한 줄을 그대로 옮겨 적어 주세요.
+   - (가-1) `day03_6-1_score_dga.py` 를 실행했을 때 나온 한 줄을 그대로 옮겨 적어 주세요.
+   - (가-2) `day03_6-1_score_bank.py`(`bnk-secure-login.xyz`)를 실행했을 때 나온 한 줄을 그대로 옮겨 적어 주세요.
    - (나-1) 첫 파일의 점수는 규칙 ① ② ③ 에서 각각 몇 점씩 받아서 나온 걸까요?
    - (나-2) 지표 하나만 보고 판정하지 않고, 여러 지표의 점수를 더해서 판정하는 이유는 무엇일까요?
    - (다) 🔍 두 번째 이름은 은행을 사칭한 이름인데도 「의심」(점수 3 이상)이 되지 않았습니다. 왜 그럴까요? 사칭을 찾아내려면 무엇을 더 봐야 할까요?
@@ -330,7 +330,7 @@ print(nx)                                              # 키마다 센 횟수가
 
 **순서**
 
-1. **[VS Code]** 왼쪽 목록에서 `network_zt` 폴더를 오른쪽 클릭 › **New File** › 이름 `6-2_judge_th3.py` 를 입력하고 Enter 를 누릅니다.
+1. **[VS Code]** 왼쪽 목록에서 `network_zt` 폴더를 오른쪽 클릭 › **New File** › 이름 `day03_6-2_judge_th3.py` 를 입력하고 Enter 를 누릅니다.
 2. **[VS Code]** 아래 코드를 파일에 붙여 넣고, 실행하기 전에 **줄마다 주석을 읽어** 각 줄이 무엇을 하는지 이해합니다.
    ```python
    LOG = [("www.naver.com", "NOERROR", "정상"), ("mail.google.com", "NOERROR", "정상"),                # 로그를 (이름, 응답, 실제) 튜플의 리스트로 만든다. 이 줄은 정상 도메인 두 개다
@@ -359,10 +359,10 @@ print(nx)                                              # 키마다 센 횟수가
    ```
 3. **[터미널]** 실행하고, `판정` 과 `실제` 가 다른 줄을 찾습니다.
    ```bash
-   python 6-2_judge_th3.py
+   python day03_6-2_judge_th3.py
    ```
-   맥북: `python3 6-2_judge_th3.py`
-4. **[VS Code]** 왼쪽 목록에서 `network_zt` 폴더를 오른쪽 클릭 › **New File** › 이름 `6-2_judge_th1.py` 를 입력하고 Enter 를 누릅니다.
+   맥북: `python3 day03_6-2_judge_th3.py`
+4. **[VS Code]** 왼쪽 목록에서 `network_zt` 폴더를 오른쪽 클릭 › **New File** › 이름 `day03_6-2_judge_th1.py` 를 입력하고 Enter 를 누릅니다.
 5. **[VS Code]** 아래 코드를 파일에 붙여 넣고, 바뀐 줄(주석에 「달라진 줄」이라고 적힌 줄)을 첫 파일과 비교합니다.
    ```python
    LOG = [("www.naver.com", "NOERROR", "정상"), ("mail.google.com", "NOERROR", "정상"),                # 로그를 (이름, 응답, 실제) 튜플의 리스트로 만든다. 이 줄은 정상 도메인 두 개다
@@ -391,9 +391,9 @@ print(nx)                                              # 키마다 센 횟수가
    ```
 6. **[터미널]** 실행하고, `판정` 과 `실제` 가 다른 줄을 다시 찾습니다.
    ```bash
-   python 6-2_judge_th1.py
+   python day03_6-2_judge_th1.py
    ```
-   맥북: `python3 6-2_judge_th1.py`
+   맥북: `python3 day03_6-2_judge_th1.py`
 7. **[보고서]** `day03_dns_analysis_pm.md` 의 `## 6교시` › `### 문제 6-2` 아래를 채웁니다.
    - (가-1) 첫 파일(임계값 3)의 표에서 `판정` 과 `실제` 가 다른 이름을 모두 적어 주세요.
    - (가-2) 두 번째 파일(임계값 1)의 표에서 `판정` 과 `실제` 가 다른 이름을 모두 적어 주세요.
@@ -465,7 +465,7 @@ print(nx)                                              # 키마다 센 횟수가
 
 **순서**
 
-1. **[터미널]** `python 6-2_judge_th3.py` 를 다시 실행하고, 출력된 표를 `| 이름 |` 줄부터 마지막 줄까지 끌어 선택해 복사합니다.
+1. **[터미널]** `python day03_6-2_judge_th3.py` 를 다시 실행하고, 출력된 표를 `| 이름 |` 줄부터 마지막 줄까지 끌어 선택해 복사합니다.
 2. **[보고서]** 맨 아래 `## 최종 분석서` › `### 1. 의심 도메인 판정` 의 첫 줄 아래에 **빈 줄 하나를 띄우고** 붙여 넣은 뒤, 나머지 빈칸을 채웁니다.
 3. **[터미널]** `security-agent-toolkit` 폴더로 옮깁니다. 터미널이 `network_zt` 에 있으면 `cd ..` 를 입력합니다.
    ```bash
@@ -517,8 +517,8 @@ print(nx)                                              # 키마다 센 횟수가
 💻 **터미널에 입력합니다.**
 
 ```bash
-python 5-1_count_dga.py
-python 5-1_count_naver.py
+python day03_5-1_count_dga.py
+python day03_5-1_count_naver.py
 ```
 맥북: `python` 대신 `python3`
 
@@ -537,9 +537,9 @@ python 5-1_count_naver.py
 💻 **터미널에 입력합니다.**
 
 ```bash
-python 5-2_nx_count.py
+python day03_5-2_nx_count.py
 ```
-맥북: `python3 5-2_nx_count.py`
+맥북: `python3 day03_5-2_nx_count.py`
 
 **결과** — `{'10.20.0.42': 3, '10.20.0.33': 1}` — 감염이 의심되는 PC 는 `10.20.0.42` 입니다.
 
@@ -556,8 +556,8 @@ python 5-2_nx_count.py
 💻 **터미널에 입력합니다.**
 
 ```bash
-python 6-1_score_dga.py
-python 6-1_score_bank.py
+python day03_6-1_score_dga.py
+python day03_6-1_score_bank.py
 ```
 맥북: `python` 대신 `python3`
 
@@ -576,8 +576,8 @@ python 6-1_score_bank.py
 💻 **터미널에 입력합니다.**
 
 ```bash
-python 6-2_judge_th3.py
-python 6-2_judge_th1.py
+python day03_6-2_judge_th3.py
+python day03_6-2_judge_th1.py
 ```
 맥북: `python` 대신 `python3`
 
@@ -624,7 +624,7 @@ git commit -m "Add day 3 DNS analysis report"
 git push
 ```
 
-**결과** — 빨간 목록에 `network_zt/` 아래 오늘 만든 파일(`day03_dns_analysis_am.md` · `day03_dns_analysis_pm.md` · `5-1_count_dga.py` 등)이 보이고 `.env` 는 없습니다. 깃허브 `network_zt` 폴더에 보고서 두 개가 보입니다.
+**결과** — 빨간 목록에 `network_zt/` 아래 오늘 만든 파일(`day03_dns_analysis_am.md` · `day03_dns_analysis_pm.md` · `day03_5-1_count_dga.py` 등)이 보이고 `.env` 는 없습니다. 깃허브 `network_zt` 폴더에 보고서 두 개가 보입니다.
 
 **왜** — `git add .` 는 `.gitignore` 에 적힌 것을 빼고 지금 폴더 아래 바뀐 파일을 한꺼번에 고릅니다. `.gitignore` 가 빠졌거나 잘못돼 있으면 `.env` 도 골라지고, 깃허브에 올라가면 다른 사람이 그 안의 API 키로 내 계정을 쓸 수 있어 키를 폐기해야 합니다.
 
