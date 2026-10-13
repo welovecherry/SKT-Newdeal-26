@@ -2,30 +2,32 @@
 
 **아침 과제와 실습 노트북**입니다. 이 페이지 하나만 저장해 두시면 됩니다. 날짜를 찾아 들어가면 그날 자료가 다 있습니다.
 
+> 10/13 부터 자료를 과목 폴더(`1_agent_core` · `2_network_zt` …) 안으로 옮겼습니다. 예전에 받은 링크가 열리지 않으면 이 페이지의 목차에서 날짜를 찾아 주세요.
+
 ## 날짜 목차
 
 ### 1과목 · AI·자동화 기초 — 폴더 `agent_core`
 
 | 날짜 | 아침 과제 | 오전 | 오후 |
 |---|---|---|---|
-| 9/22 (화) | — | [변수 · 자료형 · 리스트 · 딕셔너리](0922_tue/260922_variables_and_lists.ipynb) | — |
-| 9/23 (수) | — | [조건문 · 반복문 · 집합 · Counter](0923_wed/260923_am_conditions_loops_counting.ipynb) · [도전 문제](0923_wed/260923_extra_challenges.ipynb) | [함수 · 모듈 · 파일 · CSV](0923_wed/260923_pm_functions_files_csv.ipynb) |
-| 9/28 (월) | [1 · 깃배시 설치와 폴더 확인](0928_mon/0928_morning30.md) | [예외처리 · 로깅](0928_mon/01_0928_am_exceptions_logging.ipynb) | [중첩 자료 · JSON](0928_mon/02_0928_pm_nested_json.ipynb) |
-| 9/29 (화) | [2 · 폴더 만들기와 경로 이동](0929_tue/0929_morning30.md) | [정규표현식 · 탐지 룰](0929_tue/01_0929_am_regex_detection_rules.ipynb) | [탐지 룰 · API](0929_tue/02_0929_pm_rules_api.ipynb) |
-| 9/30 (수) | [3 · requests 준비 · 깃허브에 노트북 올리기](0930_wed/0930_morning30.md) | [requests · API 클라이언트](0930_wed/01_0930_am_requests_api_client.ipynb) | *(다른 강사 수업)* |
-| 10/2 (금) | [4 · VS Code 에서 수업 실행 준비](1002_fri/1002_morning30.md) | [웹훅 · CLI](1002_fri/261002_am_webhook_cli.ipynb) | [트리거 · 스케줄러](1002_fri/261002_pm_trigger_scheduler.ipynb) · [복습](1002_fri/261002_review.ipynb) |
-| 10/6 (화) | [5 · Gemini API 키 발급 · 보관](1006_tue/1006_morning30.md) | [LLM 호출 · 프롬프트](1006_tue/261006_am_llm_prompt.ipynb) | [AI 에이전트 · 도구 호출](1006_tue/261006_pm_agent_tools.ipynb) |
-| 10/7 (수) | [6 · 내 폴더를 깃허브 저장소와 연결하기](1007_wed/1007_morning30.md) | [보고서 형식 · 묶음 요약 · 위험도 정렬](1007_wed/261007_am_report_summary.ipynb) | [총평 · 보고서 틀 · 조건부 경고](1007_wed/261007_pm_report_generator.ipynb) |
-| 10/8 (목) | [7 · 명령어로 깃허브에 올리기](1008_thu/1008_morning30.md) | [설정 분리 · 알림 연동 · 하나로 잇기](1008_thu/261008_am_config_pipeline.ipynb) | [코드 리뷰 · 테스트 · 디버깅 · 회고](1008_thu/261008_pm_review_debug_retro.ipynb) |
+| 9/22 (화) | — | [변수 · 자료형 · 리스트 · 딕셔너리](1_agent_core/0922_tue/260922_variables_and_lists.ipynb) | — |
+| 9/23 (수) | — | [조건문 · 반복문 · 집합 · Counter](1_agent_core/0923_wed/260923_am_conditions_loops_counting.ipynb) · [도전 문제](1_agent_core/0923_wed/260923_extra_challenges.ipynb) | [함수 · 모듈 · 파일 · CSV](1_agent_core/0923_wed/260923_pm_functions_files_csv.ipynb) |
+| 9/28 (월) | [1 · 깃배시 설치와 폴더 확인](1_agent_core/0928_mon/0928_morning30.md) | [예외처리 · 로깅](1_agent_core/0928_mon/01_0928_am_exceptions_logging.ipynb) | [중첩 자료 · JSON](1_agent_core/0928_mon/02_0928_pm_nested_json.ipynb) |
+| 9/29 (화) | [2 · 폴더 만들기와 경로 이동](1_agent_core/0929_tue/0929_morning30.md) | [정규표현식 · 탐지 룰](1_agent_core/0929_tue/01_0929_am_regex_detection_rules.ipynb) | [탐지 룰 · API](1_agent_core/0929_tue/02_0929_pm_rules_api.ipynb) |
+| 9/30 (수) | [3 · requests 준비 · 깃허브에 노트북 올리기](1_agent_core/0930_wed/0930_morning30.md) | [requests · API 클라이언트](1_agent_core/0930_wed/01_0930_am_requests_api_client.ipynb) | *(다른 강사 수업)* |
+| 10/2 (금) | [4 · VS Code 에서 수업 실행 준비](1_agent_core/1002_fri/1002_morning30.md) | [웹훅 · CLI](1_agent_core/1002_fri/261002_am_webhook_cli.ipynb) | [트리거 · 스케줄러](1_agent_core/1002_fri/261002_pm_trigger_scheduler.ipynb) · [복습](1_agent_core/1002_fri/261002_review.ipynb) |
+| 10/6 (화) | [5 · Gemini API 키 발급 · 보관](1_agent_core/1006_tue/1006_morning30.md) | [LLM 호출 · 프롬프트](1_agent_core/1006_tue/261006_am_llm_prompt.ipynb) | [AI 에이전트 · 도구 호출](1_agent_core/1006_tue/261006_pm_agent_tools.ipynb) |
+| 10/7 (수) | [6 · 내 폴더를 깃허브 저장소와 연결하기](1_agent_core/1007_wed/1007_morning30.md) | [보고서 형식 · 묶음 요약 · 위험도 정렬](1_agent_core/1007_wed/261007_am_report_summary.ipynb) | [총평 · 보고서 틀 · 조건부 경고](1_agent_core/1007_wed/261007_pm_report_generator.ipynb) |
+| 10/8 (목) | [7 · 명령어로 깃허브에 올리기](1_agent_core/1008_thu/1008_morning30.md) | [설정 분리 · 알림 연동 · 하나로 잇기](1_agent_core/1008_thu/261008_am_config_pipeline.ipynb) | [코드 리뷰 · 테스트 · 디버깅 · 회고](1_agent_core/1008_thu/261008_pm_review_debug_retro.ipynb) |
 
 ### 2과목 · 네트워크·ZT(제로 트러스트) 운영 — 폴더 `network_zt`
 
 | 날짜 | 아침 과제 | 오전 | 오후 |
 |---|---|---|---|
-| 10/12 (월) | [8 · Wireshark 설치하고 새 과목 폴더 만들기](1012_mon/1012_morning30.md) | [네트워크 첫 관찰 · OSI 7계층](1012_mon/261012_am_osi_layers.md) | [TCP · 3-way handshake · Wireshark 첫 캡처](1012_mon/261012_pm_tcp_wireshark.md) |
-| 10/13 (화) | [9 · 로그에서 필요한 줄만 골라내기](1013_tue/1013_morning30.md) | [IP 주소 · 사설 주소 · 서브넷 · 서브네팅](1013_tue/261013_am_ip_subnet.md) | [스위치 · 라우터 · VLAN · 라우팅 표](1013_tue/261013_pm_switch_router_vlan.md) |
-| 10/14 (수) | [10 · 파일 옮기고 복사하기 — `mv` · `cp`](1014_wed/1014_morning30.md) | [DNS — 이름 · 계층 · 레코드 · 캐시](1014_wed/261014_am_dns.md) | [DNS 로 보는 공격 · 의심 도메인 판별](1014_wed/261014_pm_dns_suspicious.md) |
-| 10/15 (목) | [11 · VS Code 를 내 것으로 꾸미기](1015_thu/1015_morning30.md) | — | — |
+| 10/12 (월) | [8 · Wireshark 설치하고 새 과목 폴더 만들기](2_network_zt/1012_mon/1012_morning30.md) | [네트워크 첫 관찰 · OSI 7계층](2_network_zt/1012_mon/261012_am_osi_layers.md) | [TCP · 3-way handshake · Wireshark 첫 캡처](2_network_zt/1012_mon/261012_pm_tcp_wireshark.md) |
+| 10/13 (화) | [9 · 로그에서 필요한 줄만 골라내기](2_network_zt/1013_tue/1013_morning30.md) | [IP 주소 · 사설 주소 · 서브넷 · 서브네팅](2_network_zt/1013_tue/261013_am_ip_subnet.md) | [스위치 · 라우터 · VLAN · 라우팅 표](2_network_zt/1013_tue/261013_pm_switch_router_vlan.md) |
+| 10/14 (수) | [10 · 파일 옮기고 복사하기 — `mv` · `cp`](2_network_zt/1014_wed/1014_morning30.md) | [DNS — 이름 · 계층 · 레코드 · 캐시](2_network_zt/1014_wed/261014_am_dns.md) | [DNS 로 보는 공격 · 의심 도메인 판별](2_network_zt/1014_wed/261014_pm_dns_suspicious.md) |
+| 10/15 (목) | [11 · VS Code 를 내 것으로 꾸미기](2_network_zt/1015_thu/1015_morning30.md) | — | — |
 
 9/30 까지는 Colab 으로, **10/2 부터는 VS Code** 로 노트북을 엽니다.
 
