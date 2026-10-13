@@ -64,29 +64,6 @@
 
 **어느 레이블을 볼까:** `e6030.a.akamaiedge.net` 처럼 정상 서비스도 맨 앞 레이블은 무작위로 보입니다(오전 4-1 의 CDN). 그래서 오늘은 **TLD 바로 앞 레이블**(2단계 도메인 레이블 — `akamaiedge` · `naver` · `kxq3vz9a`)을 봅니다.
 
-#### 🐍 문법 상자 · `for 문자 in 문자열:` — 한 글자씩 보며 세기
-
-```python
-label = "kxq3vz9a"                 # 셀 레이블 문자열을 label 에 담는다
-digits = 0                         # 숫자 개수를 셀 변수를 0 으로 시작한다
-for ch in label:                   # for 문자 in 문자열: 은 문자열에서 한 글자씩 꺼내 ch 에 담아 반복한다
-    if ch in "0123456789":         # 글자 in 문자열 은 그 한 글자가 문자열 안에 있으면 True 다. ch 가 숫자 열 개 중 하나인지 묻는다
-        digits = digits + 1        # 숫자이면 digits 에 1 을 더한다
-print(digits, len(label))          # 센 숫자 개수와, len() 이 리턴한 레이블 전체 글자 수를 출력한다
-print("kxq3vz9a" in "0123456789")  # 문자열 전체를 in 으로 물으면, 그 문자열 통째가 들어 있는지를 묻는다. 결과를 출력한다
-
-# 2 8      ← 숫자 3 · 9 두 개, 전체 8글자
-# False    ← 통째로는 들어 있지 않다
-```
-
-| 쓰는 것 | 뜻 |
-|---|---|
-| `for ch in 문자열:` | 문자열을 **한 글자씩** 꺼내 반복한다 |
-| `ch in "0123456789"` | 그 한 글자가 숫자인가 |
-| `ch in "aeiou"` | 그 한 글자가 모음인가 |
-
-⚠ `"kxq3vz9a" in "0123456789"` 처럼 문자열 <mark style="background:#ffcdd2; color:#1a1a1a; padding:0 4px; border-radius:3px">전체</mark>로 물으면 `False` 입니다. 한 글자씩 꺼내서 묻습니다.
-
 ---
 
 ### ✍️ 문제 5-1 · DGA 이름과 정상 이름의 지표 세기
