@@ -139,10 +139,8 @@ Addresses:  2606:4700:10::ac42:93f3
 import socket                             # import 는 파이썬에 들어 있는 도구 모음(모듈)을 불러온다. 네트워크 도구 모음 socket 을 불러온다
 ip = socket.gethostbyname("example.com")  # 모듈이름.함수이름() 으로 그 모듈 안의 함수를 쓴다. gethostbyname() 은 내 PC 의 DNS 서버에 이름을 묻고 IPv4 주소 하나를 글자로 리턴한다. 그 주소를 ip 에 담는다
 print(ip)                                 # 리턴받은 IPv4 주소를 출력한다
-print(type(ip))                           # type() 은 값의 종류를 리턴한다. ip 가 글자(str)인지 확인해 출력한다
 
 # 104.20.23.154     ← print(ip) — 실행할 때마다 다른 IPv4 가 나올 수 있다
-# <class 'str'>     ← print(type(ip))
 ```
 
 | 쓰는 것 | 뜻 |
@@ -277,12 +275,10 @@ print(type(ip))                           # type() 은 값의 종류를 리턴�
 
 ```python
 parts = ["www", "example", "com"]  # 도메인 이름을 점으로 나눈 레이블 세 개를 리스트로 만들어 parts 에 담는다
-print(parts[0])                    # 리스트[0] 은 앞에서 첫째 칸이다. 첫째 요소를 출력한다
 print(parts[-1])                   # 리스트[-1] 처럼 번호에 - 를 붙이면 뒤에서부터 센다. -1 은 마지막 요소다. 마지막 요소를 출력한다
 print(parts[-2])                   # -2 는 끝에서 둘째 칸이다. 그 요소 하나를 출력한다
 print(parts[-2:])                  # 리스트[시작:] 은 시작 칸부터 끝까지를 잘라 새 리스트로 리턴한다. 끝에서 둘째 칸부터 끝까지를 출력한다
 
-# www                    ← print(parts[0])
 # com                    ← print(parts[-1])
 # example                ← print(parts[-2]) — 요소 하나(글자)
 # ['example', 'com']     ← print(parts[-2:]) — 대괄호가 있는 리스트
@@ -522,28 +518,6 @@ print(parts)                       # 원래 리스트를 다시 출력한다. re
 내 PC 의 캐시는 `ipconfig //displaydns`(디스플레이 디엔에스)로 보고, `ipconfig //flushdns`(플러시 디엔에스)로 비웁니다.
 
 ⚠ `nslookup` 은 PC 의 캐시를 거치지 않고 DNS 서버에 바로 묻습니다. 그래서 <mark style="background:#ffcdd2; color:#1a1a1a; padding:0 4px; border-radius:3px">`nslookup` 으로는 캐시가 채워지지 않습니다.</mark> 캐시를 채울 때는 `ping` · 브라우저처럼 보통 프로그램이 쓰는 방식으로 접속합니다.
-
-#### 🐍 문법 상자 · `<` 로 만료 시각과 비교하기 — 같을 때를 조심
-
-```python
-ttl = 300                     # 답을 저장해 써도 되는 초를 ttl 에 담는다
-saved_at = 0                  # 답을 저장한 시각(초)을 saved_at 에 담는다
-print(saved_at + ttl)         # 저장한 시각에 TTL 을 더하면 만료 시각이다. 만료 시각을 출력한다
-print(299 < saved_at + ttl)   # a < b 는 a 가 b 보다 작으면 True, 아니면 False 를 리턴한다. 299 가 만료 시각보다 작은지 출력한다
-print(300 < saved_at + ttl)   # 300 과 만료 시각이 같을 때 < 가 무엇을 리턴하는지 출력한다
-print(300 <= saved_at + ttl)  # a <= b 는 a 가 b 보다 작거나 같으면 True 를 리턴한다. < 와 비교해 출력한다
-
-# 300      ← 만료 시각
-# True     ← 299 < 300
-# False    ← 300 < 300 — 같으면 작지 않다
-# True     ← 300 <= 300
-```
-
-| 쓰는 것 | 뜻 |
-|---|---|
-| `a < b` | `a` 가 `b` 보다 **작을 때만** `True`. 같으면 `False` |
-| `a <= b` | 작거나 **같으면** `True` |
-| 캐시에서는 | `지금 < 만료 시각` 이면 캐시를 쓴다. 만료 시각이 **되는 순간** 새로 묻는다 |
 
 ---
 
