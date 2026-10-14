@@ -135,7 +135,10 @@ print(outer["data"]["dst"])                                     # 꺼낸 안쪽 
    ```bash
    pwd
    ```
-   결과가 `…/security-agent-toolkit/network_zt` 로 끝나는지 **먼저 확인한 뒤** `touch` 를 칩니다. 아니면 `cd network_zt` 로 들어간 뒤 `pwd` 를 다시 칩니다.
+   결과가 `…/security-agent-toolkit/network_zt` 로 끝나면 아래 `touch` 를 칩니다. **그 위치가 아니면 `touch` 하지 말고 `cd` 로 먼저 옮깁니다.**
+   - `…/security-agent-toolkit` 으로 끝나면 → `cd network_zt`
+   - `…/network_zt/다른폴더` 처럼 더 안쪽이면 → `cd ..` (`network_zt` 가 나올 때까지)
+   - 옮긴 뒤 `pwd` 를 다시 쳐서 `…/network_zt` 로 끝나는지 확인합니다.
    ```bash
    touch day04_2-2_tunnel_plain.py
    ls
@@ -157,7 +160,10 @@ print(outer["data"]["dst"])                                     # 꺼낸 안쪽 
    ```bash
    pwd
    ```
-   결과가 `…/security-agent-toolkit/network_zt` 로 끝나는지 **먼저 확인한 뒤** `touch` 를 칩니다. 아니면 `cd network_zt` 로 들어간 뒤 `pwd` 를 다시 칩니다.
+   결과가 `…/security-agent-toolkit/network_zt` 로 끝나면 아래 `touch` 를 칩니다. **그 위치가 아니면 `touch` 하지 말고 `cd` 로 먼저 옮깁니다.**
+   - `…/security-agent-toolkit` 으로 끝나면 → `cd network_zt`
+   - `…/network_zt/다른폴더` 처럼 더 안쪽이면 → `cd ..` (`network_zt` 가 나올 때까지)
+   - 옮긴 뒤 `pwd` 를 다시 쳐서 `…/network_zt` 로 끝나는지 확인합니다.
    ```bash
    touch day04_2-2_tunnel_encrypted.py
    ```
@@ -292,7 +298,10 @@ VPN 주소는 **VPN 게이트웨이**가 나눠 줍니다. 그래서 VPN 게이�
    ```bash
    pwd
    ```
-   결과가 `…/security-agent-toolkit/network_zt` 로 끝나는지 **먼저 확인한 뒤** `touch` 를 칩니다. 아니면 `cd network_zt` 로 들어간 뒤 `pwd` 를 다시 칩니다.
+   결과가 `…/security-agent-toolkit/network_zt` 로 끝나면 아래 `touch` 를 칩니다. **그 위치가 아니면 `touch` 하지 말고 `cd` 로 먼저 옮깁니다.**
+   - `…/security-agent-toolkit` 으로 끝나면 → `cd network_zt`
+   - `…/network_zt/다른폴더` 처럼 더 안쪽이면 → `cd ..` (`network_zt` 가 나올 때까지)
+   - 옮긴 뒤 `pwd` 를 다시 쳐서 `…/network_zt` 로 끝나는지 확인합니다.
    ```bash
    touch day04_3-2_pool_24.py
    ```
@@ -322,7 +331,10 @@ VPN 주소는 **VPN 게이트웨이**가 나눠 줍니다. 그래서 VPN 게이�
    ```bash
    pwd
    ```
-   결과가 `…/security-agent-toolkit/network_zt` 로 끝나는지 **먼저 확인한 뒤** `touch` 를 칩니다. 아니면 `cd network_zt` 로 들어간 뒤 `pwd` 를 다시 칩니다.
+   결과가 `…/security-agent-toolkit/network_zt` 로 끝나면 아래 `touch` 를 칩니다. **그 위치가 아니면 `touch` 하지 말고 `cd` 로 먼저 옮깁니다.**
+   - `…/security-agent-toolkit` 으로 끝나면 → `cd network_zt`
+   - `…/network_zt/다른폴더` 처럼 더 안쪽이면 → `cd ..` (`network_zt` 가 나올 때까지)
+   - 옮긴 뒤 `pwd` 를 다시 쳐서 `…/network_zt` 로 끝나는지 확인합니다.
    ```bash
    touch day04_3-2_pool_23.py
    ```
@@ -421,7 +433,10 @@ print(int("22:15".split(":")[0]))       # "22:15" 를 : 로 잘라 앞 칸 "22" 
    ```bash
    pwd
    ```
-   결과가 `…/security-agent-toolkit/network_zt` 로 끝나는지 **먼저 확인한 뒤** `touch` 를 칩니다. 아니면 `cd network_zt` 로 들어간 뒤 `pwd` 를 다시 칩니다.
+   결과가 `…/security-agent-toolkit/network_zt` 로 끝나면 아래 `touch` 를 칩니다. **그 위치가 아니면 `touch` 하지 말고 `cd` 로 먼저 옮깁니다.**
+   - `…/security-agent-toolkit` 으로 끝나면 → `cd network_zt`
+   - `…/network_zt/다른폴더` 처럼 더 안쪽이면 → `cd ..` (`network_zt` 가 나올 때까지)
+   - 옮긴 뒤 `pwd` 를 다시 쳐서 `…/network_zt` 로 끝나는지 확인합니다.
    ```bash
    touch day04_4-1_night_20.py
    ```
@@ -451,7 +466,10 @@ print(int("22:15".split(":")[0]))       # "22:15" 를 : 로 잘라 앞 칸 "22" 
    ```bash
    pwd
    ```
-   결과가 `…/security-agent-toolkit/network_zt` 로 끝나는지 **먼저 확인한 뒤** `touch` 를 칩니다. 아니면 `cd network_zt` 로 들어간 뒤 `pwd` 를 다시 칩니다.
+   결과가 `…/security-agent-toolkit/network_zt` 로 끝나면 아래 `touch` 를 칩니다. **그 위치가 아니면 `touch` 하지 말고 `cd` 로 먼저 옮깁니다.**
+   - `…/security-agent-toolkit` 으로 끝나면 → `cd network_zt`
+   - `…/network_zt/다른폴더` 처럼 더 안쪽이면 → `cd ..` (`network_zt` 가 나올 때까지)
+   - 옮긴 뒤 `pwd` 를 다시 쳐서 `…/network_zt` 로 끝나는지 확인합니다.
    ```bash
    touch day04_4-1_night_23.py
    ```
@@ -557,7 +575,10 @@ VPN 게이트웨이는 접속할 때 아이디 · 비밀번호를 확인합니�
    ```bash
    pwd
    ```
-   결과가 `…/security-agent-toolkit/network_zt` 로 끝나는지 **먼저 확인한 뒤** `touch` 를 칩니다. 아니면 `cd network_zt` 로 들어간 뒤 `pwd` 를 다시 칩니다.
+   결과가 `…/security-agent-toolkit/network_zt` 로 끝나면 아래 `touch` 를 칩니다. **그 위치가 아니면 `touch` 하지 말고 `cd` 로 먼저 옮깁니다.**
+   - `…/security-agent-toolkit` 으로 끝나면 → `cd network_zt`
+   - `…/network_zt/다른폴더` 처럼 더 안쪽이면 → `cd ..` (`network_zt` 가 나올 때까지)
+   - 옮긴 뒤 `pwd` 를 다시 쳐서 `…/network_zt` 로 끝나는지 확인합니다.
    ```bash
    touch day04_vpn_fail_count.py
    ```

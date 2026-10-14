@@ -256,7 +256,7 @@ git push
 
 **왜 중요한가** — 서버의 설정 파일은 고치기 전에 복사본을 만들어 두고, 고친 뒤 무엇이 바뀌었는지 비교합니다. 잘못 고쳤을 때 복사본으로 되돌릴 수 있고, 바뀐 줄만 보면 확인이 빠릅니다.
 
-`vim_practice` 폴더로 돌아가(`cd ../vim_practice`) 서버 설정 파일을 흉내 낸 `server.conf` 를 고칩니다. `pwd` 결과가 `…/vim_practice` 로 끝나는지 먼저 확인합니다.
+`vim_practice` 폴더로 돌아가(`cd ../vim_practice`) 서버 설정 파일을 흉내 낸 `server.conf` 를 고칩니다. `pwd` 결과가 `…/vim_practice` 로 끝나는지 먼저 확인합니다. **그 위치가 아니면 `touch` 하지 말고 `cd` 로 먼저 옮깁니다** — `…/security-agent-toolkit` 으로 끝나면 `cd ../vim_practice`, 그다음 `pwd` 를 다시 칩니다.
 
 1. `[터미널]` `touch` 로 파일을 만들고 `vim` 으로 열어 아래 네 줄을 입력한 뒤 `Esc`, `:wq` 로 저장합니다.
    ```
