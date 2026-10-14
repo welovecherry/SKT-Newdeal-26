@@ -261,7 +261,7 @@ print(type(ip))                           # type() 은 값의 종류를 리턴�
 | 2단계 도메인 | `example.com` | **권한 있는 네임서버** |
 | 호스트 이름 | `www.example.com` | 위 권한 있는 네임서버가 함께 답한다 |
 
-- TLD 의 권한 있는 네임서버도 같은 방법으로 봅니다 — `nslookup -type=ns kr.`(이름 끝 점까지 칩니다. 점을 빼면 `can't find kr`).
+- TLD 의 권한 있는 네임서버도 같은 방법으로 봅니다 — `nslookup -type=ns kr.`(끝의 점은 루트를 나타냅니다. 점이 있어도 없어도 같은 결과입니다).
 - `.kr` 처럼 국가 코드 TLD 는 계층이 하나 더 있습니다. `mail.google.co.kr` 은 `kr` → `co.kr`(회사용) → `google.co.kr` → `mail.google.co.kr` 순서입니다.
 
 리졸버의 질문 순서:
