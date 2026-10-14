@@ -42,7 +42,7 @@
    cd mvcp_practice
    pwd
    ```
-   결과가 `…/Documents/mvcp_practice` 처럼 끝나면 됩니다. **경로 안에 `security-agent-toolkit` 이 없어야** 저장소 바깥입니다. 있으면 멈추고 강사를 부릅니다.
+   결과가 `…/Documents/mvcp_practice` 처럼 끝나면 됩니다. **경로 안에 `security-agent-toolkit` 이 없어야** 저장소 바깥입니다. 있으면 멈추고, 2번의 터미널 위치부터 다시 합니다.
 
 연습용 파일을 두 개 만듭니다. 하나는 내용이 있고, 하나는 비어 있습니다.
 
@@ -119,7 +119,7 @@ touch, cp, mv, rm, Tab 자동 완성
 ## 다음에 확인할 것
 ```
 
-3. 10/12 에 배운 순서로 올립니다. `git status` 의 빨간 목록에 `docs/2026-10-14.md` 하나만 보이면 다음으로 갑니다. `mvcp_practice` · `a.log` · `.env` 가 보이면 멈추고 강사를 부릅니다.
+3. 10/12 에 배운 순서로 올립니다. `git status` 의 빨간 목록에 `docs/2026-10-14.md` 하나만 보이면 다음으로 갑니다. `mvcp_practice` · `a.log` · `.env` 가 보이면 멈추고, `.gitignore` 에 `.env` 한 줄이 있는지 확인한 뒤 `git status` 를 다시 합니다.
 
 ```
 git status
