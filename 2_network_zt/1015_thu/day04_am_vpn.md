@@ -563,54 +563,6 @@ VPN 게이트웨이는 접속할 때 아이디 · 비밀번호를 확인합니�
 
 ---
 
-### ⭐ 도전 · 사용자별 로그인 실패 횟수 세기 (선택)
-
-**할 일** — VPN 접속 결과에서 사용자별 실패 횟수를 세어, 2번 이상 실패한 사용자를 출력하는 코드를 완성해 실행하고 출력을 보고서에 적습니다. 못 풀어도 괜찮습니다.
-
-**왜 중요한가** — 실패 횟수를 사용자별로 세면 무차별 대입을 받는 계정을 빠르게 찾습니다. 실제 VPN 장비도 정해진 횟수 이상 실패하면 계정을 잠그는 기능이 있습니다.
-
-**순서**
-
-1. **[터미널]** 파일을 만듭니다.
-   ```bash
-   pwd
-   ```
-   결과가 `…/security-agent-toolkit/network_zt` 로 끝나면 아래 `touch` 를 칩니다. **그 위치가 아니면 `touch` 하지 말고 `cd` 로 먼저 옮깁니다.**
-   - `…/security-agent-toolkit` 으로 끝나면 → `cd network_zt`
-   - `…/network_zt/다른폴더` 처럼 더 안쪽이면 → `cd ..` (`network_zt` 가 나올 때까지)
-   - 옮긴 뒤 `pwd` 를 다시 쳐서 `…/network_zt` 로 끝나는지 확인합니다.
-   ```bash
-   touch day04_vpn_fail_count.py
-   ```
-2. **[VS Code]** 아래 코드를 붙여 넣고, 번호 주석 아래 한 줄을 직접 채웁니다.
-   ```python
-   LOG = [("kim", "success"), ("lee", "fail"), ("lee", "fail"), ("lee", "success"), ("park", "fail"), ("choi", "success")]  # (사용자, 결과) 튜플 리스트를 LOG 에 담는다
-   fails = {}                                     # 사용자별 실패 횟수를 담을 빈 딕셔너리를 fails 에 만든다
-   for user, result in LOG:                       # 줄마다 사용자와 결과를 user · result 에 나눠 담아 반복한다
-       if result == "fail":                       # 결과가 fail 이면 아래 줄을 실행한다
-           # 1. fails 에서 user 의 횟수를 1 늘리세요 (10/14 오후의 .get(키, 0) + 1 을 씁니다)
-
-   print(fails)                                   # 사용자별 실패 횟수 딕셔너리를 출력한다
-   for user in fails:                             # 딕셔너리의 키(사용자)를 하나씩 꺼내 user 에 담아 반복한다
-       if fails[user] >= 2:                       # 실패가 2번 이상이면 아래 줄을 실행한다
-           print(user, "실패", fails[user], "번 ← 확인")  # 확인할 사용자로 출력한다
-   ```
-3. **[터미널]** 실행합니다.
-   ```bash
-   python day04_vpn_fail_count.py
-   ```
-   맥북: `python3 day04_vpn_fail_count.py`
-4. **[보고서]** `day04_am_report.md` 의 `### ⭐ 도전 · 사용자별 실패 횟수` 아래를 채웁니다.
-   - ⭐ 출력 두 줄을 그대로 적어 주세요. (선택 — 비워도 됩니다)
-
-**💡 힌트**
-
-1. 10/14 오후 5.2 의 문법 상자 `딕셔너리.get(키, 0) + 1` 과 같은 세기 방식입니다.
-2. 채울 줄은 `# 1.` 주석이 시작하는 칸과 똑같이 맞춰 들여 씁니다. 비워 둔 채 실행하면 `IndentationError`(들여쓰기 에러)가 납니다.
-3. 다 했으면 · 막히면 문서 맨 아래 「정답 ⭐」에서 결과를 확인합니다.
-
----
-
 ## 오전 마무리 — 보고서 2 · 3 · 4교시 칸 확인
 
 `day04_am_report.md` 의 2 · 3 · 4교시 칸에 **빈 줄**이 없는지 봅니다. 빈 줄은 그 문제로 돌아갑니다.
@@ -760,37 +712,3 @@ python day04_4-1_night_23.py
 **자주 틀리는 곳** — 「VPN 이 매번 확인한다」고 적는 경우가 많습니다. VPN 의 확인은 로그인 한 번입니다.
 
 **관제에서는** — VPN 로그인 성공 뒤에 그 VPN 주소가 업무와 맞지 않는 서버(관리 서버 · DB)에 접속하면 계정 탈취를 의심합니다. VPN 주소에서 DB 로 가는 접속은 방화벽에서 처음부터 막아 둡니다.
-
----
-
-### 정답 ⭐
-
-```python
-LOG = [("kim", "success"), ("lee", "fail"), ("lee", "fail"), ("lee", "success"), ("park", "fail"), ("choi", "success")]
-fails = {}
-for user, result in LOG:
-    if result == "fail":
-        fails[user] = fails.get(user, 0) + 1
-print(fails)
-for user in fails:
-    if fails[user] >= 2:
-        print(user, "실패", fails[user], "번 ← 확인")
-```
-
-💻 **터미널에 입력합니다.**
-
-```bash
-python day04_vpn_fail_count.py
-```
-맥북: `python3 day04_vpn_fail_count.py`
-
-**결과**
-
-```
-{'lee': 2, 'park': 1}
-lee 실패 2 번 ← 확인
-```
-
-**왜** — `fails.get(user, 0)` 은 처음 나온 사용자면 0, 이미 있으면 지금까지의 횟수를 리턴하고, 거기에 1 을 더해 다시 넣습니다.
-
-**자주 틀리는 곳** — `fails[user] = fails[user] + 1` 로 쓰면 처음 나온 사용자에서 `KeyError` 가 납니다. `.get(user, 0)` 이 그 경우에 0 을 리턴합니다.
