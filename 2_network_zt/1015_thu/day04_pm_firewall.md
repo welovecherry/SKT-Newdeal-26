@@ -407,6 +407,8 @@
    막힌 포트    내 PC ──SYN──▶ [학원 방화벽: 버림] ✗     (답 없음 → SYN 재전송 → 5초 뒤 curl 종료)
    ```
 4. **[Wireshark]** 네 번째 연결의 결과가 나온 뒤 빨간 네모로 캡처를 멈춥니다. 포트마다 `Info` 에서 `[SYN, ACK]`(열림)가 왔는지, `[RST]`(거부)가 왔는지, `[SYN]` 만 반복됐는지(드롭) 봅니다.
+   - 줄의 정확한 포트 번호는 아래쪽 **패킷 상세 창**에서 확인합니다. 줄을 클릭한 뒤 `Transmission Control Protocol` 줄을 펼치면 `Source Port`(출발지 포트)와 `Destination Port`(목적지 포트)가 나옵니다.
+   - 내 PC 가 보낸 줄이면 `Source Port` 는 PC 가 임시로 쓴 번호이고, `Destination Port` 는 내가 연결한 포트(80 · 443 · 22 · 3306 중 하나)입니다. 서버가 보낸 줄이면 두 값이 반대로 보입니다.
 5. **[Wireshark]** 필터 칸의 `X` 로 지운 뒤 아래 필터를 입력하고 Enter 를 눌러 재전송된 패킷만 봅니다. 여기 남은 줄의 목적지 포트가 「답이 없었던」 포트입니다.
    ```
    tcp.analysis.retransmission
