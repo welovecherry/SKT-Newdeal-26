@@ -11,10 +11,10 @@
 
 1. **[VS Code]** 이 파일을 열고 `Ctrl + Shift + V` 를 누릅니다 — 왼쪽.
 2. **[VS Code]** `day04_pm_report.md` 를 오른쪽 클릭 › **Open to the Side** — 오른쪽. 질문마다 `쓸 내용:` 을 보고 `답:` 뒤에 씁니다.
-3. **[터미널]** `pwd` 로 위치를 확인하고, `…/network_zt` 로 끝나지 않으면 `cd network_zt` 를 입력합니다.
+3. **[터미널]** `cd network_zt` 를 입력합니다(이미 들어와 있으면 생략).
 4. 문제는 **할 일 → 순서** 대로 합니다. 막히면 💡 힌트 → 문서 맨 아래 「정답」.
 
-> 오늘 오후의 회사 주소는 오전과 같은 연습용 예시 주소입니다. 코드 파일은 `pwd` 로 위치를 확인한 뒤 `touch` 로 만들고 VS Code 에서 엽니다. 맥북은 「맥북:」 줄을 치고, 파이썬은 `python3` 입니다.
+> 오늘 오후의 회사 주소는 오전과 같은 연습용 예시 주소입니다. 코드 파일은 `network_zt` 폴더에서 `touch` 로 만들고 VS Code 에서 엽니다. 맥북은 「맥북:」 줄을 치고, 파이썬은 `python3` 입니다.
 
 ### 오늘 쓰는 회사 주소
 
@@ -600,14 +600,7 @@ for req in ["A", "B"]:                     # 바깥 반복: 요청 글자를 하
 
 **순서**
 
-1. **[터미널]** 지금 위치를 `pwd` 로 확인하고, 파일을 만들고, 만들어졌는지 봅니다.
-   ```bash
-   pwd
-   ```
-   결과가 `…/security-agent-toolkit/network_zt` 로 끝나면 아래 `touch` 를 칩니다. **그 위치가 아니면 `touch` 하지 말고 `cd` 로 먼저 옮깁니다.**
-   - `…/security-agent-toolkit` 으로 끝나면 → `cd network_zt`
-   - `…/network_zt/다른폴더` 처럼 더 안쪽이면 → `cd ..` (`network_zt` 가 나올 때까지)
-   - 옮긴 뒤 `pwd` 를 다시 쳐서 `…/network_zt` 로 끝나는지 확인합니다.
+1. **[터미널]** `network_zt` 폴더 안에서 파일을 만들고 확인합니다. 다른 폴더에 있다면 먼저 `cd network_zt` 로 이동합니다.
    ```bash
    touch day04_7-1_my_rules.py
    ls
@@ -685,14 +678,7 @@ for req in ["A", "B"]:                     # 바깥 반복: 요청 글자를 하
 
 **순서**
 
-1. **[터미널]** 지금 위치를 `pwd` 로 확인하고, 파일을 만들고, 만들어졌는지 봅니다.
-   ```bash
-   pwd
-   ```
-   결과가 `…/security-agent-toolkit/network_zt` 로 끝나면 아래 `touch` 를 칩니다. **그 위치가 아니면 `touch` 하지 말고 `cd` 로 먼저 옮깁니다.**
-   - `…/security-agent-toolkit` 으로 끝나면 → `cd network_zt`
-   - `…/network_zt/다른폴더` 처럼 더 안쪽이면 → `cd ..` (`network_zt` 가 나올 때까지)
-   - 옮긴 뒤 `pwd` 를 다시 쳐서 `…/network_zt` 로 끝나는지 확인합니다.
+1. **[터미널]** `network_zt` 폴더 안에서 파일을 만들고 확인합니다. 다른 폴더에 있다면 먼저 `cd network_zt` 로 이동합니다.
    ```bash
    touch day04_7-2_rules_admin.py
    ls
