@@ -27,7 +27,7 @@
 | 10/12 (월) | [8 · Wireshark 설치하고 새 과목 폴더 만들기](2_network_zt/1012_mon/day01_morning_wireshark_setup.md) | [네트워크 첫 관찰 · OSI 7계층](2_network_zt/1012_mon/day01_am_osi_layers.md) | [TCP · 3-way handshake · Wireshark 첫 캡처](2_network_zt/1012_mon/day01_pm_tcp_wireshark.md) |
 | 10/13 (화) | [9 · 로그에서 필요한 줄만 골라내기](2_network_zt/1013_tue/day02_morning_log_filter.md) | [IP 주소 · 사설 주소 · 서브넷 · 서브네팅](2_network_zt/1013_tue/day02_am_ip_subnet.md) | [스위치 · 라우터 · VLAN · 라우팅 표](2_network_zt/1013_tue/day02_pm_switch_router_vlan.md) |
 | 10/14 (수) | [10 · 파일 옮기고 복사하기 — `mv` · `cp`](2_network_zt/1014_wed/day03_morning_file_commands.md) | [DNS — 이름 · 계층 · 레코드 · 캐시](2_network_zt/1014_wed/day03_am_dns.md) | [DNS 로 보는 공격 · 의심 도메인 판별](2_network_zt/1014_wed/day03_pm_dns_suspicious.md) |
-| 10/15 (목) | [11 · VS Code 를 내 것으로 꾸미기](2_network_zt/1015_thu/day04_morning_vscode_setup.md) | — | — |
+| 10/15 (목) | [11 · VS Code 를 내 것으로 꾸미기](2_network_zt/1015_thu/day04_morning_vscode_setup.md) | [VPN — 터널 · 암호화 · 두 가지 VPN · 접속 로그](2_network_zt/1015_thu/day04_am_vpn.md) | — |
 | 10/16 (금) | [12 · 서버에서 파일 속 글 고치기 — `vim`](2_network_zt/1016_fri/day05_morning_vim.md) | — | — |
 
 9/30 까지는 Colab 으로, **10/2 부터는 VS Code** 로 노트북을 엽니다.
