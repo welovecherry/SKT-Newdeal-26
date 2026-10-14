@@ -300,7 +300,7 @@ print(mac_table["CC"])            # 딕셔너리[키] 로 키 CC 의 값을 꺼�
 
 1. MAC 주소 표에 적힌 것은 둘째 줄의 `AA` 하나뿐입니다.
 2. `mac_table[dest]` 는 키 `dest` 로 꺼낸 **값**입니다.
-3. 5.3 예시 표의 첫 줄(`DD` 없음)과 둘째 줄(`CC` 있음)을 견줍니다.
+3. 5.3 예시 표의 첫 줄(`DD` 없음)과 둘째 줄(`CC` 있음)을 비교합니다.
 
 #### <mark style="display:block; background:#fff59d; color:#1a1a1a; padding:4px 12px; border-radius:4px; text-decoration:underline">정답 5-2</mark>
 
