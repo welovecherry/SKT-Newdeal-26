@@ -14,7 +14,7 @@
 3. **[터미널]** `cd network_zt` 를 입력합니다(이미 들어와 있으면 생략).
 4. 문제는 **할 일 → 순서** 대로 합니다. 순서 앞의 `[창 이름]` 이 지금 쓸 창입니다. 막히면 💡 힌트 → 문서 맨 아래 「정답」.
 
-> 화면의 주소는 PC 마다 다릅니다 — 예시와 모양이 같으면 맞습니다. 맥북은 명령 상자 아래 「맥북:」 줄을 칩니다. 오늘 코드 파일은 **터미널에서 `touch` 로 먼저 만들고** VS Code 에서 열어 코드를 붙여 넣습니다. 파이썬 파일 이름은 앞 몇 글자(예: `python day04_2-2`)만 치고 Tab 을 누르면 채워집니다. 오늘 코드에 나오는 주소는 모두 연습용으로 정한 예시 주소입니다.
+> 화면의 주소는 PC 마다 다릅니다 — 예시와 모양이 같으면 맞습니다. 맥북은 명령 상자 아래 「맥북:」 줄을 칩니다. 오늘 코드 파일은 **`network_zt` 폴더에 있는지 `pwd` 로 확인한 뒤 터미널에서 `touch` 로 먼저 만들고** VS Code 에서 열어 코드를 붙여 넣습니다. 파이썬 파일 이름은 앞 몇 글자(예: `python day04_2-2`)만 치고 Tab 을 누르면 채워집니다. 오늘 코드에 나오는 주소는 모두 연습용으로 정한 예시 주소입니다.
 
 ---
 
@@ -131,7 +131,11 @@ print(outer["data"]["dst"])                                     # 꺼낸 안쪽 
 
 **순서**
 
-1. **[터미널]** 첫 파일을 만들고 만들어졌는지 봅니다. `touch` 는 VS Code 의 **New File** 과 같은 일을 합니다.
+1. **[터미널]** 지금 위치를 `pwd` 로 확인하고, 첫 파일을 만들고, 만들어졌는지 봅니다. `touch` 는 VS Code 의 **New File** 과 같은 일을 합니다.
+   ```bash
+   pwd
+   ```
+   결과가 `…/security-agent-toolkit/network_zt` 로 끝나는지 **먼저 확인한 뒤** `touch` 를 칩니다. 아니면 `cd network_zt` 로 들어간 뒤 `pwd` 를 다시 칩니다.
    ```bash
    touch day04_2-2_tunnel_plain.py
    ls
@@ -150,6 +154,10 @@ print(outer["data"]["dst"])                                     # 꺼낸 안쪽 
    ```
    맥북: `python3 day04_2-2_tunnel_plain.py`
 4. **[터미널]** 두 번째 파일을 만듭니다.
+   ```bash
+   pwd
+   ```
+   결과가 `…/security-agent-toolkit/network_zt` 로 끝나는지 **먼저 확인한 뒤** `touch` 를 칩니다. 아니면 `cd network_zt` 로 들어간 뒤 `pwd` 를 다시 칩니다.
    ```bash
    touch day04_2-2_tunnel_encrypted.py
    ```
@@ -282,6 +290,10 @@ VPN 주소는 **VPN 게이트웨이**가 나눠 줍니다. 그래서 VPN 게이�
 
 1. **[터미널]** 첫 파일을 만듭니다.
    ```bash
+   pwd
+   ```
+   결과가 `…/security-agent-toolkit/network_zt` 로 끝나는지 **먼저 확인한 뒤** `touch` 를 칩니다. 아니면 `cd network_zt` 로 들어간 뒤 `pwd` 를 다시 칩니다.
+   ```bash
    touch day04_3-2_pool_24.py
    ```
 2. **[VS Code]** 왼쪽 목록에서 파일을 열고 아래 코드를 붙여 넣습니다. 실행하기 전에 **줄마다 주석을 읽어** 각 줄이 무엇을 하는지 이해합니다.
@@ -307,6 +319,10 @@ VPN 주소는 **VPN 게이트웨이**가 나눠 줍니다. 그래서 VPN 게이�
    ```
    맥북: `python3 day04_3-2_pool_24.py`
 4. **[터미널]** 두 번째 파일을 만듭니다.
+   ```bash
+   pwd
+   ```
+   결과가 `…/security-agent-toolkit/network_zt` 로 끝나는지 **먼저 확인한 뒤** `touch` 를 칩니다. 아니면 `cd network_zt` 로 들어간 뒤 `pwd` 를 다시 칩니다.
    ```bash
    touch day04_3-2_pool_23.py
    ```
@@ -403,6 +419,10 @@ print(int("22:15".split(":")[0]))       # "22:15" 를 : 로 잘라 앞 칸 "22" 
 
 1. **[터미널]** 첫 파일을 만듭니다.
    ```bash
+   pwd
+   ```
+   결과가 `…/security-agent-toolkit/network_zt` 로 끝나는지 **먼저 확인한 뒤** `touch` 를 칩니다. 아니면 `cd network_zt` 로 들어간 뒤 `pwd` 를 다시 칩니다.
+   ```bash
    touch day04_4-1_night_20.py
    ```
 2. **[VS Code]** 왼쪽 목록에서 파일을 열고 아래 코드를 붙여 넣습니다. 실행하기 전에 **줄마다 주석을 읽어** 각 줄이 무엇을 하는지 이해합니다.
@@ -428,6 +448,10 @@ print(int("22:15".split(":")[0]))       # "22:15" 를 : 로 잘라 앞 칸 "22" 
    ```
    맥북: `python3 day04_4-1_night_20.py`
 4. **[터미널]** 두 번째 파일을 만듭니다.
+   ```bash
+   pwd
+   ```
+   결과가 `…/security-agent-toolkit/network_zt` 로 끝나는지 **먼저 확인한 뒤** `touch` 를 칩니다. 아니면 `cd network_zt` 로 들어간 뒤 `pwd` 를 다시 칩니다.
    ```bash
    touch day04_4-1_night_23.py
    ```
@@ -530,6 +554,10 @@ VPN 게이트웨이는 접속할 때 아이디 · 비밀번호를 확인합니�
 **순서**
 
 1. **[터미널]** 파일을 만듭니다.
+   ```bash
+   pwd
+   ```
+   결과가 `…/security-agent-toolkit/network_zt` 로 끝나는지 **먼저 확인한 뒤** `touch` 를 칩니다. 아니면 `cd network_zt` 로 들어간 뒤 `pwd` 를 다시 칩니다.
    ```bash
    touch day04_vpn_fail_count.py
    ```
