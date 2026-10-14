@@ -194,10 +194,7 @@ print(outer["data"]["dst"])                                     # 꺼낸 안쪽 
    ```bash
    pwd
    ```
-   결과가 `…/security-agent-toolkit/network_zt` 로 끝나면 아래 `touch` 를 칩니다. **그 위치가 아니면 `touch` 하지 말고 `cd` 로 먼저 옮깁니다.**
-   - `…/security-agent-toolkit` 으로 끝나면 → `cd network_zt`
-   - `…/network_zt/다른폴더` 처럼 더 안쪽이면 → `cd ..` (`network_zt` 가 나올 때까지)
-   - 옮긴 뒤 `pwd` 를 다시 쳐서 `…/network_zt` 로 끝나는지 확인합니다.
+   결과가 `…/network_zt` 로 끝나는지 먼저 봅니다. 아니면 `touch` 하지 말고 2-2 의 안내대로 `cd` 로 옮깁니다.
    ```bash
    touch day04_2-2_tunnel_encrypted.py
    ```
@@ -421,10 +418,7 @@ print(seen, len(seen["A"]))        # 딕셔너리와 계정 수를 출력한다.
    ```bash
    pwd
    ```
-   결과가 `…/security-agent-toolkit/network_zt` 로 끝나면 아래 `touch` 를 칩니다. **그 위치가 아니면 `touch` 하지 말고 `cd` 로 먼저 옮깁니다.**
-   - `…/security-agent-toolkit` 으로 끝나면 → `cd network_zt`
-   - `…/network_zt/다른폴더` 처럼 더 안쪽이면 → `cd ..` (`network_zt` 가 나올 때까지)
-   - 옮긴 뒤 `pwd` 를 다시 쳐서 `…/network_zt` 로 끝나는지 확인합니다.
+   결과가 `…/network_zt` 로 끝나는지 먼저 봅니다. 아니면 `touch` 하지 말고 2-2 의 안내대로 `cd` 로 옮깁니다.
    ```bash
    touch day04_4-1_spray_3.py
    ```
@@ -462,10 +456,7 @@ print(seen, len(seen["A"]))        # 딕셔너리와 계정 수를 출력한다.
    ```bash
    pwd
    ```
-   결과가 `…/security-agent-toolkit/network_zt` 로 끝나면 아래 `touch` 를 칩니다. **그 위치가 아니면 `touch` 하지 말고 `cd` 로 먼저 옮깁니다.**
-   - `…/security-agent-toolkit` 으로 끝나면 → `cd network_zt`
-   - `…/network_zt/다른폴더` 처럼 더 안쪽이면 → `cd ..` (`network_zt` 가 나올 때까지)
-   - 옮긴 뒤 `pwd` 를 다시 쳐서 `…/network_zt` 로 끝나는지 확인합니다.
+   결과가 `…/network_zt` 로 끝나는지 먼저 봅니다. 아니면 `touch` 하지 말고 2-2 의 안내대로 `cd` 로 옮깁니다.
    ```bash
    touch day04_4-1_spray_2.py
    ```
