@@ -1,6 +1,6 @@
-# 아침 과제 12 · networksim 처음 써 보기 — 다른 VLAN 연결하기 (L3 스위치)
+# 선택 과제 · networksim 처음 써 보기 — 다른 VLAN 연결하기 (L3 스위치)
 
-10월 16일 (금) · 아침 과제 · 30분
+자율 학습 · 30분 · 하고 싶은 학생만 합니다 (수업에서 하지 않습니다)
 
 **오늘 하는 일:** 서로 다른 네트워크에 있는 PC 와 파일 서버 사이에 L3 스위치를 놓고, 통신 시험이 통과하는지 확인합니다.
 
@@ -55,10 +55,10 @@
    ```bash
    pwd                            # 현재 폴더를 확인합니다. security-agent-toolkit 로 끝나야 합니다
    cd ..                          # network_zt 안에 있다면 한 단계 올라갑니다. 이미 루트면 건너뜁니다
-   touch docs/2026-10-16.md       # 오늘 기록 파일을 만듭니다
+   touch docs/2026-10-16-networksim.md       # 오늘 기록 파일을 만듭니다
    ls docs                        # 파일이 보이는지 확인합니다
    ```
-2. **[VS Code]** `docs/2026-10-16.md` 를 열고 아래 내용을 채웁니다.
+2. **[VS Code]** `docs/2026-10-16-networksim.md` 를 열고 아래 내용을 채웁니다.
 
 ````markdown
 # 2026-10-16 (금)
@@ -75,14 +75,14 @@
 ## 다음에 확인할 것
 ````
 
-3. **[Git Bash]** `git status` 에 `docs/2026-10-16.md` 만 보이는지 확인합니다. `.env` 나 `.venv` 가 보이면 멈추고, `.env` 는 `.gitignore` 에 있는지 확인합니다.
+3. **[Git Bash]** `git status` 에 `docs/2026-10-16-networksim.md` 만 보이는지 확인합니다. `.env` 나 `.venv` 가 보이면 멈추고, `.env` 는 `.gitignore` 에 있는지 확인합니다.
 4. **[Git Bash]** 안전한 파일만 목록에 있는 것을 확인한 뒤 올립니다.
    ```bash
    git add .
    git commit -m "Add 10/16 inter-VLAN networksim note"
    git push
    ```
-5. **[브라우저]** 내 `security-agent-toolkit` GitHub 저장소에서 `docs/2026-10-16.md` 가 보이는지 확인합니다.
+5. **[브라우저]** 내 `security-agent-toolkit` GitHub 저장소에서 `docs/2026-10-16-networksim.md` 가 보이는지 확인합니다.
 
 ## 확인합니다
 
