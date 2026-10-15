@@ -426,11 +426,11 @@ help(average)
 
 ---
 
-# <mark style="display:block; background:#c8e6c9; color:#1a1a1a; padding:6px 12px; border-radius:4px">7교시 (16:00–16:50) · tracert(traceroute)로 느려진 구간 찾기 · 5일 차 품질 진단 리포트</mark>
+# <mark style="display:block; background:#c8e6c9; color:#1a1a1a; padding:6px 12px; border-radius:4px">7교시 (16:00–16:50) · tracert 로 느려진 구간 찾기 · 5일 차 품질 진단 리포트</mark>
 
 > 📨 **오늘 들어온 일**
 > 고객사 담당이 보낸 메시지: 「SaaS 가 느립니다. 우리 구간 문제인가요, 통신사 문제인가요?」
-> - 이 교시에서 하는 일: `tracert`(traceroute) 결과로 느려진 구간을 찾고 진단합니다.
+> - 이 교시에서 하는 일: `tracert` 결과로 느려진 구간을 찾고 진단합니다.
 > - 끝나면 쓰는 것: **보고서 한 줄**(고객에게 보낼 답 한 문장)
 
 ### 왜 필요한가
@@ -438,9 +438,9 @@ help(average)
 1. 지연이 크다고 확인했다면 다음은 **어느 구간에서 늘어나는지**입니다. 우리 회사 안인지, 통신사인지에 따라 고칠 수 있는 사람이 다릅니다.
 2. 이것을 보여 주는 도구가 traceroute 이고, 윈도의 명령 이름은 `tracert` 입니다. 느려진 구간을 알아내야 고객에게 「우리 구간은 정상이고 이 구간에서 늘어납니다」라고 말할 수 있습니다.
 
-### 7.1 tracert(traceroute) · 느려진 구간 읽기
+### 7.1 tracert · 느려진 구간 읽기
 
-- **tracert**(트레이스라우트 · traceroute)
+- **tracert**(트레이스 라우트 · 줄여서 「트레이서트」 — trace route, 경로를 추적한다는 뜻)
   - 목적지까지 거치는 장비를 순서대로 보여 주고, 장비마다 걸린 시간을 보여 준다
   - 10/13 오후에는 `tracert` 로 **어떤 장비를 지나는지**를 봤다. 오늘은 거기에 **장비마다의 시간**을 읽는 법이 더해진다
   - 윈도의 명령 이름은 `tracert` 이고, 맥북은 `traceroute` 이다
