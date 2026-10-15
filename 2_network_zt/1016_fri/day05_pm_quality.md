@@ -4,18 +4,17 @@
 
 ## 시작하기
 
-**오후에 받은 파일 세 개를 `network_zt` 폴더로 옮깁니다.**
+**오후에 받은 파일 두 개를 `network_zt` 폴더로 옮깁니다.**
 
-- `day05_pm_quality.md` (이 파일) — 오후 실습 안내. 읽기만 합니다. (파일 세 개는 VS Code 왼쪽 목록의 `network_zt` 폴더로 끌어다 놓거나, 탐색기 · Finder 로 옮깁니다.)
+- `day05_pm_quality.md` (이 파일) — 오후 실습 안내. 읽기만 합니다. (파일 두 개는 VS Code 왼쪽 목록의 `network_zt` 폴더로 끌어다 놓거나, 탐색기 · Finder 로 옮깁니다.)
 - `day05_pm_report.md` — **오후 보고서.** 5 · 6 · 7교시 답과 맨 아래 「최종 품질 진단 리포트」를 여기에 적습니다.
-- `day05_pm_starter.zip` — 오후에 쓸 파일 두 개 묶음입니다. `network_zt` 폴더에 풉니다. 풀면 `network_zt` 안에 `day05_6-1_measure.py` · `day05_6-2_judge.py` 가 보입니다.
 
 1. **[VS Code]** 이 파일을 열고 `Ctrl + Shift + V`(맥북은 `Cmd + Shift + V`)를 누릅니다 — 왼쪽.
 2. **[VS Code]** `day05_pm_report.md` 를 오른쪽 클릭 › **Open to the Side** — 오른쪽. 질문마다 `쓸 내용:` 을 보고 `답:` 뒤에 씁니다.
 3. **[터미널]** `cd network_zt` 를 입력합니다(이미 들어와 있으면 생략).
 4. 문제는 **할 일 → 순서** 대로 합니다. 순서 앞의 `[창 이름]` 이 지금 쓸 창이고, 막히면 문서 맨 아래 「정답」.
 
-> 오늘 코드에 나오는 숫자는 모두 연습용으로 정한 값입니다. 코드 파일은 오후 압축 파일 안에 있습니다. 명령 상자 아래에 「맥북:」 줄이 있으면 맥북은 그 줄을 치고, 윈도는 `python`, 맥북은 `python3` 입니다.
+> 오늘 코드에 나오는 숫자는 모두 연습용으로 정한 값입니다. 코드 파일은 `network_zt` 폴더에서 `touch` 로 만들고 VS Code 에서 엽니다. 명령 상자 아래에 「맥북:」 줄이 있으면 맥북은 그 줄을 치고, 윈도는 `python`, 맥북은 `python3` 입니다.
 
 ---
 
@@ -239,7 +238,7 @@ help(average)
 
 **🎯 할 일**
 
-1. 압축 파일의 `day05_6-1_measure.py` 를 열고 <mark>먼저 실행</mark>합니다. (지터가 세 회선 모두 `0` 으로 나옵니다)
+1. 파일 `day05_6-1_measure.py` 를 만들어 아래 코드를 붙여 넣고 <mark>먼저 실행</mark>합니다. (지터가 세 회선 모두 `0` 으로 나옵니다)
 2. <mark>`jitter` 함수</mark>를 직접 만듭니다.
    - `total` 을 0 으로 시작합니다
    - `for` 와 `range(1, len(got))` 로 이웃한 두 값의 **차이의 절댓값**을 `total` 에 더합니다
@@ -263,12 +262,46 @@ help(average)
 
 **순서**
 
-1. **[VS Code]** 압축 파일에서 푼 `day05_6-1_measure.py` 를 엽니다.
-2. **[VS Code]** 실행하기 전에 파일을 훑어보며 **줄마다 주석을 읽습니다.** 파일은 이렇게 생겼습니다.
-   - `LINES` — 3 개 회선의 ping 결과 10 번씩(단위 ms). `None` 은 응답이 없었던 것(손실)
-   - `jitter` — **직접 만드는 함수.** 독스트링 빈 자리 · 주석 1 ~ 3 번 · `return 0` 이 있습니다
-   - `measure` — 회선 하나의 지연 · 지터 · 손실을 구해 출력하는 함수. 이미 완성되어 있고 `jitter` 를 부릅니다
-   - 맨 아래 `for` — 회선마다 `measure` 를 부릅니다
+1. **[터미널]** `network_zt` 폴더 안에서 파일을 만들고 확인합니다.
+   ```bash
+   touch day05_6-1_measure.py
+   ls
+   ```
+2. **[VS Code]** `day05_6-1_measure.py` 를 열고 아래 코드를 붙여 넣습니다. 실행하기 전에 **줄마다 주석을 읽습니다.**
+   ```python
+   # 3 개 회선의 ping 결과 10 번씩 (단위: ms). None 은 응답이 없었던 것(손실)이다
+   LINES = {
+       "회선 A": [22, 21, 23, 22, 21, 22, 23, 22, 21, 22],
+       "회선 B": [18, 19, 95, 17, 18, 110, 19, 18, 92, 17],
+       "회선 C": [40, 41, None, 42, 40, None, 41, 43, None, 40],
+   }
+
+   def jitter(got):                          # 받은 값 리스트 got 로 지터를 구해 리턴하는 함수이다. 이 함수를 직접 만든다
+       """
+       한 줄: 이 함수가 하는 일을 여기에 씁니다
+       입력: 이 함수가 받는 값을 여기에 씁니다
+       리턴: 이 함수가 리턴하는 값을 여기에 씁니다
+       """
+       # 1. total 을 0 으로 시작한다
+       # 2. for 와 range(1, len(got)) 로 위치 i 를 꺼내, i 번째 값과 바로 앞 값의 차이의 절댓값을 total 에 더한다
+       # 3. total 을 (got 의 개수 - 1) 로 나눈 값을 리턴한다
+       return 0                              # ← 계산을 만들기 전에 넣어 둔 임시 값이다. 이 줄을 지우고 위 1 ~ 3 을 코드로 쓴다 (4줄 이하)
+
+   def measure(name, data):                  # 회선 하나의 지연 · 지터 · 손실을 구해 출력하는 함수이다
+       got = []                              # 응답을 받은 값만 모을 빈 리스트이다
+       for v in data:                        # 응답 10 개를 하나씩 꺼낸다
+           if v != None:                     # 응답이 있으면 (None 이 아니면)
+               got.append(v)                 # got 에 담는다
+
+       delay = sum(got) / len(got)           # 평균 지연 = 받은 값의 합 ÷ 받은 개수
+       jitter_value = jitter(got)            # 위에서 만든 jitter 함수에 got 을 넘겨 지터를 받는다
+       loss = (len(data) - len(got)) / len(data) * 100   # 손실률 = 못 받은 개수 ÷ 보낸 개수 × 100
+
+       print(name, "| 지연", round(delay, 1), "ms | 지터", round(jitter_value, 1), "ms | 손실", round(loss), "%")   # 한 줄로 출력한다
+
+   for name in LINES:                        # 회선 이름을 하나씩 꺼낸다
+       measure(name, LINES[name])            # 그 회선의 값을 measure 에 넘긴다
+   ```
 3. **[터미널]** 채우기 전에 한 번 실행합니다. 지터가 세 회선 모두 `0` 으로 나옵니다.
    ```bash
    python day05_6-1_measure.py
@@ -305,7 +338,7 @@ help(average)
 
 **🎯 할 일**
 
-1. 압축 파일의 `day05_6-2_judge.py` 를 엽니다. (6-1 의 계산이 이미 들어 있는 코드이고, `ok` 한 줄만 비어 있습니다)
+1. 새 파일 `day05_6-2_judge.py` 를 만들어 아래 코드를 붙여 넣습니다. (6-1 의 계산이 이미 들어 있는 코드이고, `ok` 한 줄만 비어 있습니다. 아래 순서 2 의 코드와 같습니다)
 2. <mark>`ok = False`</mark> 한 줄을 고칩니다.
    - 세 기준(지연 · 지터 · 손실)을 **모두** 지킬 때만 `True` 가 되게 합니다
 3. 회선별 <mark>적합 · 부적합</mark>과 걸린 기준을 읽습니다.
@@ -313,14 +346,62 @@ help(average)
 
 **순서**
 
-1. **[VS Code]** 압축 파일에서 푼 `day05_6-2_judge.py` 를 엽니다. 6-1 파일은 고치지 않고, 이 새 파일에서 풉니다.
-2. **[VS Code]** 파일을 훑어보며 **줄마다 주석을 읽습니다.** 6-1 의 계산(지터 줄 포함)이 이미 완성되어 들어 있습니다. 파일은 이렇게 생겼습니다.
-   - `LINES` — 같은 3 개 회선의 ping 결과
-   - `MAX_DELAY` · `MAX_JITTER` · `MAX_LOSS` — 화상회의 기준 세 값
-   - `measure` — 지연 · 지터 · 손실을 구해 리턴하는 함수
-   - `# 5.` 아래 `ok = False` — **직접 고치는 한 줄**
-   - `# 6.` `reasons` — 어느 기준에 걸렸는지 모으는 부분(이미 채워져 있음)
-   - `# 7.` — 적합 · 부적합을 출력하는 부분
+1. **[터미널]** `network_zt` 폴더 안에서 파일을 만들고 확인합니다. 6-1 파일은 고치지 않고, 이 새 파일에서 풉니다.
+   ```bash
+   touch day05_6-2_judge.py
+   ls
+   ```
+2. **[VS Code]** `day05_6-2_judge.py` 를 열고 아래 코드를 붙여 넣습니다. 6-1 의 계산(지터 줄 포함)이 이미 완성되어 들어 있습니다. 실행하기 전에 **줄마다 주석을 읽습니다.**
+   ```python
+   # 3 개 회선의 ping 결과 10 번씩 (단위: ms). None 은 응답이 없었던 것(손실)이다
+   LINES = {
+       "회선 A": [22, 21, 23, 22, 21, 22, 23, 22, 21, 22],
+       "회선 B": [18, 19, 95, 17, 18, 110, 19, 18, 92, 17],
+       "회선 C": [40, 41, None, 42, 40, None, 41, 43, None, 40],
+   }
+
+   # 화상회의에 쓸 수 있는 기준 (이 수업에서 정한 값)
+   MAX_DELAY = 150    # 평균 지연 150 ms 이하
+   MAX_JITTER = 30    # 지터 30 ms 이하
+   MAX_LOSS = 1       # 손실률 1 % 이하
+
+   def measure(data):
+       # 1. 응답을 받은 값만 got 리스트에 모은다
+       got = []
+       for v in data:
+           if v != None:
+               got.append(v)
+       # 2. 평균 지연
+       delay = sum(got) / len(got)
+       # 3. 지터 = 이웃한 두 값의 차이의 평균
+       total = 0
+       for i in range(1, len(got)):
+           total = total + abs(got[i] - got[i - 1])
+       jitter = total / (len(got) - 1)
+       # 4. 손실률
+       loss = (len(data) - len(got)) / len(data) * 100
+       return delay, jitter, loss
+
+   for name in LINES:
+       delay, jitter, loss = measure(LINES[name])
+
+       # 5. 세 기준을 모두 지켰는지 ok 에 담는다. 여기를 직접 씁니다
+       ok = False   # 이 줄의 False 를 「세 기준을 모두 지키면 True」가 되는 식으로 바꾼다
+       # 6. 어느 기준에 걸렸는지 모은다 (이미 채워져 있음)
+       reasons = []
+       if delay > MAX_DELAY:
+           reasons.append("지연")
+       if jitter > MAX_JITTER:
+           reasons.append("지터")
+       if loss > MAX_LOSS:
+           reasons.append("손실")
+
+       # 7. 결과를 출력한다
+       if ok:
+           print(name, "→ 적합")
+       else:
+           print(name, "→ 부적합 (걸린 기준:", ", ".join(reasons) + ")")
+   ```
 3. **[터미널]** 채우기 전에 한 번 실행합니다. `ok = False` 라서 세 회선이 모두 부적합으로 나옵니다.
    ```bash
    python day05_6-2_judge.py
