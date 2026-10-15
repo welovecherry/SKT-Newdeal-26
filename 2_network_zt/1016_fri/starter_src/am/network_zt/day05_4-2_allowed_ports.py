@@ -23,9 +23,14 @@ def judge(src, dst, port):                   # 요청 하나를 규칙표 위에
             return rule[4], rule[0]          # 규칙의 동작과 규칙 번호를 함께 리턴하고 함수를 끝낸다
     return default_policy(src, dst), 0       # 맞는 규칙이 없으면 기본 정책의 동작과 번호 0 을 리턴한다
 
-def allowed_ports(src, dst, ports):          # ports 중 허용(permit) 되는 포트만 모아 리스트로 리턴하는 함수이다. 이 함수를 직접 만든다
-    # 여기를 직접 씁니다 (4줄 이하): 빈 리스트 만들기 → for 로 포트 하나씩 꺼내기 → judge 로 판정 → permit 이면 append → 리스트 리턴
-    return []                                # ← 이 줄을 지우고 위 내용을 코드로 쓴다
+def allowed_ports(src, dst, ports):          # ports 중 허용(permit) 되는 포트만 모아 리스트로 리턴하는 함수이다. 아래 주석 1 ~ 6 을 코드로 채운다
+    # 1. 모은 포트를 담을 빈 리스트 result 를 만든다
+    # 2. for 로 ports 의 포트를 하나씩 꺼낸다
+    # 3. for 안에서 judge(src, dst, port) 로 판정해, 동작을 action 에 받는다 (값 두 개: action, no)
+    # 4. action 이 "permit" 이면
+    # 5.     그 포트를 result 에 append 한다
+    # 6. for 가 끝난 뒤 result 를 리턴한다
+    return []                                # ← 이 줄을 지우고 위 1 ~ 6 을 코드로 쓴다 (6줄)
 
 PORTS = [22, 80, 443, 445, 3389]             # 시험할 포트 다섯 개이다
 print(allowed_ports("outside", "DMZ", PORTS))      # 인터넷 → DMZ 에서 허용되는 포트 목록을 출력한다
