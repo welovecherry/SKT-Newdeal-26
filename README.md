@@ -29,7 +29,7 @@
 | 10/14 (수) | [10 · 파일 옮기고 복사하기 — `mv` · `cp`](2_network_zt/1014_wed/day03_morning_file_commands.md) | [DNS — 이름 · 계층 · 레코드 · 캐시](2_network_zt/1014_wed/day03_am_dns.md) | [DNS 로 보는 공격 · 의심 도메인 판별](2_network_zt/1014_wed/day03_pm_dns_suspicious.md) |
 | 10/15 (목) | [11 · VS Code 를 내 것으로 꾸미기](2_network_zt/1015_thu/day04_morning_vscode_setup.md) | [VPN — 터널 · 암호화 · 두 가지 VPN · 접속 로그](2_network_zt/1015_thu/day04_am_vpn.md) | [방화벽 — 규칙 읽기 · 허용 목록 · 규칙 순서 · 규칙서](2_network_zt/1015_thu/day04_pm_firewall.md) |
 | 10/16 (금) | [12 · 서버에서 파일 속 글 고치기 — `vim`](2_network_zt/1016_fri/day05_morning_vim.md) | — | — |
-| 10/19 (월) | [13 · 패킷이 어디로 가는지 그림으로 — 같은 망 · 다른 망 · VPN](2_network_zt/1019_mon/day06_morning_network_flow.md) | — | — |
+| 10/19 (월) | [13 · 다른 VLAN 연결하기 — L3 스위치 (networksim · v2)](2_network_zt/1019_mon/day06_morning_networksim_inter_vlan_v2.md) | — | — |
 
 9/30 까지는 Colab 으로, **10/2 부터는 VS Code** 로 노트북을 엽니다.
 
