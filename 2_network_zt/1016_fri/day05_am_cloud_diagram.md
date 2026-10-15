@@ -474,7 +474,7 @@ print(two())                  # 이름 하나로 받으면 튜플로 나온다
 
 **🎯 할 일**
 
-1. 코드를 붙여 넣고 <mark>실행해서 출력 여섯 줄</mark>을 봅니다.
+1. 아래 순서 2 의 코드를 붙여 넣고 <mark>실행해서 출력 여섯 줄</mark>을 봅니다.
 2. 함수 <mark>`default_policy` 와 `match_rule`</mark> 이 각각 무엇을 하는지 한 줄로 적습니다. (주석이 있습니다)
 3. <mark>주석이 없는 `judge` 함수</mark>에 줄마다 주석을 직접 답니다.
    - `judge` 가 <mark>리턴하는 값 두 개</mark>가 무엇인지도 적습니다
@@ -538,7 +538,7 @@ print(two())                  # 이름 하나로 받으면 튜플로 나온다
    python day05_4-1_zone_rules.py
    ```
    맥북: `python3 day05_4-1_zone_rules.py`
-4. **[VS Code]** `judge` 함수의 줄마다 오른쪽에 **주석을 직접** 답니다. 위쪽 `default_policy` · `match_rule` 의 주석을 참고합니다. 저장해 둡니다. 4-2 에서 이 파일을 복사해 씁니다.
+4. **[VS Code]** `judge` 함수의 줄마다 오른쪽에 **주석을 직접** 답니다. 위쪽 `default_policy` · `match_rule` 의 주석을 참고합니다.
 5. **[보고서]** `day05_am_report.md` 의 `## 4교시` › `### 문제 4-1` 아래를 채웁니다.
    - (가) 함수 `default_policy` 와 `match_rule` 이 각각 무엇을 하는지 한 줄씩 적어 주세요.
    - (나) `judge` 함수에 줄마다 주석을 달고, 이 함수가 리턴하는 값 두 개가 무엇인지도 함께 적어 아래에 붙여 넣어 주세요.
@@ -560,12 +560,12 @@ print(two())                  # 이름 하나로 받으면 튜플로 나온다
 
 **🎯 할 일**
 
-1. 4-1 파일을 <mark>복사</mark>해서 새 파일에서 시작합니다.
+1. 아래 순서 2 의 코드를 새 파일에 <mark>통째로</mark> 붙여 넣습니다. (4-1 의 코드이고, `allowed_ports` 만 비어 있습니다)
 2. `judge` 의 흐름을 <mark>ASCII 도식</mark>(상자 · 화살표)으로 그립니다.
 3. 함수 <mark>`allowed_ports` 를 직접</mark> 만듭니다.
    - `ports` 안의 포트 가운데 **허용(permit)** 되는 것만 리스트에 모아 리턴합니다
    - 직접 치는 줄은 **4줄 이하**입니다
-4. 실행해서 맨 아래에 나온 <mark>출력 네 줄</mark>이 요구사항과 같은지 비교합니다.
+4. 실행해서 나온 <mark>출력 네 줄</mark>이 요구사항과 같은지 비교합니다.
 
 **요구사항** (규칙은 4-1 의 `RULES` 두 줄입니다)
 
@@ -578,30 +578,54 @@ print(two())                  # 이름 하나로 받으면 튜플로 나온다
 
 **순서**
 
-1. **[터미널]** 4-1 파일을 복사해 새 파일을 만들고 확인합니다. (`cp` 는 10/14 에 배운 명령입니다)
+1. **[터미널]** `network_zt` 폴더 안에서 파일을 만들고 확인합니다.
    ```bash
-   cp day05_4-1_zone_rules.py day05_4-2_allowed_ports.py
+   touch day05_4-2_allowed_ports.py
    ls
    ```
-   4-1 을 끝내지 못했으면 문서 맨 아래 「정답 4-1」의 코드를 `day05_4-2_allowed_ports.py` 에 붙여 넣고 시작해도 됩니다.
-2. **[VS Code]** `day05_4-2_allowed_ports.py` 를 열고 **맨 아래**에 아래 코드를 붙여 넣습니다. `allowed_ports` 는 비어 있습니다.
+2. **[VS Code]** `day05_4-2_allowed_ports.py` 를 열고 아래 코드를 **통째로** 붙여 넣습니다. 4-1 의 코드(`judge` 주석 포함)이고, `allowed_ports` 만 비어 있습니다.
    ```python
-   def allowed_ports(src, dst, ports):
-       # 여기를 직접 씁니다 (4줄 이하): ports 중 허용(permit) 되는 포트만 모아 리스트로 리턴한다
-       return []
+   # 방화벽 규칙표: (번호, 출발 구역, 도착 구역, 포트, 동작) 튜플을 모은 리스트이다
+   RULES = [
+       (1, "outside", "DMZ", 443, "permit"),    # 규칙 1: 인터넷에서 DMZ 의 443 번을 허용한다
+       (2, "DMZ", "inside", 445, "permit"),     # 규칙 2: DMZ 에서 내부망의 445 번을 허용한다
+   ]
 
-   PORTS = [22, 80, 443, 445, 3389]          # 시험할 포트 다섯 개이다
-   print(allowed_ports("outside", "DMZ", PORTS))
-   print(allowed_ports("DMZ", "inside", PORTS))
-   print(allowed_ports("inside", "DMZ", PORTS))
-   print(allowed_ports("outside", "inside", PORTS))
+   def default_policy(src, dst):                # 규칙에 맞는 것이 없을 때의 기본 정책 함수이다
+       if src == dst:                           # 출발 구역과 도착 구역이 같으면
+           return "permit"                      # 허용한다
+       if src == "inside":                      # 내부망에서 출발하면
+           return "permit"                      # 허용한다
+       if dst == "outside":                     # 인터넷으로 나가는 통신이면
+           return "permit"                      # 허용한다
+       return "deny"                            # 나머지는 모두 차단한다
+
+   def match_rule(rule, src, dst, port):        # 규칙 하나가 요청과 맞는지 알아보는 함수이다
+       no, r_src, r_dst, r_port, action = rule  # 튜플 다섯 값을 각각 이름으로 꺼낸다
+       return r_src == src and r_dst == dst and r_port == port   # 셋 다 같으면 True, 아니면 False 를 리턴한다
+
+   def judge(src, dst, port):                   # 요청 하나를 규칙표 위에서부터 판정하는 함수이다
+       for rule in RULES:                       # 규칙을 위에서부터 하나씩 꺼낸다
+           if match_rule(rule, src, dst, port): # 이 규칙이 요청과 맞으면
+               return rule[4], rule[0]          # 규칙의 동작과 규칙 번호를 함께 리턴하고 함수를 끝낸다
+       return default_policy(src, dst), 0       # 맞는 규칙이 없으면 기본 정책의 동작과 번호 0 을 리턴한다
+
+   def allowed_ports(src, dst, ports):          # ports 중 허용(permit) 되는 포트만 모아 리스트로 리턴하는 함수이다. 이 함수를 직접 만든다
+       # 여기를 직접 씁니다 (4줄 이하): 빈 리스트 만들기 → for 로 포트 하나씩 꺼내기 → judge 로 판정 → permit 이면 append → 리스트 리턴
+       return []                                # ← 이 줄을 지우고 위 내용을 코드로 쓴다
+
+   PORTS = [22, 80, 443, 445, 3389]             # 시험할 포트 다섯 개이다
+   print(allowed_ports("outside", "DMZ", PORTS))      # 인터넷 → DMZ 에서 허용되는 포트 목록을 출력한다
+   print(allowed_ports("DMZ", "inside", PORTS))       # DMZ → 내부망에서 허용되는 포트 목록을 출력한다
+   print(allowed_ports("inside", "DMZ", PORTS))       # 내부망 → DMZ 에서 허용되는 포트 목록을 출력한다
+   print(allowed_ports("outside", "inside", PORTS))   # 인터넷 → 내부망에서 허용되는 포트 목록을 출력한다
    ```
 3. **[VS Code]** `allowed_ports` 를 채웁니다.
    - `result = []` 로 빈 리스트를 만들고
    - `for port in ports:` 로 포트를 하나씩 꺼내
    - `judge(src, dst, port)` 의 동작이 `"permit"` 이면 `result` 에 `append` 하고
    - 마지막에 `result` 를 `return` 합니다
-4. **[터미널]** 실행하면 4-1 의 여섯 줄 아래에 네 줄이 더 나옵니다. 그 네 줄을 요구사항 표의 기대값과 비교합니다.
+4. **[터미널]** 실행해서 나온 네 줄을 요구사항 표의 기대값과 비교합니다.
    ```bash
    python day05_4-2_allowed_ports.py
    ```
@@ -610,7 +634,7 @@ print(two())                  # 이름 하나로 받으면 튜플로 나온다
    - 시작 → 규칙을 하나씩 꺼낸다 → 맞는가? → (맞으면) 규칙의 동작 리턴 / (아니면) 다음 규칙 → 규칙이 끝나면 기본 정책 리턴
 6. **[보고서]** `### 문제 4-2` 아래를 채웁니다.
    - (가) `judge` 함수의 흐름을 ASCII 도식(상자 · 화살표)으로 그려 아래에 붙여 넣어 주세요.
-   - (나) 직접 만든 `allowed_ports` 함수를 붙여 넣고, 실행해서 맨 아래에 나온 출력 네 줄을 적어 주세요.
+   - (나) 직접 만든 `allowed_ports` 함수를 붙여 넣고, 실행해서 나온 출력 네 줄을 적어 주세요.
    - (다) 🔍 `allowed_ports` 에서 `result = []` 를 `for` 위에 두는 이유는 무엇인가요? `for` 안에 두면 어떻게 되나요?
    - (한 줄) 고객에게 보낼 답을 한 문장으로 적어 주세요.
    - 이 교시에서 새로 알게 된 것 하나를 적어 주세요.
@@ -745,7 +769,7 @@ DMZ → inside 3389 : deny (규칙 0)
 outside → inside 445 : deny (규칙 0)
 ```
 
-**주석을 단 전체 코드** (4-1 을 끝내지 못했으면 이 코드를 붙여 넣고 4-2 를 시작합니다)
+**주석을 단 전체 코드**
 
 ```python
 # 방화벽 규칙표: (번호, 출발 구역, 도착 구역, 포트, 동작) 튜플을 모은 리스트이다
@@ -822,7 +846,7 @@ def allowed_ports(src, dst, ports):
     return result
 ```
 
-**나와야 하는 출력** (4-1 의 여섯 줄 아래에 이어서 나오는 네 줄)
+**나와야 하는 출력**
 
 ```
 [443]
@@ -851,7 +875,7 @@ def allowed_ports(src, dst, ports):
     ▼
   RETURN (default_policy, 0)
   ```
-- (나) 맨 아래에 나온 출력은 위 네 줄이고, 요구사항 표의 기대값과 같습니다.
+- (나) 출력은 위 네 줄이고, 요구사항 표의 기대값과 같습니다.
 - (다) `result = []` 를 `for` 위에 두어야 포트를 하나씩 보는 동안 **모은 값이 유지**됩니다. `for` 안에 두면 포트를 볼 때마다 리스트가 **비워져서** 마지막 포트 하나의 결과만 남습니다.
 - (한 줄) 예: 「요구사항대로 인터넷은 DMZ 의 443 만, DMZ 는 내부망의 445 만 열려 있고 인터넷에서 내부망은 모두 막혀 있습니다.」
 
