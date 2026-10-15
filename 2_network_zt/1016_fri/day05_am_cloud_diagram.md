@@ -435,7 +435,7 @@ print(two())                  # 이름 하나로 받으면 튜플로 나온다
 **🎯 할 일**
 
 1. 파일 `day05_4-1_zone_rules.py` 를 만들어 코드를 붙여 넣고(아래 순서 2 의 코드) <mark>실행해서 출력 여섯 줄</mark>을 봅니다.
-2. 함수 <mark>`default_policy` · `match_rule` · `judge`</mark> 가 각각 무엇을 하는지 한 줄로 적습니다. (주석이 있습니다)
+2. 함수 <mark>`default_policy` · `match_rule` · `judge`</mark> 가 각각 무엇을 하는지 적습니다. (주석이 있습니다)
 3. <mark>`judge` 가 리턴하는 값 두 개</mark>가 무엇이고 어느 줄이 만드는지 적습니다.
 4. `for` 안의 `return` 이 <mark>왜 필요한지</mark> 설명합니다.
 
@@ -501,7 +501,7 @@ print(two())                  # 이름 하나로 받으면 튜플로 나온다
    ```
    맥북: `python3 day05_4-1_zone_rules.py`
 4. **[보고서]** `day05_am_report.md` 의 `## 4교시` › `### 문제 4-1` 아래를 채웁니다.
-   - (가) 함수 `default_policy` · `match_rule` · `judge` 가 각각 무엇을 하는지 한 줄씩 적어 주세요.
+   - (가) 함수 `default_policy` · `match_rule` · `judge` 가 각각 무엇을 하는지 적어 주세요.
    - (나) `judge` 가 리턴하는 값 두 개는 무엇이고, 어느 줄이 만드나요?
    - (다) 🔍 `judge` 의 `for` 안에서 맞는 규칙을 찾으면 바로 `return` 합니다. `return` 없이 끝까지 돌리면 결과가 어떻게 달라지나요? 왜 이 문법을 썼나요?
 
