@@ -226,7 +226,7 @@
    내 PC ──SYN──────▶ [방화벽: 80번 허용] ──▶ 서버
    내 PC ◀─SYN/ACK─── [방화벽] ◀───────────── 서버      ← Wireshark 에 SYN/ACK 가 보인다
    ```
-4. **[Wireshark]** 3번의 연결이 만든 줄 두 개를 찾아 `Time` 값을 적어 두고, 서버 IP 주소를 적어 둡니다. 서버 IP 는 **내 PC 가 보낸 `[SYN]` 줄**의 `Destination` 에 있습니다.
+4. **[Wireshark]** 3번의 연결이 만든 줄 두 개를 찾아 `Time` 값을 적어 두고, 서버 IP 주소를 적어 둡니다. 서버 IP 는 **내 PC 가 보낸 `[SYN]` 줄**의 `Destination` 에 있습니다. 이 IP 를 적어 두는 이유는 5번에서 **같은 서버의 81번**에 연결하려면 이름(`example.com`) 대신 IP 를 써야 하기 때문입니다. 이름으로 접속하면 서버의 IP 여러 개를 번갈아 시도해서 80번과 81번이 다른 서버로 가거나 Wireshark 줄이 섞입니다.
    - `Source` 는 보낸 쪽이고 `Destination` 은 받는 쪽입니다. 줄 두 개는 방향이 반대입니다.
      ```
      Source      Destination   Info
