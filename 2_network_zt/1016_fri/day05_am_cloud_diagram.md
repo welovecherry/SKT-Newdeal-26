@@ -1,4 +1,4 @@
-# 10/16(금) 오전 · 클라우드 · SaaS · 망 구성도 · 구역 규칙 코드 — 실습
+# 10/16(금) 오전 · 클라우드 · SaaS · 망 구성도 · 로그 거르는 코드 — 실습
 
 회사 서버가 건물 안에 있던 때는 인터넷에서 들어오는 접속이 방화벽 한 곳을 지났습니다. 지금은 서버를 클라우드에서 빌리고, 업무 도구는 계정만 받아 쓰고, 직원은 집에서 바로 접속합니다. 오늘 오전에는 **클라우드 서비스의 세 형태**를 구분하고, **회사 방화벽이 못 보는 접속**을 로그에서 찾습니다. 이어서 **망 구성도를 읽고 ASCII 로 직접 그린 뒤**, 방화벽 규칙을 판정하는 **파이썬 코드**를 읽고 만들어 봅니다.
 
@@ -390,265 +390,205 @@ INTERNET ──── FW ──┬── DMZ    ( WEB )
 
 ---
 
-# <mark style="display:block; background:#c8e6c9; color:#1a1a1a; padding:6px 12px; border-radius:4px">4교시 (12:00–12:50) · 구역 규칙을 판정하는 코드 읽기와 만들기</mark>
+# <mark style="display:block; background:#c8e6c9; color:#1a1a1a; padding:6px 12px; border-radius:4px">4교시 (12:00–12:50) · 경보 로그를 코드로 걸러내기</mark>
 
 > 📨 **오늘 들어온 일**
-> 고객사 보안 담당이 보낸 메시지: 「요구사항대로 방화벽 규칙이 걸렸는지 확인해 달라는 요청입니다. 코드로 판정해서 알려 주세요.」
-> - 이 교시에서 하는 일: 구역 규칙을 판정하는 코드를 읽고, 주석 · 도식 · 함수로 설명하며 직접 만듭니다.
+> 고객사 보안 담당이 보낸 메시지: 「새벽에 경보가 울린 로그가 수천 줄입니다. 인터넷에서 내부 서버로 허용된 줄만 뽑아 알려 주세요.」
+> - 이 교시에서 하는 일: 3교시에서 눈으로 찾은 이상한 줄을 코드로 걸러냅니다.
 > - 끝나면 쓰는 것: **보고서 한 줄**(고객에게 보낼 답 한 문장)
 
 ### 왜 필요한가
 
-- 고객이 「요구사항대로 방화벽 규칙이 걸렸나요?」라고 물으면, 눈으로 확인하기보다 **코드로 요청을 넣어 판정**해 보는 편이 정확합니다.
-- 이 코드는 10/15 오후 7교시의 판정 코드와 같은 방식이고, 이번에는 **구역**(`outside` · `DMZ` · `inside`)으로 규칙을 씁니다.
-- 현실에서도 구조가 같습니다. 사내 방화벽 장비의 규칙표와 **AWS EC2 의 보안 그룹**은 모두 <mark>출발 · 포트 · 허용</mark> 칸으로 씁니다. 오늘 코드는 이 구조를 가장 단순하게 옮긴 것입니다.
+- 3교시에서는 로그 다섯 줄을 눈으로 읽었습니다. 현실의 로그는 수천 줄이라 코드로 걸러야 합니다.
+- 방법은 같습니다. 로그 한 줄을 조각으로 나누고, 출발 · 도착을 구역으로 바꿔서, <mark>인터넷 → 내부망 허용</mark>인 줄만 고릅니다.
+- 관제 도구(Splunk · Elastic 등)에서 로그를 거르는 조건도 같은 생각으로 만듭니다. 오늘 코드는 이것을 가장 단순하게 줄인 것입니다.
 
-#### 🐍 문법 상자 1 · 튜플에서 번호로 꺼내기 `rule[4]`
+#### 🐍 문법 상자 1 · 한 줄을 잘라 이름에 나눠 담기 `line.split()`
 
-- **튜플**: 값 여러 개를 괄호 `( )` 로 묶은 것입니다. 규칙 한 줄을 이렇게 씁니다.
-- 번호는 **0 번부터** 셉니다. 첫 값이 `rule[0]` 이고, 다섯 번째 값이 `rule[4]` 입니다.
+- `split()` 은 글자 한 줄을 **공백으로 잘라** 조각으로 나눕니다.
+- 조각의 개수와 이름의 개수가 같으면, 조각을 이름에 **한 번에 나눠 담을** 수 있습니다.
 
 ```python
-rule = (1, "outside", "DMZ", 443, "permit")   # 값 다섯 개를 하나로 묶은 튜플
-print(rule[0])                                 # 첫 번째 값
-print(rule[4])                                 # 다섯 번째 값
+line = "03:12 203.0.113.7 DB 3306 permit"
+t, src, dst, port, action = line.split()   # 공백으로 자른 다섯 조각을 다섯 이름에 나눠 담는다
+print(src, dst)
+print(action)
 
-# 1
+# 203.0.113.7 DB
 # permit
 ```
 
-- 오늘 코드에서는 `rule[0]` 이 규칙 번호이고, `rule[4]` 가 동작(`permit` / `deny`)입니다.
+- 오늘 코드의 `is_bad` 가 로그 한 줄을 이 방법으로 나눕니다.
 
-#### 🐍 문법 상자 2 · 튜플을 한 번에 이름으로 풀기 `no, r_src, … = rule`
+#### 🐍 문법 상자 2 · 딕셔너리에서 이름 찾기 `in` · `ZONE[이름]`
 
-- 번호로 하나씩 꺼내는 대신, 값 다섯 개를 **이름 다섯 개에 한 번에** 나눠 담습니다.
-- 이름의 개수와 튜플 값의 개수가 같아야 합니다.
-
-```python
-rule = (1, "outside", "DMZ", 443, "permit")
-no, r_src, r_dst, r_port, action = rule   # 다섯 값을 다섯 이름에 나눠 담는다
-print(no, action)
-
-# 1 permit
-```
-
-- 오늘 코드의 `match_rule` 이 이 방법으로 규칙을 풉니다.
-
-#### 🐍 문법 상자 3 · 값 두 개 리턴하고 받기 `return a, b` · `x, y = f()`
-
-- 함수는 값을 **쉼표로 이어서 두 개** 리턴할 수 있습니다. 받는 쪽도 이름 두 개로 받습니다.
-- 이름 하나로 받으면 두 값이 **튜플 하나**로 옵니다.
+- `이름 in 딕셔너리` 는 그 이름이 딕셔너리의 **키**로 있으면 `True` 입니다.
+- `딕셔너리[이름]` 은 그 이름에 짝지어진 값을 꺼냅니다.
 
 ```python
-def two():
-    return "permit", 1        # 값 두 개를 한 번에 리턴한다
+ZONE = {"WEB": "DMZ", "DB": "inside"}
+print("DB" in ZONE)           # 키로 있으면 True
+print(ZONE["DB"])             # DB 에 짝지어진 값
+print("8.8.8.8" in ZONE)      # 키로 없으면 False
 
-a, n = two()                  # 두 값을 a 와 n 에 나눠 담는다
-print(a, n)
-print(two())                  # 이름 하나로 받으면 튜플로 나온다
-
-# permit 1
-# ('permit', 1)
+# True
+# inside
+# False
 ```
 
-- 오늘 코드의 `judge` 가 동작과 규칙 번호를 이렇게 두 개 리턴합니다.
+- 오늘 코드의 `zone_of` 가 서버 이름을 구역으로 바꿀 때 씁니다.
 
 ---
 
-### ✍️ 문제 4-1 · 규칙 판정 코드 읽고 주석 달기
+### ✍️ 문제 4-1 · 로그 거르는 코드 읽고 설명하기
 
 **📍 이런 상황이 있습니다**
 
-- 고객이 「요구사항대로 방화벽 규칙이 걸렸는지 확인해 달라」며 <mark>규칙 목록</mark>을 보냅니다. 규칙이 수십 줄이면 눈으로 확인하기 어렵습니다.
-- 코드로 요청을 넣어 보면 <mark>어느 규칙이 허용 · 차단했는지</mark> 바로 보입니다. 그 코드를 **읽고 설명할 수 있어야** 고객 코드를 점검하고 고칠 수 있습니다.
-- 현업의 규칙표는 수백 줄이 되기도 합니다. 오늘은 **두 줄로 줄인 모형**으로 읽는 방법을 연습합니다.
+- 고객이 새벽 경보 로그를 보내며 「<mark>이상한 줄만 뽑아 달라</mark>」고 요청했습니다. 코드는 이미 있습니다. 이 코드가 무엇을 하는지 설명할 수 있어야 고객의 로그에 맞게 고칠 수 있습니다.
+- 현업의 로그는 줄마다 항목이 더 많습니다. 오늘은 다섯 항목(시각 · 출발 · 도착 · 포트 · 결과)으로 줄였습니다.
 
 **🎯 할 일**
 
-1. 파일 `day05_4-1_zone_rules.py` 를 만들어 코드를 붙여 넣고(아래 순서 2 의 코드) <mark>실행해서 출력 여섯 줄</mark>을 봅니다.
-2. 함수 <mark>`default_policy` 와 `match_rule`</mark> 이 각각 무엇을 하는지 한 줄로 적습니다. (주석이 있습니다)
-3. <mark>`judge` 함수의 빈 주석 세 곳</mark>을 직접 씁니다.
-   - 함수 이름 줄에는 이 함수가 <mark>하는 일</mark>을, 첫 `return` 줄에는 <mark>리턴하는 값 두 개</mark>를, 마지막 `return` 줄에는 맞는 규칙이 없을 때 리턴하는 값을 적습니다
-4. `for` 안의 `return` 이 <mark>왜 필요한지</mark> 설명합니다.
+1. 파일 `day05_4-1_log_filter.py` 를 만들어 코드를 붙여 넣고(아래 순서 2) <mark>실행해서 출력 두 줄</mark>을 봅니다.
+2. 함수 <mark>`zone_of` 와 `is_bad`</mark> 가 각각 무엇을 하는지, `is_bad` 가 <mark>무엇을 리턴하는지</mark> 적습니다.
+3. 로그 2번과 5번은 둘 다 `DB` 로 가는데 <mark>왜 2번만 걸러지는지</mark> 구역으로 설명합니다.
 
 **이 문제에 나오는 말**
 
-- **기본 정책**
-  - 규칙에 맞는 것이 없을 때 적용되는 기본 동작. 이 코드에서는 같은 구역 · 내부망 출발 · 인터넷으로 나가는 통신은 허용, 나머지는 차단한다
+- **이상한 줄**
+  - 이 코드에서는 출발이 인터넷(`outside`)이고 도착이 내부망(`inside`)이며 결과가 `permit`(허용)인 로그 줄
+- **로그**(log · 로그)
+  - 장비가 일어난 일을 한 줄씩 적어 둔 기록
 
 **순서**
 
 1. **[터미널]** `network_zt` 폴더 안에서 파일을 만들고 확인합니다.
    ```bash
-   touch day05_4-1_zone_rules.py
+   touch day05_4-1_log_filter.py
    ls
    ```
-2. **[VS Code]** `day05_4-1_zone_rules.py` 를 열고 아래 코드를 붙여 넣습니다. 실행하기 전에 **줄마다 주석을 읽습니다.** `judge` 함수에는 주석을 쓸 빈 자리가 세 곳 있습니다.
+2. **[VS Code]** `day05_4-1_log_filter.py` 를 열고 아래 코드를 붙여 넣습니다. 실행하기 전에 **줄마다 주석을 읽습니다.**
    ```python
-   # 방화벽 규칙표: (번호, 출발 구역, 도착 구역, 포트, 동작) 튜플을 모은 리스트이다
-   RULES = [
-       (1, "outside", "DMZ", 443, "permit"),    # 규칙 1: 인터넷에서 DMZ 의 443 번을 허용한다
-       (2, "DMZ", "inside", 445, "permit"),     # 규칙 2: DMZ 에서 내부망의 445 번을 허용한다
+   # 우리 서버가 있는 구역표이다 (서버 이름 → 구역)
+   ZONE = {"WEB": "DMZ", "DB": "inside"}
+
+   # 경보 로그 다섯 줄이다 (시각 출발 도착 포트 결과)
+   LOGS = [
+       "03:12 203.0.113.7 WEB 443 permit",
+       "03:12 203.0.113.7 DB 3306 permit",
+       "03:13 203.0.113.7 DB 3306 permit",
+       "09:01 198.51.100.20 WEB 443 permit",
+       "09:02 WEB DB 3306 permit",
    ]
 
-   def default_policy(src, dst):                # 규칙에 맞는 것이 없을 때의 기본 정책 함수이다
-       if src == dst:                           # 출발 구역과 도착 구역이 같으면
-           return "permit"                      # 허용한다
-       if src == "inside":                      # 내부망에서 출발하면
-           return "permit"                      # 허용한다
-       if dst == "outside":                     # 인터넷으로 나가는 통신이면
-           return "permit"                      # 허용한다
-       return "deny"                            # 나머지는 모두 차단한다
+   def zone_of(name):                        # 이름을 구역으로 바꿔 리턴하는 함수이다
+       if name in ZONE:                      # 이름이 구역표에 있으면 (우리 서버이면)
+           return ZONE[name]                 # 그 서버의 구역을 리턴한다
+       return "outside"                      # 표에 없으면 인터넷 쪽(outside)이다
 
-   def match_rule(rule, src, dst, port):        # 규칙 하나가 요청과 맞는지 알아보는 함수이다
-       no, r_src, r_dst, r_port, action = rule  # 튜플 다섯 값을 각각 이름으로 꺼낸다
-       return r_src == src and r_dst == dst and r_port == port   # 셋 다 같으면 True, 아니면 False 를 리턴한다
+   def is_bad(line):                         # 로그 한 줄이 「인터넷에서 내부망으로 허용된 줄」인지 알아내는 함수이다
+       t, src, dst, port, action = line.split()                # 한 줄을 공백으로 잘라 다섯 이름에 나눠 담는다
+       if zone_of(src) == "outside" and zone_of(dst) == "inside" and action == "permit":   # 출발이 인터넷이고 도착이 내부망이고 허용이면
+           return True                       # 이상한 줄이라는 뜻으로 True 를 리턴한다
+       return False                          # 그 밖의 줄은 정상이라는 뜻으로 False 를 리턴한다
 
-   def judge(src, dst, port):                   # ← 이 함수가 하는 일을 여기에 주석으로 씁니다
-       for rule in RULES:                       # 규칙을 위에서부터 하나씩 꺼낸다
-           if match_rule(rule, src, dst, port): # 이 규칙이 요청과 맞으면
-               return rule[4], rule[0]          # ← 이 줄이 리턴하는 값 두 개를 여기에 주석으로 씁니다
-       return default_policy(src, dst), 0       # ← 맞는 규칙이 없을 때 리턴하는 값을 여기에 주석으로 씁니다
-
-   TESTS = [                                    # 시험 요청 여섯 개: (출발, 도착, 포트)
-       ("outside", "DMZ", 443),
-       ("outside", "DMZ", 80),
-       ("inside", "DMZ", 443),
-       ("DMZ", "inside", 445),
-       ("DMZ", "inside", 3389),
-       ("outside", "inside", 445),
-   ]
-
-   for src, dst, port in TESTS:                 # 시험 요청을 하나씩 꺼내 출발 · 도착 · 포트 로 나눈다
-       action, no = judge(src, dst, port)       # judge 가 리턴한 두 값을 action 과 no 에 나눠 담는다
-       print(src, "→", dst, port, ":", action, "(규칙 " + str(no) + ")")   # 판정 결과를 한 줄로 출력한다
+   for line in LOGS:                         # 로그를 한 줄씩 꺼낸다
+       if is_bad(line):                      # 이상한 줄이면
+           print("이상:", line)              # 그 줄을 출력한다
    ```
 3. **[터미널]** 실행합니다.
    ```bash
-   python day05_4-1_zone_rules.py
+   python day05_4-1_log_filter.py
    ```
-   맥북: `python3 day05_4-1_zone_rules.py`
-4. **[VS Code]** `judge` 함수의 빈 주석 세 곳(함수 이름 줄 · 첫 `return` · 마지막 `return`)을 직접 씁니다. 위쪽 `default_policy` · `match_rule` 의 `#` 주석을 읽고 어떻게 설명하는지 참고합니다.
-5. **[보고서]** `day05_am_report.md` 의 `## 4교시` › `### 문제 4-1` 아래를 채웁니다.
-   - (가) 함수 `default_policy` 와 `match_rule` 이 각각 무엇을 하는지 한 줄씩 적어 주세요.
-   - (나) `judge` 함수의 빈 주석 세 곳(함수 이름 줄 · 첫 `return` · 마지막 `return`)을 쓰고, 그 함수를 아래에 붙여 넣어 주세요.
-   - (다) 🔍 `judge` 의 `for` 안에서 맞는 규칙을 찾으면 바로 `return` 합니다. `return` 없이 끝까지 돌리면 결과가 어떻게 달라지나요? 왜 이 문법을 썼나요?
+   맥북: `python3 day05_4-1_log_filter.py`
+4. **[보고서]** `day05_am_report.md` 의 `## 4교시` › `### 문제 4-1` 아래를 채웁니다.
+   - (가) 함수 `zone_of` 와 `is_bad` 가 각각 무엇을 하는지, `is_bad` 의 리턴값이 무엇인지 적어 주세요.
+   - (나) 🔍 로그 2번(`03:12 203.0.113.7 DB 3306 permit`)과 5번(`09:02 WEB DB 3306 permit`)은 둘 다 `DB` 로 가는데, 왜 2번만 걸러지나요? `zone_of` 가 리턴하는 구역으로 설명해 주세요.
 
-### ✍️ 문제 4-2 · 허용 포트 목록 함수 채우고 흐름 그리기
+### ✍️ 문제 4-2 · 이상한 줄만 모으는 함수 채우기
 
 **📍 이런 상황이 있습니다**
 
-- 고객이 <mark>요구사항 표</mark>를 보냈습니다. 「인터넷에서 DMZ 로는 443 만, DMZ 에서 내부망으로는 445 만 열려 있어야 한다」는 식입니다. 방화벽 규칙이 이 요구와 **같게** 걸렸는지 확인해야 합니다.
-- 4-1 의 `judge` 는 포트 **하나**만 판정합니다. 포트 5 개 × 구역 4 쌍을 확인하려면 `judge` 를 20 번 불러야 합니다.
-- 그래서 <mark>구역 한 쌍에서 허용되는 포트를 목록으로 뽑아 주는 함수</mark>(`allowed_ports`)가 필요합니다. 함수의 **틀은 파일에 이미 있고, 그 안쪽을 학생이 채웁니다.** 목록이 요구사항과 같으면 요구대로 걸린 것이고, 다르면 규칙을 고쳐야 합니다.
-- 이 코드를 다른 팀원이 이어받을 수도 있어서, `judge` 가 어떻게 판정하는지 <mark>흐름도</mark>로 남깁니다.
+- 로그가 수천 줄이면 줄마다 `is_bad` 를 불러 이상한 줄만 <mark>리스트에 모아 주는 함수</mark>가 필요합니다. 이 목록이 고객에게 보낼 보고의 근거가 됩니다.
+- 새 시험 로그에는 정상인 줄도 섞여 있습니다. 정상인 줄이 잘못 들어가지 않는지도 확인합니다.
 
 **🎯 할 일**
 
-1. 파일 `day05_4-2_allowed_ports.py` 를 만들어 아래 코드를 **통째로** 붙여 넣고 실행해서, 지금은 네 줄이 모두 `[]` 로 나오는 것을 봅니다. (4-1 의 코드이고, `allowed_ports` 만 비어 있습니다. 아래 순서 2 의 코드와 같습니다)
-2. 함수 <mark>`allowed_ports` 의 안쪽을 채웁니다.</mark> 틀 안의 주석 1 ~ 6 번을 코드로 바꿉니다. (직접 치는 줄은 **6줄**)
-   - 하는 일: 포트 목록을 받아서, `judge` 로 판정해 **허용(permit)** 된 포트만 모은 리스트를 리턴합니다
-3. 다시 실행해서 나온 <mark>출력 네 줄</mark>이 아래 요구사항 표와 같은지 비교합니다.
-4. `judge` 의 흐름을 <mark>ASCII 도식</mark>(상자 · 화살표)으로 그립니다.
+1. 파일 `day05_4-2_find_bad.py` 를 만들어 아래 코드를 **통째로** 붙여 넣고 실행해서, 지금은 `개수: 0` 만 나오는 것을 봅니다. (4-1 의 `zone_of` · `is_bad` 가 그대로 들어 있고, `find_bad` 만 비어 있습니다)
+2. 함수 <mark>`find_bad` 의 안쪽을 채웁니다.</mark> 틀 안의 주석 1 ~ 5 번을 코드로 바꿉니다. (직접 치는 줄은 **5줄**)
+   - 하는 일: 로그 리스트를 받아서, `is_bad` 가 `True` 인 줄만 모은 리스트를 리턴합니다
+3. 다시 실행해서 나온 <mark>출력 세 줄</mark>이 아래 표의 기대와 같은지 비교합니다.
 
-**`allowed_ports` 가 하는 일 (예)**
+**시험 로그 (파일의 `LOGS2`)와 기대하는 결과**
 
-```
-allowed_ports("outside", "DMZ", [80, 443])      # 인터넷 → DMZ 에서 80 · 443 을 확인한다
-
-  80   → judge → deny      모으지 않는다
-  443  → judge → permit    모은다
-
-  결과: [443]
-```
-
-- 시험용 포트 목록은 `[22, 80, 443, 445, 3389]` 다섯 개입니다. 같은 방법으로 다섯 개를 모두 확인합니다.
-
-**요구사항** (규칙은 4-1 의 `RULES` 두 줄입니다. 「기대하는 출력」은 요구대로 걸렸을 때 나와야 하는 목록입니다)
-
-| # | 요구사항 | 기대하는 출력 |
+| # | 로그 | 기대 |
 |---|---|---|
-| ① | 인터넷 → DMZ: 443 **만** 허용 | `[443]` |
-| ② | DMZ → 내부망: 445 **만** 허용 | `[445]` |
-| ③ | 내부망 → DMZ: 모두 허용(기본 정책) | `[22, 80, 443, 445, 3389]` |
-| ④ | 인터넷 → 내부망: 모두 차단 | `[]` |
+| 1 | 인터넷 → `DB` 3306, **차단**(`deny`) | 정상 |
+| 2 | 인터넷 → `WEB` 443, 허용 | 정상 |
+| 3 | 인터넷 → `DB` 3306, 허용 | **이상** |
+| 4 | `WEB` → `DB` 3306, 허용 | 정상 |
+| 5 | 인터넷 → `DB` 445, 허용 | **이상** |
 
-**흐름 도식 그리는 모양 (예: `match_rule` 의 흐름)**
-
-```
-START
-  │
-  ▼
-[ compare src, dst, port with the rule ]
-  │
-  ├── all three same ──► RETURN True
-  │
-  └── otherwise ───────► RETURN False
-```
-
-- 상자 안과 선 위의 글은 **영어 · 숫자**로 씁니다. 한글은 글자 폭이 달라서 선이 어긋납니다.
+- 그래서 `find_bad` 가 모은 줄은 **2개**여야 합니다.
 
 **순서**
 
-1. **[터미널]** `network_zt` 폴더 안에서 파일을 만들고 확인합니다.
+1. **[터미널]** `network_zt` 폴더 안에서 파일을 만들고 확인합니다. 4-1 파일은 고치지 않고, 이 새 파일에서 풉니다.
    ```bash
-   touch day05_4-2_allowed_ports.py
+   touch day05_4-2_find_bad.py
    ls
    ```
-2. **[VS Code]** `day05_4-2_allowed_ports.py` 를 열고 아래 코드를 **통째로** 붙여 넣습니다. 4-1 의 코드(`judge` 주석을 채운 것)이고, `allowed_ports` 만 비어 있습니다. 맨 아래 `PORTS` 와 `print` 네 줄이 시험입니다.
+2. **[VS Code]** `day05_4-2_find_bad.py` 를 열고 아래 코드를 **통째로** 붙여 넣습니다. 4-1 의 `zone_of` · `is_bad` 가 그대로 있고, `find_bad` 만 비어 있습니다. 맨 아래 네 줄이 시험입니다.
    ```python
-   # 방화벽 규칙표: (번호, 출발 구역, 도착 구역, 포트, 동작) 튜플을 모은 리스트이다
-   RULES = [
-       (1, "outside", "DMZ", 443, "permit"),    # 규칙 1: 인터넷에서 DMZ 의 443 번을 허용한다
-       (2, "DMZ", "inside", 445, "permit"),     # 규칙 2: DMZ 에서 내부망의 445 번을 허용한다
+   # 우리 서버가 있는 구역표이다 (서버 이름 → 구역)
+   ZONE = {"WEB": "DMZ", "DB": "inside"}
+
+   def zone_of(name):                        # 이름을 구역으로 바꿔 리턴하는 함수이다
+       if name in ZONE:                      # 이름이 구역표에 있으면 (우리 서버이면)
+           return ZONE[name]                 # 그 서버의 구역을 리턴한다
+       return "outside"                      # 표에 없으면 인터넷 쪽(outside)이다
+
+   def is_bad(line):                         # 로그 한 줄이 「인터넷에서 내부망으로 허용된 줄」인지 알아내는 함수이다
+       t, src, dst, port, action = line.split()                # 한 줄을 공백으로 잘라 다섯 이름에 나눠 담는다
+       if zone_of(src) == "outside" and zone_of(dst) == "inside" and action == "permit":   # 출발이 인터넷이고 도착이 내부망이고 허용이면
+           return True                       # 이상한 줄이라는 뜻으로 True 를 리턴한다
+       return False                          # 그 밖의 줄은 정상이라는 뜻으로 False 를 리턴한다
+
+   # 시험 로그 다섯 줄이다 (일부는 정상이다)
+   LOGS2 = [
+       "01:05 203.0.113.9 DB 3306 deny",
+       "01:06 203.0.113.9 WEB 443 permit",
+       "01:07 203.0.113.9 DB 3306 permit",
+       "01:08 WEB DB 3306 permit",
+       "01:09 198.51.100.7 DB 445 permit",
    ]
 
-   def default_policy(src, dst):                # 규칙에 맞는 것이 없을 때의 기본 정책 함수이다
-       if src == dst:                           # 출발 구역과 도착 구역이 같으면
-           return "permit"                      # 허용한다
-       if src == "inside":                      # 내부망에서 출발하면
-           return "permit"                      # 허용한다
-       if dst == "outside":                     # 인터넷으로 나가는 통신이면
-           return "permit"                      # 허용한다
-       return "deny"                            # 나머지는 모두 차단한다
+   def find_bad(logs):                       # logs 에서 이상한 줄만 모아 리스트로 리턴하는 함수이다. 아래 주석 1 ~ 5 를 코드로 채운다
+       # 1. 모은 줄을 담을 빈 리스트 result 를 만든다
+       # 2. for 로 logs 의 줄을 하나씩 꺼낸다
+       # 3. for 안에서 is_bad(line) 이 True 이면
+       # 4.     그 줄을 result 에 append 한다
+       # 5. for 가 끝난 뒤 result 를 리턴한다
+       return []                             # ← 이 줄을 지우고 위 1 ~ 5 를 코드로 쓴다 (5줄)
 
-   def match_rule(rule, src, dst, port):        # 규칙 하나가 요청과 맞는지 알아보는 함수이다
-       no, r_src, r_dst, r_port, action = rule  # 튜플 다섯 값을 각각 이름으로 꺼낸다
-       return r_src == src and r_dst == dst and r_port == port   # 셋 다 같으면 True, 아니면 False 를 리턴한다
-
-   def judge(src, dst, port):                   # 요청 하나를 규칙표 위에서부터 판정하는 함수이다
-       for rule in RULES:                       # 규칙을 위에서부터 하나씩 꺼낸다
-           if match_rule(rule, src, dst, port): # 이 규칙이 요청과 맞으면
-               return rule[4], rule[0]          # 규칙의 동작과 규칙 번호를 함께 리턴하고 함수를 끝낸다
-       return default_policy(src, dst), 0       # 맞는 규칙이 없으면 기본 정책의 동작과 번호 0 을 리턴한다
-
-   def allowed_ports(src, dst, ports):          # ports 중 허용(permit) 되는 포트만 모아 리스트로 리턴하는 함수이다. 아래 주석 1 ~ 6 을 코드로 채운다
-       # 1. 모은 포트를 담을 빈 리스트 result 를 만든다
-       # 2. for 로 ports 의 포트를 하나씩 꺼낸다
-       # 3. for 안에서 judge(src, dst, port) 로 판정해, 동작을 action 에 받는다 (값 두 개: action, no)
-       # 4. action 이 "permit" 이면
-       # 5.     그 포트를 result 에 append 한다
-       # 6. for 가 끝난 뒤 result 를 리턴한다
-       return []                                # ← 이 줄을 지우고 위 1 ~ 6 을 코드로 쓴다 (6줄)
-
-   PORTS = [22, 80, 443, 445, 3389]             # 시험할 포트 다섯 개이다
-   print(allowed_ports("outside", "DMZ", PORTS))      # 인터넷 → DMZ 에서 허용되는 포트 목록을 출력한다
-   print(allowed_ports("DMZ", "inside", PORTS))       # DMZ → 내부망에서 허용되는 포트 목록을 출력한다
-   print(allowed_ports("inside", "DMZ", PORTS))       # 내부망 → DMZ 에서 허용되는 포트 목록을 출력한다
-   print(allowed_ports("outside", "inside", PORTS))   # 인터넷 → 내부망에서 허용되는 포트 목록을 출력한다
+   result = find_bad(LOGS2)                  # 시험 로그에서 이상한 줄을 모은다
+   for line in result:                       # 모은 줄을 하나씩 꺼낸다
+       print("이상:", line)                  # 그 줄을 출력한다
+   print("개수:", len(result))               # 이상한 줄이 몇 개인지 출력한다
    ```
-3. **[터미널]** 채우기 전에 한 번 실행합니다. 네 줄이 모두 `[]` 로 나옵니다.
+3. **[터미널]** 채우기 전에 한 번 실행합니다. `개수: 0` 만 나옵니다.
    ```bash
-   python day05_4-2_allowed_ports.py
+   python day05_4-2_find_bad.py
    ```
-   맥북: `python3 day05_4-2_allowed_ports.py`
-4. **[VS Code]** 붙여 넣은 코드의 `allowed_ports` 안쪽을 채웁니다. 함수 틀 안에 **주석 여섯 줄**(1 ~ 6 번)이 있습니다.
-   - 주석 1 ~ 6 번 **한 줄마다 코드 한 줄**을 씁니다. 들여쓰기는 3 · 4 번이 `for` 안쪽(한 칸), 5 번이 `if` 안쪽(두 칸), 6 번은 `for` 와 같은 칸입니다
-5. **[터미널]** 다시 실행해서 나온 네 줄을 요구사항 표의 기대값과 비교합니다.
-6. **[보고서]** `day05_am_report.md` 의 `## 4교시` › `### 문제 4-2` 아래를 채웁니다. (가) 의 코드 블록 안에 `judge` 흐름 도식을 직접 그립니다.
-   - (가) 채운 `allowed_ports` 함수를 붙여 넣고, 실행해서 나온 출력 네 줄을 적어 주세요.
-   - (나) `judge` 함수의 흐름을 ASCII 도식(상자 · 화살표)으로 그려 아래 코드 블록에 넣어 주세요.
-   - (다) 🔍 `allowed_ports` 에서 `result = []` 를 `for` 위에 두는 이유는 무엇인가요? `for` 안에 두면 어떻게 되나요?
+   맥북: `python3 day05_4-2_find_bad.py`
+4. **[VS Code]** `find_bad` 의 안쪽을 채웁니다. 함수 틀 안에 **주석 다섯 줄**(1 ~ 5 번)이 있습니다.
+   - 주석 1 ~ 5 번 **한 줄마다 코드 한 줄**을 씁니다. 들여쓰기는 3 번(`if`)이 `for` 안쪽(한 칸), 4 번(`append`)이 `if` 안쪽(두 칸), 5 번은 `for` 와 같은 칸입니다
+   - `return []` 은 틀에 넣어 둔 **임시 값**입니다. 5 번 코드로 바꾸면서 **반드시 지웁니다**
+5. **[터미널]** 다시 실행해서 나온 세 줄을 위 표의 기대와 비교합니다.
+6. **[보고서]** `### 문제 4-2` 아래를 채웁니다.
+   - (가) 채운 `find_bad` 함수를 붙여 넣고, 실행해서 나온 출력 세 줄을 적어 주세요.
+   - (나) 🔍 시험 로그 1번(인터넷 → `DB` 3306 `deny`)은 `DB` 를 노린 시도인데도 이상한 줄에 들어가지 않습니다. `is_bad` 의 어느 조건 때문이고, 관제에서는 이 줄을 어떻게 다뤄야 하나요?
+   - (다) 🔍 `find_bad` 에서 `result = []` 를 `for` 위에 두는 이유는 무엇인가요? `for` 안에 두면 어떻게 되나요?
    - (한 줄) 고객에게 보낼 답을 한 문장으로 적어 주세요.
    - 이 교시에서 새로 알게 된 것 하나를 적어 주세요.
 
@@ -656,10 +596,10 @@ START
 
 | 하려는 일 | 코드 |
 |---|---|
-| 규칙 하나가 요청과 맞는지 | `match_rule(rule, src, dst, port)` → `True` / `False` |
-| 규칙표를 위에서부터 판정 | `judge(src, dst, port)` → `(동작, 규칙 번호)` |
-| 허용되는 포트만 모으기 | `allowed_ports(src, dst, ports)` → 리스트 |
-| 값 두 개 리턴 · 받기 | `return a, b` · `x, y = f()` |
+| 로그 한 줄을 조각으로 나눠 담기 | `t, src, dst, port, action = line.split()` |
+| 이름을 구역으로 바꾸기 | `zone_of(name)` → `"outside"` · `"DMZ"` · `"inside"` |
+| 이상한 줄인지 판단 | `is_bad(line)` → `True` / `False` |
+| 이상한 줄만 모으기 | `find_bad(logs)` → 리스트 |
 
 ---
 
@@ -752,74 +692,27 @@ START
 💻 **터미널에 입력합니다.**
 
 ```bash
-python day05_4-1_zone_rules.py
+python day05_4-1_log_filter.py
 ```
-맥북: `python3 day05_4-1_zone_rules.py`
+맥북: `python3 day05_4-1_log_filter.py`
 
 **나와야 하는 출력**
 
 ```
-outside → DMZ 443 : permit (규칙 1)
-outside → DMZ 80 : deny (규칙 0)
-inside → DMZ 443 : permit (규칙 0)
-DMZ → inside 445 : permit (규칙 2)
-DMZ → inside 3389 : deny (규칙 0)
-outside → inside 445 : deny (규칙 0)
-```
-
-**주석을 단 전체 코드**
-
-```python
-# 방화벽 규칙표: (번호, 출발 구역, 도착 구역, 포트, 동작) 튜플을 모은 리스트이다
-RULES = [
-    (1, "outside", "DMZ", 443, "permit"),    # 규칙 1: 인터넷에서 DMZ 의 443 번을 허용한다
-    (2, "DMZ", "inside", 445, "permit"),     # 규칙 2: DMZ 에서 내부망의 445 번을 허용한다
-]
-
-def default_policy(src, dst):                # 규칙에 맞는 것이 없을 때의 기본 정책 함수이다
-    if src == dst:                           # 출발 구역과 도착 구역이 같으면
-        return "permit"                      # 허용한다
-    if src == "inside":                      # 내부망에서 출발하면
-        return "permit"                      # 허용한다
-    if dst == "outside":                     # 인터넷으로 나가는 통신이면
-        return "permit"                      # 허용한다
-    return "deny"                            # 나머지는 모두 차단한다
-
-def match_rule(rule, src, dst, port):        # 규칙 하나가 요청과 맞는지 알아보는 함수이다
-    no, r_src, r_dst, r_port, action = rule  # 튜플 다섯 값을 각각 이름으로 꺼낸다
-    return r_src == src and r_dst == dst and r_port == port   # 셋 다 같으면 True, 아니면 False 를 리턴한다
-
-def judge(src, dst, port):                   # 요청 하나를 규칙표 위에서부터 판정하는 함수이다
-    for rule in RULES:                       # 규칙을 위에서부터 하나씩 꺼낸다
-        if match_rule(rule, src, dst, port): # 이 규칙이 요청과 맞으면
-            return rule[4], rule[0]          # 규칙의 동작과 규칙 번호를 함께 리턴하고 함수를 끝낸다
-    return default_policy(src, dst), 0       # 맞는 규칙이 없으면 기본 정책의 동작과 번호 0 을 리턴한다
-
-TESTS = [                                    # 시험 요청 여섯 개: (출발, 도착, 포트)
-    ("outside", "DMZ", 443),
-    ("outside", "DMZ", 80),
-    ("inside", "DMZ", 443),
-    ("DMZ", "inside", 445),
-    ("DMZ", "inside", 3389),
-    ("outside", "inside", 445),
-]
-
-for src, dst, port in TESTS:                 # 시험 요청을 하나씩 꺼내 출발 · 도착 · 포트 로 나눈다
-    action, no = judge(src, dst, port)       # judge 가 리턴한 두 값을 action 과 no 에 나눠 담는다
-    print(src, "→", dst, port, ":", action, "(규칙 " + str(no) + ")")   # 판정 결과를 한 줄로 출력한다
+이상: 03:12 203.0.113.7 DB 3306 permit
+이상: 03:13 203.0.113.7 DB 3306 permit
 ```
 
 **결과**
 
-- (가) `default_policy` 는 규칙에 맞는 것이 없을 때의 **기본 정책**(같은 구역 · 내부망 출발 · 인터넷으로 나감은 허용, 나머지는 차단)을 알려 줍니다. `match_rule` 은 **규칙 하나가 요청과 맞는지** `True` / `False` 로 알려 줍니다.
-- (나) 빈 주석 세 곳의 한 예는 위 코드의 `judge` 함수에 달린 주석입니다. 리턴값은 **동작(`permit` / `deny`)과 규칙 번호** 두 개입니다. 동작은 `rule[4]` 또는 `default_policy(...)`, 규칙 번호는 `rule[0]` 또는 `0` 입니다.
-- (다) `return` 이 없으면 `for` 가 규칙을 끝까지 돌며, 맞는 규칙이 여러 개일 때 **위의 규칙이 아니라 마지막 규칙의 값**이 남을 수 있습니다. 방화벽은 **첫 번째로 맞는 규칙**을 쓰므로, 찾자마자 `return` 해서 함수를 끝내도록 했습니다.
+- (가) `zone_of` 는 서버 이름을 받아 **구역을 리턴**합니다. 구역표에 있으면 그 구역(`DMZ` · `inside`)을, 없으면 `outside` 를 리턴합니다. `is_bad` 는 로그 한 줄을 받아 **「인터넷에서 내부망으로 허용된 줄」인지 판단**합니다. 리턴값은 이상한 줄이면 `True`, 정상이면 `False` 입니다.
+- (나) 2번은 출발 `203.0.113.7` 이 구역표에 없어서 `zone_of` 가 `outside` 를 리턴하고, 도착 `DB` 는 `inside` 이며, 결과가 `permit` 이라 세 조건이 모두 맞아 걸러집니다. 5번은 출발 `WEB` 의 구역이 `DMZ` 라서 「출발이 `outside`」 조건이 틀려 걸러지지 않습니다.
 
-**왜** — 규칙표는 위에서부터 첫 번째로 맞는 것이 결정합니다. `return` 은 그 「첫 번째」를 코드로 만든 것입니다.
+**왜** — 같은 `DB` 로 가는 줄이어도 **어디에서 출발했는지**가 다르면 판정이 달라집니다. 이 코드는 3교시에서 눈으로 한 판단(인터넷에서 `DB` 로 직접 가면 안 된다)을 조건 세 개로 옮긴 것입니다.
 
-**자주 틀리는 곳** — `judge` 가 값을 하나만 리턴한다고 쓰는 경우가 많습니다. `return rule[4], rule[0]` 처럼 값 두 개를 쉼표로 이어 리턴합니다. 「인터넷에서 DMZ 80 이 차단된 것은 규칙 1 때문」이라고 답하는 것도 틀립니다. 규칙 1 은 443 만 허용하고, 80 은 맞는 규칙이 없어 기본 정책으로 차단됩니다.
+**자주 틀리는 곳** — `DB` 로 가는 줄이니 5번도 이상하다고 답하는 경우가 많습니다. 5번은 `WEB` 이 `DB` 를 읽는 정상 통신입니다. `zone_of` 가 표에 없는 이름을 `inside` 로 본다고 답하는 것도 틀립니다. 표에 없으면 `outside` 입니다.
 
-**관제에서는** — 로그에 규칙 번호 0(기본 정책) 판정이 많으면 규칙이 부족하다는 신호로 봅니다.
+**관제에서는** — 이 조건 세 개는 관제 도구의 경보 규칙과 같은 생각입니다. 규칙에 걸린 줄이 실제로 위험한지는 출발이 어디인지부터 봅니다.
 
 ---
 
@@ -828,57 +721,38 @@ for src, dst, port in TESTS:                 # 시험 요청을 하나씩 꺼내
 💻 **터미널에 입력합니다.**
 
 ```bash
-python day05_4-2_allowed_ports.py
+python day05_4-2_find_bad.py
 ```
-맥북: `python3 day05_4-2_allowed_ports.py`
+맥북: `python3 day05_4-2_find_bad.py`
 
 **채운 함수**
 
 ```python
-def allowed_ports(src, dst, ports):
+def find_bad(logs):
     result = []
-    for port in ports:
-        action, no = judge(src, dst, port)
-        if action == "permit":
-            result.append(port)
+    for line in logs:
+        if is_bad(line):
+            result.append(line)
     return result
 ```
 
 **나와야 하는 출력**
 
 ```
-[443]
-[445]
-[22, 80, 443, 445, 3389]
-[]
+이상: 01:07 203.0.113.9 DB 3306 permit
+이상: 01:09 198.51.100.7 DB 445 permit
+개수: 2
 ```
 
 **결과**
 
-- (가) 출력은 위 네 줄이고, 요구사항 표의 기대값과 같습니다. 함수는 위 「채운 함수」입니다.
-- (나) 흐름 도식의 한 예:
-  ```
-  START
-    │
-    ▼
-  [ take next rule ] ◄──────────┐
-    │                           │
-    ▼                           │
-  [ match_rule ? ] ── no ───────┘
-    │ yes
-    ▼
-  RETURN (rule action, rule no)
+- (가) 위 함수와 출력 세 줄입니다. 위 표의 기대(이상한 줄 3번 · 5번, 개수 2)와 같습니다.
+- (나) `is_bad` 의 `action == "permit"` 조건 때문입니다. 1번은 인터넷에서 `DB` 로 가려던 시도지만 방화벽이 **차단**(`deny`)해서 통신이 일어나지 않았습니다. 그래도 무시하지 않고 **시도 기록으로 남겨** 둡니다. 이 로그에서는 같은 IP(`203.0.113.9`)가 차단된 뒤 몇 분 만에 `DB` 허용(3번)이 나왔으니, 그 사이에 규칙이 바뀌었는지부터 확인합니다.
+- (다) `result = []` 를 `for` 위에 두어야 줄을 하나씩 보는 동안 **모은 줄이 유지**됩니다. `for` 안에 두면 줄을 볼 때마다 리스트가 **비워져서** 마지막 줄의 결과만 남습니다.
+- (한 줄) 예: 「인터넷에서 내부 DB 로 허용된 줄이 2개이고, 그중 한 IP 는 먼저 차단된 뒤 허용되었으니 규칙이 바뀐 시점을 확인하겠습니다.」
 
-  (rules exhausted)
-    │
-    ▼
-  RETURN (default_policy, 0)
-  ```
-- (다) `result = []` 를 `for` 위에 두어야 포트를 하나씩 보는 동안 **모은 값이 유지**됩니다. `for` 안에 두면 포트를 볼 때마다 리스트가 **비워져서** 마지막 포트 하나의 결과만 남습니다.
-- (한 줄) 예: 「요구사항대로 인터넷은 DMZ 의 443 만, DMZ 는 내부망의 445 만 열려 있고 인터넷에서 내부망은 모두 막혀 있습니다.」
+**왜** — 함수 하나(`is_bad`)가 한 줄을 판단하게 만들고, 다른 함수(`find_bad`)가 그것을 줄마다 불러 모으면 수천 줄도 같은 코드로 걸러집니다.
 
-**왜** — 판정 함수를 포트 목록에 반복해서 부르면 통과하는 포트 목록이 나오고, 이 목록이 요구사항과 같은지가 점검 결과입니다.
+**자주 틀리는 곳** — `result.append(line)` 을 `if` 밖에 두면 모든 줄이 들어갑니다. `return result` 를 `for` 안에 쓰면 첫 줄만 보고 끝납니다. `is_bad(line)` 대신 `is_bad` 만 쓰면(괄호 없음) 함수가 불리지 않아 항상 참이 됩니다.
 
-**자주 틀리는 곳** — `if action == "permit"` 의 `==` 를 `=` 로 쓰면 에러가 납니다. `judge` 가 값 두 개를 리턴하므로 `action = judge(...)` 로 받으면 `action` 이 튜플이 되어 `"permit"` 과 같지 않습니다.
-
-**관제에서는** — 규칙을 바꾼 뒤 같은 시험 요청으로 목록이 달라졌는지 비교하면, 의도하지 않게 열린 길을 찾을 수 있습니다.
+**관제에서는** — 걸러낸 목록은 보고의 근거입니다. 차단된 시도(`deny`)도 같은 IP 에서 반복되면 따로 세어 둡니다.
