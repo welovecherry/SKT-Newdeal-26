@@ -440,7 +440,7 @@ print(a, n)
 
 ---
 
-### ✍️ 문제 4-1 · 규칙 판정 코드 읽고 설명하기
+### ✍️ 문제 4-1 · 규칙 판정 코드 읽고 주석 달기
 
 **📍 이런 상황이 있습니다**
 
@@ -451,8 +451,9 @@ print(a, n)
 **🎯 할 일**
 
 1. 코드를 붙여 넣고 <mark>실행해서 출력 여섯 줄</mark>을 봅니다.
-2. 함수 세 개(`default_policy` · `match_rule` · `judge`)가 <mark>각각 무엇을 하는지</mark> 한 줄로 적습니다.
-3. `judge` 가 <mark>리턴하는 값 두 개</mark>와 그 값을 만드는 줄을 찾습니다.
+2. 함수 <mark>`default_policy` 와 `match_rule`</mark> 이 각각 무엇을 하는지 한 줄로 적습니다. (주석이 있습니다)
+3. <mark>주석이 없는 `judge` 함수</mark>에 줄마다 주석을 직접 답니다.
+   - `judge` 가 <mark>리턴하는 값 두 개</mark>가 무엇인지도 적습니다
 4. `for` 안의 `return` 이 <mark>왜 필요한지</mark> 설명합니다.
 
 **이 문제에 나오는 말**
@@ -467,7 +468,7 @@ print(a, n)
    touch day05_4-1_zone_rules.py
    ls
    ```
-2. **[VS Code]** `day05_4-1_zone_rules.py` 를 열고 아래 코드를 붙여 넣습니다. 실행하기 전에 **줄마다 주석을 읽습니다.**
+2. **[VS Code]** `day05_4-1_zone_rules.py` 를 열고 아래 코드를 붙여 넣습니다. `judge` 함수에만 주석이 없습니다.
    ```python
    # 방화벽 규칙표: (번호, 출발 구역, 도착 구역, 포트, 동작) 튜플을 모은 리스트이다
    RULES = [
@@ -488,11 +489,12 @@ print(a, n)
        no, r_src, r_dst, r_port, action = rule  # 튜플 다섯 값을 각각 이름으로 꺼낸다
        return r_src == src and r_dst == dst and r_port == port   # 셋 다 같으면 True, 아니면 False 를 리턴한다
 
-   def judge(src, dst, port):                   # 요청 하나를 규칙표 위에서부터 판정하는 함수이다
-       for rule in RULES:                       # 규칙을 위에서부터 하나씩 꺼낸다
-           if match_rule(rule, src, dst, port): # 이 규칙이 요청과 맞으면
-               return rule[4], rule[0]          # 규칙의 동작과 규칙 번호를 함께 리턴하고 함수를 끝낸다
-       return default_policy(src, dst), 0       # 맞는 규칙이 없으면 기본 정책의 동작과 번호 0 을 리턴한다
+   # ↓ judge 함수에는 주석이 없습니다. 줄마다 오른쪽에 주석을 직접 답니다
+   def judge(src, dst, port):
+       for rule in RULES:
+           if match_rule(rule, src, dst, port):
+               return rule[4], rule[0]
+       return default_policy(src, dst), 0
 
    TESTS = [                                    # 시험 요청 여섯 개: (출발, 도착, 포트)
        ("outside", "DMZ", 443),
@@ -512,31 +514,34 @@ print(a, n)
    python day05_4-1_zone_rules.py
    ```
    맥북: `python3 day05_4-1_zone_rules.py`
-4. **[보고서]** `day05_am_report.md` 의 `## 4교시` › `### 문제 4-1` 아래를 채웁니다.
-   - (가) 함수 `default_policy` · `match_rule` · `judge` 가 각각 무엇을 하는지 한 줄씩 적어 주세요.
-   - (나) `judge` 가 리턴하는 값 두 개는 무엇이고, 어느 줄이 각각 만드나요?
+4. **[VS Code]** `judge` 함수의 줄마다 오른쪽에 **주석을 직접** 답니다. 위쪽 `default_policy` · `match_rule` 의 주석을 참고합니다. 저장해 둡니다. 4-2 에서 이 파일을 복사해 씁니다.
+5. **[보고서]** `day05_am_report.md` 의 `## 4교시` › `### 문제 4-1` 아래를 채웁니다.
+   - (가) 함수 `default_policy` 와 `match_rule` 이 각각 무엇을 하는지 한 줄씩 적어 주세요.
+   - (나) `judge` 함수에 줄마다 주석을 달고, 이 함수가 리턴하는 값 두 개가 무엇인지도 함께 적어 아래에 붙여 넣어 주세요.
    - (다) 🔍 `judge` 의 `for` 안에서 맞는 규칙을 찾으면 바로 `return` 합니다. `return` 없이 끝까지 돌리면 결과가 어떻게 달라지나요? 왜 이 문법을 썼나요?
 
 **💡 힌트**
 
 1. 함수 이름 바로 오른쪽 주석이 역할의 힌트입니다. 그 주석을 내 말로 바꿔 적습니다.
-2. (다) `judge` 의 `for` 는 규칙을 위에서부터 보다가 맞는 첫 규칙에서 `return` 하고, 함수는 거기서 끝납니다. `return` 이 없다면 끝까지 돌면서 어떤 규칙의 값이 남을지 생각해 봅니다.
-3. 다 했으면 · 막히면 문서 맨 아래 「정답 4-1」에서 결과를 확인합니다.
+2. `judge` 의 줄은 다섯 개입니다. `for` 는 규칙을 하나씩 꺼내고, `if` 는 맞는지 확인하고, 첫 `return` 은 맞으면 값을 리턴하고, 마지막 `return` 은 맞는 규칙이 없을 때 리턴합니다.
+3. (다) `for` 는 규칙을 위에서부터 보다가 맞는 첫 규칙에서 `return` 하고, 함수는 거기서 끝납니다. `return` 이 없다면 끝까지 돌면서 어떤 규칙의 값이 남을지 생각해 봅니다.
+4. 다 했으면 · 막히면 문서 맨 아래 「정답 4-1」에서 결과를 확인합니다.
 
-### ✍️ 문제 4-2 · 주석 달고 도식화하고 함수 직접 만들기
+### ✍️ 문제 4-2 · 도식화하고 함수 직접 만들기
 
 **📍 이런 상황이 있습니다**
 
 - 요구사항이 바뀌어 「이 서버에 <mark>허용되는 포트를 목록으로</mark> 뽑아 달라」는 요청이 옵니다. 규칙을 하나씩 열어 보는 대신, 이미 있는 판정 함수를 불러 목록을 만드는 함수를 새로 만들면 됩니다.
-- 팀원이 이 코드를 이어받으려면 <mark>주석과 도식</mark>이 있어야 합니다.
+- 팀원이 이 코드를 이어받으려면 코드의 <mark>흐름도</mark>가 있어야 합니다.
 
 **🎯 할 일**
 
-1. 주석이 모두 지워진 코드를 붙여 넣고, <mark>`judge` 함수에 줄마다 주석</mark>을 달고 흐름을 <mark>ASCII 도식</mark>(상자 · 화살표)으로 그립니다.
-2. 함수 <mark>`allowed_ports` 를 직접</mark> 만듭니다.
+1. 4-1 파일을 <mark>복사</mark>해서 새 파일에서 시작합니다.
+2. `judge` 의 흐름을 <mark>ASCII 도식</mark>(상자 · 화살표)으로 그립니다.
+3. 함수 <mark>`allowed_ports` 를 직접</mark> 만듭니다.
    - `ports` 안의 포트 가운데 **허용(permit)** 되는 것만 리스트에 모아 리턴합니다
    - 직접 치는 줄은 **4줄 이하**입니다
-3. 실행해서 나온 <mark>출력 네 줄</mark>이 요구사항과 같은지 비교합니다.
+4. 실행해서 맨 아래에 나온 <mark>출력 네 줄</mark>이 요구사항과 같은지 비교합니다.
 
 **요구사항** (규칙은 4-1 의 `RULES` 두 줄입니다)
 
@@ -549,64 +554,39 @@ print(a, n)
 
 **순서**
 
-1. **[터미널]** 파일을 만들고 확인합니다.
+1. **[터미널]** 4-1 파일을 복사해 새 파일을 만들고 확인합니다. (`cp` 는 10/14 에 배운 명령입니다)
    ```bash
-   touch day05_4-2_allowed_ports.py
+   cp day05_4-1_zone_rules.py day05_4-2_allowed_ports.py
    ls
    ```
-2. **[VS Code]** `day05_4-2_allowed_ports.py` 를 열고 아래 코드를 붙여 넣습니다. 4-1 의 코드에서 **주석이 모두 지워져** 있고, `allowed_ports` 는 비어 있습니다.
+   4-1 을 끝내지 못했으면 문서 맨 아래 「정답 4-1」의 코드를 `day05_4-2_allowed_ports.py` 에 붙여 넣고 시작해도 됩니다.
+2. **[VS Code]** `day05_4-2_allowed_ports.py` 를 열고 **맨 아래**에 아래 코드를 붙여 넣습니다. `allowed_ports` 는 비어 있습니다.
    ```python
-   RULES = [
-       (1, "outside", "DMZ", 443, "permit"),
-       (2, "DMZ", "inside", 445, "permit"),
-   ]
-
-   def default_policy(src, dst):
-       if src == dst:
-           return "permit"
-       if src == "inside":
-           return "permit"
-       if dst == "outside":
-           return "permit"
-       return "deny"
-
-   def match_rule(rule, src, dst, port):
-       no, r_src, r_dst, r_port, action = rule
-       return r_src == src and r_dst == dst and r_port == port
-
-   def judge(src, dst, port):
-       for rule in RULES:
-           if match_rule(rule, src, dst, port):
-               return rule[4], rule[0]
-       return default_policy(src, dst), 0
-
-
    def allowed_ports(src, dst, ports):
        # 여기를 직접 씁니다 (4줄 이하): ports 중 허용(permit) 되는 포트만 모아 리스트로 리턴한다
        return []
 
-   PORTS = [22, 80, 443, 445, 3389]
-
+   PORTS = [22, 80, 443, 445, 3389]          # 시험할 포트 다섯 개이다
    print(allowed_ports("outside", "DMZ", PORTS))
    print(allowed_ports("DMZ", "inside", PORTS))
    print(allowed_ports("inside", "DMZ", PORTS))
    print(allowed_ports("outside", "inside", PORTS))
    ```
-3. **[VS Code]** `judge` 함수의 줄마다 오른쪽에 **주석을 직접** 답니다. 4-1 의 주석을 보지 않고 먼저 써 봅니다. 이어서 `judge` 의 흐름을 ASCII 로 그립니다(상자 안은 영어 · 숫자).
-   - 시작 → 규칙을 하나씩 꺼낸다 → 맞는가? → (맞으면) 규칙의 동작 리턴 / (아니면) 다음 규칙 → 규칙이 끝나면 기본 정책 리턴
-4. **[VS Code]** `allowed_ports` 를 채웁니다.
+3. **[VS Code]** `allowed_ports` 를 채웁니다.
    - `result = []` 로 빈 리스트를 만들고
    - `for port in ports:` 로 포트를 하나씩 꺼내
    - `judge(src, dst, port)` 의 동작이 `"permit"` 이면 `result` 에 `append` 하고
    - 마지막에 `result` 를 `return` 합니다
-5. **[터미널]** 실행해 출력 네 줄을 요구사항 표의 기대값과 비교합니다.
+4. **[터미널]** 실행하면 4-1 의 여섯 줄 아래에 네 줄이 더 나옵니다. 그 네 줄을 요구사항 표의 기대값과 비교합니다.
    ```bash
    python day05_4-2_allowed_ports.py
    ```
    맥북: `python3 day05_4-2_allowed_ports.py`
+5. **[VS Code]** `judge` 의 흐름을 ASCII 로 그립니다(상자 안은 영어 · 숫자).
+   - 시작 → 규칙을 하나씩 꺼낸다 → 맞는가? → (맞으면) 규칙의 동작 리턴 / (아니면) 다음 규칙 → 규칙이 끝나면 기본 정책 리턴
 6. **[보고서]** `### 문제 4-2` 아래를 채웁니다.
-   - (가) `judge` 함수에 줄마다 주석을 달고 흐름을 ASCII 도식(상자 · 화살표)으로 그려, 함께 아래에 붙여 넣어 주세요.
-   - (나) 직접 만든 `allowed_ports` 함수를 붙여 넣고, 실행해서 나온 출력 네 줄을 적어 주세요.
+   - (가) `judge` 함수의 흐름을 ASCII 도식(상자 · 화살표)으로 그려 아래에 붙여 넣어 주세요.
+   - (나) 직접 만든 `allowed_ports` 함수를 붙여 넣고, 실행해서 맨 아래에 나온 출력 네 줄을 적어 주세요.
    - (다) 🔍 `allowed_ports` 에서 `result = []` 를 `for` 위에 두는 이유는 무엇인가요? `for` 안에 두면 어떻게 되나요?
    - (한 줄) 고객에게 보낼 답을 한 문장으로 적어 주세요.
    - 이 교시에서 새로 알게 된 것 하나를 적어 주세요.
@@ -741,13 +721,55 @@ DMZ → inside 3389 : deny (규칙 0)
 outside → inside 445 : deny (규칙 0)
 ```
 
+**주석을 단 전체 코드** (4-1 을 끝내지 못했으면 이 코드를 붙여 넣고 4-2 를 시작합니다)
+
+```python
+# 방화벽 규칙표: (번호, 출발 구역, 도착 구역, 포트, 동작) 튜플을 모은 리스트이다
+RULES = [
+    (1, "outside", "DMZ", 443, "permit"),    # 규칙 1: 인터넷에서 DMZ 의 443 번을 허용한다
+    (2, "DMZ", "inside", 445, "permit"),     # 규칙 2: DMZ 에서 내부망의 445 번을 허용한다
+]
+
+def default_policy(src, dst):                # 규칙에 맞는 것이 없을 때의 기본 정책 함수이다
+    if src == dst:                           # 출발 구역과 도착 구역이 같으면
+        return "permit"                      # 허용한다
+    if src == "inside":                      # 내부망에서 출발하면
+        return "permit"                      # 허용한다
+    if dst == "outside":                     # 인터넷으로 나가는 통신이면
+        return "permit"                      # 허용한다
+    return "deny"                            # 나머지는 모두 차단한다
+
+def match_rule(rule, src, dst, port):        # 규칙 하나가 요청과 맞는지 알아보는 함수이다
+    no, r_src, r_dst, r_port, action = rule  # 튜플 다섯 값을 각각 이름으로 꺼낸다
+    return r_src == src and r_dst == dst and r_port == port   # 셋 다 같으면 True, 아니면 False 를 리턴한다
+
+def judge(src, dst, port):                   # 요청 하나를 규칙표 위에서부터 판정하는 함수이다
+    for rule in RULES:                       # 규칙을 위에서부터 하나씩 꺼낸다
+        if match_rule(rule, src, dst, port): # 이 규칙이 요청과 맞으면
+            return rule[4], rule[0]          # 규칙의 동작과 규칙 번호를 함께 리턴하고 함수를 끝낸다
+    return default_policy(src, dst), 0       # 맞는 규칙이 없으면 기본 정책의 동작과 번호 0 을 리턴한다
+
+TESTS = [                                    # 시험 요청 여섯 개: (출발, 도착, 포트)
+    ("outside", "DMZ", 443),
+    ("outside", "DMZ", 80),
+    ("inside", "DMZ", 443),
+    ("DMZ", "inside", 445),
+    ("DMZ", "inside", 3389),
+    ("outside", "inside", 445),
+]
+
+for src, dst, port in TESTS:                 # 시험 요청을 하나씩 꺼내 출발 · 도착 · 포트 로 나눈다
+    action, no = judge(src, dst, port)       # judge 가 리턴한 두 값을 action 과 no 에 나눠 담는다
+    print(src, "→", dst, port, ":", action, "(규칙 " + str(no) + ")")   # 판정 결과를 한 줄로 출력한다
+```
+
 **결과**
 
-- (가) `default_policy` 는 규칙에 맞는 것이 없을 때 **기본 정책**(같은 구역 · 내부망 출발 · 인터넷으로 나감은 허용, 나머지는 차단)을 알려 줍니다. `match_rule` 은 **규칙 하나가 요청과 맞는지** `True` / `False` 로 알려 줍니다. `judge` 는 **규칙표를 위에서부터 보며 요청을 판정**해 동작과 규칙 번호를 알려 줍니다.
-- (나) 리턴값은 **동작(`permit` / `deny`)과 규칙 번호**입니다. 동작은 `rule[4]` 또는 `default_policy(...)`, 규칙 번호는 `rule[0]` 또는 `0` 입니다.
-- (다) `return` 이 없으면 `for` 가 규칙을 끝까지 돌기 때문에, 맞는 규칙이 여러 개일 때 **위의 규칙이 아니라 마지막 규칙의 값**이 남을 수 있습니다. 방화벽은 **첫 번째로 맞는 규칙**을 쓰므로, 찾자마자 `return` 해서 함수를 끝내도록 했습니다.
+- (가) `default_policy` 는 규칙에 맞는 것이 없을 때의 **기본 정책**(같은 구역 · 내부망 출발 · 인터넷으로 나감은 허용, 나머지는 차단)을 알려 줍니다. `match_rule` 은 **규칙 하나가 요청과 맞는지** `True` / `False` 로 알려 줍니다.
+- (나) `judge` 주석의 한 예는 위 코드의 `judge` 함수 부분입니다. 리턴값은 **동작(`permit` / `deny`)과 규칙 번호** 두 개입니다. 동작은 `rule[4]` 또는 `default_policy(...)`, 규칙 번호는 `rule[0]` 또는 `0` 입니다.
+- (다) `return` 이 없으면 `for` 가 규칙을 끝까지 돌며, 맞는 규칙이 여러 개일 때 **위의 규칙이 아니라 마지막 규칙의 값**이 남을 수 있습니다. 방화벽은 **첫 번째로 맞는 규칙**을 쓰므로, 찾자마자 `return` 해서 함수를 끝내도록 했습니다.
 
-**왜** — 규칙표는 위에서부터 첫 번째로 맞는 규칙이 결과를 정합니다. `return` 은 그 「첫 번째」를 코드로 옮긴 것입니다.
+**왜** — 규칙표는 위에서부터 첫 번째로 맞는 것이 결정합니다. `return` 은 그 「첫 번째」를 코드로 만든 것입니다.
 
 **자주 틀리는 곳** — `judge` 가 값을 하나만 리턴한다고 쓰는 경우가 많습니다. `return rule[4], rule[0]` 처럼 값 두 개를 쉼표로 이어 리턴합니다. 「인터넷에서 DMZ 80 이 차단된 것은 규칙 1 때문」이라고 답하는 것도 틀립니다. 규칙 1 은 443 만 허용하고, 80 은 맞는 규칙이 없어 기본 정책으로 차단됩니다.
 
@@ -776,7 +798,7 @@ def allowed_ports(src, dst, ports):
     return result
 ```
 
-**나와야 하는 출력**
+**나와야 하는 출력** (4-1 의 여섯 줄 아래에 이어서 나오는 네 줄)
 
 ```
 [443]
@@ -787,7 +809,7 @@ def allowed_ports(src, dst, ports):
 
 **결과**
 
-- (가) 한 예: `judge` 줄마다 주석 — 규칙 하나씩 꺼내기, 맞는지 확인, 맞으면 동작과 번호 리턴, 규칙이 끝나면 기본 정책 리턴. 흐름 도식의 한 예:
+- (가) 흐름 도식의 한 예:
   ```
   START
     │
@@ -805,7 +827,7 @@ def allowed_ports(src, dst, ports):
     ▼
   RETURN (default_policy, 0)
   ```
-- (나) 출력은 위 네 줄이고, 요구사항 표의 기대값과 같습니다.
+- (나) 맨 아래에 나온 출력은 위 네 줄이고, 요구사항 표의 기대값과 같습니다.
 - (다) `result = []` 를 `for` 위에 두어야 포트를 하나씩 보는 동안 **모은 값이 유지**됩니다. `for` 안에 두면 포트를 볼 때마다 리스트가 **비워져서** 마지막 포트 하나의 결과만 남습니다.
 - (한 줄) 예: 「요구사항대로 인터넷은 DMZ 의 443 만, DMZ 는 내부망의 445 만 열려 있고 인터넷에서 내부망은 모두 막혀 있습니다.」
 
