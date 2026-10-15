@@ -4,16 +4,17 @@
 
 ## 시작하기
 
-**오늘 받은 파일 두 개를 `network_zt` 폴더로 옮깁니다.** (VS Code 왼쪽 목록의 `network_zt` 폴더로 끌어다 놓거나, 탐색기 · Finder 로 옮깁니다.)
+**오늘 받은 파일 세 개를 `network_zt` 폴더로 옮깁니다.** (압축 파일은 옮긴 뒤 그 폴더 안에서 풉니다) (VS Code 왼쪽 목록의 `network_zt` 폴더로 끌어다 놓거나, 탐색기 · Finder 로 옮깁니다.)
 
 - `day05_am_cloud_diagram.md` (이 파일) — 실습 안내. 읽기만 합니다.
 - `day05_am_report.md` — **오전 보고서.** 2 · 3 · 4교시 답을 여기에 적습니다. 오후에는 오후 안내 문서와 오후 보고서를 따로 받습니다.
+- `day05_starter.zip` — 오늘 쓸 파일 다섯 개 묶음입니다. `network_zt` 폴더에 풉니다. 풀면 `network_zt` 안에 `day05_4-1_zone_rules.py` · `day05_4-2_allowed_ports.py` · `day05_6-1_measure.py` · `day05_6-2_judge.py` · `day05_diagram.md` 가 보입니다. (6-1 · 6-2 는 오후에 씁니다)
 
 1. **[VS Code]** 이 파일을 열고 `Ctrl + Shift + V`(맥북은 `Cmd + Shift + V`)를 누릅니다. 실습 안내가 미리보기로 열립니다 — 이 탭이 왼쪽입니다.
 2. **[VS Code]** 왼쪽 목록에서 `day05_am_report.md` 를 오른쪽 클릭 › **Open to the Side**(한글 화면은 「측면에서 열기」)를 누릅니다. 보고서가 오른쪽에 열립니다. 질문마다 `쓸 내용:` 을 보고 `답:` 뒤에 씁니다.
 3. 문제는 **할 일 → 순서** 대로 풉니다. 순서 앞의 `[창 이름]` 이 지금 쓸 창입니다. 막히면 💡 힌트를 보고, 그래도 막히면 문서 맨 아래 「정답」을 봅니다.
 
-> 오늘 오전의 파일은 **3교시의 `day05_diagram.md`**(ASCII 구성도)와 **4교시의 파이썬 파일 두 개**입니다. 모두 `network_zt` 폴더에서 `touch` 로 먼저 만들고 VS Code 에서 엽니다. `python` 이 없다는 오류가 나오면 `python3` 으로 칩니다. 오늘 코드와 표의 주소 · 숫자는 모두 연습용 예시입니다.
+> 오늘 오전의 파일은 **3교시의 `day05_diagram.md`**(ASCII 구성도)와 **4교시의 파이썬 파일 두 개**입니다. 모두 **`day05_starter.zip`** 안에 들어 있습니다. 압축 파일을 받을 수 없으면 `network_zt` 폴더에서 `touch` 로 파일을 만들고 문제의 코드를 붙여 넣어도 됩니다. `python` 이 없다는 오류가 나오면 `python3` 으로 칩니다. 오늘 코드와 표의 주소 · 숫자는 모두 연습용 예시입니다.
 
 ---
 
@@ -353,13 +354,9 @@ INTERNET ──── FW ──┬── DMZ    : WEB  (443 open)
 
 **순서**
 
-1. **[터미널]** `network_zt` 폴더 안에서 파일을 만들고 확인합니다. 다른 폴더에 있다면 먼저 `cd network_zt` 로 이동합니다.
-   ```bash
-   pwd                       # 지금 위치를 보여 줍니다. …/network_zt 로 끝나야 합니다
-   touch day05_diagram.md    # 빈 파일을 만듭니다
-   ls                        # 폴더 안 파일 목록에 만든 파일이 보이는지 확인합니다
-   ```
-2. **[VS Code]** `day05_diagram.md` 를 열고 아래 틀을 붙여 넣어 채웁니다.
+1. **[VS Code]** 압축 파일에서 푼 `day05_diagram.md` 를 엽니다. 아래 틀이 들어 있습니다.
+   - 압축 파일이 없으면 터미널에서 `touch day05_diagram.md` 로 파일을 만들고, 아래 틀을 붙여 넣습니다
+2. **[VS Code]** 틀을 채웁니다. 틀은 이렇게 생겼습니다.
    ````markdown
    # day05 망 구성도
 
@@ -500,7 +497,7 @@ help(two)
 
 **🎯 할 일**
 
-1. 아래 순서 2 의 코드를 붙여 넣고 <mark>실행해서 출력 여섯 줄</mark>을 봅니다.
+1. 압축 파일의 `day05_4-1_zone_rules.py` 를 열고(아래 순서 2 의 코드와 같습니다) <mark>실행해서 출력 여섯 줄</mark>을 봅니다.
 2. 함수 <mark>`default_policy` 와 `match_rule`</mark> 이 각각 무엇을 하는지 한 줄로 적습니다. (주석이 있습니다)
 3. <mark>`judge` 함수의 독스트링</mark>을 직접 씁니다.
    - 이 함수가 하는 일 · 받는 값 · <mark>리턴하는 값 두 개</mark>를 적습니다
@@ -513,12 +510,9 @@ help(two)
 
 **순서**
 
-1. **[터미널]** `network_zt` 폴더 안에서 파일을 만들고 확인합니다.
-   ```bash
-   touch day05_4-1_zone_rules.py
-   ls
-   ```
-2. **[VS Code]** `day05_4-1_zone_rules.py` 를 열고 아래 코드를 붙여 넣습니다. `judge` 함수에는 독스트링을 쓸 빈 자리가 있습니다.
+1. **[VS Code]** 압축 파일에서 푼 `day05_4-1_zone_rules.py` 를 엽니다.
+   - 압축 파일이 없으면 터미널에서 `touch day05_4-1_zone_rules.py` 로 파일을 만들고, 아래 코드를 붙여 넣습니다
+2. **[VS Code]** 파일의 코드는 아래와 같습니다. 실행하기 전에 **줄마다 주석을 읽습니다.** `judge` 함수에는 독스트링을 쓸 빈 자리가 있습니다.
    ```python
    # 방화벽 규칙표: (번호, 출발 구역, 도착 구역, 포트, 동작) 튜플을 모은 리스트이다
    RULES = [
@@ -590,7 +584,7 @@ help(two)
 
 **🎯 할 일**
 
-1. 아래 순서 2 의 코드를 새 파일에 <mark>통째로</mark> 붙여 넣습니다. (4-1 의 코드이고, `allowed_ports` 만 비어 있습니다)
+1. 압축 파일의 `day05_4-2_allowed_ports.py` 를 엽니다. (4-1 의 코드이고, `allowed_ports` 만 비어 있습니다. 아래 순서 2 의 코드와 같습니다)
 2. `judge` 의 흐름을 <mark>ASCII 도식</mark>(상자 · 화살표)으로 그립니다.
 3. 함수 <mark>`allowed_ports` 를 직접</mark> 만듭니다.
    - `ports` 안의 포트 가운데 **허용(permit)** 되는 것만 리스트에 모아 리턴합니다
@@ -608,12 +602,9 @@ help(two)
 
 **순서**
 
-1. **[터미널]** `network_zt` 폴더 안에서 파일을 만들고 확인합니다.
-   ```bash
-   touch day05_4-2_allowed_ports.py
-   ls
-   ```
-2. **[VS Code]** `day05_4-2_allowed_ports.py` 를 열고 아래 코드를 **통째로** 붙여 넣습니다. 4-1 의 코드(`judge` 독스트링 포함)이고, `allowed_ports` 만 비어 있습니다.
+1. **[VS Code]** 압축 파일에서 푼 `day05_4-2_allowed_ports.py` 를 엽니다.
+   - 압축 파일이 없으면 터미널에서 `touch day05_4-2_allowed_ports.py` 로 파일을 만들고, 아래 코드를 **통째로** 붙여 넣습니다
+2. **[VS Code]** 파일의 코드는 아래와 같습니다. 4-1 의 코드(`judge` 독스트링 포함)이고, `allowed_ports` 만 비어 있습니다.
    ```python
    # 방화벽 규칙표: (번호, 출발 구역, 도착 구역, 포트, 동작) 튜플을 모은 리스트이다
    RULES = [
