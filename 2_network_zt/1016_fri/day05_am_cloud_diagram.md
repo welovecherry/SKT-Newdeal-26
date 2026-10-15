@@ -8,13 +8,13 @@
 
 - `day05_am_cloud_diagram.md` (이 파일) — 실습 안내. 읽기만 합니다.
 - `day05_am_report.md` — **오전 보고서.** 2 · 3 · 4교시 답을 여기에 적습니다. 오후에는 오후 안내 문서와 오후 보고서를 따로 받습니다.
-- `day05_starter.zip` — 오늘 쓸 파일 다섯 개 묶음입니다. `network_zt` 폴더에 풉니다. 풀면 `network_zt` 안에 `day05_4-1_zone_rules.py` · `day05_4-2_allowed_ports.py` · `day05_6-1_measure.py` · `day05_6-2_judge.py` · `day05_diagram.md` 가 보입니다. (6-1 · 6-2 는 오후에 씁니다)
+- `day05_am_starter.zip` — 오전에 쓸 파일 세 개 묶음입니다. `network_zt` 폴더에 풉니다. 풀면 `network_zt` 안에 `day05_diagram.md` · `day05_4-1_zone_rules.py` · `day05_4-2_allowed_ports.py` 가 보입니다.
 
 1. **[VS Code]** 이 파일을 열고 `Ctrl + Shift + V`(맥북은 `Cmd + Shift + V`)를 누릅니다. 실습 안내가 미리보기로 열립니다 — 이 탭이 왼쪽입니다.
 2. **[VS Code]** 왼쪽 목록에서 `day05_am_report.md` 를 오른쪽 클릭 › **Open to the Side**(한글 화면은 「측면에서 열기」)를 누릅니다. 보고서가 오른쪽에 열립니다. 질문마다 `쓸 내용:` 을 보고 `답:` 뒤에 씁니다.
 3. 문제는 **할 일 → 순서** 대로 풉니다. 순서 앞의 `[창 이름]` 이 지금 쓸 창입니다. 막히면 💡 힌트를 보고, 그래도 막히면 문서 맨 아래 「정답」을 봅니다.
 
-> 오늘 오전의 파일은 **3교시의 `day05_diagram.md`**(ASCII 구성도)와 **4교시의 파이썬 파일 두 개**입니다. 모두 **`day05_starter.zip`** 안에 들어 있습니다. 압축 파일을 받을 수 없으면 `network_zt` 폴더에서 `touch` 로 파일을 만들고 문제의 코드를 붙여 넣어도 됩니다. `python` 이 없다는 오류가 나오면 `python3` 으로 칩니다. 오늘 코드와 표의 주소 · 숫자는 모두 연습용 예시입니다.
+> 오늘 오전의 파일은 **3교시의 `day05_diagram.md`**(ASCII 구성도)와 **4교시의 파이썬 파일 두 개**입니다. 모두 **`day05_am_starter.zip`** 안에 들어 있습니다. `python` 이 없다는 오류가 나오면 `python3` 으로 칩니다. 오늘 코드와 표의 주소 · 숫자는 모두 연습용 예시입니다.
 
 ---
 
@@ -355,7 +355,6 @@ INTERNET ──── FW ──┬── DMZ    : WEB  (443 open)
 **순서**
 
 1. **[VS Code]** 압축 파일에서 푼 `day05_diagram.md` 를 엽니다. 아래 틀이 들어 있습니다.
-   - 압축 파일이 없으면 터미널에서 `touch day05_diagram.md` 로 파일을 만들고, 아래 틀을 붙여 넣습니다
 2. **[VS Code]** 틀을 채웁니다. 틀은 이렇게 생겼습니다.
    ````markdown
    # day05 망 구성도
@@ -471,7 +470,7 @@ print(two())                  # 이름 하나로 받으면 튜플로 나온다
 
 **🎯 할 일**
 
-1. 압축 파일의 `day05_4-1_zone_rules.py` 를 열고(아래 순서 2 의 코드와 같습니다) <mark>실행해서 출력 여섯 줄</mark>을 봅니다.
+1. 압축 파일의 `day05_4-1_zone_rules.py` 를 열고 <mark>실행해서 출력 여섯 줄</mark>을 봅니다.
 2. 함수 <mark>`default_policy` 와 `match_rule`</mark> 이 각각 무엇을 하는지 한 줄로 적습니다. (주석이 있습니다)
 3. <mark>`judge` 함수의 빈 주석 세 곳</mark>을 직접 씁니다.
    - 함수 이름 줄에는 이 함수가 <mark>하는 일</mark>을, 첫 `return` 줄에는 <mark>리턴하는 값 두 개</mark>를, 마지막 `return` 줄에는 맞는 규칙이 없을 때 리턴하는 값을 적습니다
@@ -485,47 +484,12 @@ print(two())                  # 이름 하나로 받으면 튜플로 나온다
 **순서**
 
 1. **[VS Code]** 압축 파일에서 푼 `day05_4-1_zone_rules.py` 를 엽니다.
-   - 압축 파일이 없으면 터미널에서 `touch day05_4-1_zone_rules.py` 로 파일을 만들고, 아래 코드를 붙여 넣습니다
-2. **[VS Code]** 파일의 코드는 아래와 같습니다. 실행하기 전에 **줄마다 주석을 읽습니다.** `judge` 함수에는 주석을 쓸 빈 자리가 세 곳 있습니다.
-   ```python
-   # 방화벽 규칙표: (번호, 출발 구역, 도착 구역, 포트, 동작) 튜플을 모은 리스트이다
-   RULES = [
-       (1, "outside", "DMZ", 443, "permit"),    # 규칙 1: 인터넷에서 DMZ 의 443 번을 허용한다
-       (2, "DMZ", "inside", 445, "permit"),     # 규칙 2: DMZ 에서 내부망의 445 번을 허용한다
-   ]
-
-   def default_policy(src, dst):                # 규칙에 맞는 것이 없을 때의 기본 정책 함수이다
-       if src == dst:                           # 출발 구역과 도착 구역이 같으면
-           return "permit"                      # 허용한다
-       if src == "inside":                      # 내부망에서 출발하면
-           return "permit"                      # 허용한다
-       if dst == "outside":                     # 인터넷으로 나가는 통신이면
-           return "permit"                      # 허용한다
-       return "deny"                            # 나머지는 모두 차단한다
-
-   def match_rule(rule, src, dst, port):        # 규칙 하나가 요청과 맞는지 알아보는 함수이다
-       no, r_src, r_dst, r_port, action = rule  # 튜플 다섯 값을 각각 이름으로 꺼낸다
-       return r_src == src and r_dst == dst and r_port == port   # 셋 다 같으면 True, 아니면 False 를 리턴한다
-
-   def judge(src, dst, port):                   # ← 이 함수가 하는 일을 여기에 주석으로 씁니다
-       for rule in RULES:                       # 규칙을 위에서부터 하나씩 꺼낸다
-           if match_rule(rule, src, dst, port): # 이 규칙이 요청과 맞으면
-               return rule[4], rule[0]          # ← 이 줄이 리턴하는 값 두 개를 여기에 주석으로 씁니다
-       return default_policy(src, dst), 0       # ← 맞는 규칙이 없을 때 리턴하는 값을 여기에 주석으로 씁니다
-
-   TESTS = [                                    # 시험 요청 여섯 개: (출발, 도착, 포트)
-       ("outside", "DMZ", 443),
-       ("outside", "DMZ", 80),
-       ("inside", "DMZ", 443),
-       ("DMZ", "inside", 445),
-       ("DMZ", "inside", 3389),
-       ("outside", "inside", 445),
-   ]
-
-   for src, dst, port in TESTS:                 # 시험 요청을 하나씩 꺼내 출발 · 도착 · 포트 로 나눈다
-       action, no = judge(src, dst, port)       # judge 가 리턴한 두 값을 action 과 no 에 나눠 담는다
-       print(src, "→", dst, port, ":", action, "(규칙 " + str(no) + ")")   # 판정 결과를 한 줄로 출력한다
-   ```
+2. **[VS Code]** 실행하기 전에 파일을 훑어보며 **줄마다 주석을 읽습니다.** 파일은 이렇게 생겼습니다.
+   - `RULES` — 방화벽 규칙표. 규칙 두 줄
+   - `default_policy` — 규칙에 맞는 것이 없을 때의 기본 정책 함수
+   - `match_rule` — 규칙 하나가 요청과 맞는지 알아보는 함수
+   - `judge` — 규칙표를 위에서부터 판정하는 함수. **주석을 쓸 빈 자리가 세 곳** 있습니다(`# ←` 로 표시)
+   - `TESTS` — 시험 요청 여섯 개. 맨 아래 `for` 가 하나씩 판정해 출력합니다
 3. **[터미널]** 실행합니다.
    ```bash
    python day05_4-1_zone_rules.py
@@ -553,7 +517,7 @@ print(two())                  # 이름 하나로 받으면 튜플로 나온다
 
 **🎯 할 일**
 
-1. 압축 파일의 `day05_4-2_allowed_ports.py` 를 엽니다. (4-1 의 코드이고, `allowed_ports` 만 비어 있습니다. 아래 순서 2 의 코드와 같습니다)
+1. 압축 파일의 `day05_4-2_allowed_ports.py` 를 엽니다. (4-1 의 코드이고, `allowed_ports` 만 비어 있습니다)
 2. `judge` 의 흐름을 <mark>ASCII 도식</mark>(상자 · 화살표)으로 그립니다.
 3. 함수 <mark>`allowed_ports` 를 직접</mark> 만듭니다.
    - `ports` 안의 포트 가운데 **허용(permit)** 되는 것만 리스트에 모아 리턴합니다
@@ -572,44 +536,7 @@ print(two())                  # 이름 하나로 받으면 튜플로 나온다
 **순서**
 
 1. **[VS Code]** 압축 파일에서 푼 `day05_4-2_allowed_ports.py` 를 엽니다.
-   - 압축 파일이 없으면 터미널에서 `touch day05_4-2_allowed_ports.py` 로 파일을 만들고, 아래 코드를 **통째로** 붙여 넣습니다
-2. **[VS Code]** 파일의 코드는 아래와 같습니다. 4-1 의 코드(`judge` 주석을 채운 것)이고, `allowed_ports` 만 비어 있습니다.
-   ```python
-   # 방화벽 규칙표: (번호, 출발 구역, 도착 구역, 포트, 동작) 튜플을 모은 리스트이다
-   RULES = [
-       (1, "outside", "DMZ", 443, "permit"),    # 규칙 1: 인터넷에서 DMZ 의 443 번을 허용한다
-       (2, "DMZ", "inside", 445, "permit"),     # 규칙 2: DMZ 에서 내부망의 445 번을 허용한다
-   ]
-
-   def default_policy(src, dst):                # 규칙에 맞는 것이 없을 때의 기본 정책 함수이다
-       if src == dst:                           # 출발 구역과 도착 구역이 같으면
-           return "permit"                      # 허용한다
-       if src == "inside":                      # 내부망에서 출발하면
-           return "permit"                      # 허용한다
-       if dst == "outside":                     # 인터넷으로 나가는 통신이면
-           return "permit"                      # 허용한다
-       return "deny"                            # 나머지는 모두 차단한다
-
-   def match_rule(rule, src, dst, port):        # 규칙 하나가 요청과 맞는지 알아보는 함수이다
-       no, r_src, r_dst, r_port, action = rule  # 튜플 다섯 값을 각각 이름으로 꺼낸다
-       return r_src == src and r_dst == dst and r_port == port   # 셋 다 같으면 True, 아니면 False 를 리턴한다
-
-   def judge(src, dst, port):                   # 요청 하나를 규칙표 위에서부터 판정하는 함수이다
-       for rule in RULES:                       # 규칙을 위에서부터 하나씩 꺼낸다
-           if match_rule(rule, src, dst, port): # 이 규칙이 요청과 맞으면
-               return rule[4], rule[0]          # 규칙의 동작과 규칙 번호를 함께 리턴하고 함수를 끝낸다
-       return default_policy(src, dst), 0       # 맞는 규칙이 없으면 기본 정책의 동작과 번호 0 을 리턴한다
-
-   def allowed_ports(src, dst, ports):          # ports 중 허용(permit) 되는 포트만 모아 리스트로 리턴하는 함수이다. 이 함수를 직접 만든다
-       # 여기를 직접 씁니다 (4줄 이하): 빈 리스트 만들기 → for 로 포트 하나씩 꺼내기 → judge 로 판정 → permit 이면 append → 리스트 리턴
-       return []                                # ← 이 줄을 지우고 위 내용을 코드로 쓴다
-
-   PORTS = [22, 80, 443, 445, 3389]             # 시험할 포트 다섯 개이다
-   print(allowed_ports("outside", "DMZ", PORTS))      # 인터넷 → DMZ 에서 허용되는 포트 목록을 출력한다
-   print(allowed_ports("DMZ", "inside", PORTS))       # DMZ → 내부망에서 허용되는 포트 목록을 출력한다
-   print(allowed_ports("inside", "DMZ", PORTS))       # 내부망 → DMZ 에서 허용되는 포트 목록을 출력한다
-   print(allowed_ports("outside", "inside", PORTS))   # 인터넷 → 내부망에서 허용되는 포트 목록을 출력한다
-   ```
+2. **[VS Code]** 파일은 4-1 의 코드(`judge` 주석을 채운 것)이고, `allowed_ports` 만 비어 있습니다. 맨 아래 `PORTS` 와 `print` 네 줄이 시험입니다.
 3. **[VS Code]** `allowed_ports` 를 채웁니다.
    - `result = []` 로 빈 리스트를 만들고
    - `for port in ports:` 로 포트를 하나씩 꺼내
