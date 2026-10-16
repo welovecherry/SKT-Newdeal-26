@@ -64,16 +64,26 @@
    ```bash
    docker --version
    ```
-   예: `Docker version 28.x.x, build ...` (숫자는 내려받은 시기에 따라 다릅니다)
+   예: `Docker version 29.8.2, build 7fc2dff` (학원 PC 에서 나온 값입니다. 숫자는 내려받은 시기에 따라 다릅니다)
 2. **[터미널]** 첫 컨테이너를 실행해 봅니다. `hello-world` 는 설치가 잘 됐는지 확인하는 연습용 컨테이너입니다.
    ```bash
    docker run hello-world
    ```
-3. 처음에는 이미지를 내려받는 줄(`Unable to find image ... locally` → `Pulling from library/hello-world`)이 나온 뒤, 아래 문장이 나오면 성공입니다.
+3. 아래처럼 나오면 성공입니다(학원 PC 에서 실제로 나온 출력입니다). 처음 실행하면 이미지를 내려받는 줄(`Unable to find image ... locally` → `Pulling from library/hello-world`)이 먼저 나옵니다.
    ```
    Hello from Docker!
    This message shows that your installation appears to be working correctly.
+
+   To generate this message, Docker took the following steps:
+    1. The Docker client contacted the Docker daemon.
+    2. The Docker daemon pulled the "hello-world" image from the Docker Hub.
+       (amd64)
+    3. The Docker daemon created a new container from that image which runs the
+       executable that produces the output you are currently reading.
+    4. The Docker daemon streamed that output to the Docker client, which sent it
+       to your terminal.
    ```
+   - 이 출력은 Docker 가 일하는 순서를 그대로 보여 줍니다: 터미널의 `docker` 명령(client)이 Docker 의 실행 프로그램(daemon)에 요청하고, daemon 이 Docker Hub 에서 이미지를 받아 컨테이너를 만들어 실행한 뒤 결과를 터미널로 보냅니다.
 4. **[터미널]** 방금 실행한 컨테이너 기록을 봅니다. `hello-world` 줄이 보이면 됩니다.
    ```bash
    docker ps -a
