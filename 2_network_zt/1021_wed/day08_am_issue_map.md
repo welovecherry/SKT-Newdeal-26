@@ -74,9 +74,9 @@
 - `try:` 아래 코드에서 오류가 나면 `except 오류이름:` 아래 코드로 넘어간다(9/28(월)).
 - `TimeoutError` 는 응답이 제때 오지 않을 때 나는 오류의 이름입니다. `except ValueError:` 와 같은 모양으로 씁니다.
 
-### 2.4 파일을 만드는 두 가지 방법
+### 2.4 파일 만들기 (`vim`)
 
-오늘 첫 파일이라 자세히 적습니다. 어느 쪽이든 결과는 같습니다.
+오늘부터 파일은 터미널에서 `vim` 으로 만듭니다. 오늘 첫 파일이라 자세히 적습니다.
 
 먼저 위치를 확인합니다. **[터미널]** 에서 아래를 입력합니다. 결과가 `…/network_zt` 로 끝나야 합니다. 끝나지 않으면 `cd network_zt` 로 이동합니다.
 
@@ -84,7 +84,7 @@
 pwd
 ```
 
-**방법 A · `vim` 으로 만들고 붙여넣기**
+**`vim` 으로 만들고 붙여넣기**
 
 | 순서 | 입력 | 하는 일 |
 |---|---|---|
@@ -93,16 +93,9 @@ pwd
 | ③ | 붙여넣기 | 문서의 코드를 복사해 터미널에 `Ctrl + V`(맥북 `Cmd + V`)로 붙여넣는다 |
 | ④ | `Esc` → `:wq` → Enter | 저장하고 나간다 |
 
-- 붙여넣은 코드의 줄 앞 공백이 줄마다 점점 밀려 있으면 `Esc` → `:q!` Enter 로 저장하지 않고 나와서 **방법 B** 로 다시 만듭니다.
+- 붙여넣은 코드의 줄 앞 공백이 줄마다 점점 밀려 있으면 `Esc` → `:q!` Enter 로 저장하지 않고 나와서 `touch 파일이름` 으로 파일을 만들고 VS Code 에서 열어 붙여넣습니다.
 
-**방법 B · `touch` 로 만들고 VS Code 에서 붙여넣기**
-
-| 순서 | 입력 | 하는 일 |
-|---|---|---|
-| ① | `touch 파일이름` | 빈 파일을 만든다 |
-| ② | `ls` | 파일이 만들어졌는지 확인한다 |
-| ③ | VS Code 왼쪽 목록에서 그 파일을 눌러 연다 | 편집 화면이 열린다 |
-| ④ | 붙여넣기 | 문서의 코드를 복사해 붙여넣는다. 자동 저장이 켜져 있어 곧 저장된다 |
+- 파일만 먼저 만들 때는 `touch 파일이름` 을 쓰고 `ls` 로 만들어졌는지 확인합니다.
 
 ### ✍️ 문제 2-1 · 증상 8개를 유형으로 가르고 먼저 볼 기록 정하기
 
@@ -151,7 +144,7 @@ pwd
 
 **🎯 할 일**
 
-1. 아래 코드를 `day08_2-2_fail_closed.py` 로 만듭니다(방법 A).
+1. 아래 코드를 `day08_2-2_fail_closed.py` 로 만듭니다.
 2. `# ←` 표시가 있는 자리의 `pass` 한 줄을 <mark>다섯 줄</mark>로 바꿔 PDP 가 응답하지 않을 때의 동작을 만듭니다.
 3. 실행해서 네 경우 A ~ D 의 결과를 확인합니다.
 4. 자원 다섯 개에서 <mark>닫을지 열어 둘지</mark> 정하고 이유를 설명합니다.
@@ -216,10 +209,11 @@ print("D 정상 요청, PDP 응답 없음, 공지 페이지(열림)", enforce(RE
    ```bash
    pwd
    ```
-2. **[터미널]** 방법 A 로 파일을 엽니다. `i` → 위 코드를 붙여 넣기 → `Esc` → `:wq` Enter 순서입니다.
+2. **[터미널]** `vim` 으로 파일을 엽니다. `i` → 위 코드를 붙여 넣기 → `Esc` → `:wq` Enter 순서입니다.
    ```bash
    vim day08_2-2_fail_closed.py
    ```
+   파일만 먼저 만들 때는 `touch day08_2-2_fail_closed.py` 를 씁니다.
 3. **[터미널]** 채우기 전에 먼저 실행해 C 와 D 의 결과를 확인합니다.
    ```bash
    python day08_2-2_fail_closed.py
@@ -356,10 +350,11 @@ for reason in deny_reasons:                                  # 이유를 하나�
 
 **순서**
 
-1. **[터미널]** `network_zt` 폴더 안에서 편한 방법 하나로 파일을 만들고 위 코드를 붙여 넣습니다. `…/network_zt` 위치가 아니면 먼저 `cd network_zt` 로 이동합니다.
-   - **방법 A (vim)**: `vim day08_3-1_deny_then_allow.py` → `i` → 코드 붙여넣기 → `Esc` → `:wq` Enter
-   - **방법 B (touch)**: `touch day08_3-1_deny_then_allow.py` → `ls` 로 확인 → VS Code 에서 열어 붙여넣기(자동 저장)
-   - 줄 앞 공백이 줄마다 점점 밀려 있으면 방법 B 로 다시 만듭니다.
+1. **[터미널]** `network_zt` 폴더 안에서 파일을 만들고 위 코드를 붙여 넣습니다. `…/network_zt` 위치가 아니면 먼저 `cd network_zt` 로 이동합니다.
+   ```bash
+   vim day08_3-1_deny_then_allow.py
+   ```
+   `i` → 코드 붙여넣기 → `Esc` → `:wq` Enter 순서입니다. 파일만 먼저 만들 때는 `touch day08_3-1_deny_then_allow.py` 를 씁니다. 줄 앞 공백이 줄마다 점점 밀려 있으면 `:q!` 로 나와서 `touch` 로 만든 뒤 VS Code 에서 열어 붙여넣습니다.
 2. **[VS Code]** `day08_3-1_deny_then_allow.py` 를 열어 `# ←` 가 있는 곳을 채웁니다. 3.1 의 두 줄 따라가기가 본보기입니다.
 3. **[터미널]** 실행합니다.
    ```bash
@@ -409,9 +404,11 @@ for reason in deny_reasons:                                  # 이유를 하나�
 
 **순서**
 
-1. **[터미널]** `network_zt` 폴더 안에서 편한 방법 하나로 `day08_issue_diagram.md` 를 만듭니다. 이 문서는 짧은 글이라 직접 입력합니다.
-   - **방법 A (vim)**: `vim day08_issue_diagram.md` → `i` → 글 입력 → `Esc` → `:wq` Enter
-   - **방법 B (touch)**: `touch day08_issue_diagram.md` → `ls` 로 확인 → VS Code 에서 열어 글 입력(자동 저장)
+1. **[터미널]** `network_zt` 폴더 안에서 `day08_issue_diagram.md` 를 만듭니다. 이 문서는 짧은 글이라 직접 입력합니다.
+   ```bash
+   vim day08_issue_diagram.md
+   ```
+   `i` → 글 입력 → `Esc` → `:wq` Enter 순서입니다. 파일만 먼저 만들 때는 `touch day08_issue_diagram.md` 를 씁니다.
 2. **[vim]** 또는 **[VS Code]** 에서 `[Flow]` 와 `[Timeline]` 두 도식을 본보기처럼 씁니다. 의심 건의 시각과 기기는 3-1 의 LOG 에서 가져옵니다.
 3. 도식의 `[DIAGNOSE]` 와 `[CAUSE]` 에는 1~7일 차에서 쓴 기록 · 개념의 이름을 적습니다.
 4. **[터미널]** 저장된 내용을 확인합니다.
@@ -502,9 +499,11 @@ for reason in deny_reasons:                                  # 이유를 하나�
 
 **순서**
 
-1. **[터미널]** `network_zt` 폴더 안에서 편한 방법 하나로 파일을 만듭니다.
-   - **방법 A (vim)**: `vim day07_customer_report.md` → `i` → 글 입력 → `Esc` → `:wq` Enter
-   - **방법 B (touch)**: `touch day07_customer_report.md` → `ls` 로 확인 → VS Code 에서 열어 글 입력(자동 저장)
+1. **[터미널]** `network_zt` 폴더 안에서 파일을 만듭니다.
+   ```bash
+   vim day07_customer_report.md
+   ```
+   `i` → 글 입력 → `Esc` → `:wq` Enter 순서입니다. 파일만 먼저 만들 때는 `touch day07_customer_report.md` 를 씁니다.
 2. **[vim]** 또는 **[VS Code]** 에서 위 형식대로 씁니다. 3-1 을 다시 실행해 나온 막대그래프를 복사해 붙입니다.
 3. **[터미널]** 저장된 내용을 확인합니다.
    ```bash
@@ -542,9 +541,11 @@ for reason in deny_reasons:                                  # 이유를 하나�
 
 **순서**
 
-1. **[터미널]** `network_zt` 폴더 안에서 편한 방법 하나로 파일을 만듭니다.
-   - **방법 A (vim)**: `vim day08_retrospective.md` → `i` → 글 입력 → `Esc` → `:wq` Enter
-   - **방법 B (touch)**: `touch day08_retrospective.md` → `ls` 로 확인 → VS Code 에서 열어 글 입력(자동 저장)
+1. **[터미널]** `network_zt` 폴더 안에서 파일을 만듭니다.
+   ```bash
+   vim day08_retrospective.md
+   ```
+   `i` → 글 입력 → `Esc` → `:wq` Enter 순서입니다. 파일만 먼저 만들 때는 `touch day08_retrospective.md` 를 씁니다.
 2. **[vim]** 또는 **[VS Code]** 에서 형식대로 씁니다. 막힌 것은 어느 일차의 어느 내용인지 적습니다.
 3. **[터미널]** 올립니다. `security-agent-toolkit` 폴더에서 `git status` 를 먼저 치고, 빨간 목록에 `.env` 나 `.venv` 가 보이면 멈춥니다.
    ```bash
