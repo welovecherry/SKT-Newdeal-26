@@ -482,7 +482,8 @@ echo 'set expandtab shiftwidth=2 softtabstop=2' >> ~/.vimrc
    curl -s -m 3 -o /dev/null -w "%{http_code}\n" http://내주소:8081
    curl -s -m 3 -o /dev/null -w "%{http_code}\n" http://내주소:8082
    ```
-   - `closed` 는 `000`(연결이 거부돼 응답 번호가 없음), `open` 은 `200`(성공)이 나옵니다.
+   - `closed` 는 `000`(연결이 거부돼 응답 번호가 없음)이 나옵니다
+   - `open` 은 `200`(성공)이 나옵니다
 5. **[터미널]** 같은 `closed` 에 이번에는 `127.0.0.1` 로 접속합니다. 내 PC 안에서는 열려 있어야 합니다.
    ```bash
    curl -s -m 3 -o /dev/null -w "%{http_code}\n" http://127.0.0.1:8081
@@ -611,7 +612,8 @@ docker logs NAME   <-- is there an error?  (the last line is often the cause)
    git commit -m "Add day 7 docker image and compose practice and report"
    git push
    ```
-   - `git push` 가 거절(`rejected`)되면 `git pull` 을 입력해 받아 온 뒤 `git push` 를 다시 합니다. 편집기 화면이 뜨면 `Esc` 를 누르고 `:wq` 를 입력한 뒤 `Enter` 를 누릅니다.
+   - `git push` 가 거절(`rejected`)되면 `git pull` 을 입력해 받아 온 뒤 `git push` 를 다시 합니다
+   - 편집기 화면이 뜨면 `Esc` 를 누르고 `:wq` 를 입력한 뒤 `Enter` 를 누릅니다
 5. **[브라우저]** 깃허브의 내 저장소를 새로 고쳐 `network_zt` 폴더 안에 `day07_docker` 폴더와 오전 · 오후 보고서가 있는지 확인합니다.
 
 ### 7교시 한눈에

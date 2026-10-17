@@ -49,13 +49,22 @@ PC-A, PC-B, PC-C: pull the same image nginx:1.28
 ### 5.2 이미지와 컨테이너 · Docker Hub · 엔진
 
 - **이미지**(image · 이미지)
-  - 실행할 프로그램과 필요한 파일을 한 묶음으로 만들어 둔 것. 읽기만 할 수 있다. 이름은 `nginx:1.28` 처럼 `이름:태그`(태그는 버전)
+  - 실행할 프로그램과 필요한 파일을 한 묶음으로 만들어 둔 것
+  - 읽기만 할 수 있다
+  - 이름은 `nginx:1.28` 처럼 `이름:태그`(태그는 버전)
 - **컨테이너**(container · 컨테이너)
-  - 이미지를 실제로 실행한 것. 같은 이미지로 컨테이너를 여러 개 만들 수 있다
+  - 이미지를 실제로 실행한 것
+  - 같은 이미지로 컨테이너를 여러 개 만들 수 있다
 - **레지스트리**(registry · 레지스트리) 와 **Docker Hub**(도커 허브)
-  - 이미지를 모아 두고 내려받게 해 주는 서버. Docker Hub 는 가장 널리 쓰는 공개 레지스트리다. 이미지를 받을 때도 `registry-1.docker.io` 같은 **이름을 DNS 로 IP 로 바꿔 인터넷으로** 내려받는다(3일 차)
+  - 레지스트리: 이미지를 모아 두고 내려받게 해 주는 서버
+  - Docker Hub: 가장 널리 쓰는 공개 레지스트리
+  - 이미지를 받을 때 일어나는 일
+    - `registry-1.docker.io` 같은 **이름을 DNS 로 IP 로 바꾼다**(3일 차)
+    - 그 IP 로 인터넷을 거쳐 이미지를 내려받는다
 - **엔진**(engine · 엔진)
-  - 이미지를 받고 컨테이너를 만들어 실행하는 도커의 핵심 프로그램. 윈도에서는 **Docker Desktop**(도커 데스크톱)이 엔진을 설치하고 켜 준다. Docker Desktop 은 WSL 2(윈도 안에서 리눅스를 돌리는 기능) 위에서 엔진을 돌린다
+  - 이미지를 받고 컨테이너를 만들어 실행하는 도커의 핵심 프로그램
+  - 윈도에서는 **Docker Desktop**(도커 데스크톱)이 엔진을 설치하고 켜 준다
+  - Docker Desktop 은 WSL 2(윈도 안에서 리눅스를 돌리는 기능) 위에서 엔진을 돌린다
 
 ```
 Docker Hub (internet)            MY PC
@@ -158,7 +167,8 @@ Docker Hub (internet)            MY PC
     4. The Docker daemon streamed that output to the Docker client, which sent it
        to your terminal.
    ```
-   - 영어 문장의 네 단계가 5.5 의 ① ~ ④ 와 같은 순서입니다. `daemon`(데몬)은 엔진과 같은 말로, 뒤에서 계속 돌며 요청을 처리하는 프로그램입니다.
+   - 영어 문장의 네 단계가 5.5 의 ① ~ ④ 와 같은 순서입니다
+   - `daemon`(데몬)은 엔진과 같은 말로, 뒤에서 계속 돌며 요청을 처리하는 프로그램입니다
 3. **[터미널]** 이미지가 어디에 남았는지 봅니다. `hello-world` 줄이 보입니다.
    ```bash
    docker images
@@ -595,7 +605,8 @@ pwd
    git commit -m "Add day 6 docker practice pages and report"
    git push
    ```
-   - `git push` 가 거절(`rejected`)되면 `git pull` 을 입력해 받아 온 뒤 `git push` 를 다시 합니다. 편집기 화면이 뜨면 `Esc` 를 누르고 `:wq` 를 입력한 뒤 `Enter` 를 누릅니다.
+   - `git push` 가 거절(`rejected`)되면 `git pull` 을 입력해 받아 온 뒤 `git push` 를 다시 합니다
+   - 편집기 화면이 뜨면 `Esc` 를 누르고 `:wq` 를 입력한 뒤 `Enter` 를 누릅니다
 5. **[브라우저]** 깃허브의 내 저장소를 새로 고쳐 `network_zt` 폴더 안에 `day06_docker` 폴더와 오전 · 오후 보고서가 있는지 확인합니다.
 
 ### 7교시 한눈에
