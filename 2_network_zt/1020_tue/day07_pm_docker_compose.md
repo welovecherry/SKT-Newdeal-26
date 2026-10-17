@@ -20,23 +20,30 @@
    ```bash
    docker ps -a
    ```
-   `web` · `web-one` · `web-two` 같은 어제 컨테이너가 보이면 아래 명령으로 지웁니다. 없는 이름에는 `No such container` 가 나와도 괜찮습니다. 아무것도 없으면 건너뜁니다. `hello-world` 는 지우지 않아도 됩니다.
+   - `NAMES` 열의 `web` · `web-one` · `web-two` 같은 어제 컨테이너가 보이면 아래 명령으로 지웁니다. 없는 이름에는 `No such container` 가 나와도 괜찮습니다.
+   - 이름이 달라도 `PORTS` 열에 `8080` 이나 `8081` 이 보이는 컨테이너는 `docker rm -f 이름` 으로 지웁니다.
+   - 지운 뒤 `docker ps -a` 에 `IMAGE` 열이 `hello-world` 인 줄만 남아야 합니다.
    ```bash
    docker rm -f web web-one web-two
    ```
 
-> 오늘도 명령은 모두 **터미널**에서 칩니다(윈도에서는 Git Bash). 맥북은 `MSYS_NO_PATHCONV=1 ` 를 붙이지 않고 칩니다. 이미지는 지우지 않습니다(`docker rmi` 를 치지 않습니다). 오늘 쓰는 `nginx:1.28` 은 어제 받았으므로 새로 받지 않습니다.
+> 오늘도 명령은 모두 **터미널**에서 칩니다(윈도에서는 Git Bash). 어제 배운 `MSYS_NO_PATHCONV=1`(Git Bash 가 경로를 자동으로 바꾸지 못하게 끄는 설정)은 오늘 7-2 의 `broken` 명령 **한 곳에만** 붙입니다. 맥북은 붙이지 않고 칩니다. 이미지는 지우지 않습니다(`docker rmi` 를 치지 않습니다). 오늘 쓰는 `nginx:1.28` 은 어제 받았으므로 새로 받지 않습니다.
 
 작업 폴더는 `network_zt` 안에 `day07_docker` 로 만듭니다.
 
 ```bash
 pwd
+```
+
+- 결과가 `…/network_zt` 로 끝나지 않으면 `cd network_zt` 로 이동한 뒤 다시 `pwd` 를 칩니다.
+
+```bash
 mkdir -p day07_docker/site
 cd day07_docker
 pwd
 ```
 
-- 첫 `pwd` 결과가 `…/network_zt` 로 끝나지 않으면 `cd network_zt` 로 이동한 뒤 다시 합니다. 마지막 `pwd` 가 `…/network_zt/day07_docker` 로 끝나면 됩니다.
+- 마지막 `pwd` 가 `…/network_zt/day07_docker` 로 끝나면 됩니다. 터미널을 새로 열었다면 `network_zt` 로 이동한 뒤 `cd day07_docker` 를 다시 칩니다.
 
 ---
 
@@ -56,13 +63,20 @@ pwd
 ### 5.1 Dockerfile → build → image → run → container
 
 ```
-Dockerfile ---- docker build ---->  이미지 my-nginx:1 ---- docker run ---->  컨테이너
+Dockerfile (설계도)
+   +-- FROM nginx:1.28                                         (바탕 이미지)
+   +-- COPY site/index.html /usr/share/nginx/html/index.html   (내 파일을 이미지 안에 넣기)
    |
-   +-- FROM nginx:1.28        (바탕 이미지)
-   +-- COPY site/index.html   (내 파일을 이미지 안에 넣기)
+   | docker build
+   v
+이미지 my-nginx:1
+   |
+   | docker run
+   v
+컨테이너
 ```
 
-- 왼쪽부터 **설계도(Dockerfile) → 이미지 → 켜진 서버(컨테이너)** 순서입니다. `FROM` 은 바탕 이미지, `COPY` 는 내 파일을 이미지 안에 넣는 줄입니다.
+- 위에서 아래로 **설계도(Dockerfile) → 이미지 → 켜진 서버(컨테이너)** 순서입니다. `FROM` 은 바탕 이미지, `COPY` 는 내 파일을 이미지 안에 넣는 줄입니다.
 
 - **Dockerfile**(도커파일): 이미지를 어떻게 만들지 적은 글 파일. 이름은 `Dockerfile`(대문자 D, 확장자 없음)이고, 한 줄에 명령 하나를 씁니다.
 - **`docker build`**(빌드): Dockerfile 을 읽어 이미지를 만드는 명령. 이미지 안에 내 파일이 들어갑니다.
@@ -125,10 +139,11 @@ docker build -t my-nginx:1 .
 
 **순서**
 
-1. **[터미널]** 작업 폴더가 `day07_docker` 인지 확인하고 `site/index.html` 을 만듭니다. 아래 둘 중 **하나만** 고릅니다.
+1. **[터미널]** 작업 폴더가 `day07_docker` 인지 확인합니다.
    ```bash
    pwd
    ```
+2. **[터미널]** `site/index.html` 을 만듭니다. 아래 둘 중 **하나만** 고릅니다.
    - **vim**: `vim site/index.html` → `i` → 글 입력 → `Esc` → `:wq` Enter
    - **touch**: `touch site/index.html` → VS Code 에서 파일을 열어 글 입력
 
@@ -138,26 +153,26 @@ docker build -t my-nginx:1 .
    <h1>my-nginx v1</h1>
    <p>이미지 안에 들어 있는 페이지입니다</p>
    ```
-2. **[터미널]** `Dockerfile` 을 만듭니다. 아래 둘 중 **하나만** 고릅니다.
+3. **[터미널]** `Dockerfile` 을 만듭니다. 아래 둘 중 **하나만** 고릅니다.
    - **vim**: `vim Dockerfile` → `i` → 글 입력 → `Esc` → `:wq` Enter
    - **touch**: `touch Dockerfile` → VS Code 에서 파일을 열어 글 입력
-3. **[vim 또는 VS Code]** `Dockerfile` 안에 **아래 뜻대로 두 줄**을 직접 씁니다. 5.2 의 형식 표를 보고 씁니다.
+4. **[vim 또는 VS Code]** `Dockerfile` 안에 **아래 뜻대로 두 줄**을 직접 씁니다. 5.2 의 형식 표를 보고 씁니다.
    - 첫 줄: 바탕 이미지는 `nginx:1.28`
    - 둘째 줄: 내 PC의 `site/index.html` 을 이미지 안의 `/usr/share/nginx/html/index.html` 로 복사
-4. **[터미널]** 이미지를 만듭니다. 마지막 줄에 `naming to docker.io/library/my-nginx:1 done` 처럼 이름이 보이면 성공입니다.
+5. **[터미널]** 이미지를 만듭니다. 마지막 줄에 `naming to docker.io/library/my-nginx:1 done` 처럼 이름이 보이면 성공입니다.
    ```bash
    docker build -t my-nginx:1 .
    ```
-5. **[터미널]** 만든 이미지가 목록에 있는지 봅니다. `my-nginx` 줄의 `TAG` 가 `1` 입니다.
+6. **[터미널]** 만든 이미지가 목록에 있는지 봅니다. `my-nginx` 줄의 `TAG` 가 `1` 입니다.
    ```bash
    docker images
    ```
-6. **[터미널]** 내 이미지로 서버를 켭니다. 어제와 달리 `-v` 가 없습니다.
+7. **[터미널]** 내 이미지로 서버를 켭니다. 어제와 달리 `-v` 가 없습니다.
    ```bash
    docker run -d --name my-web -p 8080:80 my-nginx:1
    ```
-7. **[브라우저]** `http://127.0.0.1:8080` 을 엽니다. **my-nginx v1** 이 보이면 성공입니다.
-8. **[보고서]** `day07_pm_report.md` 의 `## 5교시` › `### 문제 5-1` 아래를 채웁니다.
+8. **[브라우저]** `http://127.0.0.1:8080` 을 엽니다. **my-nginx v1** 이 보이면 성공입니다.
+9. **[보고서]** `day07_pm_report.md` 의 `## 5교시` › `### 문제 5-1` 아래를 채웁니다.
    - (가) 내가 쓴 Dockerfile 두 줄을 붙여 넣어 주세요.
    - (나) 🔍 `FROM` 과 `COPY` 가 각각 하는 일을 적어 주세요.
    - (다) 🔍 어제와 달리 `docker run` 에 `-v` 가 없는데도 내 화면이 나오는 이유는 무엇인가요?
@@ -235,8 +250,10 @@ docker build -t my-nginx:1 .
 ```
 docker run -d                      -->  docker compose up -d 가 대신 한다
   --name web-one                   -->  services: 아래의 web-one:
-  -p 8080:80                       -->      ports:   - "8080:80"
-  -v ./site-one:/usr/share/...:ro  -->      volumes: - ./site-one:/usr/share/...:ro
+  -p 8080:80                       -->      ports:
+                                                - "8080:80"
+  -v ./site-one:/usr/share/...:ro  -->      volumes:
+                                                - ./site-one:/usr/share/...:ro
   nginx:1.28                       -->      image: nginx:1.28
 ```
 
@@ -285,7 +302,11 @@ echo 'set expandtab shiftwidth=2 softtabstop=2' >> ~/.vimrc
 | `docker compose down` | 서버를 모두 끄고 지우고 싶다 | `stop` + `rm` 이 한 번에 된다 |
 
 - 이 명령들은 **compose.yaml 이 있는 폴더**(`day07_docker`)에서 칩니다. 다른 폴더에서 치면 파일을 못 찾습니다.
-- compose 로 켠 컨테이너의 이름은 `폴더이름-서버이름-1`(예: `day07_docker-web-one-1`)로 자동으로 붙습니다.
+- 어제 `--name` 으로 붙이던 이름은 compose 에서 `services:` 아래의 **서버 이름**(`web-one`)이 됩니다.
+- 켜진 컨테이너의 실제 이름은 compose 가 `폴더이름-서버이름-1`(예: `day07_docker-web-one-1`)로 붙입니다.
+- 이름을 쓰는 자리가 다릅니다.
+  - `docker compose logs` · `exec` 뒤에는 서버 이름(`web-two`)을 씁니다
+  - `docker logs` · `docker rm` 뒤에는 컨테이너 이름(`day07_docker-web-two-1`)을 씁니다
 
 ### ✍️ 문제 6-1 · compose.yaml 에 서버 한 대를 더 적고 두 대를 한 줄로 켜기
 
@@ -302,7 +323,7 @@ echo 'set expandtab shiftwidth=2 softtabstop=2' >> ~/.vimrc
 
 **순서**
 
-1. **[터미널]** 6.3 의 vim 설정 한 줄을 아직 안 쳤다면 먼저 칩니다. 그리고 두 폴더를 만듭니다(`day07_docker` 안에서).
+1. **[터미널]** 8080 · 8081 을 쓰는 컨테이너가 남아 있지 않은지 `docker ps -a` 로 봅니다. 있으면 `docker rm -f 이름` 으로 지웁니다. 그리고 6.3 의 vim 설정 한 줄을 아직 안 쳤다면 먼저 칩니다. 이어서 두 폴더를 만듭니다(`day07_docker` 안에서).
    ```bash
    pwd
    mkdir site-one site-two
@@ -342,17 +363,25 @@ echo 'set expandtab shiftwidth=2 softtabstop=2' >> ~/.vimrc
        # ← ports: 항목을 쓰세요 (내 PC 8081 → 컨테이너 80)
        # ← volumes: 항목을 쓰세요 (./site-two → nginx 폴더, 읽기 전용)
    ```
-5. **[vim 또는 VS Code]** `# ←` 로 시작하는 **두 줄을 지우고**, 그 자리에 `web-one` 의 `ports` · `volumes` 를 보고 **네 줄**을 직접 씁니다(`ports:` · `- "8081:80"` · `volumes:` · `- ./site-two:/usr/share/nginx/html:ro`). 들여쓰기는 `image:` 줄과 같은 칸에서 시작합니다. 어디서 시작하는지 헷갈리면 `web-one` 의 같은 줄과 열을 맞춥니다.
-6. **[터미널]** 두 서버를 한 줄로 켭니다. 아래 두 줄이 `Started` 로 끝나면 성공입니다. 에러가 나면 에러 문구의 줄 번호가 가리키는 줄의 들여쓰기를 먼저 봅니다.
+5. **[vim 또는 VS Code]** `# ←` 로 시작하는 **두 줄을 지우고**, 그 자리에 `web-one` 의 `ports` · `volumes` 를 보고 **네 줄**을 직접 씁니다(`ports:` · `- "8081:80"` · `volumes:` · `- ./site-two:/usr/share/nginx/html:ro`). 칸 수는 이렇습니다.
+   - `ports:` 와 `volumes:` 는 공백 4칸으로 시작합니다(`image:` 와 같은 칸)
+   - 그 아래 `-` 줄은 공백 6칸으로 시작합니다
+   - 쓴 뒤 `web-one` 의 같은 줄과 글자 시작 위치가 같은지 눈으로 확인합니다
+6. **[터미널]** 두 서버를 한 줄로 켭니다. 에러가 나면 에러 문구의 줄 번호가 가리키는 줄의 들여쓰기를 먼저 봅니다.
    ```bash
    docker compose up -d
+   ```
+   - 아래와 비슷한 줄이 나오고 서버 두 개가 `Started` 로 끝나면 성공입니다(줄 수는 PC마다 다를 수 있습니다).
+   ```
+    Container day07_docker-web-one-1  Started
+    Container day07_docker-web-two-1  Started
    ```
 7. **[브라우저]** `http://127.0.0.1:8080` 에서 **site-one**, `http://127.0.0.1:8081` 에서 **site-two** 가 보이는지 확인하고, 각각 새로 고침을 두세 번 눌러 접속 기록을 만듭니다.
 8. **[터미널]** compose 로 켠 서버만 봅니다. `SERVICE` 열에 서버 이름 두 개, `PORTS` 열에 `8080` · `8081` 이 보입니다.
    ```bash
    docker compose ps
    ```
-9. **[터미널]** `web-two` 의 접속 기록만 봅니다. 새로 고침한 횟수만큼 `GET / HTTP/1.1" 200` 줄이 있습니다.
+9. **[터미널]** `web-two` 의 접속 기록만 봅니다. `GET / HTTP/1.1" 200` 줄을 찾습니다. 브라우저가 따로 요청한 `/favicon.ico` 의 `404` 줄은 무시합니다.
    ```bash
    docker compose logs web-two
    ```
@@ -360,6 +389,16 @@ echo 'set expandtab shiftwidth=2 softtabstop=2' >> ~/.vimrc
     - (가) 내가 쓴 `web-two` 의 네 줄을 붙여 넣어 주세요.
     - (나) 🔍 `docker compose up -d` 한 줄이 어제의 어떤 명령들을 대신했나요? `compose.yaml` 의 `ports` 와 `volumes` 가 어제의 어떤 옵션과 같은가요?
     - (다) 🔍 `docker compose ps` 와 `docker ps` 는 무엇이 다른가요?
+
+### 6.5 환경변수
+
+- **환경변수**(environment variable · 인바이런먼트 베리어블)
+  - 프로그램을 켤 때 넘기는 `이름=값` 설정
+  - 같은 이미지라도 서버마다 다른 값을 줄 수 있다
+- `env`: 서버 안의 환경변수를 모두 보여 주는 명령
+- `|` 와 `grep`
+  - 앞 명령의 출력에서 글자가 들어 있는 줄만 걸러 낸다
+  - 예: `env | grep MY_ROLE` 은 `MY_ROLE` 이 들어 있는 줄만 보여 준다
 
 ### ✍️ 문제 6-2 · 환경변수 한 줄을 넣고 서버 안에서 확인한 뒤 한 줄로 끄기
 
@@ -376,7 +415,9 @@ echo 'set expandtab shiftwidth=2 softtabstop=2' >> ~/.vimrc
 
 **순서**
 
-1. **[vim 또는 VS Code]** `compose.yaml` 을 열고 `web-one` 의 `volumes` 항목 바로 아래(들여쓰기는 `image:` 와 같은 칸)에 **두 줄**을 직접 씁니다. 환경변수는 `environment:` 아래에 `- 이름=값` 으로 씁니다.
+1. **[vim 또는 VS Code]** `compose.yaml` 을 열고 `web-one` 의 `- ./site-one…` 줄 **바로 다음 줄**(`web-two:` 줄 위)에 **두 줄**을 직접 씁니다. 환경변수는 `environment:` 아래에 `- 이름=값` 으로 씁니다.
+   - `environment:` 는 공백 4칸으로 시작합니다(`image:` 와 같은 칸)
+   - 그 아래 `-` 줄은 공백 6칸으로 시작합니다
    - 첫 줄: `environment:`
    - 둘째 줄: 이름이 `MY_ROLE` 이고 값이 `web` 인 항목
 2. **[터미널]** 같은 명령으로 다시 켭니다. 이미 켜져 있는 서버의 설정이 바뀌었으면 `web-one` 만 `Recreated` 로 표시되며 새로 만들어집니다.
@@ -388,7 +429,7 @@ echo 'set expandtab shiftwidth=2 softtabstop=2' >> ~/.vimrc
    docker compose exec web-one env
    ```
    출력이 길면 `docker compose exec web-one env | grep MY_ROLE` 로 한 줄만 봅니다.
-4. **[터미널]** 서버를 한 번에 정리하고 남은 컨테이너를 확인합니다. 아래 두 번째 명령에서 `web-one` · `web-two` 가 보이지 않으면 정리된 것입니다.
+4. **[터미널]** 서버를 한 번에 정리하고 남은 컨테이너를 확인합니다. 아래 두 번째 명령에서 `day07_docker-` 로 시작하는 줄이 보이지 않으면 정리된 것입니다.
    ```bash
    docker compose down
    docker ps -a
@@ -417,51 +458,51 @@ echo 'set expandtab shiftwidth=2 softtabstop=2' >> ~/.vimrc
 
 > 📨 **오늘 들어온 일**
 > A사 보안 담당이 보낸 메시지: 「서버를 켰는데 우리 PC 안에서만 접속돼야 할 서버가 사내 다른 PC에서도 열리면 안 됩니다. 어느 서버가 밖에서 열려 있는지 확인해 주세요. 그리고 서버가 안 열릴 때 나오는 메시지도 정리해 주세요.」
-> - 이 교시에서 하는 일: 같은 서버를 `127.0.0.1:` 이 붙은 것과 안 붙은 것으로 켜서, 내 PC의 네트워크 주소로 접속해 **누가 열려 있는지** 직접 확인합니다. 그다음 서버가 안 열릴 때 나오는 증상 세 가지를 읽습니다.
+> - 이 교시에서 하는 일: 같은 서버를 `127.0.0.1:` 이 붙은 것과 안 붙은 것으로 켜서, 내 PC의 IP 주소로 접속해 **누가 열려 있는지** 직접 확인합니다. 그다음 서버가 안 열릴 때 나오는 증상 세 가지를 읽습니다.
 > - 끝나면 쓰는 것: **보고서 한 줄**(보안 담당에게 보낼 답 한 문장)
 
 ### 왜 필요한가
 
 1. `-p 8080:80` 처럼 `127.0.0.1:` 없이 연결하면 **내 PC의 모든 주소(`0.0.0.0`)로 열립니다.** 같은 네트워크의 다른 PC가 내 PC의 주소로 접속할 수 있다는 뜻이고, 방화벽이 막지 않는다면 그대로 열립니다.
-2. 4일 차에서 배운 **허용 목록과 최소 노출**과 같은 생각입니다. 필요한 곳에만 열어 두고 나머지는 닫습니다. 내 PC 안에서만 쓸 서버는 `-p 127.0.0.1:포트:80` 으로 켭니다.
+2. 4일 차에서 배운 **방화벽 허용 목록**(필요한 곳만 열어 두는 것)과 같은 생각입니다. 필요한 곳에만 열어 두고 나머지는 닫습니다. 내 PC 안에서만 쓸 서버는 `-p 127.0.0.1:포트:80` 으로 켭니다.
 3. 서버가 안 열릴 때는 어디부터 볼지 정해져 있습니다. `docker ps` → `docker ps -a` → `docker logs`. 그 순서와 메시지를 읽는 연습이 관제에서 장애를 보는 첫 단계입니다.
 
 ### 7.1 어디까지 열려 있나
 
 ```
 -p 127.0.0.1:8081:80  (닫힘)
-  내 PC 안에서 (127.0.0.1)     : 접속됨
-  내 PC 의 네트워크 주소:8081  : 거부됨
-  다른 PC                      : 거부됨
+  내 PC 안에서 (127.0.0.1)  : 접속됨
+  내 PC 의 IP 주소:8081     : 거부됨
+  다른 PC                   : 거부됨
 
 -p 8082:80  (열림)
-  내 PC 안에서 (127.0.0.1)     : 접속됨
-  내 PC 의 네트워크 주소:8082  : 접속됨
-  다른 PC                      : 접속됨
+  내 PC 안에서 (127.0.0.1)  : 접속됨
+  내 PC 의 IP 주소:8082     : 접속됨
+  다른 PC                   : 접속됨
 ```
 
-- 위는 닫은 서버로 내 PC 안에서만 접속됩니다. 아래는 연 서버로 내 PC의 네트워크 주소로도, 다른 PC에서도 접속됩니다.
+- 위는 닫은 서버로 내 PC 안에서만 접속됩니다. 아래는 연 서버로 내 PC의 IP 주소로도, 다른 PC에서도 접속됩니다.
 
 - `127.0.0.1` 은 내 PC 자신을 가리키는 주소입니다(1일 차). `-p 127.0.0.1:8081:80` 은 그 주소로 온 요청만 서버에 넘깁니다.
 - 접두사가 없으면 `0.0.0.0`(모든 주소)입니다. `docker ps` 의 `PORTS` 열에 `127.0.0.1:8081->80/tcp` 로 나오면 닫힌 것이고 `0.0.0.0:8082->80/tcp` 로 나오면 열린 것입니다.
-- 오늘은 내 PC의 **네트워크 주소**(같은 네트워크 안에서 내 PC를 부르는 주소)로 접속해 봅니다. 다른 PC가 접속하는 것과 같은 경로입니다.
+- 오늘은 내 PC의 **IP 주소**(같은 네트워크 안에서 다른 PC가 내 PC를 부르는 주소, 1일 차)로 접속해 봅니다. 다른 PC가 접속하는 것과 같은 경로입니다.
 
 ### ✍️ 문제 7-1 · 같은 서버를 닫아서 켜고 열어서 켜서 직접 재 보기
 
 **📍 이런 상황이 있습니다**
 
-- 보안 담당이 「사내 PC에서 접속되면 안 되는 서버가 열려 있는지 확인하라」고 합니다. 담당자는 서버 두 대를 `127.0.0.1:` 이 있는 것과 없는 것으로 켜서, 내 PC의 네트워크 주소로 접속하고, 어느 쪽이 열려 있는지 판정해야 합니다.
+- 보안 담당이 「사내 PC에서 접속되면 안 되는 서버가 열려 있는지 확인하라」고 합니다. 담당자는 서버 두 대를 `127.0.0.1:` 이 있는 것과 없는 것으로 켜서, 내 PC의 IP 주소로 접속하고, 어느 쪽이 열려 있는지 판정해야 합니다.
 - 현업에서는 켜 두기만 한 개발용 서버가 `0.0.0.0` 으로 열려 있어 사내 다른 PC에서 접속되는 일이 흔하고, 이것을 점검하는 것이 열린 포트 점검입니다.
 
 **🎯 할 일**
 
 1. <mark>닫힌 서버(8081)와 열린 서버(8082)</mark>를 켭니다.
-2. 내 PC의 <mark>네트워크 주소</mark>를 찾아 두 포트에 접속합니다.
+2. 내 PC의 <mark>IP 주소</mark>를 찾아 두 포트에 접속합니다.
 3. <mark>`PORTS` 열과 접속 결과</mark>를 짝지어 판정합니다.
 
 **순서**
 
-1. **[터미널]** 6교시에서 `down` 으로 정리했는지 `docker ps` 로 확인하고, 서버 두 대를 켭니다. 앞의 서버는 `127.0.0.1:` 이 붙고 뒤의 서버는 붙지 않습니다.
+1. **[터미널]** 6교시에서 `down` 으로 정리했는지 `docker ps -a` 로 확인합니다. `IMAGE` 열이 `hello-world` 인 줄 말고 남은 컨테이너가 있으면 `docker rm -f 이름` 으로 지웁니다. 그다음 서버 두 대를 켭니다. 앞의 서버는 `127.0.0.1:` 이 붙고 뒤의 서버는 붙지 않습니다.
    ```bash
    docker run -d --name closed -p 127.0.0.1:8081:80 nginx:1.28
    docker run -d --name open -p 8082:80 nginx:1.28
@@ -470,7 +511,7 @@ echo 'set expandtab shiftwidth=2 softtabstop=2' >> ~/.vimrc
    ```bash
    docker ps
    ```
-3. **[터미널]** 내 PC의 네트워크 주소를 찾습니다. 윈도는 아래 첫 줄을 치고, 맥북은 두 번째 줄을 칩니다. 윈도에서 여러 줄이 나오면 `172.17` · `172.18` 처럼 `172.` 로 시작하는 줄은 도커용 주소이므로 빼고, 남은 줄이 내 주소입니다. 이 주소를 아래에서 `내주소` 로 부릅니다.
+3. **[터미널]** 내 PC의 IP 주소를 찾습니다. 윈도는 아래 첫 줄을 치고, 맥북은 두 번째 줄을 칩니다. 윈도에서 여러 줄이 나오면 `172.17.` · `172.18.` 로 시작하는 줄은 도커용 주소이므로 빼고, 남은 줄이 내 주소입니다. 이 주소를 아래에서 `내주소` 로 부릅니다.
    ```bash
    ipconfig | grep -a "IPv4"
    ```
@@ -531,7 +572,7 @@ docker logs 이름 <-- 에러가 나오나?  (마지막 줄이 원인인 경우�
 
 **순서**
 
-1. **[터미널]** 같은 포트 8082 로 서버 두 대를 켭니다. 두 번째에서 에러가 나는 것이 정상입니다. 에러 문구의 끝부분을 읽습니다.
+1. **[터미널]** 먼저 `docker ps -a` 에 8082 를 쓰는 컨테이너가 없는지 봅니다. 있으면 `docker rm -f 이름` 으로 지웁니다. 그다음 같은 포트 8082 로 서버 두 대를 켭니다. 두 번째에서 에러가 나는 것이 정상입니다. 에러 문구의 끝부분을 읽습니다.
    ```bash
    docker run -d --name first -p 8082:80 nginx:1.28
    docker run -d --name second -p 8082:80 nginx:1.28
@@ -559,7 +600,7 @@ docker logs 이름 <-- 에러가 나오나?  (마지막 줄이 원인인 경우�
    ```bash
    docker rm -f page
    ```
-7. **[터미널]** 켜지자마자 꺼지는 서버를 만듭니다. 마지막 `nginx -c /no/such.conf` 는 존재하지 않는 설정 파일로 nginx 를 시작하라는 뜻이라서 서버가 꺼집니다. 맥북은 `MSYS_NO_PATHCONV=1 ` 을 빼고 칩니다.
+7. **[터미널]** 켜지자마자 꺼지는 서버를 만듭니다. 이미지 이름 뒤에 쓴 명령은 컨테이너가 켜질 때 실행되는 명령입니다. 마지막 `nginx -c /no/such.conf` 는 일부러 없는 설정 파일로 nginx 를 시작하라는 뜻이라서 서버가 꺼집니다. 맥북은 `MSYS_NO_PATHCONV=1 ` 을 빼고 칩니다.
    ```bash
    MSYS_NO_PATHCONV=1 docker run -d --name broken -p 8083:80 nginx:1.28 nginx -c /no/such.conf
    ```
@@ -623,7 +664,7 @@ docker logs 이름 <-- 에러가 나오나?  (마지막 줄이 원인인 경우�
 |---|---|
 | 내 PC 안에서만 열기 | `-p 127.0.0.1:포트:80` (`PORTS` 열에 `127.0.0.1:…`) |
 | 모든 주소로 열기 | `-p 포트:80` (`PORTS` 열에 `0.0.0.0:…`) |
-| 네트워크 주소로 접속 확인 | `curl -s -m 3 -o /dev/null -w "%{http_code}\n" http://내주소:포트` |
+| IP 주소로 접속 확인 | `curl -s -m 3 -o /dev/null -w "%{http_code}\n" http://내주소:포트` |
 | 안 열릴 때 보는 순서 | `docker ps` → `docker ps -a` → `docker logs 이름` |
 | 포트 충돌 | `port is already allocated` |
 | 없는 주소 | 응답 번호 `404` + 기록의 `[error] open() … failed` |
@@ -798,8 +839,8 @@ docker rm -f closed open
 
 - (가) `closed` 는 `127.0.0.1:8081->80/tcp`, `open` 은 `0.0.0.0:8082->80/tcp` 로 나옵니다. 앞에 `127.0.0.1:` 이 붙어 있는지가 다릅니다.
 - (나) `closed` 는 `000`(연결 거부), `open` 은 `200` 입니다.
-- (다) `closed` 는 `127.0.0.1`(내 PC 자신)로 온 요청만 받도록 연결돼 있어서, 내 PC 안에서 `127.0.0.1` 로 접속하면 `200` 이지만 `내주소` 로 오는 요청은 받지 않아 거부됩니다. 다른 PC가 내 PC의 네트워크 주소로 접속하는 것도 같은 경로이므로 똑같이 거부됩니다.
-- (라) `-p 127.0.0.1:포트:80` 으로 켭니다. 필요한 곳에만 열고 나머지는 닫는 허용 목록 · 최소 노출 원칙(4일 차)과 같습니다.
+- (다) `closed` 는 `127.0.0.1`(내 PC 자신)로 온 요청만 받도록 연결돼 있어서, 내 PC 안에서 `127.0.0.1` 로 접속하면 `200` 이지만 `내주소` 로 오는 요청은 받지 않아 거부됩니다. 다른 PC가 내 PC의 IP 주소로 접속하는 것도 같은 경로이므로 똑같이 거부됩니다.
+- (라) `-p 127.0.0.1:포트:80` 으로 켭니다. 필요한 곳에만 열고 나머지는 닫는 방화벽 허용 목록(4일 차)과 같은 생각입니다.
 
 **왜** — `-p` 에 주소를 쓰지 않으면 서버가 모든 주소로 열립니다. 개발용 · 관리용 서버를 이렇게 켜 둔 채 잊는 것이 열린 포트의 흔한 원인입니다.
 
