@@ -56,10 +56,10 @@ pwd
 ### 5.1 Dockerfile → build → image → run → container
 
 ```
-Dockerfile ---- docker build ---->  IMAGE my-nginx:1 ---- docker run ---->  CONTAINER
+Dockerfile ---- docker build ---->  이미지 my-nginx:1 ---- docker run ---->  컨테이너
    |
-   +-- FROM nginx:1.28        (base image)
-   +-- COPY site/index.html   (put my file into the image)
+   +-- FROM nginx:1.28        (바탕 이미지)
+   +-- COPY site/index.html   (내 파일을 이미지 안에 넣기)
 ```
 
 - 왼쪽부터 **설계도(Dockerfile) → 이미지 → 켜진 서버(컨테이너)** 순서입니다. `FROM` 은 바탕 이미지, `COPY` 는 내 파일을 이미지 안에 넣는 줄입니다.
@@ -93,13 +93,13 @@ docker build -t my-nginx:1 .
 ### 5.4 `-v` 방식과 이미지에 넣는 방식
 
 ```
-YESTERDAY  (-v)
-  MY PC  site-one/index.html  <==== connected ====>  CONTAINER
-  edit the file -> the server shows it right away
+어제 (-v)
+  내 PC  site-one/index.html  <==== 연결 ====>  컨테이너
+  파일을 고치면 -> 서버가 바로 새 파일을 보여 준다
 
-TODAY  (COPY into the image)
-  MY PC  site/index.html --COPY (at build time)--> IMAGE my-nginx:1 ---> CONTAINER
-  edit the file -> the image already built does not change
+오늘 (이미지 안에 COPY)
+  내 PC  site/index.html --COPY (build 할 때)--> 이미지 my-nginx:1 ---> 컨테이너
+  파일을 고쳐도 -> 이미 만든 이미지는 그대로다
 ```
 
 - 위가 어제 방식, 아래가 오늘 방식입니다. 어제는 파일을 연결해 두었고, 오늘은 build 하는 순간 파일을 복사해 이미지에 넣습니다.
@@ -233,12 +233,11 @@ TODAY  (COPY into the image)
 ### 6.1 docker run 옵션이 compose 파일 항목이 된다
 
 ```
-YESTERDAY (typed in the command)       TODAY (written in compose.yaml)
-docker run -d                      ->  docker compose up -d  (does this for you)
-  --name web-one                   ->  services:  web-one:
-  -p 8080:80                       ->      ports:   - "8080:80"
-  -v ./site-one:/usr/share/...:ro  ->      volumes: - ./site-one:/usr/share/...:ro
-  nginx:1.28                       ->      image: nginx:1.28
+docker run -d                      -->  docker compose up -d 가 대신 한다
+  --name web-one                   -->  services: 아래의 web-one:
+  -p 8080:80                       -->      ports:   - "8080:80"
+  -v ./site-one:/usr/share/...:ro  -->      volumes: - ./site-one:/usr/share/...:ro
+  nginx:1.28                       -->      image: nginx:1.28
 ```
 
 - 왼쪽이 어제 명령에 직접 친 옵션이고, 오른쪽이 오늘 파일에 적는 같은 내용입니다.
@@ -430,16 +429,18 @@ echo 'set expandtab shiftwidth=2 softtabstop=2' >> ~/.vimrc
 ### 7.1 어디까지 열려 있나
 
 ```
--p 127.0.0.1:8081:80  (closed)           -p 8082:80  (open)
-+------------- MY PC -------------+       +------------- MY PC -------------+
-| 127.0.0.1:8081 ==> CONTAINER    |       | 0.0.0.0:8082  ==> CONTAINER     |
-+---------------------------------+       +---------------------------------+
- from inside the PC (127.0.0.1): OK        from inside the PC: OK
- from my LAN address:8081 : REFUSED        from my LAN address:8082 : OK
- from another PC          : REFUSED        from another PC          : OK
+-p 127.0.0.1:8081:80  (닫힘)
+  내 PC 안에서 (127.0.0.1)     : 접속됨
+  내 PC 의 네트워크 주소:8081  : 거부됨
+  다른 PC                      : 거부됨
+
+-p 8082:80  (열림)
+  내 PC 안에서 (127.0.0.1)     : 접속됨
+  내 PC 의 네트워크 주소:8082  : 접속됨
+  다른 PC                      : 접속됨
 ```
 
-- 왼쪽은 닫은 서버로 내 PC 안에서만 접속됩니다. 오른쪽은 연 서버로 내 PC의 네트워크 주소로도, 다른 PC에서도 접속됩니다.
+- 위는 닫은 서버로 내 PC 안에서만 접속됩니다. 아래는 연 서버로 내 PC의 네트워크 주소로도, 다른 PC에서도 접속됩니다.
 
 - `127.0.0.1` 은 내 PC 자신을 가리키는 주소입니다(1일 차). `-p 127.0.0.1:8081:80` 은 그 주소로 온 요청만 서버에 넘깁니다.
 - 접두사가 없으면 `0.0.0.0`(모든 주소)입니다. `docker ps` 의 `PORTS` 열에 `127.0.0.1:8081->80/tcp` 로 나오면 닫힌 것이고 `0.0.0.0:8082->80/tcp` 로 나오면 열린 것입니다.
@@ -501,16 +502,16 @@ echo 'set expandtab shiftwidth=2 softtabstop=2' >> ~/.vimrc
 ### 7.2 서버가 안 열릴 때 보는 순서
 
 ```
-server does not open
+서버가 안 열린다
    |
    v
-docker ps          <-- is it listed?  (if yes: check the PORTS column)
-   |  no
+docker ps        <-- 목록에 있나?  (있으면: PORTS 열 확인)
+   |  없다
    v
-docker ps -a       <-- is it listed?  (it may be Created or Exited)
+docker ps -a     <-- 목록에 있나?  (Created 또는 Exited 로 있을 수 있다)
    |
    v
-docker logs NAME   <-- is there an error?  (the last line is often the cause)
+docker logs 이름 <-- 에러가 나오나?  (마지막 줄이 원인인 경우가 많다)
 ```
 
 - 먼저 `docker ps`(켜진 것), 없으면 `docker ps -a`(꺼진 것까지), 그다음 `docker logs 이름`(에러 문구)을 봅니다.

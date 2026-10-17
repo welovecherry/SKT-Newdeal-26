@@ -13,7 +13,7 @@
 2. **[VS Code]** `day06_pm_report.md` 를 오른쪽 클릭 › **Open to the Side** — 오른쪽. 질문마다 `쓸 내용:` 을 보고 `답:` 뒤에 씁니다.
 3. 문제는 **할 일 → 순서**대로 합니다. 순서 앞의 `[창 이름]` 이 지금 쓸 창이고, `[창 이름]` 이 없는 단계는 안내를 읽고 생각하는 단계입니다. 막히면 문서 맨 아래 「정답」을 봅니다.
 
-> 오늘 명령은 모두 **터미널**에서 칩니다(윈도에서는 Git Bash). 명령 아래에 「맥북:」 줄이 있으면 맥북에서만 그 줄을 칩니다. 도식 안의 이름은 영어로 쓰고, 한글 설명은 도식 아래에 적습니다. 학원에서 같이 쓰는 내려받기 한도가 있어서 **이미지를 지우지 않습니다**(`docker rmi` 를 치지 않습니다). 오늘 명령에 나오는 이름과 숫자는 연습용입니다.
+> 오늘 명령은 모두 **터미널**에서 칩니다(윈도에서는 Git Bash). 명령 아래에 「맥북:」 줄이 있으면 맥북에서만 그 줄을 칩니다. 학원에서 같이 쓰는 내려받기 한도가 있어서 **이미지를 지우지 않습니다**(`docker rmi` 를 치지 않습니다). 오늘 명령에 나오는 이름과 숫자는 연습용입니다.
 
 ---
 
@@ -33,14 +33,14 @@
 ### 5.1 도커 없이 설치하는 것과 도커로 실행하는 것
 
 ```
-[WITHOUT DOCKER]
-PC-A: install nginx 1.18 --> setting differs
-PC-B: install nginx 1.24 --> setting differs     ==> results differ per PC
-PC-C: install nginx 1.18 + old files left
+[도커 없이]
+PC-A: nginx 1.18 설치 --> 설정이 다름
+PC-B: nginx 1.24 설치 --> 설정이 다름                ==> PC마다 결과가 다름
+PC-C: nginx 1.18 설치 + 옛 파일이 남음
 
-[WITH DOCKER]
-PC-A, PC-B, PC-C: pull the same image nginx:1.28
-                  run it                        ==> same server on every PC
+[도커로]
+PC-A, PC-B, PC-C: 같은 이미지 nginx:1.28 을 받음
+                  실행                               ==> 어느 PC에서나 같은 서버
 ```
 
 - PC마다 설치하면 버전이 다를 수 있고, 지워도 파일이 남을 수 있습니다.
@@ -67,13 +67,11 @@ PC-A, PC-B, PC-C: pull the same image nginx:1.28
   - Docker Desktop 은 WSL 2(윈도 안에서 리눅스를 돌리는 기능) 위에서 엔진을 돌린다
 
 ```
-Docker Hub (internet)            MY PC
-+--------------------+  pull  +-----------------------------+
-| IMAGE nginx:1.28   | -----> | IMAGE nginx:1.28 (read only)|
-+--------------------+        |   |            |            |
-                              |   v run        v run        |
-                              | CONTAINER-1   CONTAINER-2   |
-                              +-----------------------------+
+Docker Hub (인터넷)                          내 PC
+[이미지 nginx:1.28] --받기(pull)--> [이미지 nginx:1.28 (읽기 전용)]
+                                            |              |
+                                            v 실행         v 실행
+                                       [컨테이너 1]  [컨테이너 2]
 ```
 
 - 이미지는 한 번 받아 두면 같은 이미지로 컨테이너를 몇 개든 만들 수 있습니다.
@@ -116,15 +114,15 @@ Docker Hub (internet)            MY PC
 설치가 끝나면 이 한 줄로 도커의 전체 흐름을 한 번에 봅니다.
 
 ```
-[TERMINAL] docker run hello-world
+[터미널] docker run hello-world
      |
-     | (1) ask
+     | (1) 요청
      v
-[DOCKER CLIENT] --> [DOCKER ENGINE] --(2) no image? pull--> [DOCKER HUB]
-                          |  <------------ image ----------------
-                          | (3) create and start container
-                          v
-                 [CONTAINER hello-world] --(4) print text--> [TERMINAL]
+[도커 클라이언트] --> [도커 엔진] --(2) 이미지가 없으면 받기--> [Docker Hub]
+                       |  <------------ 이미지 ----------------
+                       | (3) 컨테이너를 만들어 실행
+                       v
+                [컨테이너 hello-world] --(4) 글자 출력--> [터미널]
 ```
 
 ① 터미널의 `docker` 명령(클라이언트)이 엔진에 요청하고, ② 엔진이 이미지가 PC에 없으면 Docker Hub 에서 받고, ③ 받은 이미지로 컨테이너를 만들어 실행하고, ④ 컨테이너가 글자를 출력하면 터미널로 돌아옵니다.
@@ -237,15 +235,10 @@ Docker Hub (internet)            MY PC
 ### 6.1 포트를 연결해야 접속이 된다
 
 ```
-BROWSER   http://127.0.0.1:8080
-   |
-   v   port 8080 of MY PC
-+------------------ MY PC -----------------------+
-|  8080  ===== -p 8080:80 =====>  +-------------+ |
-|                                 | CONTAINER   | |
-|                                 | nginx  :80  | |
-|                                 +-------------+ |
-+------------------------------------------------+
+[브라우저] http://127.0.0.1:8080
+    |
+    v  내 PC의 8080번 포트
+[내 PC 8080] ===== -p 8080:80 =====> [컨테이너 안의 nginx :80]
 ```
 
 - 컨테이너 안의 nginx 는 컨테이너 안의 **80번 포트**를 듣고 있습니다. 내 PC의 8080번 포트로 온 요청을 그 80번으로 넘기도록 **연결**하는 것이 `-p 8080:80`(`-p 내PC포트:컨테이너포트`)입니다. 1 · 2일 차의 `IP:포트` 접속과 같고, 포트 포워딩(한 포트로 온 요청을 다른 포트로 넘김)이라고도 부릅니다.
@@ -406,11 +399,11 @@ nginx 는 요청을 처리할 때마다 한 줄씩 기록합니다. `docker logs
 ### 7.1 컨테이너 안의 변경은 사라진다
 
 ```
-STEP 1: edit inside container          STEP 2: remove container, run again
-+-----------+                          +-----------+
-| nginx     |  index.html changed      | nginx     |  index.html is the original
-| index.html| --- (remove) --- X       | index.html|  (the change is gone)
-+-----------+                          +-----------+
+1단계  [컨테이너 nginx] 안에서 index.html 을 바꾼다  -->  화면이 바뀜
+          |
+       컨테이너를 지우고 같은 명령으로 다시 켠다
+          v
+2단계  [새 컨테이너 nginx] index.html 은 이미지의 원래 파일  -->  바꾼 내용이 사라짐
 ```
 
 컨테이너는 이미지에서 새로 만들어집니다. 지웠다 다시 켜면 이미지에 들어 있던 원래 파일로 돌아갑니다. 바꾼 내용을 지키려면 컨테이너 밖에 파일을 두어야 합니다.
@@ -418,8 +411,9 @@ STEP 1: edit inside container          STEP 2: remove container, run again
 ### 7.2 `-v` 로 내 폴더를 연결한다
 
 ```
-MY PC                                        CONTAINER (nginx)
-day06_docker/site-one/index.html  <==(-v)==> /usr/share/nginx/html/index.html (read only)
+[내 PC]    day06_docker/site-one/index.html
+               <==== -v 로 연결 ====>
+[컨테이너] /usr/share/nginx/html/index.html (읽기 전용 :ro)
 ```
 
 - **`-v`**(volume · 볼륨, 여기서는 바인드 마운트(bind mount) 방식) 는 `내 PC의 폴더:컨테이너 안의 폴더` 를 서로 연결합니다. 내 PC에서 파일을 고치면 서버가 바로 새 파일을 보여 줍니다.
@@ -427,11 +421,11 @@ day06_docker/site-one/index.html  <==(-v)==> /usr/share/nginx/html/index.html (r
 - ⚠ **Git Bash 에서는 `-v` 앞에 `MSYS_NO_PATHCONV=1 ` 을 붙입니다.** Git Bash 가 `-v` 뒤 글자를 윈도 경로로 멋대로 바꿔서, 오류 없이 연결만 안 되고 기본 화면이 나옵니다.
 
 ```
-YOU TYPE:   -v "/c/.../site-one:/usr/share/nginx/html:ro"
-GIT BASH CHANGES THE CONTAINER PATH:
-            /usr/share/nginx/html --> C:/Program Files/Git/usr/share/nginx/html
-RESULT:     no error, but the folder is not connected --> "Welcome to nginx!"
-FIX:        put  MSYS_NO_PATHCONV=1  in front of docker run
+입력한 것:     -v "/c/.../site-one:/usr/share/nginx/html:ro"
+Git Bash 가 컨테이너 쪽 경로를 바꿔 버린다:
+               /usr/share/nginx/html --> C:/Program Files/Git/usr/share/nginx/html
+결과:          오류는 없지만 폴더가 연결되지 않아 "Welcome to nginx!" 가 나온다
+해결:          docker run 앞에 MSYS_NO_PATHCONV=1 을 붙인다
 ```
 
 - 맥북에서는 `MSYS_NO_PATHCONV=1 ` 을 붙이지 않아도 됩니다.
@@ -439,8 +433,8 @@ FIX:        put  MSYS_NO_PATHCONV=1  in front of docker run
 ### 7.3 서버 두 대, 포트 두 개
 
 ```
-BROWSER :8080 --> MY PC 8080 ==> CONTAINER web-one (site-one)
-BROWSER :8081 --> MY PC 8081 ==> CONTAINER web-two (site-two)
+브라우저 :8080 --> 내 PC 8080 ==> 컨테이너 web-one (site-one)
+브라우저 :8081 --> 내 PC 8081 ==> 컨테이너 web-two (site-two)
 ```
 
 두 서버 모두 컨테이너 안에서는 80번 포트를 쓰지만, 내 PC에서는 8080 · 8081 로 나누어 연결하므로 주소의 포트 번호로 서버를 구분합니다.

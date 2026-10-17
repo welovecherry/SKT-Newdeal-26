@@ -343,18 +343,18 @@ def decide_settlement(req):                                  # 정산 내역 조
     return "허용", reasons                                    # 그 아래면 허용한다
 ```
 
-흐름을 그리면 이렇습니다(도식의 이름은 영어로 씁니다).
+흐름을 그리면 이렇습니다.
 
 ```
-REQ --> [must-have checks] --fail--> DENY (return at once)
-              |
-            pass
-              v
-        [add risk points: health, country, hour, mfa, count]
-              v
-      score >= 50 --> DENY
-      score >= 20 --> STEP_UP
-      else        --> ALLOW
+요청 --> [필수 조건 검사] --어긋남--> 거부 (바로 리턴)
+                 |
+               통과
+                 v
+         [위험 점수 더하기: 기기 상태, 국가, 시각, MFA, 조회 건수]
+                 v
+      점수 >= 50 --> 거부
+      점수 >= 20 --> 추가확인
+      그 외      --> 허용
 ```
 
 2교시 사건의 요청(`seoyeon`, 기기 `NB-7741`)은 **필수 조건 2 에서 바로 거부**됩니다. 등록 기기를 쓰는 요청이 점수로 어떻게 쌓이는지는 아래 한 건으로 따라가 봅니다.
@@ -639,10 +639,10 @@ print("거부 이유별 건수", reason_counts)                      # 거부 �
   - 10/15(목) 방화벽의 기본 거부와 같은 생각이다
 
 ```
-USER --request--> PEP --ask (request info)--> PDP (decide_settlement)
-                   ^                              |
-                   +------- decision (allow / step_up / deny) ----+
-PEP: allow --> APP | step_up --> ask MFA | deny --> block, write LOG
+사용자 --요청--> PEP --문의(요청 정보)--> PDP (decide_settlement 함수)
+                  ^                        |
+                  +--- 결정 (허용 / 추가확인 / 거부) +
+PEP: 허용 --> 앱 | 추가확인 --> MFA 요구 | 거부 --> 차단하고 로그에 기록
 ```
 
 - 오늘 3교시의 `decide_settlement` 가 PDP 의 역할을 합니다. 요청 정보를 받아 결정을 리턴합니다.
@@ -810,7 +810,7 @@ print("총점", total, "/ 100")                                 # 총점을 출�
 - PEP(집행):
 ## 흐름도
 ```
-USER --request--> PEP --ask--> PDP
+사용자 --요청--> PEP --문의--> PDP
 ```
 ## 최소권한 기준 (목록에 없으면 거부)
 - 재무팀:
@@ -828,7 +828,7 @@ USER --request--> PEP --ask--> PDP
    - **vim**: `vim day06_zt_scenario.md` → `i` → 글 입력 → `Esc` → `:wq` Enter
    - **touch**: `touch day06_zt_scenario.md` → VS Code 에서 파일을 열어 글 입력
 2. **[vim 또는 VS Code]** 위 형식대로 칸마다 씁니다.
-   - 흐름도는 예시 줄을 이어서 그립니다. PDP 가 무엇을 보고 결정하는지(필수 조건 · 점수)와 PEP 가 집행하는 세 가지(통과 · 추가 확인 · 차단)가 보이게 합니다. 도식 안의 이름은 영어로 씁니다.
+   - 흐름도는 예시 줄을 이어서 그립니다. PDP 가 무엇을 보고 결정하는지(필수 조건 · 점수)와 PEP 가 집행하는 세 가지(통과 · 추가 확인 · 차단)가 보이게 합니다.
    - 최소권한 기준은 2교시 등록 정보 표의 「맡은 자원」을 보고, 그 부서가 쓸 수 있는 시스템만 적습니다.
 3. vim 으로 썼다면 `Esc` 를 누르고 `:wq` Enter 로 저장하고 나옵니다.
 4. **[터미널]** 저장된 내용을 확인합니다.
@@ -1073,12 +1073,12 @@ cat day06_zt_scenario.md
 - PEP(집행): 정산 포털 앞의 프록시. 결정대로 통과 · 추가 인증 · 차단하고 로그를 남긴다
 ## 흐름도
 ```
-USER --request--> PEP --ask--> PDP
-                               |  1. must-have checks (employed, registered device) fail --> deny
-                               |  2. add risk points (health, country, hour, mfa, count)
-                               |  3. score >= 50 deny / score >= 20 step_up / else allow
-PEP <--decision-- PDP
-PEP: allow --> APP | step_up --> ask MFA | deny --> block, write LOG
+사용자 --요청--> PEP --문의--> PDP
+                                |  1. 필수 조건 검사 (재직 중, 등록된 기기): 어긋나면 거부
+                                |  2. 위험 점수 더하기 (기기 상태, 국가, 시각, MFA, 조회 건수)
+                                |  3. 점수 50 이상 거부 / 20 이상 추가확인 / 그 외 허용
+PEP <--결정-- PDP
+PEP: 허용 --> 앱 | 추가확인 --> MFA 요구 | 거부 --> 차단하고 로그에 기록
 ```
 ## 최소권한 기준 (목록에 없으면 거부)
 - 재무팀: SETTLE(정산 내역)만

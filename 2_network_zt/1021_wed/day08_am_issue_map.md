@@ -384,23 +384,27 @@ for reason in deny_reasons:                                  # 이유를 하나�
 
 **도식 쓰는 법**
 
-- 도식 안의 이름은 영어 · 숫자로 씁니다. 한글은 폭이 달라 정렬이 깨집니다.
-- 상자는 `[ ]`, 화살표는 `-->`, 한 줄 설명은 상자 아래 줄에 씁니다.
+- 이름은 한글로 써도 됩니다. 칸을 맞춰 가로로 늘어놓지 말고 **세로로 한 줄씩** 쓰면 글자 폭이 달라도 모양이 깨지지 않습니다.
+- 상자는 `[ ]`, 상자 사이는 아래로 가는 `v` 로 잇고, 설명은 상자 뒤에 한 줄로 씁니다.
 - **플로우차트**(flowchart · 플로우차트)는 일의 흐름을 순서대로 이은 그림이고, **타임라인**(timeline · 타임라인)은 사건을 시각 순서로 늘어놓은 그림입니다.
 
 다른 사건(DNS 스푸핑 의심)으로 그린 본보기입니다. 같은 모양으로 seoyeon 건을 그립니다.
 
 ```
-[Flow]
-[SYMPTOM] --> [DIAGNOSE] --> [CAUSE] --> [ACTION]
- odd page      nslookup       reply IP    flush cache,
- opens         shows new IP   differs     block bad IP
+[플로우차트]
+[증상] 이상한 페이지가 열림
+   v
+[진단] nslookup 으로 확인하니 새 IP 가 나옴
+   v
+[원인] 응답 IP 가 평소와 다름
+   v
+[조치] 캐시를 비우고 나쁜 IP 를 차단
 
-[Timeline]
-09:00  user reports odd page
-09:05  nslookup returns new IP (usual one differs)
-09:10  firewall log checked: no block rule for new IP
-09:20  cache flushed, IP blocked
+[타임라인]
+09:00  사용자가 이상한 페이지를 신고
+09:05  nslookup 이 새 IP 를 알려 줌 (평소 IP 와 다름)
+09:10  방화벽 로그 확인: 새 IP 를 막는 규칙 없음
+09:20  캐시를 비우고 IP 를 차단
 ```
 
 **순서**
@@ -408,8 +412,8 @@ for reason in deny_reasons:                                  # 이유를 하나�
 1. **[터미널]** `network_zt` 폴더 안에서 `day08_issue_diagram.md` 를 만듭니다. 이 문서는 짧은 글이라 직접 입력합니다. 아래 둘 중 **하나만** 고릅니다.
    - **vim**: `vim day08_issue_diagram.md` → `i` → 글 입력 → `Esc` → `:wq` Enter
    - **touch**: `touch day08_issue_diagram.md` → VS Code 에서 파일을 열어 글 입력
-2. **[vim]** 또는 **[VS Code]** 에서 `[Flow]` 와 `[Timeline]` 두 도식을 본보기처럼 씁니다. 의심 건의 시각과 기기는 3-1 의 LOG 에서 가져옵니다.
-3. 도식의 `[DIAGNOSE]` 와 `[CAUSE]` 에는 1~7일 차에서 쓴 기록 · 개념의 이름을 적습니다.
+2. **[vim]** 또는 **[VS Code]** 에서 `[플로우차트]` 와 `[타임라인]` 두 도식을 본보기처럼 씁니다. 의심 건의 시각과 기기는 3-1 의 LOG 에서 가져옵니다.
+3. 도식의 `[진단]` 과 `[원인]` 에는 1~7일 차에서 쓴 기록 · 개념의 이름을 적습니다.
 4. **[터미널]** 저장된 내용을 확인합니다.
    ```bash
    cat day08_issue_diagram.md
@@ -724,29 +728,30 @@ MFA 안 함 # 1
 **쓴 문서의 한 예**
 
 ```
-[Flow]
-[SYMPTOM] --> [DIAGNOSE] --> [CAUSE] --> [ACTION]
- deny then     compare device   unconfirmed:   lock account until
- allow in      and time in      stolen password owner confirms,
- 3 min         policy log       or owner       check device NB-7741
-                                (Day6 PDP,     owner (Day7 log)
-                                Day7 log)
+[플로우차트]
+[증상] 거부된 지 3분 만에 같은 계정이 허용됨
+   v
+[진단] 정책 로그에서 기기와 시각을 비교
+   v
+[원인] 확인 안 됨: 비밀번호 도용인지 본인인지 (6일 차 PDP, 7일 차 로그)
+   v
+[조치] 본인이 확인할 때까지 계정 잠금, NB-7741 소유자 확인 (7일 차 로그)
 
-[Timeline]
-02:10  seoyeon denied: unregistered device NB-7741
-02:13  same account allowed from NB-0417 (3 min later)
-11:50  seoyeon allowed from NB-0417 (usual)
-15:20  seoyeon denied again from NB-7741
+[타임라인]
+02:10  seoyeon 거부됨: 등록되지 않은 기기 NB-7741
+02:13  같은 계정이 NB-0417 에서 허용됨 (3분 뒤)
+11:50  seoyeon 이 NB-0417 에서 허용됨 (평소 기기)
+15:20  seoyeon 이 NB-7741 에서 다시 거부됨
 ```
 
 **결과**
 
 - (다) 표는 항목별 값을 나열하지만, 타임라인은 **시각 순서와 사건 사이의 간격**이 보입니다. 02:10 에 거부되고 3분 뒤 다른 기기로 허용됐고, 같은 미등록 기기가 15:20 에 다시 나타난 것이 한눈에 이어져 「한 번의 실수가 아니라 반복된 시도」라는 흐름이 드러납니다.
-- (라) 한 예: `[DIAGNOSE]` 의 「compare device and time in policy log」는 7일 차(정책 로그), `[CAUSE]` 의 「PDP」는 6일 차(PDP · PEP), 「stolen password」는 4일 차(VPN 로그인 정보 도용 위협)입니다. 일차와 개념 이름이 함께 적혀 있으면 맞습니다.
+- (라) 한 예: `[진단]` 의 「정책 로그에서 기기와 시각을 비교」는 7일 차(정책 로그), `[원인]` 의 「PDP」는 6일 차(PDP · PEP), 「비밀번호 도용」은 4일 차(VPN 로그인 정보 도용 위협)입니다. 일차와 개념 이름이 함께 적혀 있으면 맞습니다.
 
 **왜** — 증상에서 조치까지 흐름으로 그리면 원인이 확정되지 않은 곳과 확인할 기록이 보입니다. 타임라인은 사건이 어떤 순서로 이어졌는지를 보여 줘서 임원이 경위를 따라갈 수 있습니다.
 
-**자주 틀리는 곳** — `[CAUSE]` 를 「password stolen」처럼 단정해 쓰는 경우가 많습니다. 기록은 원인을 확정해 주지 않으므로 「unconfirmed」로 쓰고 확인 방법을 `[ACTION]` 에 씁니다. 도식에 한글을 쓰면 정렬이 깨집니다. 타임라인의 시각 순서를 뒤섞는 실수도 있습니다.
+**자주 틀리는 곳** — `[원인]` 을 「비밀번호 도용」처럼 단정해 쓰는 경우가 많습니다. 기록은 원인을 확정해 주지 않으므로 「확인 안 됨」으로 쓰고 확인 방법을 `[조치]` 에 씁니다. 상자를 가로로 늘어놓고 칸을 맞추려다 모양이 깨지는 경우도 있습니다. 타임라인의 시각 순서를 뒤섞는 실수도 있습니다.
 
 **관제에서는** — 사고 보고서에는 흐름도와 타임라인을 함께 넣습니다. 5과목 자동 대응의 초동 대응 리포트가 이 타임라인 형식을 씁니다.
 
