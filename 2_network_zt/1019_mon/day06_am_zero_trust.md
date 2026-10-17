@@ -264,7 +264,7 @@ pwd
 | ③ | VS Code 왼쪽 목록에서 그 파일을 눌러 연다 | 편집 화면이 열린다 |
 | ④ | 붙여넣기 | 문서의 코드를 복사해 붙여넣는다. 자동 저장이 켜져 있어 곧 저장된다 |
 
-- 이 뒤 파일부터는 「`vim 파일이름` 또는 `touch 파일이름` 으로 만들고 코드를 붙여 넣습니다」 한 줄로만 적습니다.
+- 이 뒤 파일부터는 두 방법의 키 순서를 파일 이름을 넣어 짧게 다시 적습니다. 내용은 위 표와 같고, 편한 쪽을 고르면 됩니다.
 
 ### 3.1 PDP 와 점수 판단
 
@@ -634,7 +634,11 @@ PEP: allow --> APP | step_up --> ask MFA | deny --> block, write LOG
 
 ### 4.2 파일 만들기
 
-`vim day06_zt_scenario.md`(방법 A) 또는 `touch day06_zt_scenario.md`(방법 B) 중 편한 쪽으로 `network_zt` 폴더에 만듭니다. 이 문서는 짧은 글이라 vim 에서 `i` 를 누르고 직접 입력해도 됩니다. 저장은 `Esc` → `:wq` Enter 입니다.
+`network_zt` 폴더 안에서 편한 방법 하나로 `day06_zt_scenario.md` 를 만듭니다. 이 문서는 짧은 글이라 코드를 붙여 넣는 대신 직접 입력합니다.
+
+- **방법 A (vim)**: `vim day06_zt_scenario.md` → `i` → 글 입력 → `Esc` → `:wq` Enter
+- **방법 B (touch)**: `touch day06_zt_scenario.md` → `ls` 로 만들어졌는지 확인 → VS Code 에서 열어 글 입력(자동 저장)
+- 어느 쪽이든 끝나면 `ls` 로 파일이 있는지 확인합니다. `…/network_zt` 위치가 아니면 먼저 `cd network_zt` 로 이동합니다.
 
 - **`cat`**(캣 · 파일 내용을 화면에 출력하는 명령): `cat day06_zt_scenario.md` 로 저장된 내용을 확인합니다.
 
