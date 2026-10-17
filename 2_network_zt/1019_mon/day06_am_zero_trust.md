@@ -254,7 +254,7 @@ pwd
 - 키가 먹지 않으면 한/영 키로 **영문**으로 바꿉니다. `Esc` 를 먼저 누른 뒤 `:wq` 를 칩니다.
 - 붙여넣은 코드의 줄 앞 공백이 줄마다 점점 밀려 있으면 `Esc` → `:q!` Enter 로 저장하지 않고 나와서 `touch 파일이름` 으로 파일을 만들고 VS Code 에서 열어 붙여넣습니다.
 - 어떻게 해도 못 나가겠으면 `Esc` 를 두 번 누르고 `:q!` Enter 를 입력합니다.
-- 파일만 먼저 만들 때는 `touch 파일이름` 을 쓰고 `ls` 로 만들어졌는지 확인합니다.
+- `vim` 대신 `touch 파일이름` 으로 파일을 만들고 VS Code 에서 열어 붙여넣어도 됩니다. 둘 중 **하나만** 고르면 됩니다.
 
 ### 3.1 PDP 와 점수 판단
 
@@ -461,11 +461,9 @@ print("F", decide_admin(F))                                  # 요청 F 의 (결
    ```bash
    pwd
    ```
-2. **[터미널]** `vim` 으로 파일을 엽니다. `i` → 위 코드를 붙여 넣기 → `Esc` → `:wq` Enter 순서입니다.
-   ```bash
-   vim day06_3-1_decide_admin.py
-   ```
-   파일만 먼저 만들 때는 `touch day06_3-1_decide_admin.py` 를 씁니다.
+2. **[터미널]** 파일을 만들고 위 코드를 붙여 넣습니다. 아래 둘 중 **하나만** 고릅니다.
+   - **vim**: `vim day06_3-1_decide_admin.py` → `i` → 코드 붙여넣기 → `Esc` → `:wq` Enter
+   - **touch**: `touch day06_3-1_decide_admin.py` → VS Code 에서 파일을 열어 코드 붙여넣기
 3. **[VS Code]** `network_zt` 폴더의 `day06_3-1_decide_admin.py` 를 열어 역할 검사 두 줄과 MFA 점수 블록 세 줄을 채우고, 점수 세 개의 `0` 을 숫자로 바꿉니다. 새로 쓰는 줄의 모양은 바로 아래 기기 상태 검사 블록(`if req["health"] != "ok":` …)과 같습니다.
 4. **[터미널]** 실행합니다.
    ```bash
@@ -567,11 +565,9 @@ print("거부 이유별 건수", reason_counts)                      # 거부 �
 
 **순서**
 
-1. **[터미널]** `vim` 으로 파일을 엽니다. `i` → 위 코드를 붙여 넣기 → `Esc` → `:wq` Enter 순서입니다.
-   ```bash
-   vim day06_3-2_batch_decide.py
-   ```
-   파일만 먼저 만들 때는 `touch day06_3-2_batch_decide.py` 를 씁니다.
+1. **[터미널]** 파일을 만들고 위 코드를 붙여 넣습니다. 아래 둘 중 **하나만** 고릅니다.
+   - **vim**: `vim day06_3-2_batch_decide.py` → `i` → 코드 붙여넣기 → `Esc` → `:wq` Enter
+   - **touch**: `touch day06_3-2_batch_decide.py` → VS Code 에서 파일을 열어 코드 붙여넣기
 2. **[VS Code]** `network_zt` 폴더의 `day06_3-2_batch_decide.py` 를 열어 `# ←` 가 있는 곳을 채웁니다. `counts` 는 결정 이름으로 값을 꺼내 쓰는 딕셔너리입니다(10/13(화)에 배운 `d[키]`). 이유별 건수는 `reason_counts[이유] = reason_counts.get(이유, 0) + 1` 로 셉니다(10/14(수)에 배운 방식).
 3. **[터미널]** 실행합니다.
    ```bash
@@ -665,7 +661,7 @@ PEP: allow --> APP | step_up --> ask MFA | deny --> block, write LOG
 `network_zt` 폴더 안에서 `vim 파일이름` 으로 만듭니다. 4-1 은 코드를 붙여 넣고, 4-2 의 `.md` 문서는 짧은 글이라 직접 입력합니다.
 
 - `vim 파일이름` → `i` → 붙여넣기(또는 직접 입력) → `Esc` → `:wq` Enter
-- 파일만 먼저 만들 때는 `touch 파일이름` 을 쓰고 `ls` 로 확인합니다. `…/network_zt` 위치가 아니면 먼저 `cd network_zt` 로 이동합니다.
+- `vim` 대신 `touch 파일이름` 으로 파일을 만들고 VS Code 에서 열어 써도 됩니다(둘 중 하나만). `…/network_zt` 위치가 아니면 먼저 `cd network_zt` 로 이동합니다.
 - **`cat`**(캣 · 파일 내용을 화면에 출력하는 명령): `cat 파일이름` 으로 저장된 내용을 확인합니다.
 
 ### ✍️ 문제 4-1 · 직원 정보로 ZT 성숙도 점수 계산하기
@@ -748,10 +744,9 @@ print("총점", total, "/ 100")                                 # 총점을 출�
 
 **순서**
 
-1. **[터미널]** `network_zt` 폴더 안에서 `vim` 으로 파일을 만들고 위 코드를 붙여 넣습니다(4.3).
-   ```bash
-   vim day06_4-1_zt_score.py
-   ```
+1. **[터미널]** `network_zt` 폴더 안에서 파일을 만들고 위 코드를 붙여 넣습니다(4.3). 아래 둘 중 **하나만** 고릅니다.
+   - **vim**: `vim day06_4-1_zt_score.py` → `i` → 코드 붙여넣기 → `Esc` → `:wq` Enter
+   - **touch**: `touch day06_4-1_zt_score.py` → VS Code 에서 파일을 열어 코드 붙여넣기
 2. **[VS Code]** `day06_4-1_zt_score.py` 를 열어 `# ←` 가 있는 네 줄을 바꿉니다.
 3. **[터미널]** 실행합니다.
    ```bash
@@ -808,14 +803,13 @@ USER --request--> PEP --ask--> PDP
 
 **순서**
 
-1. **[터미널]** `network_zt` 폴더 안에서 파일을 만듭니다(4.3). 화면이 비어 있으면 새 파일입니다.
-   ```bash
-   vim day06_zt_scenario.md
-   ```
-2. **[vim]** `i` 를 눌러 입력 모드로 들어가, 위 형식대로 칸마다 씁니다.
+1. **[터미널]** `network_zt` 폴더 안에서 파일을 만듭니다(4.3). 아래 둘 중 **하나만** 고릅니다.
+   - **vim**: `vim day06_zt_scenario.md` → `i` → 글 입력 → `Esc` → `:wq` Enter
+   - **touch**: `touch day06_zt_scenario.md` → VS Code 에서 파일을 열어 글 입력
+2. **[vim 또는 VS Code]** 위 형식대로 칸마다 씁니다.
    - 흐름도는 예시 줄을 이어서 그립니다. PDP 가 무엇을 보고 결정하는지(필수 조건 · 점수)와 PEP 가 집행하는 세 가지(통과 · 추가 확인 · 차단)가 보이게 합니다. 도식 안의 이름은 영어로 씁니다.
    - 최소권한 기준은 2교시 등록 정보 표의 「맡은 자원」을 보고, 그 부서가 쓸 수 있는 시스템만 적습니다.
-3. **[vim]** `Esc` 를 누르고 `:wq` Enter 로 저장하고 나옵니다.
+3. vim 으로 썼다면 `Esc` 를 누르고 `:wq` Enter 로 저장하고 나옵니다.
 4. **[터미널]** 저장된 내용을 확인합니다.
    ```bash
    cat day06_zt_scenario.md
@@ -834,7 +828,7 @@ USER --request--> PEP --ask--> PDP
 | 결정하는 곳 / 막는 곳 | PDP(결정) / PEP(집행) |
 | 성숙도 점수 | 항목당 20점 × 5. 비율 항목은 `round(적용 수 / len(STAFF) * 20)`, 여부 항목은 20 또는 0 |
 | 허용 목록에 없는 것 | 기본 거부 |
-| 새 파일 만들기 | `vim 파일이름` → `i` → 글 → `Esc` → `:wq` Enter (파일만 먼저: `touch 파일이름`) |
+| 새 파일 만들기 | `vim 파일이름` → `i` → 글 → `Esc` → `:wq` Enter, 또는 `touch 파일이름` → VS Code 에서 열어 쓰기 (둘 중 하나만) |
 | 저장된 내용 확인 | `cat 파일이름` |
 
 ---
